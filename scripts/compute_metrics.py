@@ -5,6 +5,10 @@ import os
 import pandas as pd
 
 CR = 1e7
+FLAG_PCT = 0.15      # flag when reported profit differs from normalized by more than this
+SWITCH_PCT = 0.30    # switch ratios to normalized profit only above this
+EQUITY_OVERRIDE = {"HDFCBANK"}   # verified against Screener: use book value x shares
+
 uni = pd.read_csv("data/universe.csv")
 uni = uni[~uni["symbol"].str.startswith("DUMMY")]
 os.makedirs("data/metrics", exist_ok=True)
@@ -119,11 +123,14 @@ def build(sym):
         ratio = L["eq"] / implied
         eq_check["implied_cr"] = cr(implied)
         eq_check["ratio"] = round(ratio, 2)
-        if ratio > 1.10 or ratio < 0.70:
+        if sym in EQUITY_OVERRIDE:
             L["eq"] = implied
-            eq_check["used"] = "book_value"
-            flags.append(f"equity replaced by Yahoo book value "
-                         f"(balance sheet / book value = {ratio:.2f})")
+            eq_check["used"] = "book_value (manual override)"
+            flags.append(f"equity overridden with book value x shares "
+                         f"(balance sheet / book value = {ratio:.2f}; verified vs Screener)")
+        elif ratio > 1.10 or ratio < 0.70:
+            flags.append(f"equity check mismatch (balance sheet / book value x shares "
+                         f"= {ratio:.2f}); figures NOT changed")
 
     n = len(Y) - 1
 
@@ -200,18 +207,20 @@ def finalize(m):
         rnd(mcap / base) if base and base > 0 and mcap else None)
     m["valuation"]["pe_used"] = m["valuation"]["pe"]
 
-    if (m["type"] == "standard" and ni is not None and base
-            and abs(ni - base) > 0.15 * abs(base)):
-        m["flags"].append("reported profit differs from normalized (one-offs)")
-        r, s = m["ratios"], m["snapshot_cr"]
-        m["ratios_reported"] = {k: r[k] for k in ["roe_pct", "roa_pct", "net_margin_pct"]}
-        b = base / CR
-        r["roe_pct"] = pct(div(b, s["eq"]))
-        r["roa_pct"] = pct(div(b, s["ta"]))
-        r["net_margin_pct"] = pct(div(b, s["rev"]))
-        m["dupont"]["net_margin_pct"] = r["net_margin_pct"]
-        m["valuation"]["pe_used"] = m["valuation"]["pe_normalized"]
-        m["profit_basis"] = "normalized"
+    if m["type"] == "standard" and ni is not None and base:
+        gap = abs(ni - base) / abs(base)
+        if gap > FLAG_PCT:
+            m["flags"].append(f"reported profit differs from normalized by {gap * 100:.0f}%")
+        if gap > SWITCH_PCT:
+            r, s = m["ratios"], m["snapshot_cr"]
+            m["ratios_reported"] = {k: r[k] for k in ["roe_pct", "roa_pct", "net_margin_pct"]}
+            b = base / CR
+            r["roe_pct"] = pct(div(b, s["eq"]))
+            r["roa_pct"] = pct(div(b, s["ta"]))
+            r["net_margin_pct"] = pct(div(b, s["rev"]))
+            m["dupont"]["net_margin_pct"] = r["net_margin_pct"]
+            m["valuation"]["pe_used"] = m["valuation"]["pe_normalized"]
+            m["profit_basis"] = "normalized"
 
     if m["type"] == "financial":
         for k in FIN_NULL:
@@ -262,21 +271,25 @@ open("data/metrics_errors.txt", "w").write("\n".join(errors) if errors else "non
 
 # review file: counts and lists so results can be checked without Actions logs
 std = sum(1 for x in rows if x["type"] == "standard")
-eqf = [(x["symbol"], x["equity_ratio"]) for x in rows if "equity replaced" in x["flags"]]
-one = [x["symbol"] for x in rows if "one-offs" in x["flags"]]
+ovr = [x["symbol"] for x in rows if "equity overridden" in x["flags"]]
+mism = [(x["symbol"], x["equity_ratio"]) for x in rows if "equity check mismatch" in x["flags"]]
+fl = [x["symbol"] for x in rows if "differs from normalized" in x["flags"]]
+sw = [(x["symbol"], x["pe"], x["pe_normalized"]) for x in rows if x["profit_basis"] == "normalized"]
 roe_out = [(x["symbol"], x["roe_pct"]) for x in rows
            if x["roe_pct"] is not None and (x["roe_pct"] > 60 or x["roe_pct"] < -20)]
 review = [
     f"Stocks with metrics: {len(rows)} | skipped: {len(errors)}",
     f"Standard: {std} | financial or no EBIT: {len(rows) - std}",
-    f"Equity replaced by book value ({len(eqf)}): {eqf}",
-    f"Normalized-profit flag ({len(one)}): {one}",
+    f"Equity manually overridden ({len(ovr)}): {ovr}",
+    f"Equity mismatch, NOT changed ({len(mism)}): {mism}",
+    f"Profit differs from normalized by >{int(FLAG_PCT * 100)}%, flag only ({len(fl)}): {fl}",
+    f"Ratios switched to normalized profit, gap >{int(SWITCH_PCT * 100)}% ({len(sw)}) [symbol, pe, pe_normalized]: {sw}",
     f"ROE outliers (>60 or <-20) ({len(roe_out)}): {roe_out}",
 ]
 open("data/metrics_review.txt", "w").write("\n".join(review))
 
 # readable spot-check file
-CHECK = ["HINDUNILVR", "HDFCBANK", "ICICIBANK", "SBIN", "KOTAKBANK", "BAJFINANCE"]
+CHECK = ["INFY", "HDFCBANK", "HINDUNILVR", "MARUTI", "JSWSTEEL", "LICI"]
 out = []
 for s in CHECK:
     p = f"data/metrics/{s}.json"
