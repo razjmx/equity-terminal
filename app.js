@@ -317,7 +317,8 @@ function renderMarket(anim){
 
   // 1 indices
   if(d.indices.length){h+=sec('idx','Indices',d.real_indices?'':'built from our own stock universe, not official Nifty indices')+'<div class="mh-grid">';
-    d.indices.forEach((ix,i)=>{const a=W(ix.y),l=last(a),f=first(a),ch=l!=null&&f?(l/f-1)*100:null;
+    const IXO=['Nifty 50','Bank Nifty','Sensex','Nifty Midcap 150','Nifty Smallcap 250','Nifty 500'],ixr=n=>{const k=IXO.findIndex(x=>n.startsWith(x.replace('Nifty ','').replace(' 150','').replace(' 250',''))||n===x);return k<0?99:k};
+    d.indices.slice().sort((a,b)=>{const f=n=>{const i=IXO.indexOf(n);return i<0?(/mid cap/i.test(n)?3:/small cap/i.test(n)?4:99):i};return f(a.name)-f(b.name)}).forEach((ix,i)=>{const a=W(ix.y),l=last(a),f=first(a),ch=l!=null&&f?(l/f-1)*100:null;
       h+=mcard('ix'+i,ix.name,{big:l==null?'–':T.fmt(l,ix.real?0:1),delta:ch==null?'':sgn(ch,1,'%'),dcls:cls(ch)});
       specs.push({id:'ix'+i,x:X,layers:[{y:a,type:'area'}],auto:true,dec:ix.real?0:1})});h+='</div>'}
 
