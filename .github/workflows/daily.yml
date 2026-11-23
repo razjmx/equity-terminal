@@ -45,6 +45,10 @@ jobs:
       - name: 5 Financials model (P/B-ROE)
         run: python scripts/compute_financials.py
 
+      - name: 5a Extra indices (Sensex, Bank Nifty, Midcap 150, Smallcap 250)
+        continue-on-error: true
+        run: python scripts/fetch_indices.py
+
       - name: 5b Market health (breadth, stages, industries)
         run: python scripts/compute_market_health.py
 
