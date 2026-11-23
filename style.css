@@ -245,3 +245,12 @@ table.stmt{width:100%}
 table.stmt th.l,table.stmt td.l{width:300px;min-width:240px}
 .fbar{max-width:1040px;margin-left:auto;margin-right:auto}
 .subtabs{max-width:1040px;margin-left:auto;margin-right:auto}
+
+/* combined key metrics + ratios card */
+.fcard{max-width:1040px;margin-left:auto;margin-right:auto}
+.mtiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.mtiles .tile{padding:10px 12px}.mtiles .tile .tv{font-size:17px}
+.rwrap{margin-top:22px;padding-top:18px;border-top:1px solid var(--b)}
+.rwrap h4{margin:0 0 12px;font-size:15px}
+.rwrap table{width:100%}
+.rwrap .rtabs{margin-bottom:10px}
