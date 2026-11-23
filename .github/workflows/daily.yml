@@ -33,11 +33,17 @@ jobs:
       - name: 2 Metrics
         run: python scripts/compute_metrics.py
 
+      - name: 2b Categorised ratios
+        run: python scripts/compute_ratios.py
+
       - name: 3 DCF
         run: python scripts/compute_dcf.py
 
       - name: 4 Risk and technicals
         run: python scripts/compute_risk.py
+
+      - name: 5 Financials model (P/B-ROE)
+        run: python scripts/compute_financials.py
 
       - name: Commit data
         if: always()
