@@ -79,6 +79,25 @@
     const gs = [-0.01, -0.005, 0, 0.005, 0.01].map(x => inp.gT + x);
     return { ws, gs, grid: ws.map(w => gs.map(g => { const r = value(m, w, g, base.g1); return r ? r.perShare : null; })) };
   }
-  root.TL = { parseCSV, num, fmt, pct, value, recompute, sensitivity, waccFrom, growthPath };
+  function finModel(f, inp) {
+    // f: data/fin/SYM.json ; inp: {rf, erp, g, roe?} decimals (roe in decimal)
+    const m = f.model; if (!m || m.roe_pct == null || !m.bvps) return null;
+    const roe = inp.roe != null ? inp.roe : m.roe_pct / 100;
+    const ke = Math.min(0.20, Math.max(0.09, inp.rf + m.beta * inp.erp));
+    let g = inp.g; if (m.g_cap_pct != null && m.g_cap_pct > 0) g = Math.min(g, m.g_cap_pct / 100);
+    if (inp.gForce != null) g = inp.gForce;
+    if (ke <= g + 0.005 || roe <= 0) return { ke, g, roe, fairPB: null, fair: null };
+    const fairPB = Math.max(0, (roe - g) / (ke - g));
+    const pb = f.price && m.bvps ? f.price / m.bvps : null;
+    return { ke, g, roe, fairPB, fair: fairPB * m.bvps, pb, impliedROE: pb != null ? g + pb * (ke - g) : null };
+  }
+  function finSens(f, inp) {
+    const base = finModel(f, inp); if (!base) return null;
+    const roes = [-0.04, -0.02, 0, 0.02, 0.04].map(x => base.roe + x);
+    const kes = [-0.02, -0.01, 0, 0.01, 0.02].map(x => base.ke + x);
+    const bv = f.model.bvps;
+    return { roes, kes, grid: roes.map(r => kes.map(k => (k > base.g + 0.005 && r > 0) ? Math.max(0, (r - base.g) / (k - base.g)) * bv : null)) };
+  }
+  root.TL = { finModel, finSens, parseCSV, num, fmt, pct, value, recompute, sensitivity, waccFrom, growthPath };
   if (typeof module !== 'undefined') module.exports = root.TL;
 })(typeof window !== 'undefined' ? window : globalThis);
