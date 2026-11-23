@@ -1,17 +1,20 @@
 import json
 import math
 import os
+import traceback
+from collections import Counter
 
 import pandas as pd
 
 CR = 1e7
-FLAG_PCT = 0.15      # flag when reported profit differs from normalized by more than this
-SWITCH_PCT = 0.30    # switch ratios to normalized profit only above this
+MATERIAL = 0.15   # a one-off counts only if larger than this share of profit
+RECUR = 0.40      # prior-year item at least this share of current = recurring
+SWITCH = 0.05     # ratios use core profit only if it differs from reported by more than this
+PE_MAX = 150      # P/E above this is treated as not meaningful
 EQUITY_OVERRIDE = {"HDFCBANK"}   # verified against Screener: use book value x shares
 
-uni = pd.read_csv("data/universe.csv")
-uni = uni[~uni["symbol"].str.startswith("DUMMY")]
-os.makedirs("data/metrics", exist_ok=True)
+FIN_NULL = ["net_margin_pct", "ebit_margin_pct", "roce_pct", "fcf_margin_pct",
+            "debt_equity", "interest_cover", "current_ratio", "asset_turnover"]
 
 
 def g(d, *keys):
@@ -48,6 +51,10 @@ def year_block(inc, bs, cf, y):
         "rev": g(I, "Total Revenue"), "ni": g(I, "Net Income"), "ebit": g(I, "EBIT"),
         "ebitda": g(I, "EBITDA"), "gp": g(I, "Gross Profit"),
         "intr": g(I, "Interest Expense"),
+        "oi": g(I, "Operating Income"),
+        "unusual": g(I, "Total Unusual Items"),
+        "cont": g(I, "Net Income From Continuing Operation Net Minority Interest"),
+        "taxr": g(I, "Tax Rate For Calcs"),
         "ta": g(B, "Total Assets"),
         "eq": g(B, "Stockholders Equity", "Common Stock Equity"),
         "debt": g(B, "Total Debt"), "ca": g(B, "Current Assets"),
@@ -93,7 +100,41 @@ def altman(L):
     return {"z": round(z, 2), "zone": zone}
 
 
-def build(sym):
+def core_profit(L, P):
+    """Profit from continuing operations, minus one-off unusual items (not recurring ones)."""
+    ni = L["ni"]
+    base = L["cont"] if L["cont"] is not None else ni
+    if base is None:
+        return None, []
+    notes = []
+    if ni is not None and abs(ni - base) > 0.02 * max(abs(ni), 1.0):
+        notes.append("discontinued operations excluded from profit")
+    unusual = L["unusual"] or 0.0
+    prev = (P["unusual"] or 0.0) if P else 0.0
+    rate = L["taxr"]
+    if rate is None or not 0.10 <= rate <= 0.35:
+        rate = 0.25
+    recurring = unusual * prev > 0 and abs(prev) >= RECUR * abs(unusual)
+    material = abs(unusual) > MATERIAL * max(abs(base), 1.0)
+    core = base
+    if material and recurring:
+        notes.append("recurring unusual items kept in profit")
+    elif material:
+        core = base - unusual * (1 - rate)
+        notes.append("one-off items removed from profit")
+    return core, notes
+
+
+def load_overrides():
+    out = {}
+    if os.path.exists("data/overrides.csv"):
+        for _, o in pd.read_csv("data/overrides.csv").iterrows():
+            note = o["note"] if "note" in o and not pd.isna(o["note"]) else ""
+            out[str(o["symbol"]).strip()] = (str(o["type"]).strip(), str(note))
+    return out
+
+
+def build(sym, ovr):
     p = f"data/fundamentals/{sym}.json"
     if not os.path.exists(p):
         return None
@@ -104,33 +145,45 @@ def build(sym):
     Y = [year_block(inc, bs, cf, y) for y in ys]
     L, P = Y[0], (Y[1] if len(Y) > 1 else None)
     mcap = info.get("marketCap")
-    standard = L["ebit"] is not None
+    otype, onote = ovr.get(sym, (None, ""))
+
+    standard = L["ebit"] is not None and otype != "financial"
+    if otype in ("realty", "reit", "exclude"):
+        mtype = otype
+    else:
+        mtype = "standard" if standard else "financial"
 
     flags = []
+    if otype:
+        flags.append(f"override: {otype} ({onote})")
     if len(ys) < 3:
         flags.append("short history")
     if L["cfo"] is None:
         flags.append("no cash flow data")
-    if not standard:
+    if not standard and not otype:
         flags.append("financial or no EBIT")
 
     # equity sanity check: balance-sheet equity vs Yahoo book value x shares
     eq_check = {"balance_sheet_cr": cr(L["eq"]), "implied_cr": None,
                 "ratio": None, "used": "balance_sheet"}
+    currency_bad = False
     bvps, shares = info.get("bookValue"), info.get("sharesOutstanding")
     if bvps and shares and L["eq"] and L["eq"] > 0:
         implied = bvps * shares
         ratio = L["eq"] / implied
         eq_check["implied_cr"] = cr(implied)
         eq_check["ratio"] = round(ratio, 2)
-        if sym in EQUITY_OVERRIDE:
+        if ratio < 0.05 or ratio > 20:
+            currency_bad = True
+            flags.append(f"currency or units mismatch (equity ratio {ratio:.2f}); "
+                         f"market-cap multiples blanked")
+        elif sym in EQUITY_OVERRIDE:
             L["eq"] = implied
             eq_check["used"] = "book_value (manual override)"
             flags.append(f"equity overridden with book value x shares "
-                         f"(balance sheet / book value = {ratio:.2f}; verified vs Screener)")
+                         f"(ratio {ratio:.2f}; verified vs Screener)")
         elif ratio > 1.10 or ratio < 0.70:
-            flags.append(f"equity check mismatch (balance sheet / book value x shares "
-                         f"= {ratio:.2f}); figures NOT changed")
+            flags.append(f"equity check mismatch (ratio {ratio:.2f}); figures NOT changed")
 
     n = len(Y) - 1
 
@@ -144,170 +197,214 @@ def build(sym):
     ev = (mcap + L["debt"] - L["cash"]
           if None not in (mcap, L["debt"], L["cash"]) else None)
 
+    # core profit (for P/E and ROE) and core EBIT (for the DCF)
+    core, notes = (None, [])
+    if standard and L["ni"] is not None:
+        core, notes = core_profit(L, P)
+    flags += notes
+    basis = "reported"
+    if (core is not None and L["ni"] not in (None, 0)
+            and abs(core - L["ni"]) > SWITCH * abs(L["ni"])):
+        basis = "core"
+    prof = core if basis == "core" else L["ni"]
+
+    core_ebit = None
+    if standard:
+        eu = L["ebit"] - (L["unusual"] or 0.0)
+        core_ebit = min(x for x in (L["oi"], eu) if x is not None)
+        if L["ebit"] > 0 and core_ebit < 0.7 * L["ebit"]:
+            flags.append(f"core EBIT {round((1 - core_ebit / L['ebit']) * 100)}% "
+                         f"below reported EBIT")
+
+    pe_rep = div(mcap, L["ni"]) if L["ni"] and L["ni"] > 0 else None
+    pe_core = div(mcap, core) if core and core > 0 else None
+    pe_used = pe_core if basis == "core" else pe_rep
+    if pe_used is not None and pe_used > PE_MAX:
+        flags.append(f"P/E {round(pe_used)} not meaningful, shown blank")
+        pe_used = None
+    pb = div(mcap, L["eq"])
+    evx = div(ev, L["ebitda"])
+    fy = div(L["fcf"], mcap)
+    if currency_bad:
+        pe_rep = pe_core = pe_used = pb = evx = fy = None
+
+    ratios = {
+        "roe_pct": pct(div(prof, L["eq"])),
+        "roa_pct": pct(div(prof, L["ta"])),
+        "net_margin_pct": pct(div(prof, L["rev"])),
+        "ebit_margin_pct": pct(div(L["ebit"], L["rev"])),
+        "roce_pct": pct(div(L["ebit"], capital)),
+        "fcf_margin_pct": pct(div(L["fcf"], L["rev"])),
+        "debt_equity": rnd(div(L["debt"], L["eq"])),
+        "interest_cover": rnd(div(L["ebit"], abs(L["intr"]) if L["intr"] else None)),
+        "current_ratio": rnd(div(L["ca"], L["cl"])),
+        "asset_turnover": rnd(div(L["rev"], L["ta"])),
+    }
+    dupont = {
+        "net_margin_pct": ratios["net_margin_pct"],
+        "asset_turnover": ratios["asset_turnover"],
+        "equity_multiplier": rnd(div(L["ta"], L["eq"])),
+    }
+    snap = {k: cr(L[k]) for k in ["rev", "ni", "ebit", "ta", "eq", "debt", "fcf"]}
+    snap["ni_core"] = cr(core)
+    snap["ebit_core"] = cr(core_ebit)
+    snap["operating_income"] = cr(L["oi"])
+    reported = None
+    if basis == "core":
+        reported = {"roe_pct": pct(div(L["ni"], L["eq"])),
+                    "roa_pct": pct(div(L["ni"], L["ta"])),
+                    "net_margin_pct": pct(div(L["ni"], L["rev"]))}
+    if not standard:
+        for k in FIN_NULL:
+            ratios[k] = None
+        dupont = {"roe_pct": ratios["roe_pct"], "roa_pct": ratios["roa_pct"],
+                  "equity_multiplier": dupont["equity_multiplier"]}
+        evx = None
+        fy = None
+        snap["ebit"] = None
+        snap["debt"] = None
+        snap["fcf"] = None
+
+    reasons = []
+    if mtype != "standard":
+        reasons.append(f"type: {mtype}")
+    if currency_bad:
+        reasons.append("currency mismatch")
+    if core_ebit is None or core_ebit <= 0:
+        reasons.append("core EBIT missing or not positive")
+    if L["cfo"] is None:
+        reasons.append("no cash flow data")
+    if len(ys) < 3:
+        reasons.append("short history")
+    if not mcap:
+        reasons.append("no market cap")
+
     return {
-        "symbol": sym,
-        "latest_fy": ys[0],
-        "type": "standard" if standard else "financial",
-        "profit_basis": "reported",
-        "flags": flags,
-        "equity_check": eq_check,
-        "snapshot_cr": {k: cr(L[k]) for k in ["rev", "ni", "ebit", "ta", "eq", "debt", "fcf"]},
-        "ratios": {
-            "roe_pct": pct(div(L["ni"], L["eq"])),
-            "roa_pct": pct(div(L["ni"], L["ta"])),
-            "net_margin_pct": pct(div(L["ni"], L["rev"])),
-            "ebit_margin_pct": pct(div(L["ebit"], L["rev"])),
-            "roce_pct": pct(div(L["ebit"], capital)),
-            "fcf_margin_pct": pct(div(L["fcf"], L["rev"])),
-            "debt_equity": rnd(div(L["debt"], L["eq"])),
-            "interest_cover": rnd(div(L["ebit"], abs(L["intr"]) if L["intr"] else None)),
-            "current_ratio": rnd(div(L["ca"], L["cl"])),
-            "asset_turnover": rnd(div(L["rev"], L["ta"])),
-        },
-        "dupont": {
-            "net_margin_pct": pct(div(L["ni"], L["rev"])),
-            "asset_turnover": rnd(div(L["rev"], L["ta"])),
-            "equity_multiplier": rnd(div(L["ta"], L["eq"])),
-        },
-        "growth": {
-            "years_used": n,
-            "revenue_cagr_pct": pct(cagr("rev")),
-            "net_income_cagr_pct": pct(cagr("ni")),
-        },
-        "valuation": {
-            "pe": rnd(div(mcap, L["ni"]) if L["ni"] and L["ni"] > 0 else None),
-            "pe_normalized": None,
-            "pe_used": None,
-            "pb": rnd(div(mcap, L["eq"])),
-            "ev_ebitda": rnd(div(ev, L["ebitda"])),
-            "fcf_yield_pct": pct(div(L["fcf"], mcap)),
-            "market_cap_cr": cr(mcap),
-        },
+        "symbol": sym, "latest_fy": ys[0], "type": mtype, "profit_basis": basis,
+        "dcf_eligible": not reasons, "dcf_reasons": reasons,
+        "flags": flags, "equity_check": eq_check,
+        "core_ebit_margin_pct": pct(div(core_ebit, L["rev"])),
+        "snapshot_cr": snap, "ratios": ratios, "ratios_reported": reported,
+        "dupont": dupont,
+        "growth": {"years_used": n,
+                   "revenue_cagr_pct": pct(cagr("rev")),
+                   "net_income_cagr_pct": pct(cagr("ni"))},
+        "valuation": {"pe_reported": rnd(pe_rep), "pe_core": rnd(pe_core),
+                      "pe_used": rnd(pe_used), "pb": rnd(pb), "ev_ebitda": rnd(evx),
+                      "fcf_yield_pct": pct(fy), "market_cap_cr": cr(mcap)},
         "piotroski": piotroski(L, P) if standard and P else None,
         "altman_z2": altman(L) if standard else None,
     }
 
 
-FIN_NULL = ["net_margin_pct", "ebit_margin_pct", "roce_pct", "fcf_margin_pct",
-            "debt_equity", "interest_cover", "current_ratio", "asset_turnover"]
+def main():
+    uni = pd.read_csv("data/universe.csv")
+    uni = uni[~uni["symbol"].str.startswith("DUMMY")]
+    os.makedirs("data/metrics", exist_ok=True)
+    ovr = load_overrides()
+    rows, errors, store = [], [], []
 
+    for r in uni.itertuples():
+        try:
+            m = build(r.symbol, ovr)
+        except Exception as e:
+            errors.append(f"{r.symbol}: {str(e)[:150]}")
+            continue
+        if m is None:
+            errors.append(f"{r.symbol}: no fundamentals file")
+            continue
+        json.dump(m, open(f"data/metrics/{r.symbol}.json", "w"), indent=1)
+        store.append(m)
+        pio, alt = m["piotroski"], m["altman_z2"]
+        rows.append({
+            "symbol": r.symbol, "industry": r.industry, "type": m["type"],
+            "latest_fy": m["latest_fy"], "profit_basis": m["profit_basis"],
+            "roe_pct": m["ratios"]["roe_pct"], "roce_pct": m["ratios"]["roce_pct"],
+            "net_margin_pct": m["ratios"]["net_margin_pct"],
+            "ebit_margin_pct": m["ratios"]["ebit_margin_pct"],
+            "core_ebit_margin_pct": m["core_ebit_margin_pct"],
+            "debt_equity": m["ratios"]["debt_equity"],
+            "rev_cagr_pct": m["growth"]["revenue_cagr_pct"],
+            "pe_reported": m["valuation"]["pe_reported"],
+            "pe_used": m["valuation"]["pe_used"], "pb": m["valuation"]["pb"],
+            "equity_ratio": m["equity_check"]["ratio"],
+            "piotroski": pio["score"] if pio else None,
+            "piotroski_tested": pio["tested"] if pio else None,
+            "altman_z2": alt["z"] if alt else None,
+            "altman_zone": alt["zone"] if alt else None,
+            "dcf_eligible": m["dcf_eligible"],
+            "flags": "; ".join(m["flags"]),
+        })
 
-def finalize(m):
-    d = json.load(open(f"data/fundamentals/{m['symbol']}.json"))
-    I = d["annual_income"].get(m["latest_fy"], {})
-    mcap = d.get("info", {}).get("marketCap")
-    cont = g(I, "Net Income Continuous Operations",
-             "Net Income From Continuing Operation Net Minority Interest")
-    norm = g(I, "Normalized Income")
-    ni = g(I, "Net Income")
-    m["snapshot_cr"]["ni_continuing_ops_pre_minority"] = cr(cont)
-    m["snapshot_cr"]["ni_normalized"] = cr(norm)
-    base = norm if norm is not None else cont
-    m["valuation"]["pe_normalized"] = (
-        rnd(mcap / base) if base and base > 0 and mcap else None)
-    m["valuation"]["pe_used"] = m["valuation"]["pe"]
+    pd.DataFrame(rows).to_csv("data/metrics_summary.csv", index=False)
+    open("data/metrics_errors.txt", "w").write("\n".join(errors) if errors else "none")
 
-    if m["type"] == "standard" and ni is not None and base:
-        gap = abs(ni - base) / abs(base)
-        if gap > FLAG_PCT:
-            m["flags"].append(f"reported profit differs from normalized by {gap * 100:.0f}%")
-        if gap > SWITCH_PCT:
-            r, s = m["ratios"], m["snapshot_cr"]
-            m["ratios_reported"] = {k: r[k] for k in ["roe_pct", "roa_pct", "net_margin_pct"]}
-            b = base / CR
-            r["roe_pct"] = pct(div(b, s["eq"]))
-            r["roa_pct"] = pct(div(b, s["ta"]))
-            r["net_margin_pct"] = pct(div(b, s["rev"]))
-            m["dupont"]["net_margin_pct"] = r["net_margin_pct"]
-            m["valuation"]["pe_used"] = m["valuation"]["pe_normalized"]
-            m["profit_basis"] = "normalized"
+    # review file: counts and lists so results can be checked without Actions logs
+    M = {m["symbol"]: m for m in store}
 
-    if m["type"] == "financial":
-        for k in FIN_NULL:
-            m["ratios"][k] = None
-        m["dupont"] = {"roe_pct": m["ratios"]["roe_pct"],
-                       "roa_pct": m["ratios"]["roa_pct"],
-                       "equity_multiplier": m["dupont"]["equity_multiplier"]}
-        m["valuation"]["ev_ebitda"] = None
-        m["valuation"]["fcf_yield_pct"] = None
-        m["snapshot_cr"]["debt"] = None
-        m["snapshot_cr"]["fcf"] = None
-    return m
+    def has(m, text):
+        return any(text in f for f in m["flags"])
 
+    types = Counter(m["type"] for m in store)
+    oneoff = [(s, M[s]["valuation"]["pe_reported"], M[s]["valuation"]["pe_core"])
+              for s in M if has(M[s], "one-off items removed")]
+    recur = [s for s in M if has(M[s], "recurring unusual items kept")]
+    disc = [s for s in M if has(M[s], "discontinued operations excluded")]
+    cur = [s for s in M if has(M[s], "currency")]
+    nm = [s for s in M if has(M[s], "not meaningful")]
+    mism = [(s, M[s]["equity_check"]["ratio"]) for s in M if has(M[s], "equity check mismatch")]
+    gaps = sorted(
+        [(s, M[s]["ratios"]["ebit_margin_pct"], M[s]["core_ebit_margin_pct"])
+         for s in M if has(M[s], "below reported EBIT")],
+        key=lambda x: -((x[1] or 0) - (x[2] or 0)))
+    elig = sum(1 for m in store if m["dcf_eligible"])
+    why = Counter(x for m in store if not m["dcf_eligible"] for x in m["dcf_reasons"])
+    roe_out = [(x["symbol"], x["roe_pct"]) for x in rows
+               if x["roe_pct"] is not None and (x["roe_pct"] > 60 or x["roe_pct"] < -20)]
+    review = [
+        f"Stocks with metrics: {len(rows)} | skipped: {len(errors)}",
+        f"By type: {dict(types)}",
+        f"DCF eligible: {elig} | not eligible reasons: {dict(why)}",
+        f"Currency/units mismatch ({len(cur)}): {cur}",
+        f"Equity mismatch, NOT changed ({len(mism)}): {mism}",
+        f"One-off items removed from profit ({len(oneoff)}) [symbol, pe reported, pe core]: {oneoff}",
+        f"Recurring unusual items kept ({len(recur)}): {recur}",
+        f"Discontinued operations excluded ({len(disc)}): {disc}",
+        f"P/E not meaningful, blank ({len(nm)}): {nm}",
+        f"Core EBIT >30% below reported ({len(gaps)}), top 50 [symbol, reported margin, core margin]: {gaps[:50]}",
+        f"ROE outliers (>60 or <-20) ({len(roe_out)}): {roe_out}",
+    ]
+    open("data/metrics_review.txt", "w").write("\n".join(review))
 
-rows, errors = [], []
-for r in uni.itertuples():
-    try:
-        m = build(r.symbol)
-        if m:
-            m = finalize(m)
-    except Exception as e:
-        errors.append(f"{r.symbol}: {str(e)[:150]}")
-        continue
-    if m is None:
-        errors.append(f"{r.symbol}: no fundamentals file")
-        continue
-    json.dump(m, open(f"data/metrics/{r.symbol}.json", "w"), indent=1)
-    pio, alt = m["piotroski"], m["altman_z2"]
-    rows.append({
-        "symbol": r.symbol, "industry": r.industry, "type": m["type"],
-        "latest_fy": m["latest_fy"], "profit_basis": m["profit_basis"],
-        "roe_pct": m["ratios"]["roe_pct"], "roce_pct": m["ratios"]["roce_pct"],
-        "net_margin_pct": m["ratios"]["net_margin_pct"],
-        "debt_equity": m["ratios"]["debt_equity"],
-        "rev_cagr_pct": m["growth"]["revenue_cagr_pct"],
-        "pe": m["valuation"]["pe"], "pe_normalized": m["valuation"]["pe_normalized"],
-        "pe_used": m["valuation"]["pe_used"], "pb": m["valuation"]["pb"],
-        "equity_ratio": m["equity_check"]["ratio"],
-        "piotroski": pio["score"] if pio else None,
-        "piotroski_tested": pio["tested"] if pio else None,
-        "altman_z2": alt["z"] if alt else None,
-        "altman_zone": alt["zone"] if alt else None,
-        "flags": "; ".join(m["flags"]),
-    })
-
-pd.DataFrame(rows).to_csv("data/metrics_summary.csv", index=False)
-open("data/metrics_errors.txt", "w").write("\n".join(errors) if errors else "none")
-
-# review file: counts and lists so results can be checked without Actions logs
-std = sum(1 for x in rows if x["type"] == "standard")
-ovr = [x["symbol"] for x in rows if "equity overridden" in x["flags"]]
-mism = [(x["symbol"], x["equity_ratio"]) for x in rows if "equity check mismatch" in x["flags"]]
-fl = [x["symbol"] for x in rows if "differs from normalized" in x["flags"]]
-sw = [(x["symbol"], x["pe"], x["pe_normalized"]) for x in rows if x["profit_basis"] == "normalized"]
-roe_out = [(x["symbol"], x["roe_pct"]) for x in rows
-           if x["roe_pct"] is not None and (x["roe_pct"] > 60 or x["roe_pct"] < -20)]
-review = [
-    f"Stocks with metrics: {len(rows)} | skipped: {len(errors)}",
-    f"Standard: {std} | financial or no EBIT: {len(rows) - std}",
-    f"Equity manually overridden ({len(ovr)}): {ovr}",
-    f"Equity mismatch, NOT changed ({len(mism)}): {mism}",
-    f"Profit differs from normalized by >{int(FLAG_PCT * 100)}%, flag only ({len(fl)}): {fl}",
-    f"Ratios switched to normalized profit, gap >{int(SWITCH_PCT * 100)}% ({len(sw)}) [symbol, pe, pe_normalized]: {sw}",
-    f"ROE outliers (>60 or <-20) ({len(roe_out)}): {roe_out}",
-]
-open("data/metrics_review.txt", "w").write("\n".join(review))
-
-# readable spot-check file
-CHECK = ["INFY", "HDFCBANK", "HINDUNILVR", "MARUTI", "JSWSTEEL", "LICI"]
-out = []
-for s in CHECK:
-    p = f"data/metrics/{s}.json"
-    if os.path.exists(p):
-        m = json.load(open(p))
+    # readable spot-check file
+    CHECK = ["JSWSTEEL", "MARUTI", "HINDUNILVR", "ETERNAL", "INFY", "TMPV", "LICI", "GODREJPROP"]
+    out = []
+    for s in CHECK:
+        m = M.get(s)
+        if not m:
+            continue
         out.append(f"=== {s} | FY ending {m['latest_fy']} | {m['type']} | profit basis: {m['profit_basis']} ===")
         out.append(f"Flags: {m['flags']}")
+        out.append(f"DCF eligible: {m['dcf_eligible']} {m['dcf_reasons']}")
         out.append(f"Equity check: {m['equity_check']}")
         out.append(f"Snapshot (Rs cr): {m['snapshot_cr']}")
+        out.append(f"Core EBIT margin %: {m['core_ebit_margin_pct']}")
         out.append(f"Ratios: {m['ratios']}")
-        if "ratios_reported" in m:
+        if m["ratios_reported"]:
             out.append(f"Ratios on reported profit: {m['ratios_reported']}")
         out.append(f"DuPont: {m['dupont']}")
-        out.append(f"Growth: {m['growth']}")
         out.append(f"Valuation: {m['valuation']}")
         pio = m["piotroski"]
         out.append(f"Piotroski: {pio['score']}/{pio['tested']}" if pio else "Piotroski: n/a")
         out.append(f"Altman Z'': {m['altman_z2']}")
         out.append("")
-open("data/metrics_check.txt", "w").write("\n".join(out))
-print("done:", len(rows), "stocks;", len(errors), "skipped")
+    open("data/metrics_check.txt", "w").write("\n".join(out))
+    print("done:", len(rows), "stocks;", len(errors), "skipped")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception:
+        open("data/metrics_errors.txt", "w").write("SCRIPT CRASHED\n" + traceback.format_exc())
+        print("crashed")
