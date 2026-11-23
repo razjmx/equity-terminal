@@ -21,15 +21,24 @@ def g(d, names):
     return None
 
 
-def subtype(industry):
+def subtype(industry, sym=""):
     s = (industry or "").lower()
-    if "insur" in s:
-        return "Insurance"
-    if "nbfc" in s or "non banking" in s or "housing finance" in s or "finance" in s:
-        return "NBFC"
-    if "bank" in s:
+    if s:
+        if "insur" in s:
+            return "Insurance"
+        if "non banking" in s or "nbfc" in s:
+            return "NBFC"
+        if "bank" in s:
+            return "Bank"
+        if any(k in s for k in ("credit", "mortgage", "lending", "financ", "housing", "conglomerate")):
+            return "NBFC"
+        return "Other financial"
+    u = (sym or "").upper()
+    if u.endswith("BANK") or u.endswith("BNK") or u in ("SBIN", "CANBK", "PNB", "IDBI", "UNIONBANK", "CUB", "KARURVYSYA", "RBLBANK", "UCOBANK", "IOB", "MAHABANK", "PSB", "CENTRALBK", "BANKINDIA", "BANKBARODA", "AUBANK", "DCBBANK", "CSBBANK", "J&KBANK", "SOUTHBANK", "TMB", "EQUITASBNK", "UJJIVANSFB", "ESAFSFB", "CAPITALSFB"):
         return "Bank"
-    return "Other financial"
+    if any(k in u for k in ("LIFE", "INSUR", "GICRE", "NIACL", "ICICIGI", "STARHEALTH", "NIVABUPA", "GODIGIT", "NIA")):
+        return "Insurance"
+    return "NBFC" if any(k in u for k in ("FIN", "HFL", "HOME", "CAPITAL", "CREDIT")) else "Other financial"
 
 
 def read_csv(path):
@@ -125,7 +134,8 @@ def build(sym, f, m, rk, ind, ov):
         roe_used, basis = ov["roe_pct"], "override (fin_inputs.csv)"
     if ov.get("bvps") is not None:
         bvps = ov["bvps"]; inputs_note.append("bvps override")
-    sub = subtype(ind)
+    yind = info.get("industry") or info.get("sector") or ind
+    sub = subtype(yind, sym)
     if sub == "Insurance":
         flags.append("insurer: P/B-ROE is indicative only (embedded value / VNB not available)")
     if sub == "Other financial":
@@ -155,7 +165,7 @@ def build(sym, f, m, rk, ind, ov):
     if len(fy) >= 2 and fy[0]["eq"] and fy[-1]["eq"] and fy[0]["eq"] > 0 and fy[-1]["eq"] > 0:
         bv_growth = ((fy[-1]["eq"] / fy[0]["eq"]) ** (1 / (len(fy) - 1)) - 1) * 100
     out = {
-        "symbol": sym, "subtype": sub, "industry": ind, "price": price, "bvps": bvps, "pb": pb,
+        "symbol": sym, "subtype": sub, "industry": ind, "yahoo_industry": yind, "price": price, "bvps": bvps, "pb": pb,
         "roe_used_pct": roe_used, "roe_basis": basis, "roe_ttm_pct": roe_ttm, "roe_avg3_pct": roe_avg3,
         "fy": [{k: (round(v, 2) if isinstance(v, float) else v) for k, v in x.items() if k in ("year", "roe", "roa")} for x in fy],
         "payout_pct": None if payout is None else payout * 100, "sustainable_growth_pct": None if sust is None else sust * 100,
@@ -191,7 +201,7 @@ def main():
                     continue
                 json.dump(res, open(os.path.join(OUT, sym + ".json"), "w"), separators=(",", ":"))
                 r = res["result"]
-                rows.append({"symbol": sym, "subtype": res["subtype"], "price": rr(res["price"]), "bvps": rr(res["bvps"]), "pb": rr(res["pb"]),
+                rows.append({"symbol": sym, "subtype": res["subtype"], "yahoo_industry": res.get("yahoo_industry") or "", "price": rr(res["price"]), "bvps": rr(res["bvps"]), "pb": rr(res["pb"]),
                              "roe_pct": rr(res["roe_used_pct"], 1), "roe_basis": res["roe_basis"], "beta": rr(res["beta_used"]),
                              "ke_pct": rr(r["ke_pct"], 2), "g_pct": rr(r["g_pct"], 2), "fair_pb": rr(r["fair_pb"]), "fair_value": rr(r["fair_value"], 1),
                              "upside_pct": rr(r["upside_pct"], 1), "implied_roe_pct": rr(r["implied_roe_pct"], 1),
@@ -200,7 +210,7 @@ def main():
             except Exception as e:
                 notes.append(f"{sym}: {type(e).__name__} {e}")
     finally:
-        cols = ["symbol", "subtype", "price", "bvps", "pb", "roe_pct", "roe_basis", "beta", "ke_pct", "g_pct", "fair_pb", "fair_value", "upside_pct", "implied_roe_pct", "bv_cagr_pct", "g_cap_pct", "flags"]
+        cols = ["symbol", "subtype", "yahoo_industry", "price", "bvps", "pb", "roe_pct", "roe_basis", "beta", "ke_pct", "g_pct", "fair_pb", "fair_value", "upside_pct", "implied_roe_pct", "bv_cagr_pct", "g_cap_pct", "flags"]
         with open("data/financials_summary.csv", "w", newline="", encoding="utf-8") as fh:
             w = csv.DictWriter(fh, fieldnames=cols)
             w.writeheader()
@@ -214,6 +224,8 @@ def main():
                 ups.sort()
                 fh.write(f"Median upside: {ups[len(ups)//2]:.1f}%\n")
             fh.write("By subtype: " + str({s: sum(1 for r in rows if r['subtype'] == s) for s in set(r['subtype'] for r in rows)}) + "\n")
+            fh.write("Yahoo industries seen: " + str({k: sum(1 for r in rows if r['yahoo_industry'] == k) for k in sorted(set(r['yahoo_industry'] for r in rows))}) + "\n")
+            fh.write("Other financial list: " + str([(r['symbol'], r['yahoo_industry']) for r in rows if r['subtype'] == 'Other financial']) + "\n")
             fh.write("Flagged: " + str([(r['symbol'], r['flags'][:70]) for r in rows if r['flags']][:25]) + "\n")
             fh.write("Sample [symbol, price, bvps, pb, roe, ke, g, fair_pb, fair, upside, implied_roe]:\n")
             for r in rows[:40]:
