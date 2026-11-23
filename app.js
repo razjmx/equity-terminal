@@ -21,7 +21,7 @@ function lineChart(cv,series,opt={}){
   const dpr=window.devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;cv.width=w*dpr;cv.height=h*dpr;
   const ctx=cv.getContext('2d');ctx.scale(dpr,dpr);
   const css=getComputedStyle(document.documentElement);
-  const col=['#f5a524','#4aa3ff','#2ecc71','#c78bff'];
+  const brand=(css.getPropertyValue('--brand')||'#0f6b4a').trim();const col=[brand,'#2f6fdb','#e08a00','#9b59d0'];
   const L=48,R=8,Tp=8,B=20;
   const n=Math.max(...series.map(s=>s.y.length));
   let all=[].concat(...series.map(s=>s.y.filter(v=>v!=null)));
@@ -36,7 +36,7 @@ function lineChart(cv,series,opt={}){
       s.y.forEach((v,i)=>{if(v==null)return;const x=X(i),y=Y(v);st?ctx.lineTo(x,y):ctx.moveTo(x,y);st=true});ctx.stroke()});
     if(hov!=null){ctx.strokeStyle='#8b94a3';ctx.beginPath();ctx.moveTo(X(hov),Tp);ctx.lineTo(X(hov),h-B);ctx.stroke();
       let txt=(xs[hov]||'')+'  '+series.map(s=>(series.length>1?s.name+' ':'')+T.fmt(s.y[hov],opt.dec??0)).join('  ');
-      ctx.fillStyle='#f5a524';ctx.fillText(txt,L+4,Tp+10)}
+      ctx.fillStyle=brand;ctx.fillText(txt,L+4,Tp+10)}
   }
   draw();
   cv.onmousemove=e=>{const r=cv.getBoundingClientRect();const i=Math.round((e.clientX-r.left-L)/(w-L-R)*(n-1));draw(Math.min(n-1,Math.max(0,i)))};
@@ -59,16 +59,29 @@ async function boot(){
   const sync=()=>{$('#a-rf').value=A.rf;$('#a-erp').value=A.erp;$('#a-g').value=A.g};sync();
   ['rf','erp','g'].forEach(k=>$('#a-'+k).addEventListener('change',e=>{const v=parseFloat(e.target.value);if(isFinite(v)){A[k]=v;saveA();route()}}));
   $('#a-reset').onclick=()=>{A=Object.assign({},DEF);saveA();sync();route()};
+  const idx=$('#idx');if(idx&&D.mkt){const row=(n,o)=>o?`<div><span>${n}</span><b>${T.fmt(o.price??o.close,0)}</b><span class="${cls(o.ret_1m??o.returns_pct?.['1m'])}">${T.pct(o.ret_1m??o.returns_pct?.['1m'])}</span></div>`:'';idx.innerHTML='<div class="k">1-month</div>'+row('Nifty 50',D.mkt.nifty50)+row('Nifty 500',D.mkt.nifty500)}
+  const th=$('#theme');const setTh=t=>{document.documentElement.dataset.theme=t;try{localStorage.setItem('tl_theme',t)}catch(e){}};
+  let t0='light';try{t0=localStorage.getItem('tl_theme')||'light'}catch(e){}document.documentElement.dataset.theme=t0;
+  th.onclick=()=>{setTh(document.documentElement.dataset.theme==='dark'?'light':'dark');route()};
   window.addEventListener('hashchange',route);route();
 }
 
 function route(){
   const h=location.hash||'#/market';const p=h.split('/');
-  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')===h||(h.startsWith('#/stock')&&false)));
-  if(p[1]==='stock'&&p[2])return stock(decodeURIComponent(p[2]));
+  const key=p[1]==='stock'?'research':(p[1]||'market');
+  document.querySelectorAll('.side nav a').forEach(a=>a.classList.toggle('on',a.dataset.k===key));
+  if(route.last!==h){window.scrollTo(0,0);route.last=h}
+  if(p[1]==='stock'&&p[2])return stock(decodeURIComponent(p[2]),p[3]);
   if(p[1]==='screener')return screener();
   if(p[1]==='financials')return financials();
+  if(p[1]==='research')return research();
   return market();
+}
+function research(){
+  const rows=Object.values(D.met).filter(m=>m.market_cap_cr!=null||true);
+  const pick=D.syms.slice().sort((a,b)=>(T.num((D.met[b]||{}).market_cap_cr)||0)-(T.num((D.met[a]||{}).market_cap_cr)||0)).slice(0,24);
+  view.innerHTML=`<div class="card"><h3>Company research</h3><p class="mut">Type a company in the search box at the top, or open one below.</p><div class="bar">${pick.map(x=>`<a class="btn" href="#/stock/${esc(x)}">${esc(x)}</a>`).join('')}</div></div>`;
+  const si=$('#search');if(si)si.focus();
 }
 
 // ---------- market ----------
@@ -123,42 +136,79 @@ function screener(){
 }
 
 // ---------- stock ----------
-async function stock(s){
+async function stock(s,tab){
+  tab=tab||'overview';
   view.innerHTML='Loading '+esc(s)+'…';
   const [dcf,met,rsk,pcsv,rat,fin,rl]=await Promise.all([get(`data/dcf/${s}.json`,'json'),get(`data/metrics/${s}.json`,'json'),get(`data/risk/${s}.json`,'json'),get(`data/prices/${s}.csv`),get(`data/ratios/${s}.json`,'json'),get(`data/fin/${s}.json`,'json'),get(`data/realty/${s}.json`,'json')]);
   const u=D.uni.find(x=>x.symbol===s)||{};
   const prices=pcsv?T.parseCSV(pcsv):[];
-  const price=rsk?.price??dcf?.price;
+  const price=rsk?.price??dcf?.price??fin?.price??rl?.price;
   const kv=(k,v,c='')=>`<div><div class="k">${k}</div><div class="v ${c}" style="font-size:16px">${v}</div></div>`;
-  let h=`<div class="card"><div style="display:flex;gap:16px;flex-wrap:wrap;align-items:baseline"><span class="v">${esc(s)}</span><span>${esc(u.company||'')}</span><span class="tag">${esc(u.industry||'')}</span>${met?`<span class="tag">${esc(met.type)}</span>`:''}<span class="v" style="margin-left:auto">₹${T.fmt(price,2)}</span></div>
-   ${rsk?`<div class="mut">As of ${esc(rsk.as_of)} · 1M <span class="${cls(rsk.returns_pct['1m'])}">${T.pct(rsk.returns_pct['1m'])}</span> · 1Y <span class="${cls(rsk.returns_pct['1y'])}">${T.pct(rsk.returns_pct['1y'])}</span> · 52w ${T.fmt(rsk.range.low_52w,0)}–${T.fmt(rsk.range.high_52w,0)}</div>`:''}</div>`;
-  h+=`<div class="card"><h3>Price</h3><div class="bar" id="rng">${['3M','6M','1Y','3Y','All'].map(x=>`<button data-r="${x}">${x}</button>`).join('')}</div><canvas id="pc" style="height:300px"></canvas></div>`;
-  if(dcf)h+=`<div id="dcfbox"></div>`;
-  else if(fin)h+=`<div id="finbox"></div>`;
-  else if(rl)h+=`<div id="rlbox"></div>`;
-  else h+=`<div class="card"><h3>DCF</h3>Not available for this stock (financial, realty, REIT or excluded, or data missing).</div>`;
-  if(met){const v=met.valuation||{},r=met.ratios||{},g=met.growth||{};
-    h+=`<div class="two"><div class="card"><h3>Valuation & quality (FY ${esc(met.latest_fy)})</h3><div class="grid">${kv('P/E (used)',T.fmt(v.pe_used))}${kv('P/B',T.fmt(v.pb))}${kv('EV/EBITDA',T.fmt(v.ev_ebitda))}${kv('FCF yield %',T.fmt(v.fcf_yield_pct))}${kv('Market cap ₹cr',T.fmt(v.market_cap_cr,0))}${kv('ROE %',T.fmt(r.roe_pct))}${kv('ROCE %',T.fmt(r.roce_pct))}${kv('Debt/Equity',T.fmt(r.debt_equity,2))}${kv('Piotroski',met.piotroski&&met.piotroski.score!=null?met.piotroski.score:'–')}${kv('Altman Z″',met.altman_z2&&met.altman_z2.z!=null?T.fmt(met.altman_z2.z,2)+' ('+esc(met.altman_z2.zone||'')+')':'–')}</div>
-     ${(met.flags||[]).length?`<p class="warn">${met.flags.map(esc).join(' · ')}</p>`:''}</div>
-     <div class="card"><h3>Growth</h3><pre style="margin:0;white-space:pre-wrap;font-size:12px">${esc(JSON.stringify(g,null,1))}</pre></div></div>`}
-  h+=ratiosHtml(rat);
-  if(rsk){const k=rsk.risk,m=rsk.momentum,b=rsk.beta,t=rsk.trend;
-    h+=`<div class="card"><h3>Technicals & risk</h3><div class="grid">${kv('RSI 14',T.fmt(m.rsi14,1))}${kv('MACD hist %',T.fmt(m.macd_hist_pct,2))}${kv('Bollinger %B',T.fmt(m.bollinger_pctb,2))}${kv('ATR %',T.fmt(m.atr_pct,2))}${kv('Above 200-DMA',t.above_dma200?'Yes':'No',t.above_dma200?'pos':'neg')}${kv('Above 50-DMA',t.above_dma50?'Yes':'No',t.above_dma50?'pos':'neg')}${kv('Volatility 1Y %',T.fmt(k.volatility_1y_pct))}${kv('Max DD 1Y %',T.fmt(k.max_drawdown_1y_pct))}${kv('VaR95 1d %',T.fmt(k.var95_1d_pct,2))}${kv('Sharpe 1Y',T.fmt(k.sharpe_1y,2))}${kv('Beta (adj)',T.fmt(b.adjusted,2))}${kv('Alpha % (ann.)',T.fmt(b.alpha_pct))}${kv('Avg traded ₹cr/day',T.fmt(rsk.liquidity.avg_daily_value_3m_cr,1))}</div></div>`}
+  const V=(met&&met.valuation)||{},R=(met&&met.ratios)||{},G=(met&&met.growth)||{};
+  const cl=prices.map(r=>T.num(r.Close)),n=cl.length;
+  const chg=n>1&&cl[n-2]?(cl[n-1]/cl[n-2]-1)*100:null,chgAbs=n>1?cl[n-1]-cl[n-2]:null;
+  const asof=n?prices[n-1].Date:(rsk&&rsk.as_of)||'';
+  const words=(u.company||s).replace(/\b(ltd|limited|inc|corp)\b\.?/ig,'').trim().split(/\s+/);
+  const ini=((words[0]||s)[0]+((words[1]||'')[0]||(words[0]||s)[1]||'')).toUpperCase();
+  const stat=(k,val)=>`<div class="stat"><div class="k">${k}</div><div class="sv">${val}</div></div>`;
+  const dl=pcsv?`<a class="btn" href="data/prices/${esc(s)}.csv" download>Download prices (CSV)</a>`:'';
+  let h=`<div class="crumb"><a href="#/market">Research</a> › ${esc(s)}</div>
+   <div class="card"><div class="sh"><div class="logo">${esc(ini)}</div>
+    <div><h1>${esc(u.company||s)}</h1><div class="sub">${esc(s)}.NSE</div><span class="tag">${esc(u.industry||'')}</span>${met?`<span class="tag">${esc(met.type)}</span>`:''}</div>
+    <div class="acts">${dl}</div></div>
+    <div class="pricerow"><div><span class="bigp">₹${T.fmt(price,2)}</span>${chg!=null?`<span class="chg ${cls(chg)}">${chgAbs>=0?'+':''}${T.fmt(chgAbs,2)} (${chg>=0?'+':''}${T.fmt(chg,2)}%)</span>`:''}<div class="k" style="margin-top:6px">NSE · As of ${esc(asof)} (daily close)</div></div>
+     <div class="stats">${stat('Market cap',V.market_cap_cr!=null?'₹'+T.fmt(V.market_cap_cr,0)+' Cr':'–')}${stat('P/E',V.pe_used!=null?T.fmt(V.pe_used,1)+'x':'–')}${stat('P/B',V.pb!=null?T.fmt(V.pb,2)+'x':'–')}${stat('EV/EBITDA',V.ev_ebitda!=null?T.fmt(V.ev_ebitda,1)+'x':'–')}${stat('ROE',R.roe_pct!=null?T.fmt(R.roe_pct,1)+'%':'–')}${stat('ROCE',R.roce_pct!=null?T.fmt(R.roce_pct,1)+'%':'–')}${stat('Debt/Equity',R.debt_equity!=null?T.fmt(R.debt_equity,2):'–')}</div></div></div>`;
+  const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['quant','Quant Analytics']];
+  h+=`<div class="tabs">${TABS.map(t=>`<a href="#/stock/${esc(s)}/${t[0]}" class="${tab===t[0]?'on':''}">${t[1]}</a>`).join('')}${['Compare','Peers','Shareholding','News & Events','Research Notes'].map(x=>`<span title="Coming later">${x}</span>`).join('')}</div>`;
+
+  // valuation summary (overview side card)
+  let vs='';
+  const vrow=(k,v)=>`<div class="vrow"><span class="mut">${k}</span><b>${v}</b></div>`;
+  const vbig=(fair,label)=>{const up=fair!=null&&price?(fair/price-1)*100:null;return `<div class="vbig"><div class="tile"><div class="k">${label}</div><div class="tv">${fair!=null?'₹'+T.fmt(fair,0):'–'}</div></div><div class="tile"><div class="k">Upside</div><div class="tv ${cls(up)}">${up!=null?(up>=0?'+':'')+T.fmt(up,1)+'%':'–'}</div></div></div>`};
+  if(dcf){const r=T.recompute(dcf,{rf:A.rf/100,erp:A.erp/100,gT:A.g/100});
+    vs=`<div class="card"><h3>DCF valuation <span class="tag">${esc(dcf.reliability||'')}</span></h3>${vbig(r?r.perShare:null,'DCF fair value')}${vrow('WACC',r?T.fmt(r.wacc*100,2)+'%':'–')}${vrow('Terminal growth',T.fmt(A.g,1)+'%')}${vrow('Cost of equity',r&&r.ke!=null?T.fmt(r.ke*100,2)+'%':'–')}${vrow('Beta used',T.fmt(dcf.assumptions.beta_used,2))}<div style="margin-top:8px"><a class="link" href="#/stock/${esc(s)}/valuation">View DCF model →</a></div></div>`}
+  else if(fin){const r=T.finModel(fin,{rf:A.rf/100,erp:A.erp/100,g:A.g/100});
+    vs=`<div class="card"><h3>Financials model <span class="tag">${esc(fin.subtype||'')}</span></h3>${vbig(r?r.fair:null,'Fair value (P/B–ROE)')}${vrow('Fair P/B',r&&r.fairPB!=null?T.fmt(r.fairPB,2)+'x':'–')}${vrow('Current P/B',r&&r.pb!=null?T.fmt(r.pb,2)+'x':'–')}${vrow('Cost of equity',r?T.fmt(r.ke*100,2)+'%':'–')}${vrow('Implied ROE at price',r&&r.impliedROE!=null?T.fmt(r.impliedROE*100,1)+'%':'–')}<div style="margin-top:8px"><a class="link" href="#/stock/${esc(s)}/valuation">View model →</a></div></div>`}
+  else if(rl){const rit=rl.type==='reit';
+    vs=`<div class="card"><h3>${rit?'REIT model':'Realty NAV model'} <span class="tag">${esc(rl.type)}</span></h3>${vbig(rl.fair_value,rit?'Fair value':'NAV / share')}${vrow('P/B',T.fmt(rl.pb,2)+'x')}${vrow('Net debt',T.fmt(rl.net_debt_cr,0)+' Cr')}${rl.fair_value==null?'<p class="warn">Inputs not filled yet (data/realty_inputs.csv or reit_inputs.csv).</p>':''}<div style="margin-top:8px"><a class="link" href="#/stock/${esc(s)}/valuation">View model →</a></div></div>`}
+  else vs=`<div class="card"><h3>Valuation model</h3><span class="mut">No model for this stock (excluded or data missing).</span></div>`;
+
+  const tile=(k,v)=>`<div class="tile"><div class="k">${k}</div><div class="tv">${v}</div></div>`;
+  const keyRatios=`<div class="card"><h3>Key ratios (latest FY)<a class="link" href="#/stock/${esc(s)}/financials">View all</a></h3><div class="tiles">${tile('P/E',T.fmt(V.pe_used,1))}${tile('P/B',T.fmt(V.pb,2))}${tile('EV/EBITDA',T.fmt(V.ev_ebitda,1))}${tile('ROE %',T.fmt(R.roe_pct,1))}${tile('ROCE %',T.fmt(R.roce_pct,1))}${tile('ROA %',T.fmt(R.roa_pct,1))}${tile('Net margin %',T.fmt(R.net_margin_pct,1))}${tile('EBIT margin %',T.fmt(R.ebit_margin_pct,1))}${tile('FCF yield %',T.fmt(V.fcf_yield_pct,1))}</div></div>`;
+
+  const technicals=()=>{if(!rsk)return '';const k=rsk.risk,m=rsk.momentum,b=rsk.beta,t=rsk.trend;
+    return `<div class="card"><h3>Technicals &amp; risk</h3><div class="grid">${kv('RSI 14',T.fmt(m.rsi14,1))}${kv('MACD hist %',T.fmt(m.macd_hist_pct,2))}${kv('Bollinger %B',T.fmt(m.bollinger_pctb,2))}${kv('ATR %',T.fmt(m.atr_pct,2))}${kv('Above 200-DMA',t.above_dma200?'Yes':'No',t.above_dma200?'pos':'neg')}${kv('Above 50-DMA',t.above_dma50?'Yes':'No',t.above_dma50?'pos':'neg')}${kv('Volatility 1Y %',T.fmt(k.volatility_1y_pct))}${kv('Max DD 1Y %',T.fmt(k.max_drawdown_1y_pct))}${kv('VaR95 1d %',T.fmt(k.var95_1d_pct,2))}${kv('Sharpe 1Y',T.fmt(k.sharpe_1y,2))}${kv('Beta (adj)',T.fmt(b.adjusted,2))}${kv('Alpha % (ann.)',T.fmt(b.alpha_pct))}${kv('Avg traded ₹cr/day',T.fmt(rsk.liquidity.avg_daily_value_3m_cr,1))}</div></div>`};
+
+  if(tab==='overview'){
+    h+=`<div class="ov"><div><div class="card"><h3>Price<span class="range" id="rng">${['3M','6M','1Y','3Y','All'].map(x=>`<button data-r="${x}">${x}</button>`).join('')}</span></h3><canvas id="pc" style="height:330px"></canvas><div class="k" style="margin-top:4px"><span style="color:#2f6fdb">▬</span> 50-day &nbsp; <span style="color:#9b59d0">▬</span> 200-day</div></div></div>
+     <div>${keyRatios}${vs}</div></div>`;
+    h+=technicals();
+  }else if(tab==='financials'){
+    h+=`<div class="two"><div class="card"><h3>Valuation &amp; quality (FY ${esc(met?met.latest_fy:'')})</h3><div class="grid">${kv('P/E (used)',T.fmt(V.pe_used))}${kv('P/B',T.fmt(V.pb))}${kv('EV/EBITDA',T.fmt(V.ev_ebitda))}${kv('FCF yield %',T.fmt(V.fcf_yield_pct))}${kv('Market cap ₹cr',T.fmt(V.market_cap_cr,0))}${kv('ROE %',T.fmt(R.roe_pct))}${kv('ROCE %',T.fmt(R.roce_pct))}${kv('Debt/Equity',T.fmt(R.debt_equity,2))}${kv('Piotroski',met&&met.piotroski&&met.piotroski.score!=null?met.piotroski.score:'–')}${kv('Altman Z″',met&&met.altman_z2&&met.altman_z2.z!=null?T.fmt(met.altman_z2.z,2)+' ('+esc(met.altman_z2.zone||'')+')':(met&&met.type==='financial'?'n/a for financials':'–'))}</div>
+     ${met&&(met.flags||[]).length?`<p class="warn">${met.flags.map(esc).join(' · ')}</p>`:''}</div>
+     <div class="card"><h3>Growth</h3><div class="grid">${kv('Revenue CAGR %',T.fmt(G.revenue_cagr_pct))}${kv('Net income CAGR %',T.fmt(G.net_income_cagr_pct))}${kv('Years used',G.years_used??'–')}</div></div></div>`;
+    h+=ratiosHtml(rat);
+  }else if(tab==='valuation'){
+    if(dcf)h+=`<div id="dcfbox"></div>`;else if(fin)h+=`<div id="finbox"></div>`;else if(rl)h+=`<div id="rlbox"></div>`;
+    else h+=`<div class="card"><h3>Valuation</h3>No model available for this stock (excluded or data missing).</div>`;
+  }else if(tab==='quant'){
+    h+=technicals()||'<div class="card">No risk data for this stock.</div>';
+  }
   view.innerHTML=h;
-  bindRatios();
-  // price chart
-  let range='1Y';
-  const drawP=()=>{const days={'3M':63,'6M':126,'1Y':252,'3Y':756,'All':1e9}[range];const rows=prices.slice(-days);
-    const x=rows.map(r=>r.Date),c=rows.map(r=>T.num(r.Close));const ma=(n)=>c.map((_,i)=>{if(i<n-1)return null;const full=prices.slice(-days-n+1);return null});
-    const ser=[{name:'Close',x,y:c}];
-    const sma=n=>{const all=prices.map(r=>T.num(r.Close));return rows.map((_,i)=>{const j=prices.length-rows.length+i;if(j<n-1)return null;let s=0;for(let q=j-n+1;q<=j;q++)s+=all[q];return s/n})};
-    ser.push({name:'50d',x,y:sma(50),color:'#4aa3ff'},{name:'200d',x,y:sma(200),color:'#c78bff'});
-    if(rows.length)lineChart($('#pc'),ser,{dec:0})};
-  document.querySelectorAll('#rng button').forEach(b=>b.onclick=()=>{range=b.dataset.r;drawP()});
-  if(prices.length)drawP();
-  if(dcf)dcfPanel(dcf,price);
-  if(!dcf&&fin)finPanel(fin);
-  if(!dcf&&!fin&&rl)realtyPanel(rl);
+  if(tab==='overview'&&prices.length){
+    let range='1Y';
+    const drawP=()=>{const days={'3M':63,'6M':126,'1Y':252,'3Y':756,'All':1e9}[range];const rows=prices.slice(-days);
+      const x=rows.map(r=>r.Date),c=rows.map(r=>T.num(r.Close));const all=prices.map(r=>T.num(r.Close));
+      const sma=m=>rows.map((_,i)=>{const j=prices.length-rows.length+i;if(j<m-1)return null;let t=0;for(let q=j-m+1;q<=j;q++)t+=all[q];return t/m});
+      lineChart($('#pc'),[{name:'Close',x,y:c},{name:'50d',x,y:sma(50),color:'#2f6fdb'},{name:'200d',x,y:sma(200),color:'#9b59d0'}],{dec:0});
+      document.querySelectorAll('#rng button').forEach(b=>b.classList.toggle('on',b.dataset.r===range))};
+    document.querySelectorAll('#rng button').forEach(b=>b.onclick=()=>{range=b.dataset.r;drawP()});
+    drawP();
+  }
+  if(tab==='financials')bindRatios();
+  if(tab==='valuation'){
+    if(dcf)dcfPanel(dcf,price);else if(fin)finPanel(fin);else if(rl)realtyPanel(rl);
+  }
 }
 
 
