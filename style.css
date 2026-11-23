@@ -24,3 +24,4 @@ canvas{width:100%;height:260px;display:block}
 .warn{color:var(--a);font-size:12px}.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
 .hl{background:rgba(245,165,36,.18)}
 @media(max-width:600px){#search{width:100%;margin:0}.two{grid-template-columns:1fr}}
+.rtabs button.on{background:var(--b);border-color:var(--a);color:var(--a)}
