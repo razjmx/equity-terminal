@@ -1,13 +1,15 @@
 {
  "symbol": "MOTILALOFS",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "financial",
  "profit_basis": "reported",
- "dcf_eligible": true,
- "dcf_reasons": [],
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: financial",
+  "core EBIT missing or not positive"
+ ],
  "flags": [
-  "recurring unusual items kept in profit",
-  "core EBIT 31% below reported EBIT"
+  "override: financial (broking plus lending)"
  ],
  "equity_check": {
   "balance_sheet_cr": 12888.1,
@@ -15,35 +17,35 @@
   "ratio": 0.83,
   "used": "balance_sheet"
  },
- "core_ebit_margin_pct": 31.6,
+ "core_ebit_margin_pct": null,
  "snapshot_cr": {
   "rev": 8208.7,
   "ni": 1869.3,
-  "ebit": 3759.2,
+  "ebit": null,
   "ta": 43467.7,
   "eq": 12888.1,
-  "debt": 21255.1,
-  "fcf": -6159.7,
-  "ni_core": 1869.3,
-  "ebit_core": 2594.2,
+  "debt": null,
+  "fcf": null,
+  "ni_core": null,
+  "ebit_core": null,
   "operating_income": 2594.2
  },
  "ratios": {
   "roe_pct": 14.5,
   "roa_pct": 4.3,
-  "net_margin_pct": 22.8,
-  "ebit_margin_pct": 45.8,
-  "roce_pct": 18.1,
-  "fcf_margin_pct": -75.0,
-  "debt_equity": 1.65,
-  "interest_cover": 2.9,
-  "current_ratio": 1.19,
-  "asset_turnover": 0.19
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
+  "roce_pct": null,
+  "fcf_margin_pct": null,
+  "debt_equity": null,
+  "interest_cover": null,
+  "current_ratio": null,
+  "asset_turnover": null
  },
  "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 22.8,
-  "asset_turnover": 0.19,
+  "roe_pct": 14.5,
+  "roa_pct": 4.3,
   "equity_multiplier": 3.37
  },
  "growth": {
@@ -53,30 +55,13 @@
  },
  "valuation": {
   "pe_reported": 39.74,
-  "pe_core": 39.74,
+  "pe_core": null,
   "pe_used": 39.74,
   "pb": 5.76,
-  "ev_ebitda": 20.96,
-  "fcf_yield_pct": -8.3,
+  "ev_ebitda": null,
+  "fcf_yield_pct": null,
   "market_cap_cr": 74292.8
  },
- "piotroski": {
-  "score": 2,
-  "tested": 9,
-  "tests": {
-   "roa_positive": true,
-   "cfo_positive": false,
-   "roa_improved": false,
-   "cfo_above_net_income": false,
-   "leverage_fell": false,
-   "current_ratio_improved": false,
-   "no_dilution": true,
-   "gross_margin_improved": false,
-   "asset_turnover_improved": false
-  }
- },
- "altman_z2": {
-  "z": 2.49,
-  "zone": "grey"
- }
+ "piotroski": null,
+ "altman_z2": null
 }

@@ -1,11 +1,14 @@
 {
  "symbol": "VEDL",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "exclude",
  "profit_basis": "core",
- "dcf_eligible": true,
- "dcf_reasons": [],
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: exclude"
+ ],
  "flags": [
+  "override: exclude (restated series: Yahoo misses Rs 12.7k cr exceptional per Screener)",
   "equity check mismatch (ratio 3.20); figures NOT changed",
   "discontinued operations excluded from profit"
  ],

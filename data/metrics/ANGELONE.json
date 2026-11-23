@@ -1,12 +1,15 @@
 {
  "symbol": "ANGELONE",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "financial",
  "profit_basis": "reported",
- "dcf_eligible": true,
- "dcf_reasons": [],
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: financial",
+  "core EBIT missing or not positive"
+ ],
  "flags": [
-  "core EBIT 47% below reported EBIT"
+  "override: financial (broking with margin funding)"
  ],
  "equity_check": {
   "balance_sheet_cr": 6117.8,
@@ -14,35 +17,35 @@
   "ratio": 0.92,
   "used": "balance_sheet"
  },
- "core_ebit_margin_pct": 20.6,
+ "core_ebit_margin_pct": null,
  "snapshot_cr": {
   "rev": 4305.4,
   "ni": 915.1,
-  "ebit": 1675.0,
+  "ebit": null,
   "ta": 23903.8,
   "eq": 6117.8,
-  "debt": 7951.4,
-  "fcf": -4222.6,
-  "ni_core": 915.1,
-  "ebit_core": 887.3,
+  "debt": null,
+  "fcf": null,
+  "ni_core": null,
+  "ebit_core": null,
   "operating_income": 887.3
  },
  "ratios": {
   "roe_pct": 15.0,
   "roa_pct": 3.8,
-  "net_margin_pct": 21.3,
-  "ebit_margin_pct": 38.9,
-  "roce_pct": 26.9,
-  "fcf_margin_pct": -98.1,
-  "debt_equity": 1.3,
-  "interest_cover": 4.15,
-  "current_ratio": 1.23,
-  "asset_turnover": 0.18
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
+  "roce_pct": null,
+  "fcf_margin_pct": null,
+  "debt_equity": null,
+  "interest_cover": null,
+  "current_ratio": null,
+  "asset_turnover": null
  },
  "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 21.3,
-  "asset_turnover": 0.18,
+  "roe_pct": 15.0,
+  "roa_pct": 3.8,
   "equity_multiplier": 3.91
  },
  "growth": {
@@ -52,30 +55,13 @@
  },
  "valuation": {
   "pe_reported": 33.75,
-  "pe_core": 33.75,
+  "pe_core": null,
   "pe_used": 33.75,
   "pb": 5.05,
-  "ev_ebitda": 12.7,
-  "fcf_yield_pct": -13.7,
+  "ev_ebitda": null,
+  "fcf_yield_pct": null,
   "market_cap_cr": 30885.3
  },
- "piotroski": {
-  "score": 3,
-  "tested": 9,
-  "tests": {
-   "roa_positive": true,
-   "cfo_positive": false,
-   "roa_improved": false,
-   "cfo_above_net_income": false,
-   "leverage_fell": false,
-   "current_ratio_improved": true,
-   "no_dilution": false,
-   "gross_margin_improved": true,
-   "asset_turnover_improved": false
-  }
- },
- "altman_z2": {
-  "z": 2.43,
-  "zone": "grey"
- }
+ "piotroski": null,
+ "altman_z2": null
 }

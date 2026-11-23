@@ -1,13 +1,15 @@
 {
  "symbol": "MMTC",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "exclude",
  "profit_basis": "core",
  "dcf_eligible": false,
  "dcf_reasons": [
+  "type: exclude",
   "core EBIT missing or not positive"
  ],
  "flags": [
+  "override: exclude (near-zero revenue: margins meaningless)",
   "one-off items removed from profit",
   "core EBIT 117% below reported EBIT"
  ],
