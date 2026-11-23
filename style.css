@@ -225,3 +225,10 @@ table.stmt small{font-size:10.5px}table.stmt small.pos{color:var(--g)}table.stmt
 .own{display:flex;height:64px;border-radius:10px;overflow:hidden;gap:2px;margin-top:6px}
 .own div{display:flex;flex-direction:column;justify-content:center;padding:0 12px;color:#fff;min-width:0;animation:pop .5s ease both}
 .own b{font-size:16px}.own span{font-size:11.5px;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* one scrollbar only */
+.stbox{overflow:visible;max-height:none}
+.card.scroll:has(.stbox){overflow-x:auto;overflow-y:visible}
+table.stmt th{position:static}
+.tabs{overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
