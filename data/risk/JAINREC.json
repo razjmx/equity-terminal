@@ -2,65 +2,65 @@
  "symbol": "JAINREC",
  "as_of": "2026-11-23",
  "rows": 280,
- "price": 287.35,
+ "price": 278.7,
  "returns_pct": {
-  "1m": -0.8,
-  "3m": -4.1,
-  "6m": -25.1,
-  "1y": -34.6,
+  "1m": -3.8,
+  "3m": -7.0,
+  "6m": -27.4,
+  "1y": -36.6,
   "3y_cagr": null,
-  "ytd": -30.8
+  "ytd": -32.9
  },
  "relative_strength_pp": {
-  "3m": -5.5,
-  "6m": -30.6,
-  "1y": -34.6
+  "3m": -8.0,
+  "6m": -32.5,
+  "1y": -36.2
  },
  "range": {
   "high_52w": 571.5,
   "low_52w": 270.0,
-  "pct_from_high": -49.7,
-  "pct_above_low": 6.4,
+  "pct_from_high": -51.2,
+  "pct_above_low": 3.2,
   "high_date": "2026-05-08",
   "low_date": "2026-10-30"
  },
  "moving_averages": {
-  "dma20": 283.12,
-  "pct_vs_dma20": 1.5,
-  "dma50": 285.38,
-  "pct_vs_dma50": 0.7,
-  "dma100": 301.44,
-  "pct_vs_dma100": -4.7,
-  "dma200": 357.48,
-  "pct_vs_dma200": -19.6
+  "dma20": 282.69,
+  "pct_vs_dma20": -1.4,
+  "dma50": 285.21,
+  "pct_vs_dma50": -2.3,
+  "dma100": 301.35,
+  "pct_vs_dma100": -7.5,
+  "dma200": 357.44,
+  "pct_vs_dma200": -22.0
  },
  "trend": {
   "above_dma200": false,
-  "above_dma50": true,
+  "above_dma50": false,
   "dma50_above_dma200": false,
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 51.5,
-  "macd_pct": 0.34,
-  "macd_signal_pct": -0.01,
-  "macd_hist_pct": 0.35,
-  "bollinger_pctb": 0.67,
-  "atr_pct": 3.7
+  "rsi14": 44.3,
+  "macd_pct": 0.1,
+  "macd_signal_pct": -0.06,
+  "macd_hist_pct": 0.16,
+  "bollinger_pctb": 0.34,
+  "atr_pct": 4.08
  },
  "risk": {
-  "volatility_1y_pct": 49.6,
-  "downside_deviation_pct": 37.4,
+  "volatility_1y_pct": 49.7,
+  "downside_deviation_pct": 37.6,
   "max_drawdown_1y_pct": -52.8,
   "max_drawdown_all_pct": -52.8,
   "var95_1d_pct": -4.02,
   "cvar95_1d_pct": -7.57,
-  "sharpe_1y": -0.75,
-  "sortino_1y": -0.99
+  "sharpe_1y": -0.81,
+  "sortino_1y": -1.07
  },
  "beta": null,
  "liquidity": {
-  "avg_daily_value_3m_cr": 33.3
+  "avg_daily_value_3m_cr": 33.56
  },
  "flags": []
 }
