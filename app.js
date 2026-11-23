@@ -152,6 +152,44 @@ function research(){
   const q=$('#rs-q');attachSuggest(q);q.focus();
 }
 
+// ---------- daily quote ----------
+const QUOTES=[
+["Price is what you pay. Value is what you get.","Warren Buffett"],
+["Be fearful when others are greedy, and greedy when others are fearful.","Warren Buffett"],
+["The stock market is a device for transferring money from the impatient to the patient.","Warren Buffett"],
+["Risk comes from not knowing what you are doing.","Warren Buffett"],
+["It is far better to buy a wonderful company at a fair price than a fair company at a wonderful price.","Warren Buffett"],
+["Time is the friend of the wonderful business, the enemy of the mediocre.","Warren Buffett"],
+["Rule No. 1: Never lose money. Rule No. 2: Never forget Rule No. 1.","Warren Buffett"],
+["Opportunities come infrequently. When it rains gold, put out the bucket, not the thimble.","Warren Buffett"],
+["The four most dangerous words in investing are: this time it is different.","Sir John Templeton"],
+["Bull markets are born on pessimism, grow on skepticism, mature on optimism and die on euphoria.","Sir John Templeton"],
+["The investor's chief problem, and even his worst enemy, is likely to be himself.","Benjamin Graham"],
+["In the short run, the market is a voting machine. In the long run, it is a weighing machine.","Benjamin Graham"],
+["The intelligent investor is a realist who sells to optimists and buys from pessimists.","Benjamin Graham"],
+["Know what you own, and know why you own it.","Peter Lynch"],
+["Behind every stock is a company. Find out what it is doing.","Peter Lynch"],
+["The key to making money in stocks is not to get scared out of them.","Peter Lynch"],
+["Far more money has been lost by investors preparing for corrections than has been lost in corrections themselves.","Peter Lynch"],
+["Invert, always invert.","Charlie Munger"],
+["The big money is not in the buying and selling, but in the waiting.","Charlie Munger"],
+["The first rule of compounding: never interrupt it unnecessarily.","Charlie Munger"],
+["Investing is the intersection of economics and psychology.","Seth Klarman"],
+["You can't predict. You can prepare.","Howard Marks"],
+["Being too far ahead of your time is indistinguishable from being wrong.","Howard Marks"],
+["Don't look for the needle in the haystack. Just buy the haystack.","John Bogle"],
+["The stock market is a giant distraction from the business of investing.","John Bogle"],
+["He who lives by the crystal ball will eat shattered glass.","Ray Dalio"],
+["An investment in knowledge pays the best interest.","Benjamin Franklin"],
+["The stock market is filled with people who know the price of everything, but the value of nothing.","Philip Fisher"]];
+function dailyQuote(){
+  const el=document.getElementById('quote');if(!el)return;
+  const d=new Date(),day=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-Date.UTC(d.getFullYear(),0,0))/864e5);
+  const [t,a]=QUOTES[(day+d.getFullYear())%QUOTES.length];
+  el.innerHTML=`<span class="qt">“${esc(t)}”</span><span class="qa">${esc(a)}</span>`;
+}
+dailyQuote();
+
 // ---------- search suggestions ----------
 function attachSuggest(inp){
   if(!inp)return;const wrap=inp.parentElement;wrap.classList.add('sgw');
