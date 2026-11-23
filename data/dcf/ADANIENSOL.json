@@ -9,17 +9,17 @@
  "fair_high": null,
  "upside_pct": null,
  "flags": [
-  "low return: ROIC 7.1% below WACC 13.6%",
+  "low return: ROIC 7.1% below WACC 14.2%",
   "not meaningful: negative equity value"
  ],
  "assumptions": {
   "rf_pct": 7.2,
-  "erp_pct": 5.5,
+  "erp_pct": 6.0,
   "beta_raw": 1.74,
   "beta_used": 1.5,
   "beta_weeks": 156,
-  "cost_of_equity_pct": 15.43,
-  "wacc_pct": 13.58,
+  "cost_of_equity_pct": 16.18,
+  "wacc_pct": 14.17,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
   "forecast_years": 10,
@@ -33,7 +33,7 @@
   "roic_now_pct": 7.1,
   "mid_year": true,
   "roll_forward_years": 0.66,
-  "roll_factor": 1.099
+  "roll_factor": 1.104
  },
  "projection_cr": [
   {
@@ -118,27 +118,27 @@
   }
  ],
  "terminal": {
-  "roic_pct": 13.6,
-  "fcff_cr": 15952.0,
-  "pv_share_of_ev_pct": 4715.2
+  "roic_pct": 14.2,
+  "fcff_cr": 16560.0,
+  "pv_share_of_ev_pct": -1815.8
  },
  "bridge_cr": {
-  "enterprise_value": 1426.0,
+  "enterprise_value": -3379.0,
   "debt": 49176.0,
   "cash": 5004.0,
   "investments": 3385.0,
   "minority": 1098.0,
-  "equity_value": -40459.0,
+  "equity_value": -45265.0,
   "shares_cr": 122.295,
   "market_cap": 180814.0
  },
  "sensitivity": {
   "wacc_pct": [
-   11.58,
-   12.58,
-   13.58,
-   14.58,
-   15.58
+   12.17,
+   13.17,
+   14.17,
+   15.17,
+   16.17
   ],
   "terminal_growth_pct": [
    5.5,
@@ -149,45 +149,45 @@
   ],
   "fair_value": [
    [
-    -166.2,
-    -165.1,
-    -163.8,
-    -162.4,
-    -161.0
+    -234.0,
+    -233.9,
+    -233.8,
+    -233.5,
+    -233.2
    ],
    [
-    -274.5,
-    -275.0,
-    -275.5,
-    -275.9,
-    -276.3
+    -328.6,
+    -330.0,
+    -331.3,
+    -332.5,
+    -333.7
    ],
    [
-    -360.1,
-    -361.9,
-    -363.7,
-    -365.5,
-    -367.2
+    -403.8,
+    -406.3,
+    -408.7,
+    -411.0,
+    -413.4
    ],
    [
-    -428.4,
-    -431.1,
-    -433.9,
-    -436.6,
-    -439.3
+    -464.0,
+    -467.2,
+    -470.4,
+    -473.6,
+    -476.7
    ],
    [
-    -483.1,
-    -486.5,
-    -490.0,
-    -493.4,
-    -496.8
+    -512.3,
+    -516.0,
+    -519.8,
+    -523.6,
+    -527.4
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 49.6,
+  "implied_ebit_margin_pct": 52.3,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "not meaningful",
   "note": "growth outside -10% to 60%"
@@ -198,7 +198,7 @@
   "tax": 0.25,
   "s2c": 0.5,
   "g1": 0.28967428428564324,
-  "wacc": 0.13577804114530329,
+  "wacc": 0.14166351655080012,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -208,7 +208,7 @@
   "invest": 3385.49,
   "minority": 1098.1,
   "shares_cr": 122.29545079472437,
-  "roll": 1.0994090021433356,
+  "roll": 1.1041115025061325,
   "mid_year": true
  }
 }

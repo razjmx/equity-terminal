@@ -2,21 +2,23 @@
  "symbol": "ANTHEM",
  "latest_fy": "2026-03-31",
  "status": "ok",
- "reliability": "indicative",
+ "reliability": "low confidence",
  "price": 958.7,
- "fair_value": 249.8,
- "fair_low": 211.4,
- "fair_high": 303.6,
- "upside_pct": -73.9,
- "flags": [],
+ "fair_value": 230.0,
+ "fair_low": 196.8,
+ "fair_high": 275.3,
+ "upside_pct": -76.0,
+ "flags": [
+  "far from price: model value is 24% of the market price"
+ ],
  "assumptions": {
   "rf_pct": 7.2,
-  "erp_pct": 5.5,
+  "erp_pct": 6.0,
   "beta_raw": 0.99,
   "beta_used": 0.99,
   "beta_weeks": 70,
-  "cost_of_equity_pct": 12.66,
-  "wacc_pct": 12.65,
+  "cost_of_equity_pct": 13.15,
+  "wacc_pct": 13.15,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
   "forecast_years": 10,
@@ -30,7 +32,7 @@
   "roic_now_pct": 24.5,
   "mid_year": true,
   "roll_forward_years": 0.66,
-  "roll_factor": 1.082
+  "roll_factor": 1.085
  },
  "projection_cr": [
   {
@@ -117,25 +119,25 @@
  "terminal": {
   "roic_pct": 20.0,
   "fcff_cr": 1658.0,
-  "pv_share_of_ev_pct": 71.7
+  "pv_share_of_ev_pct": 69.8
  },
  "bridge_cr": {
-  "enterprise_value": 12128.0,
+  "enterprise_value": 11059.0,
   "debt": 54.0,
   "cash": 938.0,
   "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 13012.0,
+  "equity_value": 11943.0,
   "shares_cr": 56.353,
   "market_cap": 54025.0
  },
  "sensitivity": {
   "wacc_pct": [
-   10.65,
-   11.65,
-   12.65,
-   13.65,
-   14.65
+   11.15,
+   12.15,
+   13.15,
+   14.15,
+   15.15
   ],
   "terminal_growth_pct": [
    5.5,
@@ -146,48 +148,48 @@
   ],
   "fair_value": [
    [
-    334.3,
-    356.6,
-    384.0,
-    418.6,
-    463.9
+    302.6,
+    319.9,
+    340.7,
+    366.3,
+    398.7
    ],
    [
-    274.1,
-    287.6,
-    303.6,
-    322.8,
-    346.4
+    251.9,
+    262.7,
+    275.3,
+    290.2,
+    308.0
    ],
    [
-    231.2,
-    239.9,
-    249.8,
-    261.4,
-    275.0
+    214.8,
+    221.9,
+    230.0,
+    239.1,
+    249.8
    ],
    [
-    199.2,
-    204.9,
-    211.4,
-    218.7,
-    227.1
+    186.7,
+    191.5,
+    196.8,
+    202.7,
+    209.5
    ],
    [
-    174.4,
-    178.3,
-    182.7,
-    187.5,
-    192.9
+    164.6,
+    167.9,
+    171.5,
+    175.5,
+    179.9
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 59.5,
+  "implied_first_year_growth_pct": null,
   "implied_ebit_margin_pct": null,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "below 8.6%",
-  "note": "; margin outside 0% to 60%"
+  "note": "growth outside -10% to 60%; margin outside 0% to 60%"
  },
  "model": {
   "rev": 2124.3,
@@ -195,7 +197,7 @@
   "tax": 0.25,
   "s2c": 0.9844096901540031,
   "g1": 0.2233859456035161,
-  "wacc": 0.1265015167369181,
+  "wacc": 0.13145660799229555,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -205,7 +207,7 @@
   "invest": 0.0,
   "minority": 0.0,
   "shares_cr": 56.35280816105142,
-  "roll": 1.0818626779701273,
+  "roll": 1.0850053746777373,
   "mid_year": true
  }
 }
