@@ -1,0 +1,25 @@
+{
+ "symbol": "OBEROIRLTY",
+ "type": "realty",
+ "price": 1860.0,
+ "shares_cr": 36.36,
+ "ke_pct": 14.64,
+ "net_debt_cr": 2825.4,
+ "pb": 3.77,
+ "pe_used": 26.97,
+ "ev_ebitda": 18.6,
+ "market_cap_cr": 67630.0,
+ "flags": [
+  "override: realty (developer: value on NAV)",
+  "cash not found: net debt = gross debt",
+  "NAV inputs missing: fill data/realty_inputs.csv"
+ ],
+ "settings": {
+  "rf": 0.072,
+  "erp": 0.06,
+  "tax": 0.25,
+  "reit_g": 0.04
+ },
+ "fair_value": null,
+ "upside_pct": null
+}

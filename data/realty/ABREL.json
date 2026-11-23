@@ -1,0 +1,26 @@
+{
+ "symbol": "ABREL",
+ "type": "realty",
+ "price": 1257.0,
+ "shares_cr": 11.094,
+ "ke_pct": 17.28,
+ "net_debt_cr": 5636.5,
+ "pb": 3.77,
+ "pe_used": null,
+ "ev_ebitda": -51.11,
+ "market_cap_cr": 13944.9,
+ "flags": [
+  "override: realty (developer: value on NAV)",
+  "discontinued operations excluded from profit",
+  "cash not found: net debt = gross debt",
+  "NAV inputs missing: fill data/realty_inputs.csv"
+ ],
+ "settings": {
+  "rf": 0.072,
+  "erp": 0.06,
+  "tax": 0.25,
+  "reit_g": 0.04
+ },
+ "fair_value": null,
+ "upside_pct": null
+}

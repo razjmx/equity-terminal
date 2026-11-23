@@ -1,0 +1,27 @@
+{
+ "symbol": "GODREJPROP",
+ "type": "realty",
+ "price": 1923.0,
+ "shares_cr": 30.123,
+ "ke_pct": 16.62,
+ "net_debt_cr": 15894.1,
+ "pb": 3.02,
+ "pe_used": 31.31,
+ "ev_ebitda": 24.8,
+ "market_cap_cr": 57925.9,
+ "flags": [
+  "override: realty (developer: value on NAV)",
+  "recurring unusual items kept in profit",
+  "core EBIT 121% below reported EBIT",
+  "cash not found: net debt = gross debt",
+  "NAV inputs missing: fill data/realty_inputs.csv"
+ ],
+ "settings": {
+  "rf": 0.072,
+  "erp": 0.06,
+  "tax": 0.25,
+  "reit_g": 0.04
+ },
+ "fair_value": null,
+ "upside_pct": null
+}

@@ -1,0 +1,26 @@
+{
+ "symbol": "SOBHA",
+ "type": "realty",
+ "price": 1251.1,
+ "shares_cr": 10.696,
+ "ke_pct": 15.78,
+ "net_debt_cr": 1057.4,
+ "pb": 2.84,
+ "pe_used": 69.19,
+ "ev_ebitda": 28.99,
+ "market_cap_cr": 13382.3,
+ "flags": [
+  "override: realty (developer: value on NAV)",
+  "core EBIT 47% below reported EBIT",
+  "cash not found: net debt = gross debt",
+  "NAV inputs missing: fill data/realty_inputs.csv"
+ ],
+ "settings": {
+  "rf": 0.072,
+  "erp": 0.06,
+  "tax": 0.25,
+  "reit_g": 0.04
+ },
+ "fair_value": null,
+ "upside_pct": null
+}

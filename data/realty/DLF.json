@@ -1,0 +1,26 @@
+{
+ "symbol": "DLF",
+ "type": "realty",
+ "price": 794.1,
+ "shares_cr": 247.531,
+ "ke_pct": 16.08,
+ "net_debt_cr": 305.9,
+ "pb": 4.32,
+ "pe_used": 44.53,
+ "ev_ebitda": 59.01,
+ "market_cap_cr": 196564.5,
+ "flags": [
+  "override: realty (developer: value on NAV)",
+  "core EBIT 59% below reported EBIT",
+  "cash not found: net debt = gross debt",
+  "NAV inputs missing: fill data/realty_inputs.csv"
+ ],
+ "settings": {
+  "rf": 0.072,
+  "erp": 0.06,
+  "tax": 0.25,
+  "reit_g": 0.04
+ },
+ "fair_value": null,
+ "upside_pct": null
+}
