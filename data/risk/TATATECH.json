@@ -1,0 +1,73 @@
+{
+ "symbol": "TATATECH",
+ "as_of": "2026-11-23",
+ "rows": 736,
+ "price": 711.7,
+ "returns_pct": {
+  "1m": 3.2,
+  "3m": -13.6,
+  "6m": 7.2,
+  "1y": 4.7,
+  "3y_cagr": null,
+  "ytd": 10.7
+ },
+ "relative_strength_pp": {
+  "3m": -15.0,
+  "6m": 1.7,
+  "1y": 4.7
+ },
+ "range": {
+  "high_52w": 879.15,
+  "low_52w": 509.2,
+  "pct_from_high": -19.0,
+  "pct_above_low": 39.8,
+  "high_date": "2026-08-10",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 670.05,
+  "pct_vs_dma20": 6.2,
+  "dma50": 700.4,
+  "pct_vs_dma50": 1.6,
+  "dma100": 738.63,
+  "pct_vs_dma100": -3.6,
+  "dma200": 682.62,
+  "pct_vs_dma200": 4.3
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 57.5,
+  "macd_pct": -0.08,
+  "macd_signal_pct": -1.3,
+  "macd_hist_pct": 1.22,
+  "bollinger_pctb": 0.98,
+  "atr_pct": 3.66
+ },
+ "risk": {
+  "volatility_1y_pct": 34.9,
+  "downside_deviation_pct": 22.7,
+  "max_drawdown_1y_pct": -26.4,
+  "max_drawdown_all_pct": -61.2,
+  "var95_1d_pct": -3.22,
+  "cvar95_1d_pct": -4.31,
+  "sharpe_1y": 0.1,
+  "sortino_1y": 0.15
+ },
+ "beta": {
+  "raw": 1.13,
+  "adjusted": 1.09,
+  "weeks": 156,
+  "correlation": 0.56,
+  "r_squared": 0.31,
+  "alpha_pct": -24.3
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 83.65
+ },
+ "flags": []
+}

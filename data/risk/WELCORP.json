@@ -1,0 +1,73 @@
+{
+ "symbol": "WELCORP",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 2159.1,
+ "returns_pct": {
+  "1m": -11.7,
+  "3m": 7.7,
+  "6m": 62.3,
+  "1y": 135.1,
+  "3y_cagr": 73.3,
+  "ytd": 165.1
+ },
+ "relative_strength_pp": {
+  "3m": 6.3,
+  "6m": 56.9,
+  "1y": 135.1
+ },
+ "range": {
+  "high_52w": 2842.0,
+  "low_52w": 721.85,
+  "pct_from_high": -24.0,
+  "pct_above_low": 199.1,
+  "high_date": "2026-09-29",
+  "low_date": "2026-01-27"
+ },
+ "moving_averages": {
+  "dma20": 2295.39,
+  "pct_vs_dma20": -5.9,
+  "dma50": 2500.21,
+  "pct_vs_dma50": -13.6,
+  "dma100": 2198.53,
+  "pct_vs_dma100": -1.8,
+  "dma200": 1639.06,
+  "pct_vs_dma200": 31.7
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 38.2,
+  "macd_pct": -3.97,
+  "macd_signal_pct": -3.79,
+  "macd_hist_pct": -0.18,
+  "bollinger_pctb": 0.21,
+  "atr_pct": 5.42
+ },
+ "risk": {
+  "volatility_1y_pct": 46.3,
+  "downside_deviation_pct": 28.0,
+  "max_drawdown_1y_pct": -24.1,
+  "max_drawdown_all_pct": -38.3,
+  "var95_1d_pct": -4.03,
+  "cvar95_1d_pct": -5.45,
+  "sharpe_1y": 1.92,
+  "sortino_1y": 3.18
+ },
+ "beta": {
+  "raw": 1.13,
+  "adjusted": 1.09,
+  "weeks": 156,
+  "correlation": 0.39,
+  "r_squared": 0.15,
+  "alpha_pct": 44.9
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 519.67
+ },
+ "flags": []
+}

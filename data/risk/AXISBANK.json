@@ -1,0 +1,73 @@
+{
+ "symbol": "AXISBANK",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 1404.1,
+ "returns_pct": {
+  "1m": 15.8,
+  "3m": 12.2,
+  "6m": 12.0,
+  "1y": 13.1,
+  "3y_cagr": 12.4,
+  "ytd": 10.6
+ },
+ "relative_strength_pp": {
+  "3m": 10.9,
+  "6m": 6.6,
+  "1y": 13.1
+ },
+ "range": {
+  "high_52w": 1446.0,
+  "low_52w": 1161.3,
+  "pct_from_high": -2.9,
+  "pct_above_low": 20.9,
+  "high_date": "2026-11-20",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 1299.38,
+  "pct_vs_dma20": 8.1,
+  "dma50": 1262.9,
+  "pct_vs_dma50": 11.2,
+  "dma100": 1265.03,
+  "pct_vs_dma100": 11.0,
+  "dma200": 1285.51,
+  "pct_vs_dma200": 9.2
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 67.2,
+  "macd_pct": 3.07,
+  "macd_signal_pct": 2.11,
+  "macd_hist_pct": 0.96,
+  "bollinger_pctb": 0.85,
+  "atr_pct": 2.37
+ },
+ "risk": {
+  "volatility_1y_pct": 26.0,
+  "downside_deviation_pct": 18.0,
+  "max_drawdown_1y_pct": -17.2,
+  "max_drawdown_all_pct": -28.0,
+  "var95_1d_pct": -2.8,
+  "cvar95_1d_pct": -3.88,
+  "sharpe_1y": 0.33,
+  "sortino_1y": 0.47
+ },
+ "beta": {
+  "raw": 1.08,
+  "adjusted": 1.05,
+  "weeks": 156,
+  "correlation": 0.63,
+  "r_squared": 0.4,
+  "alpha_pct": 0.6
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 812.17
+ },
+ "flags": []
+}

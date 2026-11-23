@@ -1,0 +1,73 @@
+{
+ "symbol": "REDINGTON",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 332.3,
+ "returns_pct": {
+  "1m": -9.5,
+  "3m": -4.5,
+  "6m": 51.2,
+  "1y": 12.8,
+  "3y_cagr": 31.5,
+  "ytd": 22.0
+ },
+ "relative_strength_pp": {
+  "3m": -5.9,
+  "6m": 45.7,
+  "1y": 12.8
+ },
+ "range": {
+  "high_52w": 412.75,
+  "low_52w": 199.95,
+  "pct_from_high": -19.5,
+  "pct_above_low": 66.2,
+  "high_date": "2026-10-05",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 344.27,
+  "pct_vs_dma20": -3.5,
+  "dma50": 373.19,
+  "pct_vs_dma50": -11.0,
+  "dma100": 345.98,
+  "pct_vs_dma100": -4.0,
+  "dma200": 291.88,
+  "pct_vs_dma200": 13.8
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 41.9,
+  "macd_pct": -2.86,
+  "macd_signal_pct": -2.85,
+  "macd_hist_pct": -0.0,
+  "bollinger_pctb": 0.27,
+  "atr_pct": 5.08
+ },
+ "risk": {
+  "volatility_1y_pct": 45.7,
+  "downside_deviation_pct": 29.2,
+  "max_drawdown_1y_pct": -32.5,
+  "max_drawdown_all_pct": -39.4,
+  "var95_1d_pct": -4.33,
+  "cvar95_1d_pct": -5.58,
+  "sharpe_1y": 0.33,
+  "sortino_1y": 0.52
+ },
+ "beta": {
+  "raw": 1.35,
+  "adjusted": 1.24,
+  "weeks": 156,
+  "correlation": 0.44,
+  "r_squared": 0.19,
+  "alpha_pct": 23.1
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 190.89
+ },
+ "flags": []
+}

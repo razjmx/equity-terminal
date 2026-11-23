@@ -1,0 +1,73 @@
+{
+ "symbol": "FORTIS",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 820.75,
+ "returns_pct": {
+  "1m": 12.9,
+  "3m": -10.5,
+  "6m": -15.2,
+  "1y": -12.5,
+  "3y_cagr": 35.9,
+  "ytd": -7.2
+ },
+ "relative_strength_pp": {
+  "3m": -11.8,
+  "6m": -20.6,
+  "1y": -12.4
+ },
+ "range": {
+  "high_52w": 990.35,
+  "low_52w": 712.9,
+  "pct_from_high": -17.1,
+  "pct_above_low": 15.1,
+  "high_date": "2026-06-12",
+  "low_date": "2026-10-23"
+ },
+ "moving_averages": {
+  "dma20": 780.39,
+  "pct_vs_dma20": 5.2,
+  "dma50": 799.03,
+  "pct_vs_dma50": 2.7,
+  "dma100": 868.11,
+  "pct_vs_dma100": -5.5,
+  "dma200": 889.89,
+  "pct_vs_dma200": -7.8
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 58.8,
+  "macd_pct": 0.88,
+  "macd_signal_pct": -0.12,
+  "macd_hist_pct": 1.0,
+  "bollinger_pctb": 0.87,
+  "atr_pct": 2.9
+ },
+ "risk": {
+  "volatility_1y_pct": 27.5,
+  "downside_deviation_pct": 19.9,
+  "max_drawdown_1y_pct": -28.0,
+  "max_drawdown_all_pct": -35.1,
+  "var95_1d_pct": -2.74,
+  "cvar95_1d_pct": -3.93,
+  "sharpe_1y": -0.61,
+  "sortino_1y": -0.84
+ },
+ "beta": {
+  "raw": 0.93,
+  "adjusted": 0.95,
+  "weeks": 156,
+  "correlation": 0.48,
+  "r_squared": 0.23,
+  "alpha_pct": 19.3
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 124.6
+ },
+ "flags": []
+}

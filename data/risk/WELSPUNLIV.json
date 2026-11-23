@@ -1,0 +1,73 @@
+{
+ "symbol": "WELSPUNLIV",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 276.29,
+ "returns_pct": {
+  "1m": 29.1,
+  "3m": 46.4,
+  "6m": 89.9,
+  "1y": 99.7,
+  "3y_cagr": 21.7,
+  "ytd": 111.6
+ },
+ "relative_strength_pp": {
+  "3m": 45.1,
+  "6m": 84.5,
+  "1y": 99.8
+ },
+ "range": {
+  "high_52w": 276.29,
+  "low_52w": 108.32,
+  "pct_from_high": 0.0,
+  "pct_above_low": 155.1,
+  "high_date": "2026-11-23",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 244.85,
+  "pct_vs_dma20": 12.8,
+  "dma50": 230.18,
+  "pct_vs_dma50": 20.0,
+  "dma100": 202.01,
+  "pct_vs_dma100": 36.8,
+  "dma200": 167.67,
+  "pct_vs_dma200": 64.8
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 66.1,
+  "macd_pct": 4.22,
+  "macd_signal_pct": 3.51,
+  "macd_hist_pct": 0.71,
+  "bollinger_pctb": 0.89,
+  "atr_pct": 4.95
+ },
+ "risk": {
+  "volatility_1y_pct": 49.0,
+  "downside_deviation_pct": 26.9,
+  "max_drawdown_1y_pct": -27.2,
+  "max_drawdown_all_pct": -60.0,
+  "var95_1d_pct": -3.99,
+  "cvar95_1d_pct": -5.0,
+  "sharpe_1y": 1.5,
+  "sortino_1y": 2.74
+ },
+ "beta": {
+  "raw": 1.42,
+  "adjusted": 1.28,
+  "weeks": 156,
+  "correlation": 0.49,
+  "r_squared": 0.24,
+  "alpha_pct": 16.3
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 161.38
+ },
+ "flags": []
+}

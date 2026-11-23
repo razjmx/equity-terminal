@@ -1,0 +1,68 @@
+{
+ "symbol": "BHARATCOAL",
+ "as_of": "2026-11-23",
+ "rows": 208,
+ "price": 30.15,
+ "returns_pct": {
+  "1m": -0.1,
+  "3m": -9.4,
+  "6m": -17.2,
+  "1y": null,
+  "3y_cagr": null,
+  "ytd": null
+ },
+ "relative_strength_pp": {
+  "3m": -10.7,
+  "6m": -22.6,
+  "1y": null
+ },
+ "range": {
+  "high_52w": 42.55,
+  "low_52w": 29.71,
+  "pct_from_high": -29.1,
+  "pct_above_low": 1.5,
+  "high_date": "2026-06-18",
+  "low_date": "2026-10-30"
+ },
+ "moving_averages": {
+  "dma20": 30.88,
+  "pct_vs_dma20": -2.4,
+  "dma50": 31.55,
+  "pct_vs_dma50": -4.4,
+  "dma100": 33.35,
+  "pct_vs_dma100": -9.6,
+  "dma200": 34.5,
+  "pct_vs_dma200": -12.6
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 38.9,
+  "macd_pct": -0.82,
+  "macd_signal_pct": -0.68,
+  "macd_hist_pct": -0.13,
+  "bollinger_pctb": 0.21,
+  "atr_pct": 2.34
+ },
+ "risk": {
+  "volatility_1y_pct": 39.7,
+  "downside_deviation_pct": 27.5,
+  "max_drawdown_1y_pct": -30.2,
+  "max_drawdown_all_pct": -30.2,
+  "var95_1d_pct": -3.79,
+  "cvar95_1d_pct": -5.61,
+  "sharpe_1y": -0.9,
+  "sortino_1y": -1.29
+ },
+ "beta": null,
+ "liquidity": {
+  "avg_daily_value_3m_cr": 18.96
+ },
+ "flags": [
+  "short history: risk and trend figures use fewer than 250 days"
+ ]
+}

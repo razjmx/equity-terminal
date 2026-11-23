@@ -1,0 +1,73 @@
+{
+ "symbol": "SCHAEFFLER",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 3627.6,
+ "returns_pct": {
+  "1m": 2.8,
+  "3m": -10.4,
+  "6m": -11.3,
+  "1y": -11.2,
+  "3y_cagr": 8.2,
+  "ytd": -6.5
+ },
+ "relative_strength_pp": {
+  "3m": -11.8,
+  "6m": -16.7,
+  "1y": -11.2
+ },
+ "range": {
+  "high_52w": 4357.2,
+  "low_52w": 3473.2,
+  "pct_from_high": -16.7,
+  "pct_above_low": 4.4,
+  "high_date": "2026-02-27",
+  "low_date": "2026-10-23"
+ },
+ "moving_averages": {
+  "dma20": 3573.57,
+  "pct_vs_dma20": 1.5,
+  "dma50": 3731.95,
+  "pct_vs_dma50": -2.8,
+  "dma100": 3904.93,
+  "pct_vs_dma100": -7.1,
+  "dma200": 3974.74,
+  "pct_vs_dma200": -8.7
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 50.5,
+  "macd_pct": -0.72,
+  "macd_signal_pct": -1.3,
+  "macd_hist_pct": 0.58,
+  "bollinger_pctb": 0.78,
+  "atr_pct": 2.62
+ },
+ "risk": {
+  "volatility_1y_pct": 28.1,
+  "downside_deviation_pct": 19.4,
+  "max_drawdown_1y_pct": -20.3,
+  "max_drawdown_all_pct": -39.2,
+  "var95_1d_pct": -2.74,
+  "cvar95_1d_pct": -3.77,
+  "sharpe_1y": -0.54,
+  "sortino_1y": -0.78
+ },
+ "beta": {
+  "raw": 1.16,
+  "adjusted": 1.11,
+  "weeks": 156,
+  "correlation": 0.47,
+  "r_squared": 0.22,
+  "alpha_pct": 3.4
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 23.9
+ },
+ "flags": []
+}

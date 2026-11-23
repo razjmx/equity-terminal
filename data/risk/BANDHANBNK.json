@@ -1,0 +1,73 @@
+{
+ "symbol": "BANDHANBNK",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 173.2,
+ "returns_pct": {
+  "1m": 9.3,
+  "3m": -0.6,
+  "6m": -9.4,
+  "1y": 12.0,
+  "3y_cagr": -6.9,
+  "ytd": 18.8
+ },
+ "relative_strength_pp": {
+  "3m": -1.9,
+  "6m": -14.8,
+  "1y": 12.1
+ },
+ "range": {
+  "high_52w": 216.74,
+  "low_52w": 135.47,
+  "pct_from_high": -20.1,
+  "pct_above_low": 27.9,
+  "high_date": "2026-06-16",
+  "low_date": "2025-12-08"
+ },
+ "moving_averages": {
+  "dma20": 165.03,
+  "pct_vs_dma20": 4.9,
+  "dma50": 168.71,
+  "pct_vs_dma50": 2.7,
+  "dma100": 175.3,
+  "pct_vs_dma100": -1.2,
+  "dma200": 178.8,
+  "pct_vs_dma200": -3.1
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 56.5,
+  "macd_pct": 1.54,
+  "macd_signal_pct": 0.74,
+  "macd_hist_pct": 0.8,
+  "bollinger_pctb": 0.73,
+  "atr_pct": 3.48
+ },
+ "risk": {
+  "volatility_1y_pct": 43.0,
+  "downside_deviation_pct": 30.5,
+  "max_drawdown_1y_pct": -30.8,
+  "max_drawdown_all_pct": -61.8,
+  "var95_1d_pct": -4.25,
+  "cvar95_1d_pct": -5.97,
+  "sharpe_1y": 0.31,
+  "sortino_1y": 0.44
+ },
+ "beta": {
+  "raw": 1.46,
+  "adjusted": 1.31,
+  "weeks": 156,
+  "correlation": 0.54,
+  "r_squared": 0.29,
+  "alpha_pct": -12.6
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 198.26
+ },
+ "flags": []
+}

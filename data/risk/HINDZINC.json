@@ -1,0 +1,73 @@
+{
+ "symbol": "HINDZINC",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 527.5,
+ "returns_pct": {
+  "1m": 1.8,
+  "3m": -8.1,
+  "6m": -16.0,
+  "1y": 8.3,
+  "3y_cagr": 21.7,
+  "ytd": -13.9
+ },
+ "relative_strength_pp": {
+  "3m": -9.4,
+  "6m": -21.4,
+  "1y": 8.3
+ },
+ "range": {
+  "high_52w": 727.2,
+  "low_52w": 454.0,
+  "pct_from_high": -27.5,
+  "pct_above_low": 16.2,
+  "high_date": "2026-01-27",
+  "low_date": "2025-11-24"
+ },
+ "moving_averages": {
+  "dma20": 536.73,
+  "pct_vs_dma20": -1.7,
+  "dma50": 550.95,
+  "pct_vs_dma50": -4.3,
+  "dma100": 556.24,
+  "pct_vs_dma100": -5.2,
+  "dma200": 571.66,
+  "pct_vs_dma200": -7.7
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 43.8,
+  "macd_pct": -0.54,
+  "macd_signal_pct": -0.15,
+  "macd_hist_pct": -0.39,
+  "bollinger_pctb": 0.41,
+  "atr_pct": 3.33
+ },
+ "risk": {
+  "volatility_1y_pct": 38.9,
+  "downside_deviation_pct": 28.1,
+  "max_drawdown_1y_pct": -32.9,
+  "max_drawdown_all_pct": -49.8,
+  "var95_1d_pct": -4.26,
+  "cvar95_1d_pct": -5.58,
+  "sharpe_1y": 0.22,
+  "sortino_1y": 0.3
+ },
+ "beta": {
+  "raw": 1.24,
+  "adjusted": 1.16,
+  "weeks": 156,
+  "correlation": 0.41,
+  "r_squared": 0.17,
+  "alpha_pct": 17.2
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 271.46
+ },
+ "flags": []
+}

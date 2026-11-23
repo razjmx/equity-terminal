@@ -1,0 +1,73 @@
+{
+ "symbol": "OLAELEC",
+ "as_of": "2026-11-23",
+ "rows": 567,
+ "price": 31.96,
+ "returns_pct": {
+  "1m": 0.1,
+  "3m": -15.5,
+  "6m": -10.0,
+  "1y": -24.4,
+  "3y_cagr": null,
+  "ytd": -11.8
+ },
+ "relative_strength_pp": {
+  "3m": -16.8,
+  "6m": -15.4,
+  "1y": -24.4
+ },
+ "range": {
+  "high_52w": 47.34,
+  "low_52w": 22.8,
+  "pct_from_high": -32.5,
+  "pct_above_low": 40.2,
+  "high_date": "2026-06-09",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 33.97,
+  "pct_vs_dma20": -5.9,
+  "dma50": 35.42,
+  "pct_vs_dma50": -9.8,
+  "dma100": 37.4,
+  "pct_vs_dma100": -14.5,
+  "dma200": 35.6,
+  "pct_vs_dma200": -10.2
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "death cross in last 20 days"
+ },
+ "momentum": {
+  "rsi14": 40.1,
+  "macd_pct": -2.2,
+  "macd_signal_pct": -1.73,
+  "macd_hist_pct": -0.47,
+  "bollinger_pctb": 0.17,
+  "atr_pct": 5.04
+ },
+ "risk": {
+  "volatility_1y_pct": 61.3,
+  "downside_deviation_pct": 36.9,
+  "max_drawdown_1y_pct": -48.1,
+  "max_drawdown_all_pct": -84.4,
+  "var95_1d_pct": -5.02,
+  "cvar95_1d_pct": -6.43,
+  "sharpe_1y": -0.28,
+  "sortino_1y": -0.46
+ },
+ "beta": {
+  "raw": 1.86,
+  "adjusted": 1.57,
+  "weeks": 120,
+  "correlation": 0.42,
+  "r_squared": 0.18,
+  "alpha_pct": -24.4
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 292.63
+ },
+ "flags": []
+}

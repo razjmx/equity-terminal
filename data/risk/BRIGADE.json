@@ -1,0 +1,73 @@
+{
+ "symbol": "BRIGADE",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 577.2,
+ "returns_pct": {
+  "1m": 3.6,
+  "3m": -7.8,
+  "6m": 15.1,
+  "1y": -18.5,
+  "3y_cagr": 7.5,
+  "ytd": -13.0
+ },
+ "relative_strength_pp": {
+  "3m": -9.1,
+  "6m": 9.7,
+  "1y": -18.5
+ },
+ "range": {
+  "high_52w": 712.3,
+  "low_52w": 476.02,
+  "pct_from_high": -19.0,
+  "pct_above_low": 21.3,
+  "high_date": "2026-09-03",
+  "low_date": "2026-03-23"
+ },
+ "moving_averages": {
+  "dma20": 550.22,
+  "pct_vs_dma20": 4.9,
+  "dma50": 574.31,
+  "pct_vs_dma50": 0.5,
+  "dma100": 581.44,
+  "pct_vs_dma100": -0.7,
+  "dma200": 557.86,
+  "pct_vs_dma200": 3.5
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 57.4,
+  "macd_pct": 0.04,
+  "macd_signal_pct": -0.92,
+  "macd_hist_pct": 0.96,
+  "bollinger_pctb": 0.92,
+  "atr_pct": 3.51
+ },
+ "risk": {
+  "volatility_1y_pct": 37.1,
+  "downside_deviation_pct": 23.9,
+  "max_drawdown_1y_pct": -32.9,
+  "max_drawdown_all_pct": -55.7,
+  "var95_1d_pct": -3.44,
+  "cvar95_1d_pct": -4.11,
+  "sharpe_1y": -0.56,
+  "sortino_1y": -0.87
+ },
+ "beta": {
+  "raw": 1.32,
+  "adjusted": 1.21,
+  "weeks": 156,
+  "correlation": 0.53,
+  "r_squared": 0.29,
+  "alpha_pct": -7.7
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 29.67
+ },
+ "flags": []
+}

@@ -1,0 +1,73 @@
+{
+ "symbol": "HINDALCO",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 904.5,
+ "returns_pct": {
+  "1m": 2.1,
+  "3m": -12.2,
+  "6m": -17.7,
+  "1y": 12.5,
+  "3y_cagr": 25.6,
+  "ytd": 2.0
+ },
+ "relative_strength_pp": {
+  "3m": -13.5,
+  "6m": -23.2,
+  "1y": 12.6
+ },
+ "range": {
+  "high_52w": 1149.7,
+  "low_52w": 774.65,
+  "pct_from_high": -21.3,
+  "pct_above_low": 16.8,
+  "high_date": "2026-05-27",
+  "low_date": "2025-11-24"
+ },
+ "moving_averages": {
+  "dma20": 921.29,
+  "pct_vs_dma20": -1.8,
+  "dma50": 933.13,
+  "pct_vs_dma50": -3.1,
+  "dma100": 965.81,
+  "pct_vs_dma100": -6.3,
+  "dma200": 979.49,
+  "pct_vs_dma200": -7.7
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 44.1,
+  "macd_pct": -0.21,
+  "macd_signal_pct": -0.07,
+  "macd_hist_pct": -0.15,
+  "bollinger_pctb": 0.35,
+  "atr_pct": 2.97
+ },
+ "risk": {
+  "volatility_1y_pct": 28.8,
+  "downside_deviation_pct": 21.2,
+  "max_drawdown_1y_pct": -24.3,
+  "max_drawdown_all_pct": -49.9,
+  "var95_1d_pct": -3.02,
+  "cvar95_1d_pct": -3.99,
+  "sharpe_1y": 0.3,
+  "sortino_1y": 0.42
+ },
+ "beta": {
+  "raw": 0.94,
+  "adjusted": 0.96,
+  "weeks": 156,
+  "correlation": 0.5,
+  "r_squared": 0.25,
+  "alpha_pct": 12.4
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 450.31
+ },
+ "flags": []
+}

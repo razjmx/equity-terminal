@@ -1,0 +1,73 @@
+{
+ "symbol": "JKTYRE",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 365.1,
+ "returns_pct": {
+  "1m": 13.0,
+  "3m": -2.2,
+  "6m": 0.2,
+  "1y": -20.6,
+  "3y_cagr": 6.7,
+  "ytd": -27.4
+ },
+ "relative_strength_pp": {
+  "3m": -3.6,
+  "6m": -5.2,
+  "1y": -20.6
+ },
+ "range": {
+  "high_52w": 604.9,
+  "low_52w": 300.4,
+  "pct_from_high": -39.6,
+  "pct_above_low": 21.5,
+  "high_date": "2026-02-11",
+  "low_date": "2026-10-26"
+ },
+ "moving_averages": {
+  "dma20": 342.52,
+  "pct_vs_dma20": 6.6,
+  "dma50": 341.1,
+  "pct_vs_dma50": 7.0,
+  "dma100": 366.92,
+  "pct_vs_dma100": -0.5,
+  "dma200": 400.24,
+  "pct_vs_dma200": -8.8
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 60.8,
+  "macd_pct": 2.39,
+  "macd_signal_pct": 1.62,
+  "macd_hist_pct": 0.77,
+  "bollinger_pctb": 0.72,
+  "atr_pct": 3.25
+ },
+ "risk": {
+  "volatility_1y_pct": 37.5,
+  "downside_deviation_pct": 26.4,
+  "max_drawdown_1y_pct": -50.3,
+  "max_drawdown_all_pct": -52.7,
+  "var95_1d_pct": -4.26,
+  "cvar95_1d_pct": -5.25,
+  "sharpe_1y": -0.62,
+  "sortino_1y": -0.88
+ },
+ "beta": {
+  "raw": 1.52,
+  "adjusted": 1.35,
+  "weeks": 156,
+  "correlation": 0.61,
+  "r_squared": 0.38,
+  "alpha_pct": -4.2
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 17.94
+ },
+ "flags": []
+}

@@ -1,0 +1,73 @@
+{
+ "symbol": "JIOFIN",
+ "as_of": "2026-11-23",
+ "rows": 804,
+ "price": 221.2,
+ "returns_pct": {
+  "1m": 4.9,
+  "3m": -9.6,
+  "6m": -6.2,
+  "1y": -29.8,
+  "3y_cagr": 0.3,
+  "ytd": -25.0
+ },
+ "relative_strength_pp": {
+  "3m": -10.9,
+  "6m": -11.6,
+  "1y": -29.7
+ },
+ "range": {
+  "high_52w": 312.0,
+  "low_52w": 204.5,
+  "pct_from_high": -29.1,
+  "pct_above_low": 8.2,
+  "high_date": "2025-11-17",
+  "low_date": "2026-10-30"
+ },
+ "moving_averages": {
+  "dma20": 220.57,
+  "pct_vs_dma20": 0.3,
+  "dma50": 220.51,
+  "pct_vs_dma50": 0.3,
+  "dma100": 231.99,
+  "pct_vs_dma100": -4.7,
+  "dma200": 237.92,
+  "pct_vs_dma200": -7.0
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 48.5,
+  "macd_pct": 0.92,
+  "macd_signal_pct": 0.85,
+  "macd_hist_pct": 0.07,
+  "bollinger_pctb": 0.52,
+  "atr_pct": 2.36
+ },
+ "risk": {
+  "volatility_1y_pct": 28.9,
+  "downside_deviation_pct": 20.8,
+  "max_drawdown_1y_pct": -34.5,
+  "max_drawdown_all_pct": -48.2,
+  "var95_1d_pct": -3.02,
+  "cvar95_1d_pct": -3.86,
+  "sharpe_1y": -1.33,
+  "sortino_1y": -1.84
+ },
+ "beta": {
+  "raw": 1.48,
+  "adjusted": 1.32,
+  "weeks": 156,
+  "correlation": 0.67,
+  "r_squared": 0.45,
+  "alpha_pct": -7.2
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 284.37
+ },
+ "flags": []
+}

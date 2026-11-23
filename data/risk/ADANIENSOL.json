@@ -1,0 +1,73 @@
+{
+ "symbol": "ADANIENSOL",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 1472.5,
+ "returns_pct": {
+  "1m": 13.7,
+  "3m": -4.9,
+  "6m": 9.7,
+  "1y": 43.8,
+  "3y_cagr": 24.7,
+  "ytd": 43.3
+ },
+ "relative_strength_pp": {
+  "3m": -6.3,
+  "6m": 4.3,
+  "1y": 43.8
+ },
+ "range": {
+  "high_52w": 1741.6,
+  "low_52w": 812.7,
+  "pct_from_high": -15.5,
+  "pct_above_low": 81.2,
+  "high_date": "2026-07-21",
+  "low_date": "2026-01-23"
+ },
+ "moving_averages": {
+  "dma20": 1412.32,
+  "pct_vs_dma20": 4.3,
+  "dma50": 1368.57,
+  "pct_vs_dma50": 7.6,
+  "dma100": 1483.77,
+  "pct_vs_dma100": -0.8,
+  "dma200": 1351.98,
+  "pct_vs_dma200": 8.9
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 59.5,
+  "macd_pct": 2.39,
+  "macd_signal_pct": 1.88,
+  "macd_hist_pct": 0.51,
+  "bollinger_pctb": 0.72,
+  "atr_pct": 3.12
+ },
+ "risk": {
+  "volatility_1y_pct": 40.7,
+  "downside_deviation_pct": 27.7,
+  "max_drawdown_1y_pct": -29.9,
+  "max_drawdown_all_pct": -85.4,
+  "var95_1d_pct": -3.43,
+  "cvar95_1d_pct": -5.58,
+  "sharpe_1y": 0.92,
+  "sortino_1y": 1.35
+ },
+ "beta": {
+  "raw": 1.74,
+  "adjusted": 1.5,
+  "weeks": 156,
+  "correlation": 0.5,
+  "r_squared": 0.25,
+  "alpha_pct": 18.3
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 344.51
+ },
+ "flags": []
+}

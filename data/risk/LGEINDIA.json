@@ -1,0 +1,66 @@
+{
+ "symbol": "LGEINDIA",
+ "as_of": "2026-11-23",
+ "rows": 274,
+ "price": 1782.0,
+ "returns_pct": {
+  "1m": 7.9,
+  "3m": 9.1,
+  "6m": 16.5,
+  "1y": 10.1,
+  "3y_cagr": null,
+  "ytd": 17.1
+ },
+ "relative_strength_pp": {
+  "3m": 7.8,
+  "6m": 11.0,
+  "1y": 10.2
+ },
+ "range": {
+  "high_52w": 1793.8,
+  "low_52w": 1318.8,
+  "pct_from_high": -0.7,
+  "pct_above_low": 35.1,
+  "high_date": "2026-11-09",
+  "low_date": "2026-04-02"
+ },
+ "moving_averages": {
+  "dma20": 1715.06,
+  "pct_vs_dma20": 3.9,
+  "dma50": 1705.98,
+  "pct_vs_dma50": 4.5,
+  "dma100": 1649.85,
+  "pct_vs_dma100": 8.0,
+  "dma200": 1592.47,
+  "pct_vs_dma200": 11.9
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 59.1,
+  "macd_pct": 0.67,
+  "macd_signal_pct": 0.51,
+  "macd_hist_pct": 0.16,
+  "bollinger_pctb": 0.88,
+  "atr_pct": 3.03
+ },
+ "risk": {
+  "volatility_1y_pct": 29.3,
+  "downside_deviation_pct": 19.6,
+  "max_drawdown_1y_pct": -21.7,
+  "max_drawdown_all_pct": -22.0,
+  "var95_1d_pct": -2.7,
+  "cvar95_1d_pct": -3.77,
+  "sharpe_1y": 0.23,
+  "sortino_1y": 0.34
+ },
+ "beta": null,
+ "liquidity": {
+  "avg_daily_value_3m_cr": 101.47
+ },
+ "flags": []
+}

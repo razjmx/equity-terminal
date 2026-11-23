@@ -1,0 +1,73 @@
+{
+ "symbol": "CEMPRO",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 1390.5,
+ "returns_pct": {
+  "1m": 22.8,
+  "3m": 9.2,
+  "6m": 58.3,
+  "1y": 68.4,
+  "3y_cagr": 89.4,
+  "ytd": 76.4
+ },
+ "relative_strength_pp": {
+  "3m": 7.8,
+  "6m": 52.9,
+  "1y": 68.5
+ },
+ "range": {
+  "high_52w": 1639.6,
+  "low_52w": 509.7,
+  "pct_from_high": -15.2,
+  "pct_above_low": 172.8,
+  "high_date": "2026-07-21",
+  "low_date": "2026-03-23"
+ },
+ "moving_averages": {
+  "dma20": 1302.77,
+  "pct_vs_dma20": 6.7,
+  "dma50": 1244.49,
+  "pct_vs_dma50": 11.7,
+  "dma100": 1311.88,
+  "pct_vs_dma100": 6.0,
+  "dma200": 1047.06,
+  "pct_vs_dma200": 32.8
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 64.7,
+  "macd_pct": 3.17,
+  "macd_signal_pct": 2.44,
+  "macd_hist_pct": 0.73,
+  "bollinger_pctb": 0.84,
+  "atr_pct": 4.21
+ },
+ "risk": {
+  "volatility_1y_pct": 52.7,
+  "downside_deviation_pct": 28.9,
+  "max_drawdown_1y_pct": -40.7,
+  "max_drawdown_all_pct": -45.5,
+  "var95_1d_pct": -4.2,
+  "cvar95_1d_pct": -5.18,
+  "sharpe_1y": 1.11,
+  "sortino_1y": 2.02
+ },
+ "beta": {
+  "raw": 1.11,
+  "adjusted": 1.07,
+  "weeks": 156,
+  "correlation": 0.34,
+  "r_squared": 0.11,
+  "alpha_pct": 54.6
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 46.08
+ },
+ "flags": []
+}

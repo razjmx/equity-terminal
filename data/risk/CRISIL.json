@@ -1,0 +1,73 @@
+{
+ "symbol": "CRISIL",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 4043.2,
+ "returns_pct": {
+  "1m": -15.4,
+  "3m": -9.7,
+  "6m": -3.1,
+  "1y": -12.8,
+  "3y_cagr": 0.5,
+  "ytd": -6.4
+ },
+ "relative_strength_pp": {
+  "3m": -11.1,
+  "6m": -8.6,
+  "1y": -12.8
+ },
+ "range": {
+  "high_52w": 4829.5,
+  "low_52w": 3705.9,
+  "pct_from_high": -16.3,
+  "pct_above_low": 9.1,
+  "high_date": "2026-09-01",
+  "low_date": "2026-04-02"
+ },
+ "moving_averages": {
+  "dma20": 4397.49,
+  "pct_vs_dma20": -8.1,
+  "dma50": 4491.77,
+  "pct_vs_dma50": -10.0,
+  "dma100": 4452.41,
+  "pct_vs_dma100": -9.2,
+  "dma200": 4322.46,
+  "pct_vs_dma200": -6.5
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 24.4,
+  "macd_pct": -2.88,
+  "macd_signal_pct": -1.92,
+  "macd_hist_pct": -0.96,
+  "bollinger_pctb": 0.06,
+  "atr_pct": 2.92
+ },
+ "risk": {
+  "volatility_1y_pct": 27.1,
+  "downside_deviation_pct": 18.4,
+  "max_drawdown_1y_pct": -23.2,
+  "max_drawdown_all_pct": -44.3,
+  "var95_1d_pct": -2.54,
+  "cvar95_1d_pct": -3.25,
+  "sharpe_1y": -0.64,
+  "sortino_1y": -0.94
+ },
+ "beta": {
+  "raw": 0.59,
+  "adjusted": 0.73,
+  "weeks": 156,
+  "correlation": 0.31,
+  "r_squared": 0.1,
+  "alpha_pct": -6.6
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 21.32
+ },
+ "flags": []
+}

@@ -1,0 +1,68 @@
+{
+ "symbol": "VISL",
+ "as_of": "2026-11-23",
+ "rows": 111,
+ "price": 23.3,
+ "returns_pct": {
+  "1m": -14.2,
+  "3m": -35.6,
+  "6m": null,
+  "1y": null,
+  "3y_cagr": null,
+  "ytd": null
+ },
+ "relative_strength_pp": {
+  "3m": -37.0,
+  "6m": null,
+  "1y": null
+ },
+ "range": {
+  "high_52w": 42.65,
+  "low_52w": 21.06,
+  "pct_from_high": -45.4,
+  "pct_above_low": 10.6,
+  "high_date": "2026-07-02",
+  "low_date": "2026-06-15"
+ },
+ "moving_averages": {
+  "dma20": 25.91,
+  "pct_vs_dma20": -10.1,
+  "dma50": 28.77,
+  "pct_vs_dma50": -19.0,
+  "dma100": 32.15,
+  "pct_vs_dma100": -27.5,
+  "dma200": null,
+  "pct_vs_dma200": null
+ },
+ "trend": {
+  "above_dma200": null,
+  "above_dma50": false,
+  "dma50_above_dma200": null,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 27.3,
+  "macd_pct": -5.8,
+  "macd_signal_pct": -5.24,
+  "macd_hist_pct": -0.57,
+  "bollinger_pctb": -0.03,
+  "atr_pct": 4.57
+ },
+ "risk": {
+  "volatility_1y_pct": 58.6,
+  "downside_deviation_pct": 36.2,
+  "max_drawdown_1y_pct": -45.4,
+  "max_drawdown_all_pct": -45.4,
+  "var95_1d_pct": -4.98,
+  "cvar95_1d_pct": -4.99,
+  "sharpe_1y": 0.56,
+  "sortino_1y": 0.9
+ },
+ "beta": null,
+ "liquidity": {
+  "avg_daily_value_3m_cr": 65.1
+ },
+ "flags": [
+  "short history: risk and trend figures use fewer than 250 days"
+ ]
+}

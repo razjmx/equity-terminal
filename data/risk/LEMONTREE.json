@@ -1,0 +1,73 @@
+{
+ "symbol": "LEMONTREE",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 129.25,
+ "returns_pct": {
+  "1m": 16.5,
+  "3m": 19.7,
+  "6m": 15.4,
+  "1y": -17.4,
+  "3y_cagr": 5.4,
+  "ytd": -18.8
+ },
+ "relative_strength_pp": {
+  "3m": 18.4,
+  "6m": 9.9,
+  "1y": -17.4
+ },
+ "range": {
+  "high_52w": 164.9,
+  "low_52w": 100.42,
+  "pct_from_high": -21.6,
+  "pct_above_low": 28.7,
+  "high_date": "2025-12-09",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 117.41,
+  "pct_vs_dma20": 10.1,
+  "dma50": 111.75,
+  "pct_vs_dma50": 15.7,
+  "dma100": 111.47,
+  "pct_vs_dma100": 16.0,
+  "dma200": 113.2,
+  "pct_vs_dma200": 14.2
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 76.4,
+  "macd_pct": 3.47,
+  "macd_signal_pct": 2.62,
+  "macd_hist_pct": 0.85,
+  "bollinger_pctb": 0.94,
+  "atr_pct": 2.75
+ },
+ "risk": {
+  "volatility_1y_pct": 31.1,
+  "downside_deviation_pct": 21.7,
+  "max_drawdown_1y_pct": -39.1,
+  "max_drawdown_all_pct": -43.6,
+  "var95_1d_pct": -3.16,
+  "cvar95_1d_pct": -3.91,
+  "sharpe_1y": -0.69,
+  "sortino_1y": -0.99
+ },
+ "beta": {
+  "raw": 1.28,
+  "adjusted": 1.18,
+  "weeks": 156,
+  "correlation": 0.55,
+  "r_squared": 0.3,
+  "alpha_pct": -0.8
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 45.64
+ },
+ "flags": []
+}

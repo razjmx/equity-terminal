@@ -1,0 +1,73 @@
+{
+ "symbol": "DALBHARAT",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 1552.2,
+ "returns_pct": {
+  "1m": -4.2,
+  "3m": -18.2,
+  "6m": -11.2,
+  "1y": -23.6,
+  "3y_cagr": -8.8,
+  "ytd": -27.2
+ },
+ "relative_strength_pp": {
+  "3m": -19.5,
+  "6m": -16.6,
+  "1y": -23.6
+ },
+ "range": {
+  "high_52w": 2232.4,
+  "low_52w": 1326.2,
+  "pct_from_high": -30.5,
+  "pct_above_low": 17.0,
+  "high_date": "2026-01-21",
+  "low_date": "2026-10-30"
+ },
+ "moving_averages": {
+  "dma20": 1481.41,
+  "pct_vs_dma20": 4.8,
+  "dma50": 1597.16,
+  "pct_vs_dma50": -2.8,
+  "dma100": 1705.4,
+  "pct_vs_dma100": -9.0,
+  "dma200": 1794.42,
+  "pct_vs_dma200": -13.5
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 52.5,
+  "macd_pct": -0.8,
+  "macd_signal_pct": -2.14,
+  "macd_hist_pct": 1.35,
+  "bollinger_pctb": 0.74,
+  "atr_pct": 3.32
+ },
+ "risk": {
+  "volatility_1y_pct": 31.2,
+  "downside_deviation_pct": 23.2,
+  "max_drawdown_1y_pct": -40.6,
+  "max_drawdown_all_pct": -46.4,
+  "var95_1d_pct": -3.19,
+  "cvar95_1d_pct": -4.6,
+  "sharpe_1y": -0.94,
+  "sortino_1y": -1.26
+ },
+ "beta": {
+  "raw": 1.01,
+  "adjusted": 1.01,
+  "weeks": 156,
+  "correlation": 0.53,
+  "r_squared": 0.28,
+  "alpha_pct": -18.9
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 33.45
+ },
+ "flags": []
+}

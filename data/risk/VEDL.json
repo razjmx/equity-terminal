@@ -1,0 +1,75 @@
+{
+ "symbol": "VEDL",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 234.6,
+ "returns_pct": {
+  "1m": -0.1,
+  "3m": -12.5,
+  "6m": -28.9,
+  "1y": -55.3,
+  "3y_cagr": 2.7,
+  "ytd": -61.2
+ },
+ "relative_strength_pp": {
+  "3m": -13.8,
+  "6m": -34.3,
+  "1y": -55.3
+ },
+ "range": {
+  "high_52w": 787.5,
+  "low_52w": 225.6,
+  "pct_from_high": -70.2,
+  "pct_above_low": 4.0,
+  "high_date": "2026-04-17",
+  "low_date": "2026-10-27"
+ },
+ "moving_averages": {
+  "dma20": 247.51,
+  "pct_vs_dma20": -5.2,
+  "dma50": 253.11,
+  "pct_vs_dma50": -7.3,
+  "dma100": 262.05,
+  "pct_vs_dma100": -10.5,
+  "dma200": 403.03,
+  "pct_vs_dma200": -41.8
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 36.3,
+  "macd_pct": -0.92,
+  "macd_signal_pct": -0.23,
+  "macd_hist_pct": -0.7,
+  "bollinger_pctb": 0.25,
+  "atr_pct": 3.22
+ },
+ "risk": {
+  "volatility_1y_pct": 75.0,
+  "downside_deviation_pct": 69.9,
+  "max_drawdown_1y_pct": -71.4,
+  "max_drawdown_all_pct": -71.4,
+  "var95_1d_pct": -3.43,
+  "cvar95_1d_pct": -9.48,
+  "sharpe_1y": -0.55,
+  "sortino_1y": -0.59
+ },
+ "beta": {
+  "raw": 1.29,
+  "adjusted": 1.19,
+  "weeks": 156,
+  "correlation": 0.36,
+  "r_squared": 0.13,
+  "alpha_pct": 6.8
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 270.82
+ },
+ "flags": [
+  "large one-day move (65% on 2026-04-30): check for split, bonus or demerger"
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "symbol": "AEGISLOG",
+ "as_of": "2026-11-23",
+ "rows": 1235,
+ "price": 1171.6,
+ "returns_pct": {
+  "1m": -10.2,
+  "3m": -12.3,
+  "6m": 61.0,
+  "1y": 46.1,
+  "3y_cagr": 59.9,
+  "ytd": 63.3
+ },
+ "relative_strength_pp": {
+  "3m": -13.7,
+  "6m": 55.5,
+  "1y": 46.1
+ },
+ "range": {
+  "high_52w": 1489.1,
+  "low_52w": 587.95,
+  "pct_from_high": -21.3,
+  "pct_above_low": 99.3,
+  "high_date": "2026-10-14",
+  "low_date": "2026-03-23"
+ },
+ "moving_averages": {
+  "dma20": 1191.93,
+  "pct_vs_dma20": -1.7,
+  "dma50": 1301.15,
+  "pct_vs_dma50": -10.0,
+  "dma100": 1306.15,
+  "pct_vs_dma100": -10.3,
+  "dma200": 1018.39,
+  "pct_vs_dma200": 15.0
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 42.8,
+  "macd_pct": -2.66,
+  "macd_signal_pct": -2.9,
+  "macd_hist_pct": 0.24,
+  "bollinger_pctb": 0.39,
+  "atr_pct": 5.5
+ },
+ "risk": {
+  "volatility_1y_pct": 50.0,
+  "downside_deviation_pct": 30.2,
+  "max_drawdown_1y_pct": -26.4,
+  "max_drawdown_all_pct": -39.0,
+  "var95_1d_pct": -4.34,
+  "cvar95_1d_pct": -5.72,
+  "sharpe_1y": 0.86,
+  "sortino_1y": 1.42
+ },
+ "beta": {
+  "raw": 1.08,
+  "adjusted": 1.05,
+  "weeks": 156,
+  "correlation": 0.31,
+  "r_squared": 0.09,
+  "alpha_pct": 40.7
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 151.86
+ },
+ "flags": []
+}

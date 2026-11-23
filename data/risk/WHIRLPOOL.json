@@ -1,0 +1,73 @@
+{
+ "symbol": "WHIRLPOOL",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 809.8,
+ "returns_pct": {
+  "1m": -0.0,
+  "3m": 4.4,
+  "6m": -7.7,
+  "1y": -35.0,
+  "3y_cagr": -20.6,
+  "ytd": -9.9
+ },
+ "relative_strength_pp": {
+  "3m": 3.0,
+  "6m": -13.1,
+  "1y": -34.9
+ },
+ "range": {
+  "high_52w": 1235.6,
+  "low_52w": 717.7,
+  "pct_from_high": -34.5,
+  "pct_above_low": 12.8,
+  "high_date": "2025-11-17",
+  "low_date": "2026-09-18"
+ },
+ "moving_averages": {
+  "dma20": 824.95,
+  "pct_vs_dma20": -1.8,
+  "dma50": 821.12,
+  "pct_vs_dma50": -1.4,
+  "dma100": 806.68,
+  "pct_vs_dma100": 0.4,
+  "dma200": 833.65,
+  "pct_vs_dma200": -2.9
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 45.0,
+  "macd_pct": -0.11,
+  "macd_signal_pct": 0.09,
+  "macd_hist_pct": -0.21,
+  "bollinger_pctb": 0.13,
+  "atr_pct": 3.67
+ },
+ "risk": {
+  "volatility_1y_pct": 40.7,
+  "downside_deviation_pct": 26.2,
+  "max_drawdown_1y_pct": -41.9,
+  "max_drawdown_all_pct": -70.2,
+  "var95_1d_pct": -3.2,
+  "cvar95_1d_pct": -4.94,
+  "sharpe_1y": -1.04,
+  "sortino_1y": -1.61
+ },
+ "beta": {
+  "raw": 0.9,
+  "adjusted": 0.93,
+  "weeks": 156,
+  "correlation": 0.32,
+  "r_squared": 0.1,
+  "alpha_pct": -19.8
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 118.46
+ },
+ "flags": []
+}

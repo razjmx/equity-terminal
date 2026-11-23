@@ -1,0 +1,73 @@
+{
+ "symbol": "ZENTEC",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 1697.1,
+ "returns_pct": {
+  "1m": 8.6,
+  "3m": -11.1,
+  "6m": 5.8,
+  "1y": 18.3,
+  "3y_cagr": 34.0,
+  "ytd": 24.0
+ },
+ "relative_strength_pp": {
+  "3m": -12.5,
+  "6m": 0.4,
+  "1y": 18.3
+ },
+ "range": {
+  "high_52w": 1997.0,
+  "low_52w": 1228.1,
+  "pct_from_high": -15.0,
+  "pct_above_low": 38.2,
+  "high_date": "2026-06-19",
+  "low_date": "2026-01-14"
+ },
+ "moving_averages": {
+  "dma20": 1686.18,
+  "pct_vs_dma20": 0.6,
+  "dma50": 1656.62,
+  "pct_vs_dma50": 2.4,
+  "dma100": 1726.04,
+  "pct_vs_dma100": -1.7,
+  "dma200": 1634.85,
+  "pct_vs_dma200": 3.8
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 51.7,
+  "macd_pct": 1.05,
+  "macd_signal_pct": 1.17,
+  "macd_hist_pct": -0.12,
+  "bollinger_pctb": 0.54,
+  "atr_pct": 3.42
+ },
+ "risk": {
+  "volatility_1y_pct": 38.2,
+  "downside_deviation_pct": 24.2,
+  "max_drawdown_1y_pct": -25.2,
+  "max_drawdown_all_pct": -62.3,
+  "var95_1d_pct": -3.43,
+  "cvar95_1d_pct": -4.61,
+  "sharpe_1y": 0.44,
+  "sortino_1y": 0.7
+ },
+ "beta": {
+  "raw": 1.76,
+  "adjusted": 1.51,
+  "weeks": 156,
+  "correlation": 0.49,
+  "r_squared": 0.24,
+  "alpha_pct": 27.2
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 61.31
+ },
+ "flags": []
+}

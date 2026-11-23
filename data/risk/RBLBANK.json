@@ -1,0 +1,73 @@
+{
+ "symbol": "RBLBANK",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 394.05,
+ "returns_pct": {
+  "1m": 9.2,
+  "3m": 0.4,
+  "6m": 19.9,
+  "1y": 23.7,
+  "3y_cagr": 20.9,
+  "ytd": 24.8
+ },
+ "relative_strength_pp": {
+  "3m": -0.9,
+  "6m": 14.4,
+  "1y": 23.7
+ },
+ "range": {
+  "high_52w": 428.0,
+  "low_52w": 288.6,
+  "pct_from_high": -7.9,
+  "pct_above_low": 36.5,
+  "high_date": "2026-09-23",
+  "low_date": "2026-01-23"
+ },
+ "moving_averages": {
+  "dma20": 372.99,
+  "pct_vs_dma20": 5.6,
+  "dma50": 389.58,
+  "pct_vs_dma50": 1.1,
+  "dma100": 384.51,
+  "pct_vs_dma100": 2.5,
+  "dma200": 355.54,
+  "pct_vs_dma200": 10.8
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 58.1,
+  "macd_pct": 0.87,
+  "macd_signal_pct": -0.1,
+  "macd_hist_pct": 0.97,
+  "bollinger_pctb": 0.8,
+  "atr_pct": 2.95
+ },
+ "risk": {
+  "volatility_1y_pct": 31.8,
+  "downside_deviation_pct": 21.6,
+  "max_drawdown_1y_pct": -19.2,
+  "max_drawdown_all_pct": -61.5,
+  "var95_1d_pct": -3.04,
+  "cvar95_1d_pct": -4.12,
+  "sharpe_1y": 0.6,
+  "sortino_1y": 0.88
+ },
+ "beta": {
+  "raw": 1.49,
+  "adjusted": 1.33,
+  "weeks": 156,
+  "correlation": 0.62,
+  "r_squared": 0.39,
+  "alpha_pct": 12.1
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 173.62
+ },
+ "flags": []
+}

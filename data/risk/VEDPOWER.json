@@ -1,0 +1,68 @@
+{
+ "symbol": "VEDPOWER",
+ "as_of": "2026-11-23",
+ "rows": 111,
+ "price": 34.08,
+ "returns_pct": {
+  "1m": 15.5,
+  "3m": -5.4,
+  "6m": null,
+  "1y": null,
+  "3y_cagr": null,
+  "ytd": null
+ },
+ "relative_strength_pp": {
+  "3m": -6.8,
+  "6m": null,
+  "1y": null
+ },
+ "range": {
+  "high_52w": 48.64,
+  "low_52w": 28.21,
+  "pct_from_high": -29.9,
+  "pct_above_low": 20.8,
+  "high_date": "2026-07-02",
+  "low_date": "2026-10-26"
+ },
+ "moving_averages": {
+  "dma20": 33.68,
+  "pct_vs_dma20": 1.2,
+  "dma50": 32.65,
+  "pct_vs_dma50": 4.4,
+  "dma100": 35.03,
+  "pct_vs_dma100": -2.7,
+  "dma200": null,
+  "pct_vs_dma200": null
+ },
+ "trend": {
+  "above_dma200": null,
+  "above_dma50": true,
+  "dma50_above_dma200": null,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 51.8,
+  "macd_pct": 2.15,
+  "macd_signal_pct": 2.17,
+  "macd_hist_pct": -0.02,
+  "bollinger_pctb": 0.54,
+  "atr_pct": 4.21
+ },
+ "risk": {
+  "volatility_1y_pct": 54.6,
+  "downside_deviation_pct": 32.3,
+  "max_drawdown_1y_pct": -42.0,
+  "max_drawdown_all_pct": -42.0,
+  "var95_1d_pct": -4.49,
+  "cvar95_1d_pct": -5.68,
+  "sharpe_1y": -0.64,
+  "sortino_1y": -1.08
+ },
+ "beta": null,
+ "liquidity": {
+  "avg_daily_value_3m_cr": 94.03
+ },
+ "flags": [
+  "short history: risk and trend figures use fewer than 250 days"
+ ]
+}

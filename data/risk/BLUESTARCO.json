@@ -1,0 +1,73 @@
+{
+ "symbol": "BLUESTARCO",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 1799.9,
+ "returns_pct": {
+  "1m": 15.0,
+  "3m": 19.2,
+  "6m": 8.3,
+  "1y": 1.8,
+  "3y_cagr": 27.3,
+  "ytd": 4.0
+ },
+ "relative_strength_pp": {
+  "3m": 17.8,
+  "6m": 2.8,
+  "1y": 1.8
+ },
+ "range": {
+  "high_52w": 2016.7,
+  "low_52w": 1445.3,
+  "pct_from_high": -10.8,
+  "pct_above_low": 24.5,
+  "high_date": "2026-02-18",
+  "low_date": "2026-09-02"
+ },
+ "moving_averages": {
+  "dma20": 1615.88,
+  "pct_vs_dma20": 11.4,
+  "dma50": 1570.89,
+  "pct_vs_dma50": 14.6,
+  "dma100": 1577.3,
+  "pct_vs_dma100": 14.1,
+  "dma200": 1668.4,
+  "pct_vs_dma200": 7.9
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 73.2,
+  "macd_pct": 2.67,
+  "macd_signal_pct": 1.39,
+  "macd_hist_pct": 1.28,
+  "bollinger_pctb": 1.06,
+  "atr_pct": 3.42
+ },
+ "risk": {
+  "volatility_1y_pct": 34.1,
+  "downside_deviation_pct": 23.4,
+  "max_drawdown_1y_pct": -28.3,
+  "max_drawdown_all_pct": -38.2,
+  "var95_1d_pct": -3.49,
+  "cvar95_1d_pct": -4.44,
+  "sharpe_1y": 0.01,
+  "sortino_1y": 0.01
+ },
+ "beta": {
+  "raw": 1.14,
+  "adjusted": 1.09,
+  "weeks": 156,
+  "correlation": 0.44,
+  "r_squared": 0.2,
+  "alpha_pct": 16.3
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 86.86
+ },
+ "flags": []
+}

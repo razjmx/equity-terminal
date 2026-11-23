@@ -1,0 +1,73 @@
+{
+ "symbol": "ZENSARTECH",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 528.7,
+ "returns_pct": {
+  "1m": 5.5,
+  "3m": 9.0,
+  "6m": 7.9,
+  "1y": -27.1,
+  "3y_cagr": 2.6,
+  "ytd": -24.9
+ },
+ "relative_strength_pp": {
+  "3m": 7.7,
+  "6m": 2.5,
+  "1y": -27.0
+ },
+ "range": {
+  "high_52w": 750.75,
+  "low_52w": 422.1,
+  "pct_from_high": -29.6,
+  "pct_above_low": 25.3,
+  "high_date": "2025-12-04",
+  "low_date": "2026-09-30"
+ },
+ "moving_averages": {
+  "dma20": 536.17,
+  "pct_vs_dma20": -1.4,
+  "dma50": 486.78,
+  "pct_vs_dma50": 8.6,
+  "dma100": 488.82,
+  "pct_vs_dma100": 8.2,
+  "dma200": 511.7,
+  "pct_vs_dma200": 3.3
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 53.0,
+  "macd_pct": 2.0,
+  "macd_signal_pct": 3.08,
+  "macd_hist_pct": -1.09,
+  "bollinger_pctb": 0.41,
+  "atr_pct": 3.84
+ },
+ "risk": {
+  "volatility_1y_pct": 39.7,
+  "downside_deviation_pct": 25.6,
+  "max_drawdown_1y_pct": -43.8,
+  "max_drawdown_all_pct": -62.0,
+  "var95_1d_pct": -3.18,
+  "cvar95_1d_pct": -4.52,
+  "sharpe_1y": -0.78,
+  "sortino_1y": -1.21
+ },
+ "beta": {
+  "raw": 1.05,
+  "adjusted": 1.04,
+  "weeks": 156,
+  "correlation": 0.43,
+  "r_squared": 0.19,
+  "alpha_pct": -4.6
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 99.57
+ },
+ "flags": []
+}

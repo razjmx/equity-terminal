@@ -1,0 +1,75 @@
+{
+ "symbol": "TMPV",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 261.1,
+ "returns_pct": {
+  "1m": -3.3,
+  "3m": -18.5,
+  "6m": -27.7,
+  "1y": -33.3,
+  "3y_cagr": -25.4,
+  "ytd": -28.9
+ },
+ "relative_strength_pp": {
+  "3m": -19.8,
+  "6m": -33.2,
+  "1y": -33.2
+ },
+ "range": {
+  "high_52w": 400.95,
+  "low_52w": 252.55,
+  "pct_from_high": -34.9,
+  "pct_above_low": 3.4,
+  "high_date": "2026-05-27",
+  "low_date": "2026-11-18"
+ },
+ "moving_averages": {
+  "dma20": 273.86,
+  "pct_vs_dma20": -4.7,
+  "dma50": 282.89,
+  "pct_vs_dma50": -7.7,
+  "dma100": 306.71,
+  "pct_vs_dma100": -14.9,
+  "dma200": 331.62,
+  "pct_vs_dma200": -21.3
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 40.2,
+  "macd_pct": -2.06,
+  "macd_signal_pct": -1.37,
+  "macd_hist_pct": -0.7,
+  "bollinger_pctb": 0.29,
+  "atr_pct": 3.46
+ },
+ "risk": {
+  "volatility_1y_pct": 32.9,
+  "downside_deviation_pct": 24.8,
+  "max_drawdown_1y_pct": -37.0,
+  "max_drawdown_all_pct": -78.3,
+  "var95_1d_pct": -3.22,
+  "cvar95_1d_pct": -4.83,
+  "sharpe_1y": -1.28,
+  "sortino_1y": -1.7
+ },
+ "beta": {
+  "raw": 1.23,
+  "adjusted": 1.16,
+  "weeks": 156,
+  "correlation": 0.46,
+  "r_squared": 0.21,
+  "alpha_pct": -35.2
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 292.93
+ },
+ "flags": [
+  "large one-day move (40% on 2025-10-14): check for split, bonus or demerger"
+ ]
+}

@@ -1,0 +1,75 @@
+{
+ "symbol": "MOTILALOFS",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 1239.05,
+ "returns_pct": {
+  "1m": 26.8,
+  "3m": 27.3,
+  "6m": 46.9,
+  "1y": 25.0,
+  "3y_cagr": 6.9,
+  "ytd": 44.8
+ },
+ "relative_strength_pp": {
+  "3m": 25.9,
+  "6m": 41.5,
+  "1y": 25.0
+ },
+ "range": {
+  "high_52w": 1240.25,
+  "low_52w": 628.2,
+  "pct_from_high": -0.1,
+  "pct_above_low": 97.2,
+  "high_date": "2026-11-17",
+  "low_date": "2026-03-23"
+ },
+ "moving_averages": {
+  "dma20": 1103.24,
+  "pct_vs_dma20": 12.3,
+  "dma50": 1051.47,
+  "pct_vs_dma50": 17.8,
+  "dma100": 999.67,
+  "pct_vs_dma100": 23.9,
+  "dma200": 899.1,
+  "pct_vs_dma200": 37.8
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 70.6,
+  "macd_pct": 4.86,
+  "macd_signal_pct": 3.88,
+  "macd_hist_pct": 0.98,
+  "bollinger_pctb": 0.79,
+  "atr_pct": 3.78
+ },
+ "risk": {
+  "volatility_1y_pct": 40.9,
+  "downside_deviation_pct": 25.6,
+  "max_drawdown_1y_pct": -36.2,
+  "max_drawdown_all_pct": -75.8,
+  "var95_1d_pct": -3.51,
+  "cvar95_1d_pct": -4.77,
+  "sharpe_1y": 0.57,
+  "sortino_1y": 0.91
+ },
+ "beta": {
+  "raw": 1.76,
+  "adjusted": 1.51,
+  "weeks": 156,
+  "correlation": 0.39,
+  "r_squared": 0.15,
+  "alpha_pct": 20.8
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 124.4
+ },
+ "flags": [
+  "large one-day move (75% on 2024-01-01): check for split, bonus or demerger"
+ ]
+}

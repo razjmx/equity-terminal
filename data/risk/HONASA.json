@@ -1,0 +1,73 @@
+{
+ "symbol": "HONASA",
+ "as_of": "2026-11-23",
+ "rows": 750,
+ "price": 535.8,
+ "returns_pct": {
+  "1m": 21.1,
+  "3m": 10.7,
+  "6m": 48.6,
+  "1y": 85.1,
+  "3y_cagr": null,
+  "ytd": 87.2
+ },
+ "relative_strength_pp": {
+  "3m": 9.4,
+  "6m": 43.2,
+  "1y": 85.2
+ },
+ "range": {
+  "high_52w": 535.8,
+  "low_52w": 256.3,
+  "pct_from_high": 0.0,
+  "pct_above_low": 109.1,
+  "high_date": "2026-11-23",
+  "low_date": "2025-12-11"
+ },
+ "moving_averages": {
+  "dma20": 482.92,
+  "pct_vs_dma20": 11.0,
+  "dma50": 469.33,
+  "pct_vs_dma50": 14.2,
+  "dma100": 469.1,
+  "pct_vs_dma100": 14.2,
+  "dma200": 404.33,
+  "pct_vs_dma200": 32.5
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 73.2,
+  "macd_pct": 3.57,
+  "macd_signal_pct": 2.36,
+  "macd_hist_pct": 1.2,
+  "bollinger_pctb": 0.91,
+  "atr_pct": 3.36
+ },
+ "risk": {
+  "volatility_1y_pct": 33.5,
+  "downside_deviation_pct": 19.6,
+  "max_drawdown_1y_pct": -14.9,
+  "max_drawdown_all_pct": -62.9,
+  "var95_1d_pct": -2.56,
+  "cvar95_1d_pct": -3.7,
+  "sharpe_1y": 1.79,
+  "sortino_1y": 3.07
+ },
+ "beta": {
+  "raw": 0.78,
+  "adjusted": 0.86,
+  "weeks": 156,
+  "correlation": 0.26,
+  "r_squared": 0.07,
+  "alpha_pct": 10.5
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 84.84
+ },
+ "flags": []
+}

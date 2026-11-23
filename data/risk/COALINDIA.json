@@ -1,0 +1,73 @@
+{
+ "symbol": "COALINDIA",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 383.3,
+ "returns_pct": {
+  "1m": -4.8,
+  "3m": -4.8,
+  "6m": -16.7,
+  "1y": -0.9,
+  "3y_cagr": 6.8,
+  "ytd": -3.9
+ },
+ "relative_strength_pp": {
+  "3m": -6.1,
+  "6m": -22.1,
+  "1y": -0.9
+ },
+ "range": {
+  "high_52w": 481.65,
+  "low_52w": 370.05,
+  "pct_from_high": -20.4,
+  "pct_above_low": 3.6,
+  "high_date": "2026-06-04",
+  "low_date": "2025-11-25"
+ },
+ "moving_averages": {
+  "dma20": 397.23,
+  "pct_vs_dma20": -3.5,
+  "dma50": 409.37,
+  "pct_vs_dma50": -6.4,
+  "dma100": 413.61,
+  "pct_vs_dma100": -7.3,
+  "dma200": 431.18,
+  "pct_vs_dma200": -11.1
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 36.2,
+  "macd_pct": -1.39,
+  "macd_signal_pct": -1.11,
+  "macd_hist_pct": -0.28,
+  "bollinger_pctb": 0.02,
+  "atr_pct": 2.2
+ },
+ "risk": {
+  "volatility_1y_pct": 24.3,
+  "downside_deviation_pct": 15.9,
+  "max_drawdown_1y_pct": -20.4,
+  "max_drawdown_all_pct": -34.5,
+  "var95_1d_pct": -2.02,
+  "cvar95_1d_pct": -3.15,
+  "sharpe_1y": -0.22,
+  "sortino_1y": -0.33
+ },
+ "beta": {
+  "raw": 0.65,
+  "adjusted": 0.77,
+  "weeks": 156,
+  "correlation": 0.39,
+  "r_squared": 0.15,
+  "alpha_pct": -2.8
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 366.14
+ },
+ "flags": []
+}

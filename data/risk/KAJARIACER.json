@@ -1,0 +1,73 @@
+{
+ "symbol": "KAJARIACER",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 1202.9,
+ "returns_pct": {
+  "1m": 3.7,
+  "3m": -1.5,
+  "6m": 13.3,
+  "1y": 7.0,
+  "3y_cagr": -1.8,
+  "ytd": 24.2
+ },
+ "relative_strength_pp": {
+  "3m": -2.8,
+  "6m": 7.9,
+  "1y": 7.1
+ },
+ "range": {
+  "high_52w": 1261.1,
+  "low_52w": 883.65,
+  "pct_from_high": -4.6,
+  "pct_above_low": 36.1,
+  "high_date": "2026-09-02",
+  "low_date": "2026-01-28"
+ },
+ "moving_averages": {
+  "dma20": 1166.7,
+  "pct_vs_dma20": 3.1,
+  "dma50": 1193.01,
+  "pct_vs_dma50": 0.8,
+  "dma100": 1206.41,
+  "pct_vs_dma100": -0.3,
+  "dma200": 1126.03,
+  "pct_vs_dma200": 6.8
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 55.1,
+  "macd_pct": 0.27,
+  "macd_signal_pct": -0.17,
+  "macd_hist_pct": 0.45,
+  "bollinger_pctb": 0.76,
+  "atr_pct": 2.74
+ },
+ "risk": {
+  "volatility_1y_pct": 29.4,
+  "downside_deviation_pct": 20.1,
+  "max_drawdown_1y_pct": -21.0,
+  "max_drawdown_all_pct": -49.6,
+  "var95_1d_pct": -2.51,
+  "cvar95_1d_pct": -4.17,
+  "sharpe_1y": 0.13,
+  "sortino_1y": 0.19
+ },
+ "beta": {
+  "raw": 0.89,
+  "adjusted": 0.93,
+  "weeks": 156,
+  "correlation": 0.46,
+  "r_squared": 0.21,
+  "alpha_pct": -10.2
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 43.91
+ },
+ "flags": []
+}

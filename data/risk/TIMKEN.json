@@ -1,0 +1,73 @@
+{
+ "symbol": "TIMKEN",
+ "as_of": "2026-11-23",
+ "rows": 1236,
+ "price": 3060.1,
+ "returns_pct": {
+  "1m": 11.4,
+  "3m": -3.7,
+  "6m": -17.6,
+  "1y": -0.3,
+  "3y_cagr": 1.3,
+  "ytd": 1.9
+ },
+ "relative_strength_pp": {
+  "3m": -5.0,
+  "6m": -23.0,
+  "1y": -0.3
+ },
+ "range": {
+  "high_52w": 3767.1,
+  "low_52w": 2730.1,
+  "pct_from_high": -18.8,
+  "pct_above_low": 12.1,
+  "high_date": "2026-06-23",
+  "low_date": "2026-10-23"
+ },
+ "moving_averages": {
+  "dma20": 3012.76,
+  "pct_vs_dma20": 1.6,
+  "dma50": 3046.96,
+  "pct_vs_dma50": 0.4,
+  "dma100": 3122.24,
+  "pct_vs_dma100": -2.0,
+  "dma200": 3274.61,
+  "pct_vs_dma200": -6.6
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 52.4,
+  "macd_pct": 1.06,
+  "macd_signal_pct": 0.73,
+  "macd_hist_pct": 0.34,
+  "bollinger_pctb": 0.59,
+  "atr_pct": 2.58
+ },
+ "risk": {
+  "volatility_1y_pct": 29.3,
+  "downside_deviation_pct": 19.8,
+  "max_drawdown_1y_pct": -27.5,
+  "max_drawdown_all_pct": -51.8,
+  "var95_1d_pct": -2.77,
+  "cvar95_1d_pct": -3.54,
+  "sharpe_1y": -0.11,
+  "sortino_1y": -0.17
+ },
+ "beta": {
+  "raw": 0.98,
+  "adjusted": 0.98,
+  "weeks": 156,
+  "correlation": 0.43,
+  "r_squared": 0.18,
+  "alpha_pct": -3.5
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 13.33
+ },
+ "flags": []
+}

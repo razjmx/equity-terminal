@@ -1,0 +1,73 @@
+{
+ "symbol": "CEATLTD",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 3500.0,
+ "returns_pct": {
+  "1m": 9.3,
+  "3m": -2.5,
+  "6m": 10.0,
+  "1y": -12.2,
+  "3y_cagr": 18.5,
+  "ytd": -8.2
+ },
+ "relative_strength_pp": {
+  "3m": -3.8,
+  "6m": 4.6,
+  "1y": -12.2
+ },
+ "range": {
+  "high_52w": 4065.6,
+  "low_52w": 3060.2,
+  "pct_from_high": -13.9,
+  "pct_above_low": 14.4,
+  "high_date": "2026-02-11",
+  "low_date": "2026-10-23"
+ },
+ "moving_averages": {
+  "dma20": 3392.87,
+  "pct_vs_dma20": 3.2,
+  "dma50": 3336.55,
+  "pct_vs_dma50": 4.9,
+  "dma100": 3461.68,
+  "pct_vs_dma100": 1.1,
+  "dma200": 3479.77,
+  "pct_vs_dma200": 0.6
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 57.1,
+  "macd_pct": 1.94,
+  "macd_signal_pct": 1.63,
+  "macd_hist_pct": 0.31,
+  "bollinger_pctb": 0.65,
+  "atr_pct": 2.6
+ },
+ "risk": {
+  "volatility_1y_pct": 36.2,
+  "downside_deviation_pct": 26.4,
+  "max_drawdown_1y_pct": -24.7,
+  "max_drawdown_all_pct": -30.3,
+  "var95_1d_pct": -4.05,
+  "cvar95_1d_pct": -5.33,
+  "sharpe_1y": -0.38,
+  "sortino_1y": -0.52
+ },
+ "beta": {
+  "raw": 1.22,
+  "adjusted": 1.15,
+  "weeks": 156,
+  "correlation": 0.51,
+  "r_squared": 0.26,
+  "alpha_pct": 11.0
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 22.7
+ },
+ "flags": []
+}

@@ -1,0 +1,73 @@
+{
+ "symbol": "URBANCO",
+ "as_of": "2026-11-23",
+ "rows": 292,
+ "price": 167.9,
+ "returns_pct": {
+  "1m": 20.5,
+  "3m": 15.4,
+  "6m": 40.5,
+  "1y": 19.3,
+  "3y_cagr": null,
+  "ytd": 25.7
+ },
+ "relative_strength_pp": {
+  "3m": 14.1,
+  "6m": 35.1,
+  "1y": 19.4
+ },
+ "range": {
+  "high_52w": 181.09,
+  "low_52w": 103.03,
+  "pct_from_high": -7.3,
+  "pct_above_low": 63.0,
+  "high_date": "2026-09-04",
+  "low_date": "2026-03-02"
+ },
+ "moving_averages": {
+  "dma20": 159.42,
+  "pct_vs_dma20": 5.3,
+  "dma50": 160.39,
+  "pct_vs_dma50": 4.7,
+  "dma100": 152.77,
+  "pct_vs_dma100": 9.9,
+  "dma200": 138.59,
+  "pct_vs_dma200": 21.1
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 55.5,
+  "macd_pct": 2.48,
+  "macd_signal_pct": 1.62,
+  "macd_hist_pct": 0.86,
+  "bollinger_pctb": 0.7,
+  "atr_pct": 4.58
+ },
+ "risk": {
+  "volatility_1y_pct": 45.5,
+  "downside_deviation_pct": 30.4,
+  "max_drawdown_1y_pct": -30.5,
+  "max_drawdown_all_pct": -44.8,
+  "var95_1d_pct": -4.18,
+  "cvar95_1d_pct": -5.62,
+  "sharpe_1y": 0.46,
+  "sortino_1y": 0.68
+ },
+ "beta": {
+  "raw": 1.03,
+  "adjusted": 1.02,
+  "weeks": 62,
+  "correlation": 0.36,
+  "r_squared": 0.13,
+  "alpha_pct": -1.5
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 161.72
+ },
+ "flags": []
+}

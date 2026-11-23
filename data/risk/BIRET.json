@@ -1,0 +1,73 @@
+{
+ "symbol": "BIRET",
+ "as_of": "2026-11-20",
+ "rows": 1235,
+ "price": 319.84,
+ "returns_pct": {
+  "1m": 1.3,
+  "3m": -6.6,
+  "6m": -0.1,
+  "1y": -5.5,
+  "3y_cagr": 10.4,
+  "ytd": -3.5
+ },
+ "relative_strength_pp": {
+  "3m": -7.9,
+  "6m": -5.5,
+  "1y": -5.5
+ },
+ "range": {
+  "high_52w": 369.0,
+  "low_52w": 304.46,
+  "pct_from_high": -13.3,
+  "pct_above_low": 5.1,
+  "high_date": "2026-02-27",
+  "low_date": "2026-10-23"
+ },
+ "moving_averages": {
+  "dma20": 315.59,
+  "pct_vs_dma20": 1.3,
+  "dma50": 325.04,
+  "pct_vs_dma50": -1.6,
+  "dma100": 333.18,
+  "pct_vs_dma100": -4.0,
+  "dma200": 333.08,
+  "pct_vs_dma200": -4.0
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "death cross in last 20 days"
+ },
+ "momentum": {
+  "rsi14": 50.5,
+  "macd_pct": -0.3,
+  "macd_signal_pct": -0.65,
+  "macd_hist_pct": 0.35,
+  "bollinger_pctb": 0.71,
+  "atr_pct": 1.38
+ },
+ "risk": {
+  "volatility_1y_pct": 16.4,
+  "downside_deviation_pct": 12.2,
+  "max_drawdown_1y_pct": -17.5,
+  "max_drawdown_all_pct": -30.9,
+  "var95_1d_pct": -1.7,
+  "cvar95_1d_pct": -2.76,
+  "sharpe_1y": -0.7,
+  "sortino_1y": -0.94
+ },
+ "beta": {
+  "raw": 0.3,
+  "adjusted": 0.53,
+  "weeks": 156,
+  "correlation": 0.29,
+  "r_squared": 0.08,
+  "alpha_pct": 2.4
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 14.97
+ },
+ "flags": []
+}

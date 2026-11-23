@@ -1,0 +1,73 @@
+{
+ "symbol": "VIJAYA",
+ "as_of": "2026-11-23",
+ "rows": 1236,
+ "price": 1563.8,
+ "returns_pct": {
+  "1m": 12.4,
+  "3m": 4.4,
+  "6m": 24.2,
+  "1y": 50.2,
+  "3y_cagr": 40.5,
+  "ytd": 47.4
+ },
+ "relative_strength_pp": {
+  "3m": 3.0,
+  "6m": 18.7,
+  "1y": 50.2
+ },
+ "range": {
+  "high_52w": 1572.3,
+  "low_52w": 861.4,
+  "pct_from_high": -0.5,
+  "pct_above_low": 81.5,
+  "high_date": "2026-11-20",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 1464.48,
+  "pct_vs_dma20": 6.8,
+  "dma50": 1460.24,
+  "pct_vs_dma50": 7.1,
+  "dma100": 1437.37,
+  "pct_vs_dma100": 8.8,
+  "dma200": 1269.58,
+  "pct_vs_dma200": 23.2
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 63.6,
+  "macd_pct": 1.66,
+  "macd_signal_pct": 0.7,
+  "macd_hist_pct": 0.96,
+  "bollinger_pctb": 1.01,
+  "atr_pct": 3.84
+ },
+ "risk": {
+  "volatility_1y_pct": 33.9,
+  "downside_deviation_pct": 20.8,
+  "max_drawdown_1y_pct": -20.2,
+  "max_drawdown_all_pct": -49.8,
+  "var95_1d_pct": -2.81,
+  "cvar95_1d_pct": -4.05,
+  "sharpe_1y": 1.16,
+  "sortino_1y": 1.89
+ },
+ "beta": {
+  "raw": 0.62,
+  "adjusted": 0.75,
+  "weeks": 156,
+  "correlation": 0.23,
+  "r_squared": 0.05,
+  "alpha_pct": 28.9
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 24.08
+ },
+ "flags": []
+}

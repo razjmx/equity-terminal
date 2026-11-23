@@ -1,0 +1,73 @@
+{
+ "symbol": "ASAHIINDIA",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 1177.9,
+ "returns_pct": {
+  "1m": 28.9,
+  "3m": 23.8,
+  "6m": 38.1,
+  "1y": 21.5,
+  "3y_cagr": 28.2,
+  "ytd": 16.0
+ },
+ "relative_strength_pp": {
+  "3m": 22.4,
+  "6m": 32.7,
+  "1y": 21.5
+ },
+ "range": {
+  "high_52w": 1192.05,
+  "low_52w": 784.4,
+  "pct_from_high": -1.2,
+  "pct_above_low": 50.2,
+  "high_date": "2026-11-19",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 1045.42,
+  "pct_vs_dma20": 12.7,
+  "dma50": 986.3,
+  "pct_vs_dma50": 19.4,
+  "dma100": 950.01,
+  "pct_vs_dma100": 24.0,
+  "dma200": 911.98,
+  "pct_vs_dma200": 29.2
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 75.5,
+  "macd_pct": 5.38,
+  "macd_signal_pct": 4.17,
+  "macd_hist_pct": 1.22,
+  "bollinger_pctb": 0.81,
+  "atr_pct": 2.96
+ },
+ "risk": {
+  "volatility_1y_pct": 33.9,
+  "downside_deviation_pct": 21.4,
+  "max_drawdown_1y_pct": -26.4,
+  "max_drawdown_all_pct": -35.9,
+  "var95_1d_pct": -2.8,
+  "cvar95_1d_pct": -3.9,
+  "sharpe_1y": 0.53,
+  "sortino_1y": 0.84
+ },
+ "beta": {
+  "raw": 0.89,
+  "adjusted": 0.93,
+  "weeks": 156,
+  "correlation": 0.41,
+  "r_squared": 0.17,
+  "alpha_pct": 19.2
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 16.63
+ },
+ "flags": []
+}

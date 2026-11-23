@@ -1,0 +1,73 @@
+{
+ "symbol": "STLTECH",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 590.8,
+ "returns_pct": {
+  "1m": -26.2,
+  "3m": -4.9,
+  "6m": 40.6,
+  "1y": 396.3,
+  "3y_cagr": 62.0,
+  "ytd": 472.5
+ },
+ "relative_strength_pp": {
+  "3m": -6.3,
+  "6m": 35.2,
+  "1y": 396.3
+ },
+ "range": {
+  "high_52w": 1016.8,
+  "low_52w": 86.24,
+  "pct_from_high": -41.9,
+  "pct_above_low": 585.1,
+  "high_date": "2026-10-07",
+  "low_date": "2026-01-27"
+ },
+ "moving_averages": {
+  "dma20": 741.15,
+  "pct_vs_dma20": -20.3,
+  "dma50": 831.24,
+  "pct_vs_dma50": -28.9,
+  "dma100": 721.78,
+  "pct_vs_dma100": -18.1,
+  "dma200": 521.65,
+  "pct_vs_dma200": 13.3
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 29.8,
+  "macd_pct": -10.39,
+  "macd_signal_pct": -8.25,
+  "macd_hist_pct": -2.14,
+  "bollinger_pctb": 0.1,
+  "atr_pct": 7.74
+ },
+ "risk": {
+  "volatility_1y_pct": 64.6,
+  "downside_deviation_pct": 37.3,
+  "max_drawdown_1y_pct": -41.9,
+  "max_drawdown_all_pct": -80.2,
+  "var95_1d_pct": -5.0,
+  "cvar95_1d_pct": -5.89,
+  "sharpe_1y": 2.69,
+  "sortino_1y": 4.67
+ },
+ "beta": {
+  "raw": 1.07,
+  "adjusted": 1.05,
+  "weeks": 156,
+  "correlation": 0.26,
+  "r_squared": 0.07,
+  "alpha_pct": 53.4
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 169.29
+ },
+ "flags": []
+}

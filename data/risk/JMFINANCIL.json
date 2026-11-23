@@ -1,0 +1,73 @@
+{
+ "symbol": "JMFINANCIL",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 111.13,
+ "returns_pct": {
+  "1m": 0.1,
+  "3m": -14.0,
+  "6m": -14.3,
+  "1y": -26.2,
+  "3y_cagr": 10.2,
+  "ytd": -26.0
+ },
+ "relative_strength_pp": {
+  "3m": -15.3,
+  "6m": -19.7,
+  "1y": -26.2
+ },
+ "range": {
+  "high_52w": 154.58,
+  "low_52w": 106.19,
+  "pct_from_high": -28.1,
+  "pct_above_low": 4.7,
+  "high_date": "2025-12-01",
+  "low_date": "2026-10-23"
+ },
+ "moving_averages": {
+  "dma20": 111.94,
+  "pct_vs_dma20": -0.7,
+  "dma50": 118.07,
+  "pct_vs_dma50": -5.9,
+  "dma100": 122.53,
+  "pct_vs_dma100": -9.3,
+  "dma200": 125.79,
+  "pct_vs_dma200": -11.7
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 43.1,
+  "macd_pct": -1.45,
+  "macd_signal_pct": -1.7,
+  "macd_hist_pct": 0.25,
+  "bollinger_pctb": 0.41,
+  "atr_pct": 3.24
+ },
+ "risk": {
+  "volatility_1y_pct": 39.4,
+  "downside_deviation_pct": 28.1,
+  "max_drawdown_1y_pct": -31.3,
+  "max_drawdown_all_pct": -48.1,
+  "var95_1d_pct": -4.14,
+  "cvar95_1d_pct": -5.12,
+  "sharpe_1y": -0.76,
+  "sortino_1y": -1.07
+ },
+ "beta": {
+  "raw": 1.76,
+  "adjusted": 1.51,
+  "weeks": 156,
+  "correlation": 0.58,
+  "r_squared": 0.34,
+  "alpha_pct": 6.0
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 26.84
+ },
+ "flags": []
+}

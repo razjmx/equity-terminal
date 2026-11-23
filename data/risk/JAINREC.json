@@ -1,0 +1,66 @@
+{
+ "symbol": "JAINREC",
+ "as_of": "2026-11-23",
+ "rows": 280,
+ "price": 287.35,
+ "returns_pct": {
+  "1m": -0.8,
+  "3m": -4.1,
+  "6m": -25.1,
+  "1y": -34.6,
+  "3y_cagr": null,
+  "ytd": -30.8
+ },
+ "relative_strength_pp": {
+  "3m": -5.5,
+  "6m": -30.6,
+  "1y": -34.6
+ },
+ "range": {
+  "high_52w": 571.5,
+  "low_52w": 270.0,
+  "pct_from_high": -49.7,
+  "pct_above_low": 6.4,
+  "high_date": "2026-05-08",
+  "low_date": "2026-10-30"
+ },
+ "moving_averages": {
+  "dma20": 283.12,
+  "pct_vs_dma20": 1.5,
+  "dma50": 285.38,
+  "pct_vs_dma50": 0.7,
+  "dma100": 301.44,
+  "pct_vs_dma100": -4.7,
+  "dma200": 357.48,
+  "pct_vs_dma200": -19.6
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 51.5,
+  "macd_pct": 0.34,
+  "macd_signal_pct": -0.01,
+  "macd_hist_pct": 0.35,
+  "bollinger_pctb": 0.67,
+  "atr_pct": 3.7
+ },
+ "risk": {
+  "volatility_1y_pct": 49.6,
+  "downside_deviation_pct": 37.4,
+  "max_drawdown_1y_pct": -52.8,
+  "max_drawdown_all_pct": -52.8,
+  "var95_1d_pct": -4.02,
+  "cvar95_1d_pct": -7.57,
+  "sharpe_1y": -0.75,
+  "sortino_1y": -0.99
+ },
+ "beta": null,
+ "liquidity": {
+  "avg_daily_value_3m_cr": 33.3
+ },
+ "flags": []
+}

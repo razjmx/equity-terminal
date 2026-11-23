@@ -1,0 +1,73 @@
+{
+ "symbol": "EMAMILTD",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 415.35,
+ "returns_pct": {
+  "1m": 10.1,
+  "3m": 2.0,
+  "6m": -0.1,
+  "1y": -20.2,
+  "3y_cagr": -6.5,
+  "ytd": -21.4
+ },
+ "relative_strength_pp": {
+  "3m": 0.6,
+  "6m": -5.5,
+  "1y": -20.2
+ },
+ "range": {
+  "high_52w": 545.75,
+  "low_52w": 359.75,
+  "pct_from_high": -23.9,
+  "pct_above_low": 15.5,
+  "high_date": "2025-12-15",
+  "low_date": "2026-10-30"
+ },
+ "moving_averages": {
+  "dma20": 394.66,
+  "pct_vs_dma20": 5.2,
+  "dma50": 383.81,
+  "pct_vs_dma50": 8.2,
+  "dma100": 392.72,
+  "pct_vs_dma100": 5.8,
+  "dma200": 413.91,
+  "pct_vs_dma200": 0.3
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 63.3,
+  "macd_pct": 2.75,
+  "macd_signal_pct": 2.13,
+  "macd_hist_pct": 0.62,
+  "bollinger_pctb": 0.74,
+  "atr_pct": 2.81
+ },
+ "risk": {
+  "volatility_1y_pct": 26.5,
+  "downside_deviation_pct": 18.4,
+  "max_drawdown_1y_pct": -34.1,
+  "max_drawdown_all_pct": -57.2,
+  "var95_1d_pct": -2.69,
+  "cvar95_1d_pct": -3.21,
+  "sharpe_1y": -0.99,
+  "sortino_1y": -1.42
+ },
+ "beta": {
+  "raw": 0.86,
+  "adjusted": 0.9,
+  "weeks": 156,
+  "correlation": 0.4,
+  "r_squared": 0.16,
+  "alpha_pct": -12.1
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 56.03
+ },
+ "flags": []
+}

@@ -1,0 +1,73 @@
+{
+ "symbol": "BAJAJHLDNG",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 11631.0,
+ "returns_pct": {
+  "1m": 3.0,
+  "3m": 2.3,
+  "6m": 11.8,
+  "1y": -7.5,
+  "3y_cagr": 19.6,
+  "ytd": 2.7
+ },
+ "relative_strength_pp": {
+  "3m": 1.0,
+  "6m": 6.4,
+  "1y": -7.4
+ },
+ "range": {
+  "high_52w": 12124.0,
+  "low_52w": 8746.0,
+  "pct_from_high": -4.1,
+  "pct_above_low": 33.0,
+  "high_date": "2025-11-17",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 10952.0,
+  "pct_vs_dma20": 6.2,
+  "dma50": 10963.94,
+  "pct_vs_dma50": 6.1,
+  "dma100": 11005.42,
+  "pct_vs_dma100": 5.7,
+  "dma200": 10675.33,
+  "pct_vs_dma200": 9.0
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 62.6,
+  "macd_pct": 1.51,
+  "macd_signal_pct": 0.75,
+  "macd_hist_pct": 0.75,
+  "bollinger_pctb": 0.86,
+  "atr_pct": 2.66
+ },
+ "risk": {
+  "volatility_1y_pct": 27.3,
+  "downside_deviation_pct": 19.5,
+  "max_drawdown_1y_pct": -27.9,
+  "max_drawdown_all_pct": -39.8,
+  "var95_1d_pct": -2.88,
+  "cvar95_1d_pct": -3.74,
+  "sharpe_1y": -0.41,
+  "sortino_1y": -0.58
+ },
+ "beta": {
+  "raw": 1.01,
+  "adjusted": 1.01,
+  "weeks": 156,
+  "correlation": 0.51,
+  "r_squared": 0.26,
+  "alpha_pct": 9.3
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 45.47
+ },
+ "flags": []
+}

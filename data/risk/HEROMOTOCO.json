@@ -1,0 +1,73 @@
+{
+ "symbol": "HEROMOTOCO",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 5536.5,
+ "returns_pct": {
+  "1m": 8.0,
+  "3m": -3.6,
+  "6m": 11.4,
+  "1y": -0.0,
+  "3y_cagr": 21.2,
+  "ytd": -4.1
+ },
+ "relative_strength_pp": {
+  "3m": -4.9,
+  "6m": 6.0,
+  "1y": -0.0
+ },
+ "range": {
+  "high_52w": 6350.5,
+  "low_52w": 4775.5,
+  "pct_from_high": -12.8,
+  "pct_above_low": 15.9,
+  "high_date": "2025-12-05",
+  "low_date": "2026-06-08"
+ },
+ "moving_averages": {
+  "dma20": 5349.2,
+  "pct_vs_dma20": 3.5,
+  "dma50": 5248.64,
+  "pct_vs_dma50": 5.5,
+  "dma100": 5289.74,
+  "pct_vs_dma100": 4.7,
+  "dma200": 5259.81,
+  "pct_vs_dma200": 5.3
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "death cross in last 20 days"
+ },
+ "momentum": {
+  "rsi14": 60.7,
+  "macd_pct": 1.28,
+  "macd_signal_pct": 0.93,
+  "macd_hist_pct": 0.34,
+  "bollinger_pctb": 0.85,
+  "atr_pct": 2.59
+ },
+ "risk": {
+  "volatility_1y_pct": 27.7,
+  "downside_deviation_pct": 19.6,
+  "max_drawdown_1y_pct": -24.8,
+  "max_drawdown_all_pct": -43.6,
+  "var95_1d_pct": -2.98,
+  "cvar95_1d_pct": -3.64,
+  "sharpe_1y": -0.12,
+  "sortino_1y": -0.17
+ },
+ "beta": {
+  "raw": 1.06,
+  "adjusted": 1.04,
+  "weeks": 156,
+  "correlation": 0.55,
+  "r_squared": 0.31,
+  "alpha_pct": 6.4
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 299.84
+ },
+ "flags": []
+}
