@@ -14,7 +14,7 @@
   "one-off items removed from profit",
   "P/E 194 not meaningful, shown blank",
   "cash not found: net debt = gross debt",
-  "no dividend in Yahoo: FCF per unit used as distribution proxy"
+  "distribution missing: fill data/reit_inputs.csv (dps_12m)"
  ],
  "settings": {
   "rf": 0.072,
@@ -22,16 +22,10 @@
   "tax": 0.25,
   "reit_g": 0.04
  },
- "reit": {
-  "dps": 42.38,
-  "dps_source": "FCF per unit (proxy for NDCF)",
-  "yield_pct": 10.04,
-  "g_pct": 4.0,
-  "fair_value": 711.0
- },
+ "fcf_per_unit": 42.38,
  "info_dividend_keys": {
   "dividendYield": null
  },
- "fair_value": 711.0,
- "upside_pct": 68.5
+ "fair_value": null,
+ "upside_pct": null
 }

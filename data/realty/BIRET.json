@@ -12,7 +12,7 @@
  "flags": [
   "override: reit (REIT: value on distributions)",
   "cash not found: net debt = gross debt",
-  "no dividend in Yahoo: FCF per unit used as distribution proxy"
+  "distribution missing: fill data/reit_inputs.csv (dps_12m)"
  ],
  "settings": {
   "rf": 0.072,
@@ -20,16 +20,10 @@
   "tax": 0.25,
   "reit_g": 0.04
  },
- "reit": {
-  "dps": 29.18,
-  "dps_source": "FCF per unit (proxy for NDCF)",
-  "yield_pct": 9.12,
-  "g_pct": 4.0,
-  "fair_value": 475.6
- },
+ "fcf_per_unit": 29.18,
  "info_dividend_keys": {
   "dividendYield": null
  },
- "fair_value": 475.6,
- "upside_pct": 48.7
+ "fair_value": null,
+ "upside_pct": null
 }
