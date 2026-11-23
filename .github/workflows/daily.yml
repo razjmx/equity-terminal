@@ -1,0 +1,47 @@
+name: Daily refresh
+on:
+  schedule:
+    - cron: "0 13 * * 1-5"   # 13:00 UTC = 6:30 pm IST, Mon-Fri
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      MODE: update
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+
+      - name: 1 Prices (update)
+        run: python scripts/fetch_prices.py
+
+      - name: 2 Metrics
+        run: python scripts/compute_metrics.py
+
+      - name: 3 DCF
+        run: python scripts/compute_dcf.py
+
+      - name: 4 Risk and technicals
+        run: python scripts/compute_risk.py
+
+      - name: Commit data
+        if: always()
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data
+          git commit -m "Daily refresh $(date -u +%F)" || echo "No changes"
+          git pull --rebase
+          git push
