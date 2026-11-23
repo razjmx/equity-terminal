@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Equity Terminal</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header>
+  <div class="brand">EQUITY TERMINAL <small>Nifty 500 · cash equities · daily</small></div>
+  <nav><a href="#/market" id="n-market">Market</a><a href="#/screener" id="n-screener">Screener</a></nav>
+  <input id="search" list="symlist" placeholder="Search stock, e.g. TCS" autocomplete="off">
+  <datalist id="symlist"></datalist>
+  <details class="assump"><summary>Assumptions</summary>
+    <label>Risk-free % <input id="a-rf" type="number" step="0.1"></label>
+    <label>Equity risk premium % <input id="a-erp" type="number" step="0.1"></label>
+    <label>Terminal growth % <input id="a-g" type="number" step="0.1"></label>
+    <button id="a-reset">Reset (7.2 / 6 / 6.5)</button>
+    <p>Applies to all DCF values shown on the Stock and Screener pages.</p>
+  </details>
+</header>
+<main id="view">Loading…</main>
+<footer>Data: Yahoo Finance via GitHub Actions. Not investment advice. Model values are estimates.</footer>
+<script src="lib.js"></script><script src="app.js"></script>
+</body></html>
