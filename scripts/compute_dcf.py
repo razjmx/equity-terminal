@@ -20,6 +20,8 @@ MARGIN_BASIS = "latest"   # "latest" or "avg3" (average core EBIT margin, last 3
 ROIC_CAP = 0.20       # return on new capital in the terminal year is capped here
 WACC_MIN, WACC_MAX = 0.09, 0.18
 BETA_MIN, BETA_MAX = 0.5, 1.8
+MID_YEAR = True       # cash flows arrive through the year, not on the last day
+ROLL_FORWARD = True   # value is as of the FY end; roll it to the latest price date at cost of equity
 CR = 1e7
 CHECK = ["TCS", "HINDUNILVR", "TITAN", "RELIANCE", "JSWSTEEL", "MARUTI", "VOLTAS", "NHPC"]
 
@@ -140,20 +142,21 @@ def value(p, wacc, gT, g1):
     if wacc - gT < 0.02:
         return None
     rows, icn = project(p, g1, gT)
-    pv = sum(r["fcff"] / (1 + wacc) ** (i + 1) for i, r in enumerate(rows))
+    mid = (1 + wacc) ** 0.5 if MID_YEAR else 1.0
+    pv = sum(r["fcff"] / (1 + wacc) ** (i + 1) for i, r in enumerate(rows)) * mid
     nopat_n = rows[-1]["nopat"]
     roic_n = nopat_n / icn if icn > 0 else wacc
     roic_t = min(max(roic_n, wacc), ROIC_CAP)
     tv_fcff = nopat_n * (1 + gT) * (1 - gT / roic_t)
-    pv_tv = tv_fcff / (wacc - gT) / (1 + wacc) ** N
+    pv_tv = tv_fcff / (wacc - gT) / (1 + wacc) ** N * mid
     ev = pv + pv_tv
     eq = ev - p["debt"] + p["cash"] + p["invest"] - p["minority"]
-    return {"per_share": eq / p["shares"], "ev": ev, "pv_tv": pv_tv, "equity": eq,
-            "rows": rows, "roic_t": roic_t, "tv_fcff": tv_fcff}
+    return {"per_share": eq / p["shares"] * p.get("roll", 1.0), "ev": ev, "pv_tv": pv_tv,
+            "equity": eq, "rows": rows, "roic_t": roic_t, "tv_fcff": tv_fcff}
 
 
 def solve(fn, lo, hi):
-    """Bisection on an increasing function fn(x) = value - price. Returns None if not bracketed."""
+    """Bisection on an increasing function fn(x). Returns None if not bracketed."""
     flo, fhi = fn(lo), fn(hi)
     if flo is None or fhi is None or flo > 0 or fhi < 0:
         return None
@@ -183,6 +186,22 @@ def implied_margin(p, wacc, gT, g1, price):
         v = value(q, wacc, gT, g1)
         return None if v is None else v["per_share"] - price
     return solve(fn, 0.0, 0.60)
+
+
+def implied_rate(p, gT, g1, price):
+    """Discount rate at which the DCF equals today's price."""
+    def fn(w):
+        v = value(p, w, gT, g1)
+        return None if v is None else price - v["per_share"]
+    lo, hi = gT + 0.021, 0.25
+    flo, fhi = fn(lo), fn(hi)
+    if flo is None or fhi is None:
+        return None, "n/a"
+    if flo > 0:
+        return None, f"below {lo * 100:.1f}%"
+    if fhi < 0:
+        return None, "above 25%"
+    return solve(fn, lo, hi), ""
 
 
 def run(sym, M, mkt, inp):
@@ -221,7 +240,11 @@ def run(sym, M, mkt, inp):
     debt = (g(B, "Total Debt") or 0.0) / CR
     cash = (g(B, "Cash Cash Equivalents And Short Term Investments",
               "Cash And Cash Equivalents") or 0.0) / CR
-    invest = max((g(B, "Investments And Advances") or 0.0) / CR, 0.0)
+    # non-operating investments not already inside the cash line
+    fa = g(B, "Investmentin Financial Assets") or 0.0
+    osti = g(B, "Other Short Term Investments") or 0.0
+    lt = g(B, "Long Term Equity Investment") or 0.0
+    invest = (max(fa - osti, 0.0) + max(lt, 0.0)) / CR
     minority = (g(B, "Minority Interest") or 0.0) / CR
     eq_raw = g(B, "Stockholders Equity", "Common Stock Equity")
     ic0 = (debt + eq_raw / CR + minority - cash - invest) if eq_raw else None
@@ -277,12 +300,22 @@ def run(sym, M, mkt, inp):
         wacc = inp["wacc_pct"] / 100
         flags.append("wacc: set by dcf_inputs.csv")
 
+    # value is as of the FY end; roll it forward to the latest price date at the cost of equity
+    elapsed, roll = 0.0, 1.0
+    if ROLL_FORWARD:
+        try:
+            asof = mkt.index[-1] if mkt is not None else pd.Timestamp.today()
+            elapsed = min(max((asof - pd.Timestamp(M["latest_fy"])).days / 365.0, 0.0), 1.5)
+            roll = (1 + ke) ** elapsed
+        except Exception:
+            elapsed, roll = 0.0, 1.0
+
     roic_now = rev * margin * (1 - TAX) / ic0 if ic0 and ic0 > 0 else None
     if roic_now is not None and roic_now < wacc - 0.01:
         flags.append(f"low return: ROIC {roic_now * 100:.1f}% below WACC {wacc * 100:.1f}%")
 
     p = {"rev": rev, "margin": margin, "tax": TAX, "s2c": s2c, "debt": debt, "cash": cash,
-         "invest": invest, "minority": minority, "shares": shares}
+         "invest": invest, "minority": minority, "shares": shares, "roll": roll}
     base = value(p, wacc, gT, g1)
     if base is None:
         return None, "WACC too close to terminal growth"
@@ -304,14 +337,18 @@ def run(sym, M, mkt, inp):
             v = value(p, wacc + a, gT + b, g1)
             row.append(None if v is None else num(v["per_share"], 1))
         grid.append(row)
+    fair_low, fair_high = grid[3][2], grid[1][2]   # WACC +1% and -1% at base terminal growth
 
     ig = implied_growth(p, wacc, gT, price)
     im = implied_margin(p, wacc, gT, g1, price)
+    ir, ir_note = implied_rate(p, gT, g1, price) if status == "ok" else (None, "not meaningful")
     path = growth_path(g1, gT)
 
     return {
         "symbol": sym, "latest_fy": M["latest_fy"], "status": status, "price": num(price),
         "fair_value": num(fair, 1) if status == "ok" else None,
+        "fair_low": fair_low if status == "ok" else None,
+        "fair_high": fair_high if status == "ok" else None,
         "upside_pct": num(upside * 100, 1) if upside is not None else None,
         "flags": flags,
         "assumptions": {
@@ -323,7 +360,9 @@ def run(sym, M, mkt, inp):
             "historic_growth_pct": num(g_hist * 100, 1) if g_hist is not None else None,
             "first_year_growth_pct": num(g1 * 100, 1), "ebit_margin_pct": num(margin * 100, 1),
             "margin_basis": MARGIN_BASIS, "sales_to_capital": num(s2c),
-            "roic_now_pct": num(roic_now * 100, 1) if roic_now is not None else None},
+            "roic_now_pct": num(roic_now * 100, 1) if roic_now is not None else None,
+            "mid_year": MID_YEAR, "roll_forward_years": num(elapsed, 2),
+            "roll_factor": num(roll, 3)},
         "projection_cr": [
             {"year": i + 1, "growth_pct": num(path[i] * 100, 1), "revenue": num(r["rev"], 0),
              "nopat": num(r["nopat"], 0), "reinvestment": num(r["reinv"], 0),
@@ -342,12 +381,15 @@ def run(sym, M, mkt, inp):
         "reverse_dcf": {
             "implied_first_year_growth_pct": num(ig * 100, 1) if ig is not None else None,
             "implied_ebit_margin_pct": num(im * 100, 1) if im is not None else None,
+            "implied_discount_rate_pct": num(ir * 100, 1) if ir is not None else None,
+            "implied_rate_note": ir_note,
             "note": ("growth outside -10% to 60%" if ig is None else "")
                     + ("; margin outside 0% to 60%" if im is None else "")},
         "model": {"rev": rev, "margin": margin, "tax": TAX, "s2c": s2c, "g1": g1,
                   "wacc": wacc, "terminal_g": gT, "n": N, "hold_years": HOLD_YEARS,
                   "roic_cap": ROIC_CAP, "debt": debt, "cash": cash, "invest": invest,
-                  "minority": minority, "shares_cr": shares},
+                  "minority": minority, "shares_cr": shares, "roll": roll,
+                  "mid_year": MID_YEAR},
     }, None
 
 
@@ -379,7 +421,8 @@ def main():
         results.append(res)
 
     rows = [{"symbol": x["symbol"], "status": x["status"], "price": x["price"],
-             "fair_value": x["fair_value"], "upside_pct": x["upside_pct"],
+             "fair_value": x["fair_value"], "fair_low": x["fair_low"], "fair_high": x["fair_high"],
+             "upside_pct": x["upside_pct"],
              "wacc_pct": x["assumptions"]["wacc_pct"], "beta": x["assumptions"]["beta_used"],
              "hist_growth_pct": x["assumptions"]["historic_growth_pct"],
              "g1_pct": x["assumptions"]["first_year_growth_pct"],
@@ -388,6 +431,7 @@ def main():
              "tv_share_pct": x["terminal"]["pv_share_of_ev_pct"],
              "implied_g1_pct": x["reverse_dcf"]["implied_first_year_growth_pct"],
              "implied_margin_pct": x["reverse_dcf"]["implied_ebit_margin_pct"],
+             "implied_rate_pct": x["reverse_dcf"]["implied_discount_rate_pct"],
              "flags": "; ".join(x["flags"])} for x in results]
     pd.DataFrame(rows).to_csv("data/dcf_summary.csv", index=False)
     open("data/dcf_errors.txt", "w").write("\n".join(errors) if errors else "none")
@@ -397,10 +441,10 @@ def main():
     ups = sorted([(x["upside_pct"], x) for x in ok], key=lambda t: t[0])
 
     def line(x):
-        a = x["assumptions"]
-        return (x["symbol"], x["price"], x["fair_value"], x["upside_pct"],
-                a["wacc_pct"], a["first_year_growth_pct"], a["ebit_margin_pct"],
-                x["reverse_dcf"]["implied_ebit_margin_pct"])
+        a, rv = x["assumptions"], x["reverse_dcf"]
+        return (x["symbol"], x["price"], x["fair_value"], x["upside_pct"], a["wacc_pct"],
+                a["first_year_growth_pct"], a["ebit_margin_pct"],
+                rv["implied_ebit_margin_pct"], rv["implied_discount_rate_pct"])
 
     bins = Counter()
     for u, _ in ups:
@@ -410,27 +454,34 @@ def main():
     series = pd.Series([u for u, _ in ups]) if ups else pd.Series(dtype=float)
     tvs = pd.Series([x["terminal"]["pv_share_of_ev_pct"] for x in ok
                      if x["terminal"]["pv_share_of_ev_pct"] is not None])
+    irs = pd.Series([x["reverse_dcf"]["implied_discount_rate_pct"] for x in ok
+                     if x["reverse_dcf"]["implied_discount_rate_pct"] is not None])
+    n_low = sum(1 for x in ok if x["reverse_dcf"]["implied_rate_note"].startswith("below"))
     flagc = Counter(f.split(":")[0] for x in results for f in x["flags"])
     far = [x["symbol"] for x in ok if any(f.startswith("far from price") for f in x["flags"])]
     inv = sorted([(x["symbol"], x["bridge_cr"]["investments"], x["bridge_cr"]["market_cap"])
                   for x in results if x["bridge_cr"]["investments"] and x["bridge_cr"]["market_cap"]],
                  key=lambda t: -(t[1] / t[2]))[:10]
+    roll_ex = results[0]["assumptions"]["roll_forward_years"] if results else None
     review = [
         f"Eligible in metrics: {eligible} | DCF computed: {len(results)} | meaningful: {len(ok)} | "
         f"not meaningful: {len(nm)} | skipped: {len(skipped)} | errors: {len(errors)}",
         f"Settings: RF {RF * 100:.2f}% | ERP {ERP * 100:.1f}% | terminal growth {TERMINAL_G * 100:.1f}% | "
-        f"forecast {N} years, growth held {HOLD_YEARS} years | growth years {GROWTH_YEARS} | overrides loaded: {len(inputs)}",
+        f"forecast {N} years, growth held {HOLD_YEARS} years | growth years {GROWTH_YEARS} | "
+        f"mid-year {MID_YEAR} | roll-forward {ROLL_FORWARD} ({roll_ex} years) | overrides loaded: {len(inputs)}",
         f"Skipped reasons: {dict(Counter(skipped.values()))}",
         f"Median upside (meaningful only): {num(float(series.median()), 1) if len(series) else None}% | "
         f"mean: {num(float(series.mean()), 1) if len(series) else None}%",
         f"Upside distribution: {dict(bins)}",
+        f"Market-implied discount rate: solvable {len(irs)} | needs a rate below the searchable minimum: {n_low} | "
+        f"median among solvable {num(float(irs.median()), 1) if len(irs) else None}%",
         f"Terminal value share of EV: median {num(float(tvs.median()), 1) if len(tvs) else None}% | "
         f"over 85%: {int((tvs > 85).sum())} stocks",
         f"Flag counts: {dict(flagc)}",
         f"Not meaningful ({len(nm)}): {nm}",
         f"Far from price ({len(far)}): {far}",
         f"Largest investments added [symbol, Rs cr, market cap Rs cr]: {inv}",
-        f"Top 15 upside [symbol, price, fair, upside%, wacc%, g1%, margin%, implied margin%]: {[line(x) for _, x in ups[::-1][:15]]}",
+        f"Top 15 upside [symbol, price, fair, upside%, wacc%, g1%, margin%, implied margin%, implied rate%]: {[line(x) for _, x in ups[::-1][:15]]}",
         f"Bottom 15: {[line(x) for _, x in ups[:15]]}",
     ]
     open("data/dcf_review.txt", "w").write("\n".join(review))
@@ -444,7 +495,8 @@ def main():
             out.append(f"=== {s}: not computed ({skipped.get(s, 'not eligible')}) ===\n")
             continue
         out.append(f"=== {s} | FY {x['latest_fy']} | {x['status']} | price {x['price']} | "
-                   f"fair value {x['fair_value']} | upside {x['upside_pct']}% ===")
+                   f"fair value {x['fair_value']} (range {x['fair_low']} to {x['fair_high']}) | "
+                   f"upside {x['upside_pct']}% ===")
         out.append(f"Flags: {x['flags']}")
         out.append(f"Assumptions: {x['assumptions']}")
         out.append(f"Projection (Rs cr), years 1, 3, 5, 7, 10: "
