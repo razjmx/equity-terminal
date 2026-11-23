@@ -1,5 +1,5 @@
 """Realty NAV and REIT distribution models.
-Reads: data/overrides.csv, data/metrics/SYM.json, data/fundamentals/SYM.json (info), data/risk_summary.csv (beta),
+Reads: data/overrides.csv, data/metrics/SYM.json, data/fundamentals/SYM.json (info), data/risk_summary.csv (beta), data/reit_inputs.csv (you fill),
        data/prices/SYM.csv (price fallback), data/realty_inputs.csv (you fill; created blank if missing)
 Writes: data/realty/SYM.json, data/realty_summary.csv, data/realty_review.txt, data/realty_errors.txt
 """
@@ -72,6 +72,14 @@ def main():
                 if t == "realty":
                     w.writerow([s, "", "", "", "", "", "", ""])
     inputs = {r["symbol"]: r for r in read_csv(inp_path)}
+    reit_path = f"{D}/reit_inputs.csv"
+    if not os.path.exists(reit_path):
+        with open(reit_path, "w", newline="") as fh:
+            w = csv.writer(fh); w.writerow(["symbol", "dps_12m", "g_pct", "nav_per_unit", "source_note"])
+            for s_, t_ in names:
+                if t_ == "reit":
+                    w.writerow([s_, "", "", "", ""])
+    reit_in = {r["symbol"]: r for r in read_csv(reit_path)}
     bet = betas()
     errs, summ, review = [], [], []
     for sym, typ in names:
@@ -119,18 +127,20 @@ def main():
                 else:
                     flags.append("NAV inputs missing: fill data/realty_inputs.csv")
             else:
-                dps = fnum(info.get("dividendRate")) or fnum(info.get("trailingAnnualDividendRate"))
-                src = "Yahoo dividendRate"
-                if not dps and fnum(snap.get("fcf")):
-                    dps = fnum(snap.get("fcf")) / shares; src = "FCF per unit (proxy for NDCF)"
-                    flags.append("no dividend in Yahoo: FCF per unit used as distribution proxy")
+                ri = reit_in.get(sym) or {}
+                dps = fnum(ri.get("dps_12m"))
+                g = (fnum(ri.get("g_pct")) / 100) if fnum(ri.get("g_pct")) is not None else REIT_G
+                g = min(g, G_CAP)
+                navu = fnum(ri.get("nav_per_unit"))
+                if fnum(snap.get("fcf")):
+                    out["fcf_per_unit"] = round(fnum(snap.get("fcf")) / shares, 2)
                 if dps:
-                    g = min(REIT_G, G_CAP)
                     fair = dps * (1 + g) / (ke - g) if ke > g + 0.01 else None
-                    out["reit"] = {"dps": round(dps, 2), "dps_source": src, "yield_pct": round(dps / price * 100, 2),
-                                   "g_pct": g * 100, "fair_value": round(fair, 1) if fair else None}
+                    out["reit"] = {"dps": dps, "yield_pct": round(dps / price * 100, 2), "g_pct": round(g * 100, 2),
+                                   "fair_value": round(fair, 1) if fair else None, "nav_per_unit": navu,
+                                   "p_nav": round(price / navu, 2) if navu else None, "note": ri.get("source_note", "")}
                 else:
-                    flags.append("no distribution data")
+                    flags.append("distribution missing: fill data/reit_inputs.csv (dps_12m)")
                 out["info_dividend_keys"] = {k: info.get(k) for k in info if "ividend" in k or "ield" in k}
             out["fair_value"] = round(fair, 1) if fair else None
             out["upside_pct"] = round((fair / price - 1) * 100, 1) if fair else None
