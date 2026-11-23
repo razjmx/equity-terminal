@@ -168,7 +168,7 @@ function heat(){
 }
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('.ht');if(a){FILT.ind=a.dataset.ind;FILT.q='';FILT.rel='all';location.hash='#/screener'}});
 
-async function market(){
+async function marketLegacy(){
   const m=D.mkt,b=await table('data/breadth_history.csv');
   const rows=Object.values(D.rsk);
   const top=(k,asc)=>rows.filter(r=>T.num(r[k])!=null&&(T.num(r.traded_cr)||0)>5).sort((a,c)=>asc?T.num(a[k])-T.num(c[k]):T.num(c[k])-T.num(a[k])).slice(0,10);
@@ -188,6 +188,172 @@ async function market(){
     lineChart($('#c1'),[{name:'200d',x,y:b.map(r=>T.num(r.pct_above_200dma))},{name:'50d',x,y:b.map(r=>T.num(r.pct_above_50dma))}],{dec:0});
     lineChart($('#c2'),[{name:'high',x,y:b.map(r=>T.num(r.pct_new_52w_high))},{name:'low',x,y:b.map(r=>T.num(r.pct_new_52w_low))}],{dec:1})}
 }
+
+// ---------- market health (home) ----------
+const MH={data:null,range:'1Y',mode:'count',sort:{k:'r1m',d:-1},charts:[]};
+const RANGES={'1M':22,'3M':64,'6M':127,'1Y':253,'5Y':1261,'MAX':1e9};
+const fMon=d=>new Date(d+'T00:00:00').toLocaleDateString('en-GB',{month:'short',year:'2-digit'});
+const fDay=d=>new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+function mcol(){const c=getComputedStyle(document.documentElement),g=n=>c.getPropertyValue(n).trim();return {g:g('--g')||'#127a45',r:g('--r')||'#c62828',m:g('--m')||'#667085',p:g('--p')||'#fff',t:g('--t')||'#18202b',b:g('--brand')||'#0f6b4a'}}
+function mchart(cv,spec,anim){
+  const C=mcol(),dpr=window.devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;
+  cv.width=w*dpr;cv.height=h*dpr;const ctx=cv.getContext('2d');
+  const x=spec.x,n=x.length,L=4,R=10,Tp=10,B=20,lay=spec.layers;if(!n)return;
+  const val=lay.map(l=>l.y.map(v=>v==null?null:(l.neg?-v:v)));
+  let cum=null;
+  if(spec.stack){let acc=new Array(n).fill(0);cum=val.map(a=>{const lo=acc,hi=acc.map((s,j)=>s+(a[j]||0));acc=hi;return {lo,hi}})}
+  let lo=Infinity,hi=-Infinity;
+  const upd=v=>{if(v!=null&&isFinite(v)){lo=Math.min(lo,v);hi=Math.max(hi,v)}};
+  if(cum)cum.forEach(c=>{c.hi.forEach(upd);c.lo.forEach(upd)});else val.forEach(a=>a.forEach(upd));
+  if(lay.some(l=>l.type==='bars')||spec.zero||spec.stack)upd(0);
+  if(!isFinite(lo)){lo=0;hi=1}if(lo===hi){lo-=1;hi+=1}const pad=(hi-lo)*.08;if(!(spec.stack&&lo===0))lo-=pad;hi+=pad;
+  const X=i=>L+(w-L-R)*(n<2?.5:i/(n-1)),Y=v=>Tp+(h-Tp-B)*(1-(v-lo)/(hi-lo));
+  const first=(a)=>{for(const v of a)if(v!=null)return v;return 0},lastv=a=>{for(let i=a.length-1;i>=0;i--)if(a[i]!=null)return a[i];return 0};
+  const base=spec.zero?0:first(val[0]);
+  const up=lastv(val[0])>=first(val[0]);
+  let hov=null;
+  function draw(prog,hv){
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);ctx.font='11px system-ui,sans-serif';
+    ctx.fillStyle=C.m;[0,.34,.67,1].forEach((f,k)=>{const i=Math.round((n-1)*f),t=fMon(x[i]);const tw=ctx.measureText(t).width;ctx.fillText(t,Math.max(2,Math.min(X(i)-tw/2,w-tw-2)),h-5)});
+    ctx.save();ctx.beginPath();ctx.rect(0,0,L+(w-L)*prog+2,h);ctx.clip();
+    if(!spec.stack){ctx.strokeStyle=C.m;ctx.globalAlpha=.5;ctx.setLineDash([3,3]);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(L,Math.round(Y(base))+.5);ctx.lineTo(w-R,Math.round(Y(base))+.5);ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1}
+    lay.forEach((l,li)=>{
+      const col=l.color||(spec.auto?(up?C.g:C.r):C.b),a=val[li];
+      if(spec.stack){const c=cum[li];ctx.beginPath();let s=false;for(let i=0;i<n;i++){const y=Y(c.hi[i]);s?ctx.lineTo(X(i),y):ctx.moveTo(X(i),y);s=true}for(let i=n-1;i>=0;i--)ctx.lineTo(X(i),Y(c.lo[i]));ctx.closePath();ctx.globalAlpha=.8;ctx.fillStyle=col;ctx.fill();ctx.globalAlpha=1;return}
+      if(l.type==='bars'){const bw=Math.max(1,(w-L-R)/n*.78);for(let i=0;i<n;i++){const v=a[i];if(v==null)continue;ctx.fillStyle=l.color||(v>=0?C.g:C.r);const y0=Y(0),y1=Y(v);ctx.fillRect(X(i)-bw/2,Math.min(y0,y1),bw,Math.max(1,Math.abs(y1-y0)))}return}
+      if(l.type==='area'){const g=ctx.createLinearGradient(0,Tp,0,h-B);g.addColorStop(0,col+'40');g.addColorStop(1,col+'05');ctx.beginPath();let st=false,fi=-1,la=-1;a.forEach((v,i)=>{if(v==null)return;if(!st){ctx.moveTo(X(i),Y(v));st=true;fi=i}else ctx.lineTo(X(i),Y(v));la=i});if(st){ctx.lineTo(X(la),Y(base));ctx.lineTo(X(fi),Y(base));ctx.closePath();ctx.fillStyle=g;ctx.fill()}}
+      ctx.strokeStyle=col;ctx.lineWidth=1.6;ctx.lineJoin='round';ctx.beginPath();let s2=false;a.forEach((v,i)=>{if(v==null)return;s2?ctx.lineTo(X(i),Y(v)):ctx.moveTo(X(i),Y(v));s2=true});ctx.stroke();
+    });
+    ctx.restore();
+    if(prog>=1){lay.forEach((l,li)=>{if(l.type==='bars'||spec.stack)return;const a=val[li];let i=n-1;while(i>0&&a[i]==null)i--;if(a[i]==null)return;ctx.beginPath();ctx.arc(X(i),Y(a[i]),3.2,0,7);ctx.fillStyle=l.color||(spec.auto?(up?C.g:C.r):C.b);ctx.fill()})}
+    if(hv!=null&&prog>=1){const xx=X(hv);ctx.strokeStyle=C.m;ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(xx,Tp);ctx.lineTo(xx,h-B);ctx.stroke();ctx.setLineDash([]);
+      const rows=lay.map((l,li)=>({n:l.name||'',v:l.y[hv],c:l.color||(spec.auto?(up?C.g:C.r):C.b)})).filter(r=>r.v!=null);
+      const f=spec.fmt||(v=>T.fmt(v,spec.dec??0));const lines=[fDay(x[hv])].concat(rows.map(r=>(r.n?r.n+'  ':'')+f(r.v)));
+      ctx.font='12px system-ui,sans-serif';const bw=Math.max(...lines.map(t=>ctx.measureText(t).width))+18,bh=10+lines.length*16;let bx=xx+10;if(bx+bw>w-2)bx=xx-10-bw;bx=Math.max(2,bx);
+      ctx.fillStyle=C.p;ctx.strokeStyle='rgba(139,148,163,.5)';ctx.beginPath();ctx.roundRect?ctx.roundRect(bx,Tp,bw,bh,7):ctx.rect(bx,Tp,bw,bh);ctx.fill();ctx.stroke();
+      lines.forEach((t,k)=>{ctx.fillStyle=k?(rows[k-1].c):C.t;ctx.font=(k?'12px':'bold 12px')+' system-ui,sans-serif';ctx.fillText(t,bx+9,Tp+15+k*16)})}
+  }
+  const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(anim&&!reduce){const t0=performance.now();(function st(t){const p=Math.min(1,(t-t0)/600);draw(1-Math.pow(1-p,3),null);if(p<1&&cv.isConnected)requestAnimationFrame(st)})(t0)}else draw(1,null);
+  const at=e=>{const r=cv.getBoundingClientRect(),px=(e.touches?e.touches[0].clientX:e.clientX)-r.left;hov=Math.min(n-1,Math.max(0,Math.round((px-L)/(w-L-R)*(n-1))));draw(1,hov)};
+  cv.onpointermove=at;cv.onpointerdown=at;cv.onpointerleave=()=>draw(1,null);
+}
+function mcard(id,title,o={}){
+  const leg=o.legend?`<div class="ml">${o.legend.map(l=>`<span><i style="background:${l.c}"></i>${l.n} <b>${l.v}</b></span>`).join('')}</div>`:'';
+  return `<div class="mc ${o.span?'s'+o.span:''}"><div class="mt">${title}</div>${o.big!=null?`<div class="mb"><span class="mv">${o.big}</span>${o.delta?`<span class="md ${o.dcls||''}">${o.delta}</span>`:''}</div>`:''}${leg}<canvas id="${id}" style="height:${o.h||150}px"></canvas></div>`}
+
+async function market(){
+  const data=await get('data/market_health.json','json');
+  if(!data){const lg=await marketLegacy();view.insertAdjacentHTML('afterbegin','<div class="card"><h3>Market Health</h3><span class="mut">Run the Daily refresh once (it now includes compute_market_health.py) to unlock the grouped market dashboard.</span></div>');return lg}
+  MH.data=data;renderMarket(true);
+}
+function renderMarket(anim){
+  const d=MH.data,S=d.series,N=RANGES[MH.range],pm=MH.mode==='pct',C=mcol();
+  const W=a=>a.slice(Math.max(0,a.length-N)),X=W(d.dates);
+  const last=a=>{for(let i=a.length-1;i>=0;i--)if(a[i]!=null)return a[i];return null},first=a=>{for(const v of a)if(v!=null)return v;return null};
+  const den=(k)=>typeof k==='string'?W(S[k]):W(k);
+  const ser=(num,dn)=>{const a=W(S[num]);if(!pm||!dn)return a;const q=den(dn);return a.map((v,i)=>v==null||!q[i]?null:v/q[i]*100)};
+  const sgn=(v,dd=0,suf='')=>v==null?'–':(v>=0?'+':'')+T.fmt(v,dd)+suf;
+  const stTot=S.st1.map((v,i)=>(S.st1[i]||0)+(S.st2[i]||0)+(S.st3[i]||0)+(S.st4[i]||0));
+  const specs=[];let h='';
+  const sec=(id,title,sub)=>`<h2 class="sec" id="sec-${id}">${title}${sub?`<small>${sub}</small>`:''}</h2>`;
+  const area=(id,title,arr,o={})=>{const l=last(arr),f=first(arr),dd=l!=null&&f!=null?l-f:null,pu=pm?'%':'';
+    h+=mcard(id,title,{big:l==null?'–':T.fmt(l,o.dec??(pm?1:0))+pu,delta:o.noDelta?'':(dd==null?'':sgn(dd,o.dec??(pm?1:0),pm?' pts':'')),dcls:cls(dd),h:o.h});
+    specs.push({id,x:X,layers:[{y:arr,type:'area',name:o.name||''}],auto:true,dec:o.dec??(pm?1:0),fmt:pm?(v=>T.fmt(v,1)+'%'):null})};
+  const two=(id,title,upk,dnk,dn,upName='Up',dnName='Down',o={})=>{const a=ser(upk,dn),b=ser(dnk,dn),pu=pm?'%':'',dec=pm?1:0;
+    h+=mcard(id,title,{legend:[{c:C.g,n:upName,v:T.fmt(last(a),dec)+pu},{c:C.r,n:dnName,v:T.fmt(last(b),dec)+pu}],h:o.h});
+    specs.push({id,x:X,layers:[{y:a,type:o.bars?'bars':'line',color:C.g,name:upName},{y:b,type:o.bars?'bars':'line',color:C.r,name:dnName,neg:!!o.neg}],dec,fmt:pm?(v=>T.fmt(v,1)+'%'):null,zero:!!o.bars})};
+
+  // 1 indices
+  if(d.indices.length){h+=sec('idx','Indices',d.real_indices?'':'built from our own stock universe, not official Nifty indices')+'<div class="mh-grid">';
+    d.indices.forEach((ix,i)=>{const a=W(ix.y),l=last(a),f=first(a),ch=l!=null&&f?(l/f-1)*100:null;
+      h+=mcard('ix'+i,ix.name,{big:l==null?'–':T.fmt(l,ix.real?0:1),delta:ch==null?'':sgn(ch,1,'%'),dcls:cls(ch)});
+      specs.push({id:'ix'+i,x:X,layers:[{y:a,type:'area'}],auto:true,dec:ix.real?0:1})});h+='</div>'}
+
+  // 2 advances / declines
+  {h+=sec('adv','Advances and declines')+'<div class="mh-grid">';
+   const a=ser('adv',pm?'n':null),b=ser('dec',pm?'n':null),dec=pm?1:0,pu=pm?'%':'';
+   h+=mcard('adv1','Advances and declines',{legend:[{c:C.g,n:'Advances',v:T.fmt(last(a),dec)+pu},{c:C.r,n:'Declines',v:T.fmt(last(b),dec)+pu}]});
+   specs.push({id:'adv1',x:X,layers:[{y:a,type:'bars',color:C.g,name:'Advances'},{y:b,type:'bars',color:C.r,name:'Declines',neg:true}],dec,zero:true,fmt:pm?(v=>T.fmt(v,1)+'%'):null});
+   const net=W(S.adv).map((v,i)=>v==null?null:(v-(W(S.dec)[i]||0))/(pm?(W(S.n)[i]||1)/100:1));
+   h+=mcard('adv2','Net advances',{big:T.fmt(last(net),pm?1:0)+(pm?'%':''),h:150});
+   specs.push({id:'adv2',x:X,layers:[{y:net,type:'bars',name:'Net'}],zero:true,dec:pm?1:0});
+   if(d.has_volume&&S.upvol_pct){const uv=W(S.upvol_pct);h+=mcard('adv3','Up volume',{big:T.fmt(last(uv),1)+'%',delta:sgn(last(uv)-first(uv),1,' pts'),dcls:cls(last(uv)-first(uv))});
+     specs.push({id:'adv3',x:X,layers:[{y:uv,type:'area'}],auto:true,dec:1,fmt:v=>T.fmt(v,1)+'%'})}
+   h+='</div>'}
+
+  // 3 moving averages
+  {h+=sec('ma','Moving averages','stocks closing above their exponential moving average')+'<div class="mh-grid">';
+   [[20,'ab20','n20'],[50,'ab50','n50'],[100,'ab100','n100']].forEach(([k,a,nn])=>area('ma'+k,'Above '+k+' EMA',ser(a,nn)));
+   area('ma200','Above 200 EMA',ser('ab200','n200'));
+   const sz=[['ab200_large_pct','Large',C.b],['ab200_mid_pct','Mid','#2f6fdb'],['ab200_small_pct','Small','#e08a00']].filter(s=>S[s[0]]);
+   h+=mcard('ma200s','Above 200 EMA by size',{span:2,legend:sz.map(s=>({c:s[2],n:s[1],v:T.fmt(last(W(S[s[0]])),1)+'%'}))});
+   specs.push({id:'ma200s',x:X,layers:sz.map(s=>({y:W(S[s[0]]),type:'line',color:s[2],name:s[1]})),dec:1,fmt:v=>T.fmt(v,1)+'%'});
+   h+='</div>'}
+
+  // 4 highs and lows
+  {h+=sec('hl','52-week highs and lows')+'<div class="mh-grid">';
+   const nh=ser('nh',pm?'n52':null),nl=ser('nl',pm?'n52':null),dec=pm?1:0,pu=pm?'%':'';
+   h+=mcard('hl1','New highs and new lows',{span:2,legend:[{c:C.g,n:'Highs',v:T.fmt(last(nh),dec)+pu},{c:C.r,n:'Lows',v:T.fmt(last(nl),dec)+pu}]});
+   specs.push({id:'hl1',x:X,layers:[{y:nh,type:'bars',color:C.g,name:'Highs'},{y:nl,type:'bars',color:C.r,name:'Lows',neg:true}],zero:true,dec,fmt:pm?(v=>T.fmt(v,1)+'%'):null});
+   const nn=W(S.netnh10);h+=mcard('hl2','Net new highs, 10 days',{big:T.fmt(last(nn),0)});specs.push({id:'hl2',x:X,layers:[{y:nn,type:'bars',name:'Net'}],zero:true,dec:0});
+   h+='</div>'}
+
+  // 5 momentum
+  {h+=sec('mo','Momentum','number of stocks making large moves')+'<div class="mh-grid">';
+   two('mo1','Up and down 4% in a day','up4','dn4','n','Up','Down',{bars:true,neg:true});
+   {const r=W(S.ratio4_10);h+=mcard('mo2','Up 4% to down 4%, 10 days',{big:T.fmt(last(r),2),delta:sgn(last(r)-first(r),2),dcls:cls(last(r)-first(r))});specs.push({id:'mo2',x:X,layers:[{y:r,type:'area'}],auto:true,dec:2})}
+   two('mo3','25% in a quarter','q25_up','q25_dn','n');two('mo4','25% in a month','m25_up','m25_dn','n');
+   two('mo5','50% in a month','m50_up','m50_dn','n');two('mo6','13% in 34 days','d13_up','d13_dn','n');
+   h+='</div>'}
+
+  // 6 stages
+  {h+=sec('st','Stages','Weinstein-style, 150-day average and its slope')+'<div class="mh-grid">';
+   const sk=[['st1','Stage 1','#9aa3b0'],['st2','Stage 2','#2e9e6b'],['st3','Stage 3','#e9a23b'],['st4','Stage 4','#d9534f']];
+   const wt=W(stTot);const ly=sk.map(s=>({y:W(S[s[0]]).map((v,i)=>v==null?null:(pm?v/(wt[i]||1)*100:v)),color:s[2],name:s[1]}));
+   const lastTot=last(W(stTot))||1;
+   h+=mcard('st0','Stage distribution',{span:2,legend:sk.map(s=>({c:s[2],n:s[1],v:T.fmt(last(W(S[s[0]]))/lastTot*100,0)+'%'})),h:170});
+   specs.push({id:'st0',x:X,layers:ly.map(l=>Object.assign(l,{type:'area'})),stack:true,dec:pm?1:0,fmt:pm?(v=>T.fmt(v,1)+'%'):null});
+   area('st2','Stage 2',ser('st2',pm?stTot:null));area('st4','Stage 4',ser('st4',pm?stTot:null));
+   h+='</div>'}
+
+  // 7 industries
+  {h+=sec('ind','Industries','in play = at least 15% of stocks above their 50-day average and up 10%+ in a month; uptrend = half or more above the 200-day EMA')+'<div class="mh-grid">';
+   area('ip','Industries in play',W(S.ind_play),{dec:0,noDelta:false});area('iu','Industries in uptrend',W(S.ind_up),{dec:0});
+   h+='</div>';
+   const top=d.industries.slice().sort((a,b)=>b.play-a.play).slice(0,10);
+   h+=`<div class="mc tbl"><div class="mt">Industries in play now<a class="link" href="#/screener">Screener →</a></div><table><tr><th class="l">Industry</th><th>Stocks</th><th>In play</th><th>Share in play</th></tr>${top.map(r=>`<tr class="row ind" data-ind="${esc(r.industry)}"><td class="l">${esc(r.industry)}</td><td>${r.stocks}</td><td>${r.play}</td><td>${T.fmt(r.play_share,0)}%</td></tr>`).join('')}</table></div>`;
+   const cols=[['industry','Industry','l'],['stocks','Stocks'],['r1w','1W'],['r1m','1M'],['r3m','3M'],['ab50','Above 50 EMA'],['ab200','Above 200 EMA'],['ab200_chg','200 EMA, 1M chg'],['vshare_1w','Value share, 1W'],['vshare_chg','Share vs 20D']];
+   const rows=d.industries.slice().sort((a,b)=>{const k=MH.sort.k,x=a[k],y=b[k];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (x>y?1:x<y?-1:0)*MH.sort.d});
+   const f=(r,k)=>{const v=r[k];if(k==='industry')return esc(v);if(v==null)return '–';if(k==='stocks')return v;if(k==='ab50'||k==='ab200'||k==='vshare_1w')return T.fmt(v,0)+'%';if(k==='ab200_chg'||k==='vshare_chg')return `<span class="${cls(v)}">${sgn(v,1)}</span>`;return `<span class="${cls(v)}">${sgn(v,1,'%')}</span>`};
+   h+=`<div class="mc tbl" style="margin-top:14px"><div class="mt">Sectors &amp; industries<span class="mut" style="font-weight:400;font-size:12px">median return of constituents · click a header to sort, a row to open in the screener</span></div><div class="scroll" style="max-height:520px"><table id="indtb"><tr>${cols.map(c=>`<th class="${c[2]||''}" data-k="${c[0]}">${c[1]}${MH.sort.k===c[0]?(MH.sort.d>0?' ▲':' ▼'):''}</th>`).join('')}</tr>${rows.map(r=>`<tr class="row ind" data-ind="${esc(r.industry)}">${cols.map(c=>`<td class="${c[2]||''}">${f(r,c[0])}</td>`).join('')}</tr>`).join('')}</table></div></div>`;
+   h+=heat()}
+
+  // 8 size and style
+  if(d.ratios&&d.ratios.length){h+=sec('sz','Size and style','ratio of two groups, rebased to 100 at the start of the data; rising = first group outperforming')+'<div class="mh-grid">';
+   d.ratios.forEach((r,i)=>{const a=W(r.y),l=last(a),f=first(a),ch=l!=null&&f?(l/f-1)*100:null;h+=mcard('rt'+i,r.name,{big:T.fmt(l,1),delta:ch==null?'':sgn(ch,1,'%'),dcls:cls(ch)});specs.push({id:'rt'+i,x:X,layers:[{y:a,type:'area'}],auto:true,dec:1})});h+='</div>'}
+
+  // 9 movers
+  {const rows=Object.values(D.rsk),top=(k,asc)=>rows.filter(r=>T.num(r[k])!=null&&(T.num(r.traded_cr)||0)>5).sort((a,c)=>asc?T.num(a[k])-T.num(c[k]):T.num(c[k])-T.num(a[k])).slice(0,8);
+   const list=(t,a)=>`<div class="mc tbl"><div class="mt">${t}</div><table>${a.map(r=>`<tr class="row" onclick="location.hash='#/stock/${r.symbol}'"><td class="l">${r.symbol}</td><td>${T.fmt(r.price,1)}</td><td class="${cls(T.num(r.ret_1m))}">${T.pct(T.num(r.ret_1m))}</td><td>RSI ${T.fmt(T.num(r.rsi14),0)}</td></tr>`).join('')}</table></div>`;
+   h+=sec('mv','Movers','traded above ₹5 cr a day')+`<div class="mh-grid">${list('Top 1M returns',top('ret_1m'))}${list('Bottom 1M returns',top('ret_1m',true))}${list('Most oversold (RSI)',top('rsi14',true))}</div>`}
+
+  const chips=[['idx','Indices'],['adv','Breadth'],['ma','Averages'],['hl','Highs/lows'],['mo','Momentum'],['st','Stages'],['ind','Industries'],['sz','Size & style'],['mv','Movers']];
+  const bar=`<div class="mh-bar"><div class="seg" id="mh-mode"><button data-m="count" class="${MH.mode==='count'?'on':''}">Count</button><button data-m="pct" class="${MH.mode==='pct'?'on':''}">%</button></div>
+   <div class="chips">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</div>
+   <div class="seg" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div></div>
+   <div class="mut" style="font-size:12px;margin:-4px 0 6px">${d.n_stocks} stocks · data to ${esc(d.last_date)} · derived from daily closes (${d.has_volume?'volume included':'no volume data'})</div>`;
+  view.innerHTML=bar+h;
+  // wire
+  document.querySelectorAll('#mh-mode button').forEach(b=>b.onclick=()=>{MH.mode=b.dataset.m;renderMarket(false)});
+  document.querySelectorAll('#mh-range button').forEach(b=>b.onclick=()=>{MH.range=b.dataset.r;renderMarket(true)});
+  document.querySelectorAll('.mh-bar .chips a').forEach(a=>a.onclick=()=>{const el=document.getElementById(a.dataset.s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})});
+  document.querySelectorAll('#indtb th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;MH.sort=MH.sort.k===k?{k,d:-MH.sort.d}:{k,d:k==='industry'?1:-1};renderMarket(false)});
+  document.querySelectorAll('tr.ind').forEach(tr=>tr.onclick=()=>{FILT.ind=tr.dataset.ind;FILT.q='';FILT.rel='all';location.hash='#/screener'});
+  MH.charts=specs;specs.forEach(sp=>{const cv=document.getElementById(sp.id);if(cv)mchart(cv,sp,anim)});
+  countUps(view);
+}
+let _rz;window.addEventListener('resize',()=>{clearTimeout(_rz);_rz=setTimeout(()=>{if(MH.data&&(location.hash===''||location.hash==='#/market'))MH.charts.forEach(sp=>{const cv=document.getElementById(sp.id);if(cv)mchart(cv,sp,false)})},150)});
 
 // ---------- screener ----------
 const COLS=[['symbol','Symbol','l'],['industry','Industry','l'],['price','Price'],['pe_used','P/E'],['pb','P/B'],['roe_pct','ROE %'],['roce_pct','ROCE %'],['rev_cagr_pct','Rev CAGR %'],['ret_1y','1Y %'],['rsi14','RSI'],['fair','DCF fair'],['upside','Upside %'],['rel','DCF reliability','l']];
