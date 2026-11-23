@@ -129,9 +129,11 @@ async function boot(){
   let t0='light';try{t0=localStorage.getItem('tl_theme')||'light'}catch(e){}document.documentElement.dataset.theme=t0;
   th.onclick=()=>{setTh(document.documentElement.dataset.theme==='dark'?'light':'dark');route()};
   try{const tp=document.createElement('div');tp.className='tape';const rs=Object.values(D.rsk).filter(r=>T.num(r.ret_1m)!=null).sort((a,b)=>(T.num(b.traded_cr)||0)-(T.num(a.traded_cr)||0)).slice(0,30);
-    const items=[['Nifty 50',D.mkt&&D.mkt.nifty50],['Nifty 500',D.mkt&&D.mkt.nifty500]].filter(x=>x[1]).map(([n,o])=>`<span class="ti"><b>${n}</b> ${T.fmt(o.price??o.close,0)} <em class="${cls(o.ret_1m??o.returns_pct?.['1m'])}">${T.pct(o.ret_1m??o.returns_pct?.['1m'])}</em></span>`)
-      .concat(rs.map(r=>`<a class="ti" href="#/stock/${esc(r.symbol)}"><b>${esc(r.symbol)}</b> ${T.fmt(T.num(r.price),1)} <em class="${cls(T.num(r.ret_1m))}">${T.pct(T.num(r.ret_1m),1)}</em></a>`)).join('');
-    tp.innerHTML=`<div class="tt"><div class="tr">${items}${items}</div></div><span class="tl">1M</span>`;document.querySelector('.top').after(tp)}catch(e){}
+    let mhd=null;try{mhd=await get('data/market_health.json','json')}catch(e){}
+    const ixs=((mhd&&mhd.indices)||[]).filter(x=>x.real).map(x=>{const y=x.y.filter(v=>v!=null),l=y[y.length-1],p=y[y.length-23];return [x.name,{price:l,ret:p?(l/p-1)*100:null}]});
+    const items=ixs.map(([n,o])=>`<span class="ti"><b>${esc(n)}</b> ${T.fmt(o.price,0)} <em class="${cls(o.ret)}">${T.pct(o.ret,1)}</em></span>`).join('')+''
+    ;const items2=items+rs.map(r=>`<a class="ti" href="#/stock/${esc(r.symbol)}"><b>${esc(r.symbol)}</b> ${T.fmt(T.num(r.price),1)} <em class="${cls(T.num(r.ret_1m))}">${T.pct(T.num(r.ret_1m),1)}</em></a>`).join('');
+    tp.innerHTML=`<div class="tt"><div class="tr">${items2}${items2}</div></div><span class="tl">1M</span>`;document.querySelector('.top').after(tp)}catch(e){}
   window.addEventListener('hashchange',route);route();
 }
 
@@ -381,10 +383,11 @@ const STMT_KEY={pl:['Total Revenue','Operating Revenue','Gross Profit','EBITDA',
 const STMT_GROW={pl:['Total Revenue','Operating Revenue','Net Interest Income','EBITDA','Operating Income','Pretax Income','Net Income','Diluted EPS'],bs:['Total Assets','Stockholders Equity','Total Debt'],cf:['Operating Cash Flow','Free Cash Flow']};
 function stmtTable(tb,kind,per){
   if(!tb)return '<div class="card"><p class="mut">No '+(per==='q'?'quarterly ':'')+'data available for this statement.</p></div>';
-  const raw=/EPS|Rate|Ratio|Per Share/i,key=new Set(STMT_KEY[kind]),gk=new Set(STMT_GROW[kind]);
+  const raw=/EPS|Tax Rate|Per Share/i,key=new Set(STMT_KEY[kind]),gk=new Set(STMT_GROW[kind]);
   const cr=(n,v)=>v==null?'–':raw.test(n)?T.fmt(v,2):T.fmt(v/1e7,Math.abs(v/1e7)<100?2:0);
   const dl=d=>{const x=new Date(d);return per==='q'?x.toLocaleString('en-GB',{month:'short',year:'2-digit'}):'FY'+String(x.getFullYear()).slice(2)};
-  const rows=tb.rows.filter(r=>!FS.keyonly||key.has(r[0]));
+  const ko=STMT_KEY[kind],pos=n=>{const i=ko.indexOf(n);return i<0?999:i};
+  const rows=tb.rows.filter(r=>!FS.keyonly||key.has(r[0])).map((r,i)=>[r,i]).sort((a,b)=>pos(a[0][0])-pos(b[0][0])||a[1]-b[1]).map(x=>x[0]);
   let t=`<table class="stmt"><tr><th class="l">₹ crore</th>${tb.dates.map(d=>`<th>${dl(d)}</th>`).join('')}</tr>`;
   rows.forEach(([n,v])=>{
     t+=`<tr class="${key.has(n)?'kr':''}"><td class="l">${esc(n.replace(/([a-z])([A-Z])/g,'$1 $2'))}</td>${v.map(x=>`<td>${cr(n,x)}</td>`).join('')}</tr>`;
