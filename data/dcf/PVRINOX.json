@@ -1,16 +1,18 @@
 {
  "symbol": "PVRINOX",
  "latest_fy": "2026-03-31",
+ "status": "not meaningful",
  "price": 1715.9,
- "fair_value": -185.8,
- "upside_pct": -110.8,
+ "fair_value": null,
+ "upside_pct": null,
  "flags": [
-  "2-year growth differs from 3-year CAGR (20.9%) by over 10 points",
-  "first-year growth below terminal growth (growth path rises)",
-  "negative equity value"
+  "growth gap: 2-year growth differs from 3-year CAGR (20.9%) by over 10 points",
+  "growth path: first-year growth below terminal growth (path rises)",
+  "low return: ROIC 4.6% below WACC 11.1%",
+  "not meaningful: negative equity value"
  ],
  "assumptions": {
-  "rf_pct": 7.199999999999999,
+  "rf_pct": 7.2,
   "erp_pct": 5.5,
   "beta_raw": 1.04,
   "beta_used": 1.02,
@@ -19,16 +21,20 @@
   "wacc_pct": 11.06,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
   "growth_years": 2,
   "historic_growth_pct": 4.1,
   "first_year_growth_pct": 4.1,
   "ebit_margin_pct": 12.5,
   "margin_basis": "latest",
-  "sales_to_capital": 0.5
+  "sales_to_capital": 0.5,
+  "roic_now_pct": 4.6
  },
  "projection_cr": [
   {
    "year": 1,
+   "growth_pct": 4.1,
    "revenue": 6877.0,
    "nopat": 645.0,
    "reinvestment": 547.0,
@@ -36,44 +42,89 @@
   },
   {
    "year": 2,
-   "revenue": 7203.0,
-   "nopat": 675.0,
-   "reinvestment": 651.0,
-   "fcff": 24.0
+   "growth_pct": 4.1,
+   "revenue": 7162.0,
+   "nopat": 671.0,
+   "reinvestment": 570.0,
+   "fcff": 102.0
   },
   {
    "year": 3,
-   "revenue": 7586.0,
-   "nopat": 711.0,
-   "reinvestment": 767.0,
-   "fcff": -55.0
+   "growth_pct": 4.1,
+   "revenue": 7459.0,
+   "nopat": 699.0,
+   "reinvestment": 594.0,
+   "fcff": 106.0
   },
   {
    "year": 4,
-   "revenue": 8035.0,
-   "nopat": 753.0,
-   "reinvestment": 897.0,
-   "fcff": -144.0
+   "growth_pct": 4.5,
+   "revenue": 7793.0,
+   "nopat": 731.0,
+   "reinvestment": 668.0,
+   "fcff": 62.0
   },
   {
    "year": 5,
-   "revenue": 8557.0,
-   "nopat": 802.0,
-   "reinvestment": 1044.0,
-   "fcff": -242.0
+   "growth_pct": 4.8,
+   "revenue": 8169.0,
+   "nopat": 766.0,
+   "reinvestment": 751.0,
+   "fcff": 15.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 5.2,
+   "revenue": 8590.0,
+   "nopat": 805.0,
+   "reinvestment": 842.0,
+   "fcff": -37.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 5.5,
+   "revenue": 9061.0,
+   "nopat": 849.0,
+   "reinvestment": 943.0,
+   "fcff": -94.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 5.8,
+   "revenue": 9589.0,
+   "nopat": 899.0,
+   "reinvestment": 1056.0,
+   "fcff": -157.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 6.2,
+   "revenue": 10180.0,
+   "nopat": 954.0,
+   "reinvestment": 1182.0,
+   "fcff": -228.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 10842.0,
+   "nopat": 1016.0,
+   "reinvestment": 1323.0,
+   "fcff": -307.0
   }
  ],
  "terminal": {
   "roic_pct": 11.1,
-  "fcff_cr": 352.0,
-  "pv_share_of_ev_pct": 103.9
+  "fcff_cr": 446.0,
+  "pv_share_of_ev_pct": 100.9
  },
  "bridge_cr": {
-  "enterprise_value": 4401.0,
+  "enterprise_value": 3397.0,
   "debt": 6779.0,
   "cash": 592.0,
+  "investments": 0.0,
   "minority": 0.0,
-  "equity_value": -1786.0,
+  "equity_value": -2790.0,
   "shares_cr": 9.613,
   "market_cap": 16495.0
  },
@@ -94,45 +145,46 @@
   ],
   "fair_value": [
    [
-    -21.7,
-    -24.7,
-    -27.8,
-    -30.8,
+    -117.0,
+    -123.1,
+    -129.2,
+    -135.4,
     null
    ],
    [
-    -107.4,
-    -111.4,
-    -115.4,
-    -119.4,
-    -123.4
+    -205.8,
+    -212.8,
+    -219.8,
+    -226.9,
+    -234.0
    ],
    [
-    -176.4,
-    -181.1,
-    -185.8,
-    -190.5,
-    -195.2
+    -275.2,
+    -282.7,
+    -290.2,
+    -297.9,
+    -305.5
    ],
    [
-    -232.9,
-    -238.1,
-    -243.4,
-    -248.6,
-    -253.9
+    -330.4,
+    -338.1,
+    -346.0,
+    -353.8,
+    -361.8
    ],
    [
-    -279.9,
-    -285.5,
-    -291.1,
-    -296.7,
-    -302.4
+    -374.9,
+    -382.7,
+    -390.6,
+    -398.6,
+    -406.6
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "note": "outside -10% to 60%"
+  "implied_ebit_margin_pct": 37.7,
+  "note": "growth outside -10% to 60%"
  },
  "model": {
   "rev": 6603.8,
@@ -142,10 +194,12 @@
   "g1": 0.041432439833528845,
   "wacc": 0.11059823082657139,
   "terminal_g": 0.065,
-  "n": 5,
+  "n": 10,
+  "hold_years": 3,
   "roic_cap": 0.2,
   "debt": 6779.1,
   "cash": 591.5,
+  "invest": 0.0,
   "minority": 0.0,
   "shares_cr": 9.613099788099538
  }

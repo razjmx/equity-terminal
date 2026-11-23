@@ -1,12 +1,13 @@
 {
  "symbol": "HONAUT",
  "latest_fy": "2026-03-31",
+ "status": "ok",
  "price": 29765.0,
- "fair_value": 11126.8,
- "upside_pct": -62.6,
+ "fair_value": 11550.2,
+ "upside_pct": -61.2,
  "flags": [],
  "assumptions": {
-  "rf_pct": 7.199999999999999,
+  "rf_pct": 7.2,
   "erp_pct": 5.5,
   "beta_raw": 0.83,
   "beta_used": 0.88,
@@ -15,16 +16,20 @@
   "wacc_pct": 12.04,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
   "growth_years": 2,
   "historic_growth_pct": 7.4,
   "first_year_growth_pct": 7.4,
   "ebit_margin_pct": 12.6,
   "margin_basis": "latest",
-  "sales_to_capital": 4.0
+  "sales_to_capital": 4.0,
+  "roic_now_pct": 57.6
  },
  "projection_cr": [
   {
    "year": 1,
+   "growth_pct": 7.4,
    "revenue": 5025.0,
    "nopat": 475.0,
    "reinvestment": 87.0,
@@ -32,44 +37,89 @@
   },
   {
    "year": 2,
-   "revenue": 5387.0,
-   "nopat": 509.0,
-   "reinvestment": 90.0,
-   "fcff": 419.0
+   "growth_pct": 7.4,
+   "revenue": 5398.0,
+   "nopat": 510.0,
+   "reinvestment": 93.0,
+   "fcff": 417.0
   },
   {
    "year": 3,
-   "revenue": 5761.0,
-   "nopat": 544.0,
-   "reinvestment": 94.0,
-   "fcff": 451.0
+   "growth_pct": 7.4,
+   "revenue": 5798.0,
+   "nopat": 548.0,
+   "reinvestment": 100.0,
+   "fcff": 448.0
   },
   {
    "year": 4,
-   "revenue": 6149.0,
-   "nopat": 581.0,
-   "reinvestment": 97.0,
-   "fcff": 484.0
+   "growth_pct": 7.3,
+   "revenue": 6221.0,
+   "nopat": 588.0,
+   "reinvestment": 106.0,
+   "fcff": 482.0
   },
   {
    "year": 5,
-   "revenue": 6549.0,
-   "nopat": 619.0,
-   "reinvestment": 100.0,
+   "growth_pct": 7.2,
+   "revenue": 6666.0,
+   "nopat": 630.0,
+   "reinvestment": 111.0,
    "fcff": 519.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 7.0,
+   "revenue": 7134.0,
+   "nopat": 674.0,
+   "reinvestment": 117.0,
+   "fcff": 557.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 6.9,
+   "revenue": 7626.0,
+   "nopat": 721.0,
+   "reinvestment": 123.0,
+   "fcff": 598.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 6.8,
+   "revenue": 8141.0,
+   "nopat": 769.0,
+   "reinvestment": 129.0,
+   "fcff": 640.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 6.6,
+   "revenue": 8681.0,
+   "nopat": 820.0,
+   "reinvestment": 135.0,
+   "fcff": 685.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 9246.0,
+   "nopat": 874.0,
+   "reinvestment": 141.0,
+   "fcff": 733.0
   }
  ],
  "terminal": {
   "roic_pct": 20.0,
-  "fcff_cr": 445.0,
-  "pv_share_of_ev_pct": 74.0
+  "fcff_cr": 628.0,
+  "pv_share_of_ev_pct": 55.7
  },
  "bridge_cr": {
-  "enterprise_value": 6149.0,
+  "enterprise_value": 6524.0,
   "debt": 110.0,
   "cash": 3805.0,
+  "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 9844.0,
+  "equity_value": 10219.0,
   "shares_cr": 0.885,
   "market_cap": 26334.0
  },
@@ -90,45 +140,46 @@
   ],
   "fair_value": [
    [
-    13226.3,
-    13957.1,
-    14886.7,
-    16113.0,
-    17811.0
+    13915.8,
+    14598.0,
+    15463.3,
+    16601.7,
+    18174.0
    ],
    [
-    11630.0,
-    12067.0,
-    12594.5,
-    13246.2,
-    14074.4
+    12202.5,
+    12601.3,
+    13081.2,
+    13671.9,
+    14420.2
    ],
    [
-    10519.9,
-    10800.3,
-    11126.8,
-    11513.2,
-    11979.0
+    11008.3,
+    11259.2,
+    11550.2,
+    11893.2,
+    12305.2
    ],
    [
-    9702.8,
-    9891.5,
-    10105.5,
-    10350.9,
-    10636.3
+    10127.1,
+    10293.2,
+    10480.8,
+    10695.0,
+    10942.8
    ],
    [
-    9075.8,
-    9207.2,
-    9353.1,
-    9516.5,
-    9701.3
+    9449.5,
+    9563.7,
+    9689.9,
+    9830.5,
+    9988.9
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": null,
-  "note": "outside -10% to 60%"
+  "implied_first_year_growth_pct": 37.9,
+  "implied_ebit_margin_pct": 41.0,
+  "note": ""
  },
  "model": {
   "rev": 4678.5,
@@ -138,10 +189,12 @@
   "g1": 0.07415906528951854,
   "wacc": 0.12040736069524124,
   "terminal_g": 0.065,
-  "n": 5,
+  "n": 10,
+  "hold_years": 3,
   "roic_cap": 0.2,
   "debt": 110.5,
   "cash": 3805.3,
+  "invest": 0.0,
   "minority": 0.0,
   "shares_cr": 0.8847358899109692
  }

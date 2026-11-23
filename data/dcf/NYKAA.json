@@ -1,12 +1,15 @@
 {
  "symbol": "NYKAA",
  "latest_fy": "2026-03-31",
+ "status": "ok",
  "price": 362.5,
- "fair_value": 8.6,
- "upside_pct": -97.6,
- "flags": [],
+ "fair_value": 11.2,
+ "upside_pct": -96.9,
+ "flags": [
+  "far from price: model value is 3% of the market price"
+ ],
  "assumptions": {
-  "rf_pct": 7.199999999999999,
+  "rf_pct": 7.2,
   "erp_pct": 5.5,
   "beta_raw": 0.97,
   "beta_used": 0.98,
@@ -15,16 +18,20 @@
   "wacc_pct": 12.53,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
   "growth_years": 2,
   "historic_growth_pct": 25.1,
   "first_year_growth_pct": 25.1,
   "ebit_margin_pct": 4.4,
   "margin_basis": "latest",
-  "sales_to_capital": 4.0
+  "sales_to_capital": 4.0,
+  "roic_now_pct": 14.1
  },
  "projection_cr": [
   {
    "year": 1,
+   "growth_pct": 25.1,
    "revenue": 12426.0,
    "nopat": 410.0,
    "reinvestment": 624.0,
@@ -32,44 +39,89 @@
   },
   {
    "year": 2,
-   "revenue": 14972.0,
-   "nopat": 494.0,
-   "reinvestment": 636.0,
-   "fcff": -142.0
+   "growth_pct": 25.1,
+   "revenue": 15551.0,
+   "nopat": 513.0,
+   "reinvestment": 781.0,
+   "fcff": -268.0
   },
   {
    "year": 3,
-   "revenue": 17341.0,
-   "nopat": 572.0,
-   "reinvestment": 592.0,
-   "fcff": -20.0
+   "growth_pct": 25.1,
+   "revenue": 19461.0,
+   "nopat": 642.0,
+   "reinvestment": 978.0,
+   "fcff": -335.0
   },
   {
    "year": 4,
-   "revenue": 19276.0,
-   "nopat": 636.0,
-   "reinvestment": 484.0,
-   "fcff": 152.0
+   "growth_pct": 22.5,
+   "revenue": 23837.0,
+   "nopat": 787.0,
+   "reinvestment": 1094.0,
+   "fcff": -307.0
   },
   {
    "year": 5,
-   "revenue": 20529.0,
-   "nopat": 677.0,
-   "reinvestment": 313.0,
-   "fcff": 364.0
+   "growth_pct": 19.8,
+   "revenue": 28561.0,
+   "nopat": 943.0,
+   "reinvestment": 1181.0,
+   "fcff": -239.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 17.2,
+   "revenue": 33460.0,
+   "nopat": 1104.0,
+   "reinvestment": 1225.0,
+   "fcff": -121.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 14.5,
+   "revenue": 38309.0,
+   "nopat": 1264.0,
+   "reinvestment": 1212.0,
+   "fcff": 52.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 11.8,
+   "revenue": 42840.0,
+   "nopat": 1414.0,
+   "reinvestment": 1133.0,
+   "fcff": 281.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 9.2,
+   "revenue": 46766.0,
+   "nopat": 1543.0,
+   "reinvestment": 981.0,
+   "fcff": 562.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 49806.0,
+   "nopat": 1644.0,
+   "reinvestment": 760.0,
+   "fcff": 884.0
   }
  ],
  "terminal": {
   "roic_pct": 13.2,
-  "fcff_cr": 366.0,
-  "pv_share_of_ev_pct": 100.6
+  "fcff_cr": 888.0,
+  "pv_share_of_ev_pct": 110.3
  },
  "bridge_cr": {
-  "enterprise_value": 3348.0,
+  "enterprise_value": 4106.0,
   "debt": 1238.0,
   "cash": 408.0,
+  "investments": 0.0,
   "minority": 64.0,
-  "equity_value": 2454.0,
+  "equity_value": 3212.0,
   "shares_cr": 286.535,
   "market_cap": 103869.0
  },
@@ -90,45 +142,46 @@
   ],
   "fair_value": [
    [
-    14.2,
-    15.1,
-    16.1,
-    17.4,
-    19.2
+    20.9,
+    22.3,
+    23.9,
+    25.9,
+    28.6
+   ],
+   [
+    14.9,
+    15.5,
+    16.2,
+    17.0,
+    18.1
    ],
    [
     10.7,
-    11.1,
-    11.6,
-    12.1,
-    12.8
+    10.9,
+    11.2,
+    11.5,
+    11.9
    ],
    [
-    8.2,
-    8.4,
-    8.6,
-    8.8,
-    9.0
+    7.8,
+    7.9,
+    8.0,
+    8.1,
+    8.2
    ],
    [
-    6.5,
-    6.6,
-    6.7,
-    6.7,
-    6.8
-   ],
-   [
-    5.5,
-    5.5,
-    5.6,
-    5.6,
-    5.7
+    6.0,
+    6.0,
+    6.1,
+    6.2,
+    6.3
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "note": "outside -10% to 60%"
+  "implied_ebit_margin_pct": 44.3,
+  "note": "growth outside -10% to 60%"
  },
  "model": {
   "rev": 9929.4,
@@ -138,10 +191,12 @@
   "g1": 0.2514599889173583,
   "wacc": 0.1252653381897162,
   "terminal_g": 0.065,
-  "n": 5,
+  "n": 10,
+  "hold_years": 3,
   "roic_cap": 0.2,
   "debt": 1237.81,
   "cash": 407.9,
+  "invest": 0.0,
   "minority": 64.12,
   "shares_cr": 286.5347817048276
  }

@@ -1,12 +1,13 @@
 {
  "symbol": "RAILTEL",
  "latest_fy": "2026-03-31",
+ "status": "ok",
  "price": 245.02,
- "fair_value": 120.7,
- "upside_pct": -50.7,
+ "fair_value": 161.8,
+ "upside_pct": -34.0,
  "flags": [],
  "assumptions": {
-  "rf_pct": 7.199999999999999,
+  "rf_pct": 7.2,
   "erp_pct": 5.5,
   "beta_raw": 2.01,
   "beta_used": 1.68,
@@ -15,16 +16,20 @@
   "wacc_pct": 16.34,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
   "growth_years": 2,
   "historic_growth_pct": 29.0,
   "first_year_growth_pct": 29.0,
   "ebit_margin_pct": 10.5,
   "margin_basis": "latest",
-  "sales_to_capital": 2.73
+  "sales_to_capital": 2.73,
+  "roic_now_pct": 21.5
  },
  "projection_cr": [
   {
    "year": 1,
+   "growth_pct": 29.0,
    "revenue": 5508.0,
    "nopat": 434.0,
    "reinvestment": 453.0,
@@ -32,44 +37,89 @@
   },
   {
    "year": 2,
-   "revenue": 6797.0,
-   "nopat": 535.0,
-   "reinvestment": 472.0,
-   "fcff": 64.0
+   "growth_pct": 29.0,
+   "revenue": 7107.0,
+   "nopat": 560.0,
+   "reinvestment": 585.0,
+   "fcff": -25.0
   },
   {
    "year": 3,
-   "revenue": 8005.0,
-   "nopat": 630.0,
-   "reinvestment": 442.0,
-   "fcff": 189.0
+   "growth_pct": 29.0,
+   "revenue": 9171.0,
+   "nopat": 722.0,
+   "reinvestment": 755.0,
+   "fcff": -33.0
   },
   {
    "year": 4,
-   "revenue": 8976.0,
-   "nopat": 707.0,
-   "reinvestment": 355.0,
-   "fcff": 352.0
+   "growth_pct": 25.8,
+   "revenue": 11538.0,
+   "nopat": 909.0,
+   "reinvestment": 866.0,
+   "fcff": 42.0
   },
   {
    "year": 5,
-   "revenue": 9559.0,
-   "nopat": 753.0,
-   "reinvestment": 213.0,
-   "fcff": 539.0
+   "growth_pct": 22.6,
+   "revenue": 14146.0,
+   "nopat": 1114.0,
+   "reinvestment": 954.0,
+   "fcff": 160.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 19.4,
+   "revenue": 16887.0,
+   "nopat": 1330.0,
+   "reinvestment": 1003.0,
+   "fcff": 327.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 16.2,
+   "revenue": 19615.0,
+   "nopat": 1545.0,
+   "reinvestment": 998.0,
+   "fcff": 546.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 12.9,
+   "revenue": 22153.0,
+   "nopat": 1745.0,
+   "reinvestment": 929.0,
+   "fcff": 816.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 9.7,
+   "revenue": 24306.0,
+   "nopat": 1914.0,
+   "reinvestment": 788.0,
+   "fcff": 1126.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 25886.0,
+   "nopat": 2039.0,
+   "reinvestment": 578.0,
+   "fcff": 1461.0
   }
  ],
  "terminal": {
   "roic_pct": 20.0,
-  "fcff_cr": 541.0,
-  "pv_share_of_ev_pct": 81.3
+  "fcff_cr": 1465.0,
+  "pv_share_of_ev_pct": 72.9
  },
  "bridge_cr": {
-  "enterprise_value": 3174.0,
+  "enterprise_value": 4493.0,
   "debt": 64.0,
   "cash": 764.0,
+  "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 3874.0,
+  "equity_value": 5193.0,
   "shares_cr": 32.094,
   "market_cap": 7864.0
  },
@@ -90,45 +140,46 @@
   ],
   "fair_value": [
    [
-    144.1,
-    147.7,
-    151.7,
+    206.1,
+    211.8,
+    218.1,
+    225.2,
+    233.2
+   ],
+   [
+    178.4,
+    182.2,
+    186.5,
+    191.1,
+    196.3
+   ],
+   [
     156.3,
-    161.4
+    158.9,
+    161.8,
+    164.9,
+    168.3
    ],
    [
-    129.2,
-    131.7,
-    134.4,
-    137.5,
-    140.8
+    138.4,
+    140.2,
+    142.2,
+    144.2,
+    146.5
    ],
    [
-    117.1,
-    118.8,
-    120.7,
-    122.8,
-    125.0
-   ],
-   [
-    107.1,
-    108.3,
-    109.6,
-    111.0,
-    112.5
-   ],
-   [
-    98.7,
-    99.5,
-    100.4,
-    101.4,
-    102.3
+    123.6,
+    124.9,
+    126.2,
+    127.6,
+    129.1
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": null,
-  "note": "outside -10% to 60%"
+  "implied_first_year_growth_pct": 44.3,
+  "implied_ebit_margin_pct": 14.0,
+  "note": ""
  },
  "model": {
   "rev": 4268.7,
@@ -138,10 +189,12 @@
   "g1": 0.2903467194238012,
   "wacc": 0.16342194162620438,
   "terminal_g": 0.065,
-  "n": 5,
+  "n": 10,
+  "hold_years": 3,
   "roic_cap": 0.2,
   "debt": 63.72,
   "cash": 763.62,
+  "invest": 0.0,
   "minority": 0.0,
   "shares_cr": 32.093840058770716
  }

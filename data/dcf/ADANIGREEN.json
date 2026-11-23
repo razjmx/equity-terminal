@@ -1,15 +1,17 @@
 {
  "symbol": "ADANIGREEN",
  "latest_fy": "2026-03-31",
+ "status": "not meaningful",
  "price": 1394.1,
- "fair_value": -341.6,
- "upside_pct": -124.5,
+ "fair_value": null,
+ "upside_pct": null,
  "flags": [
-  "very high EBIT margin (49%)",
-  "negative equity value"
+  "margin: very high EBIT margin (49%)",
+  "low return: ROIC 3.6% below WACC 13.4%",
+  "not meaningful: negative equity value"
  ],
  "assumptions": {
-  "rf_pct": 7.199999999999999,
+  "rf_pct": 7.2,
   "erp_pct": 5.5,
   "beta_raw": 1.99,
   "beta_used": 1.66,
@@ -18,16 +20,20 @@
   "wacc_pct": 13.41,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
   "growth_years": 2,
   "historic_growth_pct": 15.6,
   "first_year_growth_pct": 15.6,
   "ebit_margin_pct": 49.2,
   "margin_basis": "latest",
-  "sales_to_capital": 0.5
+  "sales_to_capital": 0.5,
+  "roic_now_pct": 3.6
  },
  "projection_cr": [
   {
    "year": 1,
+   "growth_pct": 15.6,
    "revenue": 14252.0,
    "nopat": 5259.0,
    "reinvestment": 3851.0,
@@ -35,44 +41,89 @@
   },
   {
    "year": 2,
-   "revenue": 16153.0,
-   "nopat": 5961.0,
-   "reinvestment": 3803.0,
-   "fcff": 2157.0
+   "growth_pct": 15.6,
+   "revenue": 16478.0,
+   "nopat": 6081.0,
+   "reinvestment": 4453.0,
+   "fcff": 1627.0
   },
   {
    "year": 3,
-   "revenue": 17940.0,
-   "nopat": 6620.0,
-   "reinvestment": 3574.0,
-   "fcff": 3046.0
+   "growth_pct": 15.6,
+   "revenue": 19053.0,
+   "nopat": 7030.0,
+   "reinvestment": 5149.0,
+   "fcff": 1882.0
   },
   {
    "year": 4,
-   "revenue": 19515.0,
-   "nopat": 7201.0,
-   "reinvestment": 3151.0,
-   "fcff": 4051.0
+   "growth_pct": 14.3,
+   "revenue": 21781.0,
+   "nopat": 8037.0,
+   "reinvestment": 5457.0,
+   "fcff": 2581.0
   },
   {
    "year": 5,
-   "revenue": 20784.0,
-   "nopat": 7669.0,
-   "reinvestment": 2537.0,
-   "fcff": 5132.0
+   "growth_pct": 13.0,
+   "revenue": 24616.0,
+   "nopat": 9083.0,
+   "reinvestment": 5670.0,
+   "fcff": 3413.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 11.7,
+   "revenue": 27500.0,
+   "nopat": 10147.0,
+   "reinvestment": 5767.0,
+   "fcff": 4381.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 10.4,
+   "revenue": 30362.0,
+   "nopat": 11204.0,
+   "reinvestment": 5725.0,
+   "fcff": 5478.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 9.1,
+   "revenue": 33128.0,
+   "nopat": 12224.0,
+   "reinvestment": 5530.0,
+   "fcff": 6694.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 7.8,
+   "revenue": 35713.0,
+   "nopat": 13178.0,
+   "reinvestment": 5170.0,
+   "fcff": 8008.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 38034.0,
+   "nopat": 14035.0,
+   "reinvestment": 4643.0,
+   "fcff": 9392.0
   }
  ],
  "terminal": {
   "roic_pct": 18.5,
-  "fcff_cr": 5290.0,
-  "pv_share_of_ev_pct": 80.0
+  "fcff_cr": 9681.0,
+  "pv_share_of_ev_pct": 67.5
  },
  "bridge_cr": {
-  "enterprise_value": 51008.0,
+  "enterprise_value": 59016.0,
   "debt": 101440.0,
   "cash": 4073.0,
+  "investments": 0.0,
   "minority": 9914.0,
-  "equity_value": -56273.0,
+  "equity_value": -48265.0,
   "shares_cr": 164.718,
   "market_cap": 229633.0
  },
@@ -93,45 +144,46 @@
   ],
   "fair_value": [
    [
-    -250.9,
-    -229.7,
-    -204.4,
-    -173.5,
-    -135.0
+    -167.8,
+    -143.4,
+    -114.3,
+    -78.9,
+    -34.8
    ],
    [
-    -313.5,
-    -300.1,
-    -284.7,
-    -266.6,
-    -245.0
+    -251.4,
+    -236.5,
+    -219.2,
+    -199.0,
+    -174.9
    ],
    [
-    -360.1,
-    -351.4,
-    -341.6,
-    -330.5,
-    -317.6
+    -313.1,
+    -303.7,
+    -293.0,
+    -280.9,
+    -266.9
    ],
    [
-    -396.1,
-    -390.4,
-    -384.1,
-    -377.0,
-    -369.0
+    -360.3,
+    -354.3,
+    -347.6,
+    -340.1,
+    -331.6
    ],
    [
-    -424.7,
-    -421.0,
-    -416.9,
-    -412.4,
-    -407.4
+    -397.6,
+    -393.6,
+    -389.4,
+    -384.7,
+    -379.5
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "note": "outside -10% to 60%"
+  "implied_ebit_margin_pct": null,
+  "note": "growth outside -10% to 60%; margin outside 0% to 60%"
  },
  "model": {
   "rev": 12326.0,
@@ -141,10 +193,12 @@
   "g1": 0.15623369426270095,
   "wacc": 0.13408785351909144,
   "terminal_g": 0.065,
-  "n": 5,
+  "n": 10,
+  "hold_years": 3,
   "roic_cap": 0.2,
   "debt": 101440.0,
   "cash": 4073.0,
+  "invest": 0.0,
   "minority": 9914.0,
   "shares_cr": 164.71761170418193
  }

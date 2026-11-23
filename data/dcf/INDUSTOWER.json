@@ -1,12 +1,13 @@
 {
  "symbol": "INDUSTOWER",
  "latest_fy": "2026-03-31",
+ "status": "ok",
  "price": 382.65,
- "fair_value": 336.0,
- "upside_pct": -12.2,
+ "fair_value": 339.5,
+ "upside_pct": -11.3,
  "flags": [],
  "assumptions": {
-  "rf_pct": 7.199999999999999,
+  "rf_pct": 7.2,
   "erp_pct": 5.5,
   "beta_raw": 0.85,
   "beta_used": 0.9,
@@ -15,16 +16,20 @@
   "wacc_pct": 11.21,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
   "growth_years": 2,
   "historic_growth_pct": 6.6,
   "first_year_growth_pct": 6.6,
   "ebit_margin_pct": 33.3,
   "margin_basis": "latest",
-  "sales_to_capital": 0.59
+  "sales_to_capital": 0.59,
+  "roic_now_pct": 14.8
  },
  "projection_cr": [
   {
    "year": 1,
+   "growth_pct": 6.6,
    "revenue": 34634.0,
    "nopat": 8650.0,
    "reinvestment": 3618.0,
@@ -32,44 +37,89 @@
   },
   {
    "year": 2,
-   "revenue": 36908.0,
-   "nopat": 9218.0,
-   "reinvestment": 3844.0,
-   "fcff": 5374.0
+   "growth_pct": 6.6,
+   "revenue": 36915.0,
+   "nopat": 9220.0,
+   "reinvestment": 3856.0,
+   "fcff": 5363.0
   },
   {
    "year": 3,
-   "revenue": 39323.0,
-   "nopat": 9821.0,
-   "reinvestment": 4082.0,
-   "fcff": 5739.0
+   "growth_pct": 6.6,
+   "revenue": 39347.0,
+   "nopat": 9827.0,
+   "reinvestment": 4111.0,
+   "fcff": 5716.0
   },
   {
    "year": 4,
-   "revenue": 41888.0,
-   "nopat": 10461.0,
-   "reinvestment": 4335.0,
-   "fcff": 6127.0
+   "growth_pct": 6.6,
+   "revenue": 41935.0,
+   "nopat": 10473.0,
+   "reinvestment": 4373.0,
+   "fcff": 6100.0
   },
   {
    "year": 5,
-   "revenue": 44610.0,
-   "nopat": 11141.0,
-   "reinvestment": 4602.0,
-   "fcff": 6540.0
+   "growth_pct": 6.6,
+   "revenue": 44687.0,
+   "nopat": 11160.0,
+   "reinvestment": 4652.0,
+   "fcff": 6509.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 6.6,
+   "revenue": 47614.0,
+   "nopat": 11892.0,
+   "reinvestment": 4947.0,
+   "fcff": 6944.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 6.5,
+   "revenue": 50727.0,
+   "nopat": 12669.0,
+   "reinvestment": 5261.0,
+   "fcff": 7408.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 6.5,
+   "revenue": 54037.0,
+   "nopat": 13496.0,
+   "reinvestment": 5595.0,
+   "fcff": 7901.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 6.5,
+   "revenue": 57556.0,
+   "nopat": 14375.0,
+   "reinvestment": 5948.0,
+   "fcff": 8426.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 61297.0,
+   "nopat": 15309.0,
+   "reinvestment": 6323.0,
+   "fcff": 8986.0
   }
  ],
  "terminal": {
   "roic_pct": 14.8,
-  "fcff_cr": 6646.0,
-  "pv_share_of_ev_pct": 79.9
+  "fcff_cr": 9132.0,
+  "pv_share_of_ev_pct": 64.0
  },
  "bridge_cr": {
-  "enterprise_value": 103919.0,
+  "enterprise_value": 104825.0,
   "debt": 21127.0,
   "cash": 5852.0,
+  "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 88645.0,
+  "equity_value": 89551.0,
   "shares_cr": 263.798,
   "market_cap": 100942.0
  },
@@ -90,44 +140,45 @@
   ],
   "fair_value": [
    [
-    503.6,
-    555.0,
-    624.9,
-    726.0,
+    517.7,
+    565.1,
+    629.6,
+    722.7,
     null
    ],
    [
-    383.8,
-    409.3,
-    441.5,
-    483.4,
-    540.3
+    393.7,
+    416.6,
+    445.5,
+    482.9,
+    533.8
    ],
    [
-    305.9,
-    319.6,
-    336.0,
-    356.1,
-    381.2
+    313.2,
+    325.2,
+    339.5,
+    356.9,
+    378.8
    ],
    [
-    251.3,
-    258.8,
-    267.5,
-    277.6,
-    289.6
+    256.8,
+    263.2,
+    270.5,
+    279.1,
+    289.4
    ],
    [
-    210.9,
-    214.9,
-    219.3,
-    224.3,
-    230.0
+    215.0,
+    218.4,
+    222.1,
+    226.3,
+    231.1
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 15.9,
+  "implied_first_year_growth_pct": 10.4,
+  "implied_ebit_margin_pct": 35.4,
   "note": ""
  },
  "model": {
@@ -138,10 +189,12 @@
   "g1": 0.06587923489821379,
   "wacc": 0.11206523985508587,
   "terminal_g": 0.065,
-  "n": 5,
+  "n": 10,
+  "hold_years": 3,
   "roic_cap": 0.2,
   "debt": 21126.9,
   "cash": 5852.5,
+  "invest": 0.0,
   "minority": 0.0,
   "shares_cr": 263.7976001045342
  }

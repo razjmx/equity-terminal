@@ -1,12 +1,15 @@
 {
  "symbol": "FINCABLES",
  "latest_fy": "2026-03-31",
+ "status": "ok",
  "price": 1173.0,
- "fair_value": 342.0,
- "upside_pct": -70.8,
- "flags": [],
+ "fair_value": 329.5,
+ "upside_pct": -71.9,
+ "flags": [
+  "low return: ROIC 10.8% below WACC 13.7%"
+ ],
  "assumptions": {
-  "rf_pct": 7.199999999999999,
+  "rf_pct": 7.2,
   "erp_pct": 5.5,
   "beta_raw": 1.27,
   "beta_used": 1.18,
@@ -15,16 +18,20 @@
   "wacc_pct": 13.67,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
   "growth_years": 2,
   "historic_growth_pct": 11.8,
   "first_year_growth_pct": 11.8,
   "ebit_margin_pct": 9.4,
   "margin_basis": "latest",
-  "sales_to_capital": 1.53
+  "sales_to_capital": 1.53,
+  "roic_now_pct": 10.8
  },
  "projection_cr": [
   {
    "year": 1,
+   "growth_pct": 11.8,
    "revenue": 6898.0,
    "nopat": 486.0,
    "reinvestment": 477.0,
@@ -32,44 +39,89 @@
   },
   {
    "year": 2,
-   "revenue": 7620.0,
-   "nopat": 537.0,
-   "reinvestment": 473.0,
-   "fcff": 64.0
+   "growth_pct": 11.8,
+   "revenue": 7711.0,
+   "nopat": 544.0,
+   "reinvestment": 533.0,
+   "fcff": 11.0
   },
   {
    "year": 3,
-   "revenue": 8317.0,
-   "nopat": 586.0,
-   "reinvestment": 457.0,
-   "fcff": 130.0
+   "growth_pct": 11.8,
+   "revenue": 8621.0,
+   "nopat": 608.0,
+   "reinvestment": 596.0,
+   "fcff": 12.0
   },
   {
    "year": 4,
-   "revenue": 8968.0,
-   "nopat": 632.0,
-   "reinvestment": 426.0,
-   "fcff": 206.0
+   "growth_pct": 11.0,
+   "revenue": 9572.0,
+   "nopat": 675.0,
+   "reinvestment": 623.0,
+   "fcff": 52.0
   },
   {
    "year": 5,
-   "revenue": 9550.0,
-   "nopat": 673.0,
-   "reinvestment": 382.0,
-   "fcff": 292.0
+   "growth_pct": 10.3,
+   "revenue": 10556.0,
+   "nopat": 744.0,
+   "reinvestment": 645.0,
+   "fcff": 100.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 9.5,
+   "revenue": 11562.0,
+   "nopat": 815.0,
+   "reinvestment": 659.0,
+   "fcff": 156.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 8.8,
+   "revenue": 12576.0,
+   "nopat": 887.0,
+   "reinvestment": 664.0,
+   "fcff": 223.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 8.0,
+   "revenue": 13583.0,
+   "nopat": 958.0,
+   "reinvestment": 660.0,
+   "fcff": 298.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 7.3,
+   "revenue": 14569.0,
+   "nopat": 1027.0,
+   "reinvestment": 646.0,
+   "fcff": 382.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 15516.0,
+   "nopat": 1094.0,
+   "reinvestment": 620.0,
+   "fcff": 474.0
   }
  ],
  "terminal": {
   "roic_pct": 13.7,
-  "fcff_cr": 376.0,
-  "pv_share_of_ev_pct": 86.7
+  "fcff_cr": 611.0,
+  "pv_share_of_ev_pct": 79.0
  },
  "bridge_cr": {
-  "enterprise_value": 3186.0,
+  "enterprise_value": 2995.0,
   "debt": 19.0,
   "cash": 2064.0,
+  "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 5231.0,
+  "equity_value": 5040.0,
   "shares_cr": 15.294,
   "market_cap": 17940.0
  },
@@ -90,45 +142,46 @@
   ],
   "fair_value": [
    [
-    392.0,
-    393.3,
-    394.6,
-    395.9,
-    397.3
+    394.4,
+    395.7,
+    397.1,
+    398.6,
+    400.0
    ],
    [
-    364.1,
-    365.1,
-    366.0,
-    367.0,
-    368.0
+    358.3,
+    359.1,
+    360.0,
+    360.9,
+    361.8
    ],
    [
-    340.7,
-    341.3,
-    342.0,
-    342.7,
-    343.4
+    328.7,
+    329.1,
+    329.5,
+    330.0,
+    330.5
    ],
    [
-    320.7,
-    321.1,
-    321.6,
-    322.0,
-    322.5
-   ],
-   [
-    303.6,
-    303.8,
     304.0,
+    304.1,
     304.3,
+    304.4,
     304.5
+   ],
+   [
+    283.4,
+    283.3,
+    283.1,
+    283.0,
+    282.9
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "note": "outside -10% to 60%"
+  "implied_ebit_margin_pct": 26.3,
+  "note": "growth outside -10% to 60%"
  },
  "model": {
   "rev": 6170.0,
@@ -138,10 +191,12 @@
   "g1": 0.11793864127232068,
   "wacc": 0.13673935944916812,
   "terminal_g": 0.065,
-  "n": 5,
+  "n": 10,
+  "hold_years": 3,
   "roic_cap": 0.2,
   "debt": 19.14,
   "cash": 2063.59,
+  "invest": 0.0,
   "minority": 0.0,
   "shares_cr": 15.293934627791987
  }

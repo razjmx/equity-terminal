@@ -1,12 +1,13 @@
 {
  "symbol": "GILLETTE",
  "latest_fy": "2026-03-31",
+ "status": "ok",
  "price": 7083.5,
- "fair_value": 3378.5,
- "upside_pct": -52.3,
+ "fair_value": 4049.2,
+ "upside_pct": -42.8,
  "flags": [],
  "assumptions": {
-  "rf_pct": 7.199999999999999,
+  "rf_pct": 7.2,
   "erp_pct": 5.5,
   "beta_raw": 0.77,
   "beta_used": 0.84,
@@ -15,16 +16,20 @@
   "wacc_pct": 11.84,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
   "growth_years": 2,
   "historic_growth_pct": 11.8,
   "first_year_growth_pct": 11.8,
   "ebit_margin_pct": 28.6,
   "margin_basis": "latest",
-  "sales_to_capital": 4.0
+  "sales_to_capital": 4.0,
+  "roic_now_pct": 97.7
  },
  "projection_cr": [
   {
    "year": 1,
+   "growth_pct": 11.8,
    "revenue": 3458.0,
    "nopat": 742.0,
    "reinvestment": 91.0,
@@ -32,44 +37,89 @@
   },
   {
    "year": 2,
-   "revenue": 3819.0,
-   "nopat": 819.0,
-   "reinvestment": 90.0,
-   "fcff": 729.0
+   "growth_pct": 11.8,
+   "revenue": 3865.0,
+   "nopat": 829.0,
+   "reinvestment": 102.0,
+   "fcff": 727.0
   },
   {
    "year": 3,
-   "revenue": 4168.0,
-   "nopat": 894.0,
-   "reinvestment": 87.0,
-   "fcff": 807.0
+   "growth_pct": 11.8,
+   "revenue": 4319.0,
+   "nopat": 926.0,
+   "reinvestment": 114.0,
+   "fcff": 813.0
   },
   {
    "year": 4,
-   "revenue": 4494.0,
-   "nopat": 964.0,
-   "reinvestment": 81.0,
-   "fcff": 882.0
+   "growth_pct": 11.0,
+   "revenue": 4795.0,
+   "nopat": 1028.0,
+   "reinvestment": 119.0,
+   "fcff": 910.0
   },
   {
    "year": 5,
-   "revenue": 4786.0,
-   "nopat": 1027.0,
-   "reinvestment": 73.0,
-   "fcff": 954.0
+   "growth_pct": 10.3,
+   "revenue": 5287.0,
+   "nopat": 1134.0,
+   "reinvestment": 123.0,
+   "fcff": 1011.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 9.5,
+   "revenue": 5789.0,
+   "nopat": 1242.0,
+   "reinvestment": 126.0,
+   "fcff": 1116.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 8.8,
+   "revenue": 6296.0,
+   "nopat": 1351.0,
+   "reinvestment": 127.0,
+   "fcff": 1224.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 8.0,
+   "revenue": 6800.0,
+   "nopat": 1459.0,
+   "reinvestment": 126.0,
+   "fcff": 1333.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 7.3,
+   "revenue": 7293.0,
+   "nopat": 1564.0,
+   "reinvestment": 123.0,
+   "fcff": 1441.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 7767.0,
+   "nopat": 1666.0,
+   "reinvestment": 119.0,
+   "fcff": 1548.0
   }
  ],
  "terminal": {
   "roic_pct": 20.0,
-  "fcff_cr": 738.0,
-  "pv_share_of_ev_pct": 73.5
+  "fcff_cr": 1198.0,
+  "pv_share_of_ev_pct": 56.6
  },
  "bridge_cr": {
-  "enterprise_value": 10742.0,
+  "enterprise_value": 12928.0,
   "debt": 0.0,
   "cash": 267.0,
+  "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 11009.0,
+  "equity_value": 13194.0,
   "shares_cr": 3.259,
   "market_cap": 23082.0
  },
@@ -90,44 +140,45 @@
   ],
   "fair_value": [
    [
-    4391.3,
-    4763.1,
-    5241.4,
-    5882.3,
-    6789.8
+    5361.6,
+    5764.6,
+    6280.9,
+    6970.3,
+    7943.3
    ],
    [
-    3610.3,
-    3829.9,
-    4096.7,
-    4429.0,
-    4856.1
+    4396.4,
+    4629.8,
+    4911.9,
+    5261.7,
+    5709.2
    ],
    [
-    3074.1,
-    3214.5,
-    3378.5,
-    3573.4,
-    3809.7
+    3732.0,
+    3878.8,
+    4049.2,
+    4250.7,
+    4493.7
    ],
    [
-    2683.0,
-    2777.7,
-    2885.1,
-    3008.6,
-    3152.6
+    3246.0,
+    3343.7,
+    3454.0,
+    3579.9,
+    3725.9
    ],
    [
-    2384.7,
-    2451.1,
-    2524.8,
-    2607.4,
-    2700.8
+    2874.5,
+    2942.4,
+    3017.4,
+    3100.8,
+    3194.6
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 53.3,
+  "implied_first_year_growth_pct": 24.7,
+  "implied_ebit_margin_pct": 49.4,
   "note": ""
  },
  "model": {
@@ -138,10 +189,12 @@
   "g1": 0.11762182378765274,
   "wacc": 0.11843056651409124,
   "terminal_g": 0.065,
-  "n": 5,
+  "n": 10,
+  "hold_years": 3,
   "roic_cap": 0.2,
   "debt": 0.02,
   "cash": 266.82,
+  "invest": 0.0,
   "minority": 0.0,
   "shares_cr": 3.2585216686666194
  }

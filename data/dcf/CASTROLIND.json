@@ -1,12 +1,13 @@
 {
  "symbol": "CASTROLIND",
  "latest_fy": "2025-12-31",
+ "status": "ok",
  "price": 190.07,
- "fair_value": 136.6,
- "upside_pct": -28.1,
+ "fair_value": 142.9,
+ "upside_pct": -24.8,
  "flags": [],
  "assumptions": {
-  "rf_pct": 7.199999999999999,
+  "rf_pct": 7.2,
   "erp_pct": 5.5,
   "beta_raw": 0.9,
   "beta_used": 0.93,
@@ -15,16 +16,20 @@
   "wacc_pct": 12.3,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
   "growth_years": 2,
   "historic_growth_pct": 6.2,
   "first_year_growth_pct": 6.2,
   "ebit_margin_pct": 21.9,
   "margin_basis": "latest",
-  "sales_to_capital": 4.0
+  "sales_to_capital": 4.0,
+  "roic_now_pct": 111.5
  },
  "projection_cr": [
   {
    "year": 1,
+   "growth_pct": 6.2,
    "revenue": 6054.0,
    "nopat": 994.0,
    "reinvestment": 88.0,
@@ -32,44 +37,89 @@
   },
   {
    "year": 2,
-   "revenue": 6434.0,
-   "nopat": 1057.0,
-   "reinvestment": 95.0,
+   "growth_pct": 6.2,
+   "revenue": 6429.0,
+   "nopat": 1056.0,
+   "reinvestment": 94.0,
    "fcff": 962.0
   },
   {
    "year": 3,
-   "revenue": 6843.0,
-   "nopat": 1124.0,
-   "reinvestment": 102.0,
+   "growth_pct": 6.2,
+   "revenue": 6828.0,
+   "nopat": 1122.0,
+   "reinvestment": 100.0,
    "fcff": 1022.0
   },
   {
    "year": 4,
-   "revenue": 7282.0,
-   "nopat": 1196.0,
-   "reinvestment": 110.0,
-   "fcff": 1086.0
+   "growth_pct": 6.2,
+   "revenue": 7255.0,
+   "nopat": 1192.0,
+   "reinvestment": 107.0,
+   "fcff": 1085.0
   },
   {
    "year": 5,
-   "revenue": 7756.0,
-   "nopat": 1274.0,
-   "reinvestment": 118.0,
-   "fcff": 1156.0
+   "growth_pct": 6.3,
+   "revenue": 7711.0,
+   "nopat": 1267.0,
+   "reinvestment": 114.0,
+   "fcff": 1152.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 6.3,
+   "revenue": 8199.0,
+   "nopat": 1347.0,
+   "reinvestment": 122.0,
+   "fcff": 1225.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 6.4,
+   "revenue": 8722.0,
+   "nopat": 1433.0,
+   "reinvestment": 131.0,
+   "fcff": 1302.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 6.4,
+   "revenue": 9281.0,
+   "nopat": 1524.0,
+   "reinvestment": 140.0,
+   "fcff": 1385.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 6.5,
+   "revenue": 9880.0,
+   "nopat": 1623.0,
+   "reinvestment": 150.0,
+   "fcff": 1473.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 10523.0,
+   "nopat": 1728.0,
+   "reinvestment": 161.0,
+   "fcff": 1568.0
   }
  ],
  "terminal": {
   "roic_pct": 20.0,
-  "fcff_cr": 916.0,
-  "pv_share_of_ev_pct": 70.9
+  "fcff_cr": 1242.0,
+  "pv_share_of_ev_pct": 51.3
  },
  "bridge_cr": {
-  "enterprise_value": 12451.0,
+  "enterprise_value": 13070.0,
   "debt": 63.0,
   "cash": 1123.0,
+  "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 13511.0,
+  "equity_value": 14130.0,
   "shares_cr": 98.912,
   "market_cap": 18800.0
  },
@@ -90,44 +140,45 @@
   ],
   "fair_value": [
    [
-    171.8,
-    183.6,
-    198.3,
-    217.3,
-    242.8
+    181.4,
+    191.9,
+    205.1,
+    221.9,
+    244.6
    ],
    [
-    145.2,
-    152.5,
-    161.1,
-    171.6,
-    184.6
+    153.7,
+    160.1,
+    167.6,
+    176.8,
+    188.1
    ],
    [
-    126.4,
-    131.1,
-    136.6,
-    143.0,
-    150.6
+    134.0,
+    138.1,
+    142.9,
+    148.3,
+    154.8
    ],
    [
-    112.3,
-    115.6,
     119.3,
-    123.4,
-    128.2
+    122.1,
+    125.2,
+    128.7,
+    132.7
    ],
    [
-    101.5,
-    103.8,
-    106.3,
-    109.1,
-    112.3
+    107.8,
+    109.8,
+    111.9,
+    114.3,
+    116.9
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 24.8,
+  "implied_first_year_growth_pct": 13.3,
+  "implied_ebit_margin_pct": 29.4,
   "note": ""
  },
  "model": {
@@ -138,10 +189,12 @@
   "g1": 0.062033007592292355,
   "wacc": 0.12304744138684824,
   "terminal_g": 0.065,
-  "n": 5,
+  "n": 10,
+  "hold_years": 3,
   "roic_cap": 0.2,
   "debt": 62.81,
   "cash": 1123.13,
+  "invest": 0.0,
   "minority": 0.0,
   "shares_cr": 98.91224317777662
  }
