@@ -1,0 +1,63 @@
+{
+ "symbol": "PETRONET",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 43346.6,
+  "ni": 3912.5,
+  "ebit": 5352.0,
+  "ta": 27440.0,
+  "eq": 22284.8,
+  "debt": 2341.5,
+  "fcf": 2230.9
+ },
+ "ratios": {
+  "roe_pct": 17.6,
+  "roa_pct": 14.3,
+  "net_margin_pct": 9.0,
+  "ebit_margin_pct": 12.3,
+  "roce_pct": 21.2,
+  "fcf_margin_pct": 5.1,
+  "debt_equity": 0.11,
+  "interest_cover": 23.46,
+  "current_ratio": 5.67,
+  "asset_turnover": 1.58
+ },
+ "dupont": {
+  "net_margin_pct": 9.0,
+  "asset_turnover": 1.58,
+  "equity_multiplier": 1.23
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": -9.7,
+  "net_income_cagr_pct": 5.6
+ },
+ "valuation": {
+  "pe": 12.56,
+  "pb": 2.21,
+  "ev_ebitda": 6.72,
+  "fcf_yield_pct": 4.5,
+  "market_cap_cr": 49147.5
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 10.71,
+  "zone": "safe"
+ }
+}

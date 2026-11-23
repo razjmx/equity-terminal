@@ -1,0 +1,63 @@
+{
+ "symbol": "CIEINDIA",
+ "latest_fy": "2025-12-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 9122.3,
+  "ni": 828.2,
+  "ebit": 1103.5,
+  "ta": 10756.8,
+  "eq": 7459.1,
+  "debt": 425.9,
+  "fcf": 880.6
+ },
+ "ratios": {
+  "roe_pct": 11.1,
+  "roa_pct": 7.7,
+  "net_margin_pct": 9.1,
+  "ebit_margin_pct": 12.1,
+  "roce_pct": 13.4,
+  "fcf_margin_pct": 9.7,
+  "debt_equity": 0.06,
+  "interest_cover": 49.99,
+  "current_ratio": 1.5,
+  "asset_turnover": 0.85
+ },
+ "dupont": {
+  "net_margin_pct": 9.1,
+  "asset_turnover": 0.85,
+  "equity_multiplier": 1.44
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 3.5,
+  "net_income_cagr_pct": null
+ },
+ "valuation": {
+  "pe": 16.88,
+  "pb": 1.87,
+  "ev_ebitda": 8.74,
+  "fcf_yield_pct": 6.3,
+  "market_cap_cr": 13975.7
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 4.95,
+  "zone": "safe"
+ }
+}

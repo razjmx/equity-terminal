@@ -1,0 +1,63 @@
+{
+ "symbol": "WIPRO",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 92624.0,
+  "ni": 13197.4,
+  "ebit": 18133.1,
+  "ta": 141926.2,
+  "eq": 88536.8,
+  "debt": 20291.0,
+  "fcf": 13371.3
+ },
+ "ratios": {
+  "roe_pct": 14.9,
+  "roa_pct": 9.3,
+  "net_margin_pct": 14.2,
+  "ebit_margin_pct": 19.6,
+  "roce_pct": 17.8,
+  "fcf_margin_pct": 14.4,
+  "debt_equity": 0.23,
+  "interest_cover": 22.93,
+  "current_ratio": 2.05,
+  "asset_turnover": 0.65
+ },
+ "dupont": {
+  "net_margin_pct": 14.2,
+  "asset_turnover": 0.65,
+  "equity_multiplier": 1.6
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 0.8,
+  "net_income_cagr_pct": 5.2
+ },
+ "valuation": {
+  "pe": 14.04,
+  "pb": 2.09,
+  "ev_ebitda": 7.18,
+  "fcf_yield_pct": 7.2,
+  "market_cap_cr": 185245.9
+ },
+ "piotroski": {
+  "score": 5,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 6.25,
+  "zone": "safe"
+ }
+}

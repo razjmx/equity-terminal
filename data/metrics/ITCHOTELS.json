@@ -1,0 +1,65 @@
+{
+ "symbol": "ITCHOTELS",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [
+  "short history"
+ ],
+ "snapshot_cr": {
+  "rev": 4109.1,
+  "ni": 816.9,
+  "ebit": 1130.9,
+  "ta": 13484.6,
+  "eq": 11657.8,
+  "debt": 74.2,
+  "fcf": 699.6
+ },
+ "ratios": {
+  "roe_pct": 7.0,
+  "roa_pct": 6.1,
+  "net_margin_pct": 19.9,
+  "ebit_margin_pct": 27.5,
+  "roce_pct": 9.2,
+  "fcf_margin_pct": 17.0,
+  "debt_equity": 0.01,
+  "interest_cover": 142.61,
+  "current_ratio": 2.77,
+  "asset_turnover": 0.3
+ },
+ "dupont": {
+  "net_margin_pct": 19.9,
+  "asset_turnover": 0.3,
+  "equity_multiplier": 1.16
+ },
+ "growth": {
+  "years_used": 1,
+  "revenue_cagr_pct": 16.5,
+  "net_income_cagr_pct": 28.7
+ },
+ "valuation": {
+  "pe": 47.59,
+  "pb": 3.33,
+  "ev_ebitda": 24.13,
+  "fcf_yield_pct": 1.8,
+  "market_cap_cr": 38872.4
+ },
+ "piotroski": {
+  "score": 8,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 8.69,
+  "zone": "safe"
+ }
+}

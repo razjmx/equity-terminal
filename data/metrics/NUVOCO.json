@@ -1,0 +1,63 @@
+{
+ "symbol": "NUVOCO",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 11142.0,
+  "ni": 359.4,
+  "ebit": 935.3,
+  "ta": 20299.0,
+  "eq": 9342.3,
+  "debt": 4916.1,
+  "fcf": 775.5
+ },
+ "ratios": {
+  "roe_pct": 3.8,
+  "roa_pct": 1.8,
+  "net_margin_pct": 3.2,
+  "ebit_margin_pct": 8.4,
+  "roce_pct": 6.2,
+  "fcf_margin_pct": 7.0,
+  "debt_equity": 0.53,
+  "interest_cover": 2.43,
+  "current_ratio": 0.45,
+  "asset_turnover": 0.55
+ },
+ "dupont": {
+  "net_margin_pct": 3.2,
+  "asset_turnover": 0.55,
+  "equity_multiplier": 2.17
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 2.7,
+  "net_income_cagr_pct": 183.0
+ },
+ "valuation": {
+  "pe": 35.32,
+  "pb": 1.36,
+  "ev_ebitda": 9.5,
+  "fcf_yield_pct": 6.1,
+  "market_cap_cr": 12693.3
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 0.88,
+  "zone": "distress"
+ }
+}

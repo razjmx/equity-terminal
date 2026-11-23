@@ -1,0 +1,63 @@
+{
+ "symbol": "WOCKPHARMA",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 3317.0,
+  "ni": 213.0,
+  "ebit": 446.0,
+  "ta": 8615.0,
+  "eq": 4940.0,
+  "debt": 2233.0,
+  "fcf": 26.0
+ },
+ "ratios": {
+  "roe_pct": 4.3,
+  "roa_pct": 2.5,
+  "net_margin_pct": 6.4,
+  "ebit_margin_pct": 13.4,
+  "roce_pct": 6.4,
+  "fcf_margin_pct": 0.8,
+  "debt_equity": 0.45,
+  "interest_cover": 2.14,
+  "current_ratio": 1.66,
+  "asset_turnover": 0.39
+ },
+ "dupont": {
+  "net_margin_pct": 6.4,
+  "asset_turnover": 0.39,
+  "equity_multiplier": 1.74
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 7.8,
+  "net_income_cagr_pct": null
+ },
+ "valuation": {
+  "pe": 163.26,
+  "pb": 7.04,
+  "ev_ebitda": 54.05,
+  "fcf_yield_pct": 0.1,
+  "market_cap_cr": 34774.4
+ },
+ "piotroski": {
+  "score": 8,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 2.9,
+  "zone": "safe"
+ }
+}

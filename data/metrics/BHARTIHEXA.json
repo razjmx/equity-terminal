@@ -1,0 +1,63 @@
+{
+ "symbol": "BHARTIHEXA",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 9353.8,
+  "ni": 1733.2,
+  "ebit": 2771.6,
+  "ta": 19050.6,
+  "eq": 7165.2,
+  "debt": 5858.7,
+  "fcf": 2981.1
+ },
+ "ratios": {
+  "roe_pct": 24.2,
+  "roa_pct": 9.1,
+  "net_margin_pct": 18.5,
+  "ebit_margin_pct": 29.6,
+  "roce_pct": 21.1,
+  "fcf_margin_pct": 31.9,
+  "debt_equity": 0.82,
+  "interest_cover": 5.48,
+  "current_ratio": 0.38,
+  "asset_turnover": 0.49
+ },
+ "dupont": {
+  "net_margin_pct": 18.5,
+  "asset_turnover": 0.49,
+  "equity_multiplier": 2.66
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 12.4,
+  "net_income_cagr_pct": 46.7
+ },
+ "valuation": {
+  "pe": 46.75,
+  "pb": 11.31,
+  "ev_ebitda": 17.13,
+  "fcf_yield_pct": 3.7,
+  "market_cap_cr": 81035.0
+ },
+ "piotroski": {
+  "score": 9,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 1.47,
+  "zone": "grey"
+ }
+}

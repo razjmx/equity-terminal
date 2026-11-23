@@ -1,0 +1,63 @@
+{
+ "symbol": "MAXHEALTH",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 8225.4,
+  "ni": 1442.4,
+  "ebit": 1890.6,
+  "ta": 17230.9,
+  "eq": 10746.6,
+  "debt": 3478.4,
+  "fcf": 148.8
+ },
+ "ratios": {
+  "roe_pct": 13.4,
+  "roa_pct": 8.4,
+  "net_margin_pct": 17.5,
+  "ebit_margin_pct": 23.0,
+  "roce_pct": 12.6,
+  "fcf_margin_pct": 1.8,
+  "debt_equity": 0.32,
+  "interest_cover": 8.79,
+  "current_ratio": 0.89,
+  "asset_turnover": 0.48
+ },
+ "dupont": {
+  "net_margin_pct": 17.5,
+  "asset_turnover": 0.48,
+  "equity_multiplier": 1.6
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 22.4,
+  "net_income_cagr_pct": 9.3
+ },
+ "valuation": {
+  "pe": 73.71,
+  "pb": 9.89,
+  "ev_ebitda": 46.7,
+  "fcf_yield_pct": 0.1,
+  "market_cap_cr": 106326.2
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 3.22,
+  "zone": "safe"
+ }
+}

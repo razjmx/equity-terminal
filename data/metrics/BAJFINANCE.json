@@ -1,0 +1,48 @@
+{
+ "symbol": "BAJFINANCE",
+ "latest_fy": "2026-03-31",
+ "type": "financial",
+ "flags": [
+  "financial or no EBIT"
+ ],
+ "snapshot_cr": {
+  "rev": 49665.4,
+  "ni": 19017.4,
+  "ebit": null,
+  "ta": 559952.4,
+  "eq": 113999.0,
+  "debt": 352846.7,
+  "fcf": -66750.9
+ },
+ "ratios": {
+  "roe_pct": 16.7,
+  "roa_pct": 3.4,
+  "net_margin_pct": 38.3,
+  "ebit_margin_pct": null,
+  "roce_pct": null,
+  "fcf_margin_pct": -134.4,
+  "debt_equity": 3.1,
+  "interest_cover": null,
+  "current_ratio": null,
+  "asset_turnover": 0.09
+ },
+ "dupont": {
+  "net_margin_pct": 38.3,
+  "asset_turnover": 0.09,
+  "equity_multiplier": 4.91
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 22.6,
+  "net_income_cagr_pct": 18.2
+ },
+ "valuation": {
+  "pe": 36.8,
+  "pb": 6.14,
+  "ev_ebitda": null,
+  "fcf_yield_pct": -9.5,
+  "market_cap_cr": 699752.5
+ },
+ "piotroski": null,
+ "altman_z2": null
+}

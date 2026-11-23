@@ -1,0 +1,48 @@
+{
+ "symbol": "M&MFIN",
+ "latest_fy": "2026-03-31",
+ "type": "financial",
+ "flags": [
+  "financial or no EBIT"
+ ],
+ "snapshot_cr": {
+  "rev": 10755.7,
+  "ni": 2854.5,
+  "ebit": null,
+  "ta": 158643.9,
+  "eq": 26638.6,
+  "debt": 114728.1,
+  "fcf": -13188.5
+ },
+ "ratios": {
+  "roe_pct": 10.7,
+  "roa_pct": 1.8,
+  "net_margin_pct": 26.5,
+  "ebit_margin_pct": null,
+  "roce_pct": null,
+  "fcf_margin_pct": -122.6,
+  "debt_equity": 4.31,
+  "interest_cover": null,
+  "current_ratio": null,
+  "asset_turnover": 0.07
+ },
+ "dupont": {
+  "net_margin_pct": 26.5,
+  "asset_turnover": 0.07,
+  "equity_multiplier": 5.96
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 13.3,
+  "net_income_cagr_pct": 11.3
+ },
+ "valuation": {
+  "pe": 14.17,
+  "pb": 1.52,
+  "ev_ebitda": null,
+  "fcf_yield_pct": -32.6,
+  "market_cap_cr": 40445.0
+ },
+ "piotroski": null,
+ "altman_z2": null
+}

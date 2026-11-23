@@ -1,0 +1,48 @@
+{
+ "symbol": "PNB",
+ "latest_fy": "2026-03-31",
+ "type": "financial",
+ "flags": [
+  "financial or no EBIT"
+ ],
+ "snapshot_cr": {
+  "rev": 62620.0,
+  "ni": 18392.7,
+  "ebit": null,
+  "ta": 2033330.9,
+  "eq": 149972.2,
+  "debt": 86268.2,
+  "fcf": 24010.8
+ },
+ "ratios": {
+  "roe_pct": 12.3,
+  "roa_pct": 0.9,
+  "net_margin_pct": 29.4,
+  "ebit_margin_pct": null,
+  "roce_pct": null,
+  "fcf_margin_pct": 38.3,
+  "debt_equity": 0.58,
+  "interest_cover": null,
+  "current_ratio": null,
+  "asset_turnover": 0.03
+ },
+ "dupont": {
+  "net_margin_pct": 29.4,
+  "asset_turnover": 0.03,
+  "equity_multiplier": 13.56
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 10.0,
+  "net_income_cagr_pct": 76.4
+ },
+ "valuation": {
+  "pe": 9.39,
+  "pb": 1.15,
+  "ev_ebitda": null,
+  "fcf_yield_pct": 13.9,
+  "market_cap_cr": 172796.4
+ },
+ "piotroski": null,
+ "altman_z2": null
+}

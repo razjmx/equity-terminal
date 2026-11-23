@@ -1,0 +1,63 @@
+{
+ "symbol": "SUMICHEM",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 3208.9,
+  "ni": 543.0,
+  "ebit": 734.2,
+  "ta": 4474.2,
+  "eq": 3389.7,
+  "debt": 63.3,
+  "fcf": 401.3
+ },
+ "ratios": {
+  "roe_pct": 16.0,
+  "roa_pct": 12.1,
+  "net_margin_pct": 16.9,
+  "ebit_margin_pct": 22.9,
+  "roce_pct": 21.0,
+  "fcf_margin_pct": 12.5,
+  "debt_equity": 0.02,
+  "interest_cover": 110.38,
+  "current_ratio": 3.44,
+  "asset_turnover": 0.72
+ },
+ "dupont": {
+  "net_margin_pct": 16.9,
+  "asset_turnover": 0.72,
+  "equity_multiplier": 1.32
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": -2.6,
+  "net_income_cagr_pct": 2.6
+ },
+ "valuation": {
+  "pe": 31.11,
+  "pb": 4.98,
+  "ev_ebitda": 19.64,
+  "fcf_yield_pct": 2.4,
+  "market_cap_cr": 16893.6
+ },
+ "piotroski": {
+  "score": 5,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 8.24,
+  "zone": "safe"
+ }
+}

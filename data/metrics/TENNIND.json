@@ -1,0 +1,63 @@
+{
+ "symbol": "TENNIND",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 5381.2,
+  "ni": 603.6,
+  "ebit": 849.1,
+  "ta": 2537.1,
+  "eq": 1197.4,
+  "debt": 79.8,
+  "fcf": 1314.4
+ },
+ "ratios": {
+  "roe_pct": 50.4,
+  "roa_pct": 23.8,
+  "net_margin_pct": 11.2,
+  "ebit_margin_pct": 15.8,
+  "roce_pct": 64.3,
+  "fcf_margin_pct": 24.4,
+  "debt_equity": 0.07,
+  "interest_cover": 25.29,
+  "current_ratio": 1.42,
+  "asset_turnover": 2.12
+ },
+ "dupont": {
+  "net_margin_pct": 11.2,
+  "asset_turnover": 2.12,
+  "equity_multiplier": 2.12
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 3.9,
+  "net_income_cagr_pct": 16.6
+ },
+ "valuation": {
+  "pe": 29.8,
+  "pb": 15.02,
+  "ev_ebitda": 18.27,
+  "fcf_yield_pct": 7.3,
+  "market_cap_cr": 17984.6
+ },
+ "piotroski": {
+  "score": 8,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 4.94,
+  "zone": "safe"
+ }
+}

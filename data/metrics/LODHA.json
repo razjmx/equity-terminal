@@ -1,0 +1,63 @@
+{
+ "symbol": "LODHA",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 16291.2,
+  "ni": 3428.2,
+  "ebit": 5075.7,
+  "ta": 58936.6,
+  "eq": 23286.2,
+  "debt": 9896.0,
+  "fcf": 709.1
+ },
+ "ratios": {
+  "roe_pct": 14.7,
+  "roa_pct": 5.8,
+  "net_margin_pct": 21.0,
+  "ebit_margin_pct": 31.2,
+  "roce_pct": 18.2,
+  "fcf_margin_pct": 4.4,
+  "debt_equity": 0.42,
+  "interest_cover": 7.21,
+  "current_ratio": 1.75,
+  "asset_turnover": 0.28
+ },
+ "dupont": {
+  "net_margin_pct": 21.0,
+  "asset_turnover": 0.28,
+  "equity_multiplier": 2.53
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 20.4,
+  "net_income_cagr_pct": 91.7
+ },
+ "valuation": {
+  "pe": 35.53,
+  "pb": 5.23,
+  "ev_ebitda": 24.23,
+  "fcf_yield_pct": 0.6,
+  "market_cap_cr": 121808.7
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 4.53,
+  "zone": "safe"
+ }
+}

@@ -1,0 +1,62 @@
+{
+ "symbol": "HDFCLIFE",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [
+  "no cash flow data"
+ ],
+ "snapshot_cr": {
+  "rev": 91606.2,
+  "ni": 1912.3,
+  "ebit": 2190.9,
+  "ta": 390502.5,
+  "eq": 17749.5,
+  "debt": 3099.0,
+  "fcf": 22338.0
+ },
+ "ratios": {
+  "roe_pct": 10.8,
+  "roa_pct": 0.5,
+  "net_margin_pct": 2.1,
+  "ebit_margin_pct": 2.4,
+  "roce_pct": null,
+  "fcf_margin_pct": 24.4,
+  "debt_equity": 0.17,
+  "interest_cover": 9.58,
+  "current_ratio": null,
+  "asset_turnover": 0.23
+ },
+ "dupont": {
+  "net_margin_pct": 2.1,
+  "asset_turnover": 0.23,
+  "equity_multiplier": 22.0
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 9.3,
+  "net_income_cagr_pct": 11.8
+ },
+ "valuation": {
+  "pe": 65.58,
+  "pb": 7.07,
+  "ev_ebitda": null,
+  "fcf_yield_pct": 17.8,
+  "market_cap_cr": 125410.5
+ },
+ "piotroski": {
+  "score": 3,
+  "tested": 5,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": null,
+   "roa_improved": false,
+   "cfo_above_net_income": null,
+   "leverage_fell": true,
+   "current_ratio_improved": null,
+   "no_dilution": true,
+   "gross_margin_improved": null,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": null
+}

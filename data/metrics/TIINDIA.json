@@ -1,0 +1,63 @@
+{
+ "symbol": "TIINDIA",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 22221.2,
+  "ni": 636.8,
+  "ebit": 1909.0,
+  "ta": 21486.9,
+  "eq": 7751.4,
+  "debt": 761.5,
+  "fcf": -272.0
+ },
+ "ratios": {
+  "roe_pct": 8.2,
+  "roa_pct": 3.0,
+  "net_margin_pct": 2.9,
+  "ebit_margin_pct": 8.6,
+  "roce_pct": 12.8,
+  "fcf_margin_pct": -1.2,
+  "debt_equity": 0.1,
+  "interest_cover": 32.64,
+  "current_ratio": 1.86,
+  "asset_turnover": 1.03
+ },
+ "dupont": {
+  "net_margin_pct": 2.9,
+  "asset_turnover": 1.03,
+  "equity_multiplier": 2.77
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 15.5,
+  "net_income_cagr_pct": -12.6
+ },
+ "valuation": {
+  "pe": 67.31,
+  "pb": 5.53,
+  "ev_ebitda": 15.4,
+  "fcf_yield_pct": -0.6,
+  "market_cap_cr": 42866.6
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 4.49,
+  "zone": "safe"
+ }
+}

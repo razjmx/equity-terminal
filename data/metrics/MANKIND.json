@@ -1,0 +1,63 @@
+{
+ "symbol": "MANKIND",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 14277.6,
+  "ni": 1912.9,
+  "ebit": 2966.1,
+  "ta": 28079.5,
+  "eq": 16300.3,
+  "debt": 6311.5,
+  "fcf": 2384.1
+ },
+ "ratios": {
+  "roe_pct": 11.7,
+  "roa_pct": 6.8,
+  "net_margin_pct": 13.4,
+  "ebit_margin_pct": 20.8,
+  "roce_pct": 13.7,
+  "fcf_margin_pct": 16.7,
+  "debt_equity": 0.39,
+  "interest_cover": 4.68,
+  "current_ratio": 1.07,
+  "asset_turnover": 0.51
+ },
+ "dupont": {
+  "net_margin_pct": 13.4,
+  "asset_turnover": 0.51,
+  "equity_multiplier": 1.72
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 17.7,
+  "net_income_cagr_pct": 14.3
+ },
+ "valuation": {
+  "pe": 56.92,
+  "pb": 6.68,
+  "ev_ebitda": 29.33,
+  "fcf_yield_pct": 2.2,
+  "market_cap_cr": 108880.6
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 3.9,
+  "zone": "safe"
+ }
+}

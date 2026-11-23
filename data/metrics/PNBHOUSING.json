@@ -1,0 +1,48 @@
+{
+ "symbol": "PNBHOUSING",
+ "latest_fy": "2026-03-31",
+ "type": "financial",
+ "flags": [
+  "financial or no EBIT"
+ ],
+ "snapshot_cr": {
+  "rev": 3617.4,
+  "ni": 2291.2,
+  "ebit": null,
+  "ta": 93512.1,
+  "eq": 19219.1,
+  "debt": 53313.7,
+  "fcf": -9016.6
+ },
+ "ratios": {
+  "roe_pct": 11.9,
+  "roa_pct": 2.5,
+  "net_margin_pct": 63.3,
+  "ebit_margin_pct": null,
+  "roce_pct": null,
+  "fcf_margin_pct": -249.3,
+  "debt_equity": 2.77,
+  "interest_cover": null,
+  "current_ratio": null,
+  "asset_turnover": 0.04
+ },
+ "dupont": {
+  "net_margin_pct": 63.3,
+  "asset_turnover": 0.04,
+  "equity_multiplier": 4.87
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 12.5,
+  "net_income_cagr_pct": 29.9
+ },
+ "valuation": {
+  "pe": 13.25,
+  "pb": 1.58,
+  "ev_ebitda": null,
+  "fcf_yield_pct": -29.7,
+  "market_cap_cr": 30348.7
+ },
+ "piotroski": null,
+ "altman_z2": null
+}

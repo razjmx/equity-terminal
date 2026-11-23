@@ -1,0 +1,63 @@
+{
+ "symbol": "BALRAMCHIN",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 6271.1,
+  "ni": 378.5,
+  "ebit": 637.0,
+  "ta": 8406.3,
+  "eq": 4138.1,
+  "debt": 3170.0,
+  "fcf": -349.2
+ },
+ "ratios": {
+  "roe_pct": 9.1,
+  "roa_pct": 4.5,
+  "net_margin_pct": 6.0,
+  "ebit_margin_pct": 10.2,
+  "roce_pct": 11.8,
+  "fcf_margin_pct": -5.6,
+  "debt_equity": 0.77,
+  "interest_cover": 8.29,
+  "current_ratio": 1.13,
+  "asset_turnover": 0.75
+ },
+ "dupont": {
+  "net_margin_pct": 6.0,
+  "asset_turnover": 0.75,
+  "equity_multiplier": 2.03
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 10.4,
+  "net_income_cagr_pct": 10.0
+ },
+ "valuation": {
+  "pe": 34.52,
+  "pb": 3.16,
+  "ev_ebitda": 19.94,
+  "fcf_yield_pct": -2.7,
+  "market_cap_cr": 13064.6
+ },
+ "piotroski": {
+  "score": 4,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 2.33,
+  "zone": "grey"
+ }
+}

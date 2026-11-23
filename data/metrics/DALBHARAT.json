@@ -1,0 +1,63 @@
+{
+ "symbol": "DALBHARAT",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 14467.0,
+  "ni": 1139.0,
+  "ebit": 1927.0,
+  "ta": 33312.0,
+  "eq": 17979.0,
+  "debt": 7406.0,
+  "fcf": 222.0
+ },
+ "ratios": {
+  "roe_pct": 6.3,
+  "roa_pct": 3.4,
+  "net_margin_pct": 7.9,
+  "ebit_margin_pct": 13.3,
+  "roce_pct": 7.0,
+  "fcf_margin_pct": 1.5,
+  "debt_equity": 0.41,
+  "interest_cover": 4.04,
+  "current_ratio": 1.55,
+  "asset_turnover": 0.43
+ },
+ "dupont": {
+  "net_margin_pct": 7.9,
+  "asset_turnover": 0.43,
+  "equity_multiplier": 1.85
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 3.0,
+  "net_income_cagr_pct": 3.2
+ },
+ "valuation": {
+  "pe": 25.55,
+  "pb": 1.62,
+  "ev_ebitda": 9.46,
+  "fcf_yield_pct": 0.8,
+  "market_cap_cr": 29098.0
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 3.05,
+  "zone": "safe"
+ }
+}

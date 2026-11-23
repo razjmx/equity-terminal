@@ -1,0 +1,63 @@
+{
+ "symbol": "JKCEMENT",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 13391.0,
+  "ni": 992.5,
+  "ebit": 1862.4,
+  "ta": 18500.0,
+  "eq": 7037.2,
+  "debt": 6183.0,
+  "fcf": -393.5
+ },
+ "ratios": {
+  "roe_pct": 14.1,
+  "roa_pct": 5.4,
+  "net_margin_pct": 7.4,
+  "ebit_margin_pct": 13.9,
+  "roce_pct": 13.3,
+  "fcf_margin_pct": -2.9,
+  "debt_equity": 0.88,
+  "interest_cover": 4.45,
+  "current_ratio": 0.93,
+  "asset_turnover": 0.72
+ },
+ "dupont": {
+  "net_margin_pct": 7.4,
+  "asset_turnover": 0.72,
+  "equity_multiplier": 2.63
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 12.1,
+  "net_income_cagr_pct": 32.8
+ },
+ "valuation": {
+  "pe": 42.51,
+  "pb": 5.99,
+  "ev_ebitda": 18.86,
+  "fcf_yield_pct": -0.9,
+  "market_cap_cr": 42186.9
+ },
+ "piotroski": {
+  "score": 8,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 1.93,
+  "zone": "grey"
+ }
+}

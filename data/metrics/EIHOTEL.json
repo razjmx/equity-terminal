@@ -1,0 +1,63 @@
+{
+ "symbol": "EIHOTEL",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 2939.6,
+  "ni": 628.3,
+  "ebit": 969.8,
+  "ta": 6555.8,
+  "eq": 5262.3,
+  "debt": 252.4,
+  "fcf": 296.5
+ },
+ "ratios": {
+  "roe_pct": 11.9,
+  "roa_pct": 9.6,
+  "net_margin_pct": 21.4,
+  "ebit_margin_pct": 33.0,
+  "roce_pct": 16.2,
+  "fcf_margin_pct": 10.1,
+  "debt_equity": 0.05,
+  "interest_cover": 45.91,
+  "current_ratio": 2.69,
+  "asset_turnover": 0.45
+ },
+ "dupont": {
+  "net_margin_pct": 21.4,
+  "asset_turnover": 0.45,
+  "equity_multiplier": 1.25
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 13.3,
+  "net_income_cagr_pct": 25.9
+ },
+ "valuation": {
+  "pe": 33.39,
+  "pb": 3.99,
+  "ev_ebitda": 18.09,
+  "fcf_yield_pct": 1.4,
+  "market_cap_cr": 20981.0
+ },
+ "piotroski": {
+  "score": 5,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 7.91,
+  "zone": "safe"
+ }
+}

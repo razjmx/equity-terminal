@@ -1,0 +1,63 @@
+{
+ "symbol": "ELGIEQUIP",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 3929.5,
+  "ni": 430.2,
+  "ebit": 602.8,
+  "ta": 3545.5,
+  "eq": 2231.9,
+  "debt": 533.1,
+  "fcf": 299.1
+ },
+ "ratios": {
+  "roe_pct": 19.3,
+  "roa_pct": 12.1,
+  "net_margin_pct": 10.9,
+  "ebit_margin_pct": 15.3,
+  "roce_pct": 25.7,
+  "fcf_margin_pct": 7.6,
+  "debt_equity": 0.24,
+  "interest_cover": 23.73,
+  "current_ratio": 2.08,
+  "asset_turnover": 1.11
+ },
+ "dupont": {
+  "net_margin_pct": 10.9,
+  "asset_turnover": 1.11,
+  "equity_multiplier": 1.59
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 9.1,
+  "net_income_cagr_pct": 5.1
+ },
+ "valuation": {
+  "pe": 39.87,
+  "pb": 7.69,
+  "ev_ebitda": 24.34,
+  "fcf_yield_pct": 1.7,
+  "market_cap_cr": 17153.9
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 7.2,
+  "zone": "safe"
+ }
+}

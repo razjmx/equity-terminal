@@ -1,0 +1,48 @@
+{
+ "symbol": "YESBANK",
+ "latest_fy": "2026-03-31",
+ "type": "financial",
+ "flags": [
+  "financial or no EBIT"
+ ],
+ "snapshot_cr": {
+  "rev": 18437.0,
+  "ni": 3511.7,
+  "ebit": null,
+  "ta": 470204.1,
+  "eq": 51158.4,
+  "debt": 65450.8,
+  "fcf": 20477.8
+ },
+ "ratios": {
+  "roe_pct": 6.9,
+  "roa_pct": 0.7,
+  "net_margin_pct": 19.0,
+  "ebit_margin_pct": null,
+  "roce_pct": null,
+  "fcf_margin_pct": 111.1,
+  "debt_equity": 1.28,
+  "interest_cover": null,
+  "current_ratio": null,
+  "asset_turnover": 0.04
+ },
+ "dupont": {
+  "net_margin_pct": 19.0,
+  "asset_turnover": 0.04,
+  "equity_multiplier": 9.19
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 25.3,
+  "net_income_cagr_pct": 68.4
+ },
+ "valuation": {
+  "pe": 15.92,
+  "pb": 1.09,
+  "ev_ebitda": null,
+  "fcf_yield_pct": 36.6,
+  "market_cap_cr": 55906.9
+ },
+ "piotroski": null,
+ "altman_z2": null
+}

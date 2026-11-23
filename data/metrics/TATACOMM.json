@@ -1,0 +1,63 @@
+{
+ "symbol": "TATACOMM",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 24783.1,
+  "ni": 1001.6,
+  "ebit": 2199.5,
+  "ta": 28403.9,
+  "eq": 3447.0,
+  "debt": 12248.9,
+  "fcf": 2045.9
+ },
+ "ratios": {
+  "roe_pct": 29.1,
+  "roa_pct": 3.5,
+  "net_margin_pct": 4.0,
+  "ebit_margin_pct": 8.9,
+  "roce_pct": 15.3,
+  "fcf_margin_pct": 8.3,
+  "debt_equity": 3.55,
+  "interest_cover": 2.89,
+  "current_ratio": 0.49,
+  "asset_turnover": 0.87
+ },
+ "dupont": {
+  "net_margin_pct": 4.0,
+  "asset_turnover": 0.87,
+  "equity_multiplier": 8.24
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 11.6,
+  "net_income_cagr_pct": -17.7
+ },
+ "valuation": {
+  "pe": 49.72,
+  "pb": 14.45,
+  "ev_ebitda": 12.15,
+  "fcf_yield_pct": 4.1,
+  "market_cap_cr": 49800.0
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": -0.99,
+  "zone": "distress"
+ }
+}

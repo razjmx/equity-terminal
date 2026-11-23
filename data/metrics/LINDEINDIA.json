@@ -1,0 +1,63 @@
+{
+ "symbol": "LINDEINDIA",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 2530.5,
+  "ni": 549.0,
+  "ebit": 748.0,
+  "ta": 5808.3,
+  "eq": 4266.5,
+  "debt": 78.9,
+  "fcf": 19.3
+ },
+ "ratios": {
+  "roe_pct": 12.9,
+  "roa_pct": 9.5,
+  "net_margin_pct": 21.7,
+  "ebit_margin_pct": 29.6,
+  "roce_pct": 16.3,
+  "fcf_margin_pct": 0.8,
+  "debt_equity": 0.02,
+  "interest_cover": 51.59,
+  "current_ratio": 0.86,
+  "asset_turnover": 0.44
+ },
+ "dupont": {
+  "net_margin_pct": 21.7,
+  "asset_turnover": 0.44,
+  "equity_multiplier": 1.36
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 0.3,
+  "net_income_cagr_pct": 7.8
+ },
+ "valuation": {
+  "pe": 107.6,
+  "pb": 13.84,
+  "ev_ebitda": 60.07,
+  "fcf_yield_pct": 0.0,
+  "market_cap_cr": 59067.9
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 5.48,
+  "zone": "safe"
+ }
+}

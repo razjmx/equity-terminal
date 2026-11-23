@@ -1,0 +1,63 @@
+{
+ "symbol": "TATATECH",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 5505.6,
+  "ni": 546.6,
+  "ebit": 798.8,
+  "ta": 8953.5,
+  "eq": 3923.4,
+  "debt": 938.0,
+  "fcf": 742.1
+ },
+ "ratios": {
+  "roe_pct": 13.9,
+  "roa_pct": 6.1,
+  "net_margin_pct": 9.9,
+  "ebit_margin_pct": 14.5,
+  "roce_pct": 15.5,
+  "fcf_margin_pct": 13.5,
+  "debt_equity": 0.24,
+  "interest_cover": 23.41,
+  "current_ratio": 1.53,
+  "asset_turnover": 0.61
+ },
+ "dupont": {
+  "net_margin_pct": 9.9,
+  "asset_turnover": 0.61,
+  "equity_multiplier": 2.28
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 7.7,
+  "net_income_cagr_pct": -4.3
+ },
+ "valuation": {
+  "pe": 52.88,
+  "pb": 7.37,
+  "ev_ebitda": 30.02,
+  "fcf_yield_pct": 2.6,
+  "market_cap_cr": 28904.8
+ },
+ "piotroski": {
+  "score": 4,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 4.01,
+  "zone": "safe"
+ }
+}

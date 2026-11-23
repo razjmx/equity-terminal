@@ -1,0 +1,63 @@
+{
+ "symbol": "SUZLON",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 16546.7,
+  "ni": 3163.4,
+  "ebit": 2645.0,
+  "ta": 18868.9,
+  "eq": 9463.5,
+  "debt": 981.1,
+  "fcf": 625.1
+ },
+ "ratios": {
+  "roe_pct": 33.4,
+  "roa_pct": 16.8,
+  "net_margin_pct": 19.1,
+  "ebit_margin_pct": 16.0,
+  "roce_pct": 24.8,
+  "fcf_margin_pct": 3.8,
+  "debt_equity": 0.1,
+  "interest_cover": 11.85,
+  "current_ratio": 1.65,
+  "asset_turnover": 0.88
+ },
+ "dupont": {
+  "net_margin_pct": 19.1,
+  "asset_turnover": 0.88,
+  "equity_multiplier": 1.99
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 41.4,
+  "net_income_cagr_pct": 3.6
+ },
+ "valuation": {
+  "pe": 15.8,
+  "pb": 5.28,
+  "ev_ebitda": 16.67,
+  "fcf_yield_pct": 1.3,
+  "market_cap_cr": 49982.7
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 5.0,
+  "zone": "safe"
+ }
+}

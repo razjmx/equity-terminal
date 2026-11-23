@@ -1,0 +1,63 @@
+{
+ "symbol": "EICHERMOT",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 22977.6,
+  "ni": 5515.2,
+  "ebit": 7173.6,
+  "ta": 32163.6,
+  "eq": 25100.2,
+  "debt": 514.0,
+  "fcf": 3529.6
+ },
+ "ratios": {
+  "roe_pct": 22.0,
+  "roa_pct": 17.1,
+  "net_margin_pct": 24.0,
+  "ebit_margin_pct": 31.2,
+  "roce_pct": 26.4,
+  "fcf_margin_pct": 15.4,
+  "debt_equity": 0.02,
+  "interest_cover": 100.29,
+  "current_ratio": 1.9,
+  "asset_turnover": 0.71
+ },
+ "dupont": {
+  "net_margin_pct": 24.0,
+  "asset_turnover": 0.71,
+  "equity_multiplier": 1.28
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 17.5,
+  "net_income_cagr_pct": 23.7
+ },
+ "valuation": {
+  "pe": 40.58,
+  "pb": 8.92,
+  "ev_ebitda": 27.23,
+  "fcf_yield_pct": 1.6,
+  "market_cap_cr": 223783.8
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 8.6,
+  "zone": "safe"
+ }
+}

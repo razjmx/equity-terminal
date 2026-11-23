@@ -1,0 +1,63 @@
+{
+ "symbol": "AADHARHFC",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 3387.4,
+  "ni": 1095.9,
+  "ebit": 2751.2,
+  "ta": 27398.8,
+  "eq": 7540.9,
+  "debt": 18743.3,
+  "fcf": -2826.6
+ },
+ "ratios": {
+  "roe_pct": 14.5,
+  "roa_pct": 4.0,
+  "net_margin_pct": 32.4,
+  "ebit_margin_pct": 81.2,
+  "roce_pct": 12.0,
+  "fcf_margin_pct": -83.4,
+  "debt_equity": 2.49,
+  "interest_cover": 2.05,
+  "current_ratio": 1.24,
+  "asset_turnover": 0.12
+ },
+ "dupont": {
+  "net_margin_pct": 32.4,
+  "asset_turnover": 0.12,
+  "equity_multiplier": 3.63
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 21.7,
+  "net_income_cagr_pct": 26.2
+ },
+ "valuation": {
+  "pe": 16.46,
+  "pb": 2.39,
+  "ev_ebitda": 12.72,
+  "fcf_yield_pct": -15.7,
+  "market_cap_cr": 18038.5
+ },
+ "piotroski": {
+  "score": 4,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": false,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 1.72,
+  "zone": "grey"
+ }
+}

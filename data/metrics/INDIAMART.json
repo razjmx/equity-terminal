@@ -1,0 +1,63 @@
+{
+ "symbol": "INDIAMART",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 1569.0,
+  "ni": 474.7,
+  "ebit": 650.9,
+  "ta": 4624.6,
+  "eq": 2400.4,
+  "debt": 23.1,
+  "fcf": 687.2
+ },
+ "ratios": {
+  "roe_pct": 19.8,
+  "roa_pct": 10.3,
+  "net_margin_pct": 30.3,
+  "ebit_margin_pct": 41.5,
+  "roce_pct": 20.0,
+  "fcf_margin_pct": 43.8,
+  "debt_equity": 0.01,
+  "interest_cover": 218.36,
+  "current_ratio": 2.34,
+  "asset_turnover": 0.34
+ },
+ "dupont": {
+  "net_margin_pct": 30.3,
+  "asset_turnover": 0.34,
+  "equity_multiplier": 1.93
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 16.8,
+  "net_income_cagr_pct": 18.7
+ },
+ "valuation": {
+  "pe": 19.58,
+  "pb": 3.87,
+  "ev_ebitda": 9.12,
+  "fcf_yield_pct": 7.4,
+  "market_cap_cr": 9295.0
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 5.61,
+  "zone": "safe"
+ }
+}

@@ -1,0 +1,62 @@
+{
+ "symbol": "NESTLEIND",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [
+  "no cash flow data"
+ ],
+ "snapshot_cr": {
+  "rev": null,
+  "ni": null,
+  "ebit": 4688.0,
+  "ta": null,
+  "eq": null,
+  "debt": null,
+  "fcf": null
+ },
+ "ratios": {
+  "roe_pct": null,
+  "roa_pct": null,
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
+  "roce_pct": null,
+  "fcf_margin_pct": null,
+  "debt_equity": null,
+  "interest_cover": 37.86,
+  "current_ratio": null,
+  "asset_turnover": null
+ },
+ "dupont": {
+  "net_margin_pct": null,
+  "asset_turnover": null,
+  "equity_multiplier": null
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": null,
+  "net_income_cagr_pct": null
+ },
+ "valuation": {
+  "pe": null,
+  "pb": null,
+  "ev_ebitda": null,
+  "fcf_yield_pct": null,
+  "market_cap_cr": 252994.8
+ },
+ "piotroski": {
+  "score": 0,
+  "tested": 0,
+  "tests": {
+   "roa_positive": null,
+   "cfo_positive": null,
+   "roa_improved": null,
+   "cfo_above_net_income": null,
+   "leverage_fell": null,
+   "current_ratio_improved": null,
+   "no_dilution": null,
+   "gross_margin_improved": null,
+   "asset_turnover_improved": null
+  }
+ },
+ "altman_z2": null
+}

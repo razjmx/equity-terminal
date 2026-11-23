@@ -1,0 +1,63 @@
+{
+ "symbol": "CARBORUNIV",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 5149.4,
+  "ni": 194.7,
+  "ebit": 299.8,
+  "ta": 5290.5,
+  "eq": 3899.8,
+  "debt": 303.5,
+  "fcf": 57.0
+ },
+ "ratios": {
+  "roe_pct": 5.0,
+  "roa_pct": 3.7,
+  "net_margin_pct": 3.8,
+  "ebit_margin_pct": 5.8,
+  "roce_pct": 7.1,
+  "fcf_margin_pct": 1.1,
+  "debt_equity": 0.08,
+  "interest_cover": 16.51,
+  "current_ratio": 2.67,
+  "asset_turnover": 0.97
+ },
+ "dupont": {
+  "net_margin_pct": 3.8,
+  "asset_turnover": 0.97,
+  "equity_multiplier": 1.36
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 3.8,
+  "net_income_cagr_pct": -22.2
+ },
+ "valuation": {
+  "pe": 94.61,
+  "pb": 4.72,
+  "ev_ebitda": 32.98,
+  "fcf_yield_pct": 0.3,
+  "market_cap_cr": 18422.3
+ },
+ "piotroski": {
+  "score": 4,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 7.28,
+  "zone": "safe"
+ }
+}

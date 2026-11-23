@@ -1,0 +1,63 @@
+{
+ "symbol": "BAJAJHFL",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 10838.7,
+  "ni": 2560.3,
+  "ebit": 3324.4,
+  "ta": 127147.1,
+  "eq": 22522.8,
+  "debt": 103656.8,
+  "fcf": -19942.8
+ },
+ "ratios": {
+  "roe_pct": 11.4,
+  "roa_pct": 2.0,
+  "net_margin_pct": 23.6,
+  "ebit_margin_pct": 30.7,
+  "roce_pct": 3.3,
+  "fcf_margin_pct": -184.0,
+  "debt_equity": 4.6,
+  "interest_cover": 760.73,
+  "current_ratio": 0.23,
+  "asset_turnover": 0.09
+ },
+ "dupont": {
+  "net_margin_pct": 23.6,
+  "asset_turnover": 0.09,
+  "equity_multiplier": 5.65
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 25.5,
+  "net_income_cagr_pct": 26.7
+ },
+ "valuation": {
+  "pe": 26.42,
+  "pb": 3.0,
+  "ev_ebitda": 50.59,
+  "fcf_yield_pct": -29.5,
+  "market_cap_cr": 67656.5
+ },
+ "piotroski": {
+  "score": 3,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": -0.44,
+  "zone": "distress"
+ }
+}

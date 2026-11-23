@@ -1,0 +1,63 @@
+{
+ "symbol": "ACMESOLAR",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 2023.0,
+  "ni": 498.9,
+  "ebit": 1779.9,
+  "ta": 28540.3,
+  "eq": 5061.5,
+  "debt": 19896.3,
+  "fcf": -4072.6
+ },
+ "ratios": {
+  "roe_pct": 9.9,
+  "roa_pct": 1.7,
+  "net_margin_pct": 24.7,
+  "ebit_margin_pct": 88.0,
+  "roce_pct": 7.0,
+  "fcf_margin_pct": -201.3,
+  "debt_equity": 3.93,
+  "interest_cover": 1.61,
+  "current_ratio": 2.17,
+  "asset_turnover": 0.07
+ },
+ "dupont": {
+  "net_margin_pct": 24.7,
+  "asset_turnover": 0.07,
+  "equity_multiplier": 5.64
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 16.0,
+  "net_income_cagr_pct": null
+ },
+ "valuation": {
+  "pe": 58.58,
+  "pb": 5.77,
+  "ev_ebitda": 20.5,
+  "fcf_yield_pct": -13.9,
+  "market_cap_cr": 29227.8
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 1.63,
+  "zone": "grey"
+ }
+}

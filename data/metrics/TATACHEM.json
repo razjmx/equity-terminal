@@ -1,0 +1,63 @@
+{
+ "symbol": "TATACHEM",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "flags": [],
+ "snapshot_cr": {
+  "rev": 14397.0,
+  "ni": -1896.0,
+  "ebit": -955.0,
+  "ta": 39031.0,
+  "eq": 21206.0,
+  "debt": 8001.0,
+  "fcf": 64.0
+ },
+ "ratios": {
+  "roe_pct": -8.9,
+  "roa_pct": -4.9,
+  "net_margin_pct": -13.2,
+  "ebit_margin_pct": -6.6,
+  "roce_pct": -3.0,
+  "fcf_margin_pct": 0.4,
+  "debt_equity": 0.38,
+  "interest_cover": -1.89,
+  "current_ratio": 1.07,
+  "asset_turnover": 0.37
+ },
+ "dupont": {
+  "net_margin_pct": -13.2,
+  "asset_turnover": 0.37,
+  "equity_multiplier": 1.84
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": -4.8,
+  "net_income_cagr_pct": null
+ },
+ "valuation": {
+  "pe": null,
+  "pb": 0.77,
+  "ev_ebitda": 94.63,
+  "fcf_yield_pct": 0.4,
+  "market_cap_cr": 16413.9
+ },
+ "piotroski": {
+  "score": 3,
+  "tested": 9,
+  "tests": {
+   "roa_positive": false,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 1.84,
+  "zone": "grey"
+ }
+}
