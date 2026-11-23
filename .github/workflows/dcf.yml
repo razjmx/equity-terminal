@@ -1,0 +1,24 @@
+name: Compute DCF
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  dcf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python scripts/compute_dcf.py
+      - name: Commit results
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/dcf data/dcf_summary.csv data/dcf_review.txt data/dcf_check.txt data/dcf_errors.txt
+          git commit -m "Compute DCF" || echo "No changes"
+          git push
