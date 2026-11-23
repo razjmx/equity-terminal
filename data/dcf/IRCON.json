@@ -3,13 +3,13 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 107.7,
+ "price": 107.83,
  "fair_value": 36.4,
  "fair_low": 34.0,
  "fair_high": 39.2,
  "upside_pct": -66.2,
  "flags": [
-  "investments added: Rs 1,065 cr of non-operating investments (11% of market cap)",
+  "investments added: Rs 1,065 cr of non-operating investments (10% of market cap)",
   "growth clamped: 2-year -15.1% to -5%",
   "growth gap: 2-year growth differs from 3-year CAGR (-5.0%) by over 10 points",
   "growth path: first-year growth below terminal growth (path rises)",
@@ -22,7 +22,7 @@
   "beta_used": 1.69,
   "beta_weeks": 156,
   "cost_of_equity_pct": 17.31,
-  "wacc_pct": 13.49,
+  "wacc_pct": 13.5,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
   "forecast_years": 10,
@@ -131,17 +131,17 @@
   "cash": 4786.0,
   "investments": 1065.0,
   "minority": 32.0,
-  "equity_value": 3082.0,
+  "equity_value": 3081.0,
   "shares_cr": 94.052,
-  "market_cap": 10129.0
+  "market_cap": 10142.0
  },
  "sensitivity": {
   "wacc_pct": [
-   11.49,
-   12.49,
-   13.49,
-   14.49,
-   15.49
+   11.5,
+   12.5,
+   13.5,
+   14.5,
+   15.5
   ],
   "terminal_growth_pct": [
    5.5,
@@ -169,7 +169,7 @@
     36.4,
     36.4,
     36.4,
-    36.4,
+    36.3,
     36.3
    ],
    [
@@ -201,7 +201,7 @@
   "tax": 0.25,
   "s2c": 1.3531719379655638,
   "g1": -0.05,
-  "wacc": 0.13494181338476569,
+  "wacc": 0.1349712067258203,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

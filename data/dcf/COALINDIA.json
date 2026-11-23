@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 384.0,
- "fair_value": 1024.0,
- "fair_low": 866.8,
- "fair_high": 1259.0,
- "upside_pct": 166.7,
+ "price": 382.0,
+ "fair_value": 1024.2,
+ "fair_low": 867.0,
+ "fair_high": 1259.4,
+ "upside_pct": 168.1,
  "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
@@ -117,17 +117,17 @@
  "terminal": {
   "roic_pct": 20.0,
   "fcff_cr": 49405.0,
-  "pv_share_of_ev_pct": 65.0
+  "pv_share_of_ev_pct": 65.1
  },
  "bridge_cr": {
-  "enterprise_value": 535995.0,
+  "enterprise_value": 536146.0,
   "debt": 14072.0,
   "cash": 60149.0,
   "investments": 6038.0,
   "minority": 1903.0,
-  "equity_value": 586207.0,
+  "equity_value": 586358.0,
   "shares_cr": 616.273,
-  "market_cap": 236649.0
+  "market_cap": 235416.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -146,46 +146,46 @@
   ],
   "fair_value": [
    [
-    1374.3,
-    1492.8,
-    1649.0,
-    1865.3,
-    2186.2
+    1374.8,
+    1493.3,
+    1649.7,
+    1866.3,
+    2187.6
    ],
    [
-    1111.7,
-    1177.7,
-    1259.0,
-    1362.3,
-    1498.3
+    1112.0,
+    1178.0,
+    1259.4,
+    1362.8,
+    1499.0
    ],
    [
-    936.5,
-    976.6,
-    1024.0,
-    1081.0,
-    1151.4
+    936.7,
+    976.8,
+    1024.2,
+    1081.4,
+    1151.7
    ],
    [
-    811.2,
-    837.1,
-    866.8,
-    901.3,
-    942.0
+    811.4,
+    837.3,
+    867.0,
+    901.5,
+    942.2
    ],
    [
-    717.3,
-    734.8,
-    754.4,
-    776.5,
-    801.7
+    717.4,
+    734.9,
+    754.5,
+    776.6,
+    801.9
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
   "implied_ebit_margin_pct": 8.4,
-  "implied_discount_rate_pct": 22.0,
+  "implied_discount_rate_pct": 22.1,
   "implied_rate_note": "",
   "note": "growth outside -10% to 60%"
  },
@@ -195,7 +195,7 @@
   "tax": 0.25,
   "s2c": 2.415714271613024,
   "g1": 0.14437980411983764,
-  "wacc": 0.11526787518864233,
+  "wacc": 0.11525384234396753,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

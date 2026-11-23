@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "low confidence",
- "price": 2361.2,
- "fair_value": 344.3,
- "fair_low": 290.3,
- "fair_high": 409.5,
- "upside_pct": -85.4,
+ "price": 2345.3,
+ "fair_value": 344.5,
+ "fair_low": 290.5,
+ "fair_high": 409.8,
+ "upside_pct": -85.3,
  "flags": [
   "low return: ROIC 9.0% below WACC 13.1%",
   "far from price: model value is 15% of the market price"
@@ -119,18 +119,18 @@
  ],
  "terminal": {
   "roic_pct": 13.1,
-  "fcff_cr": 1253.0,
+  "fcff_cr": 1252.0,
   "pv_share_of_ev_pct": 70.3
  },
  "bridge_cr": {
-  "enterprise_value": 8370.0,
+  "enterprise_value": 8373.0,
   "debt": 4111.0,
   "cash": 1388.0,
   "investments": 469.0,
   "minority": 0.0,
-  "equity_value": 6116.0,
+  "equity_value": 6120.0,
   "shares_cr": 19.332,
-  "market_cap": 45646.0
+  "market_cap": 45339.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -149,45 +149,45 @@
   ],
   "fair_value": [
    [
-    486.4,
-    487.7,
-    489.1,
-    490.6,
-    492.1
+    486.7,
+    488.0,
+    489.4,
+    490.9,
+    492.4
    ],
    [
-    409.0,
     409.2,
     409.5,
     409.8,
-    410.2
+    410.1,
+    410.5
    ],
    [
-    345.4,
-    344.9,
-    344.3,
-    343.8,
-    343.4
+    345.6,
+    345.1,
+    344.5,
+    344.0,
+    343.6
    ],
    [
-    292.6,
-    291.5,
-    290.3,
-    289.2,
-    288.1
+    292.8,
+    291.6,
+    290.5,
+    289.4,
+    288.3
    ],
    [
-    248.3,
-    246.7,
-    245.1,
-    243.5,
-    241.9
+    248.4,
+    246.8,
+    245.2,
+    243.6,
+    242.1
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 43.3,
+  "implied_ebit_margin_pct": 43.1,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
@@ -198,7 +198,7 @@
   "tax": 0.25,
   "s2c": 0.8123124816882193,
   "g1": 0.07386201857861141,
-  "wacc": 0.1310499991003941,
+  "wacc": 0.13101442397308274,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

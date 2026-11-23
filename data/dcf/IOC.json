@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 145.64,
- "fair_value": 400.0,
- "fair_low": 337.8,
- "fair_high": 492.2,
- "upside_pct": 174.7,
+ "price": 145.0,
+ "fair_value": 400.6,
+ "fair_low": 338.2,
+ "fair_high": 493.1,
+ "upside_pct": 176.3,
  "flags": [
   "margin swing: latest core EBIT margin 8.6% vs 3-year average 6.5% (possible peak or trough)",
   "investments large: Rs 56,713 cr is 28% of market cap, verify",
@@ -124,14 +124,14 @@
   "pv_share_of_ev_pct": 51.6
  },
  "bridge_cr": {
-  "enterprise_value": 586116.0,
+  "enterprise_value": 586906.0,
   "debt": 131822.0,
   "cash": 11281.0,
   "investments": 56713.0,
   "minority": 6030.0,
-  "equity_value": 516258.0,
+  "equity_value": 517048.0,
   "shares_cr": 1412.124,
-  "market_cap": 205662.0
+  "market_cap": 204758.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -150,46 +150,46 @@
   ],
   "fair_value": [
    [
-    546.9,
-    588.6,
-    643.7,
-    720.2,
-    833.8
+    548.0,
+    589.9,
+    645.4,
+    722.4,
+    837.0
    ],
    [
-    442.4,
-    464.6,
-    492.2,
-    527.2,
-    573.5
+    443.1,
+    465.4,
+    493.1,
+    528.4,
+    574.9
    ],
    [
-    372.0,
-    384.8,
-    400.0,
-    418.4,
-    441.1
+    372.5,
+    385.4,
+    400.6,
+    419.1,
+    441.9
    ],
    [
-    321.2,
-    328.9,
-    337.8,
-    348.1,
-    360.4
+    321.5,
+    329.3,
+    338.2,
+    348.6,
+    360.9
    ],
    [
-    282.7,
-    287.4,
-    292.8,
-    298.8,
-    305.8
+    282.9,
+    287.7,
+    293.1,
+    299.2,
+    306.2
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
   "implied_ebit_margin_pct": 4.8,
-  "implied_discount_rate_pct": 21.4,
+  "implied_discount_rate_pct": 21.5,
   "implied_rate_note": "",
   "note": "growth outside -10% to 60%"
  },
@@ -199,7 +199,7 @@
   "tax": 0.25,
   "s2c": 2.6746973762564283,
   "g1": 0.0007442089550404596,
-  "wacc": 0.11534375085791512,
+  "wacc": 0.11526140818757344,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

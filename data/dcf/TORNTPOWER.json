@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "low confidence",
- "price": 1204.8,
- "fair_value": 267.1,
- "fair_low": 219.0,
- "fair_high": 324.7,
- "upside_pct": -77.8,
+ "price": 1198.4,
+ "fair_value": 267.4,
+ "fair_low": 219.3,
+ "fair_high": 325.0,
+ "upside_pct": -77.7,
  "flags": [
   "growth path: first-year growth below terminal growth (path rises)",
   "low return: ROIC 9.7% below WACC 12.9%",
@@ -120,18 +120,18 @@
  ],
  "terminal": {
   "roic_pct": 12.9,
-  "fcff_cr": 2489.0,
+  "fcff_cr": 2488.0,
   "pv_share_of_ev_pct": 50.3
  },
  "bridge_cr": {
-  "enterprise_value": 24609.0,
+  "enterprise_value": 24624.0,
   "debt": 13971.0,
   "cash": 2319.0,
   "investments": 0.0,
   "minority": 633.0,
-  "equity_value": 12324.0,
+  "equity_value": 12339.0,
   "shares_cr": 50.39,
-  "market_cap": 60710.0
+  "market_cap": 60388.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -150,45 +150,45 @@
   ],
   "fair_value": [
    [
-    390.3,
-    392.3,
-    394.4,
-    396.6,
-    398.8
+    390.8,
+    392.8,
+    394.9,
+    397.0,
+    399.3
    ],
    [
-    322.5,
-    323.6,
-    324.7,
-    325.8,
-    327.0
+    322.9,
+    323.9,
+    325.0,
+    326.2,
+    327.4
    ],
    [
-    266.4,
     266.7,
     267.1,
-    267.5,
-    268.0
+    267.4,
+    267.8,
+    268.3
    ],
    [
-    219.4,
-    219.2,
-    219.0,
-    218.8,
-    218.7
+    219.7,
+    219.5,
+    219.3,
+    219.1,
+    219.0
    ],
    [
-    179.6,
-    178.9,
-    178.3,
-    177.7,
-    177.1
+    179.8,
+    179.2,
+    178.6,
+    178.0,
+    177.4
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 28.8,
+  "implied_ebit_margin_pct": 28.7,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
@@ -199,7 +199,7 @@
   "tax": 0.25,
   "s2c": 0.912298827483506,
   "g1": 0.03139433131946223,
-  "wacc": 0.12871416428050958,
+  "wacc": 0.12865306994757023,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

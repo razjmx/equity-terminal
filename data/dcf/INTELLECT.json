@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 589.7,
- "fair_value": 231.8,
- "fair_low": 213.4,
- "fair_high": 253.7,
- "upside_pct": -60.7,
+ "price": 578.45,
+ "fair_value": 231.9,
+ "fair_low": 213.5,
+ "fair_high": 253.8,
+ "upside_pct": -59.9,
  "flags": [
   "low return: ROIC 12.3% below WACC 14.5%"
  ],
@@ -118,18 +118,18 @@
  ],
  "terminal": {
   "roic_pct": 14.5,
-  "fcff_cr": 411.0,
+  "fcff_cr": 410.0,
   "pv_share_of_ev_pct": 62.2
  },
  "bridge_cr": {
-  "enterprise_value": 2297.0,
+  "enterprise_value": 2298.0,
   "debt": 159.0,
   "cash": 814.0,
   "investments": 57.0,
   "minority": 29.0,
-  "equity_value": 2980.0,
+  "equity_value": 2981.0,
   "shares_cr": 14.064,
-  "market_cap": 8293.0
+  "market_cap": 8135.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -148,46 +148,46 @@
   ],
   "fair_value": [
    [
-    277.4,
-    278.6,
+    277.5,
+    278.7,
     279.9,
-    281.1,
-    282.4
+    281.2,
+    282.5
    ],
    [
-    252.0,
-    252.8,
-    253.7,
+    252.1,
+    252.9,
+    253.8,
     254.6,
-    255.5
+    255.6
    ],
    [
     230.8,
-    231.3,
-    231.8,
-    232.4,
-    233.0
+    231.4,
+    231.9,
+    232.5,
+    233.1
    ],
    [
     212.8,
     213.1,
-    213.4,
-    213.7,
+    213.5,
+    213.8,
     214.1
    ],
    [
     197.5,
     197.6,
-    197.7,
+    197.8,
     197.9,
-    198.0
+    198.1
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 26.7,
-  "implied_discount_rate_pct": 9.1,
+  "implied_ebit_margin_pct": 26.2,
+  "implied_discount_rate_pct": 9.2,
   "implied_rate_note": "",
   "note": "growth outside -10% to 60%"
  },
@@ -197,7 +197,7 @@
   "tax": 0.25,
   "s2c": 1.2214276898485457,
   "g1": 0.10097613553248808,
-  "wacc": 0.14464478271227915,
+  "wacc": 0.14461662056738736,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -206,7 +206,7 @@
   "cash": 813.572,
   "invest": 56.944,
   "minority": 29.121,
-  "shares_cr": 14.063585785314565,
+  "shares_cr": 14.063585785314567,
   "roll": 1.094229337454259,
   "mid_year": true
  }

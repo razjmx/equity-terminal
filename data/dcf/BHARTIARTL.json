@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 2136.0,
- "fair_value": 1362.3,
- "fair_low": 986.5,
- "fair_high": 1954.8,
- "upside_pct": -36.2,
+ "price": 2128.5,
+ "fair_value": 1363.2,
+ "fair_low": 987.1,
+ "fair_high": 1956.3,
+ "upside_pct": -36.0,
  "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
@@ -16,7 +16,7 @@
   "beta_used": 0.76,
   "beta_weeks": 156,
   "cost_of_equity_pct": 11.73,
-  "wacc_pct": 11.1,
+  "wacc_pct": 11.09,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
   "forecast_years": 10,
@@ -120,22 +120,22 @@
   "pv_share_of_ev_pct": 86.8
  },
  "bridge_cr": {
-  "enterprise_value": 978013.0,
+  "enterprise_value": 978536.0,
   "debt": 195412.0,
   "cash": 50198.0,
   "investments": 4062.0,
   "minority": 46907.0,
-  "equity_value": 789955.0,
+  "equity_value": 790478.0,
   "shares_cr": 623.945,
-  "market_cap": 1332746.0
+  "market_cap": 1328066.0
  },
  "sensitivity": {
   "wacc_pct": [
-   9.1,
-   10.1,
-   11.1,
-   12.1,
-   13.1
+   9.09,
+   10.09,
+   11.09,
+   12.09,
+   13.09
   ],
   "terminal_growth_pct": [
    5.5,
@@ -146,44 +146,44 @@
   ],
   "fair_value": [
    [
-    2341.6,
-    2625.2,
-    3015.4,
-    3588.3,
+    2343.4,
+    2627.4,
+    3018.2,
+    3592.4,
     null
    ],
    [
-    1647.7,
-    1783.3,
-    1954.8,
-    2179.6,
-    2488.5
+    1648.7,
+    1784.5,
+    1956.3,
+    2181.5,
+    2490.9
    ],
    [
-    1207.7,
-    1278.0,
-    1362.3,
-    1465.7,
-    1596.2
+    1208.4,
+    1278.7,
+    1363.2,
+    1466.8,
+    1597.5
    ],
    [
-    905.7,
-    943.2,
-    986.5,
-    1037.1,
-    1097.5
+    906.2,
+    943.7,
+    987.1,
+    1037.8,
+    1098.3
    ],
    [
-    687.0,
-    706.6,
-    728.4,
-    753.0,
-    781.1
+    687.4,
+    707.0,
+    728.9,
+    753.5,
+    781.6
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 29.9,
+  "implied_first_year_growth_pct": 29.8,
   "implied_ebit_margin_pct": 37.7,
   "implied_discount_rate_pct": 9.9,
   "implied_rate_note": "",
@@ -195,7 +195,7 @@
   "tax": 0.25,
   "s2c": 0.6258190461584736,
   "g1": 0.1860229257106667,
-  "wacc": 0.110950281311612,
+  "wacc": 0.11093071238835331,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

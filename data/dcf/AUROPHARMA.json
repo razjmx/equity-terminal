@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 1811.3,
- "fair_value": 734.0,
- "fair_low": 656.7,
- "fair_high": 830.8,
- "upside_pct": -59.5,
+ "price": 1796.5,
+ "fair_value": 734.3,
+ "fair_low": 656.9,
+ "fair_high": 831.3,
+ "upside_pct": -59.1,
  "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
@@ -116,18 +116,18 @@
  ],
  "terminal": {
   "roic_pct": 12.1,
-  "fcff_cr": 3883.0,
-  "pv_share_of_ev_pct": 65.0
+  "fcff_cr": 3882.0,
+  "pv_share_of_ev_pct": 65.1
  },
  "bridge_cr": {
-  "enterprise_value": 36367.0,
+  "enterprise_value": 36382.0,
   "debt": 8073.0,
   "cash": 10579.0,
   "investments": 198.0,
   "minority": -8.0,
-  "equity_value": 39080.0,
+  "equity_value": 39094.0,
   "shares_cr": 57.538,
-  "market_cap": 104218.0
+  "market_cap": 103367.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -146,45 +146,45 @@
   ],
   "fair_value": [
    [
-    1000.0,
-    1023.4,
-    1052.2,
-    1089.0,
-    1138.5
+    1000.7,
+    1024.1,
+    1053.1,
+    1090.1,
+    1139.8
    ],
    [
-    821.4,
-    826.0,
-    830.8,
-    835.9,
-    841.3
+    821.8,
+    826.5,
+    831.3,
+    836.5,
+    842.0
    ],
    [
-    728.4,
-    731.1,
-    734.0,
-    737.0,
-    740.1
+    728.6,
+    731.4,
+    734.3,
+    737.3,
+    740.3
    ],
    [
-    653.2,
-    654.9,
-    656.7,
-    658.5,
-    660.5
+    653.4,
+    655.1,
+    656.9,
+    658.8,
+    660.7
    ],
    [
-    590.5,
-    591.4,
-    592.3,
-    593.3,
-    594.3
+    590.7,
+    591.6,
+    592.5,
+    593.5,
+    594.5
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 26.6,
+  "implied_ebit_margin_pct": 26.5,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
@@ -195,7 +195,7 @@
   "tax": 0.25,
   "s2c": 0.94901348330449,
   "g1": 0.07844749491378855,
-  "wacc": 0.12063134276827299,
+  "wacc": 0.12059989358525942,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

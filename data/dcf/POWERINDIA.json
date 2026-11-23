@@ -3,14 +3,14 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "low confidence",
- "price": 29810.0,
+ "price": 30240.0,
  "fair_value": 4982.8,
  "fair_low": 4430.5,
  "fair_high": 5695.5,
- "upside_pct": -83.3,
+ "upside_pct": -83.5,
  "flags": [
   "margin swing: latest core EBIT margin 14.8% vs 3-year average 9.4% (possible peak or trough)",
-  "far from price: model value is 17% of the market price"
+  "far from price: model value is 16% of the market price"
  ],
  "assumptions": {
   "rf_pct": 7.2,
@@ -130,7 +130,7 @@
   "minority": 0.0,
   "equity_value": 20300.0,
   "shares_cr": 4.457,
-  "market_cap": 132870.0
+  "market_cap": 134787.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -150,38 +150,38 @@
   "fair_value": [
    [
     6173.7,
-    6395.0,
-    6648.1,
-    6941.6,
-    7287.2
+    6394.9,
+    6648.0,
+    6941.5,
+    7287.1
    ],
    [
-    5379.6,
-    5528.8,
+    5379.5,
+    5528.7,
     5695.5,
     5883.7,
     6098.5
    ],
    [
     4765.1,
-    4869.0,
+    4868.9,
     4982.8,
     5108.5,
-    5248.6
+    5248.5
    ],
    [
     4276.7,
-    4350.7,
+    4350.6,
     4430.5,
-    4517.1,
-    4611.6
+    4517.0,
+    4611.5
    ],
    [
     3879.9,
     3933.6,
     3990.7,
-    4051.7,
-    4117.1
+    4051.6,
+    4117.0
    ]
   ]
  },
@@ -198,7 +198,7 @@
   "tax": 0.25,
   "s2c": 3.0573145116451466,
   "g1": 0.24651616933735077,
-  "wacc": 0.1457722655821043,
+  "wacc": 0.14577298634554636,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

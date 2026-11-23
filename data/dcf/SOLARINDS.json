@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 18286.0,
- "fair_value": 6098.8,
- "fair_low": 4954.9,
- "fair_high": 7736.5,
- "upside_pct": -66.6,
+ "price": 18178.0,
+ "fair_value": 6099.3,
+ "fair_low": 4955.2,
+ "fair_high": 7737.2,
+ "upside_pct": -66.4,
  "flags": [
   "growth gap: 2-year growth differs from 3-year CAGR (12.4%) by over 10 points"
  ],
@@ -122,14 +122,14 @@
   "pv_share_of_ev_pct": 78.8
  },
  "bridge_cr": {
-  "enterprise_value": 52503.0,
+  "enterprise_value": 52507.0,
   "debt": 1809.0,
   "cash": 480.0,
   "investments": 189.0,
   "minority": 272.0,
-  "equity_value": 51091.0,
+  "equity_value": 51095.0,
   "shares_cr": 9.049,
-  "market_cap": 165470.0
+  "market_cap": 164493.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -148,45 +148,45 @@
   ],
   "fair_value": [
    [
-    8635.1,
-    9355.0,
-    10256.4,
-    11420.5,
-    12986.4
+    8635.9,
+    9356.0,
+    10257.5,
+    11422.0,
+    12988.3
    ],
    [
-    6800.1,
-    7226.5,
-    7736.5,
-    8358.7,
-    9136.9
+    6800.7,
+    7227.2,
+    7737.2,
+    8359.6,
+    9138.0
    ],
    [
-    5519.3,
-    5787.8,
-    6098.8,
-    6464.1,
-    6900.3
+    5519.7,
+    5788.2,
+    6099.3,
+    6464.6,
+    6900.9
    ],
    [
-    4579.2,
-    4755.5,
-    4954.9,
-    5182.5,
-    5445.7
+    4579.5,
+    4755.8,
+    4955.2,
+    5182.9,
+    5446.1
    ],
    [
-    3863.3,
-    3982.5,
-    4114.6,
-    4262.3,
-    4428.8
+    3863.5,
+    3982.7,
+    4114.9,
+    4262.6,
+    4429.1
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 56.0,
-  "implied_ebit_margin_pct": 59.8,
+  "implied_first_year_growth_pct": 55.8,
+  "implied_ebit_margin_pct": 59.5,
   "implied_discount_rate_pct": 8.8,
   "implied_rate_note": "",
   "note": ""
@@ -197,7 +197,7 @@
   "tax": 0.25,
   "s2c": 1.2501430682149248,
   "g1": 0.2753994172690517,
-  "wacc": 0.12331430905250797,
+  "wacc": 0.12331072271209907,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

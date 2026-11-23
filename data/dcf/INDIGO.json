@@ -3,7 +3,7 @@
  "latest_fy": "2026-03-31",
  "status": "not meaningful",
  "reliability": "not meaningful",
- "price": 5538.9,
+ "price": 5523.0,
  "fair_value": null,
  "fair_low": null,
  "fair_high": null,
@@ -20,7 +20,7 @@
   "beta_used": 1.17,
   "beta_weeks": 156,
   "cost_of_equity_pct": 14.24,
-  "wacc_pct": 12.25,
+  "wacc_pct": 12.24,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
   "forecast_years": 10,
@@ -120,26 +120,26 @@
  ],
  "terminal": {
   "roic_pct": 12.2,
-  "fcff_cr": 3026.0,
-  "pv_share_of_ev_pct": 317.6
+  "fcff_cr": 3024.0,
+  "pv_share_of_ev_pct": 317.2
  },
  "bridge_cr": {
-  "enterprise_value": 5533.0,
+  "enterprise_value": 5544.0,
   "debt": 77749.0,
   "cash": 39335.0,
   "investments": 0.0,
   "minority": 16.0,
-  "equity_value": -32897.0,
+  "equity_value": -32887.0,
   "shares_cr": 38.667,
-  "market_cap": 214171.0
+  "market_cap": 213557.0
  },
  "sensitivity": {
   "wacc_pct": [
-   10.25,
-   11.25,
-   12.25,
-   13.25,
-   14.25
+   10.24,
+   11.24,
+   12.24,
+   13.24,
+   14.24
   ],
   "terminal_growth_pct": [
    5.5,
@@ -150,45 +150,45 @@
   ],
   "fair_value": [
    [
-    -731.0,
-    -737.5,
-    -744.1,
-    -750.7,
-    -757.2
+    -730.5,
+    -737.0,
+    -743.6,
+    -750.2,
+    -756.7
    ],
    [
-    -832.4,
-    -840.1,
-    -847.8,
-    -855.6,
-    -863.4
+    -832.0,
+    -839.7,
+    -847.4,
+    -855.2,
+    -863.0
    ],
    [
-    -912.0,
-    -920.5,
-    -929.0,
-    -937.5,
-    -946.1
+    -911.7,
+    -920.2,
+    -928.7,
+    -937.2,
+    -945.8
    ],
    [
-    -975.3,
-    -984.2,
-    -993.2,
-    -1002.2,
-    -1011.3
+    -975.1,
+    -984.0,
+    -992.9,
+    -1001.9,
+    -1011.0
    ],
    [
-    -1026.1,
-    -1035.2,
-    -1044.4,
-    -1053.6,
-    -1063.0
+    -1025.9,
+    -1035.0,
+    -1044.2,
+    -1053.4,
+    -1062.8
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 22.5,
+  "implied_ebit_margin_pct": 22.4,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "not meaningful",
   "note": "growth outside -10% to 60%"
@@ -199,7 +199,7 @@
   "tax": 0.25,
   "s2c": 1.8217097119497463,
   "g1": 0.10786975363809592,
-  "wacc": 0.12245319260169954,
+  "wacc": 0.12241108956056529,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
