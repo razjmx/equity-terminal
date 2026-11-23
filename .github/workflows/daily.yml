@@ -45,6 +45,16 @@ jobs:
       - name: 5 Financials model (P/B-ROE)
         run: python scripts/compute_financials.py
 
+      - name: Stamp update time
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, datetime
+          last = open("data/prices/TCS.csv").read().strip().splitlines()[-1].split(",")[0]
+          now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M")
+          json.dump({"utc": now, "price_date": last}, open("data/last_updated.json", "w"))
+          PY
+
       - name: Commit data
         if: always()
         run: |
