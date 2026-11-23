@@ -65,6 +65,7 @@ function route(){
   document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')===h||(h.startsWith('#/stock')&&false)));
   if(p[1]==='stock'&&p[2])return stock(decodeURIComponent(p[2]));
   if(p[1]==='screener')return screener();
+  if(p[1]==='financials')return financials();
   return market();
 }
 
@@ -122,7 +123,7 @@ function screener(){
 // ---------- stock ----------
 async function stock(s){
   view.innerHTML='Loading '+esc(s)+'…';
-  const [dcf,met,rsk,pcsv]=await Promise.all([get(`data/dcf/${s}.json`,'json'),get(`data/metrics/${s}.json`,'json'),get(`data/risk/${s}.json`,'json'),get(`data/prices/${s}.csv`)]);
+  const [dcf,met,rsk,pcsv,rat,fin]=await Promise.all([get(`data/dcf/${s}.json`,'json'),get(`data/metrics/${s}.json`,'json'),get(`data/risk/${s}.json`,'json'),get(`data/prices/${s}.csv`),get(`data/ratios/${s}.json`,'json'),get(`data/fin/${s}.json`,'json')]);
   const u=D.uni.find(x=>x.symbol===s)||{};
   const prices=pcsv?T.parseCSV(pcsv):[];
   const price=rsk?.price??dcf?.price;
@@ -130,14 +131,18 @@ async function stock(s){
   let h=`<div class="card"><div style="display:flex;gap:16px;flex-wrap:wrap;align-items:baseline"><span class="v">${esc(s)}</span><span>${esc(u.company||'')}</span><span class="tag">${esc(u.industry||'')}</span>${met?`<span class="tag">${esc(met.type)}</span>`:''}<span class="v" style="margin-left:auto">₹${T.fmt(price,2)}</span></div>
    ${rsk?`<div class="mut">As of ${esc(rsk.as_of)} · 1M <span class="${cls(rsk.returns_pct['1m'])}">${T.pct(rsk.returns_pct['1m'])}</span> · 1Y <span class="${cls(rsk.returns_pct['1y'])}">${T.pct(rsk.returns_pct['1y'])}</span> · 52w ${T.fmt(rsk.range.low_52w,0)}–${T.fmt(rsk.range.high_52w,0)}</div>`:''}</div>`;
   h+=`<div class="card"><h3>Price</h3><div class="bar" id="rng">${['3M','6M','1Y','3Y','All'].map(x=>`<button data-r="${x}">${x}</button>`).join('')}</div><canvas id="pc" style="height:300px"></canvas></div>`;
-  if(dcf)h+=`<div id="dcfbox"></div>`;else h+=`<div class="card"><h3>DCF</h3>Not available for this stock (financial, realty, REIT or excluded, or data missing).</div>`;
+  if(dcf)h+=`<div id="dcfbox"></div>`;
+  else if(fin)h+=`<div id="finbox"></div>`;
+  else h+=`<div class="card"><h3>DCF</h3>Not available for this stock (financial, realty, REIT or excluded, or data missing).</div>`;
   if(met){const v=met.valuation||{},r=met.ratios||{},g=met.growth||{};
-    h+=`<div class="two"><div class="card"><h3>Valuation & quality (FY ${esc(met.latest_fy)})</h3><div class="grid">${kv('P/E (used)',T.fmt(v.pe_used))}${kv('P/B',T.fmt(v.pb))}${kv('EV/EBITDA',T.fmt(v.ev_ebitda))}${kv('FCF yield %',T.fmt(v.fcf_yield_pct))}${kv('Market cap ₹cr',T.fmt(v.market_cap_cr,0))}${kv('ROE %',T.fmt(r.roe_pct))}${kv('ROCE %',T.fmt(r.roce_pct))}${kv('Debt/Equity',T.fmt(r.debt_equity,2))}${kv('Piotroski',met.piotroski&&met.piotroski.score!=null?met.piotroski.score:'–')}${kv('Altman Z″',met.altman_z2&&met.altman_z2.score!=null?T.fmt(met.altman_z2.score,2):T.fmt(met.altman_z2,2))}</div>
+    h+=`<div class="two"><div class="card"><h3>Valuation & quality (FY ${esc(met.latest_fy)})</h3><div class="grid">${kv('P/E (used)',T.fmt(v.pe_used))}${kv('P/B',T.fmt(v.pb))}${kv('EV/EBITDA',T.fmt(v.ev_ebitda))}${kv('FCF yield %',T.fmt(v.fcf_yield_pct))}${kv('Market cap ₹cr',T.fmt(v.market_cap_cr,0))}${kv('ROE %',T.fmt(r.roe_pct))}${kv('ROCE %',T.fmt(r.roce_pct))}${kv('Debt/Equity',T.fmt(r.debt_equity,2))}${kv('Piotroski',met.piotroski&&met.piotroski.score!=null?met.piotroski.score:'–')}${kv('Altman Z″',met.altman_z2&&met.altman_z2.z!=null?T.fmt(met.altman_z2.z,2)+' ('+esc(met.altman_z2.zone||'')+')':'–')}</div>
      ${(met.flags||[]).length?`<p class="warn">${met.flags.map(esc).join(' · ')}</p>`:''}</div>
      <div class="card"><h3>Growth</h3><pre style="margin:0;white-space:pre-wrap;font-size:12px">${esc(JSON.stringify(g,null,1))}</pre></div></div>`}
+  h+=ratiosHtml(rat);
   if(rsk){const k=rsk.risk,m=rsk.momentum,b=rsk.beta,t=rsk.trend;
     h+=`<div class="card"><h3>Technicals & risk</h3><div class="grid">${kv('RSI 14',T.fmt(m.rsi14,1))}${kv('MACD hist %',T.fmt(m.macd_hist_pct,2))}${kv('Bollinger %B',T.fmt(m.bollinger_pctb,2))}${kv('ATR %',T.fmt(m.atr_pct,2))}${kv('Above 200-DMA',t.above_dma200?'Yes':'No',t.above_dma200?'pos':'neg')}${kv('Above 50-DMA',t.above_dma50?'Yes':'No',t.above_dma50?'pos':'neg')}${kv('Volatility 1Y %',T.fmt(k.volatility_1y_pct))}${kv('Max DD 1Y %',T.fmt(k.max_drawdown_1y_pct))}${kv('VaR95 1d %',T.fmt(k.var95_1d_pct,2))}${kv('Sharpe 1Y',T.fmt(k.sharpe_1y,2))}${kv('Beta (adj)',T.fmt(b.adjusted,2))}${kv('Alpha % (ann.)',T.fmt(b.alpha_pct))}${kv('Avg traded ₹cr/day',T.fmt(rsk.liquidity.avg_daily_value_3m_cr,1))}</div></div>`}
   view.innerHTML=h;
+  bindRatios();
   // price chart
   let range='1Y';
   const drawP=()=>{const days={'3M':63,'6M':126,'1Y':252,'3Y':756,'All':1e9}[range];const rows=prices.slice(-days);
@@ -149,6 +154,91 @@ async function stock(s){
   document.querySelectorAll('#rng button').forEach(b=>b.onclick=()=>{range=b.dataset.r;drawP()});
   if(prices.length)drawP();
   if(dcf)dcfPanel(dcf,price);
+  if(!dcf&&fin)finPanel(fin);
+}
+
+
+function fmtR(v,f){if(v==null)return '–';if(f==='pct')return T.fmt(v,1)+'%';if(f==='d')return T.fmt(v,0);if(f==='num')return T.fmt(v,0);return T.fmt(v,2)}
+function ratiosHtml(r){
+  if(!r||!r.sections||!r.sections.length)return '<div class="card"><h3>Ratios</h3><span class="mut">Ratios not available for this stock yet.</span></div>';
+  const tabs=r.sections.map((x,i)=>`<button data-sec="${x.id}" ${i===0?'class="on"':''}>${esc(x.title)}</button>`).join('');
+  const body=r.sections.map((x,i)=>{
+    let t;
+    if(x.latest)t=`<table>${x.rows.map(q=>`<tr><td class="l">${esc(q.label)}</td><td>${fmtR(q.value,q.fmt)}</td></tr>`).join('')}</table>`;
+    else t=`<table><tr><th class="l">FY</th>${x.years.map(y=>`<th>${esc(y)}</th>`).join('')}${x.rows.some(q=>q.cagr!=null)?'<th>CAGR</th>':''}</tr>${x.rows.map(q=>`<tr><td class="l">${esc(q.label)}</td>${q.values.map(v=>`<td class="${q.fmt==='pct'&&q.key.startsWith('g_')?cls(v):''}">${fmtR(v,q.fmt)}</td>`).join('')}${x.rows.some(z=>z.cagr!=null)?`<td>${q.cagr!=null?T.pct(q.cagr,1):'–'}</td>`:''}</tr>`).join('')}</table>`;
+    return `<div class="rsec" data-sec="${x.id}" style="${i?'display:none':''}"><div class="scroll" style="max-height:none">${t}</div></div>`}).join('');
+  return `<div class="card" id="ratios"><h3>Ratios (annual, FY ending March unless stated)</h3><div class="bar rtabs">${tabs}</div>${body}<p class="mut" style="font-size:12px">Computed from Yahoo Finance statements (about 4 years). Year-end balances are used for all ratios. Missing values mean the line item is not reported.</p></div>`;
+}
+function bindRatios(){
+  document.querySelectorAll('.rtabs button').forEach(b=>b.onclick=()=>{
+    document.querySelectorAll('.rtabs button').forEach(x=>x.classList.toggle('on',x===b));
+    document.querySelectorAll('.rsec').forEach(x=>x.style.display=x.dataset.sec===b.dataset.sec?'':'none')})}
+
+
+// ---------- financials ----------
+function finFromRow(r){return {price:T.num(r.price),model:{roe_pct:T.num(r.roe_pct),bvps:T.num(r.bvps),beta:T.num(r.beta)||1,g_cap_pct:T.num(r.g_cap_pct)}}}
+function ols(pts){const n=pts.length;if(n<4)return null;const mx=pts.reduce((a,p)=>a+p[0],0)/n,my=pts.reduce((a,p)=>a+p[1],0)/n;let sxy=0,sxx=0;pts.forEach(p=>{sxy+=(p[0]-mx)*(p[1]-my);sxx+=(p[0]-mx)**2});if(!sxx)return null;const b=sxy/sxx;return {a:my-b*mx,b,n}}
+let FSUB='Bank + NBFC';
+async function financials(){
+  const rows=await table('data/financials_summary.csv');
+  if(!rows.length){view.innerHTML='<div class="card">No financials data yet. Run the Daily refresh once after adding compute_financials.py.</div>';return}
+  const inp={rf:A.rf/100,erp:A.erp/100,g:A.g/100};
+  const data=rows.map(r=>{const f=finFromRow(r),m=T.finModel(f,inp),pb=T.num(r.pb);return {sym:r.symbol,sub:r.subtype,price:T.num(r.price),pb,roe:T.num(r.roe_pct),fairPB:m&&m.fairPB,fair:m&&m.fair,up:m&&m.fair!=null&&f.price?(m.fair/f.price-1)*100:null,imp:m&&m.impliedROE!=null?m.impliedROE*100:null,flag:r.flags}});
+  const inSub=d=>FSUB==='All'||(FSUB==='Bank + NBFC'?(d.sub==='Bank'||d.sub==='NBFC'):d.sub===FSUB);
+  const reg=ols(data.filter(d=>inSub(d)&&d.roe>0&&d.pb>0&&!/overstated/.test(d.flag)).map(d=>[d.roe,d.pb]));
+  data.forEach(d=>{d.peer=reg&&d.roe!=null?reg.a+reg.b*d.roe:null});
+  view.innerHTML=`<div class="bar"><select id="f-sub">${['Bank + NBFC','Bank','NBFC','Insurance','Other financial','All'].map(x=>`<option ${x===FSUB?'selected':''}>${x}</option>`).join('')}</select>
+   <span class="mut">${data.length} financials · assumptions: RF ${A.rf}% · ERP ${A.erp}% · g ${A.g}% (change in Assumptions)</span></div>
+   <div class="card"><h3>P/B vs ROE ${reg?`· peer line: P/B = ${T.fmt(reg.a,2)} + ${T.fmt(reg.b,3)} × ROE (n=${reg.n})`:''}</h3><canvas id="sc" style="height:340px"></canvas></div>
+   <div class="card scroll"><table id="ft"></table></div>
+   <p class="mut">Fair P/B = (ROE − g) ÷ (Ke − g), Ke = RF + beta × ERP. Peer P/B = value from the line above at the stock's ROE. Insurers and asset-light financials are indicative only.</p>`;
+  $('#f-sub').onchange=e=>{FSUB=e.target.value;financials()};
+  const sel=data.filter(d=>inSub(d)&&d.roe!=null&&d.pb!=null);
+  drawScatter($('#sc'),sel,reg);
+  const COLS2=[['sym','Symbol','l'],['sub','Type','l'],['price','Price'],['pb','P/B'],['roe','ROE %'],['fairPB','Fair P/B'],['peer','Peer P/B'],['fair','Fair value'],['up','Upside %'],['imp','Implied ROE %']];
+  let so={k:'pb',d:-1};
+  const draw=()=>{const rs=data.filter(inSub).slice().sort((a,b)=>{const x=a[so.k],y=b[so.k];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (x>y?1:x<y?-1:0)*so.d});
+   $('#ft').innerHTML='<tr>'+COLS2.map(c=>`<th class="${c[2]||''}" data-k="${c[0]}">${c[1]}${so.k===c[0]?(so.d>0?' ▲':' ▼'):''}</th>`).join('')+'</tr>'+rs.map(d=>`<tr class="row" onclick="location.hash='#/stock/${d.sym}'"><td>${d.sym}${d.flag?' <span class="warn" title="'+esc(d.flag)+'">⚑</span>':''}</td><td class="l mut">${d.sub}</td><td>${T.fmt(d.price,1)}</td><td>${T.fmt(d.pb,2)}</td><td>${T.fmt(d.roe,1)}</td><td>${T.fmt(d.fairPB,2)}</td><td>${T.fmt(d.peer,2)}</td><td>${T.fmt(d.fair,0)}</td><td class="${cls(d.up)}">${T.fmt(d.up,0)}</td><td>${T.fmt(d.imp,1)}</td></tr>`).join('');
+   document.querySelectorAll('#ft th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;so=so.k===k?{k,d:-so.d}:{k,d:k==='sym'||k==='sub'?1:-1};draw()})};
+  draw();
+}
+function drawScatter(cv,pts,reg){
+  const dpr=window.devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;cv.width=w*dpr;cv.height=h*dpr;const ctx=cv.getContext('2d');ctx.scale(dpr,dpr);
+  if(!pts.length)return;const L=44,R=12,Tp=10,B=26;
+  const xs=pts.map(p=>p.roe),ys=pts.map(p=>p.pb);const x0=Math.min(0,...xs),x1=Math.max(...xs)*1.05,y0=0,y1=Math.max(...ys)*1.08;
+  const X=v=>L+(w-L-R)*(v-x0)/(x1-x0),Y=v=>Tp+(h-Tp-B)*(1-(v-y0)/(y1-y0));
+  let hov=-1;
+  const draw=()=>{ctx.clearRect(0,0,w,h);ctx.font='11px system-ui';ctx.fillStyle='#8b94a3';ctx.strokeStyle='rgba(139,148,163,.25)';
+   for(let k=0;k<=4;k++){const v=y0+(y1-y0)*k/4,y=Y(v);ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(w-R,y);ctx.stroke();ctx.fillText(T.fmt(v,1),4,y+4)}
+   for(let k=0;k<=5;k++){const v=x0+(x1-x0)*k/5;ctx.fillText(T.fmt(v,0)+'%',X(v)-10,h-8)}
+   if(reg){ctx.strokeStyle='#f5a524';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(X(x0),Y(reg.a+reg.b*x0));ctx.lineTo(X(x1),Y(reg.a+reg.b*x1));ctx.stroke()}
+   pts.forEach((p,i)=>{ctx.fillStyle=i===hov?'#f5a524':(p.sub==='Bank'?'#4aa3ff':p.sub==='NBFC'?'#2ecc71':'#c78bff');ctx.beginPath();ctx.arc(X(p.roe),Y(p.pb),i===hov?6:4,0,7);ctx.fill()});
+   if(hov>=0){const p=pts[hov];ctx.fillStyle='#e6e9ee';ctx.fillText(`${p.sym}  ROE ${T.fmt(p.roe,1)}%  P/B ${T.fmt(p.pb,2)}`,L+6,Tp+12)}};
+  draw();
+  cv.onmousemove=e=>{const r=cv.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;let b=-1,bd=225;pts.forEach((p,i)=>{const d=(X(p.roe)-mx)**2+(Y(p.pb)-my)**2;if(d<bd){bd=d;b=i}});if(b!==hov){hov=b;draw()}};
+  cv.onclick=()=>{if(hov>=0)location.hash='#/stock/'+pts[hov].sym};
+}
+function finPanel(f){
+  const box=$('#finbox'),m=f.model;const st={rf:A.rf,erp:A.erp,g:A.g,roe:null};
+  const kv=(k,v,c='')=>`<div><div class="k">${k}</div><div class="v ${c}" style="font-size:16px">${v}</div></div>`;
+  function render(){
+    const inp={rf:st.rf/100,erp:st.erp/100,g:st.g/100,roe:st.roe!=null?st.roe/100:null};
+    const r=T.finModel(f,inp),up=r&&r.fair!=null&&f.price?(r.fair/f.price-1)*100:null,sens=r?T.finSens(f,inp):null;
+    box.innerHTML=`<div class="card"><h3>Financials model: justified P/B <span class="tag">${esc(f.subtype)}</span></h3>
+     <div class="bar"><label>RF % <input id="x-rf" type="number" step="0.1" value="${st.rf}" style="width:70px"></label>
+      <label>ERP % <input id="x-erp" type="number" step="0.1" value="${st.erp}" style="width:70px"></label>
+      <label>Growth g % <input id="x-g" type="number" step="0.1" value="${st.g}" style="width:70px"></label>
+      <label>ROE % <input id="x-roe" type="number" step="0.5" value="${st.roe!=null?st.roe:T.fmt(m.roe_pct,1).replace(',','')}" style="width:70px"></label><button id="x-reset">Reset</button></div>
+     ${r&&r.fair!=null?`<div class="grid">${kv('Fair value ₹',T.fmt(r.fair,0))}${kv('Price ₹',T.fmt(f.price,1))}${kv('Upside',T.pct(up,0),cls(up))}${kv('Fair P/B',T.fmt(r.fairPB,2))}${kv('Current P/B',T.fmt(r.pb,2))}${kv('Implied ROE at price %',T.fmt(r.impliedROE!=null?r.impliedROE*100:null,1))}${kv('Cost of equity %',T.fmt(r.ke*100,2))}${kv('g used %',T.fmt(r.g*100,2))}${kv('Book value / share ₹',T.fmt(m.bvps,1))}${kv('Beta used',T.fmt(m.beta,2))}</div>`:'<p class="warn">Model not meaningful with these inputs (needs positive ROE and Ke above g).</p>'}
+     <p class="mut" style="font-size:12px">ROE basis: ${esc(f.roe_basis)}. TTM ROE ${T.pct(f.roe_ttm_pct,1)} · 3-yr avg ROE ${T.pct(f.roe_avg3_pct,1)} · book value CAGR ${T.pct(f.bv_cagr_pct,1)} · payout ${T.pct(f.payout_pct,0)}${m.g_cap_pct!=null?' · g capped at sustainable growth '+T.pct(m.g_cap_pct,1):''}</p>
+     ${(f.flags||[]).length?`<p class="warn">${f.flags.map(esc).join(' · ')}</p>`:''}</div>
+     <div class="two"><div class="card"><h3>ROE history</h3><table><tr><th class="l">FY</th>${(f.fy||[]).map(x=>`<th>${esc(x.year)}</th>`).join('')}</tr><tr><td class="l">ROE %</td>${(f.fy||[]).map(x=>`<td>${T.fmt(x.roe,1)}</td>`).join('')}</tr><tr><td class="l">ROA %</td>${(f.fy||[]).map(x=>`<td>${T.fmt(x.roa,2)}</td>`).join('')}</tr></table></div>
+     <div class="card"><h3>Sensitivity: fair value ₹ (ROE down, Ke across)</h3>${sens?`<table><tr><th></th>${sens.kes.map(k=>`<th>${T.fmt(k*100,1)}%</th>`).join('')}</tr>${sens.grid.map((row,i)=>`<tr><td>${T.fmt(sens.roes[i]*100,1)}%</td>${row.map((v,j)=>`<td class="${i===2&&j===2?'hl':''}">${T.fmt(v,0)}</td>`).join('')}</tr>`).join('')}</table>`:''}</div></div>`;
+    const bind=(id,key)=>{$(id).onchange=e=>{const v=parseFloat(e.target.value);st[key]=isFinite(v)?v:null;render()}};
+    bind('#x-rf','rf');bind('#x-erp','erp');bind('#x-g','g');bind('#x-roe','roe');
+    $('#x-reset').onclick=()=>{st.rf=A.rf;st.erp=A.erp;st.g=A.g;st.roe=null;render()};
+  }
+  render();
 }
 
 function dcfPanel(d,price){
