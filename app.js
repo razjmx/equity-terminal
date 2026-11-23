@@ -248,7 +248,7 @@ async function market(){
   MH.data=data;renderMarket(true);
 }
 function renderMarket(anim){
-  const d=MH.data,S=d.series,N=RANGES[MH.range],pm=MH.mode==='pct',C=mcol();
+  const d=MH.data,S=d.series,N=RANGES[MH.range],pm=false,C=mcol();
   const W=a=>a.slice(Math.max(0,a.length-N)),X=W(d.dates);
   const last=a=>{for(let i=a.length-1;i>=0;i--)if(a[i]!=null)return a[i];return null},first=a=>{for(const v of a)if(v!=null)return v;return null};
   const den=(k)=>typeof k==='string'?W(S[k]):W(k);
@@ -270,85 +270,22 @@ function renderMarket(anim){
       h+=mcard('ix'+i,ix.name,{big:l==null?'–':T.fmt(l,ix.real?0:1),delta:ch==null?'':sgn(ch,1,'%'),dcls:cls(ch)});
       specs.push({id:'ix'+i,x:X,layers:[{y:a,type:'area'}],auto:true,dec:ix.real?0:1})});h+='</div>'}
 
-  // 2 advances / declines
-  {h+=sec('adv','Advances and declines')+'<div class="mh-grid">';
-   const a=ser('adv',pm?'n':null),b=ser('dec',pm?'n':null),dec=pm?1:0,pu=pm?'%':'';
-   h+=mcard('adv1','Advances and declines',{legend:[{c:C.g,n:'Advances',v:T.fmt(last(a),dec)+pu},{c:C.r,n:'Declines',v:T.fmt(last(b),dec)+pu}]});
-   specs.push({id:'adv1',x:X,layers:[{y:a,type:'bars',color:C.g,name:'Advances'},{y:b,type:'bars',color:C.r,name:'Declines',neg:true}],dec,zero:true,fmt:pm?(v=>T.fmt(v,1)+'%'):null});
-   const net=W(S.adv).map((v,i)=>v==null?null:(v-(W(S.dec)[i]||0))/(pm?(W(S.n)[i]||1)/100:1));
-   h+=mcard('adv2','Net advances',{big:T.fmt(last(net),pm?1:0)+(pm?'%':''),h:150});
-   specs.push({id:'adv2',x:X,layers:[{y:net,type:'bars',name:'Net'}],zero:true,dec:pm?1:0});
-   if(d.has_volume&&S.upvol_pct){const uv=W(S.upvol_pct);h+=mcard('adv3','Up volume',{big:T.fmt(last(uv),1)+'%',delta:sgn(last(uv)-first(uv),1,' pts'),dcls:cls(last(uv)-first(uv))});
-     specs.push({id:'adv3',x:X,layers:[{y:uv,type:'area'}],auto:true,dec:1,fmt:v=>T.fmt(v,1)+'%'})}
-   h+='</div>'}
-
-  // 3 moving averages
-  {h+=sec('ma','Moving averages','stocks closing above their exponential moving average')+'<div class="mh-grid">';
-   [[20,'ab20','n20'],[50,'ab50','n50'],[100,'ab100','n100']].forEach(([k,a,nn])=>area('ma'+k,'Above '+k+' EMA',ser(a,nn)));
-   area('ma200','Above 200 EMA',ser('ab200','n200'));
-   const sz=[['ab200_large_pct','Large',C.b],['ab200_mid_pct','Mid','#2f6fdb'],['ab200_small_pct','Small','#e08a00']].filter(s=>S[s[0]]);
-   h+=mcard('ma200s','Above 200 EMA by size',{span:2,legend:sz.map(s=>({c:s[2],n:s[1],v:T.fmt(last(W(S[s[0]])),1)+'%'}))});
-   specs.push({id:'ma200s',x:X,layers:sz.map(s=>({y:W(S[s[0]]),type:'line',color:s[2],name:s[1]})),dec:1,fmt:v=>T.fmt(v,1)+'%'});
-   h+='</div>'}
-
-  // 4 highs and lows
-  {h+=sec('hl','52-week highs and lows')+'<div class="mh-grid">';
-   const nh=ser('nh',pm?'n52':null),nl=ser('nl',pm?'n52':null),dec=pm?1:0,pu=pm?'%':'';
-   h+=mcard('hl1','New highs and new lows',{span:2,legend:[{c:C.g,n:'Highs',v:T.fmt(last(nh),dec)+pu},{c:C.r,n:'Lows',v:T.fmt(last(nl),dec)+pu}]});
-   specs.push({id:'hl1',x:X,layers:[{y:nh,type:'bars',color:C.g,name:'Highs'},{y:nl,type:'bars',color:C.r,name:'Lows',neg:true}],zero:true,dec,fmt:pm?(v=>T.fmt(v,1)+'%'):null});
-   const nn=W(S.netnh10);h+=mcard('hl2','Net new highs, 10 days',{big:T.fmt(last(nn),0)});specs.push({id:'hl2',x:X,layers:[{y:nn,type:'bars',name:'Net'}],zero:true,dec:0});
-   h+='</div>'}
-
-  // 5 momentum
-  {h+=sec('mo','Momentum','number of stocks making large moves')+'<div class="mh-grid">';
-   two('mo1','Up and down 4% in a day','up4','dn4','n','Up','Down',{bars:true,neg:true});
-   {const r=W(S.ratio4_10);h+=mcard('mo2','Up 4% to down 4%, 10 days',{big:T.fmt(last(r),2),delta:sgn(last(r)-first(r),2),dcls:cls(last(r)-first(r))});specs.push({id:'mo2',x:X,layers:[{y:r,type:'area'}],auto:true,dec:2})}
-   two('mo3','25% in a quarter','q25_up','q25_dn','n');two('mo4','25% in a month','m25_up','m25_dn','n');
-   two('mo5','50% in a month','m50_up','m50_dn','n');two('mo6','13% in 34 days','d13_up','d13_dn','n');
-   h+='</div>'}
-
-  // 6 stages
-  {h+=sec('st','Stages','Weinstein-style, 150-day average and its slope')+'<div class="mh-grid">';
-   const sk=[['st1','Stage 1','#9aa3b0'],['st2','Stage 2','#2e9e6b'],['st3','Stage 3','#e9a23b'],['st4','Stage 4','#d9534f']];
-   const wt=W(stTot);const ly=sk.map(s=>({y:W(S[s[0]]).map((v,i)=>v==null?null:(pm?v/(wt[i]||1)*100:v)),color:s[2],name:s[1]}));
-   const lastTot=last(W(stTot))||1;
-   h+=mcard('st0','Stage distribution',{span:2,legend:sk.map(s=>({c:s[2],n:s[1],v:T.fmt(last(W(S[s[0]]))/lastTot*100,0)+'%'})),h:170});
-   specs.push({id:'st0',x:X,layers:ly.map(l=>Object.assign(l,{type:'area'})),stack:true,dec:pm?1:0,fmt:pm?(v=>T.fmt(v,1)+'%'):null});
-   area('st2','Stage 2',ser('st2',pm?stTot:null));area('st4','Stage 4',ser('st4',pm?stTot:null));
-   h+='</div>'}
-
-  // 7 industries
-  {h+=sec('ind','Industries','in play = at least 15% of stocks above their 50-day average and up 10%+ in a month; uptrend = half or more above the 200-day EMA')+'<div class="mh-grid">';
-   area('ip','Industries in play',W(S.ind_play),{dec:0,noDelta:false});area('iu','Industries in uptrend',W(S.ind_up),{dec:0});
-   h+='</div>';
-   const top=d.industries.slice().sort((a,b)=>b.play-a.play).slice(0,10);
-   h+=`<div class="mc tbl"><div class="mt">Industries in play now<a class="link" href="#/screener">Screener →</a></div><table><tr><th class="l">Industry</th><th>Stocks</th><th>In play</th><th>Share in play</th></tr>${top.map(r=>`<tr class="row ind" data-ind="${esc(r.industry)}"><td class="l">${esc(r.industry)}</td><td>${r.stocks}</td><td>${r.play}</td><td>${T.fmt(r.play_share,0)}%</td></tr>`).join('')}</table></div>`;
-   const cols=[['industry','Industry','l'],['stocks','Stocks'],['r1w','1W'],['r1m','1M'],['r3m','3M'],['ab50','Above 50 EMA'],['ab200','Above 200 EMA'],['ab200_chg','200 EMA, 1M chg'],['vshare_1w','Value share, 1W'],['vshare_chg','Share vs 20D']];
-   const rows=d.industries.slice().sort((a,b)=>{const k=MH.sort.k,x=a[k],y=b[k];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (x>y?1:x<y?-1:0)*MH.sort.d});
-   const f=(r,k)=>{const v=r[k];if(k==='industry')return esc(v);if(v==null)return '–';if(k==='stocks')return v;if(k==='ab50'||k==='ab200'||k==='vshare_1w')return T.fmt(v,0)+'%';if(k==='ab200_chg'||k==='vshare_chg')return `<span class="${cls(v)}">${sgn(v,1)}</span>`;return `<span class="${cls(v)}">${sgn(v,1,'%')}</span>`};
-   h+=`<div class="mc tbl" style="margin-top:14px"><div class="mt">Sectors &amp; industries<span class="mut" style="font-weight:400;font-size:12px">median return of constituents · click a header to sort, a row to open in the screener</span></div><div class="scroll" style="max-height:520px"><table id="indtb"><tr>${cols.map(c=>`<th class="${c[2]||''}" data-k="${c[0]}">${c[1]}${MH.sort.k===c[0]?(MH.sort.d>0?' ▲':' ▼'):''}</th>`).join('')}</tr>${rows.map(r=>`<tr class="row ind" data-ind="${esc(r.industry)}">${cols.map(c=>`<td class="${c[2]||''}">${f(r,c[0])}</td>`).join('')}</tr>`).join('')}</table></div></div>`;
+  // sector heatmap
+  {h+=sec('ind','Sector heatmap','one-month return by industry, click a block to open it in the screener');
    h+=heat()}
 
   // 8 size and style
   if(d.ratios&&d.ratios.length){h+=sec('sz','Size and style','ratio of two groups, rebased to 100 at the start of the data; rising = first group outperforming')+'<div class="mh-grid">';
    d.ratios.forEach((r,i)=>{const a=W(r.y),l=last(a),f=first(a),ch=l!=null&&f?(l/f-1)*100:null;h+=mcard('rt'+i,r.name,{big:T.fmt(l,1),delta:ch==null?'':sgn(ch,1,'%'),dcls:cls(ch)});specs.push({id:'rt'+i,x:X,layers:[{y:a,type:'area'}],auto:true,dec:1})});h+='</div>'}
 
-  // 9 movers
-  {const rows=Object.values(D.rsk),top=(k,asc)=>rows.filter(r=>T.num(r[k])!=null&&(T.num(r.traded_cr)||0)>5).sort((a,c)=>asc?T.num(a[k])-T.num(c[k]):T.num(c[k])-T.num(a[k])).slice(0,8);
-   const list=(t,a)=>`<div class="mc tbl"><div class="mt">${t}</div><table>${a.map(r=>`<tr class="row" onclick="location.hash='#/stock/${r.symbol}'"><td class="l">${r.symbol}</td><td>${T.fmt(r.price,1)}</td><td class="${cls(T.num(r.ret_1m))}">${T.pct(T.num(r.ret_1m))}</td><td>RSI ${T.fmt(T.num(r.rsi14),0)}</td></tr>`).join('')}</table></div>`;
-   h+=sec('mv','Movers','traded above ₹5 cr a day')+`<div class="mh-grid">${list('Top 1M returns',top('ret_1m'))}${list('Bottom 1M returns',top('ret_1m',true))}${list('Most oversold (RSI)',top('rsi14',true))}</div>`}
-
-  const chips=[['idx','Indices'],['adv','Breadth'],['ma','Averages'],['hl','Highs/lows'],['mo','Momentum'],['st','Stages'],['ind','Industries'],['sz','Size & style'],['mv','Movers']];
-  const bar=`<div class="mh-bar"><div class="seg" id="mh-mode"><button data-m="count" class="${MH.mode==='count'?'on':''}">Count</button><button data-m="pct" class="${MH.mode==='pct'?'on':''}">%</button></div>
-   <div class="chips">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</div>
+  const chips=[['idx','Indices'],['ind','Sector heatmap'],['sz','Size & style']];
+  const bar=`<div class="mh-bar"><div class="chips">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</div>
    <div class="seg" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div></div>
-   <div class="mut" style="font-size:12px;margin:-4px 0 6px">${d.n_stocks} stocks · data to ${esc(d.last_date)} · derived from daily closes (${d.has_volume?'volume included':'no volume data'})</div>`;
+   <div class="mut" style="font-size:12px;margin:-4px 0 6px">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</div>`;
   view.innerHTML=bar+h;
   // wire
-  document.querySelectorAll('#mh-mode button').forEach(b=>b.onclick=()=>{MH.mode=b.dataset.m;renderMarket(false)});
   document.querySelectorAll('#mh-range button').forEach(b=>b.onclick=()=>{MH.range=b.dataset.r;renderMarket(true)});
   document.querySelectorAll('.mh-bar .chips a').forEach(a=>a.onclick=()=>{const el=document.getElementById(a.dataset.s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})});
-  document.querySelectorAll('#indtb th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;MH.sort=MH.sort.k===k?{k,d:-MH.sort.d}:{k,d:k==='industry'?1:-1};renderMarket(false)});
   document.querySelectorAll('tr.ind').forEach(tr=>tr.onclick=()=>{FILT.ind=tr.dataset.ind;FILT.q='';FILT.rel='all';location.hash='#/screener'});
   MH.charts=specs;specs.forEach(sp=>{const cv=document.getElementById(sp.id);if(cv)mchart(cv,sp,anim)});
   countUps(view);
