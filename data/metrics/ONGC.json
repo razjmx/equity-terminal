@@ -2,7 +2,9 @@
  "symbol": "ONGC",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 605276.5,
   "ni": 41424.4,
@@ -10,7 +12,9 @@
   "ta": 791905.2,
   "eq": 371767.8,
   "debt": 174299.1,
-  "fcf": 58728.9
+  "fcf": 58728.9,
+  "ni_continuing": 49793.1,
+  "ni_normalized": 51172.8
  },
  "ratios": {
   "roe_pct": 11.1,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 6.77,
+  "pe_normalized": 5.48,
   "pb": 0.75,
   "ev_ebitda": 3.62,
   "fcf_yield_pct": 21.0,

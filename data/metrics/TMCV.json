@@ -2,7 +2,9 @@
  "symbol": "TMCV",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 83390.0,
   "ni": 3030.0,
@@ -10,7 +12,9 @@
   "ta": 52309.0,
   "eq": 12734.0,
   "debt": 5615.0,
-  "fcf": 12733.0
+  "fcf": 12733.0,
+  "ni_continuing": 3030.0,
+  "ni_normalized": 5500.9
  },
  "ratios": {
   "roe_pct": 23.8,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 54.59,
+  "pe_normalized": 30.07,
   "pb": 12.99,
   "ev_ebitda": 21.11,
   "fcf_yield_pct": 7.7,

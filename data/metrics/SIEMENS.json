@@ -2,7 +2,9 @@
  "symbol": "SIEMENS",
  "latest_fy": "2025-09-30",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 17364.2,
   "ni": 2104.2,
@@ -10,7 +12,9 @@
   "ta": 19989.2,
   "eq": 13227.6,
   "debt": 145.3,
-  "fcf": -5.7
+  "fcf": -5.7,
+  "ni_continuing": 1688.8,
+  "ni_normalized": 1683.0
  },
  "ratios": {
   "roe_pct": 15.9,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 61.09,
+  "pe_normalized": 76.38,
   "pb": 9.72,
   "ev_ebitda": 46.96,
   "fcf_yield_pct": -0.0,

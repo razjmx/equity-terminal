@@ -2,7 +2,9 @@
  "symbol": "RAMCOCEM",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 8947.2,
   "ni": 698.6,
@@ -10,7 +12,9 @@
   "ta": 16635.6,
   "eq": 8093.5,
   "debt": 3871.1,
-  "fcf": 614.4
+  "fcf": 614.4,
+  "ni_continuing": 698.8,
+  "ni_normalized": 250.6
  },
  "ratios": {
   "roe_pct": 8.6,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 27.73,
+  "pe_normalized": 77.31,
   "pb": 2.39,
   "ev_ebitda": 12.05,
   "fcf_yield_pct": 3.2,

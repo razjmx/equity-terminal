@@ -2,7 +2,9 @@
  "symbol": "JSWSTEEL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 182037.0,
   "ni": 22316.0,
@@ -10,7 +12,9 @@
   "ta": 269676.0,
   "eq": 100053.0,
   "debt": 119079.0,
-  "fcf": 10498.0
+  "fcf": 10498.0,
+  "ni_continuing": 25508.0,
+  "ni_normalized": 6946.1
  },
  "ratios": {
   "roe_pct": 22.3,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 14.32,
+  "pe_normalized": 46.0,
   "pb": 3.19,
   "ev_ebitda": 8.25,
   "fcf_yield_pct": 3.3,

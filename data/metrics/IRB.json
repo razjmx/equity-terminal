@@ -2,7 +2,9 @@
  "symbol": "IRB",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 6252.4,
   "ni": 850.4,
@@ -10,7 +12,9 @@
   "ta": 54053.6,
   "eq": 20948.8,
   "debt": 20027.1,
-  "fcf": 1366.0
+  "fcf": 1366.0,
+  "ni_continuing": 850.4,
+  "ni_normalized": 211.7
  },
  "ratios": {
   "roe_pct": 4.1,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 24.9,
+  "pe_normalized": 100.03,
   "pb": 1.01,
   "ev_ebitda": 9.74,
   "fcf_yield_pct": 6.5,

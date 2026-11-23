@@ -2,7 +2,9 @@
  "symbol": "APOLLOTYRE",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 28214.5,
   "ni": 1372.4,
@@ -10,7 +12,9 @@
   "ta": 29239.7,
   "eq": 16715.2,
   "debt": 3675.2,
-  "fcf": 2264.1
+  "fcf": 2264.1,
+  "ni_continuing": 1372.4,
+  "ni_normalized": 2006.4
  },
  "ratios": {
   "roe_pct": 8.2,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 19.36,
+  "pe_normalized": 13.24,
   "pb": 1.59,
   "ev_ebitda": 8.99,
   "fcf_yield_pct": 8.5,

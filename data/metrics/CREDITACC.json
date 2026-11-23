@@ -2,7 +2,9 @@
  "symbol": "CREDITACC",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 5833.2,
   "ni": 777.6,
@@ -10,7 +12,9 @@
   "ta": 31930.2,
   "eq": 7842.2,
   "debt": 23641.1,
-  "fcf": -2787.8
+  "fcf": -2787.8,
+  "ni_continuing": 777.6,
+  "ni_normalized": 1993.4
  },
  "ratios": {
   "roe_pct": 9.9,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 20.35,
+  "pe_normalized": 7.94,
   "pb": 2.02,
   "ev_ebitda": 29.98,
   "fcf_yield_pct": -17.6,

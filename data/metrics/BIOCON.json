@@ -2,7 +2,9 @@
  "symbol": "BIOCON",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 16779.9,
   "ni": 385.6,
@@ -10,7 +12,9 @@
   "ta": 63650.6,
   "eq": 34031.8,
   "debt": 15434.1,
-  "fcf": 82.3
+  "fcf": 82.3,
+  "ni_continuing": 368.8,
+  "ni_normalized": 609.4
  },
  "ratios": {
   "roe_pct": 1.1,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 152.37,
+  "pe_normalized": 96.41,
   "pb": 1.73,
   "ev_ebitda": 20.82,
   "fcf_yield_pct": 0.1,

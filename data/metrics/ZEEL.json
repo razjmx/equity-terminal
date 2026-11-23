@@ -2,7 +2,9 @@
  "symbol": "ZEEL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 8088.0,
   "ni": 273.1,
@@ -10,7 +12,9 @@
   "ta": 14215.5,
   "eq": 11731.8,
   "debt": 265.1,
-  "fcf": 547.7
+  "fcf": 547.7,
+  "ni_continuing": 271.3,
+  "ni_normalized": 215.0
  },
  "ratios": {
   "roe_pct": 2.3,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 25.22,
+  "pe_normalized": 32.03,
   "pb": 0.59,
   "ev_ebitda": 8.7,
   "fcf_yield_pct": 8.0,

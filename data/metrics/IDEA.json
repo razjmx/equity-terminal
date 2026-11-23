@@ -2,7 +2,9 @@
  "symbol": "IDEA",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 44789.0,
   "ni": 34552.0,
@@ -10,7 +12,9 @@
   "ta": 191638.0,
   "eq": -35758.0,
   "debt": 192528.0,
-  "fcf": 8432.0
+  "fcf": 8432.0,
+  "ni_continuing": 34552.0,
+  "ni_normalized": -644.0
  },
  "ratios": {
   "roe_pct": -96.6,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 3.76,
+  "pe_normalized": null,
   "pb": -3.63,
   "ev_ebitda": 4.05,
   "fcf_yield_pct": 6.5,

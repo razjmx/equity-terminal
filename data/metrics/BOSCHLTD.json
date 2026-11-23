@@ -2,7 +2,9 @@
  "symbol": "BOSCHLTD",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 19594.7,
   "ni": 2773.2,
@@ -10,7 +12,9 @@
   "ta": 21679.7,
   "eq": 14845.2,
   "debt": 118.8,
-  "fcf": 1858.8
+  "fcf": 1858.8,
+  "ni_continuing": 2773.2,
+  "ni_normalized": 2066.6
  },
  "ratios": {
   "roe_pct": 18.7,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 51.91,
+  "pe_normalized": 69.66,
   "pb": 9.7,
   "ev_ebitda": 34.0,
   "fcf_yield_pct": 1.3,

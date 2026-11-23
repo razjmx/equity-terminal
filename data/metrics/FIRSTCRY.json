@@ -2,7 +2,9 @@
  "symbol": "FIRSTCRY",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 8310.5,
   "ni": -140.2,
@@ -10,7 +12,9 @@
   "ta": 9028.5,
   "eq": 4826.7,
   "debt": 1593.9,
-  "fcf": 176.0
+  "fcf": 176.0,
+  "ni_continuing": -203.7,
+  "ni_normalized": -110.2
  },
  "ratios": {
   "roe_pct": -2.9,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": null,
+  "pe_normalized": null,
   "pb": 1.7,
   "ev_ebitda": 21.34,
   "fcf_yield_pct": 2.1,

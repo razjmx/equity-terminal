@@ -2,7 +2,9 @@
  "symbol": "HDBFS",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 16777.1,
   "ni": 2543.8,
@@ -10,7 +12,9 @@
   "ta": 123651.5,
   "eq": 20664.0,
   "debt": 99230.1,
-  "fcf": -8749.2
+  "fcf": -8749.2,
+  "ni_continuing": 2543.8,
+  "ni_normalized": 4619.1
  },
  "ratios": {
   "roe_pct": 12.3,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 18.68,
+  "pe_normalized": 10.29,
   "pb": 2.3,
   "ev_ebitda": 20.06,
   "fcf_yield_pct": -18.4,

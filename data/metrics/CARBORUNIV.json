@@ -2,7 +2,9 @@
  "symbol": "CARBORUNIV",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 5149.4,
   "ni": 194.7,
@@ -10,7 +12,9 @@
   "ta": 5290.5,
   "eq": 3899.8,
   "debt": 303.5,
-  "fcf": 57.0
+  "fcf": 57.0,
+  "ni_continuing": 167.8,
+  "ni_normalized": 282.0
  },
  "ratios": {
   "roe_pct": 5.0,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 94.61,
+  "pe_normalized": 65.32,
   "pb": 4.72,
   "ev_ebitda": 32.98,
   "fcf_yield_pct": 0.3,

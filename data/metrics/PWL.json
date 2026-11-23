@@ -2,7 +2,9 @@
  "symbol": "PWL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 3877.0,
   "ni": -22.5,
@@ -10,7 +12,9 @@
   "ta": 7676.8,
   "eq": 4520.4,
   "debt": 1052.1,
-  "fcf": 490.2
+  "fcf": 490.2,
+  "ni_continuing": -24.2,
+  "ni_normalized": -15.1
  },
  "ratios": {
   "roe_pct": -0.5,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": null,
+  "pe_normalized": null,
   "pb": 8.95,
   "ev_ebitda": 68.39,
   "fcf_yield_pct": 1.2,

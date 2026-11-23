@@ -2,7 +2,9 @@
  "symbol": "NHPC",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 11123.1,
   "ni": 3765.7,
@@ -10,7 +12,9 @@
   "ta": 120010.9,
   "eq": 41437.2,
   "debt": 54606.2,
-  "fcf": -8278.7
+  "fcf": -8278.7,
+  "ni_continuing": 3237.1,
+  "ni_normalized": 2979.3
  },
  "ratios": {
   "roe_pct": 9.1,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 20.04,
+  "pe_normalized": 25.33,
   "pb": 1.82,
   "ev_ebitda": 15.62,
   "fcf_yield_pct": -11.0,

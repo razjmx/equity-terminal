@@ -2,7 +2,9 @@
  "symbol": "ETERNAL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 54364.0,
   "ni": 366.0,
@@ -10,7 +12,9 @@
   "ta": 40736.0,
   "eq": 30980.0,
   "debt": 4592.0,
-  "fcf": -1119.0
+  "fcf": -1119.0,
+  "ni_continuing": 366.0,
+  "ni_normalized": 3.0
  },
  "ratios": {
   "roe_pct": 1.2,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 914.23,
+  "pe_normalized": 111535.99,
   "pb": 10.8,
   "ev_ebitda": 127.16,
   "fcf_yield_pct": -0.3,

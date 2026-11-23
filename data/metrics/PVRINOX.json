@@ -2,7 +2,9 @@
  "symbol": "PVRINOX",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 6603.8,
   "ni": 334.1,
@@ -10,7 +12,9 @@
   "ta": 15612.3,
   "eq": 7378.7,
   "debt": 6779.1,
-  "fcf": 1901.6
+  "fcf": 1901.6,
+  "ni_continuing": 176.1,
+  "ni_normalized": 210.9
  },
  "ratios": {
   "roe_pct": 4.5,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 49.37,
+  "pe_normalized": 78.21,
   "pb": 2.24,
   "ev_ebitda": 10.28,
   "fcf_yield_pct": 11.5,

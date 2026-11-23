@@ -2,7 +2,9 @@
  "symbol": "ADANIENT",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 100267.0,
   "ni": 9339.5,
@@ -10,7 +12,9 @@
   "ta": 261600.4,
   "eq": 80925.9,
   "debt": 106621.8,
-  "fcf": -31012.2
+  "fcf": -31012.2,
+  "ni_continuing": 9950.7,
+  "ni_normalized": 2696.3
  },
  "ratios": {
   "roe_pct": 11.5,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 39.18,
+  "pe_normalized": 135.72,
   "pb": 4.52,
   "ev_ebitda": 17.75,
   "fcf_yield_pct": -8.5,

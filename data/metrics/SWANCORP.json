@@ -2,7 +2,9 @@
  "symbol": "SWANCORP",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 4333.6,
   "ni": 274.1,
@@ -10,7 +12,9 @@
   "ta": 13853.0,
   "eq": 7536.4,
   "debt": 2258.3,
-  "fcf": -224.0
+  "fcf": -224.0,
+  "ni_continuing": 271.3,
+  "ni_normalized": -199.2
  },
  "ratios": {
   "roe_pct": 3.6,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 26.28,
+  "pe_normalized": null,
   "pb": 0.96,
   "ev_ebitda": 14.4,
   "fcf_yield_pct": -3.1,

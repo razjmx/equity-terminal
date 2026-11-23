@@ -2,7 +2,9 @@
  "symbol": "GMRAIRPORT",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 13344.6,
   "ni": 175.5,
@@ -10,7 +12,9 @@
   "ta": 54764.3,
   "eq": -2479.8,
   "debt": 43269.0,
-  "fcf": 1554.8
+  "fcf": 1554.8,
+  "ni_continuing": 472.4,
+  "ni_normalized": 129.3
  },
  "ratios": {
   "roe_pct": -7.1,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 623.72,
+  "pe_normalized": 846.65,
   "pb": -44.14,
   "ev_ebitda": 23.84,
   "fcf_yield_pct": 1.4,

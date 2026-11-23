@@ -2,7 +2,9 @@
  "symbol": "VEDPOWER",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 8891.0,
   "ni": -1685.0,
@@ -10,7 +12,9 @@
   "ta": 23820.0,
   "eq": 13191.0,
   "debt": 9409.0,
-  "fcf": 477.2
+  "fcf": 477.2,
+  "ni_continuing": -1685.0,
+  "ni_normalized": 39.3
  },
  "ratios": {
   "roe_pct": -12.8,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": null,
+  "pe_normalized": 339.99,
   "pb": 1.01,
   "ev_ebitda": -29.9,
   "fcf_yield_pct": 3.6,

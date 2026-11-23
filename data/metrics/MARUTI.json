@@ -2,7 +2,9 @@
  "symbol": "MARUTI",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 177094.1,
   "ni": 14679.5,
@@ -10,7 +12,9 @@
   "ta": 148881.0,
   "eq": 107156.3,
   "debt": 102.5,
-  "fcf": 8702.3
+  "fcf": 8702.3,
+  "ni_continuing": 14679.5,
+  "ni_normalized": 11864.1
  },
  "ratios": {
   "roe_pct": 13.7,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 30.34,
+  "pe_normalized": 37.55,
   "pb": 4.16,
   "ev_ebitda": 16.41,
   "fcf_yield_pct": 2.0,

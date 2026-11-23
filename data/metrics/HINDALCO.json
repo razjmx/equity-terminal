@@ -2,7 +2,9 @@
  "symbol": "HINDALCO",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 272642.0,
   "ni": 13391.0,
@@ -10,7 +12,9 @@
   "ta": 347795.0,
   "eq": 136583.0,
   "debt": 99161.0,
-  "fcf": -19846.0
+  "fcf": -19846.0,
+  "ni_continuing": 13391.0,
+  "ni_normalized": 19360.3
  },
  "ratios": {
   "roe_pct": 9.8,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 14.95,
+  "pe_normalized": 10.34,
   "pb": 1.47,
   "ev_ebitda": 9.03,
   "fcf_yield_pct": -9.9,

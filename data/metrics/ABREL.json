@@ -2,7 +2,9 @@
  "symbol": "ABREL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 403.8,
   "ni": -103.2,
@@ -10,7 +12,9 @@
   "ta": 20232.8,
   "eq": 3700.8,
   "debt": 5636.5,
-  "fcf": 534.8
+  "fcf": 534.8,
+  "ni_continuing": -338.1,
+  "ni_normalized": -319.8
  },
  "ratios": {
   "roe_pct": -2.8,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": null,
+  "pe_normalized": null,
   "pb": 3.74,
   "ev_ebitda": -50.77,
   "fcf_yield_pct": 3.9,

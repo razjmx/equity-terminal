@@ -2,7 +2,9 @@
  "symbol": "DELHIVERY",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 10488.3,
   "ni": 152.7,
@@ -10,7 +12,9 @@
   "ta": 12776.8,
   "eq": 9687.0,
   "debt": 1462.6,
-  "fcf": 489.3
+  "fcf": 489.3,
+  "ni_continuing": 152.5,
+  "ni_normalized": 90.3
  },
  "ratios": {
   "roe_pct": 1.6,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 224.4,
+  "pe_normalized": 379.6,
   "pb": 3.54,
   "ev_ebitda": 33.58,
   "fcf_yield_pct": 1.4,

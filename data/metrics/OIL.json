@@ -2,7 +2,9 @@
  "symbol": "OIL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 33943.4,
   "ni": 6619.9,
@@ -10,7 +12,9 @@
   "ta": 123848.0,
   "eq": 57998.4,
   "debt": 37478.0,
-  "fcf": -2487.2
+  "fcf": -2487.2,
+  "ni_continuing": 7550.7,
+  "ni_normalized": 9182.3
  },
  "ratios": {
   "roe_pct": 11.4,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 10.4,
+  "pe_normalized": 7.5,
   "pb": 1.19,
   "ev_ebitda": 7.53,
   "fcf_yield_pct": -3.6,

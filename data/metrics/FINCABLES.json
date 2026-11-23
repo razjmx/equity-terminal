@@ -2,7 +2,9 @@
  "symbol": "FINCABLES",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 6170.0,
   "ni": 713.7,
@@ -10,7 +12,9 @@
   "ta": 6990.0,
   "eq": 6085.9,
   "debt": 19.1,
-  "fcf": -105.2
+  "fcf": -105.2,
+  "ni_continuing": 713.7,
+  "ni_normalized": 620.1
  },
  "ratios": {
   "roe_pct": 11.7,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 25.14,
+  "pe_normalized": 28.93,
   "pb": 2.95,
   "ev_ebitda": 16.06,
   "fcf_yield_pct": -0.6,

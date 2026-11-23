@@ -2,7 +2,9 @@
  "symbol": "INDIAMART",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 1569.0,
   "ni": 474.7,
@@ -10,7 +12,9 @@
   "ta": 4624.6,
   "eq": 2400.4,
   "debt": 23.1,
-  "fcf": 687.2
+  "fcf": 687.2,
+  "ni_continuing": 474.7,
+  "ni_normalized": 335.0
  },
  "ratios": {
   "roe_pct": 19.8,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 19.58,
+  "pe_normalized": 27.75,
   "pb": 3.87,
   "ev_ebitda": 9.12,
   "fcf_yield_pct": 7.4,

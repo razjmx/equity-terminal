@@ -2,7 +2,9 @@
  "symbol": "ESCORTS",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 11413.5,
   "ni": 2394.1,
@@ -10,7 +12,9 @@
   "ta": 15799.4,
   "eq": 12372.8,
   "debt": 161.9,
-  "fcf": 1063.8
+  "fcf": 1063.8,
+  "ni_continuing": 1366.4,
+  "ni_normalized": 1195.3
  },
  "ratios": {
   "roe_pct": 19.3,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 11.28,
+  "pe_normalized": 22.59,
   "pb": 2.18,
   "ev_ebitda": 9.82,
   "fcf_yield_pct": 3.9,

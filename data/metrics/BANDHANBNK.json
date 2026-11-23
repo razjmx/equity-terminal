@@ -11,24 +11,25 @@
   "ebit": null,
   "ta": 211123.7,
   "eq": 25574.9,
-  "debt": 14302.8,
-  "fcf": 613.9
+  "debt": null,
+  "fcf": null,
+  "ni_continuing": 1223.6,
+  "ni_normalized": 1217.7
  },
  "ratios": {
   "roe_pct": 4.8,
   "roa_pct": 0.6,
-  "net_margin_pct": 9.0,
+  "net_margin_pct": null,
   "ebit_margin_pct": null,
   "roce_pct": null,
-  "fcf_margin_pct": 4.5,
-  "debt_equity": 0.56,
+  "fcf_margin_pct": null,
+  "debt_equity": null,
   "interest_cover": null,
   "current_ratio": null,
-  "asset_turnover": 0.06
+  "asset_turnover": null
  },
  "dupont": {
-  "net_margin_pct": 9.0,
-  "asset_turnover": 0.06,
+  "roa_pct": 0.6,
   "equity_multiplier": 8.26
  },
  "growth": {
@@ -38,9 +39,10 @@
  },
  "valuation": {
   "pe": 22.83,
+  "pe_normalized": 22.94,
   "pb": 1.09,
   "ev_ebitda": null,
-  "fcf_yield_pct": 2.2,
+  "fcf_yield_pct": null,
   "market_cap_cr": 27937.4
  },
  "piotroski": null,

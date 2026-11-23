@@ -2,7 +2,9 @@
  "symbol": "MOTILALOFS",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 8208.7,
   "ni": 1869.3,
@@ -10,7 +12,9 @@
   "ta": 43467.7,
   "eq": 12888.1,
   "debt": 21255.1,
-  "fcf": -6159.7
+  "fcf": -6159.7,
+  "ni_continuing": 1872.5,
+  "ni_normalized": 1441.1
  },
  "ratios": {
   "roe_pct": 14.5,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 39.74,
+  "pe_normalized": 51.55,
   "pb": 5.76,
   "ev_ebitda": 20.96,
   "fcf_yield_pct": -8.3,

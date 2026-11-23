@@ -2,7 +2,9 @@
  "symbol": "ACMESOLAR",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 2023.0,
   "ni": 498.9,
@@ -10,7 +12,9 @@
   "ta": 28540.3,
   "eq": 5061.5,
   "debt": 19896.3,
-  "fcf": -4072.6
+  "fcf": -4072.6,
+  "ni_continuing": 497.9,
+  "ni_normalized": 411.2
  },
  "ratios": {
   "roe_pct": 9.9,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 58.58,
+  "pe_normalized": 71.08,
   "pb": 5.77,
   "ev_ebitda": 20.5,
   "fcf_yield_pct": -13.9,

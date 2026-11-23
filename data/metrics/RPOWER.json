@@ -2,7 +2,9 @@
  "symbol": "RPOWER",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 7204.2,
   "ni": -336.9,
@@ -10,7 +12,9 @@
   "ta": 41292.6,
   "eq": 16039.4,
   "debt": 14812.0,
-  "fcf": 2708.4
+  "fcf": 2708.4,
+  "ni_continuing": -336.8,
+  "ni_normalized": -70.5
  },
  "ratios": {
   "roe_pct": -2.1,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": null,
+  "pe_normalized": null,
   "pb": 0.45,
   "ev_ebitda": 8.93,
   "fcf_yield_pct": 37.8,

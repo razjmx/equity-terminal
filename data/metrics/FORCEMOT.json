@@ -2,7 +2,9 @@
  "symbol": "FORCEMOT",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 8979.7,
   "ni": 1211.6,
@@ -10,7 +12,9 @@
   "ta": 6537.6,
   "eq": 4194.4,
   "debt": 0.0,
-  "fcf": 757.5
+  "fcf": 757.5,
+  "ni_continuing": 1211.8,
+  "ni_normalized": 1041.9
  },
  "ratios": {
   "roe_pct": 28.9,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 21.85,
+  "pe_normalized": 25.41,
   "pb": 6.31,
   "ev_ebitda": 13.45,
   "fcf_yield_pct": 2.9,

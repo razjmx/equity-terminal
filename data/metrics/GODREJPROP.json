@@ -2,7 +2,9 @@
  "symbol": "GODREJPROP",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 5025.6,
   "ni": 1850.2,
@@ -10,7 +12,9 @@
   "ta": 81894.4,
   "eq": 19155.5,
   "debt": 15894.1,
-  "fcf": -2409.4
+  "fcf": -2409.4,
+  "ni_continuing": 1840.7,
+  "ni_normalized": 152.2
  },
  "ratios": {
   "roe_pct": 9.7,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 31.45,
+  "pe_normalized": 382.21,
   "pb": 3.04,
   "ev_ebitda": 24.9,
   "fcf_yield_pct": -4.1,

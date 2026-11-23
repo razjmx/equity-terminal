@@ -2,7 +2,9 @@
  "symbol": "ARE&M",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 13760.0,
   "ni": 895.8,
@@ -10,7 +12,9 @@
   "ta": 11456.7,
   "eq": 8099.0,
   "debt": 406.2,
-  "fcf": -222.8
+  "fcf": -222.8,
+  "ni_continuing": 895.8,
+  "ni_normalized": 693.6
  },
  "ratios": {
   "roe_pct": 11.1,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 14.91,
+  "pe_normalized": 19.26,
   "pb": 1.65,
   "ev_ebitda": 7.27,
   "fcf_yield_pct": -1.7,

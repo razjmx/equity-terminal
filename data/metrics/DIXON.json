@@ -2,7 +2,9 @@
  "symbol": "DIXON",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 48537.4,
   "ni": 1438.6,
@@ -10,7 +12,9 @@
   "ta": 19161.6,
   "eq": 4676.7,
   "debt": 994.2,
-  "fcf": 714.8
+  "fcf": 714.8,
+  "ni_continuing": 1644.2,
+  "ni_normalized": 879.5
  },
  "ratios": {
   "roe_pct": 30.8,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 56.93,
+  "pe_normalized": 93.12,
   "pb": 17.51,
   "ev_ebitda": 31.47,
   "fcf_yield_pct": 0.9,

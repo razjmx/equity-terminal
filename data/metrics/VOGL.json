@@ -2,7 +2,9 @@
  "symbol": "VOGL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 9582.0,
   "ni": 54.0,
@@ -10,7 +12,9 @@
   "ta": 35738.0,
   "eq": 16506.0,
   "debt": 5927.0,
-  "fcf": -176.0
+  "fcf": -176.0,
+  "ni_continuing": 54.0,
+  "ni_normalized": 69.6
  },
  "ratios": {
   "roe_pct": 0.3,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 207.93,
+  "pe_normalized": 161.33,
   "pb": 0.68,
   "ev_ebitda": 4.97,
   "fcf_yield_pct": -1.6,

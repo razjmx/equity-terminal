@@ -2,7 +2,9 @@
  "symbol": "CLEANMAX",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 1908.4,
   "ni": 94.1,
@@ -10,7 +12,9 @@
   "ta": 23098.3,
   "eq": 4638.3,
   "debt": 12807.7,
-  "fcf": -4023.1
+  "fcf": -4023.1,
+  "ni_continuing": 85.6,
+  "ni_normalized": 44.9
  },
  "ratios": {
   "roe_pct": 2.0,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 154.0,
+  "pe_normalized": 323.08,
   "pb": 3.13,
   "ev_ebitda": 20.84,
   "fcf_yield_pct": -27.8,

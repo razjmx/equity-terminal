@@ -2,7 +2,9 @@
  "symbol": "NAUKRI",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 3284.7,
   "ni": 1449.8,
@@ -10,7 +12,9 @@
   "ta": 47559.5,
   "eq": 37913.1,
   "debt": 258.5,
-  "fcf": 1001.4
+  "fcf": 1001.4,
+  "ni_continuing": 1762.8,
+  "ni_normalized": 770.4
  },
  "ratios": {
   "roe_pct": 3.8,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 53.09,
+  "pe_normalized": 99.91,
   "pb": 2.03,
   "ev_ebitda": 31.98,
   "fcf_yield_pct": 1.3,

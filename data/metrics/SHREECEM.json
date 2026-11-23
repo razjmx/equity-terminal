@@ -2,7 +2,9 @@
  "symbol": "SHREECEM",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 20587.8,
   "ni": 1743.6,
@@ -10,7 +12,9 @@
   "ta": 31475.7,
   "eq": 23267.5,
   "debt": 1868.1,
-  "fcf": 1884.9
+  "fcf": 1884.9,
+  "ni_continuing": 1748.7,
+  "ni_normalized": 1459.7
  },
  "ratios": {
   "roe_pct": 7.5,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 51.8,
+  "pe_normalized": 61.87,
   "pb": 3.88,
   "ev_ebitda": 15.79,
   "fcf_yield_pct": 2.1,

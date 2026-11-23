@@ -2,7 +2,9 @@
  "symbol": "GODREJIND",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 22098.2,
   "ni": 1240.5,
@@ -10,7 +12,9 @@
   "ta": 126304.6,
   "eq": 11176.5,
   "debt": 51563.9,
-  "fcf": -9883.0
+  "fcf": -9883.0,
+  "ni_continuing": 2411.9,
+  "ni_normalized": -670.8
  },
  "ratios": {
   "roe_pct": 11.1,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 29.23,
+  "pe_normalized": null,
   "pb": 3.24,
   "ev_ebitda": 12.31,
   "fcf_yield_pct": -27.3,

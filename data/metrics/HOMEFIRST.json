@@ -2,7 +2,9 @@
  "symbol": "HOMEFIRST",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 1656.2,
   "ni": 540.4,
@@ -10,7 +12,9 @@
   "ta": 15166.5,
   "eq": 4356.5,
   "debt": 10590.0,
-  "fcf": -1949.3
+  "fcf": -1949.3,
+  "ni_continuing": 540.4,
+  "ni_normalized": 460.5
  },
  "ratios": {
   "roe_pct": 12.4,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 19.98,
+  "pe_normalized": 23.45,
   "pb": 2.48,
   "ev_ebitda": 26.85,
   "fcf_yield_pct": -18.1,

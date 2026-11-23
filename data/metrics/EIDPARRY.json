@@ -2,7 +2,9 @@
  "symbol": "EIDPARRY",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 27240.0,
   "ni": 569.5,
@@ -10,7 +12,9 @@
   "ta": 29253.9,
   "eq": 8766.1,
   "debt": 8550.2,
-  "fcf": -75.8
+  "fcf": -75.8,
+  "ni_continuing": 1380.5,
+  "ni_normalized": 833.1
  },
  "ratios": {
   "roe_pct": 6.5,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 20.12,
+  "pe_normalized": 13.76,
   "pb": 1.31,
   "ev_ebitda": 5.1,
   "fcf_yield_pct": -0.7,

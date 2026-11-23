@@ -2,7 +2,9 @@
  "symbol": "BBOX",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 6320.4,
   "ni": 217.5,
@@ -10,7 +12,9 @@
   "ta": 4293.7,
   "eq": 1286.9,
   "debt": 1153.0,
-  "fcf": 11.8
+  "fcf": 11.8,
+  "ni_continuing": 217.5,
+  "ni_normalized": 279.6
  },
  "ratios": {
   "roe_pct": 16.9,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 70.11,
+  "pe_normalized": 54.54,
   "pb": 11.85,
   "ev_ebitda": 36.48,
   "fcf_yield_pct": 0.1,

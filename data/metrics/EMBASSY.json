@@ -2,7 +2,9 @@
  "symbol": "EMBASSY",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 4531.2,
   "ni": 338.5,
@@ -10,7 +12,9 @@
   "ta": 50398.2,
   "eq": 20780.2,
   "debt": 23335.4,
-  "fcf": 3521.7
+  "fcf": 3521.7,
+  "ni_continuing": 338.5,
+  "ni_normalized": 212.1
  },
  "ratios": {
   "roe_pct": 1.6,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 103.57,
+  "pe_normalized": 165.3,
   "pb": 1.69,
   "ev_ebitda": 14.73,
   "fcf_yield_pct": 10.0,

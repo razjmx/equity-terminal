@@ -2,7 +2,9 @@
  "symbol": "GMDCLTD",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 2653.4,
   "ni": 956.7,
@@ -10,7 +12,9 @@
   "ta": 8983.0,
   "eq": 7072.7,
   "debt": 316.5,
-  "fcf": -290.3
+  "fcf": -290.3,
+  "ni_continuing": 956.7,
+  "ni_normalized": 587.3
  },
  "ratios": {
   "roe_pct": 13.5,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 14.99,
+  "pe_normalized": 24.42,
   "pb": 2.03,
   "ev_ebitda": 10.47,
   "fcf_yield_pct": -2.0,

@@ -2,7 +2,9 @@
  "symbol": "HINDUNILVR",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 63763.0,
   "ni": 15040.0,
@@ -10,7 +12,9 @@
   "ta": 79752.0,
   "eq": 48738.0,
   "debt": 1478.0,
-  "fcf": 9638.0
+  "fcf": 9638.0,
+  "ni_continuing": 10652.0,
+  "ni_normalized": 10663.8
  },
  "ratios": {
   "roe_pct": 30.9,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 31.94,
+  "pe_normalized": 45.05,
   "pb": 9.86,
   "ev_ebitda": 30.24,
   "fcf_yield_pct": 2.0,

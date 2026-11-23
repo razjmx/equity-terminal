@@ -2,7 +2,9 @@
  "symbol": "KEC",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 23301.3,
   "ni": 605.6,
@@ -10,7 +12,9 @@
   "ta": 25158.1,
   "eq": 6159.7,
   "debt": 5377.8,
-  "fcf": -742.8
+  "fcf": -742.8,
+  "ni_continuing": 605.6,
+  "ni_normalized": 749.7
  },
  "ratios": {
   "roe_pct": 9.8,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 13.09,
+  "pe_normalized": 10.57,
   "pb": 1.29,
   "ev_ebitda": 7.82,
   "fcf_yield_pct": -9.4,

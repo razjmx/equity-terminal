@@ -2,7 +2,9 @@
  "symbol": "NUVAMA",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 2283.5,
   "ni": 1041.0,
@@ -10,7 +12,9 @@
   "ta": 34491.3,
   "eq": 4120.9,
   "debt": 11543.5,
-  "fcf": -3042.2
+  "fcf": -3042.2,
+  "ni_continuing": 1040.3,
+  "ni_normalized": 698.7
  },
  "ratios": {
   "roe_pct": 25.3,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 31.47,
+  "pe_normalized": 46.88,
   "pb": 7.95,
   "ev_ebitda": 8.28,
   "fcf_yield_pct": -9.3,

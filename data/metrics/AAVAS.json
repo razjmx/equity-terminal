@@ -2,7 +2,9 @@
  "symbol": "AAVAS",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 2272.6,
   "ni": 654.9,
@@ -10,7 +12,9 @@
   "ta": 21212.5,
   "eq": 5050.8,
   "debt": 15685.6,
-  "fcf": -1419.2
+  "fcf": -1419.2,
+  "ni_continuing": 654.9,
+  "ni_normalized": 454.3
  },
  "ratios": {
   "roe_pct": 13.0,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 13.32,
+  "pe_normalized": 19.19,
   "pb": 1.73,
   "ev_ebitda": 25.03,
   "fcf_yield_pct": -16.3,

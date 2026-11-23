@@ -2,7 +2,9 @@
  "symbol": "GLENMARK",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 16711.4,
   "ni": 1361.9,
@@ -10,7 +12,9 @@
   "ta": 19907.9,
   "eq": 10512.1,
   "debt": 593.5,
-  "fcf": 2087.3
+  "fcf": 2087.3,
+  "ni_continuing": 1362.0,
+  "ni_normalized": 2933.6
  },
  "ratios": {
   "roe_pct": 13.0,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 55.18,
+  "pe_normalized": 25.61,
   "pb": 7.15,
   "ev_ebitda": 26.94,
   "fcf_yield_pct": 2.8,

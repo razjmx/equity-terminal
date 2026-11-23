@@ -2,7 +2,9 @@
  "symbol": "PPLPHARMA",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 8758.8,
   "ni": -325.9,
@@ -10,7 +12,9 @@
   "ta": 17965.0,
   "eq": 8162.6,
   "debt": 5674.6,
-  "fcf": 762.6
+  "fcf": 762.6,
+  "ni_continuing": -325.9,
+  "ni_normalized": -183.3
  },
  "ratios": {
   "roe_pct": -4.0,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": null,
+  "pe_normalized": null,
   "pb": 3.87,
   "ev_ebitda": 36.15,
   "fcf_yield_pct": 2.4,

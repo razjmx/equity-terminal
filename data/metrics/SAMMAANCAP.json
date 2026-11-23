@@ -2,7 +2,9 @@
  "symbol": "SAMMAANCAP",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 5463.9,
   "ni": -7144.6,
@@ -10,7 +12,9 @@
   "ta": 74243.4,
   "eq": 18991.5,
   "debt": 51853.1,
-  "fcf": -7518.7
+  "fcf": -7518.7,
+  "ni_continuing": -7144.6,
+  "ni_normalized": -3383.8
  },
  "ratios": {
   "roe_pct": -37.6,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": null,
+  "pe_normalized": null,
   "pb": 0.81,
   "ev_ebitda": -7.37,
   "fcf_yield_pct": -48.6,

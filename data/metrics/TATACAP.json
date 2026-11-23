@@ -2,7 +2,9 @@
  "symbol": "TATACAP",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 29745.4,
   "ni": 4846.1,
@@ -10,7 +12,9 @@
   "ta": 290503.5,
   "eq": 45861.5,
   "debt": 227767.1,
-  "fcf": -38960.0
+  "fcf": -38960.0,
+  "ni_continuing": 4890.9,
+  "ni_normalized": 6898.2
  },
  "ratios": {
   "roe_pct": 10.6,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 29.8,
+  "pe_normalized": 20.93,
   "pb": 3.15,
   "ev_ebitda": 45.53,
   "fcf_yield_pct": -27.0,

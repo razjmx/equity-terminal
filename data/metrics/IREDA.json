@@ -2,7 +2,9 @@
  "symbol": "IREDA",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 8125.5,
   "ni": 1874.0,
@@ -10,7 +12,9 @@
   "ta": 93807.9,
   "eq": 13785.4,
   "debt": 77863.0,
-  "fcf": -14492.0
+  "fcf": -14492.0,
+  "ni_continuing": 1874.0,
+  "ni_normalized": 2470.5
  },
  "ratios": {
   "roe_pct": 13.6,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 19.17,
+  "pe_normalized": 14.54,
   "pb": 2.61,
   "ev_ebitda": 22.94,
   "fcf_yield_pct": -40.3,

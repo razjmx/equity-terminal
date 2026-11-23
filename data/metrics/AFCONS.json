@@ -2,7 +2,9 @@
  "symbol": "AFCONS",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 11888.0,
   "ni": 251.5,
@@ -10,7 +12,9 @@
   "ta": 19130.9,
   "eq": 5449.8,
   "debt": 3626.9,
-  "fcf": -499.3
+  "fcf": -499.3,
+  "ni_continuing": 250.7,
+  "ni_normalized": 345.8
  },
  "ratios": {
   "roe_pct": 4.6,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 32.26,
+  "pe_normalized": 23.46,
   "pb": 1.49,
   "ev_ebitda": 7.91,
   "fcf_yield_pct": -6.2,

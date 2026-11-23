@@ -2,7 +2,9 @@
  "symbol": "RVNL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 20412.1,
   "ni": 874.7,
@@ -10,7 +12,9 @@
   "ta": 21702.0,
   "eq": 9821.8,
   "debt": 4818.5,
-  "fcf": -1950.3
+  "fcf": -1950.3,
+  "ni_continuing": 870.7,
+  "ni_normalized": 575.5
  },
  "ratios": {
   "roe_pct": 8.9,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 44.64,
+  "pe_normalized": 67.86,
   "pb": 3.98,
   "ev_ebitda": 26.2,
   "fcf_yield_pct": -5.0,

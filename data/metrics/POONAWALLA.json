@@ -2,7 +2,9 @@
  "symbol": "POONAWALLA",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 6490.6,
   "ni": 541.8,
@@ -10,7 +12,9 @@
   "ta": 60271.6,
   "eq": 10348.1,
   "debt": 48435.8,
-  "fcf": -21892.6
+  "fcf": -21892.6,
+  "ni_continuing": 541.8,
+  "ni_normalized": 1282.8
  },
  "ratios": {
   "roe_pct": 5.2,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 82.95,
+  "pe_normalized": 35.03,
   "pb": 4.34,
   "ev_ebitda": 106.44,
   "fcf_yield_pct": -48.7,

@@ -2,7 +2,9 @@
  "symbol": "ITI",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 2183.7,
   "ni": 292.8,
@@ -10,7 +12,9 @@
   "ta": 9346.5,
   "eq": 1905.6,
   "debt": 765.0,
-  "fcf": -37.7
+  "fcf": -37.7,
+  "ni_continuing": 292.8,
+  "ni_normalized": 25.8
  },
  "ratios": {
   "roe_pct": 15.4,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 88.84,
+  "pe_normalized": 1008.94,
   "pb": 13.65,
   "ev_ebitda": 51.63,
   "fcf_yield_pct": -0.1,

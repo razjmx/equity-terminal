@@ -2,7 +2,9 @@
  "symbol": "INDHOTEL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 9306.7,
   "ni": 2084.4,
@@ -10,7 +12,9 @@
   "ta": 20297.0,
   "eq": 13052.3,
   "debt": 2836.6,
-  "fcf": 1434.8
+  "fcf": 1434.8,
+  "ni_continuing": 2247.2,
+  "ni_normalized": 1784.2
  },
  "ratios": {
   "roe_pct": 16.0,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 62.09,
+  "pe_normalized": 72.53,
   "pb": 9.91,
   "ev_ebitda": 34.09,
   "fcf_yield_pct": 1.1,

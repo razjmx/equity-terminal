@@ -2,7 +2,9 @@
  "symbol": "CARTRADE",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 774.5,
   "ni": 223.0,
@@ -10,7 +12,9 @@
   "ta": 3009.2,
   "eq": 2483.4,
   "debt": 140.4,
-  "fcf": 230.4
+  "fcf": 230.4,
+  "ni_continuing": 243.5,
+  "ni_normalized": 192.5
  },
  "ratios": {
   "roe_pct": 9.0,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 57.06,
+  "pe_normalized": 66.08,
   "pb": 5.12,
   "ev_ebitda": 34.68,
   "fcf_yield_pct": 1.8,

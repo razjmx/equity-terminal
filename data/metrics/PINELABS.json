@@ -2,7 +2,9 @@
  "symbol": "PINELABS",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 2396.2,
   "ni": 112.5,
@@ -10,7 +12,9 @@
   "ta": 13297.0,
   "eq": 5895.4,
   "debt": 440.6,
-  "fcf": 157.0
+  "fcf": 157.0,
+  "ni_continuing": 112.5,
+  "ni_normalized": 157.4
  },
  "ratios": {
   "roe_pct": 1.9,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 164.34,
+  "pe_normalized": 117.5,
   "pb": 3.14,
   "ev_ebitda": 33.45,
   "fcf_yield_pct": 0.8,

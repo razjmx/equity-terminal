@@ -2,7 +2,9 @@
  "symbol": "RHIM",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 3974.5,
   "ni": -382.9,
@@ -10,7 +12,9 @@
   "ta": 4860.7,
   "eq": 3560.4,
   "debt": 448.4,
-  "fcf": 273.0
+  "fcf": 273.0,
+  "ni_continuing": -382.9,
+  "ni_normalized": 499.4
  },
  "ratios": {
   "roe_pct": -10.8,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": null,
+  "pe_normalized": 14.66,
   "pb": 2.06,
   "ev_ebitda": -91.28,
   "fcf_yield_pct": 3.7,

@@ -2,7 +2,9 @@
  "symbol": "SIGNATURE",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 2578.9,
   "ni": 1094.6,
@@ -10,7 +12,9 @@
   "ta": 17255.2,
   "eq": 1849.6,
   "debt": 2978.6,
-  "fcf": 99.2
+  "fcf": 99.2,
+  "ni_continuing": 1094.6,
+  "ni_normalized": 41.2
  },
  "ratios": {
   "roe_pct": 59.2,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 11.14,
+  "pe_normalized": 296.0,
   "pb": 6.59,
   "ev_ebitda": 9.31,
   "fcf_yield_pct": 0.8,

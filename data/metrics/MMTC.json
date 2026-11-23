@@ -2,7 +2,9 @@
  "symbol": "MMTC",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 3.4,
   "ni": 387.4,
@@ -10,7 +12,9 @@
   "ta": 2795.9,
   "eq": 2120.7,
   "debt": 2.4,
-  "fcf": -605.4
+  "fcf": -605.4,
+  "ni_continuing": 387.4,
+  "ni_normalized": 145.8
  },
  "ratios": {
   "roe_pct": 18.3,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 19.66,
+  "pe_normalized": 52.23,
   "pb": 3.59,
   "ev_ebitda": 9.1,
   "fcf_yield_pct": -7.9,

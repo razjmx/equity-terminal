@@ -3,7 +3,8 @@
  "latest_fy": "2026-03-31",
  "type": "standard",
  "flags": [
-  "short history"
+  "short history",
+  "reported profit differs from normalized (one-offs)"
  ],
  "snapshot_cr": {
   "rev": 13341.0,
@@ -12,7 +13,9 @@
   "ta": 19065.0,
   "eq": -7118.0,
   "debt": 17361.0,
-  "fcf": -0.0
+  "fcf": -0.0,
+  "ni_continuing": -2958.0,
+  "ni_normalized": -1982.2
  },
  "ratios": {
   "roe_pct": 40.8,
@@ -38,6 +41,7 @@
  },
  "valuation": {
   "pe": null,
+  "pe_normalized": null,
   "pb": -1.28,
   "ev_ebitda": 68.21,
   "fcf_yield_pct": -0.0,

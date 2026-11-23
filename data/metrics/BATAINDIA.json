@@ -2,7 +2,9 @@
  "symbol": "BATAINDIA",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 3514.0,
   "ni": 134.2,
@@ -10,7 +12,9 @@
   "ta": 3778.4,
   "eq": 1595.6,
   "debt": 1386.6,
-  "fcf": 529.1
+  "fcf": 529.1,
+  "ni_continuing": 134.2,
+  "ni_normalized": 161.4
  },
  "ratios": {
   "roe_pct": 8.4,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 59.86,
+  "pe_normalized": 49.77,
   "pb": 5.03,
   "ev_ebitda": 12.07,
   "fcf_yield_pct": 6.6,

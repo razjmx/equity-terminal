@@ -2,7 +2,9 @@
  "symbol": "JSWCEMENT",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 6512.5,
   "ni": -756.3,
@@ -10,7 +12,9 @@
   "ta": 14535.5,
   "eq": 6550.4,
   "debt": 4464.4,
-  "fcf": -791.3
+  "fcf": -791.3,
+  "ni_continuing": -798.8,
+  "ni_normalized": 111.2
  },
  "ratios": {
   "roe_pct": -11.5,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": null,
+  "pe_normalized": 152.31,
   "pb": 2.58,
   "ev_ebitda": -189.22,
   "fcf_yield_pct": -4.7,

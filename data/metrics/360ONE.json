@@ -2,7 +2,9 @@
  "symbol": "360ONE",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 3138.1,
   "ni": 1216.2,
@@ -10,7 +12,9 @@
   "ta": 27201.3,
   "eq": 9835.5,
   "debt": 15799.6,
-  "fcf": -3018.7
+  "fcf": -3018.7,
+  "ni_continuing": 1216.2,
+  "ni_normalized": 442.5
  },
  "ratios": {
   "roe_pct": 12.4,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 42.64,
+  "pe_normalized": 117.17,
   "pb": 5.27,
   "ev_ebitda": 21.04,
   "fcf_yield_pct": -5.8,

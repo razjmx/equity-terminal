@@ -2,7 +2,9 @@
  "symbol": "DEVYANI",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 5571.4,
   "ni": -38.6,
@@ -10,7 +12,9 @@
   "ta": 6750.0,
   "eq": 1541.8,
   "debt": 3782.7,
-  "fcf": 460.2
+  "fcf": 460.2,
+  "ni_continuing": -42.5,
+  "ni_normalized": -25.9
  },
  "ratios": {
   "roe_pct": -2.5,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": null,
+  "pe_normalized": null,
   "pb": 9.59,
   "ev_ebitda": 20.71,
   "fcf_yield_pct": 3.1,

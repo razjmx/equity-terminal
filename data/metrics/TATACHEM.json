@@ -2,7 +2,9 @@
  "symbol": "TATACHEM",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 14397.0,
   "ni": -1896.0,
@@ -10,7 +12,9 @@
   "ta": 39031.0,
   "eq": 21206.0,
   "debt": 8001.0,
-  "fcf": 64.0
+  "fcf": 64.0,
+  "ni_continuing": -1715.0,
+  "ni_normalized": 1075.6
  },
  "ratios": {
   "roe_pct": -8.9,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": null,
+  "pe_normalized": 15.26,
   "pb": 0.77,
   "ev_ebitda": 94.63,
   "fcf_yield_pct": 0.4,

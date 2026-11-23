@@ -2,7 +2,9 @@
  "symbol": "INOXWIND",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 4211.3,
   "ni": 405.0,
@@ -10,7 +12,9 @@
   "ta": 12067.8,
   "eq": 6382.5,
   "debt": 1586.9,
-  "fcf": -1247.4
+  "fcf": -1247.4,
+  "ni_continuing": 449.1,
+  "ni_normalized": 337.0
  },
  "ratios": {
   "roe_pct": 6.3,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 23.44,
+  "pe_normalized": 28.17,
   "pb": 1.49,
   "ev_ebitda": 11.17,
   "fcf_yield_pct": -13.1,

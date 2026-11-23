@@ -2,7 +2,9 @@
  "symbol": "CYIENT",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "flags": [
+  "reported profit differs from normalized (one-offs)"
+ ],
  "snapshot_cr": {
   "rev": 7268.2,
   "ni": 427.9,
@@ -10,7 +12,9 @@
   "ta": 8324.4,
   "eq": 5681.9,
   "debt": 431.1,
-  "fcf": 689.5
+  "fcf": 689.5,
+  "ni_continuing": 463.0,
+  "ni_normalized": 546.6
  },
  "ratios": {
   "roe_pct": 7.5,
@@ -36,6 +40,7 @@
  },
  "valuation": {
   "pe": 27.96,
+  "pe_normalized": 21.89,
   "pb": 2.11,
   "ev_ebitda": 10.88,
   "fcf_yield_pct": 5.8,
