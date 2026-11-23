@@ -232,3 +232,10 @@ table.stmt small{font-size:10.5px}table.stmt small.pos{color:var(--g)}table.stmt
 table.stmt th{position:static}
 .tabs{overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
+
+/* compact statement table */
+.card.scroll:has(.stbox){max-height:none;overflow-y:visible}
+table.stmt{width:auto;min-width:0}
+table.stmt th.l,table.stmt td.l{min-width:0;width:300px;max-width:300px;white-space:normal}
+table.stmt th,table.stmt td{min-width:96px}
+table.stmt th.l,table.stmt td.l{min-width:300px}
