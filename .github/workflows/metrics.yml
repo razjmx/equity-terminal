@@ -19,6 +19,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/metrics data/metrics_summary.csv data/metrics_errors.txt data/metrics_check.txt
+          git add data/metrics data/metrics_summary.csv data/metrics_errors.txt data/metrics_check.txt data/metrics_review.txt
           git commit -m "Compute metrics" || echo "No changes"
           git push
