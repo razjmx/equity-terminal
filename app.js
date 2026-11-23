@@ -120,10 +120,7 @@ async function boot(){
   const by=(rows)=>{const o={};rows.forEach(r=>o[r.symbol]=r);return o};
   D.met=by(met);D.dcf=by(dcf);D.rsk=by(rsk);
   D.syms=uni.map(u=>u.symbol);
-  $('#symlist').innerHTML=uni.map(u=>`<option value="${esc(u.symbol)}">${esc(u.company)}</option>`).join('');
-  $('#search').addEventListener('change',e=>{const v=e.target.value.trim().toUpperCase();
-    const m=uni.find(u=>u.symbol===v)||uni.find(u=>u.company.toUpperCase().includes(v));
-    if(m){location.hash='#/stock/'+m.symbol;e.target.value=''}});
+  window.attachSuggest=attachSuggest;D.uni=uni;attachSuggest($('#search'));
   const sync=()=>{$('#a-rf').value=A.rf;$('#a-erp').value=A.erp;$('#a-g').value=A.g};sync();
   ['rf','erp','g'].forEach(k=>$('#a-'+k).addEventListener('change',e=>{const v=parseFloat(e.target.value);if(isFinite(v)){A[k]=v;saveA();route()}}));
   $('#a-reset').onclick=()=>{A=Object.assign({},DEF);saveA();sync();route()};
@@ -151,10 +148,25 @@ function route(){
   return market();
 }
 function research(){
-  const rows=Object.values(D.met).filter(m=>m.market_cap_cr!=null||true);
-  const pick=D.syms.slice().sort((a,b)=>(T.num((D.met[b]||{}).market_cap_cr)||0)-(T.num((D.met[a]||{}).market_cap_cr)||0)).slice(0,24);
-  view.innerHTML=`<div class="card"><h3>Company research</h3><p class="mut">Type a company in the search box at the top, or open one below.</p><div class="bar">${pick.map(x=>`<a class="btn" href="#/stock/${esc(x)}">${esc(x)}</a>`).join('')}</div></div>`;
-  const si=$('#search');if(si)si.focus();
+  view.innerHTML=`<div class="rs"><h2>Company research</h2><p class="mut">Search any Nifty 500 company by name or symbol</p><div class="rsbox"><input id="rs-q" placeholder="e.g. Reliance, TCS, HDFC Bank" autocomplete="off"></div></div>`;
+  const q=$('#rs-q');attachSuggest(q);q.focus();
+}
+
+// ---------- search suggestions ----------
+function attachSuggest(inp){
+  if(!inp)return;const wrap=inp.parentElement;wrap.classList.add('sgw');
+  const box=document.createElement('div');box.className='sgl';box.hidden=true;wrap.appendChild(box);
+  let items=[],cur=-1;
+  const go=sym=>{box.hidden=true;inp.value='';inp.blur();location.hash='#/stock/'+sym};
+  const paint=()=>{box.innerHTML=items.map((u,i)=>`<div class="sgi${i===cur?' on':''}" data-s="${esc(u.symbol)}"><b>${esc(u.symbol)}</b><span>${esc(u.company)}</span></div>`).join('');box.hidden=!items.length};
+  const find=()=>{const q=inp.value.trim().toUpperCase();if(!q){items=[];cur=-1;paint();return}
+    const U=(D.uni||[]);const sc=u=>{const s=u.symbol.toUpperCase(),c=(u.company||'').toUpperCase();return s===q?0:s.startsWith(q)?1:c.startsWith(q)?2:s.includes(q)?3:c.includes(q)?4:9};
+    items=U.map(u=>[sc(u),u]).filter(x=>x[0]<9).sort((x,y)=>x[0]-y[0]||x[1].symbol.localeCompare(y[1].symbol)).slice(0,8).map(x=>x[1]);cur=items.length?0:-1;paint()};
+  inp.addEventListener('input',find);
+  inp.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){cur=Math.min(items.length-1,cur+1);paint();e.preventDefault()}else if(e.key==='ArrowUp'){cur=Math.max(0,cur-1);paint();e.preventDefault()}else if(e.key==='Enter'&&items[cur]){go(items[cur].symbol)}else if(e.key==='Escape'){box.hidden=true}});
+  box.addEventListener('mousedown',e=>{const t=e.target.closest('.sgi');if(t){e.preventDefault();go(t.dataset.s)}});
+  inp.addEventListener('blur',()=>setTimeout(()=>box.hidden=true,120));
+  inp.addEventListener('focus',()=>{if(inp.value)find()});
 }
 
 // ---------- market ----------
