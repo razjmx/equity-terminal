@@ -1,0 +1,110 @@
+Eligible stocks: 375 | RF 7.2% | ERP 5.5% | terminal growth 6.5% | ROIC cap 20% | forecast 10 years, growth held 3
+
+PART A: what each assumption does (stocks with a meaningful value only)
+base | stocks 321 | median upside -69% | within +/-25% of price: 29 | fair values: TCS 2309, HINDUNILVR 649, TITAN 763, RELIANCE 237, JSWSTEEL 238, MARUTI 3986, VOLTAS 90
+ROIC cap 40% | stocks 321 | median upside -69% | within +/-25% of price: 31 | fair values: TCS 2614, HINDUNILVR 680, TITAN 763, RELIANCE 237, JSWSTEEL 238, MARUTI 3986, VOLTAS 90
+ROIC cap 60% | stocks 321 | median upside -69% | within +/-25% of price: 31 | fair values: TCS 2716, HINDUNILVR 680, TITAN 763, RELIANCE 237, JSWSTEEL 238, MARUTI 3986, VOLTAS 90
+WACC 10% flat | stocks 340 | median upside -49% | within +/-25% of price: 60 | fair values: TCS 3027, HINDUNILVR 805, TITAN 1963, RELIANCE 389, JSWSTEEL 313, MARUTI 6969, VOLTAS 137
+WACC 9% flat | stocks 342 | median upside -29% | within +/-25% of price: 74 | fair values: TCS 4106, HINDUNILVR 1090, TITAN 3284, RELIANCE 517, JSWSTEEL 405, MARUTI 10012, VOLTAS 160
+terminal growth 5% | stocks 322 | median upside -72% | within +/-25% of price: 23 | fair values: TCS 2033, HINDUNILVR 569, TITAN 673, RELIANCE 241, JSWSTEEL 237, MARUTI 3910, VOLTAS 91
+growth held 5 years | stocks 322 | median upside -69% | within +/-25% of price: 29 | fair values: TCS 2291, HINDUNILVR 634, TITAN 876, RELIANCE 233, JSWSTEEL 240, MARUTI 4033, VOLTAS 90
+margin = 3-year average | stocks 321 | median upside -70% | within +/-25% of price: 30 | fair values: TCS 2274, HINDUNILVR 662, TITAN 781, RELIANCE 266, JSWSTEEL 198, MARUTI 5047, VOLTAS 116
+ROIC cap 40% + WACC 10% + growth held 5 years | stocks 336 | median upside -46% | within +/-25% of price: 60 | fair values: TCS 3461, HINDUNILVR 828, TITAN 2313, RELIANCE 387, JSWSTEEL 314, MARUTI 7196, VOLTAS 137
+Market prices: TCS 2459.4, HINDUNILVR 2044.6, TITAN 4643.9, RELIANCE 1355.9, JSWSTEEL 1308.5, MARUTI 14168.0, VOLTAS 1220.9
+
+PART B: discount rate implied by today's price (base inputs)
+Solvable: 146 | price needs a rate below about 8.6% (cannot be solved at 6.5% terminal growth): 175 | above 25%: 0
+Among solvable: median 9.9% | 25th percentile 9.2% | 75th percentile 11.4%
+TCS: price implies a discount rate of 10.9% vs model WACC 11.25%
+HINDUNILVR: price implies a discount rate of below about 8.6% vs model WACC 10.98%
+TITAN: price implies a discount rate of below about 8.6% vs model WACC 12.12%
+RELIANCE: price implies a discount rate of below about 8.6% vs model WACC 11.62%
+JSWSTEEL: price implies a discount rate of below about 8.6% vs model WACC 11.02%
+MARUTI: price implies a discount rate of below about 8.6% vs model WACC 12.32%
+VOLTAS: price implies a discount rate of below about 8.6% vs model WACC 13.23%
+
+PART C: Yahoo balance sheet lines that look like investments or cash (Rs cr, latest FY)
+--- MARUTI (2026-03-31) ---
+Invested Capital: 107156
+Investmentin Financial Assets: 56299
+Available For Sale Securities: 59604
+Trading Securities: 56299
+Long Term Equity Investment: 5115
+Investmentsin Joint Venturesat Cost: 140
+Investments In Other Ventures Under Equity Method: 2565
+Investmentsin Associatesat Cost: 2410
+Restricted Cash: 3
+Cash Cash Equivalents And Short Term Investments: 17325
+Other Short Term Investments: 17258
+Cash And Cash Equivalents: 67
+Cash Equivalents: 0
+Cash Financial: 67
+--- RELIANCE (2026-03-31) ---
+Invested Capital: 1278451
+Investmentin Financial Assets: 139096
+Available For Sale Securities: 117657
+Financial Assets Designatedas Fair Value Through Profitor Loss Total: 21439
+Long Term Equity Investment: 16226
+Investmentsin Joint Venturesat Cost: 9648
+Investmentsin Associatesat Cost: 6578
+Restricted Cash: 8650
+Cash Cash Equivalents And Short Term Investments: 277212
+Other Short Term Investments: 139885
+Cash And Cash Equivalents: 137327
+Cash Equivalents: 3875
+Cash Financial: 133452
+--- TITAN (2026-03-31) ---
+Invested Capital: 43151
+Investmentin Financial Assets: 1110
+Held To Maturity Securities: 1037
+Available For Sale Securities: 11
+Financial Assets Designatedas Fair Value Through Profitor Loss Total: 62
+Long Term Equity Investment: 158
+Investmentsin Joint Venturesat Cost: 152
+Investmentsin Associatesat Cost: 6
+Investment Properties: 136
+Restricted Cash: 526
+Cash Cash Equivalents And Short Term Investments: 3895
+Other Short Term Investments: 2808
+Cash And Cash Equivalents: 1087
+Cash Equivalents: 214
+Cash Financial: 873
+--- HINDUNILVR (2026-03-31) ---
+Invested Capital: 48738
+Investmentin Financial Assets: 124
+Held To Maturity Securities: 0
+Available For Sale Securities: 12
+Financial Assets Designatedas Fair Value Through Profitor Loss Total: 112
+Long Term Equity Investment: 0
+Investments In Other Ventures Under Equity Method: 0
+Restricted Cash: 252
+Cash Cash Equivalents And Short Term Investments: 8409
+Other Short Term Investments: 5826
+Cash And Cash Equivalents: 2583
+Cash Equivalents: 2397
+Cash Financial: 186
+--- TCS (2026-03-31) ---
+Invested Capital: 107240
+Preferred Securities Outside Stock Equity: 126
+Financial Assets: 17
+Investmentin Financial Assets: 822
+Available For Sale Securities: 822
+Restricted Cash: 5610
+Cash Cash Equivalents And Short Term Investments: 41373
+Other Short Term Investments: 34968
+Cash And Cash Equivalents: 6405
+Cash Equivalents: 3217
+Cash Financial: 3188
+--- WIPRO (2026-03-31) ---
+Invested Capital: 105324
+Financial Assets: 0
+Investments And Advances: 3018
+Investmentin Financial Assets: 2805
+Available For Sale Securities: 2072
+Financial Assets Designatedas Fair Value Through Profitor Loss Total: 734
+Long Term Equity Investment: 213
+Restricted Cash: 184
+Cash Cash Equivalents And Short Term Investments: 54362
+Other Short Term Investments: 43807
+Cash And Cash Equivalents: 10556
+Cash Financial: 10556
