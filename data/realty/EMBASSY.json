@@ -13,8 +13,7 @@
   "override: reit (REIT: value on distributions)",
   "one-off items removed from profit",
   "P/E 194 not meaningful, shown blank",
-  "cash not found: net debt = gross debt",
-  "distribution missing: fill data/reit_inputs.csv (dps_12m)"
+  "cash not found: net debt = gross debt"
  ],
  "settings": {
   "rf": 0.072,
@@ -23,9 +22,18 @@
   "reit_g": 0.04
  },
  "fcf_per_unit": 42.38,
+ "reit": {
+  "dps": 26.35,
+  "yield_pct": 6.24,
+  "g_pct": 4.0,
+  "fair_value": 442.0,
+  "nav_per_unit": 524.74,
+  "p_nav": 0.8,
+  "note": "Q2 FY27: last 4 DPUs 7.07+6.31+6.50+6.47"
+ },
  "info_dividend_keys": {
   "dividendYield": null
  },
- "fair_value": null,
- "upside_pct": null
+ "fair_value": 442.0,
+ "upside_pct": 4.7
 }

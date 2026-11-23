@@ -11,8 +11,7 @@
  "market_cap_cr": 21866.5,
  "flags": [
   "override: reit (REIT: value on distributions)",
-  "cash not found: net debt = gross debt",
-  "distribution missing: fill data/reit_inputs.csv (dps_12m)"
+  "cash not found: net debt = gross debt"
  ],
  "settings": {
   "rf": 0.072,
@@ -21,9 +20,18 @@
   "reit_g": 0.04
  },
  "fcf_per_unit": 29.18,
+ "reit": {
+  "dps": 22.2,
+  "yield_pct": 6.94,
+  "g_pct": 4.0,
+  "fair_value": 361.9,
+  "nav_per_unit": 392.38,
+  "p_nav": 0.82,
+  "note": "Q2 FY27: last 4 DPUs 5.70+5.60+5.50+5.40"
+ },
  "info_dividend_keys": {
   "dividendYield": null
  },
- "fair_value": null,
- "upside_pct": null
+ "fair_value": 361.9,
+ "upside_pct": 13.1
 }

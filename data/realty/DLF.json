@@ -12,8 +12,7 @@
  "flags": [
   "override: realty (developer: value on NAV)",
   "core EBIT 59% below reported EBIT",
-  "cash not found: net debt = gross debt",
-  "NAV inputs missing: fill data/realty_inputs.csv"
+  "cash not found: net debt = gross debt"
  ],
  "settings": {
   "rf": 0.072,
@@ -21,6 +20,19 @@
   "tax": 0.25,
   "reit_g": 0.04
  },
- "fair_value": null,
- "upside_pct": null
+ "nav": {
+  "gdv_cr": 40000.0,
+  "margin_pct": 100.0,
+  "years": 6.0,
+  "surplus_cr": 30000.0,
+  "pv_projects_cr": 12262.4,
+  "rental_value_cr": 54666.7,
+  "other_cr": 15400.0,
+  "net_debt_cr": 305.9,
+  "nav_cr": 82023.2,
+  "nav_per_share": 331.4,
+  "note": "rough: Q2 FY27 summary"
+ },
+ "fair_value": 331.4,
+ "upside_pct": -58.3
 }
