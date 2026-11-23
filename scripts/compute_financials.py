@@ -5,7 +5,7 @@ import json, os, glob, csv, math, datetime
 
 FUND, MET, RISK, OUT = "data/fundamentals", "data/metrics", "data/risk", "data/fin"
 RF, ERP, G_DEFAULT, KE_MIN, KE_MAX = 0.072, 0.06, 0.065, 0.09, 0.20
-NI = ["Net Income Common Stockholders", "Net Income", "Net Income From Continuing Operation Net Minority Interest"]
+NI = ["Net Income Common Stockholders", "Net Income", "Net Income From Continuing Operation Net Minority Interest", "Net Income Continuous Operations", "Net Income Including Noncontrolling Interests"]
 EQ = ["Stockholders Equity", "Common Stock Equity"]
 TA = ["Total Assets"]
 DIV = ["Cash Dividends Paid", "Common Stock Dividend Paid"]
@@ -115,6 +115,9 @@ def build(sym, f, m, rk, ind, ov):
     roe_used = roe_avg3
     if stmt_over and roe_ttm is not None:
         roe_used, basis = roe_ttm, "TTM profit / Yahoo book value (statement equity overstated)"
+    elif stmt_over and roe_avg3 is not None:
+        roe_used = roe_avg3 / eq_ratio
+        basis = f"3-year average ROE scaled by Yahoo book-value ratio ({eq_ratio:.2f}); statement equity overstated"
     elif roe_used is None and roe_ttm is not None:
         roe_used, basis = roe_ttm, "TTM profit / Yahoo book value"
     # payout and sustainable growth
@@ -166,7 +169,7 @@ def build(sym, f, m, rk, ind, ov):
         bv_growth = ((fy[-1]["eq"] / fy[0]["eq"]) ** (1 / (len(fy) - 1)) - 1) * 100
     out = {
         "symbol": sym, "subtype": sub, "industry": ind, "yahoo_industry": yind, "price": price, "bvps": bvps, "pb": pb,
-        "roe_used_pct": roe_used, "roe_basis": basis, "roe_ttm_pct": roe_ttm, "roe_avg3_pct": roe_avg3,
+        "roe_used_pct": roe_used, "roe_basis": basis, "roe_ttm_pct": roe_ttm, "roe_avg3_pct": roe_avg3, "ttm_quarters": len(qs),
         "fy": [{k: (round(v, 2) if isinstance(v, float) else v) for k, v in x.items() if k in ("year", "roe", "roa")} for x in fy],
         "payout_pct": None if payout is None else payout * 100, "sustainable_growth_pct": None if sust is None else sust * 100,
         "bv_cagr_pct": bv_growth, "beta_adj": beta, "beta_used": bu, "equity_check_ratio": eq_ratio,
@@ -224,6 +227,7 @@ def main():
                 ups.sort()
                 fh.write(f"Median upside: {ups[len(ups)//2]:.1f}%\n")
             fh.write("By subtype: " + str({s: sum(1 for r in rows if r['subtype'] == s) for s in set(r['subtype'] for r in rows)}) + "\n")
+            fh.write("ROE basis counts: " + str({k: sum(1 for r in rows if r['roe_basis'].startswith(k)) for k in ("3-year average ROE s", "3-year average ROE", "TTM", "override")}) + "\n")
             fh.write("Yahoo industries seen: " + str({k: sum(1 for r in rows if r['yahoo_industry'] == k) for k in sorted(set(r['yahoo_industry'] for r in rows))}) + "\n")
             fh.write("Other financial list: " + str([(r['symbol'], r['yahoo_industry']) for r in rows if r['subtype'] == 'Other financial']) + "\n")
             fh.write("Flagged: " + str([(r['symbol'], r['flags'][:70]) for r in rows if r['flags']][:25]) + "\n")
