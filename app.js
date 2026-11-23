@@ -437,6 +437,63 @@ async function finTabs(s){
   draw();
 }
 
+// ---------- valuation: model tabs + scenarios ----------
+let VS={sub:null,pw:[25,50,25]};
+function scenarioRows(dcf,fin,price){
+  const out=[],rf=A.rf/100,erp=A.erp/100,g=A.g/100;
+  if(dcf){
+    const sc=[['Bear',{dm:.9,dg1:-.04,dw:.01,dgT:-.01}],['Base',{dm:1,dg1:0,dw:0,dgT:0}],['Bull',{dm:1.1,dg1:.04,dw:-.01,dgT:.005}]];
+    const b0=T.recompute(dcf,{rf,erp,gT:g});
+    if(b0){const res=sc.map(([n,s])=>{const d2=Object.assign({},dcf,{model:Object.assign({},dcf.model,{margin:dcf.model.margin*s.dm})});
+      const r=T.recompute(d2,{rf,erp,gT:g+s.dgT,g1:b0.g1+s.dg1,waccOverride:b0.wacc+s.dw});return {n,fair:r?r.perShare:null,
+      a:[['EBIT margin',(s.dm===1?'as modelled':(s.dm>1?'+10%':'−10%')+' (relative)')],['First-year growth',T.fmt((b0.g1+s.dg1)*100,1)+'%'],['WACC',T.fmt((b0.wacc+s.dw)*100,2)+'%'],['Terminal growth',T.fmt((g+s.dgT)*100,1)+'%']]}});
+      out.push({title:'DCF (FCFF, 10-year)',res})}
+  }
+  if(fin){
+    const sc=[['Bear',{droe:-.02,dg:-.01,derp:.01}],['Base',{droe:0,dg:0,derp:0}],['Bull',{droe:.02,dg:.005,derp:-.005}]];
+    const base=T.finModel(fin,{rf,erp,g});
+    if(base){const res=sc.map(([n,s])=>{const r=T.finModel(fin,{rf,erp:erp+s.derp,g:g+s.dg,roe:base.roe+s.droe});return {n,fair:r?r.fair:null,
+      a:[['Sustainable ROE',T.fmt((base.roe+s.droe)*100,1)+'%'],['Cost of equity',r?T.fmt(r.ke*100,2)+'%':'–'],['Long-term growth',r?T.fmt(r.g*100,1)+'%':'–'],['Fair P/B',r&&r.fairPB!=null?T.fmt(r.fairPB,2)+'x':'–']]}});
+      out.push({title:'Justified P/B (ROE model)',res})}
+  }
+  return out;
+}
+function scenarioPanel(dcf,fin,rl,price){
+  const body=$('#vbody'),models=scenarioRows(dcf,fin,price);
+  if(!models.length){body.innerHTML='<div class="card"><p class="mut">Scenarios are available for the DCF and Justified P/B models. This stock has neither with enough data'+(rl?' (the realty NAV model has no scenarios yet)':'')+'.</p></div>';return}
+  const draw=()=>{
+    const pw=VS.pw,tot=pw.reduce((a,b)=>a+(+b||0),0)||1;
+    body.innerHTML=models.map(m=>{
+      const f=m.res.map(r=>r.fair),ok=f.every(v=>v!=null);
+      const wv=ok?f.reduce((a,v,i)=>a+v*(pw[i]||0),0)/tot:null,up=v=>v!=null&&price?(v/price-1)*100:null;
+      const lo=Math.min(...f.filter(v=>v!=null),price),hi=Math.max(...f.filter(v=>v!=null),price),pos=v=>hi>lo?((v-lo)/(hi-lo))*100:50;
+      return `<div class="fcard card"><h3>${esc(m.title)}<span class="mut" style="font-weight:400;font-size:12px">fair value per share, ₹</span></h3>
+       <div class="scn">${m.res.map((r,i)=>`<div class="sc sc-${r.n.toLowerCase()}"><div class="sn">${r.n}</div><div class="sv">${r.fair!=null?'₹'+T.fmt(r.fair,0):'–'}</div><div class="su ${cls(up(r.fair))}">${r.fair!=null?T.pct(up(r.fair),0)+' vs price':'–'}</div>
+         <table>${r.a.map(x=>`<tr><td class="l">${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table></div>`).join('')}</div>
+       ${ok?`<div class="rng"><div class="rl"></div>${m.res.map(r=>`<span class="rd rd-${r.n.toLowerCase()}" style="left:${pos(r.fair)}%" title="${r.n} ₹${T.fmt(r.fair,0)}"></span>`).join('')}<span class="rp" style="left:${pos(price)}%"><b>Price ₹${T.fmt(price,0)}</b></span></div>`:''}
+       <div class="pw"><span class="mut">Probability weights %</span>${['Bear','Base','Bull'].map((n,i)=>`<label>${n} <input type="number" min="0" max="100" step="5" value="${pw[i]}" data-i="${i}"></label>`).join('')}
+        <span class="pwv">Weighted value <b>${wv!=null?'₹'+T.fmt(wv,0):'–'}</b> <span class="${cls(up(wv))}">${wv!=null?T.pct(up(wv),0):''}</span></span></div></div>`}).join('')
+      +'<p class="mut" style="max-width:1040px;margin:0 auto;font-size:12px">Scenarios move the main drivers together: operating margin, growth, discount rate and terminal growth for the DCF; ROE, cost of equity and growth for the P/B model. The base case uses your current Assumptions. Illustrative ranges, not forecasts.</p>';
+    body.querySelectorAll('.pw input').forEach(i=>i.onchange=e=>{VS.pw[+e.target.dataset.i]=parseFloat(e.target.value)||0;draw()});
+  };
+  draw();
+}
+function valTabs(dcf,fin,rl,price){
+  const subs=[];if(dcf)subs.push(['dcf','DCF']);if(fin)subs.push(['fin','Justified P/B']);if(rl)subs.push(['rl','Realty NAV']);if(dcf||fin)subs.push(['sc','Bear / Base / Bull']);
+  if(!VS.sub||!subs.some(s=>s[0]===VS.sub))VS.sub=subs[0][0];
+  const draw=()=>{
+    if(!subs.some(s=>s[0]===VS.sub))VS.sub=subs[0][0];
+    const t=$('#vsub'),b=$('#vbody');if(!t||!b)return;
+    t.innerHTML=subs.map(x=>`<button data-s="${x[0]}" class="${VS.sub===x[0]?'on':''}">${x[1]}</button>`).join('');
+    t.querySelectorAll('button').forEach(x=>x.onclick=()=>{VS.sub=x.dataset.s;draw()});
+    if(VS.sub==='dcf'){b.innerHTML='<div id="dcfbox"></div>';dcfPanel(dcf,price)}
+    else if(VS.sub==='fin'){b.innerHTML='<div id="finbox"></div>';finPanel(fin)}
+    else if(VS.sub==='rl'){b.innerHTML='<div id="rlbox"></div>';realtyPanel(rl)}
+    else scenarioPanel(dcf,fin,rl,price);
+  };
+  draw();
+}
+
 // ---------- stock ----------
 let FIN_RATIO='',FS={sub:'pl',per:'annual',keyonly:false,unit:'cr'};
 async function stock(s,tab){
@@ -492,7 +549,7 @@ async function stock(s,tab){
     FIN_RATIO=FIN_RATIO.replace('<div id="ratslot"></div>',ratiosHtml(rat));
     h+='<div class="subtabs" id="fsub"></div><div id="fbody"></div>';
   }else if(tab==='valuation'){
-    if(dcf)h+=`<div id="dcfbox"></div>`;else if(fin)h+=`<div id="finbox"></div>`;else if(rl)h+=`<div id="rlbox"></div>`;
+    if(dcf||fin||rl)h+='<div class="subtabs" id="vsub"></div><div id="vbody"></div>';
     else h+=`<div class="card"><h3>Valuation</h3>No model available for this stock (excluded or data missing).</div>`;
   }else if(tab==='quant'){
     h+=technicals()||'<div class="card">No risk data for this stock.</div>';
@@ -520,9 +577,7 @@ async function stock(s,tab){
   }
   countUps(view);
   if(tab==='financials')finTabs(s);
-  if(tab==='valuation'){
-    if(dcf)dcfPanel(dcf,price);else if(fin)finPanel(fin);else if(rl)realtyPanel(rl);
-  }
+  if(tab==='valuation'&&(dcf||fin||rl))valTabs(dcf,fin,rl,price);
 }
 
 
