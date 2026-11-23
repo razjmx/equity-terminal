@@ -16,11 +16,21 @@
   "cash not found: net debt = gross debt",
   "NAV inputs missing: fill data/realty_inputs.csv"
  ],
+ "nav_rate_pct": 12.0,
+ "tax_pct": 25.0,
  "settings": {
   "rf": 0.072,
   "erp": 0.06,
   "tax": 0.25,
   "reit_g": 0.04
+ },
+ "inputs": {
+  "gdv_cr": null,
+  "margin_pct": null,
+  "years": null,
+  "rental_noi_cr": null,
+  "cap_rate_pct": null,
+  "other_assets_cr": null
  },
  "fair_value": null,
  "upside_pct": null

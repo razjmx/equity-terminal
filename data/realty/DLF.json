@@ -14,25 +14,35 @@
   "core EBIT 59% below reported EBIT",
   "cash not found: net debt = gross debt"
  ],
+ "nav_rate_pct": 12.0,
+ "tax_pct": 25.0,
  "settings": {
   "rf": 0.072,
   "erp": 0.06,
   "tax": 0.25,
   "reit_g": 0.04
  },
+ "inputs": {
+  "gdv_cr": 40000.0,
+  "margin_pct": 100.0,
+  "years": 6.0,
+  "rental_noi_cr": 4100.0,
+  "cap_rate_pct": 7.5,
+  "other_assets_cr": 15400.0
+ },
  "nav": {
   "gdv_cr": 40000.0,
   "margin_pct": 100.0,
   "years": 6.0,
   "surplus_cr": 30000.0,
-  "pv_projects_cr": 12262.4,
+  "pv_projects_cr": 15198.9,
   "rental_value_cr": 54666.7,
   "other_cr": 15400.0,
   "net_debt_cr": 305.9,
-  "nav_cr": 82023.2,
-  "nav_per_share": 331.4,
+  "nav_cr": 84959.7,
+  "nav_per_share": 343.2,
   "note": "rough: Q2 FY27 summary"
  },
- "fair_value": 331.4,
- "upside_pct": -58.3
+ "fair_value": 343.2,
+ "upside_pct": -56.8
 }
