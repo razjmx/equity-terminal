@@ -239,3 +239,9 @@ table.stmt{width:auto;min-width:0}
 table.stmt th.l,table.stmt td.l{min-width:0;width:300px;max-width:300px;white-space:normal}
 table.stmt th,table.stmt td{min-width:96px}
 table.stmt th.l,table.stmt td.l{min-width:300px}
+/* centered statement card */
+.card.scroll:has(.stbox){max-width:1040px;margin-left:auto;margin-right:auto}
+table.stmt{width:100%}
+table.stmt th.l,table.stmt td.l{width:300px;min-width:240px}
+.fbar{max-width:1040px;margin-left:auto;margin-right:auto}
+.subtabs{max-width:1040px;margin-left:auto;margin-right:auto}
