@@ -4,33 +4,33 @@
  "type": "standard",
  "profit_basis": "reported",
  "flags": [
-  "equity replaced by Yahoo book value (balance sheet / book value = 0.63)"
+  "equity check mismatch (balance sheet / book value x shares = 0.63); figures NOT changed"
  ],
  "equity_check": {
   "balance_sheet_cr": 5393.4,
   "implied_cr": 8520.7,
   "ratio": 0.63,
-  "used": "book_value"
+  "used": "balance_sheet"
  },
  "snapshot_cr": {
   "rev": 22810.2,
   "ni": 976.9,
   "ebit": 1595.4,
   "ta": 13711.3,
-  "eq": 8520.7,
+  "eq": 5393.4,
   "debt": 955.5,
   "fcf": 230.9,
   "ni_continuing_ops_pre_minority": 976.9,
   "ni_normalized": 1004.0
  },
  "ratios": {
-  "roe_pct": 11.5,
+  "roe_pct": 18.1,
   "roa_pct": 7.1,
   "net_margin_pct": 4.3,
   "ebit_margin_pct": 7.0,
   "roce_pct": 26.7,
   "fcf_margin_pct": 1.0,
-  "debt_equity": 0.11,
+  "debt_equity": 0.18,
   "interest_cover": 5.59,
   "current_ratio": 1.45,
   "asset_turnover": 1.66
@@ -38,7 +38,7 @@
  "dupont": {
   "net_margin_pct": 4.3,
   "asset_turnover": 1.66,
-  "equity_multiplier": 1.61
+  "equity_multiplier": 2.54
  },
  "growth": {
   "years_used": 3,
@@ -49,7 +49,7 @@
   "pe": 61.33,
   "pe_normalized": 59.68,
   "pe_used": 61.33,
-  "pb": 7.03,
+  "pb": 11.11,
   "ev_ebitda": 34.25,
   "fcf_yield_pct": 0.4,
   "market_cap_cr": 59919.3
@@ -70,7 +70,7 @@
   }
  },
  "altman_z2": {
-  "z": 4.38,
+  "z": 3.98,
   "zone": "safe"
  }
 }

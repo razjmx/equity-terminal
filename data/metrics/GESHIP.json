@@ -2,9 +2,9 @@
  "symbol": "GESHIP",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
  "flags": [
-  "reported profit differs from normalized (one-offs)"
+  "reported profit differs from normalized by 18%"
  ],
  "equity_check": {
   "balance_sheet_cr": 16962.5,
@@ -24,9 +24,9 @@
   "ni_normalized": 2484.4
  },
  "ratios": {
-  "roe_pct": 14.6,
-  "roa_pct": 12.8,
-  "net_margin_pct": 46.1,
+  "roe_pct": 17.3,
+  "roa_pct": 15.1,
+  "net_margin_pct": 54.6,
   "ebit_margin_pct": 58.5,
   "roce_pct": 17.4,
   "fcf_margin_pct": 8.9,
@@ -36,7 +36,7 @@
   "asset_turnover": 0.28
  },
  "dupont": {
-  "net_margin_pct": 46.1,
+  "net_margin_pct": 54.6,
   "asset_turnover": 0.28,
   "equity_multiplier": 1.15
  },
@@ -48,7 +48,7 @@
  "valuation": {
   "pe": 6.74,
   "pe_normalized": 7.98,
-  "pe_used": 7.98,
+  "pe_used": 6.74,
   "pb": 1.17,
   "ev_ebitda": 3.21,
   "fcf_yield_pct": 2.4,
@@ -72,10 +72,5 @@
  "altman_z2": {
   "z": 12.73,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 17.3,
-  "roa_pct": 15.1,
-  "net_margin_pct": 54.6
  }
 }

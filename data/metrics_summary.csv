@@ -1,54 +1,54 @@
 symbol,industry,type,latest_fy,profit_basis,roe_pct,roce_pct,net_margin_pct,debt_equity,rev_cagr_pct,pe,pe_normalized,pe_used,pb,equity_ratio,piotroski,piotroski_tested,altman_z2,altman_zone,flags
-360ONE,Financial Services,standard,2026-03-31,normalized,4.5,13.5,14.1,1.61,24.0,42.64,117.17,117.17,5.27,0.9,1.0,9.0,2.58,grey,reported profit differs from normalized (one-offs)
+360ONE,Financial Services,standard,2026-03-31,normalized,4.5,13.5,14.1,1.61,24.0,42.64,117.17,117.17,5.27,0.9,1.0,9.0,2.58,grey,reported profit differs from normalized by 175%
 ABB,Capital Goods,standard,2025-12-31,reported,21.3,28.5,12.8,0.01,15.4,87.81,87.68,87.81,18.69,0.84,4.0,9.0,6.65,safe,
 ACC,Construction Materials,standard,2026-03-31,reported,10.4,10.4,8.5,0.03,12.9,11.06,11.39,11.06,1.15,0.99,5.0,9.0,6.97,safe,
-ACMESOLAR,Power,standard,2026-03-31,normalized,4.7,7.0,20.3,2.26,16.0,58.58,71.08,71.08,3.32,0.58,6.0,9.0,1.8,grey,equity replaced by Yahoo book value (balance sheet / book value = 0.58); reported profit differs from normalized (one-offs)
-AIAENG,Capital Goods,standard,2026-03-31,normalized,13.2,19.9,24.3,0.0,-3.4,25.27,30.22,30.22,4.0,0.95,7.0,9.0,26.22,safe,reported profit differs from normalized (one-offs)
+ACMESOLAR,Power,standard,2026-03-31,reported,9.9,7.0,24.7,3.93,16.0,58.58,71.08,58.58,5.77,0.58,6.0,9.0,1.63,grey,equity check mismatch (balance sheet / book value x shares = 0.58); figures NOT changed; reported profit differs from normalized by 21%
+AIAENG,Capital Goods,standard,2026-03-31,reported,15.8,19.9,29.1,0.0,-3.4,25.27,30.22,25.27,4.0,0.95,7.0,9.0,26.22,safe,reported profit differs from normalized by 20%
 APLAPOLLO,Capital Goods,standard,2026-03-31,reported,22.7,28.0,5.4,0.09,12.6,39.17,38.78,39.17,8.9,0.93,8.0,9.0,5.33,safe,
 AUBANK,Financial Services,financial,2026-03-31,reported,13.2,,,,30.4,28.08,28.02,28.08,3.71,0.92,,,,,financial or no EBIT
 AWL,Fast Moving Consumer Goods,standard,2026-03-31,reported,10.0,15.3,1.4,0.78,8.7,20.67,23.56,20.67,2.06,0.96,7.0,9.0,2.96,safe,
 AADHARHFC,Financial Services,standard,2026-03-31,reported,14.5,12.0,32.4,2.49,21.7,16.46,18.19,16.46,2.39,0.92,4.0,9.0,1.72,grey,
 AARTIIND,Chemicals,standard,2026-03-31,reported,7.0,7.5,5.1,0.83,7.9,38.84,36.53,38.84,2.73,0.95,5.0,9.0,1.7,grey,
-AAVAS,Financial Services,standard,2026-03-31,normalized,9.0,4.7,20.0,3.11,18.8,13.32,19.19,19.19,1.73,0.94,6.0,9.0,1.61,grey,reported profit differs from normalized (one-offs)
-ABBOTINDIA,Healthcare,standard,2026-03-31,reported,36.3,41.9,22.4,0.04,9.0,36.17,36.3,36.17,13.14,1.12,5.0,9.0,8.89,safe,equity replaced by Yahoo book value (balance sheet / book value = 1.12)
+AAVAS,Financial Services,standard,2026-03-31,normalized,9.0,4.7,20.0,3.11,18.8,13.32,19.19,19.19,1.73,0.94,6.0,9.0,1.61,grey,reported profit differs from normalized by 44%
+ABBOTINDIA,Healthcare,standard,2026-03-31,reported,32.5,41.9,22.4,0.04,9.0,36.17,36.3,36.17,11.76,1.12,5.0,9.0,9.2,safe,equity check mismatch (balance sheet / book value x shares = 1.12); figures NOT changed
 ACE,Capital Goods,standard,2026-03-31,reported,20.6,28.5,12.7,0.0,15.0,33.97,36.26,33.97,7.01,0.88,7.0,9.0,5.4,safe,
 ACUTAAS,Healthcare,standard,2026-03-31,reported,21.5,27.7,26.8,0.02,29.4,89.12,89.12,89.12,19.2,0.89,6.0,9.0,11.46,safe,
 ADANIENSOL,Power,standard,2026-03-31,reported,9.0,8.4,8.4,1.93,27.7,79.22,86.32,79.22,7.11,0.8,6.0,9.0,1.31,grey,
-ADANIENT,Metals & Mining,standard,2026-03-31,normalized,3.3,9.8,2.7,1.32,-7.7,39.18,135.72,135.72,4.52,0.82,4.0,9.0,1.48,grey,reported profit differs from normalized (one-offs)
-ADANIGREEN,Power,standard,2026-03-31,normalized,-0.7,6.3,-1.1,5.08,16.6,139.0,,,11.5,0.97,6.0,9.0,0.25,distress,reported profit differs from normalized (one-offs)
+ADANIENT,Metals & Mining,standard,2026-03-31,normalized,3.3,9.8,2.7,1.32,-7.7,39.18,135.72,135.72,4.52,0.82,4.0,9.0,1.48,grey,reported profit differs from normalized by 246%
+ADANIGREEN,Power,standard,2026-03-31,normalized,-0.7,6.3,-1.1,5.08,16.6,139.0,,,11.5,0.97,6.0,9.0,0.25,distress,reported profit differs from normalized by 1338%
 ADANIPORTS,Services,standard,2026-03-31,reported,13.3,11.0,33.1,0.66,22.9,34.59,32.42,34.59,4.61,0.94,6.0,9.0,3.06,safe,
 ADANIPOWER,Power,standard,2026-03-31,reported,19.8,15.1,23.7,0.84,12.5,31.43,31.54,31.43,6.21,0.85,4.0,9.0,3.15,safe,
 ATGL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,13.5,13.6,11.2,0.59,10.4,92.74,103.89,92.74,12.5,0.94,4.0,9.0,2.8,safe,
 ABCAPITAL,Financial Services,standard,2026-03-31,reported,10.9,,8.2,5.21,17.1,30.38,30.07,30.38,3.32,0.8,2.0,7.0,,,
-ABREL,Realty,standard,2026-03-31,normalized,-8.6,-5.2,-79.2,1.52,-52.6,,,,3.74,0.81,6.0,9.0,2.05,grey,reported profit differs from normalized (one-offs)
+ABREL,Realty,standard,2026-03-31,normalized,-8.6,-5.2,-79.2,1.52,-52.6,,,,3.74,0.81,6.0,9.0,2.05,grey,reported profit differs from normalized by 68%
 ABSLAMC,Financial Services,standard,2026-03-31,reported,24.1,30.7,52.8,0.02,14.6,27.39,30.95,27.39,6.61,1.04,6.0,9.0,20.13,safe,
-CPPLUS,Capital Goods,standard,2026-03-31,reported,9.7,25.9,8.7,0.05,22.7,134.47,133.39,134.47,13.02,0.49,7.0,9.0,5.39,safe,equity replaced by Yahoo book value (balance sheet / book value = 0.49)
+CPPLUS,Capital Goods,standard,2026-03-31,reported,19.6,25.9,8.7,0.1,22.7,134.47,133.39,134.47,26.36,0.49,7.0,9.0,4.43,safe,equity check mismatch (balance sheet / book value x shares = 0.49); figures NOT changed
 AEGISLOG,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,14.8,14.2,10.8,0.69,-1.3,49.58,51.44,49.58,7.36,0.84,7.0,9.0,3.27,safe,
 AEGISVOPAK,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,7.2,7.9,33.6,0.87,37.7,100.06,103.96,100.06,7.24,0.97,6.0,9.0,0.76,distress,
 AETHER,Chemicals,standard,2026-03-31,reported,8.9,12.1,19.4,0.19,20.2,96.26,102.17,96.26,8.6,0.95,6.0,9.0,5.94,safe,
-AFCONS,Construction,standard,2026-03-31,normalized,6.3,10.0,2.9,0.67,-1.8,32.26,23.46,23.46,1.49,1.0,3.0,9.0,2.34,grey,reported profit differs from normalized (one-offs)
+AFCONS,Construction,standard,2026-03-31,reported,4.6,10.0,2.1,0.67,-1.8,32.26,23.46,32.26,1.49,1.0,3.0,9.0,2.34,grey,reported profit differs from normalized by 27%
 AFFLE,Information Technology,standard,2026-03-31,reported,12.5,15.2,16.8,0.0,23.6,50.77,51.15,50.77,6.32,0.85,6.0,9.0,10.0,safe,
 AJANTPHARM,Healthcare,standard,2026-03-31,reported,23.3,29.4,19.5,0.06,13.4,38.99,36.49,38.99,9.1,0.93,4.0,9.0,9.23,safe,
 ALKEM,Healthcare,standard,2026-03-31,reported,16.7,18.6,15.8,0.15,8.3,26.67,25.55,26.67,4.44,0.93,4.0,9.0,7.34,safe,
 ABDL,Fast Moving Consumer Goods,standard,2026-03-31,reported,13.7,24.6,6.2,0.69,7.4,97.42,97.12,97.42,13.38,1.01,5.0,9.0,3.0,safe,
-ARE&M,Automobile and Auto Components,standard,2026-03-31,normalized,8.6,14.2,5.0,0.05,10.0,14.91,19.26,19.26,1.65,0.97,4.0,9.0,6.11,safe,reported profit differs from normalized (one-offs)
+ARE&M,Automobile and Auto Components,standard,2026-03-31,reported,11.1,14.2,6.5,0.05,10.0,14.91,19.26,14.91,1.65,0.97,4.0,9.0,6.11,safe,reported profit differs from normalized by 29%
 AMBER,Consumer Durables,standard,2026-03-31,reported,4.1,7.2,1.5,0.62,20.7,135.85,117.53,135.85,5.52,1.0,6.0,9.0,1.52,grey,
 AMBUJACEM,Construction Materials,standard,2026-03-31,reported,8.0,4.6,11.8,0.01,8.9,20.67,19.99,20.67,1.65,0.99,7.0,9.0,4.51,safe,
 ANANDRATHI,Financial Services,standard,2026-03-31,reported,39.7,50.0,34.5,0.08,27.9,99.04,112.53,99.04,39.28,0.77,6.0,9.0,11.49,safe,
 ANANTRAJ,Realty,standard,2026-03-31,reported,9.6,10.4,22.2,0.12,37.9,28.51,28.6,28.51,2.74,0.96,3.0,9.0,10.76,safe,
 ANGELONE,Financial Services,standard,2026-03-31,reported,15.0,26.9,21.3,1.3,20.3,33.75,34.35,33.75,5.05,0.92,3.0,9.0,2.43,grey,
 ANTHEM,Healthcare,standard,2026-03-31,reported,19.5,26.8,27.9,0.02,26.2,91.29,89.67,91.29,17.76,0.93,8.0,9.0,15.05,safe,
-ANURAS,Chemicals,standard,2026-03-31,reported,2.2,7.3,7.3,0.24,14.1,88.25,88.48,88.25,1.92,0.42,7.0,9.0,4.08,safe,equity replaced by Yahoo book value (balance sheet / book value = 0.42)
-APARINDS,Capital Goods,standard,2026-03-31,reported,11.5,26.7,4.3,0.11,17.0,61.33,59.68,61.33,7.03,0.63,5.0,9.0,4.38,safe,equity replaced by Yahoo book value (balance sheet / book value = 0.63)
+ANURAS,Chemicals,standard,2026-03-31,reported,5.2,7.3,7.3,0.57,14.1,88.25,88.48,88.25,4.55,0.42,7.0,9.0,2.67,safe,equity check mismatch (balance sheet / book value x shares = 0.42); figures NOT changed
+APARINDS,Capital Goods,standard,2026-03-31,reported,18.1,26.7,4.3,0.18,17.0,61.33,59.68,61.33,11.11,0.63,5.0,9.0,3.98,safe,equity check mismatch (balance sheet / book value x shares = 0.63); figures NOT changed
 APOLLOHOSP,Healthcare,standard,2026-03-31,reported,20.5,19.2,7.8,0.9,14.8,68.61,70.19,68.61,14.05,0.89,7.0,9.0,2.59,grey,
-APOLLOTYRE,Automobile and Auto Components,standard,2026-03-31,normalized,12.0,8.0,7.1,0.22,5.4,19.36,13.24,13.24,1.59,0.95,8.0,9.0,3.54,safe,reported profit differs from normalized (one-offs)
+APOLLOTYRE,Automobile and Auto Components,standard,2026-03-31,normalized,12.0,8.0,7.1,0.22,5.4,19.36,13.24,13.24,1.59,0.95,8.0,9.0,3.54,safe,reported profit differs from normalized by 32%
 APTUS,Financial Services,financial,2026-03-31,reported,18.6,,,,23.0,10.21,10.21,10.21,1.9,0.93,,,,,financial or no EBIT
 ASAHIINDIA,Automobile and Auto Components,standard,2026-03-31,reported,8.8,10.6,7.1,0.56,7.0,87.25,87.99,87.25,7.65,0.94,6.0,9.0,3.3,safe,
-ASHOKLEY,Capital Goods,standard,2026-03-31,normalized,33.2,14.5,8.4,4.49,10.6,27.1,19.9,19.9,6.6,1.08,4.0,9.0,1.77,grey,reported profit differs from normalized (one-offs)
+ASHOKLEY,Capital Goods,standard,2026-03-31,reported,24.4,14.5,6.2,4.49,10.6,27.1,19.9,27.1,6.6,1.08,4.0,9.0,1.77,grey,reported profit differs from normalized by 27%
 ASIANPAINT,Consumer Durables,standard,2026-03-31,reported,20.2,24.4,12.2,0.18,1.1,57.28,56.2,57.28,11.59,0.98,7.0,9.0,6.71,safe,
-ASTERDM,Healthcare,standard,2026-03-31,reported,4.7,9.4,8.5,0.27,15.7,176.69,165.62,176.69,8.3,0.55,5.0,9.0,3.99,safe,equity replaced by Yahoo book value (balance sheet / book value = 0.55)
+ASTERDM,Healthcare,standard,2026-03-31,reported,8.5,9.4,8.5,0.49,15.7,176.69,165.62,176.69,14.99,0.55,5.0,9.0,2.81,safe,equity check mismatch (balance sheet / book value x shares = 0.55); figures NOT changed
 ASTRAL,Capital Goods,standard,2026-03-31,reported,13.2,17.6,8.2,0.06,8.4,61.63,61.96,61.63,8.15,0.96,6.0,9.0,6.59,safe,
-ATHERENERG,Automobile and Auto Components,standard,2026-03-31,reported,-12.8,-13.4,-14.1,0.16,27.2,,,,19.24,0.63,6.0,9.0,1.16,grey,equity replaced by Yahoo book value (balance sheet / book value = 0.63)
+ATHERENERG,Automobile and Auto Components,standard,2026-03-31,reported,-20.1,-13.4,-14.1,0.26,27.2,,,,30.31,0.63,6.0,9.0,0.44,distress,equity check mismatch (balance sheet / book value x shares = 0.63); figures NOT changed
 ATUL,Chemicals,standard,2026-03-31,reported,10.9,13.5,10.9,0.03,4.9,21.88,24.09,21.88,2.38,0.95,7.0,9.0,9.51,safe,
 AUROPHARMA,Healthcare,standard,2026-03-31,reported,9.2,13.5,10.5,0.21,10.7,29.74,28.72,29.74,2.75,0.96,6.0,9.0,6.07,safe,
 AIIL,Financial Services,standard,2026-03-31,reported,13.1,15.2,148.6,0.24,44.4,24.34,24.83,24.34,3.19,0.79,3.0,9.0,4.37,safe,
@@ -70,7 +70,7 @@ BANDHANBNK,Financial Services,financial,2026-03-31,reported,4.8,,,,5.0,22.83,22.
 BANKBARODA,Financial Services,financial,2026-03-31,reported,12.0,,,,10.3,7.23,7.23,7.23,0.86,0.95,,,,,financial or no EBIT
 BANKINDIA,Financial Services,financial,2026-03-31,reported,11.5,,,,7.3,7.09,6.86,7.09,0.81,0.96,,,,,financial or no EBIT
 MAHABANK,Financial Services,financial,2026-03-31,reported,21.1,,,,15.6,10.71,10.72,10.71,2.26,0.89,,,,,financial or no EBIT
-BATAINDIA,Consumer Durables,standard,2026-03-31,normalized,13.0,11.2,4.6,1.12,0.6,59.86,49.77,49.77,6.47,1.29,6.0,9.0,3.51,safe,equity replaced by Yahoo book value (balance sheet / book value = 1.29); reported profit differs from normalized (one-offs)
+BATAINDIA,Consumer Durables,standard,2026-03-31,reported,8.4,11.2,3.8,0.87,0.6,59.86,49.77,59.86,5.03,1.29,6.0,9.0,3.68,safe,equity check mismatch (balance sheet / book value x shares = 1.29); figures NOT changed; reported profit differs from normalized by 17%
 BELRISE,Automobile and Auto Components,standard,2026-03-31,reported,9.5,14.4,5.3,0.29,13.5,46.24,45.9,46.24,4.4,0.73,7.0,9.0,5.21,safe,
 BERGEPAINT,Consumer Durables,standard,2026-03-31,reported,16.3,20.6,9.6,0.09,4.2,48.09,47.49,48.09,7.84,0.98,7.0,9.0,7.26,safe,
 BHARATCOAL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,2.2,2.3,0.9,0.39,3.4,,,,,,2.0,9.0,0.39,distress,
@@ -82,14 +82,14 @@ BPCL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,25.8,26.4,5.7,0.54,
 BHARTIARTL,Telecommunication,standard,2026-03-31,reported,17.9,16.7,12.7,1.31,14.9,49.92,46.12,49.92,8.94,0.94,8.0,9.0,0.55,distress,
 BHARTIHEXA,Telecommunication,standard,2026-03-31,reported,24.2,21.1,18.5,0.82,12.4,46.75,46.66,46.75,11.31,0.98,9.0,9.0,1.47,grey,
 GROWW,Financial Services,standard,2026-03-31,reported,21.6,29.3,48.8,0.03,,65.07,63.29,65.07,14.04,0.83,2.0,5.0,4.72,safe,
-BIOCON,Healthcare,standard,2026-03-31,normalized,1.8,2.8,3.6,0.45,15.3,152.37,96.41,96.41,1.73,0.99,7.0,9.0,2.51,grey,reported profit differs from normalized (one-offs)
+BIOCON,Healthcare,standard,2026-03-31,normalized,1.8,2.8,3.6,0.45,15.3,152.37,96.41,96.41,1.73,0.99,7.0,9.0,2.51,grey,reported profit differs from normalized by 37%
 BSOFT,Information Technology,standard,2026-03-31,reported,12.6,18.6,9.8,0.03,3.5,16.48,16.32,16.48,2.08,0.95,5.0,9.0,10.48,safe,
-BBOX,Information Technology,standard,2026-03-31,normalized,21.7,12.6,4.4,0.9,0.2,70.11,54.54,54.54,11.85,0.91,5.0,9.0,3.6,safe,reported profit differs from normalized (one-offs)
+BBOX,Information Technology,standard,2026-03-31,reported,16.9,12.6,3.4,0.9,0.2,70.11,54.54,70.11,11.85,0.91,5.0,9.0,3.6,safe,reported profit differs from normalized by 22%
 BLUESTARCO,Consumer Durables,standard,2026-03-31,reported,15.4,20.7,4.3,0.24,15.8,70.26,66.28,70.26,10.8,0.98,4.0,9.0,3.21,safe,
-BOSCHLTD,Automobile and Auto Components,standard,2026-03-31,normalized,27.0,24.2,10.5,0.02,10.3,51.91,69.66,69.66,18.77,1.94,7.0,9.0,6.29,safe,equity replaced by Yahoo book value (balance sheet / book value = 1.94); reported profit differs from normalized (one-offs)
-FIRSTCRY,Consumer Services,standard,2026-03-31,normalized,-2.3,-0.2,-1.3,0.33,16.5,,,,1.7,0.96,5.0,9.0,2.93,safe,reported profit differs from normalized (one-offs)
+BOSCHLTD,Automobile and Auto Components,standard,2026-03-31,normalized,13.9,24.2,10.5,0.01,10.3,51.91,69.66,69.66,9.7,1.94,7.0,9.0,7.4,safe,equity check mismatch (balance sheet / book value x shares = 1.94); figures NOT changed; reported profit differs from normalized by 34%
+FIRSTCRY,Consumer Services,standard,2026-03-31,reported,-2.9,-0.2,-1.7,0.33,16.5,,,,1.7,0.96,5.0,9.0,2.93,safe,reported profit differs from normalized by 27%
 BRIGADE,Realty,standard,2026-03-31,reported,9.4,9.8,11.4,1.01,18.6,29.07,28.6,29.07,2.75,0.95,4.0,9.0,1.9,grey,
-BRITANNIA,Fast Moving Consumer Goods,standard,2026-03-31,reported,59.6,61.2,13.4,0.33,5.7,46.2,46.93,46.2,27.55,1.2,7.0,9.0,5.25,safe,equity replaced by Yahoo book value (balance sheet / book value = 1.20)
+BRITANNIA,Fast Moving Consumer Goods,standard,2026-03-31,reported,49.6,61.2,13.4,0.27,5.7,46.2,46.93,46.2,22.92,1.2,7.0,9.0,5.44,safe,equity check mismatch (balance sheet / book value x shares = 1.20); figures NOT changed
 BIRET,Realty,standard,2026-03-31,reported,2.7,4.6,16.2,0.95,35.4,45.44,45.28,45.44,1.25,0.89,4.0,9.0,1.0,distress,
 CCL,Fast Moving Consumer Goods,standard,2026-03-31,reported,16.6,20.5,8.7,0.56,29.1,32.11,31.89,32.11,5.31,0.88,8.0,9.0,4.63,safe,
 CESC,Power,standard,2026-03-31,reported,12.3,10.0,8.3,1.73,9.2,10.73,10.96,10.73,1.32,1.0,5.0,9.0,1.72,grey,
@@ -101,8 +101,8 @@ CANBK,Financial Services,financial,2026-03-31,reported,16.7,,,,5.0,6.19,6.17,6.1
 CANHLIFE,Financial Services,standard,2026-03-31,reported,7.9,,1.1,0.16,7.3,92.8,92.8,92.8,7.32,0.98,2.0,4.0,,,short history; no cash flow data
 CAPLIPOINT,Healthcare,standard,2026-03-31,reported,17.9,22.0,29.5,0.0,14.3,23.77,24.22,23.77,4.25,0.94,5.0,9.0,16.37,safe,
 CGCL,Financial Services,standard,2026-03-31,reported,13.2,5.4,20.2,3.35,49.7,23.48,20.7,23.48,3.09,0.9,4.0,9.0,1.29,grey,
-CARBORUNIV,Capital Goods,standard,2026-03-31,normalized,7.2,7.1,5.5,0.08,3.8,94.61,65.32,65.32,4.72,0.98,4.0,9.0,7.28,safe,reported profit differs from normalized (one-offs)
-CARTRADE,Consumer Services,standard,2026-03-31,normalized,7.8,11.0,24.9,0.06,28.7,57.06,66.08,66.08,5.12,0.94,7.0,9.0,9.61,safe,reported profit differs from normalized (one-offs)
+CARBORUNIV,Capital Goods,standard,2026-03-31,normalized,7.2,7.1,5.5,0.08,3.8,94.61,65.32,65.32,4.72,0.98,4.0,9.0,7.28,safe,reported profit differs from normalized by 31%
+CARTRADE,Consumer Services,standard,2026-03-31,reported,9.0,11.0,28.8,0.06,28.7,57.06,66.08,57.06,5.12,0.94,7.0,9.0,9.61,safe,reported profit differs from normalized by 16%
 CASTROLIND,Oil Gas & Consumable Fuels,standard,2025-12-31,reported,50.0,65.0,16.7,0.03,6.2,19.79,19.61,19.79,9.89,1.0,8.0,9.0,6.94,safe,
 CEATLTD,Automobile and Auto Components,standard,2026-03-31,reported,13.8,17.7,4.5,0.65,11.6,20.24,18.6,20.24,2.8,1.02,7.0,9.0,1.25,grey,
 CEMPRO,Construction,standard,2026-03-31,reported,24.9,37.1,5.9,0.42,25.5,42.96,43.76,42.96,10.7,0.85,7.0,9.0,3.22,safe,
@@ -116,23 +116,23 @@ CHOLAHLDNG,Financial Services,standard,2026-03-31,reported,15.8,4.1,6.0,13.61,28
 CHOLAFIN,Financial Services,financial,2026-03-31,reported,17.2,,,,32.8,30.44,30.41,30.44,5.23,0.88,,,,,financial or no EBIT
 CIPLA,Healthcare,standard,2026-03-31,reported,11.3,14.9,14.0,0.02,7.2,29.28,29.85,29.28,3.3,0.97,4.0,9.0,10.18,safe,
 CUB,Financial Services,financial,2026-03-31,reported,12.6,,,,9.1,18.3,18.34,18.3,2.3,0.94,,,,,financial or no EBIT
-CLEANMAX,Power,standard,2026-03-31,normalized,1.0,4.9,2.4,2.76,27.1,154.0,323.08,323.08,3.13,0.96,7.0,9.0,-0.01,distress,reported profit differs from normalized (one-offs)
+CLEANMAX,Power,standard,2026-03-31,normalized,1.0,4.9,2.4,2.76,27.1,154.0,323.08,323.08,3.13,0.96,7.0,9.0,-0.01,distress,reported profit differs from normalized by 110%
 CLEAN,Chemicals,standard,2026-03-31,reported,14.5,19.2,24.4,0.0,0.6,31.71,33.98,31.71,4.6,0.95,5.0,9.0,14.81,safe,
 COALINDIA,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,26.1,19.6,18.7,0.12,9.3,7.61,7.66,7.61,1.99,0.93,5.0,9.0,4.11,safe,
 COCHINSHIP,Capital Goods,standard,2026-03-31,reported,12.2,16.7,15.0,0.28,26.9,40.2,38.63,40.2,4.91,0.97,3.0,9.0,3.47,safe,
-COFORGE,Information Technology,standard,2026-03-31,reported,7.0,18.6,9.5,0.03,26.9,61.07,57.82,61.07,4.25,0.43,8.0,9.0,7.39,safe,equity replaced by Yahoo book value (balance sheet / book value = 0.43)
+COFORGE,Information Technology,standard,2026-03-31,reported,16.3,18.6,9.5,0.08,26.9,61.07,57.82,61.07,9.96,0.43,8.0,9.0,4.8,safe,equity check mismatch (balance sheet / book value x shares = 0.43); figures NOT changed
 COHANCE,Healthcare,standard,2026-03-31,reported,4.6,4.8,8.1,0.1,18.3,100.57,94.4,100.57,4.61,0.99,6.0,9.0,5.35,safe,
 COLPAL,Fast Moving Consumer Goods,standard,2026-03-31,reported,83.7,107.4,22.1,0.03,4.9,36.64,36.1,36.64,30.66,0.98,5.0,9.0,6.5,safe,
 CAMS,Financial Services,standard,2026-03-31,reported,36.0,44.2,31.4,0.05,16.0,38.03,39.33,38.03,13.7,0.92,7.0,9.0,10.19,safe,
 CONCORDBIO,Healthcare,standard,2026-03-31,reported,12.9,16.7,24.9,0.0,8.0,43.67,46.04,43.67,5.65,0.99,7.0,9.0,16.62,safe,
 CONCOR,Services,standard,2026-03-31,reported,9.6,12.4,14.8,0.07,4.1,26.44,26.43,26.44,2.54,0.97,5.0,9.0,11.02,safe,
 COROMANDEL,Chemicals,standard,2026-03-31,reported,15.6,20.9,9.7,0.52,10.2,29.8,29.14,29.8,4.64,0.94,3.0,9.0,4.72,safe,
-CRAFTSMAN,Automobile and Auto Components,standard,2026-03-31,reported,7.0,14.0,4.8,0.66,36.2,79.01,78.9,79.01,5.51,0.59,6.0,9.0,2.64,safe,equity replaced by Yahoo book value (balance sheet / book value = 0.59)
-CREDITACC,Financial Services,standard,2026-03-31,normalized,25.4,6.3,34.2,3.01,20.9,20.35,7.94,7.94,2.02,0.88,4.0,9.0,2.01,grey,reported profit differs from normalized (one-offs)
-CROMPTON,Consumer Durables,standard,2026-03-31,normalized,23.9,-1.5,8.8,0.07,5.6,,20.03,20.03,4.78,0.98,6.0,9.0,3.45,safe,reported profit differs from normalized (one-offs)
+CRAFTSMAN,Automobile and Auto Components,standard,2026-03-31,reported,11.8,14.0,4.8,1.11,36.2,79.01,78.9,79.01,9.29,0.59,6.0,9.0,2.23,grey,equity check mismatch (balance sheet / book value x shares = 0.59); figures NOT changed
+CREDITACC,Financial Services,standard,2026-03-31,normalized,25.4,6.3,34.2,3.01,20.9,20.35,7.94,7.94,2.02,0.88,4.0,9.0,2.01,grey,reported profit differs from normalized by 61%
+CROMPTON,Consumer Durables,standard,2026-03-31,normalized,23.9,-1.5,8.8,0.07,5.6,,20.03,20.03,4.78,0.98,6.0,9.0,3.45,safe,reported profit differs from normalized by 134%
 CUMMINSIND,Capital Goods,standard,2026-03-31,reported,27.9,35.0,19.8,0.0,16.1,47.69,47.57,47.69,13.29,1.02,7.0,9.0,10.36,safe,
 CUPID,Fast Moving Consumer Goods,standard,2026-03-31,reported,24.0,30.8,30.8,0.13,31.2,445.51,472.43,445.51,106.96,0.8,5.0,9.0,11.85,safe,
-CYIENT,Information Technology,standard,2026-03-31,normalized,10.8,10.5,7.5,0.09,6.5,27.96,21.89,21.89,2.37,1.12,5.0,9.0,6.72,safe,equity replaced by Yahoo book value (balance sheet / book value = 1.12); reported profit differs from normalized (one-offs)
+CYIENT,Information Technology,standard,2026-03-31,reported,7.5,10.5,5.9,0.08,6.5,27.96,21.89,27.96,2.11,1.12,5.0,9.0,7.02,safe,equity check mismatch (balance sheet / book value x shares = 1.12); figures NOT changed; reported profit differs from normalized by 22%
 DLF,Realty,standard,2026-03-31,reported,9.7,6.3,56.3,0.01,11.3,44.3,46.1,44.3,4.3,1.0,5.0,9.0,3.86,safe,
 DOMS,Fast Moving Consumer Goods,standard,2026-03-31,reported,18.9,23.4,10.0,0.12,24.2,56.28,56.34,56.28,10.62,0.95,8.0,9.0,7.25,safe,
 DABUR,Fast Moving Consumer Goods,standard,2026-03-31,reported,16.6,20.8,14.5,0.11,4.5,37.54,40.25,37.54,6.23,0.99,6.0,9.0,6.37,safe,
@@ -140,15 +140,15 @@ DALBHARAT,Construction Materials,standard,2026-03-31,reported,6.3,7.0,7.9,0.41,3
 DATAPATTNS,Capital Goods,standard,2026-03-31,reported,15.6,20.4,29.3,0.0,26.8,85.11,87.34,85.11,13.3,1.02,8.0,9.0,16.77,safe,
 DEEPAKFERT,Chemicals,standard,2026-03-31,reported,10.8,11.2,7.8,0.83,2.6,24.29,25.47,24.29,2.62,0.9,4.0,9.0,3.06,safe,
 DEEPAKNTR,Chemicals,standard,2026-03-31,reported,9.4,10.8,7.1,0.28,-0.5,37.72,37.73,37.72,3.56,0.9,4.0,9.0,6.14,safe,
-DELHIVERY,Services,standard,2026-03-31,normalized,0.9,2.6,0.9,0.15,13.2,224.4,379.6,379.6,3.54,0.99,7.0,9.0,3.29,safe,reported profit differs from normalized (one-offs)
-DEVYANI,Consumer Services,standard,2026-03-31,normalized,-1.7,4.3,-0.5,2.45,23.3,,,,9.59,0.96,4.0,9.0,-0.47,distress,reported profit differs from normalized (one-offs)
+DELHIVERY,Services,standard,2026-03-31,normalized,0.9,2.6,0.9,0.15,13.2,224.4,379.6,379.6,3.54,0.99,7.0,9.0,3.29,safe,reported profit differs from normalized by 69%
+DEVYANI,Consumer Services,standard,2026-03-31,normalized,-1.7,4.3,-0.5,2.45,23.3,,,,9.59,0.96,4.0,9.0,-0.47,distress,reported profit differs from normalized by 49%
 DIVISLAB,Healthcare,standard,2026-03-31,reported,15.3,19.0,24.5,0.0,11.0,116.94,114.58,116.94,17.92,0.93,5.0,9.0,11.99,safe,
-DIXON,Consumer Durables,standard,2026-03-31,normalized,12.5,34.1,1.8,0.14,58.6,56.93,93.12,93.12,11.61,0.66,6.0,9.0,2.22,grey,equity replaced by Yahoo book value (balance sheet / book value = 0.66); reported profit differs from normalized (one-offs)
+DIXON,Consumer Durables,standard,2026-03-31,normalized,18.8,34.1,1.8,0.21,58.6,56.93,93.12,93.12,17.51,0.66,6.0,9.0,2.03,grey,equity check mismatch (balance sheet / book value x shares = 0.66); figures NOT changed; reported profit differs from normalized by 64%
 LALPATHLAB,Healthcare,standard,2026-03-31,reported,20.1,25.7,18.3,0.08,11.1,68.01,67.69,68.01,13.69,0.91,6.0,9.0,10.39,safe,
 DRREDDY,Healthcare,standard,2026-03-31,reported,11.4,14.2,12.8,0.21,11.0,26.88,29.29,26.88,3.05,0.98,4.0,9.0,6.17,safe,
-EIDPARRY,Fast Moving Consumer Goods,standard,2026-03-31,normalized,9.5,15.7,3.1,0.98,9.6,20.12,13.76,13.76,1.31,1.0,4.0,9.0,3.06,safe,reported profit differs from normalized (one-offs)
+EIDPARRY,Fast Moving Consumer Goods,standard,2026-03-31,normalized,9.5,15.7,3.1,0.98,9.6,20.12,13.76,13.76,1.31,1.0,4.0,9.0,3.06,safe,reported profit differs from normalized by 32%
 EIHOTEL,Consumer Services,standard,2026-03-31,reported,11.9,16.2,21.4,0.05,13.3,33.39,29.51,33.39,3.99,0.97,5.0,9.0,7.91,safe,
-EMBASSY,Realty,standard,2026-03-31,normalized,1.0,6.1,4.7,1.12,10.9,103.57,165.3,165.3,1.69,1.01,7.0,9.0,0.28,distress,reported profit differs from normalized (one-offs)
+EMBASSY,Realty,standard,2026-03-31,normalized,1.0,6.1,4.7,1.12,10.9,103.57,165.3,165.3,1.69,1.01,7.0,9.0,0.28,distress,reported profit differs from normalized by 60%
 EICHERMOT,Automobile and Auto Components,standard,2026-03-31,reported,22.0,26.4,24.0,0.02,17.5,40.58,44.95,40.58,8.92,0.97,6.0,9.0,8.6,safe,
 ELECON,Capital Goods,standard,2026-03-31,reported,14.8,18.6,14.6,0.12,15.9,29.09,28.39,29.09,4.3,0.92,3.0,9.0,8.0,safe,
 ELGIEQUIP,Capital Goods,standard,2026-03-31,reported,19.3,25.7,10.9,0.24,9.1,39.87,41.85,39.87,7.69,0.93,6.0,9.0,7.2,safe,
@@ -157,62 +157,62 @@ EMCURE,Healthcare,standard,2026-03-31,reported,18.7,24.7,10.1,0.31,15.4,47.16,44
 EMMVEE,Capital Goods,standard,2026-03-31,reported,29.3,34.5,21.5,0.1,102.7,16.72,16.83,16.72,4.9,0.84,8.0,9.0,6.22,safe,
 ENDURANCE,Automobile and Auto Components,standard,2026-03-31,reported,13.9,16.3,6.6,0.19,18.2,37.45,37.65,37.45,5.21,0.95,4.0,9.0,5.02,safe,
 ENGINERSIN,Construction,standard,2026-03-31,reported,22.0,28.1,17.6,0.01,5.7,24.24,24.49,24.24,5.33,0.94,7.0,9.0,3.36,safe,
-ESCORTS,Capital Goods,standard,2026-03-31,normalized,9.7,14.4,10.5,0.01,11.3,11.28,22.59,22.59,2.18,0.98,6.0,9.0,9.13,safe,reported profit differs from normalized (one-offs)
-ETERNAL,Consumer Services,standard,2026-03-31,normalized,0.0,2.9,0.0,0.15,97.7,914.23,111535.99,111535.99,10.8,0.96,4.0,9.0,4.77,safe,reported profit differs from normalized (one-offs)
+ESCORTS,Capital Goods,standard,2026-03-31,normalized,9.7,14.4,10.5,0.01,11.3,11.28,22.59,22.59,2.18,0.98,6.0,9.0,9.13,safe,reported profit differs from normalized by 100%
+ETERNAL,Consumer Services,standard,2026-03-31,normalized,0.0,2.9,0.0,0.15,97.7,914.23,111535.99,111535.99,10.8,0.96,4.0,9.0,4.77,safe,reported profit differs from normalized by 12100%
 EXIDEIND,Automobile and Auto Components,standard,2026-03-31,reported,6.1,8.8,4.8,0.11,6.1,40.03,41.58,40.03,2.46,1.0,7.0,9.0,4.89,safe,
 NYKAA,Consumer Services,standard,2026-03-31,reported,13.9,24.0,2.0,0.86,24.7,520.8,485.07,520.8,72.23,0.87,8.0,9.0,1.93,grey,
 FEDERALBNK,Financial Services,financial,2026-03-31,reported,10.9,,,,16.6,20.81,21.62,20.81,2.26,0.94,,,,,financial or no EBIT
 FACT,Chemicals,standard,2026-03-31,reported,-2.9,14.2,-1.3,2.95,-0.0,,,,36.03,1.01,2.0,9.0,0.48,distress,
-FINCABLES,Capital Goods,standard,2026-03-31,normalized,10.2,14.2,10.1,0.0,11.8,25.14,28.93,28.93,2.95,0.94,5.0,9.0,13.34,safe,reported profit differs from normalized (one-offs)
+FINCABLES,Capital Goods,standard,2026-03-31,reported,11.7,14.2,11.6,0.0,11.8,25.14,28.93,25.14,2.95,0.94,5.0,9.0,13.34,safe,reported profit differs from normalized by 15%
 FSL,Services,standard,2026-03-31,reported,15.4,17.7,7.0,0.67,17.1,29.28,26.36,29.28,4.5,0.9,7.0,9.0,2.08,grey,
 FIVESTAR,Financial Services,standard,2026-03-31,reported,14.9,11.8,36.1,1.11,27.5,11.58,10.46,11.58,1.72,0.93,4.0,9.0,3.06,safe,
-FORCEMOT,Automobile and Auto Components,standard,2026-03-31,normalized,24.8,33.8,11.6,0.0,21.7,21.85,25.41,25.41,6.31,0.9,8.0,9.0,7.1,safe,reported profit differs from normalized (one-offs)
+FORCEMOT,Automobile and Auto Components,standard,2026-03-31,reported,28.9,33.8,13.5,0.0,21.7,21.85,25.41,21.85,6.31,0.9,8.0,9.0,7.1,safe,reported profit differs from normalized by 16%
 FORTIS,Healthcare,standard,2026-03-31,reported,10.5,11.9,11.5,0.35,13.3,59.5,58.68,59.5,6.26,0.94,7.0,9.0,2.7,safe,
 FRACTAL,Information Technology,standard,2026-03-31,reported,9.2,10.4,8.9,0.13,18.5,48.25,45.11,48.25,4.43,0.92,7.0,9.0,6.56,safe,
 GAIL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,8.5,9.1,5.4,0.28,-0.9,16.19,16.19,16.19,1.38,0.92,4.0,9.0,3.8,safe,
 GVT&D,Capital Goods,standard,2026-03-31,reported,45.8,58.5,19.9,0.01,31.1,86.51,83.33,86.51,39.66,0.82,8.0,9.0,4.44,safe,
-GMRAIRPORT,Services,standard,2026-03-31,normalized,-5.2,10.4,1.0,-17.45,31.8,623.72,846.65,846.65,-44.14,,8.0,9.0,-0.01,distress,reported profit differs from normalized (one-offs)
-GABRIEL,Automobile and Auto Components,standard,2026-03-31,reported,10.5,22.8,5.4,0.06,16.3,115.19,112.75,115.19,12.15,0.57,6.0,9.0,6.71,safe,equity replaced by Yahoo book value (balance sheet / book value = 0.57)
+GMRAIRPORT,Services,standard,2026-03-31,normalized,-5.2,10.4,1.0,-17.45,31.8,623.72,846.65,846.65,-44.14,,8.0,9.0,-0.01,distress,reported profit differs from normalized by 36%
+GABRIEL,Automobile and Auto Components,standard,2026-03-31,reported,18.4,22.8,5.4,0.11,16.3,115.19,112.75,115.19,21.22,0.57,6.0,9.0,5.68,safe,equity check mismatch (balance sheet / book value x shares = 0.57); figures NOT changed
 GALLANTT,Capital Goods,standard,2026-03-31,reported,14.6,17.9,11.3,0.17,2.2,27.07,27.18,27.07,3.95,0.95,6.0,9.0,8.19,safe,
 GRSE,Capital Goods,standard,2026-03-31,reported,28.5,36.8,10.7,0.01,40.0,30.71,30.83,30.71,8.75,0.91,6.0,9.0,2.87,safe,
 GICRE,Financial Services,standard,2026-03-31,reported,13.7,,17.6,,4.3,6.11,6.11,6.11,0.84,0.7,4.0,4.0,,,no cash flow data
 GILLETTE,Fast Moving Consumer Goods,standard,2026-03-31,reported,69.1,84.6,21.1,0.0,11.1,35.28,35.08,35.28,24.39,0.88,7.0,9.0,6.65,safe,
 GLAND,Healthcare,standard,2026-03-31,reported,9.9,13.7,16.0,0.03,21.3,52.81,52.05,52.81,5.24,0.97,9.0,9.0,11.01,safe,
-GLAXO,Healthcare,standard,2026-03-31,reported,55.1,55.4,27.2,0.02,5.7,44.21,47.6,44.21,24.34,1.21,6.0,9.0,6.97,safe,equity replaced by Yahoo book value (balance sheet / book value = 1.21)
-GLENMARK,Healthcare,standard,2026-03-31,normalized,27.9,16.2,17.6,0.06,13.5,55.18,25.61,25.61,7.15,0.94,9.0,9.0,5.16,safe,reported profit differs from normalized (one-offs)
+GLAXO,Healthcare,standard,2026-03-31,reported,45.7,55.4,27.2,0.01,5.7,44.21,47.6,44.21,20.2,1.21,6.0,9.0,7.16,safe,equity check mismatch (balance sheet / book value x shares = 1.21); figures NOT changed
+GLENMARK,Healthcare,standard,2026-03-31,normalized,27.9,16.2,17.6,0.06,13.5,55.18,25.61,25.61,7.15,0.94,9.0,9.0,5.16,safe,reported profit differs from normalized by 54%
 MEDANTA,Healthcare,standard,2026-03-31,reported,14.0,15.0,12.9,0.3,17.2,72.67,70.94,72.67,10.21,0.92,6.0,9.0,5.78,safe,
 GPIL,Capital Goods,standard,2026-03-31,reported,13.8,17.6,14.9,0.08,-2.1,17.57,17.12,17.57,2.42,1.03,6.0,9.0,9.31,safe,
 GODFRYPHLP,Fast Moving Consumer Goods,standard,2026-03-31,reported,24.6,30.0,24.0,0.04,21.6,17.84,19.22,17.84,4.38,1.02,6.0,9.0,8.78,safe,
 GODREJCP,Fast Moving Consumer Goods,standard,2026-03-31,reported,14.7,21.3,12.3,0.35,4.6,50.49,47.53,50.49,7.43,1.0,5.0,9.0,3.61,safe,
-GODREJIND,Diversified,standard,2026-03-31,normalized,-6.0,12.3,-3.0,4.61,9.8,29.23,,,3.24,0.93,4.0,9.0,0.96,distress,reported profit differs from normalized (one-offs)
-GODREJPROP,Realty,standard,2026-03-31,normalized,0.8,11.1,3.0,0.83,32.4,31.45,382.21,382.21,3.04,0.99,4.0,9.0,2.01,grey,reported profit differs from normalized (one-offs)
+GODREJIND,Diversified,standard,2026-03-31,normalized,-6.0,12.3,-3.0,4.61,9.8,29.23,,,3.24,0.93,4.0,9.0,0.96,distress,reported profit differs from normalized by 285%
+GODREJPROP,Realty,standard,2026-03-31,normalized,0.8,11.1,3.0,0.83,32.4,31.45,382.21,382.21,3.04,0.99,4.0,9.0,2.01,grey,reported profit differs from normalized by 1115%
 GRANULES,Healthcare,standard,2026-03-31,reported,11.7,15.2,11.1,0.3,5.9,37.84,36.83,37.84,4.43,0.71,6.0,9.0,5.72,safe,
 GRAPHITE,Capital Goods,standard,2026-03-31,reported,3.0,4.4,6.1,0.06,-3.1,86.92,80.03,86.92,2.6,0.98,4.0,9.0,8.55,safe,
 GRASIM,Construction Materials,standard,2026-03-31,reported,4.8,4.0,2.9,2.2,14.3,42.21,43.2,42.21,2.03,0.97,6.0,9.0,0.49,distress,
 GRAVITA,Metals & Mining,standard,2026-03-31,reported,15.5,18.1,9.0,0.3,14.9,28.62,31.49,28.62,4.42,0.93,4.0,9.0,7.83,safe,
-GESHIP,Services,standard,2026-03-31,normalized,14.6,17.4,46.1,0.06,-1.6,6.74,7.98,7.98,1.17,0.99,7.0,9.0,12.73,safe,reported profit differs from normalized (one-offs)
+GESHIP,Services,standard,2026-03-31,reported,17.3,17.4,54.6,0.06,-1.6,6.74,7.98,6.74,1.17,0.99,7.0,9.0,12.73,safe,reported profit differs from normalized by 18%
 FLUOROCHEM,Chemicals,standard,2026-03-31,reported,7.3,9.6,11.8,0.29,-4.5,94.33,91.38,94.33,6.92,0.94,6.0,9.0,4.6,safe,
-GMDCLTD,Metals & Mining,standard,2026-03-31,normalized,8.3,15.5,22.1,0.04,-8.8,14.99,24.42,24.42,2.03,1.0,4.0,9.0,8.06,safe,reported profit differs from normalized (one-offs)
+GMDCLTD,Metals & Mining,standard,2026-03-31,normalized,8.3,15.5,22.1,0.04,-8.8,14.99,24.42,24.42,2.03,1.0,4.0,9.0,8.06,safe,reported profit differs from normalized by 63%
 HBLENGINE,Capital Goods,standard,2026-03-31,reported,36.8,46.4,24.8,0.03,34.2,25.41,24.68,25.41,9.35,0.89,8.0,9.0,10.78,safe,
 HCLTECH,Information Technology,standard,2026-03-31,reported,22.1,27.2,12.8,0.07,8.7,22.01,21.26,22.01,4.87,1.0,7.0,9.0,7.07,safe,
-HDBFS,Financial Services,standard,2026-03-31,normalized,22.4,7.9,27.5,4.8,13.5,18.68,10.29,10.29,2.3,0.93,6.0,9.0,1.44,grey,reported profit differs from normalized (one-offs)
+HDBFS,Financial Services,standard,2026-03-31,normalized,22.4,7.9,27.5,4.8,13.5,18.68,10.29,10.29,2.3,0.93,6.0,9.0,1.44,grey,reported profit differs from normalized by 45%
 HDFCAMC,Financial Services,standard,2026-03-31,reported,31.0,38.5,69.3,,23.9,40.79,46.47,40.79,12.63,1.07,7.0,8.0,19.36,safe,
-HDFCBANK,Financial Services,financial,2026-03-31,reported,11.6,,,,27.5,18.09,18.09,18.09,2.09,1.34,,,,,financial or no EBIT; equity replaced by Yahoo book value (balance sheet / book value = 1.34)
+HDFCBANK,Financial Services,financial,2026-03-31,reported,11.6,,,,27.5,18.09,18.09,18.09,2.09,1.34,,,,,financial or no EBIT; equity overridden with book value x shares (balance sheet / book value = 1.34; verified vs Screener)
 HDFCLIFE,Financial Services,standard,2026-03-31,reported,10.8,,2.1,0.17,9.3,65.58,65.58,65.58,7.07,0.94,3.0,5.0,,,no cash flow data
-HEGAM,Capital Goods,standard,2026-03-31,reported,13.0,8.8,13.4,0.3,1.6,24.88,28.45,24.88,3.24,1.81,6.0,9.0,6.54,safe,equity replaced by Yahoo book value (balance sheet / book value = 1.81)
+HEGAM,Capital Goods,standard,2026-03-31,reported,7.2,8.8,13.4,0.17,1.6,24.88,28.45,24.88,1.78,1.81,6.0,9.0,8.13,safe,equity check mismatch (balance sheet / book value x shares = 1.81); figures NOT changed
 HFCL,Telecommunication,standard,2026-03-31,reported,6.4,10.8,6.3,0.39,1.3,87.67,81.59,87.67,5.59,0.87,5.0,9.0,5.16,safe,
 HAVELLS,Consumer Durables,standard,2026-03-31,reported,17.9,22.1,7.6,0.03,9.9,44.26,48.67,44.26,7.91,0.97,5.0,9.0,6.2,safe,
 HEROMOTOCO,Automobile and Auto Components,standard,2026-03-31,reported,26.6,31.9,12.2,0.04,11.7,19.34,20.83,19.34,5.14,0.92,7.0,9.0,7.05,safe,
 HEXT,Information Technology,standard,2025-12-31,reported,21.7,24.0,10.2,0.11,13.4,21.65,21.66,21.65,4.69,0.88,6.0,9.0,4.82,safe,
 HSCL,Chemicals,standard,2026-03-31,reported,16.0,21.0,16.1,0.16,3.7,37.23,41.52,37.23,5.94,0.92,3.0,9.0,7.53,safe,
-HINDALCO,Metals & Mining,standard,2026-03-31,normalized,14.2,9.4,7.1,0.73,7.1,14.95,10.34,10.34,1.47,0.86,3.0,9.0,2.37,grey,reported profit differs from normalized (one-offs)
+HINDALCO,Metals & Mining,standard,2026-03-31,normalized,14.2,9.4,7.1,0.73,7.1,14.95,10.34,10.34,1.47,0.86,3.0,9.0,2.37,grey,reported profit differs from normalized by 31%
 HAL,Capital Goods,standard,2026-03-31,reported,22.2,13.8,28.7,0.0,6.4,34.99,34.77,34.99,7.77,0.93,5.0,9.0,4.63,safe,
 HINDCOPPER,Metals & Mining,standard,2026-03-31,reported,27.5,34.5,30.0,0.03,22.5,43.48,39.82,43.48,11.95,0.79,9.0,9.0,7.58,safe,
-HINDPETRO,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,34.2,23.3,4.1,1.06,0.2,4.54,4.51,4.54,1.55,1.24,8.0,9.0,1.28,grey,equity replaced by Yahoo book value (balance sheet / book value = 1.24)
-HINDUNILVR,Fast Moving Consumer Goods,standard,2026-03-31,normalized,21.9,22.2,16.7,0.03,2.3,31.94,45.05,45.05,9.86,1.0,6.0,9.0,3.46,safe,reported profit differs from normalized (one-offs)
+HINDPETRO,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,27.5,23.3,4.1,0.85,0.2,4.54,4.51,4.54,1.25,1.24,8.0,9.0,1.38,grey,equity check mismatch (balance sheet / book value x shares = 1.24); figures NOT changed
+HINDUNILVR,Fast Moving Consumer Goods,standard,2026-03-31,normalized,21.9,22.2,16.7,0.03,2.3,31.94,45.05,45.05,9.86,1.0,6.0,9.0,3.46,safe,reported profit differs from normalized by 41%
 HINDZINC,Metals & Mining,standard,2026-03-31,reported,61.1,62.0,35.3,0.39,5.6,16.12,16.14,16.12,9.85,0.76,8.0,9.0,,,
 POWERINDIA,Capital Goods,standard,2026-03-31,reported,19.1,24.9,12.5,0.02,22.2,134.51,128.71,134.51,25.67,0.9,7.0,9.0,4.12,safe,
-HOMEFIRST,Financial Services,standard,2026-03-31,normalized,10.6,5.0,27.8,2.43,33.7,19.98,23.45,23.45,2.48,0.93,5.0,9.0,7.03,safe,reported profit differs from normalized (one-offs)
+HOMEFIRST,Financial Services,standard,2026-03-31,reported,12.4,5.0,32.6,2.43,33.7,19.98,23.45,19.98,2.48,0.93,5.0,9.0,7.03,safe,reported profit differs from normalized by 17%
 HONASA,Fast Moving Consumer Goods,standard,2026-03-31,reported,14.2,17.7,8.4,0.1,17.0,87.35,91.76,87.35,12.37,0.95,5.0,9.0,4.72,safe,
 HONAUT,Capital Goods,standard,2026-03-31,reported,11.8,15.7,11.2,0.02,10.9,50.16,47.25,50.16,5.9,0.96,5.0,9.0,10.02,safe,
 HUDCO,Financial Services,financial,2026-03-31,reported,18.4,,,,10.0,7.86,7.89,7.86,1.44,0.96,,,,,financial or no EBIT
@@ -226,29 +226,29 @@ IDFCFIRSTB,Financial Services,financial,2026-03-31,reported,3.4,,,,19.6,46.09,46
 IFCI,Financial Services,financial,2026-03-31,reported,2.0,,,,11.5,87.74,93.76,87.74,1.77,0.98,,,,,financial or no EBIT
 IIFL,Financial Services,financial,2026-03-31,reported,11.9,,,,13.6,15.82,15.83,15.82,1.89,0.9,,,,,financial or no EBIT
 INOXINDIA,Capital Goods,standard,2026-03-31,reported,23.1,30.6,16.6,0.07,18.2,73.47,75.94,73.47,16.95,0.91,4.0,9.0,6.41,safe,
-IRB,Construction,standard,2026-03-31,normalized,1.0,5.8,3.4,0.96,-0.4,24.9,100.03,100.03,1.01,0.96,5.0,9.0,1.95,grey,reported profit differs from normalized (one-offs)
+IRB,Construction,standard,2026-03-31,normalized,1.0,5.8,3.4,0.96,-0.4,24.9,100.03,100.03,1.01,0.96,5.0,9.0,1.95,grey,reported profit differs from normalized by 302%
 IRCON,Construction,standard,2026-03-31,reported,9.0,8.2,6.7,0.86,-5.0,17.01,18.18,17.01,1.53,0.98,4.0,9.0,2.76,safe,
 ITCHOTELS,Consumer Services,standard,2026-03-31,reported,7.0,9.2,19.9,0.01,16.5,47.59,45.09,47.59,3.33,0.99,8.0,9.0,8.69,safe,short history
 ITC,Fast Moving Consumer Goods,standard,2026-03-31,reported,28.5,36.5,26.5,0.03,3.6,18.17,18.44,18.17,5.19,1.02,4.0,9.0,9.83,safe,
-ITI,Telecommunication,standard,2026-03-31,normalized,1.4,14.4,1.2,0.4,16.1,88.84,1008.94,1008.94,13.65,1.04,6.0,9.0,-0.71,distress,reported profit differs from normalized (one-offs)
-INDIACEM,Construction Materials,standard,2026-03-31,normalized,0.4,0.3,0.9,0.13,-7.3,,369.88,369.88,1.48,1.0,6.0,9.0,,,reported profit differs from normalized (one-offs)
-INDIAMART,Consumer Services,standard,2026-03-31,normalized,14.0,20.0,21.3,0.01,16.8,19.58,27.75,27.75,3.87,1.04,7.0,9.0,5.61,safe,reported profit differs from normalized (one-offs)
+ITI,Telecommunication,standard,2026-03-31,normalized,1.4,14.4,1.2,0.4,16.1,88.84,1008.94,1008.94,13.65,1.04,6.0,9.0,-0.71,distress,reported profit differs from normalized by 1036%
+INDIACEM,Construction Materials,standard,2026-03-31,normalized,0.4,0.3,0.9,0.13,-7.3,,369.88,369.88,1.48,1.0,6.0,9.0,,,reported profit differs from normalized by 266%
+INDIAMART,Consumer Services,standard,2026-03-31,normalized,14.0,20.0,21.3,0.01,16.8,19.58,27.75,27.75,3.87,1.04,7.0,9.0,5.61,safe,reported profit differs from normalized by 42%
 INDIANB,Financial Services,financial,2026-03-31,reported,14.6,,,,10.4,10.8,10.8,10.8,1.58,0.92,,,,,financial or no EBIT
 IEX,Financial Services,standard,2026-03-31,reported,36.1,45.7,80.1,0.01,15.4,19.67,21.89,19.67,7.1,0.94,7.0,9.0,7.54,safe,
-INDHOTEL,Consumer Services,standard,2026-03-31,normalized,13.7,17.4,19.2,0.22,18.6,62.09,72.53,72.53,9.91,0.96,7.0,9.0,5.39,safe,reported profit differs from normalized (one-offs)
+INDHOTEL,Consumer Services,standard,2026-03-31,reported,16.0,17.4,22.4,0.22,18.6,62.09,72.53,62.09,9.91,0.96,7.0,9.0,5.39,safe,reported profit differs from normalized by 17%
 IOC,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,19.2,20.5,5.4,0.6,-2.2,4.89,4.77,4.89,0.94,0.92,8.0,9.0,1.13,grey,
 IOB,Financial Services,financial,2026-03-31,reported,14.6,,,,14.2,11.18,11.18,11.18,1.64,0.92,,,,,financial or no EBIT
 IRCTC,Consumer Services,standard,2026-03-31,reported,32.3,41.1,26.7,0.02,13.8,25.58,25.65,25.58,8.27,0.89,6.0,9.0,7.52,safe,
 IRFC,Financial Services,standard,2026-03-31,reported,12.4,3.8,25.9,7.69,4.6,15.19,14.93,15.19,1.88,0.94,4.0,9.0,0.4,distress,
-IREDA,Financial Services,standard,2026-03-31,normalized,17.9,5.3,30.4,5.65,34.5,19.17,14.54,14.54,2.61,0.96,5.0,9.0,6.82,safe,reported profit differs from normalized (one-offs)
-IGL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,15.5,16.3,9.6,0.01,4.6,13.74,14.26,13.74,2.13,1.15,6.0,9.0,5.07,safe,equity replaced by Yahoo book value (balance sheet / book value = 1.15)
+IREDA,Financial Services,standard,2026-03-31,reported,13.6,5.3,23.1,5.65,34.5,19.17,14.54,19.17,2.61,0.96,5.0,9.0,6.82,safe,reported profit differs from normalized by 24%
+IGL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,13.5,16.3,9.6,0.01,4.6,13.74,14.26,13.74,1.85,1.15,6.0,9.0,5.36,safe,equity check mismatch (balance sheet / book value x shares = 1.15); figures NOT changed
 INDUSTOWER,Telecommunication,standard,2026-03-31,reported,18.0,18.4,22.0,0.53,4.6,14.13,14.86,14.13,2.55,1.0,7.0,9.0,4.56,safe,
 INDUSINDBK,Financial Services,financial,2026-03-31,reported,1.4,,,,-0.4,85.81,85.7,85.81,1.16,0.97,,,,,financial or no EBIT
-NAUKRI,Consumer Services,standard,2026-03-31,normalized,2.0,4.7,23.5,0.01,11.9,53.09,99.91,99.91,2.03,0.82,7.0,9.0,7.53,safe,reported profit differs from normalized (one-offs)
-INFY,Information Technology,standard,2026-03-31,reported,0.3,41.7,16.4,0.0,3.4,1352.04,1381.5,1352.04,4.6,0.01,6.0,9.0,161.57,safe,equity replaced by Yahoo book value (balance sheet / book value = 0.01)
-INOXWIND,Capital Goods,standard,2026-03-31,normalized,5.3,9.4,8.0,0.25,79.3,23.44,28.17,28.17,1.49,0.94,3.0,9.0,4.26,safe,reported profit differs from normalized (one-offs)
+NAUKRI,Consumer Services,standard,2026-03-31,normalized,2.0,4.7,23.5,0.01,11.9,53.09,99.91,99.91,2.03,0.82,7.0,9.0,7.53,safe,reported profit differs from normalized by 88%
+INFY,Information Technology,standard,2026-03-31,reported,33.9,41.7,16.4,0.1,3.4,1352.04,1381.5,1352.04,457.73,0.01,6.0,9.0,8.24,safe,equity check mismatch (balance sheet / book value x shares = 0.01); figures NOT changed
+INOXWIND,Capital Goods,standard,2026-03-31,reported,6.3,9.4,9.6,0.25,79.3,23.44,28.17,23.44,1.49,0.94,3.0,9.0,4.26,safe,reported profit differs from normalized by 20%
 INTELLECT,Information Technology,standard,2026-03-31,reported,10.9,13.7,11.4,0.05,10.8,24.01,21.58,24.01,2.62,0.94,5.0,9.0,6.32,safe,
-INDIGO,Services,standard,2026-03-31,reported,-47.9,4.0,-2.9,15.57,15.6,,,,42.88,1.4,6.0,9.0,1.23,grey,equity replaced by Yahoo book value (balance sheet / book value = 1.40)
+INDIGO,Services,standard,2026-03-31,reported,-34.3,4.0,-2.9,11.15,15.6,,,,30.72,1.4,6.0,9.0,1.25,grey,equity check mismatch (balance sheet / book value x shares = 1.40); figures NOT changed
 IGIL,Services,standard,2025-12-31,reported,30.3,38.4,40.6,0.1,29.6,43.3,43.3,43.3,13.13,0.81,7.0,9.0,,,
 IKS,Information Technology,standard,2026-03-31,reported,25.8,29.6,22.6,0.27,45.8,37.71,37.74,37.71,9.72,0.84,6.0,9.0,5.74,safe,
 IPCALAB,Healthcare,standard,2026-03-31,reported,14.2,16.4,11.9,0.1,15.5,40.7,40.61,40.7,5.76,0.9,9.0,9.0,7.78,safe,
@@ -256,12 +256,12 @@ JKCEMENT,Construction Materials,standard,2026-03-31,reported,14.1,13.3,7.4,0.88,
 JBMA,Automobile and Auto Components,standard,2026-03-31,reported,14.2,22.4,3.8,2.04,18.1,51.88,49.77,51.88,7.38,0.95,5.0,9.0,1.9,grey,
 JKTYRE,Automobile and Auto Components,standard,2026-03-31,reported,12.8,13.9,4.8,0.81,3.7,13.54,11.88,13.54,1.73,0.99,8.0,9.0,2.75,safe,
 JMFINANCIL,Financial Services,financial,2026-03-31,reported,11.3,,,,19.1,8.86,8.86,8.86,1.0,0.97,,,,,financial or no EBIT
-JSWCEMENT,Construction Materials,standard,2026-03-31,normalized,1.7,-4.1,1.7,0.68,4.7,,152.31,152.31,2.58,0.97,5.0,9.0,0.24,distress,reported profit differs from normalized (one-offs)
+JSWCEMENT,Construction Materials,standard,2026-03-31,normalized,1.7,-4.1,1.7,0.68,4.7,,152.31,152.31,2.58,0.97,5.0,9.0,0.24,distress,reported profit differs from normalized by 780%
 JSWENERGY,Power,standard,2026-03-31,reported,7.3,7.3,12.0,2.5,23.6,41.31,41.57,41.31,3.01,0.84,5.0,9.0,0.85,distress,
-JSWINFRA,Services,standard,2026-03-31,reported,8.6,12.0,28.6,0.39,19.0,52.96,50.33,52.96,4.54,0.61,3.0,9.0,4.89,safe,equity replaced by Yahoo book value (balance sheet / book value = 0.61)
-JSWSTEEL,Metals & Mining,standard,2026-03-31,normalized,6.9,18.7,3.8,1.19,3.6,14.32,46.0,46.0,3.19,0.88,8.0,9.0,3.29,safe,reported profit differs from normalized (one-offs)
+JSWINFRA,Services,standard,2026-03-31,reported,14.0,12.0,28.6,0.63,19.0,52.96,50.33,52.96,7.42,0.61,3.0,9.0,4.05,safe,equity check mismatch (balance sheet / book value x shares = 0.61); figures NOT changed
+JSWSTEEL,Metals & Mining,standard,2026-03-31,normalized,6.9,18.7,3.8,1.19,3.6,14.32,46.0,46.0,3.19,0.88,8.0,9.0,3.29,safe,reported profit differs from normalized by 221%
 JAINREC,Metals & Mining,standard,2026-03-31,reported,22.6,35.5,3.7,0.82,45.4,28.18,27.96,28.18,6.36,0.91,4.0,9.0,5.64,safe,
-JPPOWER,Power,standard,2026-03-31,reported,5.8,6.7,8.1,0.44,-1.3,20.14,20.34,20.14,1.17,1.64,7.0,9.0,2.75,safe,equity replaced by Yahoo book value (balance sheet / book value = 1.64)
+JPPOWER,Power,standard,2026-03-31,reported,3.5,6.7,8.1,0.27,-1.3,20.14,20.34,20.14,0.71,1.64,7.0,9.0,3.75,safe,equity check mismatch (balance sheet / book value x shares = 1.64); figures NOT changed
 J&KBANK,Financial Services,financial,2026-03-31,reported,14.3,,,,8.2,6.83,6.84,6.83,0.98,0.94,,,,,financial or no EBIT
 JINDALSAW,Capital Goods,standard,2026-03-31,reported,7.7,9.7,5.6,0.37,0.4,15.72,15.02,15.72,1.22,0.99,6.0,9.0,4.19,safe,
 JSL,Metals & Mining,standard,2026-03-31,reported,16.1,17.8,7.5,0.38,6.4,18.92,18.67,18.92,3.05,0.93,6.0,9.0,3.57,safe,
@@ -280,12 +280,12 @@ KPIL,Construction,standard,2026-03-31,reported,13.4,19.9,3.9,0.46,18.4,21.53,22.
 KALYANKJIL,Consumer Durables,standard,2026-03-31,reported,21.4,26.7,3.8,0.97,36.4,50.31,49.93,50.31,10.77,0.95,8.0,9.0,2.85,safe,
 KARURVYSYA,Financial Services,financial,2026-03-31,reported,17.8,,,,18.7,14.82,14.82,14.82,2.64,0.92,,,,,financial or no EBIT
 KAYNES,Capital Goods,standard,2026-03-31,reported,7.7,12.0,10.0,0.19,47.7,52.53,55.5,52.53,4.03,1.0,4.0,9.0,5.45,safe,
-KEC,Construction,standard,2026-03-31,normalized,12.2,20.2,3.2,0.87,11.1,13.09,10.57,10.57,1.29,1.01,3.0,9.0,2.39,grey,reported profit differs from normalized (one-offs)
+KEC,Construction,standard,2026-03-31,reported,9.8,20.2,2.6,0.87,11.1,13.09,10.57,13.09,1.29,1.01,3.0,9.0,2.39,grey,reported profit differs from normalized by 19%
 KFINTECH,Financial Services,standard,2026-03-31,reported,20.5,18.9,27.0,0.03,22.5,47.07,47.36,47.07,9.67,1.03,5.0,9.0,5.2,safe,
 KIRLOSBROS,Capital Goods,standard,2026-03-31,reported,15.2,17.4,8.3,0.1,6.9,33.55,31.39,33.55,5.09,0.96,3.0,9.0,5.39,safe,
 KIRLOSENG,Capital Goods,standard,2026-03-31,reported,15.9,17.9,7.5,1.48,15.4,43.01,42.36,43.01,6.82,0.96,8.0,9.0,3.06,safe,
 KOTAKBANK,Financial Services,financial,2026-03-31,reported,10.6,,,,14.1,26.07,26.07,26.07,2.77,0.93,,,,,financial or no EBIT
-KIMS,Healthcare,standard,2026-03-31,reported,6.1,8.1,6.2,1.08,21.3,138.32,133.82,138.32,8.47,0.57,4.0,9.0,1.49,grey,equity replaced by Yahoo book value (balance sheet / book value = 0.57)
+KIMS,Healthcare,standard,2026-03-31,reported,10.7,8.1,6.2,1.89,21.3,138.32,133.82,138.32,14.86,0.57,4.0,9.0,1.15,grey,equity check mismatch (balance sheet / book value x shares = 0.57); figures NOT changed
 LTF,Financial Services,financial,2026-03-31,reported,10.7,,,,17.7,23.12,22.95,23.12,2.46,0.96,,,,,financial or no EBIT
 LTTS,Information Technology,standard,2026-03-31,reported,19.8,24.0,11.6,0.09,7.6,34.86,31.96,34.86,6.89,0.91,7.0,9.0,7.23,safe,
 LGEINDIA,Consumer Durables,standard,2026-03-31,reported,22.0,27.6,6.9,0.06,1.3,71.74,72.57,71.74,15.77,0.87,3.0,4.0,6.81,safe,short history
@@ -296,12 +296,12 @@ LT,Construction,standard,2026-03-31,reported,14.7,14.6,5.7,1.15,16.1,35.45,30.96
 LAURUSLABS,Healthcare,standard,2026-03-31,reported,16.8,19.5,13.2,0.48,3.8,143.1,142.26,143.1,24.0,0.87,9.0,9.0,4.07,safe,
 LEMONTREE,Consumer Services,standard,2026-03-31,reported,16.3,13.5,17.2,1.44,16.3,45.11,40.63,45.11,7.36,0.93,9.0,9.0,1.84,grey,
 LENSKART,Consumer Services,standard,2026-03-31,reported,5.6,7.2,5.6,0.35,35.4,251.58,262.94,251.58,14.21,0.94,8.0,9.0,3.37,safe,short history
-LICI,Financial Services,standard,2026-03-31,reported,68.1,,5.9,,7.3,4.52,4.52,4.52,3.08,2.09,4.0,4.0,,,no cash flow data; equity replaced by Yahoo book value (balance sheet / book value = 2.09)
+LICI,Financial Services,standard,2026-03-31,reported,32.5,,5.9,,7.3,4.52,4.52,4.52,1.47,2.09,4.0,4.0,,,no cash flow data; equity check mismatch (balance sheet / book value x shares = 2.09); figures NOT changed
 LINDEINDIA,Chemicals,standard,2026-03-31,reported,12.9,16.3,21.7,0.02,0.3,107.6,107.68,107.6,13.84,0.97,6.0,9.0,5.48,safe,
 LLOYDSME,Metals & Mining,standard,2026-03-31,reported,26.5,19.4,21.9,1.49,71.4,26.03,25.47,26.03,6.91,0.86,3.0,9.0,1.57,grey,
 LODHA,Realty,standard,2026-03-31,reported,14.7,18.2,21.0,0.42,20.4,35.53,35.92,35.53,5.23,0.92,7.0,9.0,4.53,safe,
 LUPIN,Healthcare,standard,2026-03-31,reported,23.8,28.3,19.4,0.29,19.1,17.0,16.06,17.0,4.04,0.93,8.0,9.0,6.31,safe,
-MMTC,Services,standard,2026-03-31,normalized,6.9,29.7,4289.0,0.0,-90.1,19.66,52.23,52.23,3.59,0.92,6.0,9.0,9.98,safe,reported profit differs from normalized (one-offs)
+MMTC,Services,standard,2026-03-31,normalized,6.9,29.7,4289.0,0.0,-90.1,19.66,52.23,52.23,3.59,0.92,6.0,9.0,9.98,safe,reported profit differs from normalized by 166%
 MRF,Automobile and Auto Components,standard,2026-03-31,reported,11.6,15.6,7.8,0.15,10.6,22.72,24.11,22.72,2.63,0.96,9.0,9.0,3.95,safe,
 MTARTECH,Capital Goods,standard,2026-03-31,reported,11.4,14.8,10.9,0.46,15.4,178.86,174.88,178.86,20.45,0.88,5.0,9.0,3.91,safe,
 MGL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,13.1,16.5,10.2,0.03,9.3,12.84,13.58,12.84,1.68,0.98,5.0,9.0,5.65,safe,
@@ -311,21 +311,21 @@ MANAPPURAM,Financial Services,financial,2026-03-31,reported,6.3,,,,7.3,25.83,25.
 MRPL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,13.6,19.0,2.2,1.08,-6.7,15.96,15.47,15.96,2.16,0.83,8.0,9.0,2.6,safe,
 MANKIND,Healthcare,standard,2026-03-31,reported,11.7,13.7,13.4,0.39,17.7,56.92,56.31,56.92,6.68,0.93,7.0,9.0,3.9,safe,
 MARICO,Fast Moving Consumer Goods,standard,2026-03-31,reported,41.9,38.8,13.0,0.13,11.8,67.7,72.59,67.7,28.33,0.89,6.0,9.0,4.7,safe,
-MARUTI,Automobile and Auto Components,standard,2026-03-31,normalized,11.1,17.2,6.7,0.0,15.9,30.34,37.55,37.55,4.16,0.98,6.0,9.0,5.59,safe,reported profit differs from normalized (one-offs)
+MARUTI,Automobile and Auto Components,standard,2026-03-31,reported,13.7,17.2,8.3,0.0,15.9,30.34,37.55,30.34,4.16,0.98,6.0,9.0,5.59,safe,reported profit differs from normalized by 24%
 MFSL,Financial Services,standard,2026-03-31,reported,1.6,,0.2,0.44,15.0,587.67,632.82,587.67,9.35,0.92,4.0,7.0,,,
 MAXHEALTH,Healthcare,standard,2026-03-31,reported,13.4,12.6,17.5,0.32,22.4,73.71,69.99,73.71,9.89,0.95,7.0,9.0,3.22,safe,
 MAZDOCK,Capital Goods,standard,2026-03-31,reported,26.5,28.5,19.9,0.05,19.6,28.21,24.42,28.21,7.47,0.93,5.0,9.0,3.78,safe,
 MEESHO,Consumer Services,standard,2026-03-31,reported,-31.0,-27.0,-10.8,0.01,30.1,,,,27.2,1.07,4.0,8.0,-2.96,distress,
 MINDACORP,Automobile and Auto Components,standard,2026-03-31,reported,13.6,14.9,5.9,0.56,12.8,47.6,47.95,47.6,6.49,0.89,8.0,9.0,2.54,grey,
 MSUMI,Automobile and Auto Components,standard,2026-03-31,reported,28.9,35.4,5.5,0.11,17.6,43.97,43.98,43.97,12.72,1.0,6.0,9.0,4.85,safe,
-MOTILALOFS,Financial Services,standard,2026-03-31,normalized,11.2,18.1,17.6,1.65,29.1,39.74,51.55,51.55,5.76,0.83,2.0,9.0,2.49,grey,reported profit differs from normalized (one-offs)
+MOTILALOFS,Financial Services,standard,2026-03-31,reported,14.5,18.1,22.8,1.65,29.1,39.74,51.55,39.74,5.76,0.83,2.0,9.0,2.49,grey,reported profit differs from normalized by 30%
 MPHASIS,Information Technology,standard,2026-03-31,reported,17.3,23.0,11.7,0.24,4.8,25.41,26.03,25.41,4.41,0.99,3.0,9.0,4.98,safe,
-MCX,Financial Services,standard,2026-03-31,reported,26.8,39.0,62.9,0.0,67.9,67.68,68.96,67.68,18.11,0.57,7.0,9.0,4.56,safe,equity replaced by Yahoo book value (balance sheet / book value = 0.57)
+MCX,Financial Services,standard,2026-03-31,reported,46.8,39.0,62.9,0.0,67.9,67.68,68.96,67.68,31.65,0.57,7.0,9.0,4.08,safe,equity check mismatch (balance sheet / book value x shares = 0.57); figures NOT changed
 MUTHOOTFIN,Financial Services,financial,2026-03-31,reported,27.1,,,,38.0,9.74,9.73,9.74,2.64,0.89,,,,,financial or no EBIT
 NATCOPHARM,Healthcare,standard,2026-03-31,reported,15.4,16.1,35.1,0.08,14.5,11.22,11.03,11.22,1.73,0.86,4.0,9.0,10.38,safe,
 NBCC,Construction,standard,2026-03-31,reported,23.9,34.3,5.7,0.0,12.9,29.08,29.12,29.08,6.94,0.94,6.0,9.0,2.09,grey,
 NCC,Construction,standard,2026-03-31,reported,8.6,15.3,3.3,0.43,10.5,12.13,11.72,12.13,1.04,0.97,4.0,9.0,2.6,grey,
-NHPC,Power,standard,2026-03-31,normalized,7.2,5.8,26.8,1.32,2.0,20.04,25.33,25.33,1.82,0.95,4.0,9.0,1.43,grey,reported profit differs from normalized (one-offs)
+NHPC,Power,standard,2026-03-31,reported,9.1,5.8,33.9,1.32,2.0,20.04,25.33,20.04,1.82,0.95,4.0,9.0,1.43,grey,reported profit differs from normalized by 26%
 NLCINDIA,Power,standard,2026-03-31,reported,16.4,9.3,20.1,1.3,2.7,8.96,9.16,8.96,1.47,0.92,7.0,9.0,1.77,grey,
 NMDC,Metals & Mining,standard,2026-03-31,reported,21.9,28.4,23.2,0.19,22.0,7.9,7.9,7.9,1.73,0.92,5.0,9.0,6.79,safe,
 NSLNISP,Metals & Mining,standard,2026-03-31,reported,0.4,3.5,0.4,0.35,,192.3,191.71,192.3,0.86,0.98,8.0,9.0,-0.73,distress,
@@ -336,17 +336,17 @@ NATIONALUM,Metals & Mining,standard,2026-03-31,reported,26.8,33.3,32.7,0.01,7.8,
 NAVA,Power,standard,2026-03-31,reported,9.0,11.1,18.4,0.25,6.8,19.65,20.77,19.65,1.77,0.94,5.0,9.0,,,
 NAVINFLUOR,Chemicals,standard,2026-03-31,reported,16.7,18.7,20.3,0.32,16.5,78.66,82.37,78.66,13.13,0.89,8.0,9.0,6.04,safe,
 NESTLEIND,Fast Moving Consumer Goods,standard,2026-03-31,reported,,,,,,,70.75,,,,0.0,0.0,,,no cash flow data
-NETWEB,Information Technology,standard,2026-03-31,reported,9.6,38.8,9.4,0.13,70.4,115.17,119.28,115.17,11.0,0.34,2.0,9.0,4.93,safe,equity replaced by Yahoo book value (balance sheet / book value = 0.34)
+NETWEB,Information Technology,standard,2026-03-31,reported,28.5,38.8,9.4,0.39,70.4,115.17,119.28,115.17,32.77,0.34,2.0,9.0,3.95,safe,equity check mismatch (balance sheet / book value x shares = 0.34); figures NOT changed
 NEULANDLAB,Healthcare,standard,2026-03-31,reported,19.4,22.9,18.8,0.16,18.5,72.4,72.74,72.4,14.06,0.92,6.0,9.0,6.25,safe,
 NAM-INDIA,Financial Services,standard,2026-03-31,reported,32.8,40.0,56.5,0.02,26.1,43.37,47.7,43.37,14.24,0.98,6.0,9.0,17.14,safe,
-NUVAMA,Financial Services,standard,2026-03-31,normalized,17.0,26.0,30.6,2.8,20.0,31.47,46.88,46.88,7.95,0.9,2.0,9.0,2.31,grey,reported profit differs from normalized (one-offs)
+NUVAMA,Financial Services,standard,2026-03-31,normalized,17.0,26.0,30.6,2.8,20.0,31.47,46.88,46.88,7.95,0.9,2.0,9.0,2.31,grey,reported profit differs from normalized by 49%
 NUVOCO,Construction Materials,standard,2026-03-31,reported,3.8,6.2,3.2,0.53,2.7,35.32,33.07,35.32,1.36,0.99,7.0,9.0,0.88,distress,
 OBEROIRLTY,Realty,standard,2026-03-31,reported,14.0,16.7,41.7,0.16,12.9,26.92,27.6,26.92,3.77,0.94,6.0,9.0,8.66,safe,
-ONGC,Oil Gas & Consumable Fuels,standard,2026-03-31,normalized,13.8,12.6,8.5,0.47,-1.3,6.77,5.48,5.48,0.75,0.93,8.0,9.0,1.64,grey,reported profit differs from normalized (one-offs)
-OIL,Oil Gas & Consumable Fuels,standard,2026-03-31,normalized,15.8,10.0,27.1,0.65,-2.0,10.4,7.5,7.5,1.19,0.91,5.0,9.0,2.27,grey,reported profit differs from normalized (one-offs)
+ONGC,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,11.1,12.6,6.8,0.47,-1.3,6.77,5.48,6.77,0.75,0.93,8.0,9.0,1.64,grey,reported profit differs from normalized by 19%
+OIL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,11.4,10.0,19.5,0.65,-2.0,10.4,7.5,10.4,1.19,0.91,5.0,9.0,2.27,grey,reported profit differs from normalized by 28%
 OLAELEC,Automobile and Auto Components,standard,2026-03-31,reported,-54.7,-29.7,-88.9,0.82,-7.5,,,,4.59,1.03,2.0,9.0,-3.56,distress,
 OLECTRA,Automobile and Auto Components,standard,2026-03-31,reported,14.5,19.4,7.7,0.31,28.4,45.75,45.68,45.75,6.61,0.94,5.0,9.0,3.95,safe,
-PAYTM,Financial Services,standard,2026-03-31,normalized,5.2,3.7,10.2,0.01,1.2,199.9,131.69,131.69,6.9,0.97,6.0,9.0,3.87,safe,reported profit differs from normalized (one-offs)
+PAYTM,Financial Services,standard,2026-03-31,normalized,5.2,3.7,10.2,0.01,1.2,199.9,131.69,131.69,6.9,0.97,6.0,9.0,3.87,safe,reported profit differs from normalized by 34%
 ONESOURCE,Healthcare,standard,2026-03-31,reported,-1.3,0.3,-5.2,0.26,232.4,,,,3.17,0.99,4.0,9.0,1.82,grey,
 OFSS,Information Technology,standard,2026-03-31,reported,33.7,43.2,34.4,0.0,10.4,32.26,31.18,32.26,10.88,1.02,7.0,9.0,11.8,safe,
 POLICYBZR,Financial Services,standard,2026-03-31,reported,9.2,9.7,9.9,0.05,38.5,76.1,80.91,76.1,6.97,0.94,5.0,9.0,8.16,safe,
@@ -355,21 +355,21 @@ PGEL,Consumer Durables,standard,2026-03-31,reported,6.4,8.7,3.9,0.2,33.8,85.54,8
 PIIND,Chemicals,standard,2026-03-31,reported,11.8,14.7,19.8,0.03,1.1,18.38,19.73,18.38,2.16,0.98,5.0,9.0,11.09,safe,
 PNBHOUSING,Financial Services,financial,2026-03-31,reported,11.9,,,,12.5,13.25,13.24,13.25,1.58,0.95,,,,,financial or no EBIT
 PTCIL,Capital Goods,standard,2026-03-31,reported,6.7,7.9,17.0,0.17,40.7,374.96,367.79,374.96,25.27,0.91,5.0,9.0,6.63,safe,
-PVRINOX,Media Entertainment & Publication,standard,2026-03-31,normalized,2.9,7.1,3.2,0.92,20.9,49.37,78.21,78.21,2.24,1.02,9.0,9.0,0.53,distress,reported profit differs from normalized (one-offs)
+PVRINOX,Media Entertainment & Publication,standard,2026-03-31,normalized,2.9,7.1,3.2,0.92,20.9,49.37,78.21,78.21,2.24,1.02,9.0,9.0,0.53,distress,reported profit differs from normalized by 58%
 PAGEIND,Textiles,standard,2026-03-31,reported,50.8,61.5,14.6,0.18,3.8,44.46,42.99,44.46,22.6,1.0,7.0,9.0,7.11,safe,
 PARADEEP,Chemicals,standard,2026-03-31,reported,14.7,20.7,9.8,1.02,28.8,14.72,14.32,14.72,2.16,0.95,2.0,9.0,2.43,grey,
 PATANJALI,Fast Moving Consumer Goods,standard,2026-03-31,reported,13.9,11.2,4.5,0.21,8.7,24.32,23.06,24.32,3.37,0.97,3.0,9.0,6.44,safe,
 PERSISTENT,Information Technology,standard,2026-03-31,reported,23.8,29.4,12.6,0.06,20.9,55.46,54.58,55.46,13.2,0.87,5.0,9.0,7.4,safe,
 PETRONET,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,17.6,21.2,9.0,0.11,-9.7,12.56,12.37,12.56,2.21,0.92,7.0,9.0,10.71,safe,
-PHOENIXLTD,Realty,standard,2026-03-31,reported,13.4,11.8,28.4,0.58,18.4,66.67,66.96,66.67,8.96,1.21,7.0,9.0,3.17,safe,equity replaced by Yahoo book value (balance sheet / book value = 1.21)
-PWL,Consumer Services,standard,2026-03-31,normalized,-0.3,1.6,-0.4,0.23,73.6,,,,8.95,0.98,7.0,9.0,4.11,safe,reported profit differs from normalized (one-offs)
+PHOENIXLTD,Realty,standard,2026-03-31,reported,11.1,11.8,28.4,0.48,18.4,66.67,66.96,66.67,7.43,1.21,7.0,9.0,3.4,safe,equity check mismatch (balance sheet / book value x shares = 1.21); figures NOT changed
+PWL,Consumer Services,standard,2026-03-31,normalized,-0.3,1.6,-0.4,0.23,73.6,,,,8.95,0.98,7.0,9.0,4.11,safe,reported profit differs from normalized by 49%
 PIDILITIND,Chemicals,standard,2026-03-31,reported,22.6,28.5,16.8,0.04,7.4,67.05,71.48,67.05,15.16,0.97,9.0,9.0,8.06,safe,
-PINELABS,Financial Services,standard,2026-03-31,normalized,2.7,3.5,6.6,0.07,21.0,164.34,117.5,117.5,3.14,0.99,9.0,9.0,2.68,safe,reported profit differs from normalized (one-offs)
+PINELABS,Financial Services,standard,2026-03-31,reported,1.9,3.5,4.7,0.07,21.0,164.34,117.5,164.34,3.14,0.99,9.0,9.0,2.68,safe,reported profit differs from normalized by 29%
 PIRAMALFIN,Financial Services,standard,2026-03-31,reported,5.3,1.6,14.5,2.84,16.9,31.2,30.51,31.2,1.67,0.87,6.0,9.0,1.65,grey,
-PPLPHARMA,Healthcare,standard,2026-03-31,normalized,-2.2,1.2,-2.1,0.7,7.6,,,,3.87,1.05,3.0,9.0,1.95,grey,reported profit differs from normalized (one-offs)
+PPLPHARMA,Healthcare,standard,2026-03-31,normalized,-2.2,1.2,-2.1,0.7,7.6,,,,3.87,1.05,3.0,9.0,1.95,grey,reported profit differs from normalized by 78%
 POLYMED,Healthcare,standard,2026-03-31,reported,10.4,13.3,17.3,0.11,18.8,51.04,56.79,51.04,5.29,0.95,4.0,9.0,8.35,safe,
 POLYCAB,Capital Goods,standard,2026-03-31,reported,22.3,30.4,9.5,0.37,26.6,41.93,43.46,41.93,9.33,0.92,5.0,9.0,6.62,safe,
-POONAWALLA,Financial Services,standard,2026-03-31,normalized,12.4,1.8,19.8,4.68,51.4,82.95,35.03,35.03,4.34,0.75,3.0,9.0,0.76,distress,reported profit differs from normalized (one-offs)
+POONAWALLA,Financial Services,standard,2026-03-31,normalized,12.4,1.8,19.8,4.68,51.4,82.95,35.03,35.03,4.34,0.75,3.0,9.0,0.76,distress,reported profit differs from normalized by 58%
 PFC,Financial Services,standard,2026-03-31,reported,19.5,,60.0,7.62,16.2,4.16,4.15,4.16,0.81,0.9,4.0,7.0,,,
 POWERGRID,Power,standard,2026-03-31,reported,15.8,11.2,35.6,1.51,0.6,15.47,13.2,15.47,2.45,0.94,4.0,9.0,0.75,distress,
 PREMIERENE,Capital Goods,standard,2026-03-31,reported,35.0,27.4,19.3,0.86,76.2,24.39,24.94,24.39,8.55,0.83,4.0,9.0,4.44,safe,
@@ -378,85 +378,85 @@ PFOCUS,Media Entertainment & Publication,standard,2026-03-31,reported,10.5,23.0,
 PRIVISCL,Chemicals,standard,2026-03-31,reported,23.2,25.1,12.9,0.72,16.6,43.44,43.47,43.44,10.07,0.9,9.0,9.0,4.04,safe,
 PNB,Financial Services,financial,2026-03-31,reported,12.3,,,,10.0,9.39,9.4,9.39,1.15,0.93,,,,,financial or no EBIT
 RRKABEL,Capital Goods,standard,2026-03-31,reported,19.1,26.5,5.1,0.13,20.1,42.71,41.56,42.71,8.17,0.85,6.0,9.0,5.35,safe,
-RBLBANK,Financial Services,financial,2026-03-31,reported,2.0,,,,12.2,69.66,69.65,69.66,1.4,0.38,,,,,financial or no EBIT; equity replaced by Yahoo book value (balance sheet / book value = 0.38)
+RBLBANK,Financial Services,financial,2026-03-31,reported,5.3,,,,12.2,69.66,69.65,69.66,3.66,0.38,,,,,financial or no EBIT; equity check mismatch (balance sheet / book value x shares = 0.38); figures NOT changed
 RECLTD,Financial Services,financial,2026-03-31,reported,19.2,,,,14.4,4.75,4.75,4.75,0.91,0.89,,,,,financial or no EBIT
-RHIM,Capital Goods,standard,2026-03-31,normalized,14.0,-7.2,12.6,0.13,13.9,,14.66,14.66,2.06,0.98,4.0,9.0,4.66,safe,reported profit differs from normalized (one-offs)
+RHIM,Capital Goods,standard,2026-03-31,normalized,14.0,-7.2,12.6,0.13,13.9,,14.66,14.66,2.06,0.98,4.0,9.0,4.66,safe,reported profit differs from normalized by 177%
 RITES,Construction,standard,2026-03-31,reported,15.3,18.7,17.1,0.0,-2.5,21.78,21.33,21.78,3.33,1.01,8.0,9.0,3.96,safe,
 RADICO,Fast Moving Consumer Goods,standard,2026-03-31,reported,18.2,24.0,10.1,0.24,24.6,103.35,101.51,103.35,18.84,0.9,9.0,9.0,6.54,safe,
-RVNL,Construction,standard,2026-03-31,normalized,5.9,11.0,2.8,0.49,0.2,44.64,67.86,67.86,3.98,1.0,3.0,9.0,,,reported profit differs from normalized (one-offs)
+RVNL,Construction,standard,2026-03-31,normalized,5.9,11.0,2.8,0.49,0.2,44.64,67.86,67.86,3.98,1.0,3.0,9.0,,,reported profit differs from normalized by 52%
 RAILTEL,Telecommunication,standard,2026-03-31,reported,15.3,18.7,8.1,0.03,29.8,22.71,21.7,22.71,3.48,0.96,6.0,9.0,3.14,safe,
 RAINBOW,Healthcare,standard,2026-03-31,reported,16.9,16.8,16.6,0.54,13.1,46.28,50.56,46.28,7.82,0.96,5.0,9.0,5.1,safe,
 RKFORGE,Automobile and Auto Components,standard,2026-03-31,reported,2.2,4.7,1.9,0.74,10.5,194.54,176.52,194.54,4.24,0.9,5.0,9.0,2.07,grey,
 REDINGTON,Services,standard,2026-03-31,reported,14.7,18.8,1.3,0.28,14.5,17.44,15.99,17.44,2.56,0.94,4.0,9.0,3.51,safe,
 RELIANCE,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,8.9,9.0,7.6,0.44,6.4,22.72,23.35,22.72,2.03,0.96,7.0,9.0,2.18,grey,
-RPOWER,Power,standard,2026-03-31,normalized,-0.4,4.5,-1.0,0.92,0.8,,,,0.45,0.99,6.0,9.0,0.05,distress,reported profit differs from normalized (one-offs)
+RPOWER,Power,standard,2026-03-31,normalized,-0.4,4.5,-1.0,0.92,0.8,,,,0.45,0.99,6.0,9.0,0.05,distress,reported profit differs from normalized by 378%
 RUBICON,Healthcare,standard,2026-03-31,reported,19.1,23.6,14.3,0.24,36.6,113.1,112.4,113.1,21.65,0.91,2.0,4.0,5.41,safe,short history
 SBICARD,Financial Services,financial,2026-03-31,reported,13.8,,,,13.5,25.34,25.34,25.34,3.49,0.92,,,,,financial or no EBIT
 SBILIFE,Financial Services,standard,2026-03-31,reported,12.9,,2.2,,11.1,73.21,73.21,73.21,9.48,0.93,2.0,4.0,,,no cash flow data
 SJVN,Power,standard,2026-03-31,reported,4.5,5.0,15.1,2.27,14.6,33.66,28.89,33.66,1.52,0.95,5.0,9.0,0.54,distress,
-SHRIPISTON,Automobile and Auto Components,standard,2026-03-31,reported,12.9,18.0,12.5,0.46,19.8,35.53,34.75,35.53,4.57,0.68,4.0,9.0,,,equity replaced by Yahoo book value (balance sheet / book value = 0.68)
+SHRIPISTON,Automobile and Auto Components,standard,2026-03-31,reported,19.0,18.0,12.5,0.68,19.8,35.53,34.75,35.53,6.77,0.68,4.0,9.0,,,equity check mismatch (balance sheet / book value x shares = 0.68); figures NOT changed
 SRF,Chemicals,standard,2026-03-31,reported,13.1,14.5,11.9,0.37,1.8,40.58,39.56,40.58,5.3,0.92,7.0,9.0,4.03,safe,
 SAGILITY,Information Technology,standard,2026-03-31,reported,9.6,12.5,12.9,0.11,19.5,23.24,22.69,23.24,2.23,0.94,7.0,9.0,5.17,safe,
 SAILIFE,Healthcare,standard,2026-03-31,reported,14.0,18.1,16.3,0.12,21.3,109.92,107.87,109.92,15.44,0.92,7.0,9.0,5.23,safe,
-SAMMAANCAP,Financial Services,standard,2026-03-31,normalized,-17.8,-12.8,-61.9,2.73,21.0,,,,0.81,0.91,0.0,8.0,0.12,distress,reported profit differs from normalized (one-offs)
+SAMMAANCAP,Financial Services,standard,2026-03-31,normalized,-17.8,-12.8,-61.9,2.73,21.0,,,,0.81,0.91,0.0,8.0,0.12,distress,reported profit differs from normalized by 111%
 MOTHERSON,Automobile and Auto Components,standard,2026-03-31,reported,9.4,11.5,3.1,0.47,17.1,45.41,39.93,45.41,4.28,0.9,6.0,9.0,1.8,grey,
 SANSERA,Automobile and Auto Components,standard,2026-03-31,reported,10.5,13.6,9.8,0.19,14.8,89.69,86.37,89.69,9.41,1.0,5.0,9.0,5.35,safe,
 SARDAEN,Metals & Mining,standard,2026-03-31,reported,15.0,16.1,19.6,0.36,10.4,14.68,15.77,14.68,2.2,0.91,9.0,9.0,6.48,safe,
 SCHAEFFLER,Automobile and Auto Components,standard,2025-12-31,reported,19.0,25.7,12.0,0.01,12.3,49.45,49.35,49.45,9.41,0.99,7.0,9.0,9.07,safe,
 SCHNEIDER,Capital Goods,standard,2026-03-31,reported,27.4,24.8,7.4,0.45,17.6,114.18,107.85,114.18,31.34,0.95,6.0,9.0,4.05,safe,
 SCI,Services,standard,2026-03-31,reported,14.9,14.1,23.5,0.29,-0.1,8.77,9.23,8.77,1.3,0.88,6.0,9.0,4.93,safe,
-SHREECEM,Construction Materials,standard,2026-03-31,normalized,6.3,10.2,7.1,0.08,5.7,51.8,61.87,61.87,3.88,0.98,7.0,9.0,6.54,safe,reported profit differs from normalized (one-offs)
-SHRIRAMFIN,Financial Services,financial,2026-03-31,reported,9.0,,,,13.9,23.23,23.23,23.23,2.09,0.59,,,,,financial or no EBIT; equity replaced by Yahoo book value (balance sheet / book value = 0.59)
+SHREECEM,Construction Materials,standard,2026-03-31,reported,7.5,10.2,8.5,0.08,5.7,51.8,61.87,51.8,3.88,0.98,7.0,9.0,6.54,safe,reported profit differs from normalized by 19%
+SHRIRAMFIN,Financial Services,financial,2026-03-31,reported,15.2,,,,13.9,23.23,23.23,23.23,3.53,0.59,,,,,financial or no EBIT; equity check mismatch (balance sheet / book value x shares = 0.59); figures NOT changed
 SHYAMMETL,Capital Goods,standard,2026-03-31,reported,9.3,12.4,5.8,0.09,13.6,33.69,35.11,33.69,3.13,0.9,5.0,9.0,3.36,safe,
 ENRIN,Capital Goods,standard,2025-09-30,reported,25.1,29.2,14.1,0.03,63.5,95.34,93.55,95.34,23.94,0.91,9.0,9.0,,,short history
-SIEMENS,Capital Goods,standard,2025-09-30,normalized,12.7,16.5,9.7,0.01,3.0,61.09,76.38,76.38,9.72,0.84,7.0,9.0,,,reported profit differs from normalized (one-offs)
-SIGNATURE,Realty,standard,2026-03-31,normalized,2.2,36.2,1.6,1.61,18.6,11.14,296.0,296.0,6.59,0.96,6.0,9.0,1.59,grey,reported profit differs from normalized (one-offs)
+SIEMENS,Capital Goods,standard,2025-09-30,reported,15.9,16.5,12.1,0.01,3.0,61.09,76.38,61.09,9.72,0.84,7.0,9.0,,,reported profit differs from normalized by 25%
+SIGNATURE,Realty,standard,2026-03-31,normalized,2.2,36.2,1.6,1.61,18.6,11.14,296.0,296.0,6.59,0.96,6.0,9.0,1.59,grey,reported profit differs from normalized by 2557%
 SOBHA,Realty,standard,2026-03-31,reported,4.1,7.4,3.8,0.22,16.3,69.29,67.75,69.29,2.84,1.0,7.0,9.0,1.34,grey,
 SOLARINDS,Chemicals,standard,2026-03-31,reported,26.7,29.5,17.5,0.29,12.4,98.64,98.51,98.64,26.36,0.82,6.0,9.0,6.09,safe,
 SONACOMS,Automobile and Auto Components,standard,2026-03-31,reported,10.7,13.2,14.9,0.07,18.8,86.34,84.94,86.34,9.24,0.93,5.0,9.0,8.46,safe,
 STARHEALTH,Financial Services,standard,2026-03-31,reported,7.4,,3.1,0.06,14.0,59.25,59.07,59.25,4.37,0.72,3.0,5.0,,,no cash flow data
 SBIN,Financial Services,financial,2026-03-31,reported,14.0,,,,10.6,12.62,12.62,12.62,1.76,0.89,,,,,financial or no EBIT
 SAIL,Metals & Mining,standard,2026-03-31,reported,5.6,7.2,3.1,0.53,2.0,19.77,16.83,19.77,1.1,0.96,7.0,9.0,1.98,grey,
-STLTECH,Telecommunication,standard,2026-03-31,reported,1.2,8.0,1.2,0.43,-11.8,542.49,573.2,542.49,6.69,0.5,8.0,9.0,1.78,grey,equity replaced by Yahoo book value (balance sheet / book value = 0.50)
+STLTECH,Telecommunication,standard,2026-03-31,reported,2.5,8.0,1.2,0.86,-11.8,542.49,573.2,542.49,13.39,0.5,8.0,9.0,1.2,grey,equity check mismatch (balance sheet / book value x shares = 0.50); figures NOT changed
 SUMICHEM,Chemicals,standard,2026-03-31,reported,16.0,21.0,16.9,0.02,-2.6,31.11,30.48,31.11,4.98,0.92,5.0,9.0,8.24,safe,
 SUNPHARMA,Healthcare,standard,2026-03-31,reported,13.7,17.9,19.7,0.06,10.4,39.08,37.94,39.08,5.37,0.93,5.0,9.0,9.05,safe,
 SUNTV,Media Entertainment & Publication,standard,2026-03-31,reported,11.4,15.3,33.2,0.01,4.7,18.94,21.61,18.94,2.16,0.94,5.0,9.0,18.38,safe,
 SUNDARMFIN,Financial Services,financial,2026-03-31,reported,13.8,,,,18.6,23.39,22.86,23.39,3.23,0.93,,,,,financial or no EBIT
 SUPREMEIND,Capital Goods,standard,2026-03-31,reported,15.5,19.6,8.6,0.01,6.8,41.98,42.46,41.98,6.49,0.96,5.0,9.0,6.63,safe,
 SUZLON,Capital Goods,standard,2026-03-31,reported,33.4,24.8,19.1,0.1,41.4,15.8,16.02,15.8,5.28,0.91,7.0,9.0,5.0,safe,
-SWANCORP,Chemicals,standard,2026-03-31,normalized,-2.6,4.0,-4.6,0.3,45.6,26.28,,,0.96,0.87,3.0,9.0,3.45,safe,reported profit differs from normalized (one-offs)
+SWANCORP,Chemicals,standard,2026-03-31,normalized,-2.6,4.0,-4.6,0.3,45.6,26.28,,,0.96,0.87,3.0,9.0,3.45,safe,reported profit differs from normalized by 238%
 SWIGGY,Consumer Services,standard,2026-03-31,reported,-22.7,-19.4,-18.2,0.14,41.0,,,,2.54,1.1,4.0,9.0,-0.04,distress,
-SYNGENE,Healthcare,standard,2026-03-31,normalized,8.1,8.3,10.9,0.09,5.4,57.18,46.18,46.18,3.74,1.0,6.0,9.0,5.19,safe,reported profit differs from normalized (one-offs)
+SYNGENE,Healthcare,standard,2026-03-31,reported,6.5,8.3,8.8,0.09,5.4,57.18,46.18,57.18,3.74,1.0,6.0,9.0,5.19,safe,reported profit differs from normalized by 19%
 SYRMA,Capital Goods,standard,2026-03-31,reported,11.1,14.7,6.8,0.14,32.8,89.64,90.31,89.64,9.95,0.94,6.0,9.0,3.98,safe,
 TBOTEK,Consumer Services,standard,2026-03-31,reported,15.8,15.0,9.7,0.49,36.7,67.69,62.14,67.69,10.66,0.9,3.0,9.0,1.18,grey,
 TDPOWERSYS,Capital Goods,standard,2026-03-31,reported,22.3,30.3,13.0,0.02,29.2,79.25,79.29,79.25,17.66,0.78,4.0,9.0,6.64,safe,
 TVSMOTOR,Automobile and Auto Components,standard,2026-03-31,reported,31.6,28.8,6.3,3.43,20.2,71.37,69.56,71.37,22.52,0.84,6.0,9.0,1.48,grey,
-TATACAP,Financial Services,standard,2026-03-31,normalized,15.0,3.7,23.2,4.97,34.5,29.8,20.93,20.93,3.15,0.94,3.0,7.0,0.91,distress,reported profit differs from normalized (one-offs)
-TATACHEM,Chemicals,standard,2026-03-31,normalized,5.1,-3.0,7.5,0.38,-4.8,,15.26,15.26,0.77,0.97,3.0,9.0,1.84,grey,reported profit differs from normalized (one-offs)
+TATACAP,Financial Services,standard,2026-03-31,reported,10.6,3.7,16.3,4.97,34.5,29.8,20.93,29.8,3.15,0.94,3.0,7.0,0.91,distress,reported profit differs from normalized by 30%
+TATACHEM,Chemicals,standard,2026-03-31,normalized,5.1,-3.0,7.5,0.38,-4.8,,15.26,15.26,0.77,0.97,3.0,9.0,1.84,grey,reported profit differs from normalized by 276%
 TATACOMM,Telecommunication,standard,2026-03-31,reported,29.1,15.3,4.0,3.55,11.6,49.72,43.88,49.72,14.45,1.01,6.0,9.0,-0.99,distress,
 TCS,Information Technology,standard,2026-03-31,reported,45.9,54.9,18.4,0.11,5.8,18.08,17.12,18.08,8.3,0.9,5.0,9.0,8.46,safe,
 TATACONSUM,Fast Moving Consumer Goods,standard,2026-03-31,reported,7.1,8.3,7.6,0.13,13.9,73.22,72.77,73.22,5.18,0.98,7.0,9.0,3.99,safe,
 TATAELXSI,Information Technology,standard,2026-03-31,reported,20.7,26.2,16.7,0.05,6.1,38.46,34.13,38.46,7.95,1.04,5.0,9.0,10.84,safe,
 TATAINVEST,Financial Services,financial,2026-03-31,reported,1.5,,,,19.5,68.42,68.42,68.42,1.02,0.94,,,,,financial or no EBIT
-TMCV,Capital Goods,standard,2026-03-31,normalized,43.2,25.5,6.6,0.44,-56.0,54.59,30.07,30.07,12.99,0.83,6.0,9.0,0.53,distress,reported profit differs from normalized (one-offs)
-TMPV,Automobile and Auto Components,standard,2026-03-31,normalized,0.9,0.6,0.3,0.73,-0.9,1.17,91.99,91.99,0.86,1.07,4.0,9.0,0.61,distress,reported profit differs from normalized (one-offs)
+TMCV,Capital Goods,standard,2026-03-31,normalized,43.2,25.5,6.6,0.44,-56.0,54.59,30.07,30.07,12.99,0.83,6.0,9.0,0.53,distress,reported profit differs from normalized by 45%
+TMPV,Automobile and Auto Components,standard,2026-03-31,normalized,0.9,0.6,0.3,0.73,-0.9,1.17,91.99,91.99,0.86,1.07,4.0,9.0,0.61,distress,reported profit differs from normalized by 7777%
 TATAPOWER,Power,standard,2026-03-31,reported,9.5,8.5,6.1,2.02,4.1,28.1,27.06,28.1,2.67,0.95,6.0,9.0,1.04,distress,
 TATASTEEL,Metals & Mining,standard,2026-03-31,reported,10.6,11.3,4.7,0.9,-1.6,18.68,17.91,18.68,1.97,0.98,7.0,9.0,0.96,distress,
 TATATECH,Information Technology,standard,2026-03-31,reported,13.9,15.5,9.9,0.24,7.7,52.88,47.45,52.88,7.37,1.02,4.0,9.0,4.01,safe,
-TTML,Telecommunication,standard,2026-03-31,normalized,4.4,-6.8,-76.4,-0.95,1.5,,,,-0.34,,6.0,9.0,-156.67,distress,reported profit differs from normalized (one-offs)
+TTML,Telecommunication,standard,2026-03-31,normalized,4.4,-6.8,-76.4,-0.95,1.5,,,,-0.34,,6.0,9.0,-156.67,distress,reported profit differs from normalized by 75%
 TECHM,Information Technology,standard,2026-03-31,reported,16.2,19.8,8.5,0.07,2.2,33.12,31.46,33.12,5.38,1.0,8.0,9.0,5.88,safe,
 TECHNOE,Construction,standard,2026-03-31,reported,11.4,12.5,15.0,0.02,56.3,22.18,25.09,22.18,2.53,0.96,3.0,9.0,8.38,safe,
 TEGA,Capital Goods,standard,2026-03-31,reported,4.2,6.2,8.5,0.12,11.8,82.95,93.74,82.95,3.47,1.06,6.0,9.0,9.28,safe,
-TEJASNET,Telecommunication,standard,2026-03-31,reported,-36.0,-29.5,-82.8,1.65,6.1,,,,2.83,1.16,3.0,9.0,0.32,distress,equity replaced by Yahoo book value (balance sheet / book value = 1.16)
+TEJASNET,Telecommunication,standard,2026-03-31,reported,-31.0,-29.5,-82.8,1.43,6.1,,,,2.44,1.16,3.0,9.0,0.39,distress,equity check mismatch (balance sheet / book value x shares = 1.16); figures NOT changed
 TENNIND,Automobile and Auto Components,standard,2026-03-31,reported,50.4,64.3,11.2,0.07,3.9,29.8,29.06,29.8,15.02,0.78,8.0,9.0,4.94,safe,
 THANGAMAYL,Consumer Durables,standard,2026-03-31,reported,24.8,34.2,4.1,0.64,39.2,33.21,33.03,33.21,8.25,0.94,7.0,9.0,4.28,safe,
-NIACL,Financial Services,standard,2026-03-31,normalized,5.4,,4.4,,6.9,17.43,10.91,10.91,0.59,0.68,4.0,4.0,,,no cash flow data; equity replaced by Yahoo book value (balance sheet / book value = 0.68); reported profit differs from normalized (one-offs)
-RAMCOCEM,Construction Materials,standard,2026-03-31,normalized,3.1,9.6,2.8,0.48,3.3,27.73,77.31,77.31,2.39,1.0,9.0,9.0,0.69,distress,reported profit differs from normalized (one-offs)
+NIACL,Financial Services,standard,2026-03-31,normalized,7.9,,4.4,,6.9,17.43,10.91,10.91,0.86,0.68,4.0,4.0,,,no cash flow data; equity check mismatch (balance sheet / book value x shares = 0.68); figures NOT changed; reported profit differs from normalized by 37%
+RAMCOCEM,Construction Materials,standard,2026-03-31,normalized,3.1,9.6,2.8,0.48,3.3,27.73,77.31,77.31,2.39,1.0,9.0,9.0,0.69,distress,reported profit differs from normalized by 179%
 THERMAX,Capital Goods,standard,2026-03-31,reported,13.0,15.3,6.8,0.43,9.8,42.07,48.21,42.07,5.46,1.01,4.0,9.0,3.14,safe,
 TIMKEN,Capital Goods,standard,2026-03-31,reported,14.2,18.5,12.0,0.0,7.5,55.48,55.47,55.48,7.9,0.93,6.0,9.0,9.45,safe,
-TITAGARH,Capital Goods,standard,2026-03-31,normalized,6.7,8.6,5.2,0.25,4.7,78.64,59.05,59.05,3.94,0.95,8.0,9.0,4.31,safe,reported profit differs from normalized (one-offs)
+TITAGARH,Capital Goods,standard,2026-03-31,reported,5.0,8.6,3.9,0.25,4.7,78.64,59.05,78.64,3.94,0.95,8.0,9.0,4.31,safe,reported profit differs from normalized by 25%
 TITAN,Consumer Durables,standard,2026-03-31,reported,32.3,38.4,5.8,1.95,29.2,81.23,81.66,81.23,26.24,0.86,6.0,9.0,3.14,safe,
-TORNTPHARM,Healthcare,standard,2026-03-31,reported,11.8,9.1,15.7,0.82,13.3,85.19,84.03,85.19,10.02,0.46,4.0,9.0,,,equity replaced by Yahoo book value (balance sheet / book value = 0.46)
+TORNTPHARM,Healthcare,standard,2026-03-31,reported,25.8,9.1,15.7,1.79,13.3,85.19,84.03,85.19,21.97,0.46,4.0,9.0,,,equity check mismatch (balance sheet / book value x shares = 0.46); figures NOT changed
 TORNTPOWER,Power,standard,2026-03-31,reported,12.7,11.9,8.4,0.73,4.0,25.12,25.99,25.12,3.18,0.91,5.0,9.0,2.16,grey,
 TARIL,Capital Goods,standard,2026-03-31,reported,17.5,24.4,10.7,0.3,21.5,32.95,32.06,32.95,5.75,0.92,6.0,9.0,5.38,safe,
 TRENT,Consumer Services,standard,2026-03-31,reported,24.6,28.2,8.7,0.37,34.8,99.28,99.99,99.28,24.44,0.9,6.0,9.0,4.71,safe,
@@ -465,7 +465,7 @@ TRITURBINE,Capital Goods,standard,2026-03-31,reported,24.2,31.9,16.2,0.02,20.4,4
 TIINDIA,Automobile and Auto Components,standard,2026-03-31,reported,8.2,12.8,2.9,0.1,15.5,67.31,66.6,67.31,5.53,0.96,7.0,9.0,4.49,safe,
 UCOBANK,Financial Services,financial,2026-03-31,reported,8.3,,,,7.8,11.24,11.2,11.24,0.94,0.96,,,,,financial or no EBIT
 UNOMINDA,Automobile and Auto Components,standard,2026-03-31,reported,17.5,20.5,6.2,0.4,20.5,65.82,64.88,65.82,11.54,0.92,7.0,9.0,3.59,safe,
-UPL,Chemicals,standard,2026-03-31,normalized,6.9,9.9,4.7,0.68,-1.2,24.87,20.02,20.02,1.38,1.0,8.0,9.0,2.38,grey,reported profit differs from normalized (one-offs)
+UPL,Chemicals,standard,2026-03-31,reported,5.5,9.9,3.7,0.68,-1.2,24.87,20.02,24.87,1.38,1.0,8.0,9.0,2.38,grey,reported profit differs from normalized by 19%
 UTIAMC,Financial Services,standard,2026-03-31,reported,9.0,14.2,26.3,0.03,10.8,26.51,26.16,26.51,2.38,1.02,5.0,9.0,15.33,safe,
 ULTRACEMCO,Construction Materials,standard,2026-03-31,reported,10.7,11.8,9.3,0.31,11.9,45.61,46.0,45.61,4.86,1.04,8.0,9.0,1.92,grey,
 UNIONBANK,Financial Services,financial,2026-03-31,reported,14.5,,,,7.6,8.27,8.27,8.27,1.2,0.94,,,,,financial or no EBIT
@@ -476,23 +476,23 @@ USHAMART,Capital Goods,standard,2026-03-31,reported,14.1,18.7,13.0,0.07,4.1,29.7
 VTL,Textiles,standard,2026-03-31,reported,7.1,8.6,7.7,0.18,-0.8,20.5,23.2,20.5,1.45,0.94,5.0,9.0,8.45,safe,
 VBL,Fast Moving Consumer Goods,standard,2025-12-31,reported,15.5,19.4,14.6,0.13,17.3,47.34,48.36,47.34,7.34,0.9,7.0,9.0,6.81,safe,
 VAML,Metals & Mining,standard,2026-03-31,reported,49.4,42.0,,-0.84,,,,,-1886481.62,,3.0,8.0,,,
-VISL,Metals & Mining,standard,2026-03-31,normalized,27.8,11.8,-14.9,-2.44,-2.7,,,,-1.28,,3.0,9.0,,,short history; reported profit differs from normalized (one-offs)
-VEDL,Metals & Mining,standard,2026-03-31,normalized,35.8,21.3,6.0,2.18,-19.2,5.26,20.03,20.03,7.17,3.2,8.0,9.0,1.63,grey,equity replaced by Yahoo book value (balance sheet / book value = 3.20); reported profit differs from normalized (one-offs)
-VOGL,Oil Gas & Consumable Fuels,standard,2026-03-31,normalized,0.4,4.1,0.7,0.36,161.8,207.93,161.33,161.33,0.68,0.9,4.0,9.0,,,reported profit differs from normalized (one-offs)
-VEDPOWER,Power,standard,2026-03-31,normalized,0.3,-7.7,0.4,0.71,15.7,,339.99,339.99,1.01,1.01,6.0,9.0,,,reported profit differs from normalized (one-offs)
+VISL,Metals & Mining,standard,2026-03-31,normalized,27.8,11.8,-14.9,-2.44,-2.7,,,,-1.28,,3.0,9.0,,,short history; reported profit differs from normalized by 47%
+VEDL,Metals & Mining,standard,2026-03-31,normalized,11.2,21.3,6.0,0.68,-19.2,5.26,20.03,20.03,2.24,3.2,8.0,9.0,1.81,grey,equity check mismatch (balance sheet / book value x shares = 3.20); figures NOT changed; reported profit differs from normalized by 281%
+VOGL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,0.3,4.1,0.6,0.36,161.8,207.93,161.33,207.93,0.68,0.9,4.0,9.0,,,reported profit differs from normalized by 22%
+VEDPOWER,Power,standard,2026-03-31,normalized,0.3,-7.7,0.4,0.71,15.7,,339.99,339.99,1.01,1.01,6.0,9.0,,,reported profit differs from normalized by 4383%
 VIJAYA,Healthcare,standard,2026-03-31,reported,18.1,19.1,21.3,0.44,21.0,93.03,99.19,93.03,16.81,0.9,8.0,9.0,5.74,safe,
 VMM,Consumer Services,standard,2026-03-31,reported,11.3,14.6,6.5,0.27,19.4,52.68,56.14,52.68,5.96,0.93,6.0,9.0,4.29,safe,
-IDEA,Telecommunication,standard,2026-03-31,normalized,1.8,36.9,-1.4,-5.38,2.1,3.76,,,-3.63,,6.0,9.0,-2.68,distress,reported profit differs from normalized (one-offs)
+IDEA,Telecommunication,standard,2026-03-31,normalized,1.8,36.9,-1.4,-5.38,2.1,3.76,,,-3.63,,6.0,9.0,-2.68,distress,reported profit differs from normalized by 5465%
 VOLTAS,Consumer Durables,standard,2026-03-31,reported,5.9,9.3,2.7,0.16,14.5,107.48,121.78,107.48,6.34,0.95,3.0,9.0,3.27,safe,
 WAAREEENER,Capital Goods,standard,2026-03-31,reported,25.7,30.1,14.3,0.26,57.8,18.71,17.82,18.71,4.81,0.9,6.0,9.0,4.07,safe,
 WELCORP,Capital Goods,standard,2026-03-31,reported,17.6,19.5,10.0,0.26,19.5,35.35,35.34,35.35,6.23,0.86,4.0,9.0,3.59,safe,
 WELSPUNLIV,Textiles,standard,2026-03-31,reported,4.2,5.8,2.4,0.47,5.7,127.93,130.09,127.93,5.32,0.97,4.0,9.0,3.74,safe,
 WHIRLPOOL,Consumer Durables,standard,2026-03-31,reported,7.1,9.0,3.7,0.09,6.4,34.97,33.71,34.97,2.47,0.98,4.0,9.0,5.7,safe,
-WIPRO,Information Technology,standard,2026-03-31,reported,16.6,17.8,14.2,0.26,0.8,14.04,14.92,14.04,2.33,1.11,5.0,9.0,6.07,safe,equity replaced by Yahoo book value (balance sheet / book value = 1.11)
-WOCKPHARMA,Healthcare,standard,2026-03-31,normalized,5.8,6.4,8.6,0.45,7.8,163.26,122.4,122.4,7.04,0.96,8.0,9.0,2.9,safe,reported profit differs from normalized (one-offs)
+WIPRO,Information Technology,standard,2026-03-31,reported,14.9,17.8,14.2,0.23,0.8,14.04,14.92,14.04,2.09,1.11,5.0,9.0,6.25,safe,equity check mismatch (balance sheet / book value x shares = 1.11); figures NOT changed
+WOCKPHARMA,Healthcare,standard,2026-03-31,reported,4.3,6.4,6.4,0.45,7.8,163.26,122.4,163.26,7.04,0.96,8.0,9.0,2.9,safe,reported profit differs from normalized by 25%
 YESBANK,Financial Services,financial,2026-03-31,reported,6.9,,,,25.3,15.92,15.9,15.92,1.09,0.95,,,,,financial or no EBIT
 ZFCVINDIA,Automobile and Auto Components,standard,2026-03-31,reported,14.0,18.5,12.6,0.01,6.2,47.95,49.14,47.95,6.72,1.0,6.0,9.0,13.06,safe,
-ZEEL,Media Entertainment & Publication,standard,2026-03-31,normalized,1.8,2.5,2.7,0.02,0.0,25.22,32.03,32.03,0.59,0.95,5.0,8.0,11.66,safe,reported profit differs from normalized (one-offs)
+ZEEL,Media Entertainment & Publication,standard,2026-03-31,reported,2.3,2.5,3.4,0.02,0.0,25.22,32.03,25.22,0.59,0.95,5.0,8.0,11.66,safe,reported profit differs from normalized by 27%
 ZENTEC,Capital Goods,standard,2026-03-31,reported,10.2,15.4,28.1,0.01,46.5,79.32,79.55,79.32,8.12,0.95,7.0,9.0,15.66,safe,
 ZENSARTECH,Information Technology,standard,2026-03-31,reported,16.4,20.9,13.6,0.02,5.5,15.53,16.18,15.53,2.55,0.97,6.0,9.0,9.59,safe,
 ZYDUSLIFE,Healthcare,standard,2026-03-31,reported,18.6,19.0,18.9,0.46,16.5,23.74,22.04,23.74,4.41,0.97,4.0,9.0,4.44,safe,

@@ -2,44 +2,44 @@
  "symbol": "CYIENT",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
  "flags": [
-  "equity replaced by Yahoo book value (balance sheet / book value = 1.12)",
-  "reported profit differs from normalized (one-offs)"
+  "equity check mismatch (balance sheet / book value x shares = 1.12); figures NOT changed",
+  "reported profit differs from normalized by 22%"
  ],
  "equity_check": {
   "balance_sheet_cr": 5681.9,
   "implied_cr": 5052.5,
   "ratio": 1.12,
-  "used": "book_value"
+  "used": "balance_sheet"
  },
  "snapshot_cr": {
   "rev": 7268.2,
   "ni": 427.9,
   "ebit": 705.3,
   "ta": 8324.4,
-  "eq": 5052.5,
+  "eq": 5681.9,
   "debt": 431.1,
   "fcf": 689.5,
   "ni_continuing_ops_pre_minority": 463.0,
   "ni_normalized": 546.6
  },
  "ratios": {
-  "roe_pct": 10.8,
-  "roa_pct": 6.6,
-  "net_margin_pct": 7.5,
+  "roe_pct": 7.5,
+  "roa_pct": 5.1,
+  "net_margin_pct": 5.9,
   "ebit_margin_pct": 9.7,
   "roce_pct": 10.5,
   "fcf_margin_pct": 9.5,
-  "debt_equity": 0.09,
+  "debt_equity": 0.08,
   "interest_cover": 11.6,
   "current_ratio": 2.93,
   "asset_turnover": 0.87
  },
  "dupont": {
-  "net_margin_pct": 7.5,
+  "net_margin_pct": 5.9,
   "asset_turnover": 0.87,
-  "equity_multiplier": 1.65
+  "equity_multiplier": 1.47
  },
  "growth": {
   "years_used": 3,
@@ -49,8 +49,8 @@
  "valuation": {
   "pe": 27.96,
   "pe_normalized": 21.89,
-  "pe_used": 21.89,
-  "pb": 2.37,
+  "pe_used": 27.96,
+  "pb": 2.11,
   "ev_ebitda": 10.88,
   "fcf_yield_pct": 5.8,
   "market_cap_cr": 11963.2
@@ -71,12 +71,7 @@
   }
  },
  "altman_z2": {
-  "z": 6.72,
+  "z": 7.02,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 8.5,
-  "roa_pct": 5.1,
-  "net_margin_pct": 5.9
  }
 }

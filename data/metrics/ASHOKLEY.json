@@ -2,9 +2,9 @@
  "symbol": "ASHOKLEY",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
  "flags": [
-  "reported profit differs from normalized (one-offs)"
+  "reported profit differs from normalized by 27%"
  ],
  "equity_check": {
   "balance_sheet_cr": 14241.7,
@@ -24,9 +24,9 @@
   "ni_normalized": 4727.6
  },
  "ratios": {
-  "roe_pct": 33.2,
-  "roa_pct": 4.7,
-  "net_margin_pct": 8.4,
+  "roe_pct": 24.4,
+  "roa_pct": 3.4,
+  "net_margin_pct": 6.2,
   "ebit_margin_pct": 17.6,
   "roce_pct": 14.5,
   "fcf_margin_pct": -14.0,
@@ -36,7 +36,7 @@
   "asset_turnover": 0.55
  },
  "dupont": {
-  "net_margin_pct": 8.4,
+  "net_margin_pct": 6.2,
   "asset_turnover": 0.55,
   "equity_multiplier": 7.09
  },
@@ -48,7 +48,7 @@
  "valuation": {
   "pe": 27.1,
   "pe_normalized": 19.9,
-  "pe_used": 19.9,
+  "pe_used": 27.1,
   "pb": 6.6,
   "ev_ebitda": 12.82,
   "fcf_yield_pct": -8.3,
@@ -72,10 +72,5 @@
  "altman_z2": {
   "z": 1.77,
   "zone": "grey"
- },
- "ratios_reported": {
-  "roe_pct": 24.4,
-  "roa_pct": 3.4,
-  "net_margin_pct": 6.2
  }
 }

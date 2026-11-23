@@ -2,9 +2,9 @@
  "symbol": "IREDA",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
  "flags": [
-  "reported profit differs from normalized (one-offs)"
+  "reported profit differs from normalized by 24%"
  ],
  "equity_check": {
   "balance_sheet_cr": 13785.4,
@@ -24,9 +24,9 @@
   "ni_normalized": 2470.5
  },
  "ratios": {
-  "roe_pct": 17.9,
-  "roa_pct": 2.6,
-  "net_margin_pct": 30.4,
+  "roe_pct": 13.6,
+  "roa_pct": 2.0,
+  "net_margin_pct": 23.1,
   "ebit_margin_pct": 60.1,
   "roce_pct": 5.3,
   "fcf_margin_pct": -178.4,
@@ -36,7 +36,7 @@
   "asset_turnover": 0.09
  },
  "dupont": {
-  "net_margin_pct": 30.4,
+  "net_margin_pct": 23.1,
   "asset_turnover": 0.09,
   "equity_multiplier": 6.8
  },
@@ -48,7 +48,7 @@
  "valuation": {
   "pe": 19.17,
   "pe_normalized": 14.54,
-  "pe_used": 14.54,
+  "pe_used": 19.17,
   "pb": 2.61,
   "ev_ebitda": 22.94,
   "fcf_yield_pct": -40.3,
@@ -72,10 +72,5 @@
  "altman_z2": {
   "z": 6.82,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 13.6,
-  "roa_pct": 2.0,
-  "net_margin_pct": 23.1
  }
 }

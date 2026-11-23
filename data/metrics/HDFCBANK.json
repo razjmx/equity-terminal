@@ -5,13 +5,13 @@
  "profit_basis": "reported",
  "flags": [
   "financial or no EBIT",
-  "equity replaced by Yahoo book value (balance sheet / book value = 1.34)"
+  "equity overridden with book value x shares (balance sheet / book value = 1.34; verified vs Screener)"
  ],
  "equity_check": {
   "balance_sheet_cr": 816739.6,
   "implied_cr": 609382.9,
   "ratio": 1.34,
-  "used": "book_value"
+  "used": "book_value (manual override)"
  },
  "snapshot_cr": {
   "rev": 249561.8,

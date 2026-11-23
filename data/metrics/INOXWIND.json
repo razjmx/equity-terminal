@@ -2,9 +2,9 @@
  "symbol": "INOXWIND",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
  "flags": [
-  "reported profit differs from normalized (one-offs)"
+  "reported profit differs from normalized by 20%"
  ],
  "equity_check": {
   "balance_sheet_cr": 6382.5,
@@ -24,9 +24,9 @@
   "ni_normalized": 337.0
  },
  "ratios": {
-  "roe_pct": 5.3,
-  "roa_pct": 2.8,
-  "net_margin_pct": 8.0,
+  "roe_pct": 6.3,
+  "roa_pct": 3.4,
+  "net_margin_pct": 9.6,
   "ebit_margin_pct": 18.4,
   "roce_pct": 9.4,
   "fcf_margin_pct": -29.6,
@@ -36,7 +36,7 @@
   "asset_turnover": 0.35
  },
  "dupont": {
-  "net_margin_pct": 8.0,
+  "net_margin_pct": 9.6,
   "asset_turnover": 0.35,
   "equity_multiplier": 1.89
  },
@@ -48,7 +48,7 @@
  "valuation": {
   "pe": 23.44,
   "pe_normalized": 28.17,
-  "pe_used": 28.17,
+  "pe_used": 23.44,
   "pb": 1.49,
   "ev_ebitda": 11.17,
   "fcf_yield_pct": -13.1,
@@ -72,10 +72,5 @@
  "altman_z2": {
   "z": 4.26,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 6.3,
-  "roa_pct": 3.4,
-  "net_margin_pct": 9.6
  }
 }

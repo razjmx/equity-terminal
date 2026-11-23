@@ -2,9 +2,9 @@
  "symbol": "FINCABLES",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
  "flags": [
-  "reported profit differs from normalized (one-offs)"
+  "reported profit differs from normalized by 15%"
  ],
  "equity_check": {
   "balance_sheet_cr": 6085.9,
@@ -24,9 +24,9 @@
   "ni_normalized": 620.1
  },
  "ratios": {
-  "roe_pct": 10.2,
-  "roa_pct": 8.9,
-  "net_margin_pct": 10.1,
+  "roe_pct": 11.7,
+  "roa_pct": 10.2,
+  "net_margin_pct": 11.6,
   "ebit_margin_pct": 15.1,
   "roce_pct": 14.2,
   "fcf_margin_pct": -1.7,
@@ -36,7 +36,7 @@
   "asset_turnover": 0.88
  },
  "dupont": {
-  "net_margin_pct": 10.1,
+  "net_margin_pct": 11.6,
   "asset_turnover": 0.88,
   "equity_multiplier": 1.15
  },
@@ -48,7 +48,7 @@
  "valuation": {
   "pe": 25.14,
   "pe_normalized": 28.93,
-  "pe_used": 28.93,
+  "pe_used": 25.14,
   "pb": 2.95,
   "ev_ebitda": 16.06,
   "fcf_yield_pct": -0.6,
@@ -72,10 +72,5 @@
  "altman_z2": {
   "z": 13.34,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 11.7,
-  "roa_pct": 10.2,
-  "net_margin_pct": 11.6
  }
 }

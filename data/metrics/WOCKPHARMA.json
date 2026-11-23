@@ -2,9 +2,9 @@
  "symbol": "WOCKPHARMA",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
  "flags": [
-  "reported profit differs from normalized (one-offs)"
+  "reported profit differs from normalized by 25%"
  ],
  "equity_check": {
   "balance_sheet_cr": 4940.0,
@@ -24,9 +24,9 @@
   "ni_normalized": 284.1
  },
  "ratios": {
-  "roe_pct": 5.8,
-  "roa_pct": 3.3,
-  "net_margin_pct": 8.6,
+  "roe_pct": 4.3,
+  "roa_pct": 2.5,
+  "net_margin_pct": 6.4,
   "ebit_margin_pct": 13.4,
   "roce_pct": 6.4,
   "fcf_margin_pct": 0.8,
@@ -36,7 +36,7 @@
   "asset_turnover": 0.39
  },
  "dupont": {
-  "net_margin_pct": 8.6,
+  "net_margin_pct": 6.4,
   "asset_turnover": 0.39,
   "equity_multiplier": 1.74
  },
@@ -48,7 +48,7 @@
  "valuation": {
   "pe": 163.26,
   "pe_normalized": 122.4,
-  "pe_used": 122.4,
+  "pe_used": 163.26,
   "pb": 7.04,
   "ev_ebitda": 54.05,
   "fcf_yield_pct": 0.1,
@@ -72,10 +72,5 @@
  "altman_z2": {
   "z": 2.9,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 4.3,
-  "roa_pct": 2.5,
-  "net_margin_pct": 6.4
  }
 }

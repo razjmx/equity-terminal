@@ -2,9 +2,9 @@
  "symbol": "TITAGARH",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
  "flags": [
-  "reported profit differs from normalized (one-offs)"
+  "reported profit differs from normalized by 25%"
  ],
  "equity_check": {
   "balance_sheet_cr": 2455.8,
@@ -24,9 +24,9 @@
   "ni_normalized": 163.8
  },
  "ratios": {
-  "roe_pct": 6.7,
-  "roa_pct": 4.1,
-  "net_margin_pct": 5.2,
+  "roe_pct": 5.0,
+  "roa_pct": 3.0,
+  "net_margin_pct": 3.9,
   "ebit_margin_pct": 7.7,
   "roce_pct": 8.6,
   "fcf_margin_pct": -1.5,
@@ -36,7 +36,7 @@
   "asset_turnover": 0.78
  },
  "dupont": {
-  "net_margin_pct": 5.2,
+  "net_margin_pct": 3.9,
   "asset_turnover": 0.78,
   "equity_multiplier": 1.64
  },
@@ -48,7 +48,7 @@
  "valuation": {
   "pe": 78.64,
   "pe_normalized": 59.05,
-  "pe_used": 59.05,
+  "pe_used": 78.64,
   "pb": 3.94,
   "ev_ebitda": 34.21,
   "fcf_yield_pct": -0.5,
@@ -72,10 +72,5 @@
  "altman_z2": {
   "z": 4.31,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 5.0,
-  "roa_pct": 3.0,
-  "net_margin_pct": 3.9
  }
 }

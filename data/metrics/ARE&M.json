@@ -2,9 +2,9 @@
  "symbol": "ARE&M",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
  "flags": [
-  "reported profit differs from normalized (one-offs)"
+  "reported profit differs from normalized by 29%"
  ],
  "equity_check": {
   "balance_sheet_cr": 8099.0,
@@ -24,9 +24,9 @@
   "ni_normalized": 693.6
  },
  "ratios": {
-  "roe_pct": 8.6,
-  "roa_pct": 6.1,
-  "net_margin_pct": 5.0,
+  "roe_pct": 11.1,
+  "roa_pct": 7.8,
+  "net_margin_pct": 6.5,
   "ebit_margin_pct": 9.0,
   "roce_pct": 14.2,
   "fcf_margin_pct": -1.6,
@@ -36,7 +36,7 @@
   "asset_turnover": 1.2
  },
  "dupont": {
-  "net_margin_pct": 5.0,
+  "net_margin_pct": 6.5,
   "asset_turnover": 1.2,
   "equity_multiplier": 1.41
  },
@@ -48,7 +48,7 @@
  "valuation": {
   "pe": 14.91,
   "pe_normalized": 19.26,
-  "pe_used": 19.26,
+  "pe_used": 14.91,
   "pb": 1.65,
   "ev_ebitda": 7.27,
   "fcf_yield_pct": -1.7,
@@ -72,10 +72,5 @@
  "altman_z2": {
   "z": 6.11,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 11.1,
-  "roa_pct": 7.8,
-  "net_margin_pct": 6.5
  }
 }
