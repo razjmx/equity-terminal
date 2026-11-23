@@ -204,3 +204,24 @@ h2.sec small{font-size:12px;font-weight:400;color:var(--m)}
 .tabs .mini em{font-style:normal;font-weight:700}.tabs .mini i{font-style:normal;font-weight:600}
 .tabs .mini i.pos{color:var(--g)}.tabs .mini i.neg{color:var(--r)}
 @media(max-width:1000px){.tabs .mini{display:none}.pctl{align-items:flex-start}.retline{text-align:left}.retline .r1{justify-content:flex-start}}
+
+/* statements */
+.subtabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 14px}
+.subtabs button{border-radius:999px;padding:7px 16px;background:var(--p);border:1px solid var(--b);color:var(--m);font-weight:600;transition:all .2s}
+.subtabs button:hover{color:var(--t);transform:translateY(-1px)}
+.subtabs button.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.fbar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+.chk{display:flex;gap:6px;align-items:center;color:var(--m);font-size:13px}
+.stbox{overflow:auto;max-height:640px}
+table.stmt{width:100%;border-collapse:collapse;font-size:13px}
+table.stmt th,table.stmt td{padding:8px 14px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--b)}
+table.stmt th{position:sticky;top:0;background:var(--p);z-index:2;color:var(--m);font-weight:600}
+table.stmt th.l,table.stmt td.l{text-align:left;position:sticky;left:0;background:var(--p);z-index:1;min-width:220px}
+table.stmt tr.kr td{font-weight:700}
+table.stmt tr.gr td{font-size:11.5px;color:var(--m);border-bottom-color:transparent;padding-top:0}
+table.stmt tr.gr td.pos{color:var(--g)}table.stmt tr.gr td.neg{color:var(--r)}
+table.stmt tr:hover td{background:var(--bg)}
+table.stmt small{font-size:10.5px}table.stmt small.pos{color:var(--g)}table.stmt small.neg{color:var(--r)}
+.own{display:flex;height:64px;border-radius:10px;overflow:hidden;gap:2px;margin-top:6px}
+.own div{display:flex;flex-direction:column;justify-content:center;padding:0 12px;color:#fff;min-width:0;animation:pop .5s ease both}
+.own b{font-size:16px}.own span{font-size:11.5px;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
