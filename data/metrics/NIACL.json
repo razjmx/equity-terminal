@@ -1,12 +1,18 @@
 {
  "symbol": "NIACL",
  "latest_fy": "2026-03-31",
- "type": "standard",
- "profit_basis": "normalized",
+ "type": "financial",
+ "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: financial",
+  "core EBIT missing or not positive",
+  "no cash flow data"
+ ],
  "flags": [
+  "override: financial (insurer)",
   "no cash flow data",
-  "equity check mismatch (balance sheet / book value x shares = 0.68); figures NOT changed",
-  "reported profit differs from normalized by 37%"
+  "equity check mismatch (ratio 0.68); figures NOT changed"
  ],
  "equity_check": {
   "balance_sheet_cr": 28531.4,
@@ -14,32 +20,35 @@
   "ratio": 0.68,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": null,
  "snapshot_cr": {
   "rev": 51077.9,
   "ni": 1412.3,
-  "ebit": 1302.7,
+  "ebit": null,
   "ta": 110356.2,
   "eq": 28531.4,
   "debt": null,
-  "fcf": -4612.1,
-  "ni_continuing_ops_pre_minority": 1416.8,
-  "ni_normalized": 2256.7
+  "fcf": null,
+  "ni_core": null,
+  "ebit_core": null,
+  "operating_income": null
  },
  "ratios": {
-  "roe_pct": 7.9,
-  "roa_pct": 2.0,
-  "net_margin_pct": 4.4,
-  "ebit_margin_pct": 2.6,
+  "roe_pct": 4.9,
+  "roa_pct": 1.3,
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
   "roce_pct": null,
-  "fcf_margin_pct": -9.0,
+  "fcf_margin_pct": null,
   "debt_equity": null,
-  "interest_cover": 18.63,
+  "interest_cover": null,
   "current_ratio": null,
-  "asset_turnover": 0.46
+  "asset_turnover": null
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 4.4,
-  "asset_turnover": 0.46,
+  "roe_pct": 4.9,
+  "roa_pct": 1.3,
   "equity_multiplier": 3.87
  },
  "growth": {
@@ -48,33 +57,14 @@
   "net_income_cagr_pct": 10.5
  },
  "valuation": {
-  "pe": 17.43,
-  "pe_normalized": 10.91,
-  "pe_used": 10.91,
+  "pe_reported": 17.43,
+  "pe_core": null,
+  "pe_used": 17.43,
   "pb": 0.86,
   "ev_ebitda": null,
-  "fcf_yield_pct": -18.7,
+  "fcf_yield_pct": null,
   "market_cap_cr": 24614.5
  },
- "piotroski": {
-  "score": 4,
-  "tested": 4,
-  "tests": {
-   "roa_positive": true,
-   "cfo_positive": null,
-   "roa_improved": true,
-   "cfo_above_net_income": null,
-   "leverage_fell": null,
-   "current_ratio_improved": null,
-   "no_dilution": true,
-   "gross_margin_improved": null,
-   "asset_turnover_improved": true
-  }
- },
- "altman_z2": null,
- "ratios_reported": {
-  "roe_pct": 4.9,
-  "roa_pct": 1.3,
-  "net_margin_pct": 2.8
- }
+ "piotroski": null,
+ "altman_z2": null
 }

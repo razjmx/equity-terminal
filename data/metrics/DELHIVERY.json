@@ -2,9 +2,15 @@
  "symbol": "DELHIVERY",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "core EBIT missing or not positive"
+ ],
  "flags": [
-  "reported profit differs from normalized by 69%"
+  "recurring unusual items kept in profit",
+  "core EBIT 119% below reported EBIT",
+  "P/E 224 not meaningful, shown blank"
  ],
  "equity_check": {
   "balance_sheet_cr": 9687.0,
@@ -12,6 +18,7 @@
   "ratio": 0.99,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": -0.5,
  "snapshot_cr": {
   "rev": 10488.3,
   "ni": 152.7,
@@ -20,13 +27,14 @@
   "eq": 9687.0,
   "debt": 1462.6,
   "fcf": 489.3,
-  "ni_continuing_ops_pre_minority": 152.5,
-  "ni_normalized": 90.3
+  "ni_core": 152.7,
+  "ebit_core": -53.0,
+  "operating_income": -53.0
  },
  "ratios": {
-  "roe_pct": 0.9,
-  "roa_pct": 0.7,
-  "net_margin_pct": 0.9,
+  "roe_pct": 1.6,
+  "roa_pct": 1.2,
+  "net_margin_pct": 1.5,
   "ebit_margin_pct": 2.7,
   "roce_pct": 2.6,
   "fcf_margin_pct": 4.7,
@@ -35,8 +43,9 @@
   "current_ratio": 2.59,
   "asset_turnover": 0.82
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 0.9,
+  "net_margin_pct": 1.5,
   "asset_turnover": 0.82,
   "equity_multiplier": 1.32
  },
@@ -46,9 +55,9 @@
   "net_income_cagr_pct": null
  },
  "valuation": {
-  "pe": 224.4,
-  "pe_normalized": 379.6,
-  "pe_used": 379.6,
+  "pe_reported": 224.4,
+  "pe_core": 224.4,
+  "pe_used": null,
   "pb": 3.54,
   "ev_ebitda": 33.58,
   "fcf_yield_pct": 1.4,
@@ -72,10 +81,5 @@
  "altman_z2": {
   "z": 3.29,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 1.6,
-  "roa_pct": 1.2,
-  "net_margin_pct": 1.5
  }
 }

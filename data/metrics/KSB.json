@@ -3,6 +3,8 @@
  "latest_fy": "2025-12-31",
  "type": "standard",
  "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [],
  "equity_check": {
   "balance_sheet_cr": 1678.7,
@@ -10,6 +12,7 @@
   "ratio": 0.99,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 12.2,
  "snapshot_cr": {
   "rev": 2679.6,
   "ni": 270.5,
@@ -18,8 +21,9 @@
   "eq": 1678.7,
   "debt": 5.2,
   "fcf": -0.9,
-  "ni_continuing_ops_pre_minority": 270.5,
-  "ni_normalized": 289.4
+  "ni_core": 270.5,
+  "ebit_core": 325.8,
+  "operating_income": 325.8
  },
  "ratios": {
   "roe_pct": 16.1,
@@ -33,6 +37,7 @@
   "current_ratio": 2.03,
   "asset_turnover": 0.96
  },
+ "ratios_reported": null,
  "dupont": {
   "net_margin_pct": 10.1,
   "asset_turnover": 0.96,
@@ -44,8 +49,8 @@
   "net_income_cagr_pct": 14.0
  },
  "valuation": {
-  "pe": 41.67,
-  "pe_normalized": 38.95,
+  "pe_reported": 41.67,
+  "pe_core": 41.67,
   "pe_used": 41.67,
   "pb": 6.71,
   "ev_ebitda": 26.09,

@@ -2,10 +2,13 @@
  "symbol": "BOSCHLTD",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "equity check mismatch (balance sheet / book value x shares = 1.94); figures NOT changed",
-  "reported profit differs from normalized by 34%"
+  "equity check mismatch (ratio 1.94); figures NOT changed",
+  "recurring unusual items kept in profit",
+  "core EBIT 39% below reported EBIT"
  ],
  "equity_check": {
   "balance_sheet_cr": 14845.2,
@@ -13,6 +16,7 @@
   "ratio": 1.94,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 11.4,
  "snapshot_cr": {
   "rev": 19594.7,
   "ni": 2773.2,
@@ -21,13 +25,14 @@
   "eq": 14845.2,
   "debt": 118.8,
   "fcf": 1858.8,
-  "ni_continuing_ops_pre_minority": 2773.2,
-  "ni_normalized": 2066.6
+  "ni_core": 2773.2,
+  "ebit_core": 2237.8,
+  "operating_income": 2237.8
  },
  "ratios": {
-  "roe_pct": 13.9,
-  "roa_pct": 9.5,
-  "net_margin_pct": 10.5,
+  "roe_pct": 18.7,
+  "roa_pct": 12.8,
+  "net_margin_pct": 14.2,
   "ebit_margin_pct": 18.7,
   "roce_pct": 24.2,
   "fcf_margin_pct": 9.5,
@@ -36,8 +41,9 @@
   "current_ratio": 1.97,
   "asset_turnover": 0.9
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 10.5,
+  "net_margin_pct": 14.2,
   "asset_turnover": 0.9,
   "equity_multiplier": 1.46
  },
@@ -47,9 +53,9 @@
   "net_income_cagr_pct": 24.8
  },
  "valuation": {
-  "pe": 51.91,
-  "pe_normalized": 69.66,
-  "pe_used": 69.66,
+  "pe_reported": 51.91,
+  "pe_core": 51.91,
+  "pe_used": 51.91,
   "pb": 9.7,
   "ev_ebitda": 34.0,
   "fcf_yield_pct": 1.3,
@@ -73,10 +79,5 @@
  "altman_z2": {
   "z": 7.4,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 18.7,
-  "roa_pct": 12.8,
-  "net_margin_pct": 14.2
  }
 }

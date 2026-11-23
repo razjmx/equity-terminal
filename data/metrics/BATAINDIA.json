@@ -2,10 +2,12 @@
  "symbol": "BATAINDIA",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "reported",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "equity check mismatch (balance sheet / book value x shares = 1.29); figures NOT changed",
-  "reported profit differs from normalized by 17%"
+  "equity check mismatch (ratio 1.29); figures NOT changed",
+  "one-off items removed from profit"
  ],
  "equity_check": {
   "balance_sheet_cr": 1595.6,
@@ -13,6 +15,7 @@
   "ratio": 1.29,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 9.4,
  "snapshot_cr": {
   "rev": 3514.0,
   "ni": 134.2,
@@ -21,13 +24,14 @@
   "eq": 1595.6,
   "debt": 1386.6,
   "fcf": 529.1,
-  "ni_continuing_ops_pre_minority": 134.2,
-  "ni_normalized": 161.4
+  "ni_core": 161.4,
+  "ebit_core": 329.9,
+  "operating_income": 329.9
  },
  "ratios": {
-  "roe_pct": 8.4,
-  "roa_pct": 3.6,
-  "net_margin_pct": 3.8,
+  "roe_pct": 10.1,
+  "roa_pct": 4.3,
+  "net_margin_pct": 4.6,
   "ebit_margin_pct": 9.0,
   "roce_pct": 11.2,
   "fcf_margin_pct": 15.1,
@@ -36,8 +40,13 @@
   "current_ratio": 1.72,
   "asset_turnover": 0.93
  },
+ "ratios_reported": {
+  "roe_pct": 8.4,
+  "roa_pct": 3.6,
+  "net_margin_pct": 3.8
+ },
  "dupont": {
-  "net_margin_pct": 3.8,
+  "net_margin_pct": 4.6,
   "asset_turnover": 0.93,
   "equity_multiplier": 2.37
  },
@@ -47,9 +56,9 @@
   "net_income_cagr_pct": -25.4
  },
  "valuation": {
-  "pe": 59.86,
-  "pe_normalized": 49.77,
-  "pe_used": 59.86,
+  "pe_reported": 59.86,
+  "pe_core": 49.77,
+  "pe_used": 49.77,
   "pb": 5.03,
   "ev_ebitda": 12.07,
   "fcf_yield_pct": 6.6,

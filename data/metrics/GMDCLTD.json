@@ -2,9 +2,12 @@
  "symbol": "GMDCLTD",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "reported profit differs from normalized by 63%"
+  "one-off items removed from profit",
+  "core EBIT 66% below reported EBIT"
  ],
  "equity_check": {
   "balance_sheet_cr": 7072.7,
@@ -12,6 +15,7 @@
   "ratio": 1.0,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 16.4,
  "snapshot_cr": {
   "rev": 2653.4,
   "ni": 956.7,
@@ -20,8 +24,9 @@
   "eq": 7072.7,
   "debt": 316.5,
   "fcf": -290.3,
-  "ni_continuing_ops_pre_minority": 956.7,
-  "ni_normalized": 587.3
+  "ni_core": 587.3,
+  "ebit_core": 434.3,
+  "operating_income": 434.3
  },
  "ratios": {
   "roe_pct": 8.3,
@@ -35,6 +40,11 @@
   "current_ratio": 4.15,
   "asset_turnover": 0.3
  },
+ "ratios_reported": {
+  "roe_pct": 13.5,
+  "roa_pct": 10.6,
+  "net_margin_pct": 36.1
+ },
  "dupont": {
   "net_margin_pct": 22.1,
   "asset_turnover": 0.3,
@@ -46,8 +56,8 @@
   "net_income_cagr_pct": -7.4
  },
  "valuation": {
-  "pe": 14.99,
-  "pe_normalized": 24.42,
+  "pe_reported": 14.99,
+  "pe_core": 24.42,
   "pe_used": 24.42,
   "pb": 2.03,
   "ev_ebitda": 10.47,
@@ -72,10 +82,5 @@
  "altman_z2": {
   "z": 8.06,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 13.5,
-  "roa_pct": 10.6,
-  "net_margin_pct": 36.1
  }
 }

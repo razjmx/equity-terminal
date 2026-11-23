@@ -2,9 +2,12 @@
  "symbol": "JSWSTEEL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "reported profit differs from normalized by 221%"
+  "one-off items removed from profit",
+  "core EBIT 47% below reported EBIT"
  ],
  "equity_check": {
   "balance_sheet_cr": 100053.0,
@@ -12,6 +15,7 @@
   "ratio": 0.88,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 10.9,
  "snapshot_cr": {
   "rev": 182037.0,
   "ni": 22316.0,
@@ -20,8 +24,9 @@
   "eq": 100053.0,
   "debt": 119079.0,
   "fcf": 10498.0,
-  "ni_continuing_ops_pre_minority": 25508.0,
-  "ni_normalized": 6946.1
+  "ni_core": 6946.1,
+  "ebit_core": 19926.0,
+  "operating_income": 23345.0
  },
  "ratios": {
   "roe_pct": 6.9,
@@ -35,6 +40,11 @@
   "current_ratio": 1.49,
   "asset_turnover": 0.68
  },
+ "ratios_reported": {
+  "roe_pct": 22.3,
+  "roa_pct": 8.3,
+  "net_margin_pct": 12.3
+ },
  "dupont": {
   "net_margin_pct": 3.8,
   "asset_turnover": 0.68,
@@ -46,8 +56,8 @@
   "net_income_cagr_pct": 75.3
  },
  "valuation": {
-  "pe": 14.32,
-  "pe_normalized": 46.0,
+  "pe_reported": 14.32,
+  "pe_core": 46.0,
   "pe_used": 46.0,
   "pb": 3.19,
   "ev_ebitda": 8.25,
@@ -72,10 +82,5 @@
  "altman_z2": {
   "z": 3.29,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 22.3,
-  "roa_pct": 8.3,
-  "net_margin_pct": 12.3
  }
 }

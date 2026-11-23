@@ -2,14 +2,19 @@
  "symbol": "SJVN",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "reported",
- "flags": [],
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "discontinued operations excluded from profit"
+ ],
  "equity_check": {
   "balance_sheet_cr": 14238.8,
   "implied_cr": 15047.2,
   "ratio": 0.95,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 51.1,
  "snapshot_cr": {
   "rev": 4244.2,
   "ni": 642.1,
@@ -18,13 +23,14 @@
   "eq": 14238.8,
   "debt": 32278.0,
   "fcf": -3839.4,
-  "ni_continuing_ops_pre_minority": 695.1,
-  "ni_normalized": 747.9
+  "ni_core": 695.3,
+  "ebit_core": 2168.0,
+  "operating_income": 2168.0
  },
  "ratios": {
-  "roe_pct": 4.5,
-  "roa_pct": 1.2,
-  "net_margin_pct": 15.1,
+  "roe_pct": 4.9,
+  "roa_pct": 1.3,
+  "net_margin_pct": 16.4,
   "ebit_margin_pct": 50.1,
   "roce_pct": 5.0,
   "fcf_margin_pct": -90.5,
@@ -33,8 +39,13 @@
   "current_ratio": 0.72,
   "asset_turnover": 0.08
  },
+ "ratios_reported": {
+  "roe_pct": 4.5,
+  "roa_pct": 1.2,
+  "net_margin_pct": 15.1
+ },
  "dupont": {
-  "net_margin_pct": 15.1,
+  "net_margin_pct": 16.4,
   "asset_turnover": 0.08,
   "equity_multiplier": 3.64
  },
@@ -44,9 +55,9 @@
   "net_income_cagr_pct": -22.1
  },
  "valuation": {
-  "pe": 33.66,
-  "pe_normalized": 28.89,
-  "pe_used": 33.66,
+  "pe_reported": 33.66,
+  "pe_core": 31.08,
+  "pe_used": 31.08,
   "pb": 1.52,
   "ev_ebitda": 16.34,
   "fcf_yield_pct": -17.8,

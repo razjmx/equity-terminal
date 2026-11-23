@@ -1,41 +1,52 @@
 {
  "symbol": "MFSL",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "financial",
  "profit_basis": "reported",
- "flags": [],
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: financial",
+  "core EBIT missing or not positive"
+ ],
+ "flags": [
+  "override: financial (insurance holding company)",
+  "P/E 588 not meaningful, shown blank"
+ ],
  "equity_check": {
   "balance_sheet_cr": 5281.8,
   "implied_cr": 5753.3,
   "ratio": 0.92,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": null,
  "snapshot_cr": {
   "rev": 47590.5,
   "ni": 84.0,
-  "ebit": 156.7,
+  "ebit": null,
   "ta": 198935.6,
   "eq": 5281.8,
-  "debt": 2348.8,
-  "fcf": 11228.3,
-  "ni_continuing_ops_pre_minority": 104.5,
-  "ni_normalized": 78.0
+  "debt": null,
+  "fcf": null,
+  "ni_core": null,
+  "ebit_core": null,
+  "operating_income": null
  },
  "ratios": {
   "roe_pct": 1.6,
   "roa_pct": 0.0,
-  "net_margin_pct": 0.2,
-  "ebit_margin_pct": 0.3,
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
   "roce_pct": null,
-  "fcf_margin_pct": 23.6,
-  "debt_equity": 0.44,
-  "interest_cover": 4.25,
+  "fcf_margin_pct": null,
+  "debt_equity": null,
+  "interest_cover": null,
   "current_ratio": null,
-  "asset_turnover": 0.24
+  "asset_turnover": null
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 0.2,
-  "asset_turnover": 0.24,
+  "roe_pct": 1.6,
+  "roa_pct": 0.0,
   "equity_multiplier": 37.66
  },
  "growth": {
@@ -44,28 +55,14 @@
   "net_income_cagr_pct": -39.5
  },
  "valuation": {
-  "pe": 587.67,
-  "pe_normalized": 632.82,
-  "pe_used": 587.67,
+  "pe_reported": 587.67,
+  "pe_core": null,
+  "pe_used": null,
   "pb": 9.35,
   "ev_ebitda": null,
-  "fcf_yield_pct": 22.7,
+  "fcf_yield_pct": null,
   "market_cap_cr": 49358.3
  },
- "piotroski": {
-  "score": 4,
-  "tested": 7,
-  "tests": {
-   "roa_positive": true,
-   "cfo_positive": true,
-   "roa_improved": false,
-   "cfo_above_net_income": true,
-   "leverage_fell": false,
-   "current_ratio_improved": null,
-   "no_dilution": true,
-   "gross_margin_improved": null,
-   "asset_turnover_improved": false
-  }
- },
+ "piotroski": null,
  "altman_z2": null
 }

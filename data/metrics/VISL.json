@@ -2,10 +2,14 @@
  "symbol": "VISL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "core",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "short history"
+ ],
  "flags": [
   "short history",
-  "reported profit differs from normalized by 47%"
+  "one-off items removed from profit"
  ],
  "equity_check": {
   "balance_sheet_cr": -7118.0,
@@ -13,6 +17,7 @@
   "ratio": null,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 2.2,
  "snapshot_cr": {
   "rev": 13341.0,
   "ni": -2905.0,
@@ -21,13 +26,14 @@
   "eq": -7118.0,
   "debt": 17361.0,
   "fcf": -0.0,
-  "ni_continuing_ops_pre_minority": -2958.0,
-  "ni_normalized": -1982.2
+  "ni_core": -1751.5,
+  "ebit_core": 300.0,
+  "operating_income": 300.0
  },
  "ratios": {
-  "roe_pct": 27.8,
-  "roa_pct": -10.4,
-  "net_margin_pct": -14.9,
+  "roe_pct": 24.6,
+  "roa_pct": -9.2,
+  "net_margin_pct": -13.1,
   "ebit_margin_pct": -3.3,
   "roce_pct": 11.8,
   "fcf_margin_pct": -0.0,
@@ -36,8 +42,13 @@
   "current_ratio": 0.27,
   "asset_turnover": 0.7
  },
+ "ratios_reported": {
+  "roe_pct": 40.8,
+  "roa_pct": -15.2,
+  "net_margin_pct": -21.8
+ },
  "dupont": {
-  "net_margin_pct": -14.9,
+  "net_margin_pct": -13.1,
   "asset_turnover": 0.7,
   "equity_multiplier": -2.68
  },
@@ -47,8 +58,8 @@
   "net_income_cagr_pct": null
  },
  "valuation": {
-  "pe": null,
-  "pe_normalized": null,
+  "pe_reported": null,
+  "pe_core": null,
   "pe_used": null,
   "pb": -1.28,
   "ev_ebitda": 68.21,
@@ -70,10 +81,5 @@
    "asset_turnover_improved": true
   }
  },
- "altman_z2": null,
- "ratios_reported": {
-  "roe_pct": 40.8,
-  "roa_pct": -15.2,
-  "net_margin_pct": -21.8
- }
+ "altman_z2": null
 }

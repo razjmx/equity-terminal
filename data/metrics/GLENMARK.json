@@ -2,9 +2,11 @@
  "symbol": "GLENMARK",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "reported profit differs from normalized by 54%"
+  "one-off items removed from profit"
  ],
  "equity_check": {
   "balance_sheet_cr": 10512.1,
@@ -12,6 +14,7 @@
   "ratio": 0.94,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 24.1,
  "snapshot_cr": {
   "rev": 16711.4,
   "ni": 1361.9,
@@ -20,8 +23,9 @@
   "eq": 10512.1,
   "debt": 593.5,
   "fcf": 2087.3,
-  "ni_continuing_ops_pre_minority": 1362.0,
-  "ni_normalized": 2933.6
+  "ni_core": 2933.6,
+  "ebit_core": 4023.3,
+  "operating_income": 4023.3
  },
  "ratios": {
   "roe_pct": 27.9,
@@ -35,6 +39,11 @@
   "current_ratio": 1.77,
   "asset_turnover": 0.84
  },
+ "ratios_reported": {
+  "roe_pct": 13.0,
+  "roa_pct": 6.8,
+  "net_margin_pct": 8.1
+ },
  "dupont": {
   "net_margin_pct": 17.6,
   "asset_turnover": 0.84,
@@ -46,8 +55,8 @@
   "net_income_cagr_pct": 66.1
  },
  "valuation": {
-  "pe": 55.18,
-  "pe_normalized": 25.61,
+  "pe_reported": 55.18,
+  "pe_core": 25.61,
   "pe_used": 25.61,
   "pb": 7.15,
   "ev_ebitda": 26.94,
@@ -72,10 +81,5 @@
  "altman_z2": {
   "z": 5.16,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 13.0,
-  "roa_pct": 6.8,
-  "net_margin_pct": 8.1
  }
 }

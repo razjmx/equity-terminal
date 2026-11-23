@@ -3,8 +3,13 @@
  "latest_fy": "2026-03-31",
  "type": "standard",
  "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "currency mismatch"
+ ],
  "flags": [
-  "equity check mismatch (balance sheet / book value x shares = 0.01); figures NOT changed"
+  "currency or units mismatch (equity ratio 0.01); market-cap multiples blanked",
+  "P/E 1352 not meaningful, shown blank"
  ],
  "equity_check": {
   "balance_sheet_cr": 978.6,
@@ -12,6 +17,7 @@
   "ratio": 0.01,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 20.3,
  "snapshot_cr": {
   "rev": 2015.8,
   "ni": 331.3,
@@ -20,8 +26,9 @@
   "eq": 978.6,
   "debt": 96.7,
   "fcf": 373.3,
-  "ni_continuing_ops_pre_minority": 331.6,
-  "ni_normalized": 324.2
+  "ni_core": 331.3,
+  "ebit_core": 408.9,
+  "operating_income": 408.9
  },
  "ratios": {
   "roe_pct": 33.9,
@@ -35,6 +42,7 @@
   "current_ratio": 1.98,
   "asset_turnover": 1.23
  },
+ "ratios_reported": null,
  "dupont": {
   "net_margin_pct": 16.4,
   "asset_turnover": 1.23,
@@ -46,12 +54,12 @@
   "net_income_cagr_pct": 3.6
  },
  "valuation": {
-  "pe": 1352.04,
-  "pe_normalized": 1381.5,
-  "pe_used": 1352.04,
-  "pb": 457.73,
-  "ev_ebitda": 876.89,
-  "fcf_yield_pct": 0.1,
+  "pe_reported": null,
+  "pe_core": null,
+  "pe_used": null,
+  "pb": null,
+  "ev_ebitda": null,
+  "fcf_yield_pct": null,
   "market_cap_cr": 447931.1
  },
  "piotroski": {

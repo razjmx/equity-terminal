@@ -3,13 +3,18 @@
  "latest_fy": "2026-03-31",
  "type": "standard",
  "profit_basis": "reported",
- "flags": [],
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "discontinued operations excluded from profit"
+ ],
  "equity_check": {
   "balance_sheet_cr": 25427.5,
   "implied_cr": 31862.5,
   "ratio": 0.8,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 23.3,
  "snapshot_cr": {
   "rev": 27202.6,
   "ni": 2282.5,
@@ -18,8 +23,9 @@
   "eq": 25427.5,
   "debt": 49176.4,
   "fcf": -3435.1,
-  "ni_continuing_ops_pre_minority": 2343.1,
-  "ni_normalized": 2094.8
+  "ni_core": 2232.9,
+  "ebit_core": 6342.1,
+  "operating_income": 7156.4
  },
  "ratios": {
   "roe_pct": 9.0,
@@ -33,6 +39,7 @@
   "current_ratio": 1.15,
   "asset_turnover": 0.29
  },
+ "ratios_reported": null,
  "dupont": {
   "net_margin_pct": 8.4,
   "asset_turnover": 0.29,
@@ -44,8 +51,8 @@
   "net_income_cagr_pct": 22.0
  },
  "valuation": {
-  "pe": 79.22,
-  "pe_normalized": 86.32,
+  "pe_reported": 79.22,
+  "pe_core": 80.98,
   "pe_used": 79.22,
   "pb": 7.11,
   "ev_ebitda": 26.45,

@@ -2,9 +2,11 @@
  "symbol": "CROMPTON",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "reported profit differs from normalized by 134%"
+  "one-off items removed from profit"
  ],
  "equity_check": {
   "balance_sheet_cr": 2966.3,
@@ -12,6 +14,7 @@
   "ratio": 0.98,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 2.2,
  "snapshot_cr": {
   "rev": 8056.2,
   "ni": -242.2,
@@ -20,13 +23,14 @@
   "eq": 2966.3,
   "debt": 199.2,
   "fcf": 640.0,
-  "ni_continuing_ops_pre_minority": -230.8,
-  "ni_normalized": 708.2
+  "ni_core": -66.3,
+  "ebit_core": 177.3,
+  "operating_income": 671.9
  },
  "ratios": {
-  "roe_pct": 23.9,
-  "roa_pct": 11.6,
-  "net_margin_pct": 8.8,
+  "roe_pct": -2.2,
+  "roa_pct": -1.1,
+  "net_margin_pct": -0.8,
   "ebit_margin_pct": -0.7,
   "roce_pct": -1.5,
   "fcf_margin_pct": 7.9,
@@ -35,8 +39,13 @@
   "current_ratio": 1.43,
   "asset_turnover": 1.32
  },
+ "ratios_reported": {
+  "roe_pct": -8.2,
+  "roa_pct": -4.0,
+  "net_margin_pct": -3.0
+ },
  "dupont": {
-  "net_margin_pct": 8.8,
+  "net_margin_pct": -0.8,
   "asset_turnover": 1.32,
   "equity_multiplier": 2.05
  },
@@ -46,9 +55,9 @@
   "net_income_cagr_pct": null
  },
  "valuation": {
-  "pe": null,
-  "pe_normalized": 20.03,
-  "pe_used": 20.03,
+  "pe_reported": null,
+  "pe_core": null,
+  "pe_used": null,
   "pb": 4.78,
   "ev_ebitda": 115.29,
   "fcf_yield_pct": 4.5,
@@ -72,10 +81,5 @@
  "altman_z2": {
   "z": 3.45,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": -8.2,
-  "roa_pct": -4.0,
-  "net_margin_pct": -3.0
  }
 }

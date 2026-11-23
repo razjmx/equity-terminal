@@ -2,9 +2,14 @@
  "symbol": "SWANCORP",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "core EBIT missing or not positive"
+ ],
  "flags": [
-  "reported profit differs from normalized by 238%"
+  "recurring unusual items kept in profit",
+  "core EBIT 178% below reported EBIT"
  ],
  "equity_check": {
   "balance_sheet_cr": 7536.4,
@@ -12,6 +17,7 @@
   "ratio": 0.87,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": -7.9,
  "snapshot_cr": {
   "rev": 4333.6,
   "ni": 274.1,
@@ -20,13 +26,14 @@
   "eq": 7536.4,
   "debt": 2258.3,
   "fcf": -224.0,
-  "ni_continuing_ops_pre_minority": 271.3,
-  "ni_normalized": -199.2
+  "ni_core": 274.1,
+  "ebit_core": -344.4,
+  "operating_income": -344.4
  },
  "ratios": {
-  "roe_pct": -2.6,
-  "roa_pct": -1.4,
-  "net_margin_pct": -4.6,
+  "roe_pct": 3.6,
+  "roa_pct": 2.0,
+  "net_margin_pct": 6.3,
   "ebit_margin_pct": 10.2,
   "roce_pct": 4.0,
   "fcf_margin_pct": -5.2,
@@ -35,8 +42,9 @@
   "current_ratio": 1.91,
   "asset_turnover": 0.31
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": -4.6,
+  "net_margin_pct": 6.3,
   "asset_turnover": 0.31,
   "equity_multiplier": 1.84
  },
@@ -46,9 +54,9 @@
   "net_income_cagr_pct": null
  },
  "valuation": {
-  "pe": 26.28,
-  "pe_normalized": null,
-  "pe_used": null,
+  "pe_reported": 26.28,
+  "pe_core": 26.28,
+  "pe_used": 26.28,
   "pb": 0.96,
   "ev_ebitda": 14.4,
   "fcf_yield_pct": -3.1,
@@ -72,10 +80,5 @@
  "altman_z2": {
   "z": 3.45,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 3.6,
-  "roa_pct": 2.0,
-  "net_margin_pct": 6.3
  }
 }

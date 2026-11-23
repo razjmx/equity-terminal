@@ -2,9 +2,12 @@
  "symbol": "VEDPOWER",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "reported profit differs from normalized by 4383%"
+  "one-off items removed from profit",
+  "P/E 340 not meaningful, shown blank"
  ],
  "equity_check": {
   "balance_sheet_cr": 13191.0,
@@ -12,6 +15,7 @@
   "ratio": 1.01,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 8.2,
  "snapshot_cr": {
   "rev": 8891.0,
   "ni": -1685.0,
@@ -20,8 +24,9 @@
   "eq": 13191.0,
   "debt": 9409.0,
   "fcf": 477.2,
-  "ni_continuing_ops_pre_minority": -1685.0,
-  "ni_normalized": 39.3
+  "ni_core": 39.3,
+  "ebit_core": 731.0,
+  "operating_income": 731.0
  },
  "ratios": {
   "roe_pct": 0.3,
@@ -35,6 +40,11 @@
   "current_ratio": 0.86,
   "asset_turnover": 0.37
  },
+ "ratios_reported": {
+  "roe_pct": -12.8,
+  "roa_pct": -7.1,
+  "net_margin_pct": -19.0
+ },
  "dupont": {
   "net_margin_pct": 0.4,
   "asset_turnover": 0.37,
@@ -46,9 +56,9 @@
   "net_income_cagr_pct": null
  },
  "valuation": {
-  "pe": null,
-  "pe_normalized": 339.99,
-  "pe_used": 339.99,
+  "pe_reported": null,
+  "pe_core": 339.98,
+  "pe_used": null,
   "pb": 1.01,
   "ev_ebitda": -29.9,
   "fcf_yield_pct": 3.6,
@@ -69,10 +79,5 @@
    "asset_turnover_improved": true
   }
  },
- "altman_z2": null,
- "ratios_reported": {
-  "roe_pct": -12.8,
-  "roa_pct": -7.1,
-  "net_margin_pct": -19.0
- }
+ "altman_z2": null
 }

@@ -1,15 +1,22 @@
 {
  "symbol": "BRIGADE",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "realty",
  "profit_basis": "reported",
- "flags": [],
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: realty"
+ ],
+ "flags": [
+  "override: realty (developer: value on NAV)"
+ ],
  "equity_check": {
   "balance_sheet_cr": 6820.2,
   "implied_cr": 7160.0,
   "ratio": 0.95,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 19.9,
  "snapshot_cr": {
   "rev": 5660.1,
   "ni": 644.4,
@@ -18,8 +25,9 @@
   "eq": 6820.2,
   "debt": 6873.6,
   "fcf": -1875.7,
-  "ni_continuing_ops_pre_minority": 724.8,
-  "ni_normalized": 654.9
+  "ni_core": 644.4,
+  "ebit_core": 1126.0,
+  "operating_income": 1126.0
  },
  "ratios": {
   "roe_pct": 9.4,
@@ -33,6 +41,7 @@
   "current_ratio": 1.24,
   "asset_turnover": 0.22
  },
+ "ratios_reported": null,
  "dupont": {
   "net_margin_pct": 11.4,
   "asset_turnover": 0.22,
@@ -44,8 +53,8 @@
   "net_income_cagr_pct": 30.3
  },
  "valuation": {
-  "pe": 29.07,
-  "pe_normalized": 28.6,
+  "pe_reported": 29.07,
+  "pe_core": 29.07,
   "pe_used": 29.07,
   "pb": 2.75,
   "ev_ebitda": 14.23,

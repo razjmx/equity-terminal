@@ -1,10 +1,15 @@
 {
  "symbol": "HOMEFIRST",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "financial",
  "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: financial",
+  "core EBIT missing or not positive"
+ ],
  "flags": [
-  "reported profit differs from normalized by 17%"
+  "override: financial (housing finance)"
  ],
  "equity_check": {
   "balance_sheet_cr": 4356.5,
@@ -12,32 +17,35 @@
   "ratio": 0.93,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": null,
  "snapshot_cr": {
   "rev": 1656.2,
   "ni": 540.4,
-  "ebit": 746.3,
+  "ebit": null,
   "ta": 15166.5,
   "eq": 4356.5,
-  "debt": 10590.0,
-  "fcf": -1949.3,
-  "ni_continuing_ops_pre_minority": 540.4,
-  "ni_normalized": 460.5
+  "debt": null,
+  "fcf": null,
+  "ni_core": null,
+  "ebit_core": null,
+  "operating_income": 546.5
  },
  "ratios": {
   "roe_pct": 12.4,
   "roa_pct": 3.6,
-  "net_margin_pct": 32.6,
-  "ebit_margin_pct": 45.1,
-  "roce_pct": 5.0,
-  "fcf_margin_pct": -117.7,
-  "debt_equity": 2.43,
-  "interest_cover": 19.37,
-  "current_ratio": 73.66,
-  "asset_turnover": 0.11
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
+  "roce_pct": null,
+  "fcf_margin_pct": null,
+  "debt_equity": null,
+  "interest_cover": null,
+  "current_ratio": null,
+  "asset_turnover": null
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 32.6,
-  "asset_turnover": 0.11,
+  "roe_pct": 12.4,
+  "roa_pct": 3.6,
   "equity_multiplier": 3.48
  },
  "growth": {
@@ -46,31 +54,14 @@
   "net_income_cagr_pct": 33.3
  },
  "valuation": {
-  "pe": 19.98,
-  "pe_normalized": 23.45,
+  "pe_reported": 19.98,
+  "pe_core": null,
   "pe_used": 19.98,
   "pb": 2.48,
-  "ev_ebitda": 26.85,
-  "fcf_yield_pct": -18.1,
+  "ev_ebitda": null,
+  "fcf_yield_pct": null,
   "market_cap_cr": 10799.3
  },
- "piotroski": {
-  "score": 5,
-  "tested": 9,
-  "tests": {
-   "roa_positive": true,
-   "cfo_positive": false,
-   "roa_improved": true,
-   "cfo_above_net_income": false,
-   "leverage_fell": true,
-   "current_ratio_improved": false,
-   "no_dilution": false,
-   "gross_margin_improved": true,
-   "asset_turnover_improved": true
-  }
- },
- "altman_z2": {
-  "z": 7.03,
-  "zone": "safe"
- }
+ "piotroski": null,
+ "altman_z2": null
 }

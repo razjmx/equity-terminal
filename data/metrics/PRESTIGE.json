@@ -1,15 +1,22 @@
 {
  "symbol": "PRESTIGE",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "realty",
  "profit_basis": "reported",
- "flags": [],
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: realty"
+ ],
+ "flags": [
+  "override: realty (developer: value on NAV)"
+ ],
  "equity_check": {
   "balance_sheet_cr": 16272.9,
   "implied_cr": 16637.9,
   "ratio": 0.98,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 22.4,
  "snapshot_cr": {
   "rev": 12544.8,
   "ni": 1195.5,
@@ -18,8 +25,9 @@
   "eq": 16272.9,
   "debt": 17659.4,
   "fcf": 339.8,
-  "ni_continuing_ops_pre_minority": 1305.4,
-  "ni_normalized": 1087.0
+  "ni_core": 1195.5,
+  "ebit_core": 2805.8,
+  "operating_income": 2805.8
  },
  "ratios": {
   "roe_pct": 7.3,
@@ -33,6 +41,7 @@
   "current_ratio": 1.15,
   "asset_turnover": 0.17
  },
+ "ratios_reported": null,
  "dupont": {
   "net_margin_pct": 9.5,
   "asset_turnover": 0.17,
@@ -44,8 +53,8 @@
   "net_income_cagr_pct": 8.3
  },
  "valuation": {
-  "pe": 60.53,
-  "pe_normalized": 66.57,
+  "pe_reported": 60.53,
+  "pe_core": 60.53,
   "pe_used": 60.53,
   "pb": 4.45,
   "ev_ebitda": 21.12,

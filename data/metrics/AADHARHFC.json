@@ -1,41 +1,51 @@
 {
  "symbol": "AADHARHFC",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "financial",
  "profit_basis": "reported",
- "flags": [],
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: financial",
+  "core EBIT missing or not positive"
+ ],
+ "flags": [
+  "override: financial (housing finance)"
+ ],
  "equity_check": {
   "balance_sheet_cr": 7540.9,
   "implied_cr": 8218.3,
   "ratio": 0.92,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": null,
  "snapshot_cr": {
   "rev": 3387.4,
   "ni": 1095.9,
-  "ebit": 2751.2,
+  "ebit": null,
   "ta": 27398.8,
   "eq": 7540.9,
-  "debt": 18743.3,
-  "fcf": -2826.6,
-  "ni_continuing_ops_pre_minority": 1095.9,
-  "ni_normalized": 991.6
+  "debt": null,
+  "fcf": null,
+  "ni_core": null,
+  "ebit_core": null,
+  "operating_income": 2555.0
  },
  "ratios": {
   "roe_pct": 14.5,
   "roa_pct": 4.0,
-  "net_margin_pct": 32.4,
-  "ebit_margin_pct": 81.2,
-  "roce_pct": 12.0,
-  "fcf_margin_pct": -83.4,
-  "debt_equity": 2.49,
-  "interest_cover": 2.05,
-  "current_ratio": 1.24,
-  "asset_turnover": 0.12
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
+  "roce_pct": null,
+  "fcf_margin_pct": null,
+  "debt_equity": null,
+  "interest_cover": null,
+  "current_ratio": null,
+  "asset_turnover": null
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 32.4,
-  "asset_turnover": 0.12,
+  "roe_pct": 14.5,
+  "roa_pct": 4.0,
   "equity_multiplier": 3.63
  },
  "growth": {
@@ -44,31 +54,14 @@
   "net_income_cagr_pct": 26.2
  },
  "valuation": {
-  "pe": 16.46,
-  "pe_normalized": 18.19,
+  "pe_reported": 16.46,
+  "pe_core": null,
   "pe_used": 16.46,
   "pb": 2.39,
-  "ev_ebitda": 12.72,
-  "fcf_yield_pct": -15.7,
+  "ev_ebitda": null,
+  "fcf_yield_pct": null,
   "market_cap_cr": 18038.5
  },
- "piotroski": {
-  "score": 4,
-  "tested": 9,
-  "tests": {
-   "roa_positive": true,
-   "cfo_positive": false,
-   "roa_improved": true,
-   "cfo_above_net_income": false,
-   "leverage_fell": true,
-   "current_ratio_improved": false,
-   "no_dilution": false,
-   "gross_margin_improved": false,
-   "asset_turnover_improved": true
-  }
- },
- "altman_z2": {
-  "z": 1.72,
-  "zone": "grey"
- }
+ "piotroski": null,
+ "altman_z2": null
 }

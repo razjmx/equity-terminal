@@ -2,9 +2,11 @@
  "symbol": "EIDPARRY",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "reported profit differs from normalized by 32%"
+  "one-off items removed from profit"
  ],
  "equity_check": {
   "balance_sheet_cr": 8766.1,
@@ -12,6 +14,7 @@
   "ratio": 1.0,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 10.0,
  "snapshot_cr": {
   "rev": 27240.0,
   "ni": 569.5,
@@ -20,13 +23,14 @@
   "eq": 8766.1,
   "debt": 8550.2,
   "fcf": -75.8,
-  "ni_continuing_ops_pre_minority": 1380.5,
-  "ni_normalized": 833.1
+  "ni_core": 716.2,
+  "ebit_core": 2720.1,
+  "operating_income": 2720.1
  },
  "ratios": {
-  "roe_pct": 9.5,
-  "roa_pct": 2.8,
-  "net_margin_pct": 3.1,
+  "roe_pct": 8.2,
+  "roa_pct": 2.4,
+  "net_margin_pct": 2.6,
   "ebit_margin_pct": 9.2,
   "roce_pct": 15.7,
   "fcf_margin_pct": -0.3,
@@ -35,8 +39,13 @@
   "current_ratio": 1.42,
   "asset_turnover": 0.93
  },
+ "ratios_reported": {
+  "roe_pct": 6.5,
+  "roa_pct": 1.9,
+  "net_margin_pct": 2.1
+ },
  "dupont": {
-  "net_margin_pct": 3.1,
+  "net_margin_pct": 2.6,
   "asset_turnover": 0.93,
   "equity_multiplier": 3.34
  },
@@ -46,9 +55,9 @@
   "net_income_cagr_pct": -15.6
  },
  "valuation": {
-  "pe": 20.12,
-  "pe_normalized": 13.76,
-  "pe_used": 13.76,
+  "pe_reported": 20.12,
+  "pe_core": 16.0,
+  "pe_used": 16.0,
   "pb": 1.31,
   "ev_ebitda": 5.1,
   "fcf_yield_pct": -0.7,
@@ -72,10 +81,5 @@
  "altman_z2": {
   "z": 3.06,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 6.5,
-  "roa_pct": 1.9,
-  "net_margin_pct": 2.1
  }
 }

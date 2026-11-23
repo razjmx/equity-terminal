@@ -1,9 +1,16 @@
 {
  "symbol": "ICICIGI",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "financial",
  "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: financial",
+  "core EBIT missing or not positive",
+  "no cash flow data"
+ ],
  "flags": [
+  "override: financial (insurer)",
   "no cash flow data"
  ],
  "equity_check": {
@@ -12,32 +19,35 @@
   "ratio": 0.8,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": null,
  "snapshot_cr": {
   "rev": 28140.8,
   "ni": 2771.9,
-  "ebit": 3750.0,
+  "ebit": null,
   "ta": 76110.9,
   "eq": 16633.9,
   "debt": null,
-  "fcf": 2378.6,
-  "ni_continuing_ops_pre_minority": 2771.9,
-  "ni_normalized": 2789.7
+  "fcf": null,
+  "ni_core": null,
+  "ebit_core": null,
+  "operating_income": null
  },
  "ratios": {
   "roe_pct": 16.7,
   "roa_pct": 3.6,
-  "net_margin_pct": 9.9,
-  "ebit_margin_pct": 13.3,
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
   "roce_pct": null,
-  "fcf_margin_pct": 8.5,
+  "fcf_margin_pct": null,
   "debt_equity": null,
-  "interest_cover": 41.19,
+  "interest_cover": null,
   "current_ratio": null,
-  "asset_turnover": 0.37
+  "asset_turnover": null
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 9.9,
-  "asset_turnover": 0.37,
+  "roe_pct": 16.7,
+  "roa_pct": 3.6,
   "equity_multiplier": 4.58
  },
  "growth": {
@@ -46,28 +56,14 @@
   "net_income_cagr_pct": 17.0
  },
  "valuation": {
-  "pe": 31.46,
-  "pe_normalized": 31.26,
+  "pe_reported": 31.46,
+  "pe_core": null,
   "pe_used": 31.46,
   "pb": 5.24,
   "ev_ebitda": null,
-  "fcf_yield_pct": 2.7,
+  "fcf_yield_pct": null,
   "market_cap_cr": 87194.1
  },
- "piotroski": {
-  "score": 3,
-  "tested": 4,
-  "tests": {
-   "roa_positive": true,
-   "cfo_positive": null,
-   "roa_improved": true,
-   "cfo_above_net_income": null,
-   "leverage_fell": null,
-   "current_ratio_improved": null,
-   "no_dilution": false,
-   "gross_margin_improved": null,
-   "asset_turnover_improved": true
-  }
- },
+ "piotroski": null,
  "altman_z2": null
 }

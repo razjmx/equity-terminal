@@ -1,9 +1,16 @@
 {
  "symbol": "SBILIFE",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "financial",
  "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: financial",
+  "core EBIT missing or not positive",
+  "no cash flow data"
+ ],
  "flags": [
+  "override: financial (insurer)",
   "no cash flow data"
  ],
  "equity_check": {
@@ -12,32 +19,35 @@
   "ratio": 0.93,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": null,
  "snapshot_cr": {
   "rev": 110478.2,
   "ni": 2470.3,
-  "ebit": 2548.6,
+  "ebit": null,
   "ta": 500045.9,
   "eq": 19086.0,
   "debt": null,
-  "fcf": 34337.7,
-  "ni_continuing_ops_pre_minority": 2470.3,
-  "ni_normalized": 2470.3
+  "fcf": null,
+  "ni_core": null,
+  "ebit_core": null,
+  "operating_income": null
  },
  "ratios": {
   "roe_pct": 12.9,
   "roa_pct": 0.5,
-  "net_margin_pct": 2.2,
-  "ebit_margin_pct": 2.3,
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
   "roce_pct": null,
-  "fcf_margin_pct": 31.1,
+  "fcf_margin_pct": null,
   "debt_equity": null,
-  "interest_cover": 227.76,
+  "interest_cover": null,
   "current_ratio": null,
-  "asset_turnover": 0.22
+  "asset_turnover": null
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 2.2,
-  "asset_turnover": 0.22,
+  "roe_pct": 12.9,
+  "roa_pct": 0.5,
   "equity_multiplier": 26.2
  },
  "growth": {
@@ -46,28 +56,14 @@
   "net_income_cagr_pct": 12.8
  },
  "valuation": {
-  "pe": 73.21,
-  "pe_normalized": 73.21,
+  "pe_reported": 73.21,
+  "pe_core": null,
   "pe_used": 73.21,
   "pb": 9.48,
   "ev_ebitda": null,
-  "fcf_yield_pct": 19.0,
+  "fcf_yield_pct": null,
   "market_cap_cr": 180852.3
  },
- "piotroski": {
-  "score": 2,
-  "tested": 4,
-  "tests": {
-   "roa_positive": true,
-   "cfo_positive": null,
-   "roa_improved": false,
-   "cfo_above_net_income": null,
-   "leverage_fell": null,
-   "current_ratio_improved": null,
-   "no_dilution": true,
-   "gross_margin_improved": null,
-   "asset_turnover_improved": false
-  }
- },
+ "piotroski": null,
  "altman_z2": null
 }

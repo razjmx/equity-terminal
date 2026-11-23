@@ -2,10 +2,12 @@
  "symbol": "ACMESOLAR",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "reported",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "equity check mismatch (balance sheet / book value x shares = 0.58); figures NOT changed",
-  "reported profit differs from normalized by 21%"
+  "equity check mismatch (ratio 0.58); figures NOT changed",
+  "one-off items removed from profit"
  ],
  "equity_check": {
   "balance_sheet_cr": 5061.5,
@@ -13,6 +15,7 @@
   "ratio": 0.58,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 65.9,
  "snapshot_cr": {
   "rev": 2023.0,
   "ni": 498.9,
@@ -21,13 +24,14 @@
   "eq": 5061.5,
   "debt": 19896.3,
   "fcf": -4072.6,
-  "ni_continuing_ops_pre_minority": 497.9,
-  "ni_normalized": 411.2
+  "ni_core": 411.2,
+  "ebit_core": 1332.8,
+  "operating_income": 1332.8
  },
  "ratios": {
-  "roe_pct": 9.9,
-  "roa_pct": 1.7,
-  "net_margin_pct": 24.7,
+  "roe_pct": 8.1,
+  "roa_pct": 1.4,
+  "net_margin_pct": 20.3,
   "ebit_margin_pct": 88.0,
   "roce_pct": 7.0,
   "fcf_margin_pct": -201.3,
@@ -36,8 +40,13 @@
   "current_ratio": 2.17,
   "asset_turnover": 0.07
  },
+ "ratios_reported": {
+  "roe_pct": 9.9,
+  "roa_pct": 1.7,
+  "net_margin_pct": 24.7
+ },
  "dupont": {
-  "net_margin_pct": 24.7,
+  "net_margin_pct": 20.3,
   "asset_turnover": 0.07,
   "equity_multiplier": 5.64
  },
@@ -47,9 +56,9 @@
   "net_income_cagr_pct": null
  },
  "valuation": {
-  "pe": 58.58,
-  "pe_normalized": 71.08,
-  "pe_used": 58.58,
+  "pe_reported": 58.58,
+  "pe_core": 71.08,
+  "pe_used": 71.08,
   "pb": 5.77,
   "ev_ebitda": 20.5,
   "fcf_yield_pct": -13.9,

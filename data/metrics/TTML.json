@@ -2,9 +2,12 @@
  "symbol": "TTML",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "reported profit differs from normalized by 75%"
+  "one-off items removed from profit",
+  "core EBIT 58% below reported EBIT"
  ],
  "equity_check": {
   "balance_sheet_cr": -19983.4,
@@ -12,6 +15,7 @@
   "ratio": null,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 41.4,
  "snapshot_cr": {
   "rev": 1150.1,
   "ni": -215.3,
@@ -20,13 +24,14 @@
   "eq": -19983.4,
   "debt": 18930.8,
   "fcf": 532.5,
-  "ni_continuing_ops_pre_minority": -215.3,
-  "ni_normalized": -878.2
+  "ni_core": -712.5,
+  "ebit_core": 476.7,
+  "operating_income": 476.7
  },
  "ratios": {
-  "roe_pct": 4.4,
-  "roa_pct": -65.5,
-  "net_margin_pct": -76.4,
+  "roe_pct": 3.6,
+  "roa_pct": -53.1,
+  "net_margin_pct": -61.9,
   "ebit_margin_pct": 99.6,
   "roce_pct": -6.8,
   "fcf_margin_pct": 46.3,
@@ -35,8 +40,13 @@
   "current_ratio": 0.01,
   "asset_turnover": 0.86
  },
+ "ratios_reported": {
+  "roe_pct": 1.1,
+  "roa_pct": -16.1,
+  "net_margin_pct": -18.7
+ },
  "dupont": {
-  "net_margin_pct": -76.4,
+  "net_margin_pct": -61.9,
   "asset_turnover": 0.86,
   "equity_multiplier": -0.07
  },
@@ -46,8 +56,8 @@
   "net_income_cagr_pct": null
  },
  "valuation": {
-  "pe": null,
-  "pe_normalized": null,
+  "pe_reported": null,
+  "pe_core": null,
   "pe_used": null,
   "pb": -0.34,
   "ev_ebitda": 19.94,
@@ -72,10 +82,5 @@
  "altman_z2": {
   "z": -156.67,
   "zone": "distress"
- },
- "ratios_reported": {
-  "roe_pct": 1.1,
-  "roa_pct": -16.1,
-  "net_margin_pct": -18.7
  }
 }

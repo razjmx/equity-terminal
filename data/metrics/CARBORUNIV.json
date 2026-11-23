@@ -2,9 +2,11 @@
  "symbol": "CARBORUNIV",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "reported profit differs from normalized by 31%"
+  "recurring unusual items kept in profit"
  ],
  "equity_check": {
   "balance_sheet_cr": 3899.8,
@@ -12,6 +14,7 @@
   "ratio": 0.98,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 6.7,
  "snapshot_cr": {
   "rev": 5149.4,
   "ni": 194.7,
@@ -20,13 +23,14 @@
   "eq": 3899.8,
   "debt": 303.5,
   "fcf": 57.0,
-  "ni_continuing_ops_pre_minority": 167.8,
-  "ni_normalized": 282.0
+  "ni_core": 194.7,
+  "ebit_core": 344.0,
+  "operating_income": 344.0
  },
  "ratios": {
-  "roe_pct": 7.2,
-  "roa_pct": 5.3,
-  "net_margin_pct": 5.5,
+  "roe_pct": 5.0,
+  "roa_pct": 3.7,
+  "net_margin_pct": 3.8,
   "ebit_margin_pct": 5.8,
   "roce_pct": 7.1,
   "fcf_margin_pct": 1.1,
@@ -35,8 +39,9 @@
   "current_ratio": 2.67,
   "asset_turnover": 0.97
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 5.5,
+  "net_margin_pct": 3.8,
   "asset_turnover": 0.97,
   "equity_multiplier": 1.36
  },
@@ -46,9 +51,9 @@
   "net_income_cagr_pct": -22.2
  },
  "valuation": {
-  "pe": 94.61,
-  "pe_normalized": 65.32,
-  "pe_used": 65.32,
+  "pe_reported": 94.61,
+  "pe_core": 94.61,
+  "pe_used": 94.61,
   "pb": 4.72,
   "ev_ebitda": 32.98,
   "fcf_yield_pct": 0.3,
@@ -72,10 +77,5 @@
  "altman_z2": {
   "z": 7.28,
   "zone": "safe"
- },
- "ratios_reported": {
-  "roe_pct": 5.0,
-  "roa_pct": 3.7,
-  "net_margin_pct": 3.8
  }
 }

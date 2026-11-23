@@ -2,9 +2,11 @@
  "symbol": "PPLPHARMA",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "reported profit differs from normalized by 78%"
+  "one-off items removed from profit"
  ],
  "equity_check": {
   "balance_sheet_cr": 8162.6,
@@ -12,6 +14,7 @@
   "ratio": 1.05,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 1.8,
  "snapshot_cr": {
   "rev": 8758.8,
   "ni": -325.9,
@@ -20,13 +23,14 @@
   "eq": 8162.6,
   "debt": 5674.6,
   "fcf": 762.6,
-  "ni_continuing_ops_pre_minority": -325.9,
-  "ni_normalized": -183.3
+  "ni_core": -147.7,
+  "ebit_core": 154.9,
+  "operating_income": 154.9
  },
  "ratios": {
-  "roe_pct": -2.2,
-  "roa_pct": -1.0,
-  "net_margin_pct": -2.1,
+  "roe_pct": -1.8,
+  "roa_pct": -0.8,
+  "net_margin_pct": -1.7,
   "ebit_margin_pct": 1.9,
   "roce_pct": 1.2,
   "fcf_margin_pct": 8.7,
@@ -35,8 +39,13 @@
   "current_ratio": 1.51,
   "asset_turnover": 0.49
  },
+ "ratios_reported": {
+  "roe_pct": -4.0,
+  "roa_pct": -1.8,
+  "net_margin_pct": -3.7
+ },
  "dupont": {
-  "net_margin_pct": -2.1,
+  "net_margin_pct": -1.7,
   "asset_turnover": 0.49,
   "equity_multiplier": 2.2
  },
@@ -46,8 +55,8 @@
   "net_income_cagr_pct": null
  },
  "valuation": {
-  "pe": null,
-  "pe_normalized": null,
+  "pe_reported": null,
+  "pe_core": null,
   "pe_used": null,
   "pb": 3.87,
   "ev_ebitda": 36.15,
@@ -72,10 +81,5 @@
  "altman_z2": {
   "z": 1.95,
   "zone": "grey"
- },
- "ratios_reported": {
-  "roe_pct": -4.0,
-  "roa_pct": -1.8,
-  "net_margin_pct": -3.7
  }
 }

@@ -1,9 +1,16 @@
 {
  "symbol": "STARHEALTH",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "financial",
  "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: financial",
+  "core EBIT missing or not positive",
+  "no cash flow data"
+ ],
  "flags": [
+  "override: financial (insurer)",
   "no cash flow data"
  ],
  "equity_check": {
@@ -12,32 +19,35 @@
   "ratio": 0.72,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": null,
  "snapshot_cr": {
   "rev": 18148.5,
   "ni": 557.0,
-  "ebit": 818.4,
+  "ebit": null,
   "ta": 24063.8,
   "eq": 7551.2,
-  "debt": 470.0,
-  "fcf": 1795.3,
-  "ni_continuing_ops_pre_minority": 557.0,
-  "ni_normalized": 558.7
+  "debt": null,
+  "fcf": null,
+  "ni_core": null,
+  "ebit_core": null,
+  "operating_income": null
  },
  "ratios": {
   "roe_pct": 7.4,
   "roa_pct": 2.3,
-  "net_margin_pct": 3.1,
-  "ebit_margin_pct": 4.5,
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
   "roce_pct": null,
-  "fcf_margin_pct": 9.9,
-  "debt_equity": 0.06,
-  "interest_cover": 12.78,
+  "fcf_margin_pct": null,
+  "debt_equity": null,
+  "interest_cover": null,
   "current_ratio": null,
-  "asset_turnover": 0.75
+  "asset_turnover": null
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 3.1,
-  "asset_turnover": 0.75,
+  "roe_pct": 7.4,
+  "roa_pct": 2.3,
   "equity_multiplier": 3.19
  },
  "growth": {
@@ -46,28 +56,14 @@
   "net_income_cagr_pct": -3.4
  },
  "valuation": {
-  "pe": 59.25,
-  "pe_normalized": 59.07,
+  "pe_reported": 59.25,
+  "pe_core": null,
   "pe_used": 59.25,
   "pb": 4.37,
   "ev_ebitda": null,
-  "fcf_yield_pct": 5.4,
+  "fcf_yield_pct": null,
   "market_cap_cr": 33000.6
  },
- "piotroski": {
-  "score": 3,
-  "tested": 5,
-  "tests": {
-   "roa_positive": true,
-   "cfo_positive": null,
-   "roa_improved": false,
-   "cfo_above_net_income": null,
-   "leverage_fell": true,
-   "current_ratio_improved": null,
-   "no_dilution": true,
-   "gross_margin_improved": null,
-   "asset_turnover_improved": false
-  }
- },
+ "piotroski": null,
  "altman_z2": null
 }

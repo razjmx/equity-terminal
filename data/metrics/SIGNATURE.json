@@ -1,10 +1,18 @@
 {
  "symbol": "SIGNATURE",
  "latest_fy": "2026-03-31",
- "type": "standard",
- "profit_basis": "normalized",
+ "type": "realty",
+ "profit_basis": "core",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: realty",
+  "core EBIT missing or not positive"
+ ],
  "flags": [
-  "reported profit differs from normalized by 2557%"
+  "override: realty (developer: value on NAV)",
+  "one-off items removed from profit",
+  "core EBIT 104% below reported EBIT",
+  "P/E 297 not meaningful, shown blank"
  ],
  "equity_check": {
   "balance_sheet_cr": 1849.6,
@@ -12,6 +20,7 @@
   "ratio": 0.96,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": -2.3,
  "snapshot_cr": {
   "rev": 2578.9,
   "ni": 1094.6,
@@ -20,8 +29,9 @@
   "eq": 1849.6,
   "debt": 2978.6,
   "fcf": 99.2,
-  "ni_continuing_ops_pre_minority": 1094.6,
-  "ni_normalized": 41.2
+  "ni_core": 41.1,
+  "ebit_core": -59.4,
+  "operating_income": -59.4
  },
  "ratios": {
   "roe_pct": 2.2,
@@ -35,6 +45,11 @@
   "current_ratio": 1.16,
   "asset_turnover": 0.15
  },
+ "ratios_reported": {
+  "roe_pct": 59.2,
+  "roa_pct": 6.3,
+  "net_margin_pct": 42.4
+ },
  "dupont": {
   "net_margin_pct": 1.6,
   "asset_turnover": 0.15,
@@ -46,9 +61,9 @@
   "net_income_cagr_pct": null
  },
  "valuation": {
-  "pe": 11.14,
-  "pe_normalized": 296.0,
-  "pe_used": 296.0,
+  "pe_reported": 11.14,
+  "pe_core": 296.92,
+  "pe_used": null,
   "pb": 6.59,
   "ev_ebitda": 9.31,
   "fcf_yield_pct": 0.8,
@@ -72,10 +87,5 @@
  "altman_z2": {
   "z": 1.59,
   "zone": "grey"
- },
- "ratios_reported": {
-  "roe_pct": 59.2,
-  "roa_pct": 6.3,
-  "net_margin_pct": 42.4
  }
 }

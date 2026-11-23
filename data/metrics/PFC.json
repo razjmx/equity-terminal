@@ -1,41 +1,51 @@
 {
  "symbol": "PFC",
  "latest_fy": "2026-03-31",
- "type": "standard",
+ "type": "financial",
  "profit_basis": "reported",
- "flags": [],
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: financial",
+  "core EBIT missing or not positive"
+ ],
+ "flags": [
+  "override: financial (lender)"
+ ],
  "equity_check": {
   "balance_sheet_cr": 132860.9,
   "implied_cr": 146874.0,
   "ratio": 0.9,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": null,
  "snapshot_cr": {
   "rev": 43199.9,
   "ni": 25901.0,
-  "ebit": 112265.0,
+  "ebit": null,
   "ta": 1244578.6,
   "eq": 132860.9,
-  "debt": 1012503.5,
-  "fcf": -4841.6,
-  "ni_continuing_ops_pre_minority": 33625.3,
-  "ni_normalized": 25963.9
+  "debt": null,
+  "fcf": null,
+  "ni_core": null,
+  "ebit_core": null,
+  "operating_income": null
  },
  "ratios": {
   "roe_pct": 19.5,
   "roa_pct": 2.1,
-  "net_margin_pct": 60.0,
-  "ebit_margin_pct": 259.9,
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
   "roce_pct": null,
-  "fcf_margin_pct": -11.2,
-  "debt_equity": 7.62,
-  "interest_cover": 1.62,
+  "fcf_margin_pct": null,
+  "debt_equity": null,
+  "interest_cover": null,
   "current_ratio": null,
-  "asset_turnover": 0.03
+  "asset_turnover": null
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 60.0,
-  "asset_turnover": 0.03,
+  "roe_pct": 19.5,
+  "roa_pct": 2.1,
   "equity_multiplier": 9.37
  },
  "growth": {
@@ -44,28 +54,14 @@
   "net_income_cagr_pct": 17.7
  },
  "valuation": {
-  "pe": 4.16,
-  "pe_normalized": 4.15,
+  "pe_reported": 4.16,
+  "pe_core": null,
   "pe_used": 4.16,
   "pb": 0.81,
-  "ev_ebitda": 9.95,
-  "fcf_yield_pct": -4.5,
+  "ev_ebitda": null,
+  "fcf_yield_pct": null,
   "market_cap_cr": 107814.3
  },
- "piotroski": {
-  "score": 4,
-  "tested": 7,
-  "tests": {
-   "roa_positive": true,
-   "cfo_positive": false,
-   "roa_improved": true,
-   "cfo_above_net_income": false,
-   "leverage_fell": true,
-   "current_ratio_improved": null,
-   "no_dilution": true,
-   "gross_margin_improved": null,
-   "asset_turnover_improved": false
-  }
- },
+ "piotroski": null,
  "altman_z2": null
 }

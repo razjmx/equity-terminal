@@ -2,9 +2,12 @@
  "symbol": "ADANIENT",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
  "flags": [
-  "reported profit differs from normalized by 246%"
+  "recurring unusual items kept in profit",
+  "core EBIT 58% below reported EBIT"
  ],
  "equity_check": {
   "balance_sheet_cr": 80925.9,
@@ -12,6 +15,7 @@
   "ratio": 0.82,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": 8.4,
  "snapshot_cr": {
   "rev": 100267.0,
   "ni": 9339.5,
@@ -20,13 +24,14 @@
   "eq": 80925.9,
   "debt": 106621.8,
   "fcf": -31012.2,
-  "ni_continuing_ops_pre_minority": 9950.7,
-  "ni_normalized": 2696.3
+  "ni_core": 9339.5,
+  "ebit_core": 8437.8,
+  "operating_income": 8437.8
  },
  "ratios": {
-  "roe_pct": 3.3,
-  "roa_pct": 1.0,
-  "net_margin_pct": 2.7,
+  "roe_pct": 11.5,
+  "roa_pct": 3.6,
+  "net_margin_pct": 9.3,
   "ebit_margin_pct": 19.9,
   "roce_pct": 9.8,
   "fcf_margin_pct": -30.9,
@@ -35,8 +40,9 @@
   "current_ratio": 1.04,
   "asset_turnover": 0.38
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 2.7,
+  "net_margin_pct": 9.3,
   "asset_turnover": 0.38,
   "equity_multiplier": 3.23
  },
@@ -46,9 +52,9 @@
   "net_income_cagr_pct": 55.9
  },
  "valuation": {
-  "pe": 39.18,
-  "pe_normalized": 135.72,
-  "pe_used": 135.72,
+  "pe_reported": 39.18,
+  "pe_core": 39.18,
+  "pe_used": 39.18,
   "pb": 4.52,
   "ev_ebitda": 17.75,
   "fcf_yield_pct": -8.5,
@@ -72,10 +78,5 @@
  "altman_z2": {
   "z": 1.48,
   "zone": "grey"
- },
- "ratios_reported": {
-  "roe_pct": 11.5,
-  "roa_pct": 3.6,
-  "net_margin_pct": 9.3
  }
 }

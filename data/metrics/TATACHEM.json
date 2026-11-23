@@ -2,16 +2,19 @@
  "symbol": "TATACHEM",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "profit_basis": "normalized",
- "flags": [
-  "reported profit differs from normalized by 276%"
+ "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "core EBIT missing or not positive"
  ],
+ "flags": [],
  "equity_check": {
   "balance_sheet_cr": 21206.0,
   "implied_cr": 21928.1,
   "ratio": 0.97,
   "used": "balance_sheet"
  },
+ "core_ebit_margin_pct": -6.3,
  "snapshot_cr": {
   "rev": 14397.0,
   "ni": -1896.0,
@@ -20,13 +23,14 @@
   "eq": 21206.0,
   "debt": 8001.0,
   "fcf": 64.0,
-  "ni_continuing_ops_pre_minority": -1715.0,
-  "ni_normalized": 1075.6
+  "ni_core": -1896.0,
+  "ebit_core": -901.0,
+  "operating_income": 606.0
  },
  "ratios": {
-  "roe_pct": 5.1,
-  "roa_pct": 2.8,
-  "net_margin_pct": 7.5,
+  "roe_pct": -8.9,
+  "roa_pct": -4.9,
+  "net_margin_pct": -13.2,
   "ebit_margin_pct": -6.6,
   "roce_pct": -3.0,
   "fcf_margin_pct": 0.4,
@@ -35,8 +39,9 @@
   "current_ratio": 1.07,
   "asset_turnover": 0.37
  },
+ "ratios_reported": null,
  "dupont": {
-  "net_margin_pct": 7.5,
+  "net_margin_pct": -13.2,
   "asset_turnover": 0.37,
   "equity_multiplier": 1.84
  },
@@ -46,9 +51,9 @@
   "net_income_cagr_pct": null
  },
  "valuation": {
-  "pe": null,
-  "pe_normalized": 15.26,
-  "pe_used": 15.26,
+  "pe_reported": null,
+  "pe_core": null,
+  "pe_used": null,
   "pb": 0.77,
   "ev_ebitda": 94.63,
   "fcf_yield_pct": 0.4,
@@ -72,10 +77,5 @@
  "altman_z2": {
   "z": 1.84,
   "zone": "grey"
- },
- "ratios_reported": {
-  "roe_pct": -8.9,
-  "roa_pct": -4.9,
-  "net_margin_pct": -13.2
  }
 }
