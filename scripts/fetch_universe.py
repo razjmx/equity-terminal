@@ -16,6 +16,7 @@ df = df.rename(columns={
     "ISIN Code": "isin",
 })
 df = df[["symbol", "company", "industry", "isin"]]
+df = df[~df["symbol"].str.startswith("DUMMY")]
 df["yahoo"] = df["symbol"] + ".NS"
 
 df.to_csv("data/universe.csv", index=False)
