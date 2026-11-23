@@ -191,3 +191,16 @@ h2.sec small{font-size:12px;font-weight:400;color:var(--m)}
 .retline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;margin:2px 0 8px}
 .rb{font-weight:700;font-size:15px;padding:3px 10px;border-radius:8px;background:var(--bg);animation:pop .3s ease both}
 .rb.up,.rb.pos,.rb.g{background:rgba(46,158,107,.12)}.rb.dn,.rb.neg,.rb.r{background:rgba(217,83,79,.12)}
+
+/* stock page polish */
+.pctl{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.ctr{display:flex;gap:26px;flex-wrap:wrap;justify-content:flex-end}
+.ctr .range{display:flex;gap:6px}
+.retline{display:block;text-align:right;margin:0}
+.retline .r1{display:flex;gap:8px;align-items:center;justify-content:flex-end;flex-wrap:wrap;font-size:13px}
+.retline .r2{font-size:12px;margin-top:3px;font-weight:400}
+.tabs{position:sticky;top:90px;z-index:12;background:var(--bg);padding-top:6px;margin-top:0}
+.tabs .mini{margin-left:auto;align-self:center;white-space:nowrap;font-size:13px;padding-left:16px;color:var(--t)}
+.tabs .mini em{font-style:normal;font-weight:700}.tabs .mini i{font-style:normal;font-weight:600}
+.tabs .mini i.pos{color:var(--g)}.tabs .mini i.neg{color:var(--r)}
+@media(max-width:1000px){.tabs .mini{display:none}.pctl{align-items:flex-start}.retline{text-align:left}.retline .r1{justify-content:flex-start}}
