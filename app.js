@@ -487,10 +487,9 @@ async function stock(s,tab){
      <div>${keyRatios}${vs}</div></div>`;
     h+=technicals();
   }else if(tab==='financials'){
-    FIN_RATIO=`<div class="two"><div class="card"><h3>Valuation &amp; quality (FY ${esc(met?met.latest_fy:'')})</h3><div class="grid">${kv('P/E (used)',T.fmt(V.pe_used))}${kv('P/B',T.fmt(V.pb))}${kv('EV/EBITDA',T.fmt(V.ev_ebitda))}${kv('FCF yield %',T.fmt(V.fcf_yield_pct))}${kv('Market cap ₹cr',T.fmt(V.market_cap_cr,0))}${kv('ROE %',T.fmt(R.roe_pct))}${kv('ROCE %',T.fmt(R.roce_pct))}${kv('Debt/Equity',T.fmt(R.debt_equity,2))}${kv('Piotroski',met&&met.piotroski&&met.piotroski.score!=null?met.piotroski.score:'–')}${kv('Altman Z″',met&&met.altman_z2&&met.altman_z2.z!=null?T.fmt(met.altman_z2.z,2)+' ('+esc(met.altman_z2.zone||'')+')':(met&&met.type==='financial'?'n/a for financials':'–'))}</div>
-     ${met&&(met.flags||[]).length?`<p class="warn">${met.flags.map(esc).join(' · ')}</p>`:''}</div>
-     <div class="card"><h3>Growth</h3><div class="grid">${kv('Revenue CAGR %',T.fmt(G.revenue_cagr_pct))}${kv('Net income CAGR %',T.fmt(G.net_income_cagr_pct))}${kv('Years used',G.years_used??'–')}</div></div></div>`;
-    FIN_RATIO+=ratiosHtml(rat);
+    const tl=(k,v)=>`<div class="tile"><div class="k">${k}</div><div class="tv">${v}</div></div>`;
+    FIN_RATIO=`<div class="fcard card"><h3>Key metrics<span class="mut" style="font-weight:400;font-size:12px">FY ${esc(met?met.latest_fy:'')}</span></h3><div class="mtiles">${tl('P/E (used)',T.fmt(V.pe_used))}${tl('P/B',T.fmt(V.pb))}${tl('EV/EBITDA',T.fmt(V.ev_ebitda))}${tl('FCF yield %',T.fmt(V.fcf_yield_pct))}${tl('Market cap ₹cr',T.fmt(V.market_cap_cr,0))}${tl('ROE %',T.fmt(R.roe_pct))}${tl('ROCE %',T.fmt(R.roce_pct))}${tl('Debt/Equity',T.fmt(R.debt_equity,2))}${tl('Piotroski',met&&met.piotroski&&met.piotroski.score!=null?met.piotroski.score:'–')}${tl('Altman Z″',met&&met.altman_z2&&met.altman_z2.z!=null?T.fmt(met.altman_z2.z,2)+' ('+esc(met.altman_z2.zone||'')+')':(met&&met.type==='financial'?'n/a for financials':'–'))}${tl('Revenue CAGR %',T.fmt(G.revenue_cagr_pct))}${tl('Net income CAGR %',T.fmt(G.net_income_cagr_pct))}${tl('Years used',G.years_used??'–')}</div>${met&&(met.flags||[]).length?`<p class="warn">${met.flags.map(esc).join(' · ')}</p>`:''}<div id="ratslot"></div></div>`;
+    FIN_RATIO=FIN_RATIO.replace('<div id="ratslot"></div>',ratiosHtml(rat));
     h+='<div class="subtabs" id="fsub"></div><div id="fbody"></div>';
   }else if(tab==='valuation'){
     if(dcf)h+=`<div id="dcfbox"></div>`;else if(fin)h+=`<div id="finbox"></div>`;else if(rl)h+=`<div id="rlbox"></div>`;
@@ -529,14 +528,14 @@ async function stock(s,tab){
 
 function fmtR(v,f){if(v==null)return '–';if(f==='pct')return T.fmt(v,1)+'%';if(f==='d')return T.fmt(v,0);if(f==='num')return T.fmt(v,0);return T.fmt(v,2)}
 function ratiosHtml(r){
-  if(!r||!r.sections||!r.sections.length)return '<div class="card"><h3>Ratios</h3><span class="mut">Ratios not available for this stock yet.</span></div>';
+  if(!r||!r.sections||!r.sections.length)return '<p class="mut" style="margin:14px 0 0">Ratios not available for this stock yet.</p>';
   const tabs=r.sections.map((x,i)=>`<button data-sec="${x.id}" ${i===0?'class="on"':''}>${esc(x.title)}</button>`).join('');
   const body=r.sections.map((x,i)=>{
     let t;
     if(x.latest)t=`<table>${x.rows.map(q=>`<tr><td class="l">${esc(q.label)}</td><td>${fmtR(q.value,q.fmt)}</td></tr>`).join('')}</table>`;
     else t=`<table><tr><th class="l">FY</th>${x.years.map(y=>`<th>${esc(y)}</th>`).join('')}${x.rows.some(q=>q.cagr!=null)?'<th>CAGR</th>':''}</tr>${x.rows.map(q=>`<tr><td class="l">${esc(q.label)}</td>${q.values.map(v=>`<td class="${q.fmt==='pct'&&q.key.startsWith('g_')?cls(v):''}">${fmtR(v,q.fmt)}</td>`).join('')}${x.rows.some(z=>z.cagr!=null)?`<td>${q.cagr!=null?T.pct(q.cagr,1):'–'}</td>`:''}</tr>`).join('')}</table>`;
     return `<div class="rsec" data-sec="${x.id}" style="${i?'display:none':''}"><div class="scroll" style="max-height:none">${t}</div></div>`}).join('');
-  return `<div class="card" id="ratios"><h3>Ratios (annual, FY ending March unless stated)</h3><div class="bar rtabs">${tabs}</div>${body}<p class="mut" style="font-size:12px">Computed from Yahoo Finance statements (about 4 years). Year-end balances are used for all ratios. Missing values mean the line item is not reported.</p></div>`;
+  return `<div id="ratios" class="rwrap"><h4>Ratios <span class="mut" style="font-weight:400">annual, FY ending March unless stated</span></h4><div class="bar rtabs">${tabs}</div>${body}<p class="mut" style="font-size:12px">Computed from Yahoo Finance statements (about 4 years). Year-end balances are used for all ratios. Missing values mean the line item is not reported.</p></div>`;
 }
 function bindRatios(){
   document.querySelectorAll('.rtabs button').forEach(b=>b.onclick=()=>{
