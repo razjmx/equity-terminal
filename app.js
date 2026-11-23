@@ -384,11 +384,12 @@ const STMT_GROW={pl:['Total Revenue','Operating Revenue','Net Interest Income','
 function stmtTable(tb,kind,per){
   if(!tb)return '<div class="card"><p class="mut">No '+(per==='q'?'quarterly ':'')+'data available for this statement.</p></div>';
   const raw=/EPS|Tax Rate|Per Share/i,key=new Set(STMT_KEY[kind]),gk=new Set(STMT_GROW[kind]);
-  const cr=(n,v)=>v==null?'–':raw.test(n)?T.fmt(v,2):T.fmt(v/1e7,Math.abs(v/1e7)<100?2:0);
+  const mn=FS.unit==='mn';
+  const cr=(n,v)=>{if(v==null)return '–';if(raw.test(n))return T.fmt(v,2);if(mn){const x=v/1e6;return x.toLocaleString('en-US',{maximumFractionDigits:Math.abs(x)<100?1:0,minimumFractionDigits:Math.abs(x)<100?1:0})}return T.fmt(v/1e7,Math.abs(v/1e7)<100?2:0)};
   const dl=d=>{const x=new Date(d);return per==='q'?x.toLocaleString('en-GB',{month:'short',year:'2-digit'}):'FY'+String(x.getFullYear()).slice(2)};
   const ko=STMT_KEY[kind],pos=n=>{const i=ko.indexOf(n);return i<0?999:i};
   const rows=tb.rows.filter(r=>!FS.keyonly||key.has(r[0])).map((r,i)=>[r,i]).sort((a,b)=>pos(a[0][0])-pos(b[0][0])||a[1]-b[1]).map(x=>x[0]);
-  let t=`<table class="stmt"><tr><th class="l">₹ crore</th>${tb.dates.map(d=>`<th>${dl(d)}</th>`).join('')}</tr>`;
+  let t=`<table class="stmt"><tr><th class="l">${mn?'₹ million':'₹ crore'}</th>${tb.dates.map(d=>`<th>${dl(d)}</th>`).join('')}</tr>`;
   rows.forEach(([n,v])=>{
     t+=`<tr class="${key.has(n)?'kr':''}"><td class="l">${esc(n.replace(/([a-z])([A-Z])/g,'$1 $2'))}</td>${v.map(x=>`<td>${cr(n,x)}</td>`).join('')}</tr>`;
     if(gk.has(n)){const lag=1;t+=`<tr class="gr"><td class="l">${per==='q'?'QoQ':'YoY'} growth</td>${v.map((x,i)=>{const p=i>=lag?v[i-lag]:null;if(x==null||p==null||p<=0)return '<td>–</td>';const g=(x/p-1)*100;return `<td class="${cls(g)}">${T.pct(g)}</td>`}).join('')}</tr>`}
@@ -427,15 +428,17 @@ async function finTabs(s){
     const tb=st[map[pc==='q'?1:0]];
     const title={pl:'Profit & Loss',bs:'Balance Sheet',cf:'Cash Flow'}[kind];
     body.innerHTML=`<div class="fbar"><div class="seg" id="fper"><button data-p="annual" class="${FS.per==='annual'?'on':''}">Annual</button><button data-p="quarterly" class="${FS.per==='quarterly'?'on':''}">Quarterly</button></div>
-      <label class="chk"><input type="checkbox" id="fkey" ${FS.keyonly?'checked':''}> Key lines only</label><span class="mut" style="margin-left:auto;font-size:12px">${esc(title)} · ₹ crore · Yahoo Finance · updated ${esc(st.fetched||'')}</span></div>${stmtTable(tb,kind,pc)}`;
+      <div class="seg" id="funit"><button data-u="cr" class="${FS.unit==='cr'?'on':''}">₹ Crore</button><button data-u="mn" class="${FS.unit==='mn'?'on':''}">₹ Million</button></div>
+      <label class="chk"><input type="checkbox" id="fkey" ${FS.keyonly?'checked':''}> Key lines only</label><span class="mut" style="margin-left:auto;font-size:12px">${esc(title)} · ${FS.unit==='mn'?'₹ million':'₹ crore'} · Yahoo Finance · updated ${esc(st.fetched||'')}</span></div>${stmtTable(tb,kind,pc)}`;
     $('#fper').querySelectorAll('button').forEach(b=>b.onclick=()=>{FS.per=b.dataset.p;draw()});
+    $('#funit').querySelectorAll('button').forEach(b=>b.onclick=()=>{FS.unit=b.dataset.u;draw()});
     $('#fkey').onchange=e=>{FS.keyonly=e.target.checked;draw()};
   };
   draw();
 }
 
 // ---------- stock ----------
-let FIN_RATIO='',FS={sub:'pl',per:'annual',keyonly:false};
+let FIN_RATIO='',FS={sub:'pl',per:'annual',keyonly:false,unit:'cr'};
 async function stock(s,tab){
   tab=tab||'overview';
   view.innerHTML=SKEL;
