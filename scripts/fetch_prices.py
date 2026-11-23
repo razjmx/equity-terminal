@@ -10,6 +10,7 @@ PERIOD_FULL = "5y"
 PERIOD_UPDATE = "3mo"
 CHUNK = 25
 COLS = ["Open", "High", "Low", "Close", "Volume"]
+OVERLAP_DAYS = 7   # update mode re-writes this many days so a partial day gets its final close
 
 uni = pd.read_csv("data/universe.csv")
 uni = uni[~uni["symbol"].str.startswith("DUMMY")]
@@ -67,6 +68,16 @@ def download(tickers, period):
     return out
 
 
+def merge_update(sym, df):
+    """Keep old rows before the cutoff, take fresh rows from the cutoff on."""
+    old = pd.read_csv(path(sym), parse_dates=["Date"]).set_index("Date")
+    cutoff = old.index[-1] - pd.Timedelta(days=OVERLAP_DAYS)
+    merged = pd.concat([old[old.index < cutoff], df[df.index >= cutoff]])
+    merged = merged[~merged.index.duplicated(keep="last")].sort_index()
+    merged.index.name = "Date"
+    merged.to_csv(path(sym))
+
+
 # decide which stocks need a full reload
 full, update = [], []
 for sym, y in items:
@@ -89,10 +100,7 @@ for group, period, is_full in ((full, PERIOD_FULL, True), (update, PERIOD_UPDATE
             if is_full:
                 df.to_csv(path(sym))
             else:
-                ld = last_date(sym)
-                new = df[df.index.date > ld] if ld else df
-                if len(new):
-                    new.to_csv(path(sym), mode="a", header=False)
+                merge_update(sym, df)
         print(f"{min(i + CHUNK, len(group))}/{len(group)} done", flush=True)
         time.sleep(2)
 
