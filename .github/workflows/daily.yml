@@ -27,6 +27,9 @@ jobs:
       - name: 1 Prices (update)
         run: python scripts/fetch_prices.py
 
+      - name: 1b Sync latest prices into saved info
+        run: python scripts/sync_prices.py
+
       - name: 2 Metrics
         run: python scripts/compute_metrics.py
 
