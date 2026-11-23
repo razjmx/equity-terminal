@@ -100,7 +100,7 @@ canvas{width:100%;height:260px;display:block}
 /* ticker */
 .tape{display:flex;align-items:center;background:var(--p);border-bottom:1px solid var(--b);height:34px;overflow:hidden;position:sticky;top:56px;z-index:15;font-size:13px}
 .tape .tt{flex:1;overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
-.tape .tr{display:inline-flex;animation:tick 90s linear infinite}.tape:hover .tr{animation-play-state:paused}
+.tape .tr{display:inline-flex;animation:tick 90s linear infinite}
 .tape .ti{padding:0 18px;color:var(--t);display:inline-flex;gap:6px;align-items:baseline}.tape .ti em{font-style:normal;font-weight:600}
 .tape .tl{padding:0 12px;color:var(--m);font-size:11px;border-left:1px solid var(--b)}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -164,3 +164,16 @@ h2.sec small{font-size:12px;font-weight:400;color:var(--m)}
 @keyframes bounce{40%{transform:scaleY(1.25)}}
 .mh-bar .chips a{transition:background .2s,color .2s,transform .2s}.mh-bar .chips a:hover{transform:translateY(-1px)}
 @media(max-width:860px){.topnav{order:4;flex-basis:100%;overflow-x:auto;margin:0;border-radius:12px}.topnav a{padding:7px 11px}.searchbox{order:5;flex-basis:100%}.tape{position:static}}
+
+/* search suggestions */
+.sgw{position:relative}
+.sgl{position:absolute;left:0;right:0;top:calc(100% + 6px);background:var(--p);border:1px solid var(--b);border-radius:12px;box-shadow:0 14px 34px rgba(16,24,40,.18);padding:6px;z-index:60;animation:pop .18s ease both}
+.sgl[hidden]{display:none}
+.sgi{display:flex;gap:12px;align-items:baseline;padding:9px 12px;border-radius:8px;cursor:pointer}
+.sgi b{min-width:96px;font-weight:700;color:var(--t)}.sgi span{color:var(--m);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sgi:hover,.sgi.on{background:var(--bg)}.sgi.on b{color:var(--brand)}
+.rs{max-width:640px;margin:9vh auto 0;text-align:center}
+.rs h2{font-size:28px;margin:0 0 6px}
+.rsbox{margin-top:18px;text-align:left}
+.rsbox input{width:100%;padding:15px 18px;font-size:17px;border-radius:14px;border:1px solid var(--b);background:var(--p);box-shadow:var(--sh);transition:box-shadow .2s,border-color .2s}
+.rsbox input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px rgba(46,158,107,.15)}
