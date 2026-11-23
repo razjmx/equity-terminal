@@ -43,6 +43,74 @@ function lineChart(cv,series,opt={}){
   cv.onmouseleave=()=>draw();
 }
 
+
+// ---------- interactive price chart ----------
+function priceChart(cv,rows,opt){
+  const dpr=window.devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;cv.width=w*dpr;cv.height=h*dpr;
+  const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);
+  const css=getComputedStyle(document.documentElement),gv=n=>css.getPropertyValue(n).trim();
+  const brand=gv('--brand')||'#0f6b4a',up=gv('--g')||'#127a45',dn=gv('--r')||'#c62828',mut=gv('--m')||'#667085',grid='rgba(139,148,163,.22)',panel=gv('--p')||'#fff',txt=gv('--t')||'#18202b';
+  const n=rows.length;if(!n){ctx.clearRect(0,0,w,h);return}
+  const L=54,R=12,Tp=12,B=22,VH=opt.volume?Math.min(64,h*.2):0,PH=h-Tp-B-VH-(VH?8:0);
+  let lo=Infinity,hi=-Infinity;
+  rows.forEach((r,i)=>{const a=opt.mode==='candle'?[r.l??r.c,r.h??r.c]:[r.c];a.forEach(v=>{if(v!=null){lo=Math.min(lo,v);hi=Math.max(hi,v)}});
+    (opt.smas||[]).forEach(s=>{const v=s.y[i];if(v!=null){lo=Math.min(lo,v);hi=Math.max(hi,v)}})});
+  if(lo===hi){lo-=1;hi+=1}const pad=(hi-lo)*.06;lo-=pad;hi+=pad;
+  const X=i=>L+(w-L-R)*(i+.5)/n,Y=v=>Tp+PH*(1-(v-lo)/(hi-lo));
+  const vmax=Math.max(...rows.map(r=>r.v||0),1);
+  let iMax=0,iMin=0;rows.forEach((r,i)=>{if(r.c>rows[iMax].c)iMax=i;if(r.c<rows[iMin].c)iMin=i});
+  function draw(hov,prog){
+    ctx.clearRect(0,0,w,h);ctx.font='11px system-ui,sans-serif';
+    ctx.strokeStyle=grid;ctx.fillStyle=mut;ctx.lineWidth=1;
+    for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4,y=Math.round(Y(v))+.5;ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(w-R,y);ctx.stroke();ctx.fillText(T.fmt(v,0),4,y+4)}
+    [0,.5,1].forEach(f=>{const i=Math.round((n-1)*f);const t=rows[i].d;ctx.fillText(t,Math.max(L,Math.min(X(i)-28,w-R-62)),h-6)});
+    // volume
+    if(VH){const bw=Math.max(1,(w-L-R)/n*.7);rows.forEach((r,i)=>{if(!r.v)return;const bh=VH*r.v/vmax,prev=i?rows[i-1].c:r.c;ctx.globalAlpha=.35;ctx.fillStyle=r.c>=prev?up:dn;ctx.fillRect(X(i)-bw/2,h-B-bh,bw,bh)});ctx.globalAlpha=1}
+    ctx.save();ctx.beginPath();ctx.rect(0,0,L+(w-L)*prog,h);ctx.clip();
+    if(opt.mode==='candle'){const bw=Math.max(1,Math.min(14,(w-L-R)/n*.7));
+      rows.forEach((r,i)=>{if(r.o==null||r.h==null||r.l==null)return;const col=r.c>=r.o?up:dn;ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(X(i),Y(r.h));ctx.lineTo(X(i),Y(r.l));ctx.stroke();
+        const y1=Y(Math.max(r.o,r.c)),y2=Y(Math.min(r.o,r.c));ctx.fillRect(X(i)-bw/2,y1,bw,Math.max(1,y2-y1))})}
+    else{
+      if(opt.mode==='area'){const g=ctx.createLinearGradient(0,Tp,0,Tp+PH);g.addColorStop(0,brand+'55');g.addColorStop(1,brand+'00');
+        ctx.beginPath();rows.forEach((r,i)=>i?ctx.lineTo(X(i),Y(r.c)):ctx.moveTo(X(i),Y(r.c)));ctx.lineTo(X(n-1),Tp+PH);ctx.lineTo(X(0),Tp+PH);ctx.closePath();ctx.fillStyle=g;ctx.fill()}
+      ctx.strokeStyle=brand;ctx.lineWidth=2;ctx.lineJoin='round';ctx.beginPath();rows.forEach((r,i)=>i?ctx.lineTo(X(i),Y(r.c)):ctx.moveTo(X(i),Y(r.c)));ctx.stroke()}
+    (opt.smas||[]).forEach(sm=>{ctx.strokeStyle=sm.color;ctx.lineWidth=1.3;ctx.beginPath();let st=false;sm.y.forEach((v,i)=>{if(v==null)return;st?ctx.lineTo(X(i),Y(v)):ctx.moveTo(X(i),Y(v));st=true});ctx.stroke()});
+    ctx.restore();
+    // high / low markers
+    if(prog>=1){ctx.fillStyle=mut;ctx.font='11px system-ui,sans-serif';
+      [[iMax,'High '],[iMin,'Low ']].forEach(([i,t])=>{const lbl=t+T.fmt(rows[i].c,0),tw=ctx.measureText(lbl).width;
+        ctx.fillText(lbl,Math.max(L,Math.min(X(i)-tw/2,w-R-tw)),Y(rows[i].c)+(t==='High '?-7:15));
+        ctx.beginPath();ctx.arc(X(i),Y(rows[i].c),3,0,7);ctx.fillStyle=t==='High '?up:dn;ctx.fill();ctx.fillStyle=mut})}
+    if(hov!=null&&prog>=1){const r=rows[hov],x=X(hov);
+      ctx.strokeStyle=mut;ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo(x,Tp);ctx.lineTo(x,h-B);ctx.stroke();ctx.setLineDash([]);
+      ctx.beginPath();ctx.arc(x,Y(r.c),4.5,0,7);ctx.fillStyle=panel;ctx.fill();ctx.lineWidth=2;ctx.strokeStyle=brand;ctx.stroke();
+      const prev=hov?rows[hov-1].c:r.c,ch=(r.c/prev-1)*100;
+      const lines=[r.d,(r.o!=null&&opt.mode==='candle'?`O ${T.fmt(r.o,1)}  H ${T.fmt(r.h,1)}  L ${T.fmt(r.l,1)}  `:'')+`C ${T.fmt(r.c,1)}`,`${ch>=0?'+':''}${T.fmt(ch,2)}% day`+(r.v?`  Vol ${T.fmt(r.v/1e5,1)}L`:'')];
+      ctx.font='12px system-ui,sans-serif';const bw=Math.max(...lines.map(t=>ctx.measureText(t).width))+20,bh=60;
+      let bx=x+14;if(bx+bw>w-R)bx=x-14-bw;const by=Tp+4;
+      ctx.fillStyle=panel;ctx.strokeStyle=grid;ctx.lineWidth=1;ctx.beginPath();ctx.roundRect?ctx.roundRect(bx,by,bw,bh,8):ctx.rect(bx,by,bw,bh);ctx.fill();ctx.stroke();
+      ctx.fillStyle=txt;ctx.font='bold 12px system-ui,sans-serif';ctx.fillText(lines[0],bx+10,by+18);
+      ctx.font='12px system-ui,sans-serif';ctx.fillText(lines[1],bx+10,by+35);ctx.fillStyle=ch>=0?up:dn;ctx.fillText(lines[2],bx+10,by+51)}
+  }
+  let prog=opt.animate===false?1:0,hov=null;
+  const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce)prog=1;
+  const t0=performance.now(),DUR=650;
+  (function step(t){prog=Math.min(1,(t-t0)/DUR);const e=1-Math.pow(1-prog,3);draw(hov,prog>=1?1:e);if(prog<1&&cv.isConnected)requestAnimationFrame(step)})(t0);
+  if(prog===1)draw(null,1);
+  const at=e=>{const r=cv.getBoundingClientRect(),x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;hov=Math.min(n-1,Math.max(0,Math.round((x-L)/(w-L-R)*n-.5)));if(prog>=1)draw(hov,1)};
+  cv.onpointermove=at;cv.onpointerdown=at;cv.onpointerleave=()=>{hov=null;draw(null,1)};
+}
+function countUps(root){
+  const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduce)return;
+  (root||document).querySelectorAll('[data-n]').forEach(el=>{
+    const to=parseFloat(el.dataset.n),d=parseInt(el.dataset.d||'0',10),pre=el.dataset.pre||'',suf=el.dataset.suf||'';if(!isFinite(to))return;
+    const t0=performance.now(),D=800;(function f(t){const p=Math.min(1,(t-t0)/D),e=1-Math.pow(1-p,3);el.textContent=pre+T.fmt(to*e,d)+suf;if(p<1&&el.isConnected)requestAnimationFrame(f)})(t0)});
+}
+const SKEL='<div class="skel" style="height:140px"></div><div class="skel" style="height:44px;margin-top:14px"></div><div class="skel" style="height:360px;margin-top:14px"></div>';
+function decs(str){const m=String(str).replace(/,/g,'').match(/\.(\d+)/);return m?m[1].length:0}
+
 // ---------- boot ----------
 async function boot(){
   const [uni,met,dcf,rsk,mkt]=await Promise.all([table('data/universe.csv'),table('data/metrics_summary.csv'),table('data/dcf_summary.csv'),table('data/risk_summary.csv'),get('data/market.json','json')]);
@@ -63,6 +131,10 @@ async function boot(){
   const th=$('#theme');const setTh=t=>{document.documentElement.dataset.theme=t;try{localStorage.setItem('tl_theme',t)}catch(e){}};
   let t0='light';try{t0=localStorage.getItem('tl_theme')||'light'}catch(e){}document.documentElement.dataset.theme=t0;
   th.onclick=()=>{setTh(document.documentElement.dataset.theme==='dark'?'light':'dark');route()};
+  try{const tp=document.createElement('div');tp.className='tape';const rs=Object.values(D.rsk).filter(r=>T.num(r.ret_1m)!=null).sort((a,b)=>(T.num(b.traded_cr)||0)-(T.num(a.traded_cr)||0)).slice(0,30);
+    const items=[['Nifty 50',D.mkt&&D.mkt.nifty50],['Nifty 500',D.mkt&&D.mkt.nifty500]].filter(x=>x[1]).map(([n,o])=>`<span class="ti"><b>${n}</b> ${T.fmt(o.price??o.close,0)} <em class="${cls(o.ret_1m??o.returns_pct?.['1m'])}">${T.pct(o.ret_1m??o.returns_pct?.['1m'])}</em></span>`)
+      .concat(rs.map(r=>`<a class="ti" href="#/stock/${esc(r.symbol)}"><b>${esc(r.symbol)}</b> ${T.fmt(T.num(r.price),1)} <em class="${cls(T.num(r.ret_1m))}">${T.pct(T.num(r.ret_1m),1)}</em></a>`)).join('');
+    tp.innerHTML=`<div class="tt"><div class="tr">${items}${items}</div></div><span class="tl">1M</span>`;document.querySelector('.top').after(tp)}catch(e){}
   window.addEventListener('hashchange',route);route();
 }
 
@@ -85,6 +157,17 @@ function research(){
 }
 
 // ---------- market ----------
+function heat(){
+  const g={};Object.values(D.rsk).forEach(r=>{const v=T.num(r.ret_1m);if(v==null||(T.num(r.traded_cr)||0)<1)return;const ind=(D.met[r.symbol]||{}).industry||(D.uni.find(u=>u.symbol===r.symbol)||{}).industry;if(!ind)return;(g[ind]=g[ind]||[]).push(v)});
+  const med=a=>{a=a.slice().sort((x,y)=>x-y);const m=a.length>>1;return a.length%2?a[m]:(a[m-1]+a[m])/2};
+  const rows=Object.entries(g).filter(([k,a])=>a.length>=3).map(([k,a])=>({k,v:med(a),n:a.length})).sort((a,b)=>b.v-a.v);
+  if(!rows.length)return '';
+  const mx=Math.max(8,...rows.map(r=>Math.abs(r.v)));
+  const col=v=>{const a=Math.min(1,Math.abs(v)/mx)*.75+.1;return v>=0?`rgba(18,160,90,${a})`:`rgba(220,60,60,${a})`};
+  return `<div class="card"><h3>Sector heatmap<span class="mut" style="font-weight:400;font-size:12px">median 1-month return by industry · click to open in screener</span></h3><div class="heat">${rows.map(r=>`<a class="ht" data-ind="${esc(r.k)}" style="background:${col(r.v)}"><b>${esc(r.k)}</b><span>${r.v>=0?'+':''}${T.fmt(r.v,1)}%</span><small>${r.n} stocks</small></a>`).join('')}</div></div>`;
+}
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('.ht');if(a){FILT.ind=a.dataset.ind;FILT.q='';FILT.rel='all';location.hash='#/screener'}});
+
 async function market(){
   const m=D.mkt,b=await table('data/breadth_history.csv');
   const rows=Object.values(D.rsk);
@@ -98,6 +181,7 @@ async function market(){
     <div class="card"><div class="k">Above 50-DMA</div><div class="v">${T.pct(bl.pct_above_50dma,0)}</div></div></div>
     <div class="two"><div class="card"><h3>Breadth: % of stocks above 200-DMA</h3><canvas id="c1"></canvas></div>
     <div class="card"><h3>Breadth: % at 52-week high vs low</h3><canvas id="c2"></canvas></div></div>
+    ${heat()}
     <div class="two">${list('Top 1M returns (traded > Rs 5 cr/day)',top('ret_1m'))}${list('Bottom 1M returns',top('ret_1m',true))}${list('Most oversold (RSI)',top('rsi14',true))}${list('Most overbought (RSI)',top('rsi14'))}</div>
     <p class="mut">Click any stock for its full page. ${D.syms.length} stocks in universe.</p>`;
   if(b.length){const x=b.map(r=>r.Date);
@@ -138,7 +222,7 @@ function screener(){
 // ---------- stock ----------
 async function stock(s,tab){
   tab=tab||'overview';
-  view.innerHTML='Loading '+esc(s)+'…';
+  view.innerHTML=SKEL;
   const [dcf,met,rsk,pcsv,rat,fin,rl]=await Promise.all([get(`data/dcf/${s}.json`,'json'),get(`data/metrics/${s}.json`,'json'),get(`data/risk/${s}.json`,'json'),get(`data/prices/${s}.csv`),get(`data/ratios/${s}.json`,'json'),get(`data/fin/${s}.json`,'json'),get(`data/realty/${s}.json`,'json')]);
   const u=D.uni.find(x=>x.symbol===s)||{};
   const prices=pcsv?T.parseCSV(pcsv):[];
@@ -156,7 +240,7 @@ async function stock(s,tab){
    <div class="card"><div class="sh"><div class="logo">${esc(ini)}</div>
     <div><h1>${esc(u.company||s)}</h1><div class="sub">${esc(s)}.NSE</div><span class="tag">${esc(u.industry||'')}</span>${met?`<span class="tag">${esc(met.type)}</span>`:''}</div>
     <div class="acts">${dl}</div></div>
-    <div class="pricerow"><div><span class="bigp">₹${T.fmt(price,2)}</span>${chg!=null?`<span class="chg ${cls(chg)}">${chgAbs>=0?'+':''}${T.fmt(chgAbs,2)} (${chg>=0?'+':''}${T.fmt(chg,2)}%)</span>`:''}<div class="k" style="margin-top:6px">NSE · As of ${esc(asof)} (daily close)</div></div>
+    <div class="pricerow"><div><span class="bigp" data-n="${price}" data-d="2" data-pre="₹">₹${T.fmt(price,2)}</span>${chg!=null?`<span class="chg ${cls(chg)}">${chgAbs>=0?'+':''}${T.fmt(chgAbs,2)} (${chg>=0?'+':''}${T.fmt(chg,2)}%)</span>`:''}<div class="k" style="margin-top:6px">NSE · As of ${esc(asof)} (daily close)</div></div>
      <div class="stats">${stat('Market cap',V.market_cap_cr!=null?'₹'+T.fmt(V.market_cap_cr,0)+' Cr':'–')}${stat('P/E',V.pe_used!=null?T.fmt(V.pe_used,1)+'x':'–')}${stat('P/B',V.pb!=null?T.fmt(V.pb,2)+'x':'–')}${stat('EV/EBITDA',V.ev_ebitda!=null?T.fmt(V.ev_ebitda,1)+'x':'–')}${stat('ROE',R.roe_pct!=null?T.fmt(R.roe_pct,1)+'%':'–')}${stat('ROCE',R.roce_pct!=null?T.fmt(R.roce_pct,1)+'%':'–')}${stat('Debt/Equity',R.debt_equity!=null?T.fmt(R.debt_equity,2):'–')}</div></div></div>`;
   const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['quant','Quant Analytics']];
   h+=`<div class="tabs">${TABS.map(t=>`<a href="#/stock/${esc(s)}/${t[0]}" class="${tab===t[0]?'on':''}">${t[1]}</a>`).join('')}${['Compare','Peers','Shareholding','News & Events','Research Notes'].map(x=>`<span title="Coming later">${x}</span>`).join('')}</div>`;
@@ -173,14 +257,14 @@ async function stock(s,tab){
     vs=`<div class="card"><h3>${rit?'REIT model':'Realty NAV model'} <span class="tag">${esc(rl.type)}</span></h3>${vbig(rl.fair_value,rit?'Fair value':'NAV / share')}${vrow('P/B',T.fmt(rl.pb,2)+'x')}${vrow('Net debt',T.fmt(rl.net_debt_cr,0)+' Cr')}${rl.fair_value==null?'<p class="warn">Inputs not filled yet (data/realty_inputs.csv or reit_inputs.csv).</p>':''}<div style="margin-top:8px"><a class="link" href="#/stock/${esc(s)}/valuation">View model →</a></div></div>`}
   else vs=`<div class="card"><h3>Valuation model</h3><span class="mut">No model for this stock (excluded or data missing).</span></div>`;
 
-  const tile=(k,v)=>`<div class="tile"><div class="k">${k}</div><div class="tv">${v}</div></div>`;
+  const tile=(k,v)=>{const nv=parseFloat(String(v).replace(/,/g,''));return `<div class="tile"><div class="k">${k}</div><div class="tv" ${isFinite(nv)?`data-n="${nv}" data-d="${decs(v)}"`:''}>${v}</div></div>`};
   const keyRatios=`<div class="card"><h3>Key ratios (latest FY)<a class="link" href="#/stock/${esc(s)}/financials">View all</a></h3><div class="tiles">${tile('P/E',T.fmt(V.pe_used,1))}${tile('P/B',T.fmt(V.pb,2))}${tile('EV/EBITDA',T.fmt(V.ev_ebitda,1))}${tile('ROE %',T.fmt(R.roe_pct,1))}${tile('ROCE %',T.fmt(R.roce_pct,1))}${tile('ROA %',T.fmt(R.roa_pct,1))}${tile('Net margin %',T.fmt(R.net_margin_pct,1))}${tile('EBIT margin %',T.fmt(R.ebit_margin_pct,1))}${tile('FCF yield %',T.fmt(V.fcf_yield_pct,1))}</div></div>`;
 
   const technicals=()=>{if(!rsk)return '';const k=rsk.risk,m=rsk.momentum,b=rsk.beta,t=rsk.trend;
     return `<div class="card"><h3>Technicals &amp; risk</h3><div class="grid">${kv('RSI 14',T.fmt(m.rsi14,1))}${kv('MACD hist %',T.fmt(m.macd_hist_pct,2))}${kv('Bollinger %B',T.fmt(m.bollinger_pctb,2))}${kv('ATR %',T.fmt(m.atr_pct,2))}${kv('Above 200-DMA',t.above_dma200?'Yes':'No',t.above_dma200?'pos':'neg')}${kv('Above 50-DMA',t.above_dma50?'Yes':'No',t.above_dma50?'pos':'neg')}${kv('Volatility 1Y %',T.fmt(k.volatility_1y_pct))}${kv('Max DD 1Y %',T.fmt(k.max_drawdown_1y_pct))}${kv('VaR95 1d %',T.fmt(k.var95_1d_pct,2))}${kv('Sharpe 1Y',T.fmt(k.sharpe_1y,2))}${kv('Beta (adj)',T.fmt(b.adjusted,2))}${kv('Alpha % (ann.)',T.fmt(b.alpha_pct))}${kv('Avg traded ₹cr/day',T.fmt(rsk.liquidity.avg_daily_value_3m_cr,1))}</div></div>`};
 
   if(tab==='overview'){
-    h+=`<div class="ov"><div><div class="card"><h3>Price<span class="range" id="rng">${['3M','6M','1Y','3Y','All'].map(x=>`<button data-r="${x}">${x}</button>`).join('')}</span></h3><canvas id="pc" style="height:330px"></canvas><div class="k" style="margin-top:4px"><span style="color:#2f6fdb">▬</span> 50-day &nbsp; <span style="color:#9b59d0">▬</span> 200-day</div></div></div>
+    h+=`<div class="ov"><div><div class="card"><h3>Price<span style="display:flex;gap:8px;flex-wrap:wrap"><span class="range" id="mode">${[['area','Area'],['line','Line'],['candle','Candle']].map(x=>`<button data-m="${x[0]}">${x[1]}</button>`).join('')}</span><span class="range" id="rng">${['3M','6M','1Y','3Y','All'].map(x=>`<button data-r="${x}">${x}</button>`).join('')}</span></span></h3><canvas id="pc" style="height:380px;touch-action:pan-y"></canvas><div class="k" style="margin-top:4px"><span style="color:#2f6fdb">▬</span> 50-day &nbsp; <span style="color:#9b59d0">▬</span> 200-day &nbsp; · hover or tap the chart for details</div></div></div>
      <div>${keyRatios}${vs}</div></div>`;
     h+=technicals();
   }else if(tab==='financials'){
@@ -196,15 +280,22 @@ async function stock(s,tab){
   }
   view.innerHTML=h;
   if(tab==='overview'&&prices.length){
-    let range='1Y';
-    const drawP=()=>{const days={'3M':63,'6M':126,'1Y':252,'3Y':756,'All':1e9}[range];const rows=prices.slice(-days);
-      const x=rows.map(r=>r.Date),c=rows.map(r=>T.num(r.Close));const all=prices.map(r=>T.num(r.Close));
-      const sma=m=>rows.map((_,i)=>{const j=prices.length-rows.length+i;if(j<m-1)return null;let t=0;for(let q=j-m+1;q<=j;q++)t+=all[q];return t/m});
-      lineChart($('#pc'),[{name:'Close',x,y:c},{name:'50d',x,y:sma(50),color:'#2f6fdb'},{name:'200d',x,y:sma(200),color:'#9b59d0'}],{dec:0});
-      document.querySelectorAll('#rng button').forEach(b=>b.classList.toggle('on',b.dataset.r===range))};
+    let range='1Y',mode='area';
+    const gk=(r,k)=>{const v=T.num(r[k]??r[k.toLowerCase()]);return v};
+    const all=prices.map(r=>({d:r.Date,o:gk(r,'Open'),h:gk(r,'High'),l:gk(r,'Low'),c:T.num(r.Close),v:gk(r,'Volume')})).filter(r=>r.c!=null);
+    const hasOHLC=all.some(r=>r.o!=null&&r.h!=null&&r.l!=null);
+    const closes=all.map(r=>r.c);
+    const smaFull=m=>closes.map((_,j)=>{if(j<m-1)return null;let t=0;for(let q=j-m+1;q<=j;q++)t+=closes[q];return t/m});
+    const s50=smaFull(50),s200=smaFull(200);
+    const drawP=()=>{const days={'3M':63,'6M':126,'1Y':252,'3Y':756,'All':1e9}[range];const rows=all.slice(-days),off=all.length-rows.length;
+      priceChart($('#pc'),rows,{mode,volume:true,smas:[{y:s50.slice(off),color:'#2f6fdb'},{y:s200.slice(off),color:'#9b59d0'}]});
+      document.querySelectorAll('#rng button').forEach(b=>b.classList.toggle('on',b.dataset.r===range));
+      document.querySelectorAll('#mode button').forEach(b=>{b.classList.toggle('on',b.dataset.m===mode);if(b.dataset.m==='candle'&&!hasOHLC){b.disabled=true;b.title='No open/high/low data'}})};
     document.querySelectorAll('#rng button').forEach(b=>b.onclick=()=>{range=b.dataset.r;drawP()});
+    document.querySelectorAll('#mode button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;drawP()});
     drawP();
   }
+  countUps(view);
   if(tab==='financials')bindRatios();
   if(tab==='valuation'){
     if(dcf)dcfPanel(dcf,price);else if(fin)finPanel(fin);else if(rl)realtyPanel(rl);
