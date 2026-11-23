@@ -1,0 +1,35 @@
+name: Fetch prices
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "full = reload 5 years, update = append new days"
+        default: "full"
+        type: choice
+        options:
+          - full
+          - update
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      MODE: ${{ inputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python scripts/fetch_prices.py
+      - name: Commit data
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/prices data/prices_status.csv data/prices_summary.txt
+          git commit -m "Update prices" || echo "No changes"
+          git push
