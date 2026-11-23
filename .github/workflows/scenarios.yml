@@ -1,0 +1,24 @@
+name: DCF scenario test
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scenarios:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python scripts/scenario_test.py
+      - name: Commit result
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/dcf_scenarios.txt
+          git commit -m "DCF scenarios" || echo "No changes"
+          git push
