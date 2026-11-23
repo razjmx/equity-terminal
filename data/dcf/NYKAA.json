@@ -3,10 +3,12 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 362.5,
- "fair_value": 11.2,
- "upside_pct": -96.9,
+ "fair_value": 13.1,
+ "fair_low": 9.5,
+ "fair_high": 18.7,
+ "upside_pct": -96.4,
  "flags": [
-  "far from price: model value is 3% of the market price"
+  "far from price: model value is 4% of the market price"
  ],
  "assumptions": {
   "rf_pct": 7.2,
@@ -26,7 +28,10 @@
   "ebit_margin_pct": 4.4,
   "margin_basis": "latest",
   "sales_to_capital": 4.0,
-  "roic_now_pct": 14.1
+  "roic_now_pct": 14.1,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.081
  },
  "projection_cr": [
   {
@@ -116,12 +121,12 @@
   "pv_share_of_ev_pct": 110.3
  },
  "bridge_cr": {
-  "enterprise_value": 4106.0,
+  "enterprise_value": 4356.0,
   "debt": 1238.0,
   "cash": 408.0,
   "investments": 0.0,
   "minority": 64.0,
-  "equity_value": 3212.0,
+  "equity_value": 3462.0,
   "shares_cr": 286.535,
   "market_cap": 103869.0
  },
@@ -142,45 +147,47 @@
   ],
   "fair_value": [
    [
-    20.9,
-    22.3,
-    23.9,
-    25.9,
-    28.6
+    24.0,
+    25.5,
+    27.3,
+    29.7,
+    32.7
    ],
    [
-    14.9,
-    15.5,
-    16.2,
-    17.0,
-    18.1
+    17.2,
+    17.9,
+    18.7,
+    19.7,
+    20.8
    ],
    [
-    10.7,
-    10.9,
-    11.2,
-    11.5,
-    11.9
+    12.5,
+    12.7,
+    13.1,
+    13.4,
+    13.8
    ],
    [
-    7.8,
-    7.9,
-    8.0,
-    8.1,
-    8.2
+    9.2,
+    9.4,
+    9.5,
+    9.6,
+    9.7
    ],
    [
-    6.0,
-    6.0,
-    6.1,
-    6.2,
-    6.3
+    7.1,
+    7.2,
+    7.3,
+    7.4,
+    7.5
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 44.3,
+  "implied_ebit_margin_pct": 38.9,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
  },
  "model": {
@@ -198,6 +205,8 @@
   "cash": 407.9,
   "invest": 0.0,
   "minority": 64.12,
-  "shares_cr": 286.5347817048276
+  "shares_cr": 286.5347817048276,
+  "roll": 1.081477962944317,
+  "mid_year": true
  }
 }

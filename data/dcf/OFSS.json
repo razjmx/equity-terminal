@@ -3,8 +3,10 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 9770.0,
- "fair_value": 5489.4,
- "upside_pct": -43.8,
+ "fair_value": 6244.3,
+ "fair_low": 5511.9,
+ "fair_high": 7268.3,
+ "upside_pct": -36.1,
  "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
@@ -24,7 +26,10 @@
   "ebit_margin_pct": 44.8,
   "margin_basis": "latest",
   "sales_to_capital": 3.16,
-  "roic_now_pct": 106.3
+  "roic_now_pct": 106.3,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.08
  },
  "projection_cr": [
   {
@@ -114,12 +119,12 @@
   "pv_share_of_ev_pct": 52.1
  },
  "bridge_cr": {
-  "enterprise_value": 42443.0,
+  "enterprise_value": 44990.0,
   "debt": 32.0,
   "cash": 5434.0,
   "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 47844.0,
+  "equity_value": 50392.0,
   "shares_cr": 8.716,
   "market_cap": 85153.0
  },
@@ -140,45 +145,47 @@
   ],
   "fair_value": [
    [
-    6919.1,
-    7309.8,
-    7793.7,
-    8412.1,
-    9235.1
+    7816.7,
+    8260.0,
+    8809.0,
+    9510.6,
+    10444.4
    ],
    [
-    5891.4,
-    6129.0,
-    6409.7,
-    6748.0,
-    7166.3
+    6677.6,
+    6948.4,
+    7268.3,
+    7654.0,
+    8130.7
    ],
    [
-    5158.0,
-    5312.7,
-    5489.4,
-    5694.0,
-    5935.2
+    5865.0,
+    6042.1,
+    6244.3,
+    6478.6,
+    6754.7
    ],
    [
-    4607.3,
-    4713.1,
-    4830.9,
-    4963.4,
-    5114.3
+    5254.7,
+    5376.4,
+    5511.9,
+    5664.3,
+    5837.8
    ],
    [
-    4177.7,
-    4253.0,
-    4335.0,
-    4425.2,
-    4525.2
+    4778.7,
+    4865.7,
+    4960.4,
+    5064.6,
+    5180.1
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 24.2,
+  "implied_first_year_growth_pct": 20.9,
   "implied_ebit_margin_pct": null,
+  "implied_discount_rate_pct": 9.9,
+  "implied_rate_note": "",
   "note": "; margin outside 0% to 60%"
  },
  "model": {
@@ -196,6 +203,8 @@
   "cash": 5433.6,
   "invest": 0.0,
   "minority": 0.0,
-  "shares_cr": 8.715786921269192
+  "shares_cr": 8.715786921269192,
+  "roll": 1.0800226515016316,
+  "mid_year": true
  }
 }

@@ -3,11 +3,12 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 3287.9,
- "fair_value": 752.7,
- "upside_pct": -77.1,
+ "fair_value": 843.1,
+ "fair_low": 743.7,
+ "fair_high": 996.6,
+ "upside_pct": -74.4,
  "flags": [
-  "growth gap: 2-year growth differs from 3-year CAGR (21.3%) by over 10 points",
-  "far from price: model value is 23% of the market price"
+  "growth gap: 2-year growth differs from 3-year CAGR (21.3%) by over 10 points"
  ],
  "assumptions": {
   "rf_pct": 7.2,
@@ -27,7 +28,10 @@
   "ebit_margin_pct": 18.8,
   "margin_basis": "latest",
   "sales_to_capital": 0.88,
-  "roic_now_pct": 12.4
+  "roic_now_pct": 12.4,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.075
  },
  "projection_cr": [
   {
@@ -117,12 +121,12 @@
   "pv_share_of_ev_pct": 61.7
  },
  "bridge_cr": {
-  "enterprise_value": 9346.0,
+  "enterprise_value": 9869.0,
   "debt": 284.0,
   "cash": 3359.0,
   "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 12421.0,
+  "equity_value": 12945.0,
   "shares_cr": 16.501,
   "market_cap": 54255.0
  },
@@ -143,46 +147,48 @@
   ],
   "fair_value": [
    [
-    1017.9,
-    1062.4,
-    1120.8,
-    1201.3,
-    1320.4
+    1135.6,
+    1185.7,
+    1251.3,
+    1341.9,
+    1475.8
    ],
    [
-    849.4,
-    868.2,
-    891.1,
-    919.8,
-    957.3
+    949.5,
+    970.7,
+    996.6,
+    1029.1,
+    1071.4
    ],
    [
-    737.0,
-    744.3,
-    752.7,
-    762.5,
-    774.2
+    825.2,
+    833.6,
+    843.1,
+    854.2,
+    867.5
    ],
    [
-    658.6,
-    660.8,
-    663.0,
-    665.3,
-    667.7
+    738.7,
+    741.2,
+    743.7,
+    746.3,
+    749.0
    ],
    [
-    610.0,
-    611.4,
-    613.0,
-    614.6,
-    616.2
+    685.4,
+    687.1,
+    688.8,
+    690.7,
+    692.5
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": null,
-  "note": "growth outside -10% to 60%; margin outside 0% to 60%"
+  "implied_ebit_margin_pct": 59.6,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "below 8.6%",
+  "note": "growth outside -10% to 60%"
  },
  "model": {
   "rev": 6402.9,
@@ -199,6 +205,8 @@
   "cash": 3359.08,
   "invest": 0.0,
   "minority": 0.0,
-  "shares_cr": 16.50145911299005
+  "shares_cr": 16.50145911299005,
+  "roll": 1.0747909004488205,
+  "mid_year": true
  }
 }

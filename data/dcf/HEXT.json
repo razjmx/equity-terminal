@@ -3,8 +3,10 @@
  "latest_fy": "2025-12-31",
  "status": "ok",
  "price": 486.85,
- "fair_value": 393.7,
- "upside_pct": -19.1,
+ "fair_value": 463.0,
+ "fair_low": 397.5,
+ "fair_high": 555.2,
+ "upside_pct": -4.9,
  "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
@@ -24,7 +26,10 @@
   "ebit_margin_pct": 13.2,
   "margin_basis": "latest",
   "sales_to_capital": 2.78,
-  "roic_now_pct": 27.6
+  "roic_now_pct": 27.6,
+  "mid_year": true,
+  "roll_forward_years": 0.91,
+  "roll_factor": 1.113
  },
  "projection_cr": [
   {
@@ -114,12 +119,12 @@
   "pv_share_of_ev_pct": 62.4
  },
  "bridge_cr": {
-  "enterprise_value": 22483.0,
+  "enterprise_value": 23837.0,
   "debt": 681.0,
   "cash": 2168.0,
   "investments": 0.0,
   "minority": -3.0,
-  "equity_value": 23973.0,
+  "equity_value": 25327.0,
   "shares_cr": 60.893,
   "market_cap": 29646.0
  },
@@ -140,45 +145,47 @@
   ],
   "fair_value": [
    [
-    519.8,
-    553.4,
-    595.3,
-    648.9,
-    720.5
+    606.5,
+    645.9,
+    694.8,
+    757.6,
+    841.3
    ],
    [
-    429.9,
-    450.0,
-    473.9,
-    502.9,
-    538.9
+    503.5,
+    527.1,
+    555.2,
+    589.3,
+    631.6
    ],
    [
-    366.2,
-    379.0,
-    393.7,
-    410.9,
-    431.3
+    430.6,
+    445.6,
+    463.0,
+    483.2,
+    507.3
    ],
    [
-    318.9,
-    327.3,
-    336.9,
-    347.7,
-    360.1
+    376.2,
+    386.2,
+    397.5,
+    410.3,
+    425.0
    ],
    [
-    282.3,
-    288.1,
-    294.5,
-    301.6,
-    309.5
+    334.2,
+    341.1,
+    348.7,
+    357.1,
+    366.6
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 19.6,
-  "implied_ebit_margin_pct": 16.0,
+  "implied_first_year_growth_pct": 15.2,
+  "implied_ebit_margin_pct": 13.8,
+  "implied_discount_rate_pct": 12.1,
+  "implied_rate_note": "",
   "note": ""
  },
  "model": {
@@ -196,6 +203,8 @@
   "cash": 2167.7,
   "invest": 0.0,
   "minority": -3.2,
-  "shares_cr": 60.89264281647325
+  "shares_cr": 60.89264281647325,
+  "roll": 1.11306200603863,
+  "mid_year": true
  }
 }

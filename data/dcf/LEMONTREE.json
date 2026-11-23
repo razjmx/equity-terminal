@@ -3,8 +3,10 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 129.37,
- "fair_value": 34.5,
- "upside_pct": -73.3,
+ "fair_value": 42.1,
+ "fair_low": 29.4,
+ "fair_high": 59.8,
+ "upside_pct": -67.5,
  "flags": [
   "low return: ROIC 10.6% below WACC 12.6%"
  ],
@@ -26,7 +28,10 @@
   "ebit_margin_pct": 42.1,
   "margin_basis": "latest",
   "sales_to_capital": 0.5,
-  "roic_now_pct": 10.6
+  "roic_now_pct": 10.6,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.089
  },
  "projection_cr": [
   {
@@ -116,12 +121,12 @@
   "pv_share_of_ev_pct": 71.3
  },
  "bridge_cr": {
-  "enterprise_value": 5261.0,
+  "enterprise_value": 5582.0,
   "debt": 2004.0,
   "cash": 164.0,
-  "investments": 0.0,
+  "investments": 4.0,
   "minority": 687.0,
-  "equity_value": 2734.0,
+  "equity_value": 3059.0,
   "shares_cr": 79.185,
   "market_cap": 10244.0
  },
@@ -142,45 +147,47 @@
   ],
   "fair_value": [
    [
-    62.1,
-    67.4,
-    74.0,
-    82.3,
-    93.2
+    73.0,
+    79.0,
+    86.5,
+    96.0,
+    108.5
    ],
    [
-    43.9,
-    46.8,
-    50.3,
-    54.4,
-    59.6
+    52.5,
+    55.8,
+    59.8,
+    64.6,
+    70.5
    ],
    [
-    31.0,
-    32.6,
-    34.5,
-    36.7,
-    39.3
+    37.9,
+    39.9,
+    42.1,
+    44.6,
+    47.6
    ],
    [
-    21.3,
-    22.3,
-    23.3,
-    24.5,
-    25.9
+    27.1,
+    28.2,
+    29.4,
+    30.8,
+    32.4
    ],
    [
-    13.9,
-    14.5,
-    15.0,
-    15.6,
-    16.3
+    18.8,
+    19.4,
+    20.0,
+    20.7,
+    21.5
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 43.2,
+  "implied_first_year_growth_pct": 39.3,
   "implied_ebit_margin_pct": null,
+  "implied_discount_rate_pct": 9.6,
+  "implied_rate_note": "",
   "note": "; margin outside 0% to 60%"
  },
  "model": {
@@ -196,8 +203,10 @@
   "roic_cap": 0.2,
   "debt": 2003.647,
   "cash": 164.1208,
-  "invest": 0.0,
+  "invest": 4.0209,
   "minority": 687.2454,
-  "shares_cr": 79.18475724511093
+  "shares_cr": 79.18475724511093,
+  "roll": 1.0885662139776215,
+  "mid_year": true
  }
 }

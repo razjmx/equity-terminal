@@ -3,8 +3,10 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 1381.7,
- "fair_value": 509.9,
- "upside_pct": -63.1,
+ "fair_value": 547.1,
+ "fair_low": 474.0,
+ "fair_high": 710.9,
+ "upside_pct": -60.4,
  "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
@@ -23,8 +25,11 @@
   "first_year_growth_pct": 9.7,
   "ebit_margin_pct": 14.9,
   "margin_basis": "latest",
-  "sales_to_capital": 0.95,
-  "roic_now_pct": 10.6
+  "sales_to_capital": 0.92,
+  "roic_now_pct": 10.3,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.07
  },
  "projection_cr": [
   {
@@ -32,94 +37,94 @@
    "growth_pct": 9.7,
    "revenue": 36851.0,
    "nopat": 4118.0,
-   "reinvestment": 3429.0,
-   "fcff": 689.0
+   "reinvestment": 3533.0,
+   "fcff": 585.0
   },
   {
    "year": 2,
    "growth_pct": 9.7,
    "revenue": 40425.0,
    "nopat": 4517.0,
-   "reinvestment": 3762.0,
-   "fcff": 756.0
+   "reinvestment": 3875.0,
+   "fcff": 642.0
   },
   {
    "year": 3,
    "growth_pct": 9.7,
    "revenue": 44345.0,
    "nopat": 4956.0,
-   "reinvestment": 4127.0,
-   "fcff": 829.0
+   "reinvestment": 4251.0,
+   "fcff": 704.0
   },
   {
    "year": 4,
    "growth_pct": 9.2,
    "revenue": 48443.0,
    "nopat": 5413.0,
-   "reinvestment": 4313.0,
-   "fcff": 1100.0
+   "reinvestment": 4444.0,
+   "fcff": 970.0
   },
   {
    "year": 5,
    "growth_pct": 8.8,
    "revenue": 52698.0,
    "nopat": 5889.0,
-   "reinvestment": 4479.0,
-   "fcff": 1410.0
+   "reinvestment": 4615.0,
+   "fcff": 1274.0
   },
   {
    "year": 6,
    "growth_pct": 8.3,
    "revenue": 57086.0,
    "nopat": 6379.0,
-   "reinvestment": 4619.0,
-   "fcff": 1760.0
+   "reinvestment": 4759.0,
+   "fcff": 1620.0
   },
   {
    "year": 7,
    "growth_pct": 7.9,
    "revenue": 61579.0,
    "nopat": 6881.0,
-   "reinvestment": 4729.0,
-   "fcff": 2152.0
+   "reinvestment": 4872.0,
+   "fcff": 2009.0
   },
   {
    "year": 8,
    "growth_pct": 7.4,
    "revenue": 66144.0,
    "nopat": 7392.0,
-   "reinvestment": 4805.0,
-   "fcff": 2586.0
+   "reinvestment": 4951.0,
+   "fcff": 2441.0
   },
   {
    "year": 9,
    "growth_pct": 7.0,
    "revenue": 70745.0,
    "nopat": 7906.0,
-   "reinvestment": 4844.0,
-   "fcff": 3062.0
+   "reinvestment": 4990.0,
+   "fcff": 2916.0
   },
   {
    "year": 10,
    "growth_pct": 6.5,
    "revenue": 75344.0,
    "nopat": 8420.0,
-   "reinvestment": 4841.0,
-   "fcff": 3579.0
+   "reinvestment": 4987.0,
+   "fcff": 3433.0
   }
  ],
  "terminal": {
   "roic_pct": 10.6,
-  "fcff_cr": 3477.0,
-  "pv_share_of_ev_pct": 77.2
+  "fcff_cr": 3466.0,
+  "pv_share_of_ev_pct": 78.6
  },
  "bridge_cr": {
-  "enterprise_value": 40168.0,
+  "enterprise_value": 41333.0,
   "debt": 7734.0,
   "cash": 8781.0,
-  "investments": 1637.0,
+  "investments": 567.0,
   "minority": 339.0,
-  "equity_value": 42513.0,
+  "equity_value": 42608.0,
   "shares_cr": 83.366,
   "market_cap": 115187.0
  },
@@ -140,52 +145,54 @@
   ],
   "fair_value": [
    [
-    864.8,
-    929.6,
-    1023.8,
+    913.5,
+    977.0,
+    1069.2,
     null,
     null
    ],
    [
-    639.5,
-    658.8,
-    683.3,
-    716.2,
-    763.4
+    673.6,
+    690.1,
+    710.9,
+    738.4,
+    777.4
    ],
    [
-    503.7,
-    506.8,
-    509.9,
-    513.3,
-    516.8
+    541.0,
+    544.0,
+    547.1,
+    550.2,
+    553.5
    ],
    [
-    437.9,
-    439.8,
-    441.7,
-    443.7,
-    445.7
+    470.2,
+    472.1,
+    474.0,
+    476.0,
+    478.1
    ],
    [
-    385.0,
-    386.1,
-    387.2,
-    388.4,
-    389.7
+    412.5,
+    413.5,
+    414.6,
+    415.7,
+    416.9
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 24.3,
+  "implied_ebit_margin_pct": 23.1,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
  },
  "model": {
   "rev": 33593.3,
   "margin": 0.149,
   "tax": 0.25,
-  "s2c": 0.9499937785620561,
+  "s2c": 0.9221050146715307,
   "g1": 0.0969747418573701,
   "wacc": 0.105961719110619,
   "terminal_g": 0.065,
@@ -194,8 +201,10 @@
   "roic_cap": 0.2,
   "debt": 7734.1,
   "cash": 8781.4,
-  "invest": 1636.8,
+  "invest": 567.3,
   "minority": 339.4,
-  "shares_cr": 83.36641182080047
+  "shares_cr": 83.36641182080047,
+  "roll": 1.0704077503406044,
+  "mid_year": true
  }
 }

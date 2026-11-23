@@ -1,15 +1,18 @@
 {
  "symbol": "NTPCGREEN",
  "latest_fy": "2026-03-31",
- "status": "not meaningful",
+ "status": "ok",
  "price": 82.34,
- "fair_value": null,
- "upside_pct": null,
+ "fair_value": 4.9,
+ "fair_low": -4.3,
+ "fair_high": 20.2,
+ "upside_pct": -94.0,
  "flags": [
   "margin: very high EBIT margin (50%)",
+  "investments added: Rs 3,536 cr of non-operating investments (5% of market cap)",
   "growth gap: 2-year growth differs from 3-year CAGR (156.2%) by over 10 points",
-  "low return: ROIC 2.1% below WACC 10.7%",
-  "not meaningful: negative equity value"
+  "low return: ROIC 2.2% below WACC 10.7%",
+  "far from price: model value is 6% of the market price"
  ],
  "assumptions": {
   "rf_pct": 7.2,
@@ -29,7 +32,10 @@
   "ebit_margin_pct": 49.9,
   "margin_basis": "latest",
   "sales_to_capital": 0.5,
-  "roic_now_pct": 2.1
+  "roic_now_pct": 2.2,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.081
  },
  "projection_cr": [
   {
@@ -119,12 +125,12 @@
   "pv_share_of_ev_pct": 84.2
  },
  "bridge_cr": {
-  "enterprise_value": 30068.0,
+  "enterprise_value": 31632.0,
   "debt": 31716.0,
   "cash": 618.0,
-  "investments": 0.0,
+  "investments": 3536.0,
   "minority": 224.0,
-  "equity_value": -1254.0,
+  "equity_value": 3846.0,
   "shares_cr": 842.633,
   "market_cap": 69382.0
  },
@@ -145,45 +151,47 @@
   ],
   "fair_value": [
    [
-    18.6,
-    26.7,
-    38.5,
+    27.1,
+    36.3,
+    49.7,
     null,
     null
    ],
    [
-    3.1,
-    7.0,
-    12.1,
-    19.1,
-    29.3
+    9.9,
+    14.4,
+    20.2,
+    28.1,
+    39.6
    ],
    [
-    -6.3,
-    -4.1,
-    -1.5,
-    1.8,
-    6.2
+    -0.5,
+    1.9,
+    4.9,
+    8.7,
+    13.7
    ],
    [
-    -12.5,
-    -11.2,
-    -9.8,
-    -7.9,
-    -5.7
+    -7.5,
+    -6.0,
+    -4.3,
+    -2.3,
+    0.3
    ],
    [
-    -17.0,
-    -16.2,
-    -15.3,
-    -14.2,
-    -13.0
+    -12.4,
+    -11.5,
+    -10.5,
+    -9.3,
+    -7.9
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 51.5,
+  "implied_first_year_growth_pct": 47.8,
   "implied_ebit_margin_pct": null,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "below 8.6%",
   "note": "; margin outside 0% to 60%"
  },
  "model": {
@@ -199,8 +207,10 @@
   "roic_cap": 0.2,
   "debt": 31716.14,
   "cash": 617.5,
-  "invest": 0.0,
+  "invest": 3536.29,
   "minority": 224.04,
-  "shares_cr": 842.6329006169541
+  "shares_cr": 842.6329006169541,
+  "roll": 1.0806614801975474,
+  "mid_year": true
  }
 }

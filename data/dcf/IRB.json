@@ -1,15 +1,17 @@
 {
  "symbol": "IRB",
  "latest_fy": "2026-03-31",
- "status": "not meaningful",
+ "status": "ok",
  "price": 17.53,
- "fair_value": null,
- "upside_pct": null,
+ "fair_value": 9.4,
+ "fair_low": 8.6,
+ "fair_high": 10.4,
+ "upside_pct": -46.2,
  "flags": [
+  "investments added: Rs 17,830 cr of non-operating investments (84% of market cap)",
   "growth clamped: 2-year -7.8% to -5%",
   "growth path: first-year growth below terminal growth (path rises)",
-  "low return: ROIC 3.3% below WACC 11.0%",
-  "not meaningful: negative equity value"
+  "low return: ROIC 6.1% below WACC 11.0%"
  ],
  "assumptions": {
   "rf_pct": 7.2,
@@ -29,7 +31,10 @@
   "ebit_margin_pct": 27.6,
   "margin_basis": "latest",
   "sales_to_capital": 0.5,
-  "roic_now_pct": 3.3
+  "roic_now_pct": 6.1,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.096
  },
  "projection_cr": [
   {
@@ -119,12 +124,12 @@
   "pv_share_of_ev_pct": 41.5
  },
  "bridge_cr": {
-  "enterprise_value": 10207.0,
+  "enterprise_value": 10752.0,
   "debt": 20027.0,
   "cash": 1843.0,
-  "investments": 0.0,
+  "investments": 17830.0,
   "minority": 0.0,
-  "equity_value": -7977.0,
+  "equity_value": 10398.0,
   "shares_cr": 1207.8,
   "market_cap": 21173.0
  },
@@ -145,46 +150,48 @@
   ],
   "fair_value": [
    [
-    -4.7,
-    -4.7,
-    -4.6,
+    11.5,
+    11.6,
+    11.7,
     null,
     null
    ],
    [
-    -5.8,
-    -5.8,
-    -5.7,
-    -5.6,
-    -5.6
+    10.3,
+    10.4,
+    10.4,
+    10.5,
+    10.6
    ],
    [
-    -6.7,
-    -6.6,
-    -6.6,
-    -6.6,
-    -6.5
+    9.3,
+    9.4,
+    9.4,
+    9.5,
+    9.5
    ],
    [
-    -7.4,
-    -7.4,
-    -7.4,
-    -7.3,
-    -7.3
+    8.5,
+    8.6,
+    8.6,
+    8.6,
+    8.7
    ],
    [
-    -8.0,
-    -8.0,
-    -8.0,
-    -8.0,
-    -7.9
+    7.9,
+    7.9,
+    7.9,
+    8.0,
+    8.0
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": null,
-  "note": "growth outside -10% to 60%; margin outside 0% to 60%"
+  "implied_first_year_growth_pct": 43.7,
+  "implied_ebit_margin_pct": 43.9,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "below 8.6%",
+  "note": ""
  },
  "model": {
   "rev": 6252.4,
@@ -199,8 +206,10 @@
   "roic_cap": 0.2,
   "debt": 20027.063,
   "cash": 1842.645,
-  "invest": 0.0,
+  "invest": 17829.859,
   "minority": 0.0,
-  "shares_cr": 1207.8000673588133
+  "shares_cr": 1207.8000673588133,
+  "roll": 1.096312881632267,
+  "mid_year": true
  }
 }

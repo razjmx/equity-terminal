@@ -4,6 +4,8 @@
  "status": "not meaningful",
  "price": 75.14,
  "fair_value": null,
+ "fair_low": null,
+ "fair_high": null,
  "upside_pct": null,
  "flags": [
   "low return: ROIC 2.8% below WACC 10.7%",
@@ -27,7 +29,10 @@
   "ebit_margin_pct": 32.9,
   "margin_basis": "latest",
   "sales_to_capital": 0.5,
-  "roic_now_pct": 2.8
+  "roic_now_pct": 2.8,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.088
  },
  "projection_cr": [
   {
@@ -117,12 +122,12 @@
   "pv_share_of_ev_pct": 74.2
  },
  "bridge_cr": {
-  "enterprise_value": 35965.0,
+  "enterprise_value": 37840.0,
   "debt": 54606.0,
   "cash": 3528.0,
-  "investments": 0.0,
+  "investments": 24.0,
   "minority": 6968.0,
-  "equity_value": -22081.0,
+  "equity_value": -20182.0,
   "shares_cr": 1004.503,
   "market_cap": 75478.0
  },
@@ -143,45 +148,47 @@
   ],
   "fair_value": [
    [
-    -0.1,
-    5.4,
-    13.4,
+    2.6,
+    8.9,
+    17.9,
     null,
     null
    ],
    [
-    -14.9,
-    -12.7,
-    -9.9,
-    -6.0,
-    -0.4
+    -14.0,
+    -11.5,
+    -8.2,
+    -3.8,
+    2.5
    ],
    [
-    -24.0,
+    -24.2,
     -23.1,
-    -22.0,
-    -20.6,
-    -18.8
+    -21.9,
+    -20.3,
+    -18.2
    ],
    [
-    -30.1,
-    -29.8,
-    -29.4,
-    -29.0,
-    -28.5
+    -31.0,
+    -30.6,
+    -30.2,
+    -29.7,
+    -29.1
    ],
    [
-    -34.2,
-    -34.1,
-    -33.9,
-    -33.8,
-    -33.7
+    -35.6,
+    -35.4,
+    -35.3,
+    -35.1,
+    -35.0
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 53.9,
+  "implied_first_year_growth_pct": 51.0,
   "implied_ebit_margin_pct": null,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "not meaningful",
   "note": "; margin outside 0% to 60%"
  },
  "model": {
@@ -197,8 +204,10 @@
   "roic_cap": 0.2,
   "debt": 54606.17,
   "cash": 3527.55,
-  "invest": 0.0,
+  "invest": 24.44,
   "minority": 6967.67,
-  "shares_cr": 1004.5034324833643
+  "shares_cr": 1004.5034324833643,
+  "roll": 1.0875404659676542,
+  "mid_year": true
  }
 }

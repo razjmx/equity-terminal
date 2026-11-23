@@ -3,8 +3,10 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 1311.2,
- "fair_value": 729.4,
- "upside_pct": -44.4,
+ "fair_value": 853.3,
+ "fair_low": 689.3,
+ "fair_high": 1078.2,
+ "upside_pct": -34.9,
  "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
@@ -24,7 +26,10 @@
   "ebit_margin_pct": 6.5,
   "margin_basis": "latest",
   "sales_to_capital": 2.93,
-  "roic_now_pct": 14.3
+  "roic_now_pct": 14.3,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.092
  },
  "projection_cr": [
   {
@@ -114,12 +119,12 @@
   "pv_share_of_ev_pct": 80.5
  },
  "bridge_cr": {
-  "enterprise_value": 13876.0,
+  "enterprise_value": 14765.0,
   "debt": 3543.0,
   "cash": 2079.0,
   "investments": 0.0,
   "minority": -44.0,
-  "equity_value": 12456.0,
+  "equity_value": 13345.0,
   "shares_cr": 17.077,
   "market_cap": 22392.0
  },
@@ -140,45 +145,47 @@
   ],
   "fair_value": [
    [
-    1108.9,
-    1156.8,
-    1213.9,
-    1283.4,
-    1370.1
+    1282.0,
+    1337.2,
+    1403.0,
+    1482.9,
+    1582.8
    ],
    [
-    874.7,
-    899.3,
-    927.4,
-    960.0,
-    998.6
+    1017.3,
+    1045.7,
+    1078.2,
+    1115.9,
+    1160.5
    ],
    [
-    704.4,
-    716.3,
-    729.4,
-    743.9,
-    760.2
+    824.3,
+    838.1,
+    853.3,
+    870.2,
+    889.1
    ],
    [
-    575.8,
-    580.5,
-    585.3,
-    590.2,
-    595.3
+    678.2,
+    683.7,
+    689.3,
+    695.0,
+    701.0
    ],
    [
-    492.0,
-    495.3,
-    498.7,
-    502.2,
-    505.8
+    583.4,
+    587.3,
+    591.2,
+    595.3,
+    599.5
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 40.8,
-  "implied_ebit_margin_pct": 8.3,
+  "implied_first_year_growth_pct": 35.3,
+  "implied_ebit_margin_pct": 7.8,
+  "implied_discount_rate_pct": 11.5,
+  "implied_rate_note": "",
   "note": ""
  },
  "model": {
@@ -196,6 +203,8 @@
   "cash": 2078.69,
   "invest": 0.0,
   "minority": -43.95,
-  "shares_cr": 17.077253622940816
+  "shares_cr": 17.077253622940816,
+  "roll": 1.0919567450392489,
+  "mid_year": true
  }
 }

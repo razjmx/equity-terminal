@@ -3,13 +3,15 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 451.0,
- "fair_value": 36.1,
- "upside_pct": -92.0,
+ "fair_value": 59.4,
+ "fair_low": 54.8,
+ "fair_high": 64.7,
+ "upside_pct": -86.8,
  "flags": [
   "growth gap: 2-year growth differs from 3-year CAGR (-8.8%) by over 10 points",
   "growth path: first-year growth below terminal growth (path rises)",
-  "low return: ROIC 4.5% below WACC 15.9%",
-  "far from price: model value is 8% of the market price"
+  "low return: ROIC 4.8% below WACC 15.9%",
+  "far from price: model value is 13% of the market price"
  ],
  "assumptions": {
   "rf_pct": 7.2,
@@ -29,7 +31,10 @@
   "ebit_margin_pct": 16.4,
   "margin_basis": "latest",
   "sales_to_capital": 0.5,
-  "roic_now_pct": 4.5
+  "roic_now_pct": 4.8,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.103
  },
  "projection_cr": [
   {
@@ -119,12 +124,12 @@
   "pv_share_of_ev_pct": 59.9
  },
  "bridge_cr": {
-  "enterprise_value": 1353.0,
+  "enterprise_value": 1456.0,
   "debt": 317.0,
   "cash": 112.0,
-  "investments": 0.0,
+  "investments": 459.0,
   "minority": 0.0,
-  "equity_value": 1148.0,
+  "equity_value": 1711.0,
   "shares_cr": 31.8,
   "market_cap": 14342.0
  },
@@ -145,45 +150,47 @@
   ],
   "fair_value": [
    [
-    47.7,
-    47.1,
-    46.4,
-    45.7,
-    45.0
+    72.6,
+    71.8,
+    71.0,
+    70.2,
+    69.4
    ],
    [
-    42.2,
-    41.5,
-    40.8,
-    40.1,
-    39.4
+    66.3,
+    65.5,
+    64.7,
+    63.9,
+    63.0
    ],
    [
-    37.5,
-    36.8,
-    36.1,
-    35.4,
-    34.7
+    61.0,
+    60.2,
+    59.4,
+    58.5,
+    57.7
    ],
    [
-    33.5,
-    32.8,
-    32.1,
-    31.4,
-    30.7
+    56.5,
+    55.7,
+    54.8,
+    54.0,
+    53.1
    ],
    [
-    30.1,
-    29.4,
-    28.7,
-    28.0,
-    27.3
+    52.6,
+    51.8,
+    51.0,
+    50.1,
+    49.3
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
   "implied_ebit_margin_pct": null,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%; margin outside 0% to 60%"
  },
  "model": {
@@ -199,8 +206,10 @@
   "roic_cap": 0.2,
   "debt": 316.51,
   "cash": 112.09,
-  "invest": 0.0,
+  "invest": 459.35,
   "minority": 0.0,
-  "shares_cr": 31.799999858093127
+  "shares_cr": 31.799999858093127,
+  "roll": 1.1032830882689126,
+  "mid_year": true
  }
 }

@@ -3,8 +3,10 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 2298.0,
- "fair_value": 674.8,
- "upside_pct": -70.6,
+ "fair_value": 781.4,
+ "fair_low": 631.7,
+ "fair_high": 991.2,
+ "upside_pct": -66.0,
  "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
@@ -24,7 +26,10 @@
   "ebit_margin_pct": 15.1,
   "margin_basis": "latest",
   "sales_to_capital": 1.43,
-  "roic_now_pct": 16.1
+  "roic_now_pct": 16.1,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.084
  },
  "projection_cr": [
   {
@@ -114,12 +119,12 @@
   "pv_share_of_ev_pct": 76.9
  },
  "bridge_cr": {
-  "enterprise_value": 14246.0,
+  "enterprise_value": 15125.0,
   "debt": 1521.0,
   "cash": 103.0,
   "investments": 0.0,
   "minority": 27.0,
-  "equity_value": 12802.0,
+  "equity_value": 13681.0,
   "shares_cr": 18.971,
   "market_cap": 43596.0
  },
@@ -140,45 +145,47 @@
   ],
   "fair_value": [
    [
-    999.9,
-    1062.8,
-    1139.8,
-    1236.6,
-    1362.3
+    1144.4,
+    1216.1,
+    1303.9,
+    1414.3,
+    1557.7
    ],
    [
-    784.4,
-    819.7,
-    861.3,
-    911.0,
-    971.8
+    903.1,
+    943.6,
+    991.2,
+    1048.1,
+    1117.7
    ],
    [
-    630.9,
-    651.4,
-    674.8,
-    701.8,
-    733.4
+    731.0,
+    754.5,
+    781.4,
+    812.4,
+    848.8
    ],
    [
-    516.7,
-    528.7,
-    541.9,
-    556.7,
-    573.6
+    602.6,
+    616.4,
+    631.7,
+    648.8,
+    668.3
    ],
    [
-    428.9,
-    435.6,
-    442.9,
-    450.9,
-    459.6
+    503.6,
+    511.5,
+    519.9,
+    529.2,
+    539.3
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 53.5,
-  "implied_ebit_margin_pct": 33.6,
+  "implied_first_year_growth_pct": 49.5,
+  "implied_ebit_margin_pct": 29.9,
+  "implied_discount_rate_pct": 9.1,
+  "implied_rate_note": "",
   "note": ""
  },
  "model": {
@@ -196,6 +203,8 @@
   "cash": 103.204,
   "invest": 0.0,
   "minority": 26.641,
-  "shares_cr": 18.97106354464752
+  "shares_cr": 18.97106354464752,
+  "roll": 1.0836022262509946,
+  "mid_year": true
  }
 }

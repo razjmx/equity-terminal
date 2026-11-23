@@ -3,8 +3,10 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 2459.4,
- "fair_value": 2309.1,
- "upside_pct": -6.1,
+ "fair_value": 2609.4,
+ "fair_low": 2220.3,
+ "fair_high": 3200.4,
+ "upside_pct": 6.1,
  "flags": [
   "growth path: first-year growth below terminal growth (path rises)"
  ],
@@ -26,7 +28,10 @@
   "ebit_margin_pct": 25.1,
   "margin_basis": "latest",
   "sales_to_capital": 3.41,
-  "roic_now_pct": 64.1
+  "roic_now_pct": 64.1,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.073
  },
  "projection_cr": [
   {
@@ -116,12 +121,12 @@
   "pv_share_of_ev_pct": 56.8
  },
  "bridge_cr": {
-  "enterprise_value": 806593.0,
+  "enterprise_value": 850772.0,
   "debt": 11283.0,
   "cash": 41373.0,
   "investments": 0.0,
   "minority": 1238.0,
-  "equity_value": 835445.0,
+  "equity_value": 879624.0,
   "shares_cr": 361.809,
   "market_cap": 889832.0
  },
@@ -142,45 +147,47 @@
   ],
   "fair_value": [
    [
-    3102.0,
-    3381.3,
-    3758.0,
-    4296.5,
+    3476.2,
+    3789.6,
+    4212.2,
+    4816.4,
     null
    ],
    [
-    2503.7,
-    2654.8,
-    2843.5,
-    3086.9,
-    3414.6
+    2817.4,
+    2987.8,
+    3200.4,
+    3474.7,
+    3844.0
    ],
    [
-    2110.4,
-    2201.2,
-    2309.1,
-    2440.0,
-    2603.2
+    2384.6,
+    2487.3,
+    2609.4,
+    2757.7,
+    2942.4
    ],
    [
-    1831.4,
-    1889.9,
-    1956.9,
-    2035.1,
-    2127.8
+    2077.6,
+    2144.0,
+    2220.3,
+    2309.2,
+    2414.6
    ],
    [
-    1622.6,
-    1662.2,
-    1706.4,
-    1756.5,
-    1813.7
+    1847.9,
+    1893.1,
+    1943.7,
+    2000.8,
+    2066.2
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 6.7,
-  "implied_ebit_margin_pct": 26.7,
+  "implied_first_year_growth_pct": 3.9,
+  "implied_ebit_margin_pct": 23.7,
+  "implied_discount_rate_pct": 11.6,
+  "implied_rate_note": "",
   "note": ""
  },
  "model": {
@@ -198,6 +205,8 @@
   "cash": 41373.0,
   "invest": 0.0,
   "minority": 1238.0,
-  "shares_cr": 361.8087313705782
+  "shares_cr": 361.8087313705782,
+  "roll": 1.0733213607886856,
+  "mid_year": true
  }
 }

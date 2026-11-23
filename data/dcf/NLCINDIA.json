@@ -4,6 +4,8 @@
  "status": "not meaningful",
  "price": 227.63,
  "fair_value": null,
+ "fair_low": null,
+ "fair_high": null,
  "upside_pct": null,
  "flags": [
   "growth gap: 2-year growth differs from 3-year CAGR (2.7%) by over 10 points",
@@ -28,7 +30,10 @@
   "ebit_margin_pct": 20.4,
   "margin_basis": "latest",
   "sales_to_capital": 0.5,
-  "roic_now_pct": 5.1
+  "roic_now_pct": 5.1,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.089
  },
  "projection_cr": [
   {
@@ -118,12 +123,12 @@
   "pv_share_of_ev_pct": 167.1
  },
  "bridge_cr": {
-  "enterprise_value": 18916.0,
+  "enterprise_value": 19882.0,
   "debt": 27892.0,
   "cash": 713.0,
-  "investments": 0.0,
+  "investments": 35.0,
   "minority": 3749.0,
-  "equity_value": -12012.0,
+  "equity_value": -11011.0,
   "shares_cr": 138.664,
   "market_cap": 31564.0
  },
@@ -144,45 +149,47 @@
   ],
   "fair_value": [
    [
-    14.6,
-    16.3,
+    26.9,
+    28.9,
     null,
     null,
     null
    ],
    [
-    -42.8,
-    -42.1,
-    -41.3,
-    -40.5,
+    -37.2,
+    -36.4,
+    -35.5,
+    -34.6,
     null
    ],
    [
-    -86.7,
-    -86.7,
     -86.6,
     -86.5,
-    -86.4
+    -86.5,
+    -86.4,
+    -86.2
    ],
    [
-    -120.9,
-    -121.4,
-    -121.8,
-    -122.3,
-    -122.7
+    -125.2,
+    -125.7,
+    -126.2,
+    -126.7,
+    -127.2
    ],
    [
-    -147.9,
-    -148.7,
-    -149.5,
-    -150.3,
-    -151.1
+    -155.8,
+    -156.8,
+    -157.7,
+    -158.6,
+    -159.5
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 31.5,
+  "implied_ebit_margin_pct": 30.5,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "not meaningful",
   "note": "growth outside -10% to 60%"
  },
  "model": {
@@ -198,8 +205,10 @@
   "roic_cap": 0.2,
   "debt": 27891.78,
   "cash": 713.36,
-  "invest": 0.0,
+  "invest": 35.11,
   "minority": 3749.25,
-  "shares_cr": 138.66367319597595
+  "shares_cr": 138.66367319597595,
+  "roll": 1.0888674582237372,
+  "mid_year": true
  }
 }

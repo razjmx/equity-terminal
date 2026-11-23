@@ -3,8 +3,10 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 3541.0,
- "fair_value": 1532.8,
- "upside_pct": -56.7,
+ "fair_value": 1775.9,
+ "fair_low": 1569.7,
+ "fair_high": 2046.2,
+ "upside_pct": -49.8,
  "flags": [
   "margin: very high EBIT margin (74%)",
   "invested capital: not positive, sales-to-capital set to 1.5",
@@ -29,7 +31,10 @@
   "ebit_margin_pct": 74.4,
   "margin_basis": "latest",
   "sales_to_capital": 1.5,
-  "roic_now_pct": null
+  "roic_now_pct": null,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.09
  },
  "projection_cr": [
   {
@@ -119,12 +124,12 @@
   "pv_share_of_ev_pct": 55.5
  },
  "bridge_cr": {
-  "enterprise_value": 35779.0,
+  "enterprise_value": 38185.0,
   "debt": 5.0,
   "cash": 3236.0,
-  "investments": 0.0,
+  "investments": 60.0,
   "minority": 0.0,
-  "equity_value": 39011.0,
+  "equity_value": 41476.0,
   "shares_cr": 25.451,
   "market_cap": 90123.0
  },
@@ -145,45 +150,47 @@
   ],
   "fair_value": [
    [
-    1925.2,
-    2006.5,
-    2100.9,
-    2212.2,
-    2346.3
+    2213.8,
+    2307.5,
+    2416.3,
+    2544.7,
+    2699.3
    ],
    [
-    1657.4,
-    1711.5,
-    1772.5,
-    1842.1,
-    1922.6
+    1913.0,
+    1975.6,
+    2046.2,
+    2126.8,
+    2220.1
    ],
    [
-    1453.9,
-    1491.4,
-    1532.8,
-    1578.8,
-    1630.5
+    1684.1,
+    1727.8,
+    1775.9,
+    1829.4,
+    1889.5
    ],
    [
-    1294.1,
-    1321.0,
-    1350.1,
-    1381.8,
-    1416.6
+    1504.3,
+    1535.7,
+    1569.7,
+    1606.7,
+    1647.4
    ],
    [
-    1165.5,
-    1185.3,
-    1206.4,
-    1229.0,
-    1253.3
+    1359.3,
+    1382.5,
+    1407.3,
+    1433.8,
+    1462.3
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 52.6,
+  "implied_first_year_growth_pct": 48.5,
   "implied_ebit_margin_pct": null,
+  "implied_discount_rate_pct": 10.2,
+  "implied_rate_note": "",
   "note": "; margin outside 0% to 60%"
  },
  "model": {
@@ -199,8 +206,10 @@
   "roic_cap": 0.2,
   "debt": 4.76,
   "cash": 3236.26,
-  "invest": 0.0,
+  "invest": 59.97,
   "minority": 0.0,
-  "shares_cr": 25.45140993662807
+  "shares_cr": 25.45140993662807,
+  "roll": 1.0897340576661232,
+  "mid_year": true
  }
 }

@@ -4,6 +4,8 @@
  "status": "not meaningful",
  "price": 321.75,
  "fair_value": null,
+ "fair_low": null,
+ "fair_high": null,
  "upside_pct": null,
  "flags": [
   "shares: count differs from Yahoo shares outstanding by more than 10%",
@@ -30,7 +32,10 @@
   "ebit_margin_pct": 2.2,
   "margin_basis": "latest",
   "sales_to_capital": 0.5,
-  "roic_now_pct": 0.6
+  "roic_now_pct": 0.6,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.082
  },
  "projection_cr": [
   {
@@ -120,12 +125,12 @@
   "pv_share_of_ev_pct": 172.0
  },
  "bridge_cr": {
-  "enterprise_value": 113.0,
+  "enterprise_value": 119.0,
   "debt": 1305.0,
   "cash": 62.0,
-  "investments": 0.0,
+  "investments": 33.0,
   "minority": 0.0,
-  "equity_value": -1130.0,
+  "equity_value": -1090.0,
   "shares_cr": 46.485,
   "market_cap": 14956.0
  },
@@ -146,45 +151,47 @@
   ],
   "fair_value": [
    [
-    -21.4,
-    -22.5,
-    -23.5,
-    -24.7,
-    -25.9
-   ],
-   [
     -22.1,
-    -23.0,
-    -24.0,
-    -25.1,
-    -26.3
-   ],
-   [
-    -22.5,
-    -23.4,
-    -24.3,
-    -25.3,
-    -26.4
-   ],
-   [
-    -22.9,
-    -23.7,
+    -23.3,
     -24.5,
-    -25.5,
-    -26.5
+    -25.8,
+    -27.2
    ],
    [
-    -23.1,
+    -22.8,
     -23.9,
-    -24.7,
+    -25.0,
+    -26.3,
+    -27.6
+   ],
+   [
+    -23.3,
+    -24.3,
+    -25.4,
+    -26.6,
+    -27.8
+   ],
+   [
+    -23.7,
+    -24.6,
     -25.6,
-    -26.6
+    -26.7,
+    -27.9
+   ],
+   [
+    -24.0,
+    -24.9,
+    -25.8,
+    -26.8,
+    -28.0
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 58.3,
+  "implied_ebit_margin_pct": 52.6,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "not meaningful",
   "note": "growth outside -10% to 60%"
  },
  "model": {
@@ -200,8 +207,10 @@
   "roic_cap": 0.2,
   "debt": 1304.8031,
   "cash": 62.232,
-  "invest": 0.0,
+  "invest": 32.8863,
   "minority": 0.0,
-  "shares_cr": 46.48463897062937
+  "shares_cr": 46.48463897062937,
+  "roll": 1.0818427429260868,
+  "mid_year": true
  }
 }

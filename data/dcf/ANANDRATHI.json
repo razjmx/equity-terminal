@@ -3,8 +3,10 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 2361.5,
- "fair_value": 887.6,
- "upside_pct": -62.4,
+ "fair_value": 1001.4,
+ "fair_low": 831.4,
+ "fair_high": 1263.2,
+ "upside_pct": -57.6,
  "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
@@ -24,7 +26,10 @@
   "ebit_margin_pct": 38.9,
   "margin_basis": "latest",
   "sales_to_capital": 3.43,
-  "roic_now_pct": 100.1
+  "roic_now_pct": 100.1,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.073
  },
  "projection_cr": [
   {
@@ -114,12 +119,12 @@
   "pv_share_of_ev_pct": 66.2
  },
  "bridge_cr": {
-  "enterprise_value": 14075.0,
+  "enterprise_value": 14840.0,
   "debt": 83.0,
   "cash": 761.0,
   "investments": 0.0,
   "minority": 14.0,
-  "equity_value": 14738.0,
+  "equity_value": 15504.0,
   "shares_cr": 16.604,
   "market_cap": 39211.0
  },
@@ -140,45 +145,47 @@
   ],
   "fair_value": [
    [
-    1236.0,
-    1363.1,
-    1535.8,
-    1785.5,
+    1383.2,
+    1525.6,
+    1719.2,
+    1999.0,
     null
    ],
    [
-    970.7,
-    1038.7,
-    1124.0,
-    1234.6,
-    1384.7
+    1090.6,
+    1167.2,
+    1263.2,
+    1387.7,
+    1556.7
    ],
    [
-    798.7,
-    839.3,
-    887.6,
-    946.5,
-    1020.2
+    900.9,
+    946.8,
+    1001.4,
+    1068.0,
+    1151.3
    ],
    [
-    678.2,
-    704.2,
-    734.1,
-    769.0,
-    810.5
+    767.8,
+    797.4,
+    831.4,
+    871.0,
+    918.2
    ],
    [
-    589.0,
-    606.6,
-    626.3,
-    648.6,
-    674.1
+    669.3,
+    689.4,
+    711.9,
+    737.3,
+    766.4
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 50.0,
+  "implied_first_year_growth_pct": 46.9,
   "implied_ebit_margin_pct": null,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "below 8.6%",
   "note": "; margin outside 0% to 60%"
  },
  "model": {
@@ -196,6 +203,8 @@
   "cash": 760.6542,
   "invest": 0.0,
   "minority": 13.701,
-  "shares_cr": 16.60412630751641
+  "shares_cr": 16.60412630751641,
+  "roll": 1.0725185461268207,
+  "mid_year": true
  }
 }

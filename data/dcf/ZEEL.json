@@ -3,8 +3,10 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 71.7,
- "fair_value": 27.3,
- "upside_pct": -61.9,
+ "fair_value": 30.1,
+ "fair_low": 29.9,
+ "fair_high": 30.3,
+ "upside_pct": -58.1,
  "flags": [
   "growth path: first-year growth below terminal growth (path rises)",
   "low return: ROIC 1.2% below WACC 14.2%"
@@ -27,7 +29,10 @@
   "ebit_margin_pct": 1.8,
   "margin_basis": "latest",
   "sales_to_capital": 0.87,
-  "roic_now_pct": 1.2
+  "roic_now_pct": 1.2,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.093
  },
  "projection_cr": [
   {
@@ -114,15 +119,15 @@
  "terminal": {
   "roic_pct": 14.2,
   "fcff_cr": 67.0,
-  "pv_share_of_ev_pct": 97.2
+  "pv_share_of_ev_pct": 97.1
  },
  "bridge_cr": {
-  "enterprise_value": 239.0,
+  "enterprise_value": 255.0,
   "debt": 265.0,
   "cash": 2646.0,
-  "investments": 0.0,
+  "investments": 3.0,
   "minority": -2.0,
-  "equity_value": 2622.0,
+  "equity_value": 2641.0,
   "shares_cr": 96.052,
   "market_cap": 6887.0
  },
@@ -143,52 +148,54 @@
   ],
   "fair_value": [
    [
-    29.0,
-    28.4,
-    27.8,
-    27.2,
-    26.6
+    32.0,
+    31.3,
+    30.6,
+    29.9,
+    29.3
    ],
    [
-    28.6,
-    28.1,
-    27.5,
-    27.0,
-    26.4
+    31.6,
+    30.9,
+    30.3,
+    29.7,
+    29.0
    ],
    [
-    28.3,
-    27.8,
-    27.3,
-    26.8,
-    26.3
+    31.2,
+    30.7,
+    30.1,
+    29.5,
+    28.8
    ],
    [
-    28.1,
-    27.6,
-    27.1,
-    26.6,
-    26.2
+    31.0,
+    30.4,
+    29.9,
+    29.3,
+    28.7
    ],
    [
-    27.9,
-    27.5,
-    27.0,
-    26.6,
-    26.1
+    30.8,
+    30.3,
+    29.7,
+    29.2,
+    28.7
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 11.9,
+  "implied_ebit_margin_pct": 9.9,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
  },
  "model": {
   "rev": 8088.0,
   "margin": 0.018000000000000002,
   "tax": 0.25,
-  "s2c": 0.8651562800847186,
+  "s2c": 0.8654154807507114,
   "g1": -0.03231483487722897,
   "wacc": 0.14151797347563477,
   "terminal_g": 0.065,
@@ -197,8 +204,10 @@
   "roic_cap": 0.2,
   "debt": 265.1,
   "cash": 2646.5,
-  "invest": 0.0,
+  "invest": 2.8,
   "minority": -1.8,
-  "shares_cr": 96.05194264993027
+  "shares_cr": 96.05194264993027,
+  "roll": 1.093123426015011,
+  "mid_year": true
  }
 }

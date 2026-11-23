@@ -3,8 +3,10 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "price": 1550.0,
- "fair_value": 448.2,
- "upside_pct": -71.1,
+ "fair_value": 519.3,
+ "fair_low": 460.6,
+ "fair_high": 591.0,
+ "upside_pct": -66.5,
  "flags": [
   "growth path: first-year growth below terminal growth (path rises)",
   "low return: ROIC 6.5% below WACC 11.5%"
@@ -27,7 +29,10 @@
   "ebit_margin_pct": 12.0,
   "margin_basis": "latest",
   "sales_to_capital": 0.72,
-  "roic_now_pct": 6.5
+  "roic_now_pct": 6.5,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.082
  },
  "projection_cr": [
   {
@@ -60,7 +65,7 @@
    "revenue": 14863.0,
    "nopat": 1338.0,
    "reinvestment": 270.0,
-   "fcff": 1067.0
+   "fcff": 1068.0
   },
   {
    "year": 5,
@@ -117,12 +122,12 @@
   "pv_share_of_ev_pct": 50.8
  },
  "bridge_cr": {
-  "enterprise_value": 10542.0,
+  "enterprise_value": 11133.0,
   "debt": 7406.0,
   "cash": 5422.0,
-  "investments": 0.0,
+  "investments": 2.0,
   "minority": 144.0,
-  "equity_value": 8414.0,
+  "equity_value": 9007.0,
   "shares_cr": 18.773,
   "market_cap": 29098.0
  },
@@ -143,52 +148,54 @@
   ],
   "fair_value": [
    [
-    596.8,
-    595.9,
-    595.0,
-    594.1,
-    593.2
+    681.9,
+    680.9,
+    679.8,
+    678.8,
+    677.9
    ],
    [
-    517.5,
-    515.6,
-    513.7,
-    511.8,
-    510.0
+    595.3,
+    593.1,
+    591.0,
+    588.9,
+    586.8
    ],
    [
-    453.3,
-    450.7,
-    448.2,
-    445.7,
-    443.1
+    525.1,
+    522.2,
+    519.3,
+    516.4,
+    513.5
    ],
    [
-    400.4,
-    397.5,
-    394.5,
-    391.5,
-    388.5
+    467.4,
+    464.0,
+    460.6,
+    457.1,
+    453.7
    ],
    [
-    356.4,
-    353.1,
-    349.8,
-    346.6,
-    343.2
+    419.2,
+    415.4,
+    411.6,
+    407.8,
+    404.0
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 27.4,
+  "implied_ebit_margin_pct": 25.2,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
  },
  "model": {
   "rev": 14467.0,
   "margin": 0.12,
   "tax": 0.25,
-  "s2c": 0.7195006714079674,
+  "s2c": 0.7195722457100224,
   "g1": 0.004628607099596005,
   "wacc": 0.1152746927205314,
   "terminal_g": 0.065,
@@ -197,8 +204,10 @@
   "roic_cap": 0.2,
   "debt": 7406.0,
   "cash": 5422.0,
-  "invest": 0.0,
+  "invest": 2.0,
   "minority": 144.0,
-  "shares_cr": 18.772880218838708
+  "shares_cr": 18.772880218838708,
+  "roll": 1.0824167102319233,
+  "mid_year": true
  }
 }
