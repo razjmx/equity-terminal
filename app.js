@@ -47,6 +47,8 @@ function lineChart(cv,series,opt={}){
 async function boot(){
   const [uni,met,dcf,rsk,mkt]=await Promise.all([table('data/universe.csv'),table('data/metrics_summary.csv'),table('data/dcf_summary.csv'),table('data/risk_summary.csv'),get('data/market.json','json')]);
   D.uni=uni;D.mkt=mkt;
+  try{const st=await get('data/last_updated.json','json');if(st&&st.utc){const d=new Date(st.utc.replace(' ','T')+':00Z');
+    document.querySelector('footer').insertAdjacentHTML('afterbegin','Data updated '+d.toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Kolkata'})+' IST · latest prices as of '+esc(st.price_date||'')+'<br>')}}catch(e){}
   const by=(rows)=>{const o={};rows.forEach(r=>o[r.symbol]=r);return o};
   D.met=by(met);D.dcf=by(dcf);D.rsk=by(rsk);
   D.syms=uni.map(u=>u.symbol);
