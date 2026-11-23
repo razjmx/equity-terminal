@@ -1,0 +1,151 @@
+{
+ "symbol": "ADANIGREEN",
+ "latest_fy": "2026-03-31",
+ "price": 1394.1,
+ "fair_value": -341.6,
+ "upside_pct": -124.5,
+ "flags": [
+  "very high EBIT margin (49%)",
+  "negative equity value"
+ ],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 1.99,
+  "beta_used": 1.66,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 16.35,
+  "wacc_pct": 13.41,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 15.6,
+  "first_year_growth_pct": 15.6,
+  "ebit_margin_pct": 49.2,
+  "margin_basis": "latest",
+  "sales_to_capital": 0.5
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 14252.0,
+   "nopat": 5259.0,
+   "reinvestment": 3851.0,
+   "fcff": 1407.0
+  },
+  {
+   "year": 2,
+   "revenue": 16153.0,
+   "nopat": 5961.0,
+   "reinvestment": 3803.0,
+   "fcff": 2157.0
+  },
+  {
+   "year": 3,
+   "revenue": 17940.0,
+   "nopat": 6620.0,
+   "reinvestment": 3574.0,
+   "fcff": 3046.0
+  },
+  {
+   "year": 4,
+   "revenue": 19515.0,
+   "nopat": 7201.0,
+   "reinvestment": 3151.0,
+   "fcff": 4051.0
+  },
+  {
+   "year": 5,
+   "revenue": 20784.0,
+   "nopat": 7669.0,
+   "reinvestment": 2537.0,
+   "fcff": 5132.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 18.5,
+  "fcff_cr": 5290.0,
+  "pv_share_of_ev_pct": 80.0
+ },
+ "bridge_cr": {
+  "enterprise_value": 51008.0,
+  "debt": 101440.0,
+  "cash": 4073.0,
+  "minority": 9914.0,
+  "equity_value": -56273.0,
+  "shares_cr": 164.718,
+  "market_cap": 229633.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   11.41,
+   12.41,
+   13.41,
+   14.41,
+   15.41
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    -250.9,
+    -229.7,
+    -204.4,
+    -173.5,
+    -135.0
+   ],
+   [
+    -313.5,
+    -300.1,
+    -284.7,
+    -266.6,
+    -245.0
+   ],
+   [
+    -360.1,
+    -351.4,
+    -341.6,
+    -330.5,
+    -317.6
+   ],
+   [
+    -396.1,
+    -390.4,
+    -384.1,
+    -377.0,
+    -369.0
+   ],
+   [
+    -424.7,
+    -421.0,
+    -416.9,
+    -412.4,
+    -407.4
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 12326.0,
+  "margin": 0.49200000000000005,
+  "tax": 0.25,
+  "s2c": 0.5,
+  "g1": 0.15623369426270095,
+  "wacc": 0.13408785351909144,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 101440.0,
+  "cash": 4073.0,
+  "minority": 9914.0,
+  "shares_cr": 164.71761170418193
+ }
+}

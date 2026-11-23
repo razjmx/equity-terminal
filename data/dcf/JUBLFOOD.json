@@ -1,0 +1,148 @@
+{
+ "symbol": "JUBLFOOD",
+ "latest_fy": "2026-03-31",
+ "price": 425.0,
+ "fair_value": 32.2,
+ "upside_pct": -92.4,
+ "flags": [],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 0.87,
+  "beta_used": 0.91,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 12.22,
+  "wacc_pct": 11.41,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 26.4,
+  "first_year_growth_pct": 26.4,
+  "ebit_margin_pct": 10.6,
+  "margin_basis": "latest",
+  "sales_to_capital": 1.3
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 11278.0,
+   "nopat": 897.0,
+   "reinvestment": 1809.0,
+   "fcff": -912.0
+  },
+  {
+   "year": 2,
+   "revenue": 13692.0,
+   "nopat": 1089.0,
+   "reinvestment": 1855.0,
+   "fcff": -767.0
+  },
+  {
+   "year": 3,
+   "revenue": 15943.0,
+   "nopat": 1267.0,
+   "reinvestment": 1730.0,
+   "fcff": -462.0
+  },
+  {
+   "year": 4,
+   "revenue": 17771.0,
+   "nopat": 1413.0,
+   "reinvestment": 1405.0,
+   "fcff": 8.0
+  },
+  {
+   "year": 5,
+   "revenue": 18926.0,
+   "nopat": 1505.0,
+   "reinvestment": 888.0,
+   "fcff": 617.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 11.4,
+  "fcff_cr": 689.0,
+  "pv_share_of_ev_pct": 120.8
+ },
+ "bridge_cr": {
+  "enterprise_value": 6779.0,
+  "debt": 4902.0,
+  "cash": 335.0,
+  "minority": 96.0,
+  "equity_value": 2116.0,
+  "shares_cr": 65.767,
+  "market_cap": 27951.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   9.41,
+   10.41,
+   11.41,
+   12.41,
+   13.41
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    90.6,
+    97.3,
+    106.1,
+    118.1,
+    null
+   ],
+   [
+    48.4,
+    49.3,
+    50.3,
+    51.2,
+    52.2
+   ],
+   [
+    30.8,
+    31.5,
+    32.2,
+    32.9,
+    33.6
+   ],
+   [
+    16.4,
+    16.8,
+    17.3,
+    17.8,
+    18.3
+   ],
+   [
+    4.3,
+    4.6,
+    4.9,
+    5.3,
+    5.6
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 8924.4,
+  "margin": 0.106,
+  "tax": 0.25,
+  "s2c": 1.301051859987786,
+  "g1": 0.2637334363808681,
+  "wacc": 0.1140628131988517,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 4902.216,
+  "cash": 334.938,
+  "minority": 95.527,
+  "shares_cr": 65.76745773176471
+ }
+}

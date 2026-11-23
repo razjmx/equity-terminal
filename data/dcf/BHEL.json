@@ -1,0 +1,148 @@
+{
+ "symbol": "BHEL",
+ "latest_fy": "2026-03-31",
+ "price": 420.8,
+ "fair_value": 8.8,
+ "upside_pct": -97.9,
+ "flags": [],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 1.84,
+  "beta_used": 1.56,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 15.8,
+  "wacc_pct": 15.32,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 18.8,
+  "first_year_growth_pct": 18.8,
+  "ebit_margin_pct": 5.0,
+  "margin_basis": "latest",
+  "sales_to_capital": 1.38
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 38450.0,
+   "nopat": 1442.0,
+   "reinvestment": 4420.0,
+   "fcff": -2978.0
+  },
+  {
+   "year": 2,
+   "revenue": 44502.0,
+   "nopat": 1669.0,
+   "reinvestment": 4392.0,
+   "fcff": -2723.0
+  },
+  {
+   "year": 3,
+   "revenue": 50136.0,
+   "nopat": 1880.0,
+   "reinvestment": 4089.0,
+   "fcff": -2209.0
+  },
+  {
+   "year": 4,
+   "revenue": 54939.0,
+   "nopat": 2060.0,
+   "reinvestment": 3486.0,
+   "fcff": -1425.0
+  },
+  {
+   "year": 5,
+   "revenue": 58510.0,
+   "nopat": 2194.0,
+   "reinvestment": 2592.0,
+   "fcff": -397.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 15.3,
+  "fcff_cr": 1345.0,
+  "pv_share_of_ev_pct": 1826.8
+ },
+ "bridge_cr": {
+  "enterprise_value": 410.0,
+  "debt": 8187.0,
+  "cash": 10849.0,
+  "minority": 0.0,
+  "equity_value": 3072.0,
+  "shares_cr": 348.206,
+  "market_cap": 146525.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   13.32,
+   14.32,
+   15.32,
+   16.32,
+   17.32
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    14.2,
+    13.8,
+    13.5,
+    13.2,
+    12.9
+   ],
+   [
+    11.7,
+    11.3,
+    11.0,
+    10.6,
+    10.3
+   ],
+   [
+    9.5,
+    9.2,
+    8.8,
+    8.5,
+    8.1
+   ],
+   [
+    7.8,
+    7.4,
+    7.0,
+    6.7,
+    6.3
+   ],
+   [
+    6.3,
+    5.9,
+    5.5,
+    5.1,
+    4.7
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 32359.8,
+  "margin": 0.05,
+  "tax": 0.25,
+  "s2c": 1.3779415572028126,
+  "g1": 0.18820365116596283,
+  "wacc": 0.15317192861185408,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 8186.95,
+  "cash": 10849.4,
+  "minority": 0.0,
+  "shares_cr": 348.2063175057034
+ }
+}

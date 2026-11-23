@@ -1,0 +1,150 @@
+{
+ "symbol": "TATASTEEL",
+ "latest_fy": "2026-03-31",
+ "price": 161.69,
+ "fair_value": 55.1,
+ "upside_pct": -65.9,
+ "flags": [
+  "first-year growth below terminal growth (growth path rises)"
+ ],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 1.24,
+  "beta_used": 1.16,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 13.58,
+  "wacc_pct": 11.44,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 0.7,
+  "first_year_growth_pct": 0.7,
+  "ebit_margin_pct": 9.7,
+  "margin_basis": "latest",
+  "sales_to_capital": 1.26
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 231807.0,
+   "nopat": 16864.0,
+   "reinvestment": 1199.0,
+   "fcff": 15665.0
+  },
+  {
+   "year": 2,
+   "revenue": 236716.0,
+   "nopat": 17221.0,
+   "reinvestment": 3890.0,
+   "fcff": 13331.0
+  },
+  {
+   "year": 3,
+   "revenue": 245187.0,
+   "nopat": 17837.0,
+   "reinvestment": 6712.0,
+   "fcff": 11125.0
+  },
+  {
+   "year": 4,
+   "revenue": 257543.0,
+   "nopat": 18736.0,
+   "reinvestment": 9790.0,
+   "fcff": 8946.0
+  },
+  {
+   "year": 5,
+   "revenue": 274283.0,
+   "nopat": 19954.0,
+   "reinvestment": 13264.0,
+   "fcff": 6690.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 11.4,
+  "fcff_cr": 9173.0,
+  "pv_share_of_ev_pct": 71.8
+ },
+ "bridge_cr": {
+  "enterprise_value": 150651.0,
+  "debt": 92382.0,
+  "cash": 12072.0,
+  "minority": 1613.0,
+  "equity_value": 68729.0,
+  "shares_cr": 1247.184,
+  "market_cap": 201657.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   9.44,
+   10.44,
+   11.44,
+   12.44,
+   13.44
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    83.6,
+    84.3,
+    85.0,
+    85.7,
+    null
+   ],
+   [
+    67.6,
+    68.1,
+    68.5,
+    69.0,
+    69.6
+   ],
+   [
+    54.5,
+    54.8,
+    55.1,
+    55.4,
+    55.8
+   ],
+   [
+    43.6,
+    43.7,
+    43.9,
+    44.1,
+    44.3
+   ],
+   [
+    34.3,
+    34.4,
+    34.5,
+    34.6,
+    34.7
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 230293.5,
+  "margin": 0.09699999999999999,
+  "tax": 0.25,
+  "s2c": 1.2620399294837892,
+  "g1": 0.006571719295380474,
+  "wacc": 0.11436903167116716,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 92381.68,
+  "cash": 12072.14,
+  "minority": 1612.8,
+  "shares_cr": 1247.184329440287
+ }
+}

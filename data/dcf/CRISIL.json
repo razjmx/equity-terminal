@@ -1,0 +1,148 @@
+{
+ "symbol": "CRISIL",
+ "latest_fy": "2025-12-31",
+ "price": 4044.0,
+ "fair_value": 1768.5,
+ "upside_pct": -56.3,
+ "flags": [],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 0.59,
+  "beta_used": 0.73,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 11.19,
+  "wacc_pct": 11.15,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 7.8,
+  "first_year_growth_pct": 7.8,
+  "ebit_margin_pct": 26.2,
+  "margin_basis": "latest",
+  "sales_to_capital": 1.85
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 3934.0,
+   "nopat": 773.0,
+   "reinvestment": 154.0,
+   "fcff": 619.0
+  },
+  {
+   "year": 2,
+   "revenue": 4228.0,
+   "nopat": 831.0,
+   "reinvestment": 160.0,
+   "fcff": 671.0
+  },
+  {
+   "year": 3,
+   "revenue": 4531.0,
+   "nopat": 890.0,
+   "reinvestment": 164.0,
+   "fcff": 726.0
+  },
+  {
+   "year": 4,
+   "revenue": 4840.0,
+   "nopat": 951.0,
+   "reinvestment": 168.0,
+   "fcff": 783.0
+  },
+  {
+   "year": 5,
+   "revenue": 5155.0,
+   "nopat": 1013.0,
+   "reinvestment": 171.0,
+   "fcff": 842.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 20.0,
+  "fcff_cr": 728.0,
+  "pv_share_of_ev_pct": 77.8
+ },
+ "bridge_cr": {
+  "enterprise_value": 11877.0,
+  "debt": 297.0,
+  "cash": 1353.0,
+  "minority": 0.0,
+  "equity_value": 12933.0,
+  "shares_cr": 7.313,
+  "market_cap": 29574.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   9.15,
+   10.15,
+   11.15,
+   12.15,
+   13.15
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    2359.1,
+    2610.1,
+    2953.9,
+    3455.2,
+    null
+   ],
+   [
+    1890.5,
+    2026.8,
+    2199.1,
+    2424.5,
+    2732.9
+   ],
+   [
+    1587.5,
+    1669.7,
+    1768.5,
+    1890.0,
+    2043.3
+   ],
+   [
+    1375.4,
+    1428.4,
+    1489.9,
+    1562.5,
+    1649.6
+   ],
+   [
+    1218.4,
+    1254.2,
+    1294.7,
+    1341.1,
+    1394.8
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": 58.7,
+  "note": ""
+ },
+ "model": {
+  "rev": 3649.0,
+  "margin": 0.262,
+  "tax": 0.25,
+  "s2c": 1.8451845184518452,
+  "g1": 0.07809218962968845,
+  "wacc": 0.11146692788275793,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 296.81,
+  "cash": 1352.67,
+  "minority": 0.0,
+  "shares_cr": 7.3130016411473795
+ }
+}

@@ -1,0 +1,148 @@
+{
+ "symbol": "INOXINDIA",
+ "latest_fy": "2026-03-31",
+ "price": 2083.0,
+ "fair_value": 395.8,
+ "upside_pct": -81.0,
+ "flags": [],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 1.0,
+  "beta_used": 1.0,
+  "beta_weeks": 153,
+  "cost_of_equity_pct": 12.69,
+  "wacc_pct": 12.67,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 18.5,
+  "first_year_growth_pct": 18.5,
+  "ebit_margin_pct": 19.9,
+  "margin_basis": "latest",
+  "sales_to_capital": 1.75
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 1838.0,
+   "nopat": 274.0,
+   "reinvestment": 163.0,
+   "fcff": 111.0
+  },
+  {
+   "year": 2,
+   "revenue": 2122.0,
+   "nopat": 317.0,
+   "reinvestment": 162.0,
+   "fcff": 155.0
+  },
+  {
+   "year": 3,
+   "revenue": 2387.0,
+   "nopat": 356.0,
+   "reinvestment": 151.0,
+   "fcff": 205.0
+  },
+  {
+   "year": 4,
+   "revenue": 2614.0,
+   "nopat": 390.0,
+   "reinvestment": 129.0,
+   "fcff": 261.0
+  },
+  {
+   "year": 5,
+   "revenue": 2783.0,
+   "nopat": 415.0,
+   "reinvestment": 97.0,
+   "fcff": 319.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 20.0,
+  "fcff_cr": 299.0,
+  "pv_share_of_ev_pct": 79.2
+ },
+ "bridge_cr": {
+  "enterprise_value": 3368.0,
+  "debt": 81.0,
+  "cash": 314.0,
+  "minority": 0.0,
+  "equity_value": 3601.0,
+  "shares_cr": 9.097,
+  "market_cap": 18948.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   10.67,
+   11.67,
+   12.67,
+   13.67,
+   14.67
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    506.6,
+    540.3,
+    581.8,
+    634.2,
+    702.7
+   ],
+   [
+    425.0,
+    446.0,
+    470.8,
+    500.6,
+    537.3
+   ],
+   [
+    366.2,
+    380.0,
+    395.8,
+    414.2,
+    435.9
+   ],
+   [
+    322.0,
+    331.3,
+    341.8,
+    353.7,
+    367.4
+   ],
+   [
+    287.4,
+    293.9,
+    301.1,
+    309.1,
+    318.0
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 1551.8,
+  "margin": 0.19899999999999998,
+  "tax": 0.25,
+  "s2c": 1.7536631081853504,
+  "g1": 0.18450782149110845,
+  "wacc": 0.12668803991057304,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 81.0404,
+  "cash": 313.7583,
+  "minority": 0.0,
+  "shares_cr": 9.096631194239079
+ }
+}

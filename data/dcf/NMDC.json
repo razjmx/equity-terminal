@@ -1,0 +1,148 @@
+{
+ "symbol": "NMDC",
+ "latest_fy": "2026-03-31",
+ "price": 66.98,
+ "fair_value": 109.5,
+ "upside_pct": 63.5,
+ "flags": [],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 1.31,
+  "beta_used": 1.21,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 13.85,
+  "wacc_pct": 13.15,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 22.7,
+  "first_year_growth_pct": 22.7,
+  "ebit_margin_pct": 27.4,
+  "margin_basis": "latest",
+  "sales_to_capital": 1.09
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 39348.0,
+   "nopat": 8086.0,
+   "reinvestment": 6667.0,
+   "fcff": 1419.0
+  },
+  {
+   "year": 2,
+   "revenue": 46687.0,
+   "nopat": 9594.0,
+   "reinvestment": 6721.0,
+   "fcff": 2873.0
+  },
+  {
+   "year": 3,
+   "revenue": 53503.0,
+   "nopat": 10995.0,
+   "reinvestment": 6243.0,
+   "fcff": 4752.0
+  },
+  {
+   "year": 4,
+   "revenue": 59147.0,
+   "nopat": 12155.0,
+   "reinvestment": 5170.0,
+   "fcff": 6985.0
+  },
+  {
+   "year": 5,
+   "revenue": 62992.0,
+   "nopat": 12945.0,
+   "reinvestment": 3521.0,
+   "fcff": 9424.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 20.0,
+  "fcff_cr": 9306.0,
+  "pv_share_of_ev_pct": 82.4
+ },
+ "bridge_cr": {
+  "enterprise_value": 91576.0,
+  "debt": 6407.0,
+  "cash": 11098.0,
+  "minority": 14.0,
+  "equity_value": 96254.0,
+  "shares_cr": 878.788,
+  "market_cap": 58861.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   11.15,
+   12.15,
+   13.15,
+   14.15,
+   15.15
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    140.4,
+    148.9,
+    159.1,
+    171.8,
+    187.8
+   ],
+   [
+    118.2,
+    123.6,
+    129.9,
+    137.4,
+    146.4
+   ],
+   [
+    101.8,
+    105.4,
+    109.5,
+    114.2,
+    119.7
+   ],
+   [
+    89.3,
+    91.8,
+    94.5,
+    97.6,
+    101.1
+   ],
+   [
+    79.4,
+    81.1,
+    83.0,
+    85.1,
+    87.4
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 32069.1,
+  "margin": 0.27399999999999997,
+  "tax": 0.25,
+  "s2c": 1.091863465229965,
+  "g1": 0.22699006177944292,
+  "wacc": 0.1314964878710907,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 6406.81,
+  "cash": 11098.16,
+  "minority": 13.59,
+  "shares_cr": 878.7878594923858
+ }
+}

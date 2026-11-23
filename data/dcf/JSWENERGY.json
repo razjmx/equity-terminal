@@ -1,0 +1,148 @@
+{
+ "symbol": "JSWENERGY",
+ "latest_fy": "2026-03-31",
+ "price": 504.65,
+ "fair_value": 251.7,
+ "upside_pct": -50.1,
+ "flags": [],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 1.09,
+  "beta_used": 1.06,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 13.02,
+  "wacc_pct": 10.17,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 28.8,
+  "first_year_growth_pct": 28.8,
+  "ebit_margin_pct": 38.4,
+  "margin_basis": "latest",
+  "sales_to_capital": 0.5
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 24078.0,
+   "nopat": 6934.0,
+   "reinvestment": 10772.0,
+   "fcff": -3837.0
+  },
+  {
+   "year": 2,
+   "revenue": 29672.0,
+   "nopat": 8546.0,
+   "reinvestment": 11189.0,
+   "fcff": -2643.0
+  },
+  {
+   "year": 3,
+   "revenue": 34912.0,
+   "nopat": 10055.0,
+   "reinvestment": 10478.0,
+   "fcff": -424.0
+  },
+  {
+   "year": 4,
+   "revenue": 39128.0,
+   "nopat": 11269.0,
+   "reinvestment": 8434.0,
+   "fcff": 2835.0
+  },
+  {
+   "year": 5,
+   "revenue": 41672.0,
+   "nopat": 12001.0,
+   "reinvestment": 5087.0,
+   "fcff": 6915.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 14.4,
+  "fcff_cr": 7012.0,
+  "pv_share_of_ev_pct": 99.8
+ },
+ "bridge_cr": {
+  "enterprise_value": 117796.0,
+  "debt": 76946.0,
+  "cash": 8109.0,
+  "minority": 2826.0,
+  "equity_value": 46132.0,
+  "shares_cr": 183.301,
+  "market_cap": 92503.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   8.17,
+   9.17,
+   10.17,
+   11.17,
+   12.17
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    671.8,
+    858.5,
+    null,
+    null,
+    null
+   ],
+   [
+    349.1,
+    427.2,
+    533.8,
+    688.5,
+    null
+   ],
+   [
+    165.4,
+    203.6,
+    251.7,
+    314.3,
+    399.7
+   ],
+   [
+    47.3,
+    67.3,
+    91.2,
+    120.4,
+    157.1
+   ],
+   [
+    -34.8,
+    -24.3,
+    -12.1,
+    2.1,
+    19.0
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": 52.6,
+  "note": ""
+ },
+ "model": {
+  "rev": 18692.1,
+  "margin": 0.384,
+  "tax": 0.25,
+  "s2c": 0.5,
+  "g1": 0.2881345036930465,
+  "wacc": 0.10173617567395177,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 76946.36,
+  "cash": 8109.01,
+  "minority": 2825.85,
+  "shares_cr": 183.30118564232637
+ }
+}

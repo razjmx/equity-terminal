@@ -1,0 +1,148 @@
+{
+ "symbol": "ZYDUSLIFE",
+ "latest_fy": "2026-03-31",
+ "price": 1199.3,
+ "fair_value": 509.4,
+ "upside_pct": -57.5,
+ "flags": [],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 0.56,
+  "beta_used": 0.71,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 11.09,
+  "wacc_pct": 10.68,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 18.5,
+  "first_year_growth_pct": 18.5,
+  "ebit_margin_pct": 21.7,
+  "margin_basis": "latest",
+  "sales_to_capital": 0.77
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 31668.0,
+   "nopat": 5154.0,
+   "reinvestment": 6415.0,
+   "fcff": -1261.0
+  },
+  {
+   "year": 2,
+   "revenue": 36582.0,
+   "nopat": 5954.0,
+   "reinvestment": 6369.0,
+   "fcff": -416.0
+  },
+  {
+   "year": 3,
+   "revenue": 41158.0,
+   "nopat": 6699.0,
+   "reinvestment": 5932.0,
+   "fcff": 766.0
+  },
+  {
+   "year": 4,
+   "revenue": 45070.0,
+   "nopat": 7335.0,
+   "reinvestment": 5071.0,
+   "fcff": 2264.0
+  },
+  {
+   "year": 5,
+   "revenue": 48000.0,
+   "nopat": 7812.0,
+   "reinvestment": 3798.0,
+   "fcff": 4014.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 12.6,
+  "fcff_cr": 4012.0,
+  "pv_share_of_ev_pct": 95.0
+ },
+ "bridge_cr": {
+  "enterprise_value": 60810.0,
+  "debt": 12496.0,
+  "cash": 4971.0,
+  "minority": 2471.0,
+  "equity_value": 50814.0,
+  "shares_cr": 99.75,
+  "market_cap": 119631.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   8.68,
+   9.68,
+   10.68,
+   11.68,
+   12.68
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    882.4,
+    991.9,
+    1150.5,
+    null,
+    null
+   ],
+   [
+    623.1,
+    669.0,
+    728.7,
+    809.6,
+    926.4
+   ],
+   [
+    464.6,
+    484.9,
+    509.4,
+    540.0,
+    579.3
+   ],
+   [
+    358.0,
+    366.1,
+    375.4,
+    386.2,
+    398.9
+   ],
+   [
+    284.2,
+    286.6,
+    289.0,
+    291.5,
+    294.0
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 26719.7,
+  "margin": 0.217,
+  "tax": 0.25,
+  "s2c": 0.7714363254735638,
+  "g1": 0.18520481741224848,
+  "wacc": 0.10679840192662819,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 12496.0,
+  "cash": 4971.1,
+  "minority": 2470.8,
+  "shares_cr": 99.75038219761527
+ }
+}

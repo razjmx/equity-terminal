@@ -1,0 +1,152 @@
+{
+ "symbol": "JWL",
+ "latest_fy": "2026-03-31",
+ "price": 185.96,
+ "fair_value": 30.6,
+ "upside_pct": -83.6,
+ "flags": [
+  "2-year growth -10.7% clamped to -5%",
+  "2-year growth differs from 3-year CAGR (12.1%) by over 10 points",
+  "first-year growth below terminal growth (growth path rises)"
+ ],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 1.7,
+  "beta_used": 1.47,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 15.29,
+  "wacc_pct": 14.34,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": -10.7,
+  "first_year_growth_pct": -5.0,
+  "ebit_margin_pct": 10.6,
+  "margin_basis": "latest",
+  "sales_to_capital": 0.87
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 2744.0,
+   "nopat": 218.0,
+   "reinvestment": -166.0,
+   "fcff": 384.0
+  },
+  {
+   "year": 2,
+   "revenue": 2685.0,
+   "nopat": 213.0,
+   "reinvestment": -67.0,
+   "fcff": 281.0
+  },
+  {
+   "year": 3,
+   "revenue": 2706.0,
+   "nopat": 215.0,
+   "reinvestment": 23.0,
+   "fcff": 192.0
+  },
+  {
+   "year": 4,
+   "revenue": 2804.0,
+   "nopat": 223.0,
+   "reinvestment": 113.0,
+   "fcff": 110.0
+  },
+  {
+   "year": 5,
+   "revenue": 2986.0,
+   "nopat": 237.0,
+   "reinvestment": 210.0,
+   "fcff": 28.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 14.3,
+  "fcff_cr": 138.0,
+  "pv_share_of_ev_pct": 54.4
+ },
+ "bridge_cr": {
+  "enterprise_value": 1660.0,
+  "debt": 996.0,
+  "cash": 651.0,
+  "minority": 8.0,
+  "equity_value": 1307.0,
+  "shares_cr": 42.737,
+  "market_cap": 7947.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   12.34,
+   13.34,
+   14.34,
+   15.34,
+   16.34
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    37.1,
+    37.0,
+    36.9,
+    36.8,
+    36.7
+   ],
+   [
+    33.7,
+    33.6,
+    33.5,
+    33.4,
+    33.3
+   ],
+   [
+    30.9,
+    30.7,
+    30.6,
+    30.4,
+    30.3
+   ],
+   [
+    28.4,
+    28.2,
+    28.1,
+    27.9,
+    27.7
+   ],
+   [
+    26.2,
+    26.0,
+    25.9,
+    25.7,
+    25.5
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 2888.1,
+  "margin": 0.106,
+  "tax": 0.25,
+  "s2c": 0.8689112804306234,
+  "g1": -0.05,
+  "wacc": 0.14336119351570775,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 996.4552,
+  "cash": 651.1066,
+  "minority": 8.0979,
+  "shares_cr": 42.737041978920196
+ }
+}

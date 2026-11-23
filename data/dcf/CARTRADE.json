@@ -1,0 +1,148 @@
+{
+ "symbol": "CARTRADE",
+ "latest_fy": "2026-03-31",
+ "price": 2617.1,
+ "fair_value": 425.3,
+ "upside_pct": -83.8,
+ "flags": [],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 1.06,
+  "beta_used": 1.04,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 12.93,
+  "wacc_pct": 12.86,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 25.8,
+  "first_year_growth_pct": 25.8,
+  "ebit_margin_pct": 28.5,
+  "margin_basis": "latest",
+  "sales_to_capital": 0.5
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 974.0,
+   "nopat": 208.0,
+   "reinvestment": 399.0,
+   "fcff": -191.0
+  },
+  {
+   "year": 2,
+   "revenue": 1178.0,
+   "nopat": 252.0,
+   "reinvestment": 408.0,
+   "fcff": -156.0
+  },
+  {
+   "year": 3,
+   "revenue": 1368.0,
+   "nopat": 292.0,
+   "reinvestment": 380.0,
+   "fcff": -88.0
+  },
+  {
+   "year": 4,
+   "revenue": 1523.0,
+   "nopat": 326.0,
+   "reinvestment": 310.0,
+   "fcff": 16.0
+  },
+  {
+   "year": 5,
+   "revenue": 1622.0,
+   "nopat": 347.0,
+   "reinvestment": 198.0,
+   "fcff": 149.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 12.9,
+  "fcff_cr": 183.0,
+  "pv_share_of_ev_pct": 120.1
+ },
+ "bridge_cr": {
+  "enterprise_value": 1306.0,
+  "debt": 140.0,
+  "cash": 1037.0,
+  "minority": 135.0,
+  "equity_value": 2068.0,
+  "shares_cr": 4.862,
+  "market_cap": 12723.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   10.86,
+   11.86,
+   12.86,
+   13.86,
+   14.86
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    514.5,
+    517.2,
+    519.8,
+    522.5,
+    525.3
+   ],
+   [
+    464.2,
+    466.1,
+    468.1,
+    470.1,
+    472.2
+   ],
+   [
+    422.4,
+    423.8,
+    425.3,
+    426.7,
+    428.2
+   ],
+   [
+    387.4,
+    388.4,
+    389.4,
+    390.4,
+    391.5
+   ],
+   [
+    357.8,
+    358.4,
+    359.0,
+    359.7,
+    360.3
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 774.5,
+  "margin": 0.285,
+  "tax": 0.25,
+  "s2c": 0.5,
+  "g1": 0.25773885466857216,
+  "wacc": 0.128635960012558,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 140.4294,
+  "cash": 1037.4626,
+  "minority": 135.0474,
+  "shares_cr": 4.861588429330174
+ }
+}

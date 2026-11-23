@@ -1,0 +1,148 @@
+{
+ "symbol": "SHRIPISTON",
+ "latest_fy": "2026-03-31",
+ "price": 4231.5,
+ "fair_value": 1109.5,
+ "upside_pct": -73.8,
+ "flags": [],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 1.06,
+  "beta_used": 1.04,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 12.94,
+  "wacc_pct": 12.37,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 20.4,
+  "first_year_growth_pct": 20.4,
+  "ebit_margin_pct": 16.6,
+  "margin_basis": "latest",
+  "sales_to_capital": 1.15
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 5307.0,
+   "nopat": 661.0,
+   "reinvestment": 782.0,
+   "fcff": -122.0
+  },
+  {
+   "year": 2,
+   "revenue": 6203.0,
+   "nopat": 772.0,
+   "reinvestment": 781.0,
+   "fcff": -9.0
+  },
+  {
+   "year": 3,
+   "revenue": 7037.0,
+   "nopat": 876.0,
+   "reinvestment": 726.0,
+   "fcff": 150.0
+  },
+  {
+   "year": 4,
+   "revenue": 7738.0,
+   "nopat": 963.0,
+   "reinvestment": 611.0,
+   "fcff": 352.0
+  },
+  {
+   "year": 5,
+   "revenue": 8241.0,
+   "nopat": 1026.0,
+   "reinvestment": 438.0,
+   "fcff": 588.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 14.3,
+  "fcff_cr": 596.0,
+  "pv_share_of_ev_pct": 91.3
+ },
+ "bridge_cr": {
+  "enterprise_value": 6202.0,
+  "debt": 1968.0,
+  "cash": 1030.0,
+  "minority": 117.0,
+  "equity_value": 5146.0,
+  "shares_cr": 4.639,
+  "market_cap": 19628.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   10.37,
+   11.37,
+   12.37,
+   13.37,
+   14.37
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    1675.3,
+    1786.5,
+    1924.9,
+    2102.4,
+    2339.6
+   ],
+   [
+    1305.3,
+    1363.6,
+    1432.6,
+    1516.1,
+    1619.6
+   ],
+   [
+    1044.3,
+    1074.8,
+    1109.5,
+    1149.5,
+    1196.7
+   ],
+   [
+    850.8,
+    865.5,
+    881.5,
+    899.2,
+    919.0
+   ],
+   [
+    704.7,
+    710.4,
+    716.3,
+    722.3,
+    728.4
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 4408.6,
+  "margin": 0.166,
+  "tax": 0.25,
+  "s2c": 1.148066339203265,
+  "g1": 0.20369000284322847,
+  "wacc": 0.12372161610189782,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 1968.47,
+  "cash": 1029.552,
+  "minority": 117.119,
+  "shares_cr": 4.6386273160817675
+ }
+}

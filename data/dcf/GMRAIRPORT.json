@@ -1,0 +1,151 @@
+{
+ "symbol": "GMRAIRPORT",
+ "latest_fy": "2026-03-31",
+ "price": 102.67,
+ "fair_value": -11.4,
+ "upside_pct": -111.1,
+ "flags": [
+  "2-year growth 33.0% clamped to 30%",
+  "negative equity value"
+ ],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 1.49,
+  "beta_used": 1.33,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 14.51,
+  "wacc_pct": 12.31,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 33.0,
+  "first_year_growth_pct": 30.0,
+  "ebit_margin_pct": 29.9,
+  "margin_basis": "latest",
+  "sales_to_capital": 0.5
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 17348.0,
+   "nopat": 3890.0,
+   "reinvestment": 8007.0,
+   "fcff": -4116.0
+  },
+  {
+   "year": 2,
+   "revenue": 21533.0,
+   "nopat": 4829.0,
+   "reinvestment": 8370.0,
+   "fcff": -3542.0
+  },
+  {
+   "year": 3,
+   "revenue": 25463.0,
+   "nopat": 5710.0,
+   "reinvestment": 7860.0,
+   "fcff": -2150.0
+  },
+  {
+   "year": 4,
+   "revenue": 28614.0,
+   "nopat": 6417.0,
+   "reinvestment": 6302.0,
+   "fcff": 115.0
+  },
+  {
+   "year": 5,
+   "revenue": 30474.0,
+   "nopat": 6834.0,
+   "reinvestment": 3720.0,
+   "fcff": 3114.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 12.3,
+  "fcff_cr": 3435.0,
+  "pv_share_of_ev_pct": 122.9
+ },
+ "bridge_cr": {
+  "enterprise_value": 26916.0,
+  "debt": 43269.0,
+  "cash": 5084.0,
+  "minority": 931.0,
+  "equity_value": -12199.0,
+  "shares_cr": 1066.098,
+  "market_cap": 109456.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   10.31,
+   11.31,
+   12.31,
+   13.31,
+   14.31
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    1.0,
+    2.2,
+    3.6,
+    5.3,
+    7.6
+   ],
+   [
+    -7.6,
+    -7.4,
+    -7.2,
+    -7.0,
+    -6.7
+   ],
+   [
+    -11.8,
+    -11.6,
+    -11.4,
+    -11.3,
+    -11.1
+   ],
+   [
+    -15.2,
+    -15.1,
+    -15.0,
+    -14.8,
+    -14.7
+   ],
+   [
+    -18.1,
+    -18.0,
+    -18.0,
+    -17.9,
+    -17.8
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 13344.6,
+  "margin": 0.299,
+  "tax": 0.25,
+  "s2c": 0.5,
+  "g1": 0.3,
+  "wacc": 0.12308836293377759,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 43269.0,
+  "cash": 5084.13,
+  "minority": 930.59,
+  "shares_cr": 1066.0975446147852
+ }
+}

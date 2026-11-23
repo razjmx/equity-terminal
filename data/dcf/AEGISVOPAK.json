@@ -1,0 +1,150 @@
+{
+ "symbol": "AEGISVOPAK",
+ "latest_fy": "2026-03-31",
+ "price": 280.38,
+ "fair_value": 6.3,
+ "upside_pct": -97.7,
+ "flags": [
+  "very high EBIT margin (52%)"
+ ],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 1.67,
+  "beta_used": 1.45,
+  "beta_weeks": 77,
+  "cost_of_equity_pct": 15.18,
+  "wacc_pct": 14.28,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 28.2,
+  "first_year_growth_pct": 28.2,
+  "ebit_margin_pct": 51.9,
+  "margin_basis": "latest",
+  "sales_to_capital": 0.5
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 1183.0,
+   "nopat": 461.0,
+   "reinvestment": 520.0,
+   "fcff": -60.0
+  },
+  {
+   "year": 2,
+   "revenue": 1453.0,
+   "nopat": 565.0,
+   "reinvestment": 539.0,
+   "fcff": 27.0
+  },
+  {
+   "year": 3,
+   "revenue": 1705.0,
+   "nopat": 664.0,
+   "reinvestment": 504.0,
+   "fcff": 160.0
+  },
+  {
+   "year": 4,
+   "revenue": 1908.0,
+   "nopat": 743.0,
+   "reinvestment": 406.0,
+   "fcff": 336.0
+  },
+  {
+   "year": 5,
+   "revenue": 2032.0,
+   "nopat": 791.0,
+   "reinvestment": 248.0,
+   "fcff": 543.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 19.5,
+  "fcff_cr": 561.0,
+  "pv_share_of_ev_pct": 87.0
+ },
+ "bridge_cr": {
+  "enterprise_value": 4253.0,
+  "debt": 3731.0,
+  "cash": 307.0,
+  "minority": 128.0,
+  "equity_value": 701.0,
+  "shares_cr": 110.799,
+  "market_cap": 31066.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   12.28,
+   13.28,
+   14.28,
+   15.28,
+   16.28
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    17.4,
+    19.7,
+    22.5,
+    25.7,
+    29.6
+   ],
+   [
+    9.9,
+    11.4,
+    13.2,
+    15.2,
+    17.6
+   ],
+   [
+    4.1,
+    5.2,
+    6.3,
+    7.6,
+    9.1
+   ],
+   [
+    -0.4,
+    0.3,
+    1.1,
+    1.9,
+    2.9
+   ],
+   [
+    -4.1,
+    -3.6,
+    -3.1,
+    -2.5,
+    -1.9
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 923.1,
+  "margin": 0.519,
+  "tax": 0.25,
+  "s2c": 0.5,
+  "g1": 0.2818684383638883,
+  "wacc": 0.1427552691991303,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 3730.9269,
+  "cash": 307.1983,
+  "minority": 127.9675,
+  "shares_cr": 110.79915200798915
+ }
+}

@@ -1,0 +1,148 @@
+{
+ "symbol": "JSWINFRA",
+ "latest_fy": "2026-03-31",
+ "price": 346.8,
+ "fair_value": 32.5,
+ "upside_pct": -90.6,
+ "flags": [],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 1.45,
+  "beta_used": 1.3,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 14.37,
+  "wacc_pct": 13.77,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 18.9,
+  "first_year_growth_pct": 18.9,
+  "ebit_margin_pct": 37.6,
+  "margin_basis": "latest",
+  "sales_to_capital": 0.5
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 6327.0,
+   "nopat": 1784.0,
+   "reinvestment": 2013.0,
+   "fcff": -229.0
+  },
+  {
+   "year": 2,
+   "revenue": 7328.0,
+   "nopat": 2066.0,
+   "reinvestment": 2001.0,
+   "fcff": 66.0
+  },
+  {
+   "year": 3,
+   "revenue": 8259.0,
+   "nopat": 2329.0,
+   "reinvestment": 1862.0,
+   "fcff": 467.0
+  },
+  {
+   "year": 4,
+   "revenue": 9052.0,
+   "nopat": 2553.0,
+   "reinvestment": 1586.0,
+   "fcff": 966.0
+  },
+  {
+   "year": 5,
+   "revenue": 9641.0,
+   "nopat": 2719.0,
+   "reinvestment": 1177.0,
+   "fcff": 1542.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 14.1,
+  "fcff_cr": 1561.0,
+  "pv_share_of_ev_pct": 87.9
+ },
+ "bridge_cr": {
+  "enterprise_value": 12819.0,
+  "debt": 6899.0,
+  "cash": 2452.0,
+  "minority": 815.0,
+  "equity_value": 7557.0,
+  "shares_cr": 232.611,
+  "market_cap": 80670.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   11.77,
+   12.77,
+   13.77,
+   14.77,
+   15.77
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    52.7,
+    55.0,
+    57.6,
+    60.8,
+    64.5
+   ],
+   [
+    40.6,
+    41.8,
+    43.0,
+    44.5,
+    46.1
+   ],
+   [
+    31.5,
+    32.0,
+    32.5,
+    33.0,
+    33.6
+   ],
+   [
+    25.6,
+    25.8,
+    26.1,
+    26.4,
+    26.7
+   ],
+   [
+    21.1,
+    21.3,
+    21.5,
+    21.7,
+    22.0
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 5321.0,
+  "margin": 0.376,
+  "tax": 0.25,
+  "s2c": 0.5,
+  "g1": 0.1891507752560042,
+  "wacc": 0.13767862430554295,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 6898.92,
+  "cash": 2451.76,
+  "minority": 815.24,
+  "shares_cr": 232.6114715017301
+ }
+}

@@ -1,0 +1,148 @@
+{
+ "symbol": "ANANDRATHI",
+ "latest_fy": "2026-03-31",
+ "price": 2361.5,
+ "fair_value": 532.7,
+ "upside_pct": -77.4,
+ "flags": [],
+ "assumptions": {
+  "rf_pct": 7.199999999999999,
+  "erp_pct": 5.5,
+  "beta_raw": 0.59,
+  "beta_used": 0.72,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 11.19,
+  "wacc_pct": 11.18,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "growth_years": 2,
+  "historic_growth_pct": 25.9,
+  "first_year_growth_pct": 25.9,
+  "ebit_margin_pct": 38.9,
+  "margin_basis": "latest",
+  "sales_to_capital": 3.58
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "revenue": 1447.0,
+   "nopat": 422.0,
+   "reinvestment": 83.0,
+   "fcff": 339.0
+  },
+  {
+   "year": 2,
+   "revenue": 1752.0,
+   "nopat": 511.0,
+   "reinvestment": 85.0,
+   "fcff": 426.0
+  },
+  {
+   "year": 3,
+   "revenue": 2036.0,
+   "nopat": 594.0,
+   "reinvestment": 79.0,
+   "fcff": 515.0
+  },
+  {
+   "year": 4,
+   "revenue": 2267.0,
+   "nopat": 661.0,
+   "reinvestment": 65.0,
+   "fcff": 597.0
+  },
+  {
+   "year": 5,
+   "revenue": 2415.0,
+   "nopat": 704.0,
+   "reinvestment": 41.0,
+   "fcff": 663.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 20.0,
+  "fcff_cr": 506.0,
+  "pv_share_of_ev_pct": 77.9
+ },
+ "bridge_cr": {
+  "enterprise_value": 8181.0,
+  "debt": 83.0,
+  "cash": 761.0,
+  "minority": 14.0,
+  "equity_value": 8844.0,
+  "shares_cr": 16.604,
+  "market_cap": 39211.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   9.18,
+   10.18,
+   11.18,
+   12.18,
+   13.18
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    710.8,
+    786.6,
+    889.7,
+    1039.3,
+    null
+   ],
+   [
+    569.1,
+    610.6,
+    662.8,
+    730.8,
+    823.3
+   ],
+   [
+    477.2,
+    502.5,
+    532.7,
+    569.6,
+    616.1
+   ],
+   [
+    412.7,
+    429.2,
+    448.2,
+    470.5,
+    497.1
+   ],
+   [
+    364.9,
+    376.2,
+    388.8,
+    403.3,
+    419.9
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "note": "outside -10% to 60%"
+ },
+ "model": {
+  "rev": 1148.8,
+  "margin": 0.389,
+  "tax": 0.25,
+  "s2c": 3.579072643834292,
+  "g1": 0.25939214679387157,
+  "wacc": 0.11176237188799276,
+  "terminal_g": 0.065,
+  "n": 5,
+  "roic_cap": 0.2,
+  "debt": 83.477,
+  "cash": 760.6542,
+  "minority": 13.701,
+  "shares_cr": 16.60412630751641
+ }
+}
