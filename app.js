@@ -374,7 +374,65 @@ function screener(){
   draw();
 }
 
+// ---------- statements: P&L, balance sheet, cash flow, shareholding ----------
+const STMT_KEY={pl:['Total Revenue','Operating Revenue','Gross Profit','EBITDA','Operating Income','Pretax Income','Net Income','Diluted EPS','Basic EPS','Net Interest Income','Total Expenses'],
+ bs:['Total Assets','Total Liabilities Net Minority Interest','Stockholders Equity','Total Equity Gross Minority Interest','Total Debt','Net Debt','Cash And Cash Equivalents','Current Assets','Current Liabilities','Working Capital','Invested Capital','Tangible Book Value','Net Tangible Assets','Retained Earnings','Total Capitalization'],
+ cf:['Operating Cash Flow','Investing Cash Flow','Financing Cash Flow','Capital Expenditure','Free Cash Flow','End Cash Position','Cash Dividends Paid','Repurchase Of Capital Stock','Issuance Of Debt','Repayment Of Debt']};
+const STMT_GROW={pl:['Total Revenue','Operating Revenue','Net Interest Income','EBITDA','Operating Income','Pretax Income','Net Income','Diluted EPS'],bs:['Total Assets','Stockholders Equity','Total Debt'],cf:['Operating Cash Flow','Free Cash Flow']};
+function stmtTable(tb,kind,per){
+  if(!tb)return '<div class="card"><p class="mut">No '+(per==='q'?'quarterly ':'')+'data available for this statement.</p></div>';
+  const raw=/EPS|Rate|Ratio|Per Share/i,key=new Set(STMT_KEY[kind]),gk=new Set(STMT_GROW[kind]);
+  const cr=(n,v)=>v==null?'–':raw.test(n)?T.fmt(v,2):T.fmt(v/1e7,Math.abs(v/1e7)<100?2:0);
+  const dl=d=>{const x=new Date(d);return per==='q'?x.toLocaleString('en-GB',{month:'short',year:'2-digit'}):'FY'+String(x.getFullYear()).slice(2)};
+  const rows=tb.rows.filter(r=>!FS.keyonly||key.has(r[0]));
+  let t=`<table class="stmt"><tr><th class="l">₹ crore</th>${tb.dates.map(d=>`<th>${dl(d)}</th>`).join('')}</tr>`;
+  rows.forEach(([n,v])=>{
+    t+=`<tr class="${key.has(n)?'kr':''}"><td class="l">${esc(n.replace(/([a-z])([A-Z])/g,'$1 $2'))}</td>${v.map(x=>`<td>${cr(n,x)}</td>`).join('')}</tr>`;
+    if(gk.has(n)){const lag=1;t+=`<tr class="gr"><td class="l">${per==='q'?'QoQ':'YoY'} growth</td>${v.map((x,i)=>{const p=i>=lag?v[i-lag]:null;if(x==null||p==null||p<=0)return '<td>–</td>';const g=(x/p-1)*100;return `<td class="${cls(g)}">${T.pct(g)}</td>`}).join('')}</tr>`}
+  });
+  return `<div class="card scroll" style="padding:0"><div class="stbox">${t}</table></div></div>`;
+}
+function shareholdingHtml(st,sh){
+  let h='';
+  if(sh&&sh.quarters&&sh.quarters.length){
+    const q=sh.quarters,f=(k)=>q.map(x=>x[k]);
+    const rows=[['promoter','Promoters'],['fii','FII / FPI'],['dii','DII'],['public','Public']];
+    h+=`<div class="card"><h3>Shareholding pattern<span class="mut" style="font-weight:400;font-size:12px">% of total shares, source: NSE</span></h3><div class="scroll"><table class="stmt"><tr><th class="l">Holder</th>${q.map(x=>`<th>${esc(x.label||x.date)}</th>`).join('')}</tr>${rows.map(([k,n])=>`<tr><td class="l">${n}</td>${q.map((x,i)=>{const v=x[k];const pv=i?q[i-1][k]:null;const d=v!=null&&pv!=null?v-pv:null;return `<td>${v==null?'–':T.fmt(v,2)}${d!=null&&Math.abs(d)>=.005?`<small class="${cls(d)}"> ${d>0?'+':''}${T.fmt(d,2)}</small>`:''}</td>`}).join('')}</tr>`).join('')}</table></div></div>`;
+  }
+  const hd=st&&st.holders;
+  if(hd&&(hd.insiders_pct!=null||hd.institutions_pct!=null)){
+    const ins=hd.insiders_pct!=null?hd.insiders_pct*100:null,inst=hd.institutions_pct!=null?hd.institutions_pct*100:null,oth=ins!=null&&inst!=null?Math.max(0,100-ins-inst):null;
+    h+=`<div class="card"><h3>Ownership snapshot<span class="mut" style="font-weight:400;font-size:12px">source: Yahoo Finance, latest</span></h3>
+     <div class="own">${[['Insiders / promoters',ins,'#2f6fdb'],['Institutions (FII + DII + MF)',inst,'#2e9e6b'],['Others / public',oth,'#e9a23b']].filter(x=>x[1]!=null).map(x=>`<div style="flex:${Math.max(x[1],2)};background:${x[2]}"><b>${T.fmt(x[1],1)}%</b><span>${x[0]}</span></div>`).join('')}</div>
+     <p class="mut" style="margin:10px 0 0;font-size:12px">Yahoo does not split institutions into FII and DII, and its promoter figure is "insiders". The quarterly promoter / FII / DII / public pattern needs NSE data, which is being set up.</p></div>`;
+  }
+  return h||'<div class="card"><p class="mut">Shareholding data is not available for this stock yet.</p></div>';
+}
+async function finTabs(s){
+  const st=await get(`data/statements/${s}.json`,'json');
+  let sh=null;try{sh=await get(`data/shareholding/${s}.json`,'json')}catch(e){}
+  const subs=[['pl','Profit & Loss'],['bs','Balance Sheet'],['cf','Cash Flow'],['sh','Shareholding'],['ra','Ratios & quality']];
+  const draw=()=>{
+    const tabs=$('#fsub'),body=$('#fbody');if(!tabs||!body)return;
+    tabs.innerHTML=subs.map(x=>`<button data-s="${x[0]}" class="${FS.sub===x[0]?'on':''}">${x[1]}</button>`).join('');
+    tabs.querySelectorAll('button').forEach(b=>b.onclick=()=>{FS.sub=b.dataset.s;draw()});
+    if(FS.sub==='ra'){body.innerHTML=FIN_RATIO;bindRatios();return}
+    if(FS.sub==='sh'){body.innerHTML=shareholdingHtml(st,sh);return}
+    if(!st){body.innerHTML='<div class="card"><p class="mut">Statements are not downloaded yet. Run the <b>Fetch financial statements</b> workflow in Actions, then refresh.</p></div>';return}
+    const kind=FS.sub,pc=FS.per==='quarterly'?'q':'a';
+    const map={pl:['annual_income','quarterly_income'],bs:['annual_balance','quarterly_balance'],cf:['annual_cashflow','quarterly_cashflow']}[kind];
+    const tb=st[map[pc==='q'?1:0]];
+    const title={pl:'Profit & Loss',bs:'Balance Sheet',cf:'Cash Flow'}[kind];
+    body.innerHTML=`<div class="fbar"><div class="seg" id="fper"><button data-p="annual" class="${FS.per==='annual'?'on':''}">Annual</button><button data-p="quarterly" class="${FS.per==='quarterly'?'on':''}">Quarterly</button></div>
+      <label class="chk"><input type="checkbox" id="fkey" ${FS.keyonly?'checked':''}> Key lines only</label><span class="mut" style="margin-left:auto;font-size:12px">${esc(title)} · ₹ crore · Yahoo Finance · updated ${esc(st.fetched||'')}</span></div>${stmtTable(tb,kind,pc)}`;
+    $('#fper').querySelectorAll('button').forEach(b=>b.onclick=()=>{FS.per=b.dataset.p;draw()});
+    $('#fkey').onchange=e=>{FS.keyonly=e.target.checked;draw()};
+  };
+  draw();
+}
+
 // ---------- stock ----------
+let FIN_RATIO='',FS={sub:'pl',per:'annual',keyonly:false};
 async function stock(s,tab){
   tab=tab||'overview';
   view.innerHTML=SKEL;
@@ -423,10 +481,11 @@ async function stock(s,tab){
      <div>${keyRatios}${vs}</div></div>`;
     h+=technicals();
   }else if(tab==='financials'){
-    h+=`<div class="two"><div class="card"><h3>Valuation &amp; quality (FY ${esc(met?met.latest_fy:'')})</h3><div class="grid">${kv('P/E (used)',T.fmt(V.pe_used))}${kv('P/B',T.fmt(V.pb))}${kv('EV/EBITDA',T.fmt(V.ev_ebitda))}${kv('FCF yield %',T.fmt(V.fcf_yield_pct))}${kv('Market cap ₹cr',T.fmt(V.market_cap_cr,0))}${kv('ROE %',T.fmt(R.roe_pct))}${kv('ROCE %',T.fmt(R.roce_pct))}${kv('Debt/Equity',T.fmt(R.debt_equity,2))}${kv('Piotroski',met&&met.piotroski&&met.piotroski.score!=null?met.piotroski.score:'–')}${kv('Altman Z″',met&&met.altman_z2&&met.altman_z2.z!=null?T.fmt(met.altman_z2.z,2)+' ('+esc(met.altman_z2.zone||'')+')':(met&&met.type==='financial'?'n/a for financials':'–'))}</div>
+    FIN_RATIO=`<div class="two"><div class="card"><h3>Valuation &amp; quality (FY ${esc(met?met.latest_fy:'')})</h3><div class="grid">${kv('P/E (used)',T.fmt(V.pe_used))}${kv('P/B',T.fmt(V.pb))}${kv('EV/EBITDA',T.fmt(V.ev_ebitda))}${kv('FCF yield %',T.fmt(V.fcf_yield_pct))}${kv('Market cap ₹cr',T.fmt(V.market_cap_cr,0))}${kv('ROE %',T.fmt(R.roe_pct))}${kv('ROCE %',T.fmt(R.roce_pct))}${kv('Debt/Equity',T.fmt(R.debt_equity,2))}${kv('Piotroski',met&&met.piotroski&&met.piotroski.score!=null?met.piotroski.score:'–')}${kv('Altman Z″',met&&met.altman_z2&&met.altman_z2.z!=null?T.fmt(met.altman_z2.z,2)+' ('+esc(met.altman_z2.zone||'')+')':(met&&met.type==='financial'?'n/a for financials':'–'))}</div>
      ${met&&(met.flags||[]).length?`<p class="warn">${met.flags.map(esc).join(' · ')}</p>`:''}</div>
      <div class="card"><h3>Growth</h3><div class="grid">${kv('Revenue CAGR %',T.fmt(G.revenue_cagr_pct))}${kv('Net income CAGR %',T.fmt(G.net_income_cagr_pct))}${kv('Years used',G.years_used??'–')}</div></div></div>`;
-    h+=ratiosHtml(rat);
+    FIN_RATIO+=ratiosHtml(rat);
+    h+='<div class="subtabs" id="fsub"></div><div id="fbody"></div>';
   }else if(tab==='valuation'){
     if(dcf)h+=`<div id="dcfbox"></div>`;else if(fin)h+=`<div id="finbox"></div>`;else if(rl)h+=`<div id="rlbox"></div>`;
     else h+=`<div class="card"><h3>Valuation</h3>No model available for this stock (excluded or data missing).</div>`;
@@ -455,7 +514,7 @@ async function stock(s,tab){
     drawP();
   }
   countUps(view);
-  if(tab==='financials')bindRatios();
+  if(tab==='financials')finTabs(s);
   if(tab==='valuation'){
     if(dcf)dcfPanel(dcf,price);else if(fin)finPanel(fin);else if(rl)realtyPanel(rl);
   }
