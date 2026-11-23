@@ -2,12 +2,15 @@
  "symbol": "LUPIN",
  "latest_fy": "2026-03-31",
  "status": "ok",
+ "reliability": "indicative",
  "price": 1982.9,
  "fair_value": 3366.4,
  "fair_low": 2699.5,
  "fair_high": 4419.6,
  "upside_pct": 69.8,
- "flags": [],
+ "flags": [
+  "margin swing: latest core EBIT margin 24.8% vs 3-year average 19.5% (possible peak or trough)"
+ ],
  "assumptions": {
   "rf_pct": 7.2,
   "erp_pct": 5.5,

@@ -2,12 +2,15 @@
  "symbol": "DRREDDY",
  "latest_fy": "2026-03-31",
  "status": "ok",
+ "reliability": "indicative",
  "price": 1381.7,
  "fair_value": 547.1,
  "fair_low": 474.0,
  "fair_high": 710.9,
  "upside_pct": -60.4,
- "flags": [],
+ "flags": [
+  "margin swing: latest core EBIT margin 14.9% vs 3-year average 20.1% (possible peak or trough)"
+ ],
  "assumptions": {
   "rf_pct": 7.2,
   "erp_pct": 5.5,

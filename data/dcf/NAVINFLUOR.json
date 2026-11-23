@@ -2,12 +2,15 @@
  "symbol": "NAVINFLUOR",
  "latest_fy": "2026-03-31",
  "status": "ok",
+ "reliability": "indicative",
  "price": 10168.5,
  "fair_value": 3867.0,
  "fair_low": 3056.1,
  "fair_high": 5073.8,
  "upside_pct": -62.0,
- "flags": [],
+ "flags": [
+  "margin swing: latest core EBIT margin 28.6% vs 3-year average 20.4% (possible peak or trough)"
+ ],
  "assumptions": {
   "rf_pct": 7.2,
   "erp_pct": 5.5,

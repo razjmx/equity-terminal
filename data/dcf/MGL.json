@@ -2,12 +2,15 @@
  "symbol": "MGL",
  "latest_fy": "2026-03-31",
  "status": "ok",
+ "reliability": "indicative",
  "price": 1093.1,
  "fair_value": 948.7,
  "fair_low": 837.0,
  "fair_high": 1109.3,
  "upside_pct": -13.2,
- "flags": [],
+ "flags": [
+  "margin swing: latest core EBIT margin 12.8% vs 3-year average 18.3% (possible peak or trough)"
+ ],
  "assumptions": {
   "rf_pct": 7.2,
   "erp_pct": 5.5,

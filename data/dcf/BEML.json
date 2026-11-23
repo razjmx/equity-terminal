@@ -2,12 +2,14 @@
  "symbol": "BEML",
  "latest_fy": "2026-03-31",
  "status": "ok",
+ "reliability": "low confidence",
  "price": 2009.4,
  "fair_value": 3.6,
  "fair_low": -4.6,
  "fair_high": 13.3,
  "upside_pct": -99.8,
  "flags": [
+  "margin swing: latest core EBIT margin 5.3% vs 3-year average 8.9% (possible peak or trough)",
   "growth path: first-year growth below terminal growth (path rises)",
   "low return: ROIC 4.6% below WACC 15.3%",
   "far from price: model value is 0% of the market price"

@@ -1,17 +1,19 @@
 {
  "symbol": "IRB",
  "latest_fy": "2026-03-31",
- "status": "ok",
+ "status": "not meaningful",
+ "reliability": "not meaningful",
  "price": 17.53,
- "fair_value": 9.4,
- "fair_low": 8.6,
- "fair_high": 10.4,
- "upside_pct": -46.2,
+ "fair_value": null,
+ "fair_low": null,
+ "fair_high": null,
+ "upside_pct": null,
  "flags": [
-  "investments added: Rs 17,830 cr of non-operating investments (84% of market cap)",
+  "investments: set by dcf_inputs.csv",
   "growth clamped: 2-year -7.8% to -5%",
   "growth path: first-year growth below terminal growth (path rises)",
-  "low return: ROIC 6.1% below WACC 11.0%"
+  "low return: ROIC 3.3% below WACC 11.0%",
+  "not meaningful: negative equity value"
  ],
  "assumptions": {
   "rf_pct": 7.2,
@@ -31,7 +33,7 @@
   "ebit_margin_pct": 27.6,
   "margin_basis": "latest",
   "sales_to_capital": 0.5,
-  "roic_now_pct": 6.1,
+  "roic_now_pct": 3.3,
   "mid_year": true,
   "roll_forward_years": 0.66,
   "roll_factor": 1.096
@@ -127,9 +129,9 @@
   "enterprise_value": 10752.0,
   "debt": 20027.0,
   "cash": 1843.0,
-  "investments": 17830.0,
+  "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 10398.0,
+  "equity_value": -7432.0,
   "shares_cr": 1207.8,
   "market_cap": 21173.0
  },
@@ -150,48 +152,48 @@
   ],
   "fair_value": [
    [
-    11.5,
-    11.6,
-    11.7,
+    -4.7,
+    -4.6,
+    -4.5,
     null,
     null
    ],
    [
-    10.3,
-    10.4,
-    10.4,
-    10.5,
-    10.6
+    -5.9,
+    -5.8,
+    -5.7,
+    -5.7,
+    -5.6
    ],
    [
-    9.3,
-    9.4,
-    9.4,
-    9.5,
-    9.5
+    -6.8,
+    -6.8,
+    -6.7,
+    -6.7,
+    -6.7
    ],
    [
-    8.5,
-    8.6,
-    8.6,
-    8.6,
-    8.7
+    -7.6,
+    -7.6,
+    -7.6,
+    -7.5,
+    -7.5
    ],
    [
-    7.9,
-    7.9,
-    7.9,
-    8.0,
-    8.0
+    -8.3,
+    -8.3,
+    -8.3,
+    -8.2,
+    -8.2
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 43.7,
-  "implied_ebit_margin_pct": 43.9,
+  "implied_first_year_growth_pct": null,
+  "implied_ebit_margin_pct": null,
   "implied_discount_rate_pct": null,
-  "implied_rate_note": "below 8.6%",
-  "note": ""
+  "implied_rate_note": "not meaningful",
+  "note": "growth outside -10% to 60%; margin outside 0% to 60%"
  },
  "model": {
   "rev": 6252.4,
@@ -206,7 +208,7 @@
   "roic_cap": 0.2,
   "debt": 20027.063,
   "cash": 1842.645,
-  "invest": 17829.859,
+  "invest": 0.0,
   "minority": 0.0,
   "shares_cr": 1207.8000673588133,
   "roll": 1.096312881632267,

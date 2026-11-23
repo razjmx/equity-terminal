@@ -2,12 +2,15 @@
  "symbol": "PRIVISCL",
  "latest_fy": "2026-03-31",
  "status": "ok",
+ "reliability": "indicative",
  "price": 3642.7,
  "fair_value": 1932.6,
  "fair_low": 1472.8,
  "fair_high": 2630.3,
  "upside_pct": -46.9,
- "flags": [],
+ "flags": [
+  "margin swing: latest core EBIT margin 20.0% vs 3-year average 15.8% (possible peak or trough)"
+ ],
  "assumptions": {
   "rf_pct": 7.2,
   "erp_pct": 5.5,

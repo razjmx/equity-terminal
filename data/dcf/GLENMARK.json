@@ -2,12 +2,15 @@
  "symbol": "GLENMARK",
  "latest_fy": "2026-03-31",
  "status": "ok",
+ "reliability": "indicative",
  "price": 2662.5,
  "fair_value": 2862.3,
  "fair_low": 2394.4,
  "fair_high": 3535.9,
  "upside_pct": 7.5,
- "flags": [],
+ "flags": [
+  "margin swing: latest core EBIT margin 24.1% vs 3-year average 14.6% (possible peak or trough)"
+ ],
  "assumptions": {
   "rf_pct": 7.2,
   "erp_pct": 5.5,

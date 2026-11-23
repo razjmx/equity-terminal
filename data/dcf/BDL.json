@@ -2,12 +2,14 @@
  "symbol": "BDL",
  "latest_fy": "2026-03-31",
  "status": "ok",
+ "reliability": "low confidence",
  "price": 1024.75,
  "fair_value": 161.4,
  "fair_low": 159.9,
  "fair_high": 163.0,
  "upside_pct": -84.3,
  "flags": [
+  "margin swing: latest core EBIT margin 6.2% vs 3-year average 12.7% (possible peak or trough)",
   "invested capital: not positive, sales-to-capital set to 1.5",
   "growth path: first-year growth below terminal growth (path rises)",
   "far from price: model value is 16% of the market price"
