@@ -94,11 +94,12 @@ def build(sym):
     if not os.path.exists(p):
         return None
     d = json.load(open(p))
+    info = d.get("info", {})
     inc, bs, cf = d["annual_income"], d["annual_balance"], d["annual_cashflow"]
     ys = sorted(inc.keys(), reverse=True)[:4]   # newest 4 FYs (oldest column is sparse)
     Y = [year_block(inc, bs, cf, y) for y in ys]
     L, P = Y[0], (Y[1] if len(Y) > 1 else None)
-    mcap = d.get("info", {}).get("marketCap")
+    mcap = info.get("marketCap")
     standard = L["ebit"] is not None
 
     flags = []
@@ -108,6 +109,21 @@ def build(sym):
         flags.append("no cash flow data")
     if not standard:
         flags.append("financial or no EBIT")
+
+    # equity sanity check: balance-sheet equity vs Yahoo book value x shares
+    eq_check = {"balance_sheet_cr": cr(L["eq"]), "implied_cr": None,
+                "ratio": None, "used": "balance_sheet"}
+    bvps, shares = info.get("bookValue"), info.get("sharesOutstanding")
+    if bvps and shares and L["eq"] and L["eq"] > 0:
+        implied = bvps * shares
+        ratio = L["eq"] / implied
+        eq_check["implied_cr"] = cr(implied)
+        eq_check["ratio"] = round(ratio, 2)
+        if ratio > 1.10 or ratio < 0.70:
+            L["eq"] = implied
+            eq_check["used"] = "book_value"
+            flags.append(f"equity replaced by Yahoo book value "
+                         f"(balance sheet / book value = {ratio:.2f})")
 
     n = len(Y) - 1
 
@@ -125,7 +141,9 @@ def build(sym):
         "symbol": sym,
         "latest_fy": ys[0],
         "type": "standard" if standard else "financial",
+        "profit_basis": "reported",
         "flags": flags,
+        "equity_check": eq_check,
         "snapshot_cr": {k: cr(L[k]) for k in ["rev", "ni", "ebit", "ta", "eq", "debt", "fcf"]},
         "ratios": {
             "roe_pct": pct(div(L["ni"], L["eq"])),
@@ -152,6 +170,7 @@ def build(sym):
         "valuation": {
             "pe": rnd(div(mcap, L["ni"]) if L["ni"] and L["ni"] > 0 else None),
             "pe_normalized": None,
+            "pe_used": None,
             "pb": rnd(div(mcap, L["eq"])),
             "ev_ebitda": rnd(div(ev, L["ebitda"])),
             "fcf_yield_pct": pct(div(L["fcf"], mcap)),
@@ -174,18 +193,31 @@ def finalize(m):
              "Net Income From Continuing Operation Net Minority Interest")
     norm = g(I, "Normalized Income")
     ni = g(I, "Net Income")
-    m["snapshot_cr"]["ni_continuing"] = cr(cont)
+    m["snapshot_cr"]["ni_continuing_ops_pre_minority"] = cr(cont)
     m["snapshot_cr"]["ni_normalized"] = cr(norm)
     base = norm if norm is not None else cont
     m["valuation"]["pe_normalized"] = (
         rnd(mcap / base) if base and base > 0 and mcap else None)
+    m["valuation"]["pe_used"] = m["valuation"]["pe"]
+
     if (m["type"] == "standard" and ni is not None and base
             and abs(ni - base) > 0.15 * abs(base)):
         m["flags"].append("reported profit differs from normalized (one-offs)")
+        r, s = m["ratios"], m["snapshot_cr"]
+        m["ratios_reported"] = {k: r[k] for k in ["roe_pct", "roa_pct", "net_margin_pct"]}
+        b = base / CR
+        r["roe_pct"] = pct(div(b, s["eq"]))
+        r["roa_pct"] = pct(div(b, s["ta"]))
+        r["net_margin_pct"] = pct(div(b, s["rev"]))
+        m["dupont"]["net_margin_pct"] = r["net_margin_pct"]
+        m["valuation"]["pe_used"] = m["valuation"]["pe_normalized"]
+        m["profit_basis"] = "normalized"
+
     if m["type"] == "financial":
         for k in FIN_NULL:
             m["ratios"][k] = None
-        m["dupont"] = {"roa_pct": m["ratios"]["roa_pct"],
+        m["dupont"] = {"roe_pct": m["ratios"]["roe_pct"],
+                       "roa_pct": m["ratios"]["roa_pct"],
                        "equity_multiplier": m["dupont"]["equity_multiplier"]}
         m["valuation"]["ev_ebitda"] = None
         m["valuation"]["fcf_yield_pct"] = None
@@ -210,13 +242,14 @@ for r in uni.itertuples():
     pio, alt = m["piotroski"], m["altman_z2"]
     rows.append({
         "symbol": r.symbol, "industry": r.industry, "type": m["type"],
-        "latest_fy": m["latest_fy"],
+        "latest_fy": m["latest_fy"], "profit_basis": m["profit_basis"],
         "roe_pct": m["ratios"]["roe_pct"], "roce_pct": m["ratios"]["roce_pct"],
         "net_margin_pct": m["ratios"]["net_margin_pct"],
         "debt_equity": m["ratios"]["debt_equity"],
         "rev_cagr_pct": m["growth"]["revenue_cagr_pct"],
         "pe": m["valuation"]["pe"], "pe_normalized": m["valuation"]["pe_normalized"],
-        "pb": m["valuation"]["pb"],
+        "pe_used": m["valuation"]["pe_used"], "pb": m["valuation"]["pb"],
+        "equity_ratio": m["equity_check"]["ratio"],
         "piotroski": pio["score"] if pio else None,
         "piotroski_tested": pio["tested"] if pio else None,
         "altman_z2": alt["z"] if alt else None,
@@ -227,17 +260,35 @@ for r in uni.itertuples():
 pd.DataFrame(rows).to_csv("data/metrics_summary.csv", index=False)
 open("data/metrics_errors.txt", "w").write("\n".join(errors) if errors else "none")
 
-# readable spot-check file (compare these against Screener)
-CHECK = ["RELIANCE", "TCS", "VOLTAS", "HINDUNILVR", "TITAN", "HDFCBANK"]
+# review file: counts and lists so results can be checked without Actions logs
+std = sum(1 for x in rows if x["type"] == "standard")
+eqf = [(x["symbol"], x["equity_ratio"]) for x in rows if "equity replaced" in x["flags"]]
+one = [x["symbol"] for x in rows if "one-offs" in x["flags"]]
+roe_out = [(x["symbol"], x["roe_pct"]) for x in rows
+           if x["roe_pct"] is not None and (x["roe_pct"] > 60 or x["roe_pct"] < -20)]
+review = [
+    f"Stocks with metrics: {len(rows)} | skipped: {len(errors)}",
+    f"Standard: {std} | financial or no EBIT: {len(rows) - std}",
+    f"Equity replaced by book value ({len(eqf)}): {eqf}",
+    f"Normalized-profit flag ({len(one)}): {one}",
+    f"ROE outliers (>60 or <-20) ({len(roe_out)}): {roe_out}",
+]
+open("data/metrics_review.txt", "w").write("\n".join(review))
+
+# readable spot-check file
+CHECK = ["HINDUNILVR", "HDFCBANK", "ICICIBANK", "SBIN", "KOTAKBANK", "BAJFINANCE"]
 out = []
 for s in CHECK:
     p = f"data/metrics/{s}.json"
     if os.path.exists(p):
         m = json.load(open(p))
-        out.append(f"=== {s} | FY ending {m['latest_fy']} | {m['type']} ===")
+        out.append(f"=== {s} | FY ending {m['latest_fy']} | {m['type']} | profit basis: {m['profit_basis']} ===")
         out.append(f"Flags: {m['flags']}")
+        out.append(f"Equity check: {m['equity_check']}")
         out.append(f"Snapshot (Rs cr): {m['snapshot_cr']}")
         out.append(f"Ratios: {m['ratios']}")
+        if "ratios_reported" in m:
+            out.append(f"Ratios on reported profit: {m['ratios_reported']}")
         out.append(f"DuPont: {m['dupont']}")
         out.append(f"Growth: {m['growth']}")
         out.append(f"Valuation: {m['valuation']}")
