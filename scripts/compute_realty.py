@@ -5,6 +5,7 @@ Writes: data/realty/SYM.json, data/realty_summary.csv, data/realty_review.txt, d
 """
 import csv, json, os, datetime
 RF, ERP, TAX = 0.072, 0.06, 0.25
+NAV_R = 0.12  # discount rate for project surplus (NAV convention), editable on the site
 REIT_G, G_CAP = 0.04, 0.06
 D = "data"
 IN_COLS = ["symbol", "gdv_cr", "margin_pct", "years", "rental_noi_cr", "cap_rate_pct", "other_assets_cr", "source_note"]
@@ -107,16 +108,18 @@ def main():
             out = {"symbol": sym, "type": typ, "price": price, "shares_cr": round(shares, 3), "ke_pct": round(ke * 100, 2),
                    "net_debt_cr": round(netdebt, 1), "pb": val.get("pb"), "pe_used": val.get("pe_used"),
                    "ev_ebitda": val.get("ev_ebitda"), "market_cap_cr": mcap, "flags": flags,
+                   "nav_rate_pct": NAV_R * 100, "tax_pct": TAX * 100,
                    "settings": {"rf": RF, "erp": ERP, "tax": TAX, "reit_g": REIT_G}}
             fair = None
             if typ == "realty":
                 r = inputs.get(sym) or {}
+                out["inputs"] = {k: fnum(r.get(k)) for k in ("gdv_cr", "margin_pct", "years", "rental_noi_cr", "cap_rate_pct", "other_assets_cr")}
                 gdv, mg, yrs = fnum(r.get("gdv_cr")), fnum(r.get("margin_pct")), fnum(r.get("years"))
                 noi, cap = fnum(r.get("rental_noi_cr")) or 0.0, fnum(r.get("cap_rate_pct"))
                 oth = fnum(r.get("other_assets_cr")) or 0.0
                 if gdv is not None and mg is not None and yrs is not None:
                     surplus = gdv * mg / 100 * (1 - TAX)
-                    pv = surplus / (1 + ke) ** yrs
+                    pv = surplus / (1 + NAV_R) ** yrs
                     rent = noi / (cap / 100) if noi and cap else 0.0
                     nav = pv + rent + oth - netdebt
                     fair = nav / shares
@@ -155,7 +158,7 @@ def main():
         w.writerows(summ)
     filled = sum(1 for s in summ if s[8] is not None)
     review = [f"Run (UTC): {datetime.datetime.now(datetime.timezone.utc):%Y-%m-%d %H:%M}",
-              f"Settings: RF {RF*100:.1f}% | ERP {ERP*100}% | tax {TAX*100}% | REIT g {REIT_G*100}%",
+              f"Settings: NAV rate {NAV_R*100:.0f}% | RF {RF*100:.1f}% | ERP {ERP*100}% | tax {TAX*100}% | REIT g {REIT_G*100}%",
               f"Modelled: {len(summ)} | with fair value: {filled} | errors: {len(errs)}"]
     review += [str(s[:10]) for s in summ]
     for s in names:
