@@ -6,7 +6,7 @@
  "price": 36.36,
  "fair_value": 26.9,
  "fair_low": 23.0,
- "fair_high": 31.9,
+ "fair_high": 31.8,
  "upside_pct": -26.0,
  "flags": [
   "growth clamped: 2-year 60.8% to 30%",
@@ -18,8 +18,8 @@
   "beta_raw": 1.6,
   "beta_used": 1.4,
   "beta_weeks": 156,
-  "cost_of_equity_pct": 15.61,
-  "wacc_pct": 15.44,
+  "cost_of_equity_pct": 15.62,
+  "wacc_pct": 15.45,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
   "forecast_years": 10,
@@ -123,22 +123,22 @@
   "pv_share_of_ev_pct": 76.0
  },
  "bridge_cr": {
-  "enterprise_value": 33046.0,
+  "enterprise_value": 33023.0,
   "debt": 981.0,
   "cash": 1553.0,
   "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 33617.0,
+  "equity_value": 33594.0,
   "shares_cr": 1374.662,
   "market_cap": 49983.0
  },
  "sensitivity": {
   "wacc_pct": [
-   13.44,
-   14.44,
-   15.44,
-   16.44,
-   17.44
+   13.45,
+   14.45,
+   15.45,
+   16.45,
+   17.45
   ],
   "terminal_growth_pct": [
    5.5,
@@ -151,14 +151,14 @@
    [
     35.5,
     36.8,
-    38.4,
-    40.1,
-    42.1
+    38.3,
+    40.0,
+    42.0
    ],
    [
-    30.0,
-    30.9,
-    31.9,
+    29.9,
+    30.8,
+    31.8,
     33.0,
     34.2
    ],
@@ -166,11 +166,11 @@
     25.6,
     26.2,
     26.9,
-    27.7,
+    27.6,
     28.5
    ],
    [
-    22.2,
+    22.1,
     22.6,
     23.0,
     23.5,
@@ -198,7 +198,7 @@
   "tax": 0.25,
   "s2c": 1.8608461734834452,
   "g1": 0.3,
-  "wacc": 0.15441611668485697,
+  "wacc": 0.15445827533489878,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -208,7 +208,7 @@
   "invest": 0.0,
   "minority": 0.0,
   "shares_cr": 1374.6623901430144,
-  "roll": 1.1005245103834569,
+  "roll": 1.1005515279436144,
   "mid_year": true
  }
 }

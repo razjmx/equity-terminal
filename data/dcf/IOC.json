@@ -4,10 +4,10 @@
  "status": "ok",
  "reliability": "indicative",
  "price": 145.64,
- "fair_value": 400.1,
- "fair_low": 337.9,
- "fair_high": 492.4,
- "upside_pct": 174.8,
+ "fair_value": 400.0,
+ "fair_low": 337.8,
+ "fair_high": 492.2,
+ "upside_pct": 174.7,
  "flags": [
   "margin swing: latest core EBIT margin 8.6% vs 3-year average 6.5% (possible peak or trough)",
   "investments large: Rs 56,713 cr is 28% of market cap, verify",
@@ -124,12 +124,12 @@
   "pv_share_of_ev_pct": 51.6
  },
  "bridge_cr": {
-  "enterprise_value": 586298.0,
+  "enterprise_value": 586116.0,
   "debt": 131822.0,
   "cash": 11281.0,
   "investments": 56713.0,
   "minority": 6030.0,
-  "equity_value": 516440.0,
+  "equity_value": 516258.0,
   "shares_cr": 1412.124,
   "market_cap": 205662.0
  },
@@ -150,39 +150,39 @@
   ],
   "fair_value": [
    [
-    547.1,
-    588.9,
-    644.1,
-    720.7,
-    834.5
+    546.9,
+    588.6,
+    643.7,
+    720.2,
+    833.8
    ],
    [
-    442.6,
-    464.8,
-    492.4,
-    527.5,
-    573.8
+    442.4,
+    464.6,
+    492.2,
+    527.2,
+    573.5
    ],
    [
-    372.1,
-    384.9,
-    400.1,
-    418.5,
-    441.3
+    372.0,
+    384.8,
+    400.0,
+    418.4,
+    441.1
    ],
    [
-    321.3,
-    329.0,
-    337.9,
-    348.3,
-    360.5
+    321.2,
+    328.9,
+    337.8,
+    348.1,
+    360.4
    ],
    [
     282.7,
-    287.5,
+    287.4,
     292.8,
-    298.9,
-    305.9
+    298.8,
+    305.8
    ]
   ]
  },
@@ -199,7 +199,7 @@
   "tax": 0.25,
   "s2c": 2.6746973762564283,
   "g1": 0.0007442089550404596,
-  "wacc": 0.11532479659154686,
+  "wacc": 0.11534375085791512,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -209,7 +209,7 @@
   "invest": 56712.98,
   "minority": 6029.56,
   "shares_cr": 1412.1238653996156,
-  "roll": 1.094139726770228,
+  "roll": 1.0941593344037421,
   "mid_year": true
  }
 }

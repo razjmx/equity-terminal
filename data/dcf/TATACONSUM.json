@@ -4,9 +4,9 @@
  "status": "ok",
  "reliability": "low confidence",
  "price": 1141.0,
- "fair_value": 95.9,
- "fair_low": 71.6,
- "fair_high": 126.4,
+ "fair_value": 95.7,
+ "fair_low": 71.5,
+ "fair_high": 126.2,
  "upside_pct": -91.6,
  "flags": [
   "low return: ROIC 7.7% below WACC 11.8%",
@@ -18,7 +18,7 @@
   "beta_raw": 0.69,
   "beta_used": 0.79,
   "beta_weeks": 156,
-  "cost_of_equity_pct": 11.94,
+  "cost_of_equity_pct": 11.95,
   "wacc_pct": 11.82,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
@@ -119,16 +119,16 @@
  ],
  "terminal": {
   "roic_pct": 11.8,
-  "fcff_cr": 2410.0,
-  "pv_share_of_ev_pct": 187.6
+  "fcff_cr": 2412.0,
+  "pv_share_of_ev_pct": 187.7
  },
  "bridge_cr": {
-  "enterprise_value": 8366.0,
+  "enterprise_value": 8353.0,
   "debt": 2820.0,
   "cash": 4320.0,
   "investments": 342.0,
   "minority": 1401.0,
-  "equity_value": 8807.0,
+  "equity_value": 8794.0,
   "shares_cr": 98.971,
   "market_cap": 112926.0
  },
@@ -149,39 +149,39 @@
   ],
   "fair_value": [
    [
-    164.3,
-    164.8,
-    165.3,
-    165.8,
-    166.4
+    164.1,
+    164.6,
+    165.1,
+    165.6,
+    166.1
    ],
    [
-    126.6,
     126.5,
-    126.4,
     126.3,
-    126.2
+    126.2,
+    126.1,
+    126.0
    ],
    [
-    97.0,
-    96.4,
-    95.9,
-    95.3,
-    94.8
+    96.8,
+    96.3,
+    95.7,
+    95.2,
+    94.7
    ],
    [
-    73.3,
-    72.5,
-    71.6,
-    70.7,
-    69.9
+    73.2,
+    72.3,
+    71.5,
+    70.6,
+    69.8
    ],
    [
     54.2,
-    53.2,
-    52.1,
-    51.0,
-    49.9
+    53.1,
+    52.0,
+    50.9,
+    49.8
    ]
   ]
  },
@@ -198,7 +198,7 @@
   "tax": 0.25,
   "s2c": 0.9449119154673308,
   "g1": 0.15582602959410807,
-  "wacc": 0.11815272390126413,
+  "wacc": 0.11820569633541708,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -208,7 +208,7 @@
   "invest": 341.91,
   "minority": 1401.33,
   "shares_cr": 98.97115762874671,
-  "roll": 1.0773285762811822,
+  "roll": 1.0773630776918433,
   "mid_year": true
  }
 }

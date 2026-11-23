@@ -5,8 +5,8 @@
  "reliability": "low confidence",
  "price": 718.15,
  "fair_value": 94.3,
- "fair_low": 87.8,
- "fair_high": 101.6,
+ "fair_low": 87.9,
+ "fair_high": 101.7,
  "upside_pct": -86.9,
  "flags": [
   "growth clamped: 2-year -8.9% to -5%",
@@ -18,10 +18,10 @@
  "assumptions": {
   "rf_pct": 7.2,
   "erp_pct": 6.0,
-  "beta_raw": 1.68,
+  "beta_raw": 1.67,
   "beta_used": 1.45,
   "beta_weeks": 156,
-  "cost_of_equity_pct": 15.92,
+  "cost_of_equity_pct": 15.91,
   "wacc_pct": 15.36,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
@@ -126,12 +126,12 @@
   "pv_share_of_ev_pct": 29.0
  },
  "bridge_cr": {
-  "enterprise_value": 1334.0,
+  "enterprise_value": 1335.0,
   "debt": 623.0,
   "cash": 217.0,
   "investments": 225.0,
   "minority": 1.0,
-  "equity_value": 1151.0,
+  "equity_value": 1152.0,
   "shares_cr": 13.467,
   "market_cap": 9672.0
  },
@@ -152,16 +152,16 @@
   ],
   "fair_value": [
    [
-    109.7,
+    109.8,
     110.0,
-    110.2,
     110.3,
-    110.4
+    110.4,
+    110.5
    ],
    [
-    101.3,
+    101.4,
     101.5,
-    101.6,
+    101.7,
     101.7,
     101.7
    ],
@@ -169,28 +169,28 @@
     94.1,
     94.2,
     94.3,
-    94.2,
-    94.1
+    94.3,
+    94.2
    ],
    [
     87.8,
     87.8,
+    87.9,
     87.8,
-    87.8,
-    87.6
+    87.7
    ],
    [
-    82.2,
-    82.2,
+    82.3,
+    82.3,
     82.2,
     82.1,
-    81.9
+    82.0
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 57.7,
+  "implied_ebit_margin_pct": 57.6,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
@@ -201,7 +201,7 @@
   "tax": 0.25,
   "s2c": 1.1979579229028725,
   "g1": -0.05,
-  "wacc": 0.15361873705085843,
+  "wacc": 0.15355475820720577,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -211,7 +211,7 @@
   "invest": 224.52,
   "minority": 1.02,
   "shares_cr": 13.467376511313793,
-  "roll": 1.102437518263772,
+  "roll": 1.1023947532093563,
   "mid_year": true
  }
 }

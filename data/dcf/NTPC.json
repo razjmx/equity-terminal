@@ -4,9 +4,9 @@
  "status": "ok",
  "reliability": "low confidence",
  "price": 316.45,
- "fair_value": 51.2,
+ "fair_value": 51.1,
  "fair_low": 14.6,
- "fair_high": 96.8,
+ "fair_high": 96.7,
  "upside_pct": -83.8,
  "flags": [
   "investments added: Rs 23,555 cr of non-operating investments (8% of market cap)",
@@ -121,16 +121,16 @@
  ],
  "terminal": {
   "roic_pct": 10.2,
-  "fcff_cr": 16093.0,
+  "fcff_cr": 16094.0,
   "pv_share_of_ev_pct": 59.5
  },
  "bridge_cr": {
-  "enterprise_value": 294688.0,
+  "enterprise_value": 294672.0,
   "debt": 271005.0,
   "cash": 6450.0,
   "investments": 23555.0,
   "minority": 7977.0,
-  "equity_value": 45711.0,
+  "equity_value": 45695.0,
   "shares_cr": 969.667,
   "market_cap": 306851.0
  },
@@ -151,7 +151,7 @@
   ],
   "fair_value": [
    [
-    151.2,
+    151.1,
     153.0,
     null,
     null,
@@ -160,16 +160,16 @@
    [
     94.8,
     95.8,
-    96.8,
+    96.7,
     97.8,
     null
    ],
    [
-    50.6,
+    50.5,
     50.8,
-    51.2,
+    51.1,
     51.5,
-    51.9
+    51.8
    ],
    [
     15.0,
@@ -189,7 +189,7 @@
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 30.7,
+  "implied_ebit_margin_pct": 30.8,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
@@ -200,7 +200,7 @@
   "tax": 0.25,
   "s2c": 0.5,
   "g1": 0.020433151547023742,
-  "wacc": 0.10160964946634005,
+  "wacc": 0.10161410074037192,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -210,7 +210,7 @@
   "invest": 23555.11,
   "minority": 7977.39,
   "shares_cr": 969.6667211477326,
-  "roll": 1.0851409567779846,
+  "roll": 1.0851462636824818,
   "mid_year": true
  }
 }
