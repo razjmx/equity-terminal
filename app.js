@@ -141,7 +141,8 @@ async function boot(){
 function route(){
   const h=location.hash||'#/market';const p=h.split('/');
   const key=p[1]==='stock'?'research':(p[1]||'market');
-  document.querySelectorAll('.side nav a').forEach(a=>a.classList.toggle('on',a.dataset.k===key));
+  document.querySelectorAll('#topnav a').forEach(a=>a.classList.toggle('on',a.dataset.k===key));
+  try{const on=document.querySelector('#topnav a.on'),pl=document.getElementById('pill');if(on&&pl){pl.style.left=on.offsetLeft+'px';pl.style.width=on.offsetWidth+'px';pl.style.opacity=1}else if(pl)pl.style.opacity=0}catch(e){}
   if(route.last!==h){window.scrollTo(0,0);route.last=h}
   if(p[1]==='stock'&&p[2])return stock(decodeURIComponent(p[2]),p[3]);
   if(p[1]==='screener')return screener();
@@ -559,3 +560,5 @@ function dcfPanel(d,price){
 }
 boot();
 })();
+
+window.addEventListener('resize',()=>{try{const on=document.querySelector('#topnav a.on'),pl=document.getElementById('pill');if(on&&pl){pl.style.left=on.offsetLeft+'px';pl.style.width=on.offsetWidth+'px'}}catch(e){}});
