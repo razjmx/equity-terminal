@@ -151,6 +151,7 @@ def build(sym):
         },
         "valuation": {
             "pe": rnd(div(mcap, L["ni"]) if L["ni"] and L["ni"] > 0 else None),
+            "pe_normalized": None,
             "pb": rnd(div(mcap, L["eq"])),
             "ev_ebitda": rnd(div(ev, L["ebitda"])),
             "fcf_yield_pct": pct(div(L["fcf"], mcap)),
@@ -161,10 +162,44 @@ def build(sym):
     }
 
 
+FIN_NULL = ["net_margin_pct", "ebit_margin_pct", "roce_pct", "fcf_margin_pct",
+            "debt_equity", "interest_cover", "current_ratio", "asset_turnover"]
+
+
+def finalize(m):
+    d = json.load(open(f"data/fundamentals/{m['symbol']}.json"))
+    I = d["annual_income"].get(m["latest_fy"], {})
+    mcap = d.get("info", {}).get("marketCap")
+    cont = g(I, "Net Income Continuous Operations",
+             "Net Income From Continuing Operation Net Minority Interest")
+    norm = g(I, "Normalized Income")
+    ni = g(I, "Net Income")
+    m["snapshot_cr"]["ni_continuing"] = cr(cont)
+    m["snapshot_cr"]["ni_normalized"] = cr(norm)
+    base = norm if norm is not None else cont
+    m["valuation"]["pe_normalized"] = (
+        rnd(mcap / base) if base and base > 0 and mcap else None)
+    if (m["type"] == "standard" and ni is not None and base
+            and abs(ni - base) > 0.15 * abs(base)):
+        m["flags"].append("reported profit differs from normalized (one-offs)")
+    if m["type"] == "financial":
+        for k in FIN_NULL:
+            m["ratios"][k] = None
+        m["dupont"] = {"roa_pct": m["ratios"]["roa_pct"],
+                       "equity_multiplier": m["dupont"]["equity_multiplier"]}
+        m["valuation"]["ev_ebitda"] = None
+        m["valuation"]["fcf_yield_pct"] = None
+        m["snapshot_cr"]["debt"] = None
+        m["snapshot_cr"]["fcf"] = None
+    return m
+
+
 rows, errors = [], []
 for r in uni.itertuples():
     try:
         m = build(r.symbol)
+        if m:
+            m = finalize(m)
     except Exception as e:
         errors.append(f"{r.symbol}: {str(e)[:150]}")
         continue
@@ -180,7 +215,8 @@ for r in uni.itertuples():
         "net_margin_pct": m["ratios"]["net_margin_pct"],
         "debt_equity": m["ratios"]["debt_equity"],
         "rev_cagr_pct": m["growth"]["revenue_cagr_pct"],
-        "pe": m["valuation"]["pe"], "pb": m["valuation"]["pb"],
+        "pe": m["valuation"]["pe"], "pe_normalized": m["valuation"]["pe_normalized"],
+        "pb": m["valuation"]["pb"],
         "piotroski": pio["score"] if pio else None,
         "piotroski_tested": pio["tested"] if pio else None,
         "altman_z2": alt["z"] if alt else None,
@@ -199,6 +235,7 @@ for s in CHECK:
     if os.path.exists(p):
         m = json.load(open(p))
         out.append(f"=== {s} | FY ending {m['latest_fy']} | {m['type']} ===")
+        out.append(f"Flags: {m['flags']}")
         out.append(f"Snapshot (Rs cr): {m['snapshot_cr']}")
         out.append(f"Ratios: {m['ratios']}")
         out.append(f"DuPont: {m['dupont']}")
