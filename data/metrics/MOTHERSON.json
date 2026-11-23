@@ -2,7 +2,14 @@
  "symbol": "MOTHERSON",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 40979.6,
+  "implied_cr": 45559.7,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 125022.9,
   "ni": 3859.7,
@@ -11,7 +18,7 @@
   "eq": 40979.6,
   "debt": 19169.7,
   "fcf": 5230.4,
-  "ni_continuing": 4085.6,
+  "ni_continuing_ops_pre_minority": 4085.6,
   "ni_normalized": 4389.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 45.41,
   "pe_normalized": 39.93,
+  "pe_used": 45.41,
   "pb": 4.28,
   "ev_ebitda": 15.38,
   "fcf_yield_pct": 3.0,

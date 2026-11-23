@@ -2,7 +2,14 @@
  "symbol": "TITAN",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 15703.0,
+  "implied_cr": 18256.8,
+  "ratio": 0.86,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 87305.0,
   "ni": 5073.0,
@@ -11,7 +18,7 @@
   "eq": 15703.0,
   "debt": 30621.0,
   "fcf": 4688.0,
-  "ni_continuing": 5073.0,
+  "ni_continuing_ops_pre_minority": 5073.0,
   "ni_normalized": 5046.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 81.23,
   "pe_normalized": 81.66,
+  "pe_used": 81.23,
   "pb": 26.24,
   "ev_ebitda": 49.82,
   "fcf_yield_pct": 1.1,

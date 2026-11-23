@@ -2,7 +2,14 @@
  "symbol": "CEMPRO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2399.6,
+  "implied_cr": 2811.4,
+  "ratio": 0.85,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 10060.6,
   "ni": 597.7,
@@ -11,7 +18,7 @@
   "eq": 2399.6,
   "debt": 1001.2,
   "fcf": 236.0,
-  "ni_continuing": 597.7,
+  "ni_continuing_ops_pre_minority": 597.7,
   "ni_normalized": 586.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 42.96,
   "pe_normalized": 43.76,
+  "pe_used": 42.96,
   "pb": 10.7,
   "ev_ebitda": 23.19,
   "fcf_yield_pct": 0.9,

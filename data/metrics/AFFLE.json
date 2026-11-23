@@ -2,7 +2,14 @@
  "symbol": "AFFLE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3652.2,
+  "implied_cr": 4321.3,
+  "ratio": 0.85,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2708.6,
   "ni": 454.9,
@@ -11,7 +18,7 @@
   "eq": 3652.2,
   "debt": 14.8,
   "fcf": 291.2,
-  "ni_continuing": 454.9,
+  "ni_continuing_ops_pre_minority": 454.9,
   "ni_normalized": 451.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 50.77,
   "pe_normalized": 51.15,
+  "pe_used": 50.77,
   "pb": 6.32,
   "ev_ebitda": 31.12,
   "fcf_yield_pct": 1.3,

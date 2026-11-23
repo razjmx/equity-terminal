@@ -2,7 +2,14 @@
  "symbol": "HCLTECH",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 75165.0,
+  "implied_cr": 74896.2,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 130144.0,
   "ni": 16642.0,
@@ -11,7 +18,7 @@
   "eq": 75165.0,
   "debt": 5215.0,
   "fcf": 18553.0,
-  "ni_continuing": 16652.0,
+  "ni_continuing_ops_pre_minority": 16652.0,
   "ni_normalized": 17235.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 22.01,
   "pe_normalized": 21.26,
+  "pe_used": 22.01,
   "pb": 4.87,
   "ev_ebitda": 12.48,
   "fcf_yield_pct": 5.1,

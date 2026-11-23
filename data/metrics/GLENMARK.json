@@ -2,9 +2,16 @@
  "symbol": "GLENMARK",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 10512.1,
+  "implied_cr": 11212.4,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 16711.4,
   "ni": 1361.9,
@@ -13,13 +20,13 @@
   "eq": 10512.1,
   "debt": 593.5,
   "fcf": 2087.3,
-  "ni_continuing": 1362.0,
+  "ni_continuing_ops_pre_minority": 1362.0,
   "ni_normalized": 2933.6
  },
  "ratios": {
-  "roe_pct": 13.0,
-  "roa_pct": 6.8,
-  "net_margin_pct": 8.1,
+  "roe_pct": 27.9,
+  "roa_pct": 14.7,
+  "net_margin_pct": 17.6,
   "ebit_margin_pct": 13.1,
   "roce_pct": 16.2,
   "fcf_margin_pct": 12.5,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.84
  },
  "dupont": {
-  "net_margin_pct": 8.1,
+  "net_margin_pct": 17.6,
   "asset_turnover": 0.84,
   "equity_multiplier": 1.89
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 55.18,
   "pe_normalized": 25.61,
+  "pe_used": 25.61,
   "pb": 7.15,
   "ev_ebitda": 26.94,
   "fcf_yield_pct": 2.8,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 5.16,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": 13.0,
+  "roa_pct": 6.8,
+  "net_margin_pct": 8.1
  }
 }

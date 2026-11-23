@@ -2,7 +2,14 @@
  "symbol": "GRAPHITE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5859.1,
+  "implied_cr": 5965.2,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2872.7,
   "ni": 175.3,
@@ -11,7 +18,7 @@
   "eq": 5859.1,
   "debt": 367.6,
   "fcf": -169.8,
-  "ni_continuing": 171.1,
+  "ni_continuing_ops_pre_minority": 171.1,
   "ni_normalized": 190.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 86.92,
   "pe_normalized": 80.03,
+  "pe_used": 86.92,
   "pb": 2.6,
   "ev_ebitda": 34.88,
   "fcf_yield_pct": -1.1,

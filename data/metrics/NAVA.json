@@ -2,7 +2,14 @@
  "symbol": "NAVA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 8745.3,
+  "implied_cr": 9286.5,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4269.0,
   "ni": 786.7,
@@ -11,7 +18,7 @@
   "eq": 8745.3,
   "debt": 2226.4,
   "fcf": 505.1,
-  "ni_continuing": 1040.0,
+  "ni_continuing_ops_pre_minority": 1040.0,
   "ni_normalized": 744.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 19.65,
   "pe_normalized": 20.77,
+  "pe_used": 19.65,
   "pb": 1.77,
   "ev_ebitda": 7.46,
   "fcf_yield_pct": 3.3,

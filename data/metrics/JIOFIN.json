@@ -2,7 +2,14 @@
  "symbol": "JIOFIN",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 133853.6,
+  "implied_cr": 133048.3,
+  "ratio": 1.01,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3185.3,
   "ni": 1560.9,
@@ -11,7 +18,7 @@
   "eq": 133853.6,
   "debt": 21768.4,
   "fcf": -15544.1,
-  "ni_continuing": 1560.9,
+  "ni_continuing_ops_pre_minority": 1560.9,
   "ni_normalized": 1589.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 97.26,
   "pe_normalized": 95.55,
+  "pe_used": 97.26,
   "pb": 1.13,
   "ev_ebitda": 58.36,
   "fcf_yield_pct": -10.2,

@@ -2,9 +2,16 @@
  "symbol": "ICICILIFE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [
   "no cash flow data"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 13631.2,
+  "implied_cr": 13649.6,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 62206.5,
   "ni": 1607.9,
@@ -13,7 +20,7 @@
   "eq": 13631.2,
   "debt": 2595.0,
   "fcf": -5477.8,
-  "ni_continuing": 1607.9,
+  "ni_continuing_ops_pre_minority": 1607.9,
   "ni_normalized": 1607.9
  },
  "ratios": {
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 42.31,
   "pe_normalized": 42.31,
+  "pe_used": 42.31,
   "pb": 4.99,
   "ev_ebitda": null,
   "fcf_yield_pct": -8.1,

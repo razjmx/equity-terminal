@@ -2,9 +2,16 @@
  "symbol": "INDIAMART",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 2400.4,
+  "implied_cr": 2316.4,
+  "ratio": 1.04,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1569.0,
   "ni": 474.7,
@@ -13,13 +20,13 @@
   "eq": 2400.4,
   "debt": 23.1,
   "fcf": 687.2,
-  "ni_continuing": 474.7,
+  "ni_continuing_ops_pre_minority": 474.7,
   "ni_normalized": 335.0
  },
  "ratios": {
-  "roe_pct": 19.8,
-  "roa_pct": 10.3,
-  "net_margin_pct": 30.3,
+  "roe_pct": 14.0,
+  "roa_pct": 7.2,
+  "net_margin_pct": 21.3,
   "ebit_margin_pct": 41.5,
   "roce_pct": 20.0,
   "fcf_margin_pct": 43.8,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.34
  },
  "dupont": {
-  "net_margin_pct": 30.3,
+  "net_margin_pct": 21.3,
   "asset_turnover": 0.34,
   "equity_multiplier": 1.93
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 19.58,
   "pe_normalized": 27.75,
+  "pe_used": 27.75,
   "pb": 3.87,
   "ev_ebitda": 9.12,
   "fcf_yield_pct": 7.4,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 5.61,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": 19.8,
+  "roa_pct": 10.3,
+  "net_margin_pct": 30.3
  }
 }

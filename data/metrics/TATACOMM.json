@@ -2,7 +2,14 @@
  "symbol": "TATACOMM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3447.0,
+  "implied_cr": 3401.2,
+  "ratio": 1.01,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 24783.1,
   "ni": 1001.6,
@@ -11,7 +18,7 @@
   "eq": 3447.0,
   "debt": 12248.9,
   "fcf": 2045.9,
-  "ni_continuing": 1039.0,
+  "ni_continuing_ops_pre_minority": 1039.0,
   "ni_normalized": 1135.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 49.72,
   "pe_normalized": 43.88,
+  "pe_used": 49.72,
   "pb": 14.45,
   "ev_ebitda": 12.15,
   "fcf_yield_pct": 4.1,

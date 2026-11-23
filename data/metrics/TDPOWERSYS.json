@@ -2,7 +2,14 @@
  "symbol": "TDPOWERSYS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1071.8,
+  "implied_cr": 1372.7,
+  "ratio": 0.78,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1832.5,
   "ni": 238.8,
@@ -11,7 +18,7 @@
   "eq": 1071.8,
   "debt": 18.1,
   "fcf": 18.4,
-  "ni_continuing": 238.8,
+  "ni_continuing_ops_pre_minority": 238.8,
   "ni_normalized": 238.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 79.25,
   "pe_normalized": 79.29,
+  "pe_used": 79.25,
   "pb": 17.66,
   "ev_ebitda": 53.51,
   "fcf_yield_pct": 0.1,

@@ -2,7 +2,14 @@
  "symbol": "SUPREMEIND",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6169.1,
+  "implied_cr": 6393.6,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 11135.0,
   "ni": 954.0,
@@ -11,7 +18,7 @@
   "eq": 6169.1,
   "debt": 90.8,
   "fcf": 409.8,
-  "ni_continuing": 954.0,
+  "ni_continuing_ops_pre_minority": 954.0,
   "ni_normalized": 943.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 41.98,
   "pe_normalized": 42.46,
+  "pe_used": 41.98,
   "pb": 6.49,
   "ev_ebitda": 23.52,
   "fcf_yield_pct": 1.0,

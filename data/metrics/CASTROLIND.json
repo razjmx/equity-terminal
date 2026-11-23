@@ -2,7 +2,14 @@
  "symbol": "CASTROLIND",
  "latest_fy": "2025-12-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1900.3,
+  "implied_cr": 1906.0,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5700.3,
   "ni": 949.9,
@@ -11,7 +18,7 @@
   "eq": 1900.3,
   "debt": 62.8,
   "fcf": 992.8,
-  "ni_continuing": 949.9,
+  "ni_continuing_ops_pre_minority": 949.9,
   "ni_normalized": 958.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 19.79,
   "pe_normalized": 19.61,
+  "pe_used": 19.79,
   "pb": 9.89,
   "ev_ebitda": 12.74,
   "fcf_yield_pct": 5.3,

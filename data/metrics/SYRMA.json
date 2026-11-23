@@ -2,7 +2,14 @@
  "symbol": "SYRMA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2862.2,
+  "implied_cr": 3036.8,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4704.7,
   "ni": 317.8,
@@ -11,7 +18,7 @@
   "eq": 2862.2,
   "debt": 399.9,
   "fcf": 97.8,
-  "ni_continuing": 345.8,
+  "ni_continuing_ops_pre_minority": 345.8,
   "ni_normalized": 315.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 89.64,
   "pe_normalized": 90.31,
+  "pe_used": 89.64,
   "pb": 9.95,
   "ev_ebitda": 49.02,
   "fcf_yield_pct": 0.3,

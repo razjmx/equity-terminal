@@ -2,7 +2,14 @@
  "symbol": "BEML",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2933.8,
+  "implied_cr": 2872.0,
+  "ratio": 1.02,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4154.2,
   "ni": 141.6,
@@ -11,7 +18,7 @@
   "eq": 2933.8,
   "debt": 696.6,
   "fcf": -262.8,
-  "ni_continuing": 141.4,
+  "ni_continuing_ops_pre_minority": 141.4,
   "ni_normalized": 139.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 118.22,
   "pe_normalized": 120.22,
+  "pe_used": 118.22,
   "pb": 5.7,
   "ev_ebitda": 52.98,
   "fcf_yield_pct": -1.6,

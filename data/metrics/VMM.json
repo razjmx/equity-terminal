@@ -2,7 +2,14 @@
  "symbol": "VMM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 7413.3,
+  "implied_cr": 7965.7,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 12870.6,
   "ni": 839.2,
@@ -11,7 +18,7 @@
   "eq": 7413.3,
   "debt": 1988.0,
   "fcf": 1296.4,
-  "ni_continuing": 839.2,
+  "ni_continuing_ops_pre_minority": 839.2,
   "ni_normalized": 787.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 52.68,
   "pe_normalized": 56.14,
+  "pe_used": 52.68,
   "pb": 5.96,
   "ev_ebitda": 22.6,
   "fcf_yield_pct": 2.9,

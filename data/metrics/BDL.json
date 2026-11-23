@@ -2,7 +2,14 @@
  "symbol": "BDL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4241.0,
+  "implied_cr": 4531.0,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2415.4,
   "ni": 420.3,
@@ -11,7 +18,7 @@
   "eq": 4241.0,
   "debt": 0.3,
   "fcf": 375.3,
-  "ni_continuing": 420.3,
+  "ni_continuing_ops_pre_minority": 420.3,
   "ni_normalized": 419.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 89.37,
   "pe_normalized": 89.54,
+  "pe_used": 89.37,
   "pb": 8.86,
   "ev_ebitda": 50.9,
   "fcf_yield_pct": 1.0,

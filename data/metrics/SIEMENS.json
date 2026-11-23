@@ -2,9 +2,16 @@
  "symbol": "SIEMENS",
  "latest_fy": "2025-09-30",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 13227.6,
+  "implied_cr": 15821.3,
+  "ratio": 0.84,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 17364.2,
   "ni": 2104.2,
@@ -13,13 +20,13 @@
   "eq": 13227.6,
   "debt": 145.3,
   "fcf": -5.7,
-  "ni_continuing": 1688.8,
+  "ni_continuing_ops_pre_minority": 1688.8,
   "ni_normalized": 1683.0
  },
  "ratios": {
-  "roe_pct": 15.9,
-  "roa_pct": 10.5,
-  "net_margin_pct": 12.1,
+  "roe_pct": 12.7,
+  "roa_pct": 8.4,
+  "net_margin_pct": 9.7,
   "ebit_margin_pct": 13.2,
   "roce_pct": 16.5,
   "fcf_margin_pct": -0.0,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.87
  },
  "dupont": {
-  "net_margin_pct": 12.1,
+  "net_margin_pct": 9.7,
   "asset_turnover": 0.87,
   "equity_multiplier": 1.51
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 61.09,
   "pe_normalized": 76.38,
+  "pe_used": 76.38,
   "pb": 9.72,
   "ev_ebitda": 46.96,
   "fcf_yield_pct": -0.0,
@@ -61,5 +69,10 @@
    "asset_turnover_improved": true
   }
  },
- "altman_z2": null
+ "altman_z2": null,
+ "ratios_reported": {
+  "roe_pct": 15.9,
+  "roa_pct": 10.5,
+  "net_margin_pct": 12.1
+ }
 }

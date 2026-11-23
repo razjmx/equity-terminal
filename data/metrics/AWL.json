@@ -2,7 +2,14 @@
  "symbol": "AWL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 10440.7,
+  "implied_cr": 10886.8,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 74619.0,
   "ni": 1042.0,
@@ -11,7 +18,7 @@
   "eq": 10440.7,
   "debt": 8122.5,
   "fcf": 3095.0,
-  "ni_continuing": 1044.9,
+  "ni_continuing_ops_pre_minority": 1044.9,
   "ni_normalized": 914.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 20.67,
   "pe_normalized": 23.56,
+  "pe_used": 20.67,
   "pb": 2.06,
   "ev_ebitda": 11.71,
   "fcf_yield_pct": 14.4,

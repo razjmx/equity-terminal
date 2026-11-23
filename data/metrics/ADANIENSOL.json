@@ -2,7 +2,14 @@
  "symbol": "ADANIENSOL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 25427.5,
+  "implied_cr": 31862.5,
+  "ratio": 0.8,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 27202.6,
   "ni": 2282.5,
@@ -11,7 +18,7 @@
   "eq": 25427.5,
   "debt": 49176.4,
   "fcf": -3435.1,
-  "ni_continuing": 2343.1,
+  "ni_continuing_ops_pre_minority": 2343.1,
   "ni_normalized": 2094.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 79.22,
   "pe_normalized": 86.32,
+  "pe_used": 79.22,
   "pb": 7.11,
   "ev_ebitda": 26.45,
   "fcf_yield_pct": -1.9,

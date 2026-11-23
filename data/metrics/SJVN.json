@@ -2,7 +2,14 @@
  "symbol": "SJVN",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 14238.8,
+  "implied_cr": 15047.2,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4244.2,
   "ni": 642.1,
@@ -11,7 +18,7 @@
   "eq": 14238.8,
   "debt": 32278.0,
   "fcf": -3839.4,
-  "ni_continuing": 695.1,
+  "ni_continuing_ops_pre_minority": 695.1,
   "ni_normalized": 747.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 33.66,
   "pe_normalized": 28.89,
+  "pe_used": 33.66,
   "pb": 1.52,
   "ev_ebitda": 16.34,
   "fcf_yield_pct": -17.8,

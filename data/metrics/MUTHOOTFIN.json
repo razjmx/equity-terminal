@@ -2,9 +2,16 @@
  "symbol": "MUTHOOTFIN",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 39130.3,
+  "implied_cr": 43928.4,
+  "ratio": 0.89,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 20264.9,
   "ni": 10590.3,
@@ -13,7 +20,7 @@
   "eq": 39130.3,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 10606.9,
+  "ni_continuing_ops_pre_minority": 10606.9,
   "ni_normalized": 10596.7
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 27.1,
   "roa_pct": 5.4,
   "equity_multiplier": 5.0
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 9.74,
   "pe_normalized": 9.73,
+  "pe_used": 9.74,
   "pb": 2.64,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

@@ -2,7 +2,14 @@
  "symbol": "ANANTRAJ",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5788.7,
+  "implied_cr": 6057.4,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2511.6,
   "ni": 557.0,
@@ -11,7 +18,7 @@
   "eq": 5788.7,
   "debt": 680.5,
   "fcf": -637.5,
-  "ni_continuing": 797.7,
+  "ni_continuing_ops_pre_minority": 797.7,
   "ni_normalized": 555.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 28.51,
   "pe_normalized": 28.6,
+  "pe_used": 28.51,
   "pb": 2.74,
   "ev_ebitda": 21.66,
   "fcf_yield_pct": -4.0,

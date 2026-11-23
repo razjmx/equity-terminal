@@ -2,7 +2,14 @@
  "symbol": "DEEPAKNTR",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5836.8,
+  "implied_cr": 6476.6,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 7761.2,
   "ni": 550.5,
@@ -11,7 +18,7 @@
   "eq": 5836.8,
   "debt": 1637.7,
   "fcf": -659.4,
-  "ni_continuing": 550.7,
+  "ni_continuing_ops_pre_minority": 550.7,
   "ni_normalized": 550.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 37.72,
   "pe_normalized": 37.73,
+  "pe_used": 37.72,
   "pb": 3.56,
   "ev_ebitda": 21.34,
   "fcf_yield_pct": -3.2,

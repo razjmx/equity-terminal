@@ -2,7 +2,14 @@
  "symbol": "GPIL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5808.2,
+  "implied_cr": 5632.1,
+  "ratio": 1.03,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5376.3,
   "ni": 800.7,
@@ -11,7 +18,7 @@
   "eq": 5808.2,
   "debt": 443.5,
   "fcf": 68.6,
-  "ni_continuing": 801.7,
+  "ni_continuing_ops_pre_minority": 801.7,
   "ni_normalized": 821.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 17.57,
   "pe_normalized": 17.12,
+  "pe_used": 17.57,
   "pb": 2.42,
   "ev_ebitda": 10.2,
   "fcf_yield_pct": 0.5,

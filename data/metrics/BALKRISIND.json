@@ -2,7 +2,14 @@
  "symbol": "BALKRISIND",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 10955.3,
+  "implied_cr": 11658.9,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 10729.6,
   "ni": 1243.1,
@@ -11,7 +18,7 @@
   "eq": 10955.3,
   "debt": 4110.8,
   "fcf": -754.0,
-  "ni_continuing": 1243.1,
+  "ni_continuing_ops_pre_minority": 1243.1,
   "ni_normalized": 1113.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 36.72,
   "pe_normalized": 41.0,
+  "pe_used": 36.72,
   "pb": 4.17,
   "ev_ebitda": 19.15,
   "fcf_yield_pct": -1.7,

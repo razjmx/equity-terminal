@@ -2,7 +2,14 @@
  "symbol": "ENGINERSIN",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3145.7,
+  "implied_cr": 3341.7,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3927.9,
   "ni": 691.6,
@@ -11,7 +18,7 @@
   "eq": 3145.7,
   "debt": 16.8,
   "fcf": 250.1,
-  "ni_continuing": 691.6,
+  "ni_continuing_ops_pre_minority": 691.6,
   "ni_normalized": 684.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 24.24,
   "pe_normalized": 24.49,
+  "pe_used": 24.24,
   "pb": 5.33,
   "ev_ebitda": 16.33,
   "fcf_yield_pct": 1.5,

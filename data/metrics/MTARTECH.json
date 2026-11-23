@@ -2,7 +2,14 @@
  "symbol": "MTARTECH",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 822.6,
+  "implied_cr": 932.6,
+  "ratio": 0.88,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 865.4,
   "ni": 94.0,
@@ -11,7 +18,7 @@
   "eq": 822.6,
   "debt": 376.6,
   "fcf": 63.3,
-  "ni_continuing": 94.0,
+  "ni_continuing_ops_pre_minority": 94.0,
   "ni_normalized": 96.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 178.86,
   "pe_normalized": 174.88,
+  "pe_used": 178.86,
   "pb": 20.45,
   "ev_ebitda": 91.43,
   "fcf_yield_pct": 0.4,

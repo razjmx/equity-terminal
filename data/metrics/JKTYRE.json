@@ -2,7 +2,14 @@
  "symbol": "JKTYRE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6060.8,
+  "implied_cr": 6151.3,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 16188.4,
   "ni": 776.1,
@@ -11,7 +18,7 @@
   "eq": 6060.8,
   "debt": 4881.5,
   "fcf": 19.9,
-  "ni_continuing": 775.9,
+  "ni_continuing_ops_pre_minority": 775.9,
   "ni_normalized": 884.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 13.54,
   "pe_normalized": 11.88,
+  "pe_used": 13.54,
   "pb": 1.73,
   "ev_ebitda": 7.79,
   "fcf_yield_pct": 0.2,

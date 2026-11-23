@@ -2,7 +2,14 @@
  "symbol": "MEDANTA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3961.6,
+  "implied_cr": 4324.9,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4318.5,
   "ni": 556.5,
@@ -11,7 +18,7 @@
   "eq": 3961.6,
   "debt": 1190.0,
   "fcf": -264.2,
-  "ni_continuing": 554.1,
+  "ni_continuing_ops_pre_minority": 554.1,
   "ni_normalized": 570.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 72.67,
   "pe_normalized": 70.94,
+  "pe_used": 72.67,
   "pb": 10.21,
   "ev_ebitda": 39.9,
   "fcf_yield_pct": -0.7,

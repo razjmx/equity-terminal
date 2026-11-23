@@ -2,7 +2,14 @@
  "symbol": "FSL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4384.5,
+  "implied_cr": 4884.7,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 9616.1,
   "ni": 674.4,
@@ -11,7 +18,7 @@
   "eq": 4384.5,
   "debt": 2921.9,
   "fcf": 1018.3,
-  "ni_continuing": 674.4,
+  "ni_continuing_ops_pre_minority": 674.4,
   "ni_normalized": 749.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 29.28,
   "pe_normalized": 26.36,
+  "pe_used": 29.28,
   "pb": 4.5,
   "ev_ebitda": 15.1,
   "fcf_yield_pct": 5.2,

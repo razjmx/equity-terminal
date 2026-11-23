@@ -2,9 +2,16 @@
  "symbol": "M&MFIN",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 26638.6,
+  "implied_cr": 27468.7,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 10755.7,
   "ni": 2854.5,
@@ -13,7 +20,7 @@
   "eq": 26638.6,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 2861.1,
+  "ni_continuing_ops_pre_minority": 2861.1,
   "ni_normalized": 2953.8
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 10.7,
   "roa_pct": 1.8,
   "equity_multiplier": 5.96
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 14.17,
   "pe_normalized": 13.69,
+  "pe_used": 14.17,
   "pb": 1.52,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

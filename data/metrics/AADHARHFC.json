@@ -2,7 +2,14 @@
  "symbol": "AADHARHFC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 7540.9,
+  "implied_cr": 8218.3,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3387.4,
   "ni": 1095.9,
@@ -11,7 +18,7 @@
   "eq": 7540.9,
   "debt": 18743.3,
   "fcf": -2826.6,
-  "ni_continuing": 1095.9,
+  "ni_continuing_ops_pre_minority": 1095.9,
   "ni_normalized": 991.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 16.46,
   "pe_normalized": 18.19,
+  "pe_used": 16.46,
   "pb": 2.39,
   "ev_ebitda": 12.72,
   "fcf_yield_pct": -15.7,

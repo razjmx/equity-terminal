@@ -2,7 +2,14 @@
  "symbol": "INTELLECT",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3170.1,
+  "implied_cr": 3365.5,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3038.2,
   "ni": 345.4,
@@ -11,7 +18,7 @@
   "eq": 3170.1,
   "debt": 158.7,
   "fcf": 291.0,
-  "ni_continuing": 343.3,
+  "ni_continuing_ops_pre_minority": 343.3,
   "ni_normalized": 384.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 24.01,
   "pe_normalized": 21.58,
+  "pe_used": 24.01,
   "pb": 2.62,
   "ev_ebitda": 11.31,
   "fcf_yield_pct": 3.5,

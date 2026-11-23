@@ -2,7 +2,14 @@
  "symbol": "IEX",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1364.6,
+  "implied_cr": 1455.1,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 615.2,
   "ni": 492.9,
@@ -11,7 +18,7 @@
   "eq": 1364.6,
   "debt": 11.2,
   "fcf": 418.0,
-  "ni_continuing": 492.9,
+  "ni_continuing_ops_pre_minority": 492.9,
   "ni_normalized": 442.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 19.67,
   "pe_normalized": 21.89,
+  "pe_used": 19.67,
   "pb": 7.1,
   "ev_ebitda": 12.28,
   "fcf_yield_pct": 4.3,

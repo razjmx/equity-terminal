@@ -2,9 +2,16 @@
  "symbol": "STARHEALTH",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [
   "no cash flow data"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 7551.2,
+  "implied_cr": 10434.6,
+  "ratio": 0.72,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 18148.5,
   "ni": 557.0,
@@ -13,7 +20,7 @@
   "eq": 7551.2,
   "debt": 470.0,
   "fcf": 1795.3,
-  "ni_continuing": 557.0,
+  "ni_continuing_ops_pre_minority": 557.0,
   "ni_normalized": 558.7
  },
  "ratios": {
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 59.25,
   "pe_normalized": 59.07,
+  "pe_used": 59.25,
   "pb": 4.37,
   "ev_ebitda": null,
   "fcf_yield_pct": 5.4,

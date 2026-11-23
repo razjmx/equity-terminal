@@ -2,7 +2,14 @@
  "symbol": "POWERGRID",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 100494.0,
+  "implied_cr": 106828.6,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 44765.4,
   "ni": 15928.0,
@@ -11,7 +18,7 @@
   "eq": 100494.0,
   "debt": 151558.1,
   "fcf": 3651.5,
-  "ni_continuing": 18702.3,
+  "ni_continuing_ops_pre_minority": 18702.3,
   "ni_normalized": 18668.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 15.47,
   "pe_normalized": 13.2,
+  "pe_used": 15.47,
   "pb": 2.45,
   "ev_ebitda": 9.85,
   "fcf_yield_pct": 1.5,

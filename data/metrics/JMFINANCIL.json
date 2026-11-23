@@ -2,9 +2,16 @@
  "symbol": "JMFINANCIL",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 10657.4,
+  "implied_cr": 11032.4,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3497.7,
   "ni": 1202.0,
@@ -13,7 +20,7 @@
   "eq": 10657.4,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 1201.0,
+  "ni_continuing_ops_pre_minority": 1201.0,
   "ni_normalized": 1202.0
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 11.3,
   "roa_pct": 4.5,
   "equity_multiplier": 2.49
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 8.86,
   "pe_normalized": 8.86,
+  "pe_used": 8.86,
   "pb": 1.0,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

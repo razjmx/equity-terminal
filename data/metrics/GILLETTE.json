@@ -2,7 +2,14 @@
  "symbol": "GILLETTE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 946.4,
+  "implied_cr": 1073.4,
+  "ratio": 0.88,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3094.0,
   "ni": 654.3,
@@ -11,7 +18,7 @@
   "eq": 946.4,
   "debt": 0.0,
   "fcf": 563.4,
-  "ni_continuing": 654.3,
+  "ni_continuing_ops_pre_minority": 654.3,
   "ni_normalized": 657.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 35.28,
   "pe_normalized": 35.08,
+  "pe_used": 35.28,
   "pb": 24.39,
   "ev_ebitda": 23.5,
   "fcf_yield_pct": 2.4,

@@ -2,7 +2,14 @@
  "symbol": "UTIAMC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4504.6,
+  "implied_cr": 4412.2,
+  "ratio": 1.02,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1538.9,
   "ni": 404.1,
@@ -11,7 +18,7 @@
   "eq": 4504.6,
   "debt": 140.9,
   "fcf": 338.3,
-  "ni_continuing": 472.4,
+  "ni_continuing_ops_pre_minority": 472.4,
   "ni_normalized": 409.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 26.51,
   "pe_normalized": 26.16,
+  "pe_used": 26.51,
   "pb": 2.38,
   "ev_ebitda": 11.4,
   "fcf_yield_pct": 3.2,

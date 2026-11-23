@@ -2,7 +2,14 @@
  "symbol": "PRESTIGE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 16272.9,
+  "implied_cr": 16637.9,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 12544.8,
   "ni": 1195.5,
@@ -11,7 +18,7 @@
   "eq": 16272.9,
   "debt": 17659.4,
   "fcf": 339.8,
-  "ni_continuing": 1305.4,
+  "ni_continuing_ops_pre_minority": 1305.4,
   "ni_normalized": 1087.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 60.53,
   "pe_normalized": 66.57,
+  "pe_used": 60.53,
   "pb": 4.45,
   "ev_ebitda": 21.12,
   "fcf_yield_pct": 0.5,

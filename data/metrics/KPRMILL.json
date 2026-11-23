@@ -2,7 +2,14 @@
  "symbol": "KPRMILL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5697.6,
+  "implied_cr": 6213.7,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6377.6,
   "ni": 866.5,
@@ -11,7 +18,7 @@
   "eq": 5697.6,
   "debt": 596.1,
   "fcf": 793.0,
-  "ni_continuing": 866.5,
+  "ni_continuing_ops_pre_minority": 866.5,
   "ni_normalized": 844.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 47.77,
   "pe_normalized": 49.02,
+  "pe_used": 47.77,
   "pb": 7.26,
   "ev_ebitda": 29.13,
   "fcf_yield_pct": 1.9,

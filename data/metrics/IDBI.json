@@ -2,9 +2,16 @@
  "symbol": "IDBI",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 68564.2,
+  "implied_cr": 72491.6,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 18845.1,
   "ni": 9210.0,
@@ -13,7 +20,7 @@
   "eq": 68564.2,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 9236.6,
+  "ni_continuing_ops_pre_minority": 9236.6,
   "ni_normalized": 9206.3
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 13.4,
   "roa_pct": 2.0,
   "equity_multiplier": 6.82
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 9.18,
   "pe_normalized": 9.19,
+  "pe_used": 9.18,
   "pb": 1.23,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

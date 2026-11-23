@@ -2,7 +2,14 @@
  "symbol": "TBOTEK",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1550.7,
+  "implied_cr": 1732.3,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2512.1,
   "ni": 244.3,
@@ -11,7 +18,7 @@
   "eq": 1550.7,
   "debt": 756.1,
   "fcf": -87.5,
-  "ni_continuing": 244.3,
+  "ni_continuing_ops_pre_minority": 244.3,
   "ni_normalized": 266.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 67.69,
   "pe_normalized": 62.14,
+  "pe_used": 67.69,
   "pb": 10.66,
   "ev_ebitda": 37.38,
   "fcf_yield_pct": -0.5,

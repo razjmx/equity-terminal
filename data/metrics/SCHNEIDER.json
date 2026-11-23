@@ -2,7 +2,14 @@
  "symbol": "SCHNEIDER",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 774.4,
+  "implied_cr": 818.2,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2869.9,
   "ni": 212.6,
@@ -11,7 +18,7 @@
   "eq": 774.4,
   "debt": 346.9,
   "fcf": 120.2,
-  "ni_continuing": 212.6,
+  "ni_continuing_ops_pre_minority": 212.6,
   "ni_normalized": 225.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 114.18,
   "pe_normalized": 107.85,
+  "pe_used": 114.18,
   "pb": 31.34,
   "ev_ebitda": 65.17,
   "fcf_yield_pct": 0.5,

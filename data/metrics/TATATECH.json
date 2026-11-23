@@ -2,7 +2,14 @@
  "symbol": "TATATECH",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3923.4,
+  "implied_cr": 3830.7,
+  "ratio": 1.02,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5505.6,
   "ni": 546.6,
@@ -11,7 +18,7 @@
   "eq": 3923.4,
   "debt": 938.0,
   "fcf": 742.1,
-  "ni_continuing": 546.6,
+  "ni_continuing_ops_pre_minority": 546.6,
   "ni_normalized": 609.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 52.88,
   "pe_normalized": 47.45,
+  "pe_used": 52.88,
   "pb": 7.37,
   "ev_ebitda": 30.02,
   "fcf_yield_pct": 2.6,

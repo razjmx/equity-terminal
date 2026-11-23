@@ -2,7 +2,14 @@
  "symbol": "MSUMI",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2161.7,
+  "implied_cr": 2160.6,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 11428.7,
   "ni": 625.2,
@@ -11,7 +18,7 @@
   "eq": 2161.7,
   "debt": 233.2,
   "fcf": 559.9,
-  "ni_continuing": 625.2,
+  "ni_continuing_ops_pre_minority": 625.2,
   "ni_normalized": 625.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 43.97,
   "pe_normalized": 43.98,
+  "pe_used": 43.97,
   "pb": 12.72,
   "ev_ebitda": 25.99,
   "fcf_yield_pct": 2.0,

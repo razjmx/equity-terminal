@@ -2,7 +2,14 @@
  "symbol": "RAILTEL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2261.6,
+  "implied_cr": 2363.6,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4268.7,
   "ni": 346.3,
@@ -11,7 +18,7 @@
   "eq": 2261.6,
   "debt": 63.7,
   "fcf": 44.1,
-  "ni_continuing": 346.3,
+  "ni_continuing_ops_pre_minority": 346.3,
   "ni_normalized": 362.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 22.71,
   "pe_normalized": 21.7,
+  "pe_used": 22.71,
   "pb": 3.48,
   "ev_ebitda": 10.73,
   "fcf_yield_pct": 0.6,

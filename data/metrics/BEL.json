@@ -2,7 +2,14 @@
  "symbol": "BEL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 23988.3,
+  "implied_cr": 26296.2,
+  "ratio": 0.91,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 26796.5,
   "ni": 6062.0,
@@ -11,7 +18,7 @@
   "eq": 23988.3,
   "debt": 65.5,
   "fcf": 556.0,
-  "ni_continuing": 6062.3,
+  "ni_continuing_ops_pre_minority": 6062.3,
   "ni_normalized": 6268.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 47.87,
   "pe_normalized": 46.29,
+  "pe_used": 47.87,
   "pb": 12.1,
   "ev_ebitda": 32.7,
   "fcf_yield_pct": 0.2,

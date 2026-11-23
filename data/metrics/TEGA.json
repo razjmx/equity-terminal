@@ -2,7 +2,14 @@
  "symbol": "TEGA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3407.2,
+  "implied_cr": 3222.8,
+  "ratio": 1.06,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1669.8,
   "ni": 142.7,
@@ -11,7 +18,7 @@
   "eq": 3407.2,
   "debt": 398.4,
   "fcf": 214.4,
-  "ni_continuing": 142.7,
+  "ni_continuing_ops_pre_minority": 142.7,
   "ni_normalized": 126.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 82.95,
   "pe_normalized": 93.74,
+  "pe_used": 82.95,
   "pb": 3.47,
   "ev_ebitda": 31.21,
   "fcf_yield_pct": 1.8,

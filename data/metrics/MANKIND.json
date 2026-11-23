@@ -2,7 +2,14 @@
  "symbol": "MANKIND",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 16300.3,
+  "implied_cr": 17588.7,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 14277.6,
   "ni": 1912.9,
@@ -11,7 +18,7 @@
   "eq": 16300.3,
   "debt": 6311.5,
   "fcf": 2384.1,
-  "ni_continuing": 1938.1,
+  "ni_continuing_ops_pre_minority": 1938.1,
   "ni_normalized": 1933.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 56.92,
   "pe_normalized": 56.31,
+  "pe_used": 56.92,
   "pb": 6.68,
   "ev_ebitda": 29.33,
   "fcf_yield_pct": 2.2,

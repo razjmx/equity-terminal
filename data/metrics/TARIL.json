@@ -2,7 +2,14 @@
  "symbol": "TARIL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1514.8,
+  "implied_cr": 1653.6,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2459.7,
   "ni": 264.4,
@@ -11,7 +18,7 @@
   "eq": 1514.8,
   "debt": 456.6,
   "fcf": -214.8,
-  "ni_continuing": 272.2,
+  "ni_continuing_ops_pre_minority": 272.2,
   "ni_normalized": 271.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 32.95,
   "pe_normalized": 32.06,
+  "pe_used": 32.95,
   "pb": 5.75,
   "ev_ebitda": 21.06,
   "fcf_yield_pct": -2.5,

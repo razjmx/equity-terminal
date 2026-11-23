@@ -2,7 +2,14 @@
  "symbol": "TVSMOTOR",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 9564.2,
+  "implied_cr": 11343.5,
+  "ratio": 0.84,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 47651.6,
   "ni": 3018.3,
@@ -11,7 +18,7 @@
   "eq": 9564.2,
   "debt": 32791.0,
   "fcf": -1368.5,
-  "ni_continuing": 3186.4,
+  "ni_continuing_ops_pre_minority": 3186.4,
   "ni_normalized": 3096.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 71.37,
   "pe_normalized": 69.56,
+  "pe_used": 71.37,
   "pb": 22.52,
   "ev_ebitda": 29.31,
   "fcf_yield_pct": -0.6,

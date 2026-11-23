@@ -2,7 +2,14 @@
  "symbol": "GRAVITA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2451.6,
+  "implied_cr": 2646.4,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4227.4,
   "ni": 378.8,
@@ -11,7 +18,7 @@
   "eq": 2451.6,
   "debt": 735.9,
   "fcf": -46.4,
-  "ni_continuing": 378.3,
+  "ni_continuing_ops_pre_minority": 378.3,
   "ni_normalized": 344.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 28.62,
   "pe_normalized": 31.49,
+  "pe_used": 28.62,
   "pb": 4.42,
   "ev_ebitda": 21.66,
   "fcf_yield_pct": -0.4,

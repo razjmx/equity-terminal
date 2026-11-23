@@ -2,7 +2,14 @@
  "symbol": "ULTRACEMCO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 76623.5,
+  "implied_cr": 73562.1,
+  "ratio": 1.04,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 87383.5,
   "ni": 8165.6,
@@ -11,7 +18,7 @@
   "eq": 76623.5,
   "debt": 23755.1,
   "fcf": 5638.1,
-  "ni_continuing": 8188.4,
+  "ni_continuing_ops_pre_minority": 8188.4,
   "ni_normalized": 8097.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 45.61,
   "pe_normalized": 46.0,
+  "pe_used": 45.61,
   "pb": 4.86,
   "ev_ebitda": 22.49,
   "fcf_yield_pct": 1.5,

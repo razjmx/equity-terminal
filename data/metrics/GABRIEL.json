@@ -2,26 +2,35 @@
  "symbol": "GABRIEL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "profit_basis": "reported",
+ "flags": [
+  "equity replaced by Yahoo book value (balance sheet / book value = 0.57)"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 1368.7,
+  "implied_cr": 2391.2,
+  "ratio": 0.57,
+  "used": "book_value"
+ },
  "snapshot_cr": {
   "rev": 4635.2,
   "ni": 252.2,
   "ebit": 350.3,
   "ta": 2429.6,
-  "eq": 1368.7,
+  "eq": 2391.2,
   "debt": 148.1,
   "fcf": 105.5,
-  "ni_continuing": 252.2,
+  "ni_continuing_ops_pre_minority": 252.2,
   "ni_normalized": 257.6
  },
  "ratios": {
-  "roe_pct": 18.4,
+  "roe_pct": 10.5,
   "roa_pct": 10.4,
   "net_margin_pct": 5.4,
   "ebit_margin_pct": 7.6,
   "roce_pct": 22.8,
   "fcf_margin_pct": 2.3,
-  "debt_equity": 0.11,
+  "debt_equity": 0.06,
   "interest_cover": 24.71,
   "current_ratio": 1.66,
   "asset_turnover": 1.91
@@ -29,7 +38,7 @@
  "dupont": {
   "net_margin_pct": 5.4,
   "asset_turnover": 1.91,
-  "equity_multiplier": 1.78
+  "equity_multiplier": 1.02
  },
  "growth": {
   "years_used": 3,
@@ -39,7 +48,8 @@
  "valuation": {
   "pe": 115.19,
   "pe_normalized": 112.75,
-  "pb": 21.22,
+  "pe_used": 115.19,
+  "pb": 12.15,
   "ev_ebitda": 64.08,
   "fcf_yield_pct": 0.4,
   "market_cap_cr": 29047.9
@@ -60,7 +70,7 @@
   }
  },
  "altman_z2": {
-  "z": 5.68,
+  "z": 6.71,
   "zone": "safe"
  }
 }

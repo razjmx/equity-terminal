@@ -2,7 +2,14 @@
  "symbol": "HAVELLS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 9455.5,
+  "implied_cr": 9773.8,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 22288.1,
   "ni": 1690.6,
@@ -11,7 +18,7 @@
   "eq": 9455.5,
   "debt": 265.2,
   "fcf": 87.5,
-  "ni_continuing": 1689.2,
+  "ni_continuing_ops_pre_minority": 1689.2,
   "ni_normalized": 1537.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 44.26,
   "pe_normalized": 48.67,
+  "pe_used": 44.26,
   "pb": 7.91,
   "ev_ebitda": 27.16,
   "fcf_yield_pct": 0.1,

@@ -2,7 +2,14 @@
  "symbol": "BIRET",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 17525.9,
+  "implied_cr": 19605.6,
+  "ratio": 0.89,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2971.1,
   "ni": 481.2,
@@ -11,7 +18,7 @@
   "eq": 17525.9,
   "debt": 16582.6,
   "fcf": 1994.7,
-  "ni_continuing": 536.8,
+  "ni_continuing_ops_pre_minority": 536.8,
   "ni_normalized": 482.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 45.44,
   "pe_normalized": 45.28,
+  "pe_used": 45.44,
   "pb": 1.25,
   "ev_ebitda": 17.15,
   "fcf_yield_pct": 9.1,

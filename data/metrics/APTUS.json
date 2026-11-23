@@ -2,9 +2,16 @@
  "symbol": "APTUS",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 5060.0,
+  "implied_cr": 5468.6,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1597.0,
   "ni": 942.9,
@@ -13,7 +20,7 @@
   "eq": 5060.0,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 942.9,
+  "ni_continuing_ops_pre_minority": 942.9,
   "ni_normalized": 942.9
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 18.6,
   "roa_pct": 7.2,
   "equity_multiplier": 2.58
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 10.21,
   "pe_normalized": 10.21,
+  "pe_used": 10.21,
   "pb": 1.9,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

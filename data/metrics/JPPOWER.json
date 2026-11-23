@@ -2,26 +2,35 @@
  "symbol": "JPPOWER",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "profit_basis": "reported",
+ "flags": [
+  "equity replaced by Yahoo book value (balance sheet / book value = 1.64)"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 12732.2,
+  "implied_cr": 7753.3,
+  "ratio": 1.64,
+  "used": "book_value"
+ },
  "snapshot_cr": {
   "rev": 5563.4,
   "ni": 450.6,
   "ebit": 1106.3,
   "ta": 17957.6,
-  "eq": 12732.2,
+  "eq": 7753.3,
   "debt": 3391.1,
   "fcf": 1293.1,
-  "ni_continuing": 450.6,
+  "ni_continuing_ops_pre_minority": 450.6,
   "ni_normalized": 446.2
  },
  "ratios": {
-  "roe_pct": 3.5,
+  "roe_pct": 5.8,
   "roa_pct": 2.5,
   "net_margin_pct": 8.1,
   "ebit_margin_pct": 19.9,
   "roce_pct": 6.7,
   "fcf_margin_pct": 23.2,
-  "debt_equity": 0.27,
+  "debt_equity": 0.44,
   "interest_cover": 3.08,
   "current_ratio": 2.7,
   "asset_turnover": 0.31
@@ -29,7 +38,7 @@
  "dupont": {
   "net_margin_pct": 8.1,
   "asset_turnover": 0.31,
-  "equity_multiplier": 1.41
+  "equity_multiplier": 2.32
  },
  "growth": {
   "years_used": 3,
@@ -39,7 +48,8 @@
  "valuation": {
   "pe": 20.14,
   "pe_normalized": 20.34,
-  "pb": 0.71,
+  "pe_used": 20.14,
+  "pb": 1.17,
   "ev_ebitda": 7.42,
   "fcf_yield_pct": 14.3,
   "market_cap_cr": 9074.0
@@ -60,7 +70,7 @@
   }
  },
  "altman_z2": {
-  "z": 3.75,
+  "z": 2.75,
   "zone": "safe"
  }
 }

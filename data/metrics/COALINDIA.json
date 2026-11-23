@@ -2,7 +2,14 @@
  "symbol": "COALINDIA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 119101.6,
+  "implied_cr": 127429.2,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 166417.3,
   "ni": 31094.3,
@@ -11,7 +18,7 @@
   "eq": 119101.6,
   "debt": 14072.2,
   "fcf": 30715.0,
-  "ni_continuing": 31070.6,
+  "ni_continuing_ops_pre_minority": 31070.6,
   "ni_normalized": 30912.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 7.61,
   "pe_normalized": 7.66,
+  "pe_used": 7.61,
   "pb": 1.99,
   "ev_ebitda": 3.6,
   "fcf_yield_pct": 13.0,

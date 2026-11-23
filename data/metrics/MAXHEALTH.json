@@ -2,7 +2,14 @@
  "symbol": "MAXHEALTH",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 10746.6,
+  "implied_cr": 11323.8,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8225.4,
   "ni": 1442.4,
@@ -11,7 +18,7 @@
   "eq": 10746.6,
   "debt": 3478.4,
   "fcf": 148.8,
-  "ni_continuing": 1442.4,
+  "ni_continuing_ops_pre_minority": 1442.4,
   "ni_normalized": 1519.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 73.71,
   "pe_normalized": 69.99,
+  "pe_used": 73.71,
   "pb": 9.89,
   "ev_ebitda": 46.7,
   "fcf_yield_pct": 0.1,

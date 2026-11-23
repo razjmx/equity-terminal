@@ -2,7 +2,14 @@
  "symbol": "TRENT",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6984.7,
+  "implied_cr": 7771.9,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 19850.1,
   "ni": 1719.7,
@@ -11,7 +18,7 @@
   "eq": 6984.7,
   "debt": 2561.2,
   "fcf": 904.8,
-  "ni_continuing": 1721.3,
+  "ni_continuing_ops_pre_minority": 1721.3,
   "ni_normalized": 1707.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 99.28,
   "pe_normalized": 99.99,
+  "pe_used": 99.28,
   "pb": 24.44,
   "ev_ebitda": 45.76,
   "fcf_yield_pct": 0.5,

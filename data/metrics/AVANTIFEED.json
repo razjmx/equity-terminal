@@ -2,7 +2,14 @@
  "symbol": "AVANTIFEED",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3286.1,
+  "implied_cr": 3321.4,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5974.6,
   "ni": 606.1,
@@ -11,7 +18,7 @@
   "eq": 3286.1,
   "debt": 13.2,
   "fcf": 423.9,
-  "ni_continuing": 655.8,
+  "ni_continuing_ops_pre_minority": 655.8,
   "ni_normalized": 579.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 15.92,
   "pe_normalized": 16.64,
+  "pe_used": 15.92,
   "pb": 2.94,
   "ev_ebitda": 8.48,
   "fcf_yield_pct": 4.4,

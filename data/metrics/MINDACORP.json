@@ -2,7 +2,14 @@
  "symbol": "MINDACORP",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2643.7,
+  "implied_cr": 2976.0,
+  "ratio": 0.89,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6066.1,
   "ni": 360.3,
@@ -11,7 +18,7 @@
   "eq": 2643.7,
   "debt": 1471.5,
   "fcf": 281.4,
-  "ni_continuing": 358.3,
+  "ni_continuing_ops_pre_minority": 358.3,
   "ni_normalized": 357.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 47.6,
   "pe_normalized": 47.95,
+  "pe_used": 47.6,
   "pb": 6.49,
   "ev_ebitda": 25.37,
   "fcf_yield_pct": 1.6,

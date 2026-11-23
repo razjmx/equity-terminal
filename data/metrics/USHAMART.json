@@ -2,7 +2,14 @@
  "symbol": "USHAMART",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3301.9,
+  "implied_cr": 3301.9,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3595.6,
   "ni": 466.0,
@@ -11,7 +18,7 @@
   "eq": 3301.9,
   "debt": 228.6,
   "fcf": 457.3,
-  "ni_continuing": 491.2,
+  "ni_continuing_ops_pre_minority": 491.2,
   "ni_normalized": 485.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 29.72,
   "pe_normalized": 28.51,
+  "pe_used": 29.72,
   "pb": 4.19,
   "ev_ebitda": 17.57,
   "fcf_yield_pct": 3.3,

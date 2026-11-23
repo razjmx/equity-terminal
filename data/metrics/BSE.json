@@ -2,7 +2,14 @@
  "symbol": "BSE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6673.0,
+  "implied_cr": 9104.2,
+  "ratio": 0.73,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4485.4,
   "ni": 2497.0,
@@ -11,7 +18,7 @@
   "eq": 6673.0,
   "debt": 2.8,
   "fcf": 2588.5,
-  "ni_continuing": 2475.3,
+  "ni_continuing_ops_pre_minority": 2475.3,
   "ni_normalized": 2418.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 61.03,
   "pe_normalized": 63.01,
+  "pe_used": 61.03,
   "pb": 22.84,
   "ev_ebitda": 42.93,
   "fcf_yield_pct": 1.7,

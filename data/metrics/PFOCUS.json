@@ -2,7 +2,14 @@
  "symbol": "PFOCUS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2088.5,
+  "implied_cr": 2206.1,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4587.3,
   "ni": 218.7,
@@ -11,7 +18,7 @@
   "eq": 2088.5,
   "debt": 5716.7,
   "fcf": 492.1,
-  "ni_continuing": 301.4,
+  "ni_continuing_ops_pre_minority": 301.4,
   "ni_normalized": 225.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 85.09,
   "pe_normalized": 82.53,
+  "pe_used": 85.09,
   "pb": 8.91,
   "ev_ebitda": 16.09,
   "fcf_yield_pct": 2.6,

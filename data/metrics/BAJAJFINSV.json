@@ -2,7 +2,14 @@
  "symbol": "BAJAJFINSV",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 77915.1,
+  "implied_cr": 83912.4,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 137147.6,
   "ni": 9801.0,
@@ -11,7 +18,7 @@
   "eq": 77915.1,
   "debt": 361378.5,
   "fcf": -56749.6,
-  "ni_continuing": 19669.5,
+  "ni_continuing_ops_pre_minority": 19669.5,
   "ni_normalized": 10092.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 30.66,
   "pe_normalized": 29.77,
+  "pe_used": 30.66,
   "pb": 3.86,
   "ev_ebitda": null,
   "fcf_yield_pct": -18.9,

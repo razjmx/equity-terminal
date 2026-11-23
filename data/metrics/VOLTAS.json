@@ -2,7 +2,14 @@
  "symbol": "VOLTAS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6376.2,
+  "implied_cr": 6745.1,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 14123.0,
   "ni": 375.9,
@@ -11,7 +18,7 @@
   "eq": 6376.2,
   "debt": 992.5,
   "fcf": -61.8,
-  "ni_continuing": 370.0,
+  "ni_continuing_ops_pre_minority": 370.0,
   "ni_normalized": 331.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 107.48,
   "pe_normalized": 121.78,
+  "pe_used": 107.48,
   "pb": 6.34,
   "ev_ebitda": 54.72,
   "fcf_yield_pct": -0.2,

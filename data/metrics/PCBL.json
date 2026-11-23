@@ -2,7 +2,14 @@
  "symbol": "PCBL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4006.3,
+  "implied_cr": 4048.5,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8126.4,
   "ni": 197.9,
@@ -11,7 +18,7 @@
   "eq": 4006.3,
   "debt": 4989.1,
   "fcf": 849.5,
-  "ni_continuing": 198.0,
+  "ni_continuing_ops_pre_minority": 198.0,
   "ni_normalized": 210.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 52.75,
   "pe_normalized": 49.52,
+  "pe_used": 52.75,
   "pb": 2.61,
   "ev_ebitda": 14.49,
   "fcf_yield_pct": 8.1,

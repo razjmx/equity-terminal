@@ -2,7 +2,14 @@
  "symbol": "BHARATFORG",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 9579.8,
+  "implied_cr": 11760.2,
+  "ratio": 0.81,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 16223.8,
   "ni": 1079.7,
@@ -11,7 +18,7 @@
   "eq": 9579.8,
   "debt": 7308.6,
   "fcf": 346.1,
-  "ni_continuing": 1089.4,
+  "ni_continuing_ops_pre_minority": 1089.4,
   "ni_normalized": 1142.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 78.54,
   "pe_normalized": 74.24,
+  "pe_used": 78.54,
   "pb": 8.85,
   "ev_ebitda": 30.5,
   "fcf_yield_pct": 0.4,

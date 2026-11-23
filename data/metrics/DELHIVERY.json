@@ -2,9 +2,16 @@
  "symbol": "DELHIVERY",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 9687.0,
+  "implied_cr": 9776.5,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 10488.3,
   "ni": 152.7,
@@ -13,13 +20,13 @@
   "eq": 9687.0,
   "debt": 1462.6,
   "fcf": 489.3,
-  "ni_continuing": 152.5,
+  "ni_continuing_ops_pre_minority": 152.5,
   "ni_normalized": 90.3
  },
  "ratios": {
-  "roe_pct": 1.6,
-  "roa_pct": 1.2,
-  "net_margin_pct": 1.5,
+  "roe_pct": 0.9,
+  "roa_pct": 0.7,
+  "net_margin_pct": 0.9,
   "ebit_margin_pct": 2.7,
   "roce_pct": 2.6,
   "fcf_margin_pct": 4.7,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.82
  },
  "dupont": {
-  "net_margin_pct": 1.5,
+  "net_margin_pct": 0.9,
   "asset_turnover": 0.82,
   "equity_multiplier": 1.32
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 224.4,
   "pe_normalized": 379.6,
+  "pe_used": 379.6,
   "pb": 3.54,
   "ev_ebitda": 33.58,
   "fcf_yield_pct": 1.4,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 3.29,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": 1.6,
+  "roa_pct": 1.2,
+  "net_margin_pct": 1.5
  }
 }

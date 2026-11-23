@@ -2,7 +2,14 @@
  "symbol": "MEESHO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4386.4,
+  "implied_cr": 4118.5,
+  "ratio": 1.07,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 12626.3,
   "ni": -1357.7,
@@ -11,7 +18,7 @@
   "eq": 4386.4,
   "debt": 62.6,
   "fcf": -3976.4,
-  "ni_continuing": -1357.7,
+  "ni_continuing_ops_pre_minority": -1357.7,
   "ni_normalized": -1368.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": null,
   "pe_normalized": null,
+  "pe_used": null,
   "pb": 27.2,
   "ev_ebitda": -101.62,
   "fcf_yield_pct": -3.3,

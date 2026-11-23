@@ -2,7 +2,14 @@
  "symbol": "RRKABEL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2574.4,
+  "implied_cr": 3038.6,
+  "ratio": 0.85,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 9587.0,
   "ni": 492.2,
@@ -11,7 +18,7 @@
   "eq": 2574.4,
   "debt": 337.0,
   "fcf": 4.3,
-  "ni_continuing": 492.2,
+  "ni_continuing_ops_pre_minority": 492.2,
   "ni_normalized": 505.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 42.71,
   "pe_normalized": 41.56,
+  "pe_used": 42.71,
   "pb": 8.17,
   "ev_ebitda": 25.94,
   "fcf_yield_pct": 0.0,

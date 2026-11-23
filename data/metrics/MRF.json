@@ -2,7 +2,14 @@
  "symbol": "MRF",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 20974.6,
+  "implied_cr": 21773.7,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 30931.7,
   "ni": 2426.1,
@@ -11,7 +18,7 @@
   "eq": 20974.6,
   "debt": 3206.7,
   "fcf": 3156.1,
-  "ni_continuing": 2426.1,
+  "ni_continuing_ops_pre_minority": 2426.1,
   "ni_normalized": 2286.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 22.72,
   "pe_normalized": 24.11,
+  "pe_used": 22.72,
   "pb": 2.63,
   "ev_ebitda": 9.95,
   "fcf_yield_pct": 5.7,

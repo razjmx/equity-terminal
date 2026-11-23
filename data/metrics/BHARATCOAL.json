@@ -2,7 +2,14 @@
  "symbol": "BHARATCOAL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5778.8,
+  "implied_cr": null,
+  "ratio": null,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 13644.8,
   "ni": 128.3,
@@ -11,7 +18,7 @@
   "eq": 5778.8,
   "debt": 2241.7,
   "fcf": -1259.3,
-  "ni_continuing": 128.3,
+  "ni_continuing_ops_pre_minority": 128.3,
   "ni_normalized": 119.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": null,
   "pe_normalized": null,
+  "pe_used": null,
   "pb": null,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

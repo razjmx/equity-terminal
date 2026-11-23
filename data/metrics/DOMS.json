@@ -2,7 +2,14 @@
  "symbol": "DOMS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1219.7,
+  "implied_cr": 1282.6,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2311.4,
   "ni": 230.2,
@@ -11,7 +18,7 @@
   "eq": 1219.7,
   "debt": 141.3,
   "fcf": -38.5,
-  "ni_continuing": 239.6,
+  "ni_continuing_ops_pre_minority": 239.6,
   "ni_normalized": 230.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 56.28,
   "pe_normalized": 56.34,
+  "pe_used": 56.28,
   "pb": 10.62,
   "ev_ebitda": 31.09,
   "fcf_yield_pct": -0.3,

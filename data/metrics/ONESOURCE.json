@@ -2,7 +2,14 @@
  "symbol": "ONESOURCE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5831.3,
+  "implied_cr": 5917.6,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1421.6,
   "ni": -73.8,
@@ -11,7 +18,7 @@
   "eq": 5831.3,
   "debt": 1503.9,
   "fcf": -560.5,
-  "ni_continuing": -73.8,
+  "ni_continuing_ops_pre_minority": -73.8,
   "ni_normalized": -65.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": null,
   "pe_normalized": null,
+  "pe_used": null,
   "pb": 3.17,
   "ev_ebitda": 66.83,
   "fcf_yield_pct": -3.0,

@@ -2,7 +2,14 @@
  "symbol": "IKS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2800.2,
+  "implied_cr": 3342.1,
+  "ratio": 0.84,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3193.8,
   "ni": 721.6,
@@ -11,7 +18,7 @@
   "eq": 2800.2,
   "debt": 752.5,
   "fcf": 612.9,
-  "ni_continuing": 721.6,
+  "ni_continuing_ops_pre_minority": 721.6,
   "ni_normalized": 721.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 37.71,
   "pe_normalized": 37.74,
+  "pe_used": 37.71,
   "pb": 9.72,
   "ev_ebitda": 24.89,
   "fcf_yield_pct": 2.3,

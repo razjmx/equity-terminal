@@ -2,7 +2,14 @@
  "symbol": "SAIL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 60355.9,
+  "implied_cr": 62550.6,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 109987.0,
   "ni": 3372.8,
@@ -11,7 +18,7 @@
   "eq": 60355.9,
   "debt": 31927.7,
   "fcf": 10281.2,
-  "ni_continuing": 3372.8,
+  "ni_continuing_ops_pre_minority": 3372.8,
   "ni_normalized": 3962.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 19.77,
   "pe_normalized": 16.83,
+  "pe_used": 19.77,
   "pb": 1.1,
   "ev_ebitda": 7.81,
   "fcf_yield_pct": 15.4,

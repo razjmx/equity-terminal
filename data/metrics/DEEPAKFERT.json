@@ -2,7 +2,14 @@
  "symbol": "DEEPAKFERT",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6844.6,
+  "implied_cr": 7581.2,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 9400.4,
   "ni": 737.2,
@@ -11,7 +18,7 @@
   "eq": 6844.6,
   "debt": 5670.3,
   "fcf": -1364.2,
-  "ni_continuing": 738.8,
+  "ni_continuing_ops_pre_minority": 738.8,
   "ni_normalized": 703.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 24.29,
   "pe_normalized": 25.47,
+  "pe_used": 24.29,
   "pb": 2.62,
   "ev_ebitda": 12.88,
   "fcf_yield_pct": -7.6,

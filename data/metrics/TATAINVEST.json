@@ -2,9 +2,16 @@
  "symbol": "TATAINVEST",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 29221.2,
+  "implied_cr": 31139.6,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 520.3,
   "ni": 433.7,
@@ -13,7 +20,7 @@
   "eq": 29221.2,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 433.7,
+  "ni_continuing_ops_pre_minority": 433.7,
   "ni_normalized": 433.7
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 1.5,
   "roa_pct": 1.3,
   "equity_multiplier": 1.12
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 68.42,
   "pe_normalized": 68.42,
+  "pe_used": 68.42,
   "pb": 1.02,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

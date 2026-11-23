@@ -2,7 +2,14 @@
  "symbol": "BSOFT",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4113.1,
+  "implied_cr": 4335.0,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5310.0,
   "ni": 518.4,
@@ -11,7 +18,7 @@
   "eq": 4113.1,
   "debt": 140.7,
   "fcf": 436.6,
-  "ni_continuing": 518.4,
+  "ni_continuing_ops_pre_minority": 518.4,
   "ni_normalized": 523.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 16.48,
   "pe_normalized": 16.32,
+  "pe_used": 16.48,
   "pb": 2.08,
   "ev_ebitda": 7.01,
   "fcf_yield_pct": 5.1,

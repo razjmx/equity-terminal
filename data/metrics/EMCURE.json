@@ -2,7 +2,14 @@
  "symbol": "EMCURE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4950.0,
+  "implied_cr": 5343.7,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 9115.9,
   "ni": 924.4,
@@ -11,7 +18,7 @@
   "eq": 4950.0,
   "debt": 1521.2,
   "fcf": 395.9,
-  "ni_continuing": 941.3,
+  "ni_continuing_ops_pre_minority": 941.3,
   "ni_normalized": 978.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 47.16,
   "pe_normalized": 44.54,
+  "pe_used": 47.16,
   "pb": 8.81,
   "ev_ebitda": 24.66,
   "fcf_yield_pct": 0.9,

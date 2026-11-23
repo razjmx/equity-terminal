@@ -2,7 +2,14 @@
  "symbol": "SARDAEN",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 7370.0,
+  "implied_cr": 8070.7,
+  "ratio": 0.91,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5643.8,
   "ni": 1105.9,
@@ -11,7 +18,7 @@
   "eq": 7370.0,
   "debt": 2631.9,
   "fcf": 1397.0,
-  "ni_continuing": 1109.4,
+  "ni_continuing_ops_pre_minority": 1109.4,
   "ni_normalized": 1029.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 14.68,
   "pe_normalized": 15.77,
+  "pe_used": 14.68,
   "pb": 2.2,
   "ev_ebitda": 8.19,
   "fcf_yield_pct": 8.6,

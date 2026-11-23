@@ -2,7 +2,14 @@
  "symbol": "TRITURBINE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1446.0,
+  "implied_cr": 1499.4,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2159.0,
   "ni": 349.7,
@@ -11,7 +18,7 @@
   "eq": 1446.0,
   "debt": 35.9,
   "fcf": 39.4,
-  "ni_continuing": 349.4,
+  "ni_continuing_ops_pre_minority": 349.4,
   "ni_normalized": 341.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 41.42,
   "pe_normalized": 42.37,
+  "pe_used": 41.42,
   "pb": 10.02,
   "ev_ebitda": 26.78,
   "fcf_yield_pct": 0.3,

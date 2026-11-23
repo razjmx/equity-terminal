@@ -2,20 +2,29 @@
  "symbol": "IGL",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "profit_basis": "reported",
+ "flags": [
+  "equity replaced by Yahoo book value (balance sheet / book value = 1.15)"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 11504.4,
+  "implied_cr": 10001.9,
+  "ratio": 1.15,
+  "used": "book_value"
+ },
  "snapshot_cr": {
   "rev": 16106.6,
   "ni": 1549.6,
   "ebit": 1992.0,
   "ta": 17028.4,
-  "eq": 11504.4,
+  "eq": 10001.9,
   "debt": 97.8,
   "fcf": 588.2,
-  "ni_continuing": 1543.5,
+  "ni_continuing_ops_pre_minority": 1543.5,
   "ni_normalized": 1492.9
  },
  "ratios": {
-  "roe_pct": 13.5,
+  "roe_pct": 15.5,
   "roa_pct": 9.1,
   "net_margin_pct": 9.6,
   "ebit_margin_pct": 12.4,
@@ -29,7 +38,7 @@
  "dupont": {
   "net_margin_pct": 9.6,
   "asset_turnover": 0.95,
-  "equity_multiplier": 1.48
+  "equity_multiplier": 1.7
  },
  "growth": {
   "years_used": 3,
@@ -39,7 +48,8 @@
  "valuation": {
   "pe": 13.74,
   "pe_normalized": 14.26,
-  "pb": 1.85,
+  "pe_used": 13.74,
+  "pb": 2.13,
   "ev_ebitda": 6.82,
   "fcf_yield_pct": 2.8,
   "market_cap_cr": 21285.6
@@ -60,7 +70,7 @@
   }
  },
  "altman_z2": {
-  "z": 5.36,
+  "z": 5.07,
   "zone": "safe"
  }
 }

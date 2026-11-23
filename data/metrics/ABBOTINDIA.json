@@ -2,20 +2,29 @@
  "symbol": "ABBOTINDIA",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "profit_basis": "reported",
+ "flags": [
+  "equity replaced by Yahoo book value (balance sheet / book value = 1.12)"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 4774.2,
+  "implied_cr": 4270.1,
+  "ratio": 1.12,
+  "used": "book_value"
+ },
  "snapshot_cr": {
   "rev": 6926.9,
   "ni": 1552.0,
   "ebit": 2104.3,
   "ta": 6501.9,
-  "eq": 4774.2,
+  "eq": 4270.1,
   "debt": 172.0,
   "fcf": 1278.3,
-  "ni_continuing": 1552.0,
+  "ni_continuing_ops_pre_minority": 1552.0,
   "ni_normalized": 1546.3
  },
  "ratios": {
-  "roe_pct": 32.5,
+  "roe_pct": 36.3,
   "roa_pct": 23.9,
   "net_margin_pct": 22.4,
   "ebit_margin_pct": 30.4,
@@ -29,7 +38,7 @@
  "dupont": {
   "net_margin_pct": 22.4,
   "asset_turnover": 1.07,
-  "equity_multiplier": 1.36
+  "equity_multiplier": 1.52
  },
  "growth": {
   "years_used": 3,
@@ -39,7 +48,8 @@
  "valuation": {
   "pe": 36.17,
   "pe_normalized": 36.3,
-  "pb": 11.76,
+  "pe_used": 36.17,
+  "pb": 13.14,
   "ev_ebitda": 24.8,
   "fcf_yield_pct": 2.3,
   "market_cap_cr": 56130.0
@@ -60,7 +70,7 @@
   }
  },
  "altman_z2": {
-  "z": 9.2,
+  "z": 8.89,
   "zone": "safe"
  }
 }

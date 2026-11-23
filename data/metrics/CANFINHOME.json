@@ -2,9 +2,16 @@
  "symbol": "CANFINHOME",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 5980.4,
+  "implied_cr": 6416.1,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1646.6,
   "ni": 1085.8,
@@ -13,7 +20,7 @@
   "eq": 5980.4,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 1085.8,
+  "ni_continuing_ops_pre_minority": 1085.8,
   "ni_normalized": 1085.8
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 18.2,
   "roa_pct": 2.4,
   "equity_multiplier": 7.42
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 9.73,
   "pe_normalized": 9.73,
+  "pe_used": 9.73,
   "pb": 1.77,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

@@ -2,7 +2,14 @@
  "symbol": "ENDURANCE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6840.8,
+  "implied_cr": 7224.0,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 14339.9,
   "ni": 951.7,
@@ -11,7 +18,7 @@
   "eq": 6840.8,
   "debt": 1326.7,
   "fcf": 554.9,
-  "ni_continuing": 951.7,
+  "ni_continuing_ops_pre_minority": 951.7,
   "ni_normalized": 946.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 37.45,
   "pe_normalized": 37.65,
+  "pe_used": 37.45,
   "pb": 5.21,
   "ev_ebitda": 16.96,
   "fcf_yield_pct": 1.6,

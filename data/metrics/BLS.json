@@ -2,7 +2,14 @@
  "symbol": "BLS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2463.5,
+  "implied_cr": 2821.4,
+  "ratio": 0.87,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2998.2,
   "ni": 686.7,
@@ -11,7 +18,7 @@
   "eq": 2463.5,
   "debt": 430.6,
   "fcf": 765.8,
-  "ni_continuing": 723.8,
+  "ni_continuing_ops_pre_minority": 723.8,
   "ni_normalized": 668.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 13.23,
   "pe_normalized": 13.6,
+  "pe_used": 13.23,
   "pb": 3.69,
   "ev_ebitda": 8.76,
   "fcf_yield_pct": 8.4,

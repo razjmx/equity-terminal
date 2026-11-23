@@ -2,7 +2,14 @@
  "symbol": "TCS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 107240.0,
+  "implied_cr": 118985.9,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 267021.0,
   "ni": 49210.0,
@@ -11,7 +18,7 @@
   "eq": 107240.0,
   "debt": 11283.0,
   "fcf": 47948.0,
-  "ni_continuing": 49454.0,
+  "ni_continuing_ops_pre_minority": 49454.0,
   "ni_normalized": 51974.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 18.08,
   "pe_normalized": 17.12,
+  "pe_used": 18.08,
   "pb": 8.3,
   "ev_ebitda": 11.9,
   "fcf_yield_pct": 5.4,

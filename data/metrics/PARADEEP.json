@@ -2,7 +2,14 @@
  "symbol": "PARADEEP",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6782.7,
+  "implied_cr": 7112.8,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 10191.2,
   "ni": 996.4,
@@ -11,7 +18,7 @@
   "eq": 6782.7,
   "debt": 6906.3,
   "fcf": -1879.7,
-  "ni_continuing": 996.4,
+  "ni_continuing_ops_pre_minority": 996.4,
   "ni_normalized": 1024.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 14.72,
   "pe_normalized": 14.32,
+  "pe_used": 14.72,
   "pb": 2.16,
   "ev_ebitda": 10.24,
   "fcf_yield_pct": -12.8,

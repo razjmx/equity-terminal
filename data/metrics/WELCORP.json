@@ -2,7 +2,14 @@
  "symbol": "WELCORP",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 9155.6,
+  "implied_cr": 10620.9,
+  "ratio": 0.86,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 16209.2,
   "ni": 1613.0,
@@ -11,7 +18,7 @@
   "eq": 9155.6,
   "debt": 2357.3,
   "fcf": 672.1,
-  "ni_continuing": 1620.5,
+  "ni_continuing_ops_pre_minority": 1620.5,
   "ni_normalized": 1613.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 35.35,
   "pe_normalized": 35.34,
+  "pe_used": 35.35,
   "pb": 6.23,
   "ev_ebitda": 20.55,
   "fcf_yield_pct": 1.2,

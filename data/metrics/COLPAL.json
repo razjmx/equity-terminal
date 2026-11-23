@@ -2,7 +2,14 @@
  "symbol": "COLPAL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1584.1,
+  "implied_cr": 1617.9,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5983.6,
   "ni": 1325.3,
@@ -11,7 +18,7 @@
   "eq": 1584.1,
   "debt": 47.4,
   "fcf": 1729.8,
-  "ni_continuing": 1325.3,
+  "ni_continuing_ops_pre_minority": 1325.3,
   "ni_normalized": 1345.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 36.64,
   "pe_normalized": 36.1,
+  "pe_used": 36.64,
   "pb": 30.66,
   "ev_ebitda": 24.4,
   "fcf_yield_pct": 3.6,

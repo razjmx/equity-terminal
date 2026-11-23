@@ -2,7 +2,14 @@
  "symbol": "MFSL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5281.8,
+  "implied_cr": 5753.3,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 47590.5,
   "ni": 84.0,
@@ -11,7 +18,7 @@
   "eq": 5281.8,
   "debt": 2348.8,
   "fcf": 11228.3,
-  "ni_continuing": 104.5,
+  "ni_continuing_ops_pre_minority": 104.5,
   "ni_normalized": 78.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 587.67,
   "pe_normalized": 632.82,
+  "pe_used": 587.67,
   "pb": 9.35,
   "ev_ebitda": null,
   "fcf_yield_pct": 22.7,

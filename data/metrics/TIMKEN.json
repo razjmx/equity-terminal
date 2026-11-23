@@ -2,7 +2,14 @@
  "symbol": "TIMKEN",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2914.6,
+  "implied_cr": 3134.3,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3462.4,
   "ni": 414.9,
@@ -11,7 +18,7 @@
   "eq": 2914.6,
   "debt": 14.6,
   "fcf": 148.4,
-  "ni_continuing": 414.9,
+  "ni_continuing_ops_pre_minority": 414.9,
   "ni_normalized": 415.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 55.48,
   "pe_normalized": 55.47,
+  "pe_used": 55.48,
   "pb": 7.9,
   "ev_ebitda": 34.29,
   "fcf_yield_pct": 0.6,

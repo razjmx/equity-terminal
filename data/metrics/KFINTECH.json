@@ -2,7 +2,14 @@
  "symbol": "KFINTECH",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1673.1,
+  "implied_cr": 1623.4,
+  "ratio": 1.03,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1274.3,
   "ni": 343.7,
@@ -11,7 +18,7 @@
   "eq": 1673.1,
   "debt": 55.4,
   "fcf": 258.7,
-  "ni_continuing": 343.7,
+  "ni_continuing_ops_pre_minority": 343.7,
   "ni_normalized": 341.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 47.07,
   "pe_normalized": 47.36,
+  "pe_used": 47.07,
   "pb": 9.67,
   "ev_ebitda": 28.06,
   "fcf_yield_pct": 1.6,

@@ -2,9 +2,16 @@
  "symbol": "CENTRALBK",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 39001.1,
+  "implied_cr": 41594.8,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 20660.8,
   "ni": 4523.8,
@@ -13,7 +20,7 @@
   "eq": 39001.1,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 4530.8,
+  "ni_continuing_ops_pre_minority": 4530.8,
   "ni_normalized": 4526.0
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 11.6,
   "roa_pct": 0.8,
   "equity_multiplier": 14.13
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 6.7,
   "pe_normalized": 6.7,
+  "pe_used": 6.7,
   "pb": 0.78,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

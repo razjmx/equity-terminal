@@ -2,7 +2,14 @@
  "symbol": "ANTHEM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3042.5,
+  "implied_cr": 3278.8,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2124.3,
   "ni": 591.8,
@@ -11,7 +18,7 @@
   "eq": 3042.5,
   "debt": 53.9,
   "fcf": 633.3,
-  "ni_continuing": 591.8,
+  "ni_continuing_ops_pre_minority": 591.8,
   "ni_normalized": 602.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 91.29,
   "pe_normalized": 89.67,
+  "pe_used": 91.29,
   "pb": 17.76,
   "ev_ebitda": 55.08,
   "fcf_yield_pct": 1.2,

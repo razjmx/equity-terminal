@@ -2,7 +2,14 @@
  "symbol": "SUZLON",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 9463.5,
+  "implied_cr": 10393.8,
+  "ratio": 0.91,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 16546.7,
   "ni": 3163.4,
@@ -11,7 +18,7 @@
   "eq": 9463.5,
   "debt": 981.1,
   "fcf": 625.1,
-  "ni_continuing": 3163.4,
+  "ni_continuing_ops_pre_minority": 3163.4,
   "ni_normalized": 3119.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 15.8,
   "pe_normalized": 16.02,
+  "pe_used": 15.8,
   "pb": 5.28,
   "ev_ebitda": 16.67,
   "fcf_yield_pct": 1.3,

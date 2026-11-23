@@ -2,7 +2,14 @@
  "symbol": "WELSPUNLIV",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4917.2,
+  "implied_cr": 5076.8,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8436.2,
   "ni": 204.4,
@@ -11,7 +18,7 @@
   "eq": 4917.2,
   "debt": 2314.8,
   "fcf": 723.9,
-  "ni_continuing": 212.9,
+  "ni_continuing_ops_pre_minority": 212.9,
   "ni_normalized": 201.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 127.93,
   "pe_normalized": 130.09,
+  "pe_used": 127.93,
   "pb": 5.32,
   "ev_ebitda": 33.73,
   "fcf_yield_pct": 2.8,

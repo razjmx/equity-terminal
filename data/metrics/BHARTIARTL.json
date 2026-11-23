@@ -2,7 +2,14 @@
  "symbol": "BHARTIARTL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 149056.6,
+  "implied_cr": 158113.5,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 210972.8,
   "ni": 26695.2,
@@ -11,7 +18,7 @@
   "eq": 149056.6,
   "debt": 195411.7,
   "fcf": 75515.4,
-  "ni_continuing": 33822.8,
+  "ni_continuing_ops_pre_minority": 33822.8,
   "ni_normalized": 28894.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 49.92,
   "pe_normalized": 46.12,
+  "pe_used": 49.92,
   "pb": 8.94,
   "ev_ebitda": 12.77,
   "fcf_yield_pct": 5.7,

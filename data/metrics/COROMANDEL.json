@@ -2,7 +2,14 @@
  "symbol": "COROMANDEL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 12557.9,
+  "implied_cr": 13412.6,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 20223.2,
   "ni": 1956.2,
@@ -11,7 +18,7 @@
   "eq": 12557.9,
   "debt": 6528.3,
   "fcf": 17.1,
-  "ni_continuing": 1898.1,
+  "ni_continuing_ops_pre_minority": 1898.1,
   "ni_normalized": 2000.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 29.8,
   "pe_normalized": 29.14,
+  "pe_used": 29.8,
   "pb": 4.64,
   "ev_ebitda": 18.02,
   "fcf_yield_pct": 0.0,

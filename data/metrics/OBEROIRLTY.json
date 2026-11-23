@@ -2,7 +2,14 @@
  "symbol": "OBEROIRLTY",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 17921.6,
+  "implied_cr": 19092.4,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6009.1,
   "ni": 2507.4,
@@ -11,7 +18,7 @@
   "eq": 17921.6,
   "debt": 2825.4,
   "fcf": 743.2,
-  "ni_continuing": 2507.4,
+  "ni_continuing_ops_pre_minority": 2507.4,
   "ni_normalized": 2445.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 26.92,
   "pe_normalized": 27.6,
+  "pe_used": 26.92,
   "pb": 3.77,
   "ev_ebitda": 18.57,
   "fcf_yield_pct": 1.1,

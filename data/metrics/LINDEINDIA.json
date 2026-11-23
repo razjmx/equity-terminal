@@ -2,7 +2,14 @@
  "symbol": "LINDEINDIA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4266.5,
+  "implied_cr": 4388.0,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2530.5,
   "ni": 549.0,
@@ -11,7 +18,7 @@
   "eq": 4266.5,
   "debt": 78.9,
   "fcf": 19.3,
-  "ni_continuing": 549.0,
+  "ni_continuing_ops_pre_minority": 549.0,
   "ni_normalized": 548.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 107.6,
   "pe_normalized": 107.68,
+  "pe_used": 107.6,
   "pb": 13.84,
   "ev_ebitda": 60.07,
   "fcf_yield_pct": 0.0,

@@ -2,7 +2,14 @@
  "symbol": "KPITTECH",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3540.9,
+  "implied_cr": 3686.5,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6454.9,
   "ni": 637.3,
@@ -11,7 +18,7 @@
   "eq": 3540.9,
   "debt": 838.4,
   "fcf": 1052.2,
-  "ni_continuing": 637.4,
+  "ni_continuing_ops_pre_minority": 637.4,
   "ni_normalized": 642.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 22.71,
   "pe_normalized": 22.54,
+  "pe_used": 22.71,
   "pb": 4.09,
   "ev_ebitda": 11.09,
   "fcf_yield_pct": 7.3,

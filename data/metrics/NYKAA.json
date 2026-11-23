@@ -2,7 +2,14 @@
  "symbol": "NYKAA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1438.0,
+  "implied_cr": 1646.4,
+  "ratio": 0.87,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 9929.4,
   "ni": 199.4,
@@ -11,7 +18,7 @@
   "eq": 1438.0,
   "debt": 1237.8,
   "fcf": 490.4,
-  "ni_continuing": 203.9,
+  "ni_continuing_ops_pre_minority": 203.9,
   "ni_normalized": 214.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 520.8,
   "pe_normalized": 485.07,
+  "pe_used": 520.8,
   "pb": 72.23,
   "ev_ebitda": 137.0,
   "fcf_yield_pct": 0.5,

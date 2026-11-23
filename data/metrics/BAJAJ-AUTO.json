@@ -2,7 +2,14 @@
  "symbol": "BAJAJ-AUTO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 38832.0,
+  "implied_cr": 36447.9,
+  "ratio": 1.07,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 60386.4,
   "ni": 10744.2,
@@ -11,7 +18,7 @@
   "eq": 38832.0,
   "debt": 22639.8,
   "fcf": 1874.3,
-  "ni_continuing": 10574.5,
+  "ni_continuing_ops_pre_minority": 10574.5,
   "ni_normalized": 10839.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 27.32,
   "pe_normalized": 27.08,
+  "pe_used": 27.32,
   "pb": 7.56,
   "ev_ebitda": 19.35,
   "fcf_yield_pct": 0.6,

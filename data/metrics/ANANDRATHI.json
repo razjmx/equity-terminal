@@ -2,7 +2,14 @@
  "symbol": "ANANDRATHI",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 998.2,
+  "implied_cr": 1288.7,
+  "ratio": 0.77,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1148.8,
   "ni": 395.9,
@@ -11,7 +18,7 @@
   "eq": 998.2,
   "debt": 83.5,
   "fcf": 267.6,
-  "ni_continuing": 397.2,
+  "ni_continuing_ops_pre_minority": 397.2,
   "ni_normalized": 348.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 99.04,
   "pe_normalized": 112.53,
+  "pe_used": 99.04,
   "pb": 39.28,
   "ev_ebitda": 65.78,
   "fcf_yield_pct": 0.7,

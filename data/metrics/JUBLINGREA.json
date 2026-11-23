@@ -2,7 +2,14 @@
  "symbol": "JUBLINGREA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3126.2,
+  "implied_cr": 3318.7,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4344.8,
   "ni": 277.9,
@@ -11,7 +18,7 @@
   "eq": 3126.2,
   "debt": 791.8,
   "fcf": 224.9,
-  "ni_continuing": 277.9,
+  "ni_continuing_ops_pre_minority": 277.9,
   "ni_normalized": 288.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 31.72,
   "pe_normalized": 30.59,
+  "pe_used": 31.72,
   "pb": 2.82,
   "ev_ebitda": 15.85,
   "fcf_yield_pct": 2.6,

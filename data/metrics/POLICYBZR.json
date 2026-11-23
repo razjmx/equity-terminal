@@ -2,7 +2,14 @@
  "symbol": "POLICYBZR",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 7311.8,
+  "implied_cr": 7806.8,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6794.0,
   "ni": 669.9,
@@ -11,7 +18,7 @@
   "eq": 7311.8,
   "debt": 360.1,
   "fcf": -38.4,
-  "ni_continuing": 670.1,
+  "ni_continuing_ops_pre_minority": 670.1,
   "ni_normalized": 630.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 76.1,
   "pe_normalized": 80.91,
+  "pe_used": 76.1,
   "pb": 6.97,
   "ev_ebitda": 55.44,
   "fcf_yield_pct": -0.1,

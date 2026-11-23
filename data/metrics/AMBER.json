@@ -2,7 +2,14 @@
  "symbol": "AMBER",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4372.1,
+  "implied_cr": 4372.1,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 11849.8,
   "ni": 177.6,
@@ -11,7 +18,7 @@
   "eq": 4372.1,
   "debt": 2701.6,
   "fcf": -1054.7,
-  "ni_continuing": 226.5,
+  "ni_continuing_ops_pre_minority": 226.5,
   "ni_normalized": 205.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 135.85,
   "pe_normalized": 117.53,
+  "pe_used": 135.85,
   "pb": 5.52,
   "ev_ebitda": 28.5,
   "fcf_yield_pct": -4.4,

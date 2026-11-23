@@ -2,7 +2,14 @@
  "symbol": "JINDALSAW",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 12574.2,
+  "implied_cr": 12655.3,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 17276.4,
   "ni": 973.4,
@@ -11,7 +18,7 @@
   "eq": 12574.2,
   "debt": 4673.6,
   "fcf": 695.4,
-  "ni_continuing": 925.3,
+  "ni_continuing_ops_pre_minority": 925.3,
   "ni_normalized": 1018.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 15.72,
   "pe_normalized": 15.02,
+  "pe_used": 15.72,
   "pb": 1.22,
   "ev_ebitda": 9.14,
   "fcf_yield_pct": 4.5,

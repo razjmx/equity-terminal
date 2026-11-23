@@ -2,7 +2,14 @@
  "symbol": "OLAELEC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3351.0,
+  "implied_cr": 3263.6,
+  "ratio": 1.03,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2061.0,
   "ni": -1833.0,
@@ -11,7 +18,7 @@
   "eq": 3351.0,
   "debt": 2763.0,
   "fcf": -1493.0,
-  "ni_continuing": -1833.0,
+  "ni_continuing_ops_pre_minority": -1833.0,
   "ni_normalized": -1834.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": null,
   "pe_normalized": null,
+  "pe_used": null,
   "pb": 4.59,
   "ev_ebitda": -22.04,
   "fcf_yield_pct": -9.7,

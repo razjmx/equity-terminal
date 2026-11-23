@@ -2,7 +2,14 @@
  "symbol": "PATANJALI",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 13096.1,
+  "implied_cr": 13453.2,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 40142.3,
   "ni": 1814.5,
@@ -11,7 +18,7 @@
   "eq": 13096.1,
   "debt": 2788.8,
   "fcf": -1306.7,
-  "ni_continuing": 1814.5,
+  "ni_continuing_ops_pre_minority": 1814.5,
   "ni_normalized": 1913.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 24.32,
   "pe_normalized": 23.06,
+  "pe_used": 24.32,
   "pb": 3.37,
   "ev_ebitda": 26.86,
   "fcf_yield_pct": -3.0,

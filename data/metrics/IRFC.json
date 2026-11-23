@@ -2,7 +2,14 @@
  "symbol": "IRFC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 56748.8,
+  "implied_cr": 60628.7,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 27075.3,
   "ni": 7009.2,
@@ -11,7 +18,7 @@
   "eq": 56748.8,
   "debt": 436471.2,
   "fcf": -27039.8,
-  "ni_continuing": 7009.2,
+  "ni_continuing_ops_pre_minority": 7009.2,
   "ni_normalized": 7133.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 15.19,
   "pe_normalized": 14.93,
+  "pe_used": 15.19,
   "pb": 1.88,
   "ev_ebitda": 30.36,
   "fcf_yield_pct": -25.4,

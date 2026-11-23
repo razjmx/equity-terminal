@@ -2,7 +2,14 @@
  "symbol": "BALRAMCHIN",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4138.1,
+  "implied_cr": 4749.8,
+  "ratio": 0.87,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6271.1,
   "ni": 378.5,
@@ -11,7 +18,7 @@
   "eq": 4138.1,
   "debt": 3170.0,
   "fcf": -349.2,
-  "ni_continuing": 378.5,
+  "ni_continuing_ops_pre_minority": 378.5,
   "ni_normalized": 370.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 34.52,
   "pe_normalized": 35.25,
+  "pe_used": 34.52,
   "pb": 3.16,
   "ev_ebitda": 19.94,
   "fcf_yield_pct": -2.7,

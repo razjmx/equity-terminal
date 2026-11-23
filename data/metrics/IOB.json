@@ -2,9 +2,16 @@
  "symbol": "IOB",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 36990.7,
+  "implied_cr": 40336.8,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 18418.4,
   "ni": 5418.5,
@@ -13,7 +20,7 @@
   "eq": 36990.7,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 5418.5,
+  "ni_continuing_ops_pre_minority": 5418.5,
   "ni_normalized": 5416.8
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 14.6,
   "roa_pct": 1.1,
   "equity_multiplier": 12.78
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 11.18,
   "pe_normalized": 11.18,
+  "pe_used": 11.18,
   "pb": 1.64,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

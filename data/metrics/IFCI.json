@@ -2,9 +2,16 @@
  "symbol": "IFCI",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 8944.9,
+  "implied_cr": 9114.6,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1350.5,
   "ni": 180.9,
@@ -13,7 +20,7 @@
   "eq": 8944.9,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 434.7,
+  "ni_continuing_ops_pre_minority": 434.7,
   "ni_normalized": 169.3
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 2.0,
   "roa_pct": 0.7,
   "equity_multiplier": 2.97
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 87.74,
   "pe_normalized": 93.76,
+  "pe_used": 87.74,
   "pb": 1.77,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

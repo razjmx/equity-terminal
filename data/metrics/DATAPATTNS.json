@@ -2,7 +2,14 @@
  "symbol": "DATAPATTNS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1736.0,
+  "implied_cr": 1706.9,
+  "ratio": 1.02,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 924.8,
   "ni": 271.4,
@@ -11,7 +18,7 @@
   "eq": 1736.0,
   "debt": 5.3,
   "fcf": 8.1,
-  "ni_continuing": 271.4,
+  "ni_continuing_ops_pre_minority": 271.4,
   "ni_normalized": 264.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 85.11,
   "pe_normalized": 87.34,
+  "pe_used": 85.11,
   "pb": 13.3,
   "ev_ebitda": 58.6,
   "fcf_yield_pct": 0.0,

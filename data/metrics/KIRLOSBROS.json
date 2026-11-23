@@ -2,7 +2,14 @@
  "symbol": "KIRLOSBROS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2464.0,
+  "implied_cr": 2568.5,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4481.2,
   "ni": 373.6,
@@ -11,7 +18,7 @@
   "eq": 2464.0,
   "debt": 250.1,
   "fcf": 198.9,
-  "ni_continuing": 377.3,
+  "ni_continuing_ops_pre_minority": 377.3,
   "ni_normalized": 399.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 33.55,
   "pe_normalized": 31.39,
+  "pe_used": 33.55,
   "pb": 5.09,
   "ev_ebitda": 20.86,
   "fcf_yield_pct": 1.6,

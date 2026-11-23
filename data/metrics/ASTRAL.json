@@ -2,7 +2,14 @@
  "symbol": "ASTRAL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4057.9,
+  "implied_cr": 4234.8,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6553.6,
   "ni": 536.6,
@@ -11,7 +18,7 @@
   "eq": 4057.9,
   "debt": 250.3,
   "fcf": 657.9,
-  "ni_continuing": 534.7,
+  "ni_continuing_ops_pre_minority": 534.7,
   "ni_normalized": 533.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 61.63,
   "pe_normalized": 61.96,
+  "pe_used": 61.63,
   "pb": 8.15,
   "ev_ebitda": 30.86,
   "fcf_yield_pct": 2.0,

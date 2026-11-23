@@ -2,7 +2,14 @@
  "symbol": "ACE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2011.0,
+  "implied_cr": 2273.1,
+  "ratio": 0.88,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3277.7,
   "ni": 415.1,
@@ -11,7 +18,7 @@
   "eq": 2011.0,
   "debt": 7.9,
   "fcf": 324.0,
-  "ni_continuing": 415.1,
+  "ni_continuing_ops_pre_minority": 415.1,
   "ni_normalized": 388.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 33.97,
   "pe_normalized": 36.26,
+  "pe_used": 33.97,
   "pb": 7.01,
   "ev_ebitda": 21.94,
   "fcf_yield_pct": 2.3,

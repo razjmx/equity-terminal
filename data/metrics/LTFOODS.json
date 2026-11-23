@@ -2,7 +2,14 @@
  "symbol": "LTFOODS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4520.4,
+  "implied_cr": 4901.5,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 10894.1,
   "ni": 625.4,
@@ -11,7 +18,7 @@
   "eq": 4520.4,
   "debt": 1610.0,
   "fcf": 550.9,
-  "ni_continuing": 625.4,
+  "ni_continuing_ops_pre_minority": 625.4,
   "ni_normalized": 620.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 23.58,
   "pe_normalized": 23.78,
+  "pe_used": 23.58,
   "pb": 3.26,
   "ev_ebitda": 12.98,
   "fcf_yield_pct": 3.7,

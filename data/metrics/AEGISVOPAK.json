@@ -2,7 +2,14 @@
  "symbol": "AEGISVOPAK",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4290.6,
+  "implied_cr": 4443.9,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 923.1,
   "ni": 310.5,
@@ -11,7 +18,7 @@
   "eq": 4290.6,
   "debt": 3730.9,
   "fcf": 0.6,
-  "ni_continuing": 341.9,
+  "ni_continuing_ops_pre_minority": 341.9,
   "ni_normalized": 298.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 100.06,
   "pe_normalized": 103.96,
+  "pe_used": 100.06,
   "pb": 7.24,
   "ev_ebitda": 47.85,
   "fcf_yield_pct": 0.0,

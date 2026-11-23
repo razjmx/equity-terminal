@@ -2,7 +2,14 @@
  "symbol": "CAMS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1321.1,
+  "implied_cr": 1443.8,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1516.2,
   "ni": 476.0,
@@ -11,7 +18,7 @@
   "eq": 1321.1,
   "debt": 64.2,
   "fcf": 443.7,
-  "ni_continuing": 472.0,
+  "ni_continuing_ops_pre_minority": 472.0,
   "ni_normalized": 460.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 38.03,
   "pe_normalized": 39.33,
+  "pe_used": 38.03,
   "pb": 13.7,
   "ev_ebitda": 23.58,
   "fcf_yield_pct": 2.5,

@@ -2,7 +2,14 @@
  "symbol": "NLCINDIA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 21524.8,
+  "implied_cr": 23401.0,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 17488.9,
   "ni": 3522.2,
@@ -11,7 +18,7 @@
   "eq": 21524.8,
   "debt": 27891.8,
   "fcf": -2778.9,
-  "ni_continuing": 3769.5,
+  "ni_continuing_ops_pre_minority": 3769.5,
   "ni_normalized": 3447.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 8.96,
   "pe_normalized": 9.16,
+  "pe_used": 8.96,
   "pb": 1.47,
   "ev_ebitda": 7.87,
   "fcf_yield_pct": -8.8,

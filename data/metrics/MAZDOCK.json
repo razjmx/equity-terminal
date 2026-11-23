@@ -2,7 +2,14 @@
  "symbol": "MAZDOCK",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 9754.9,
+  "implied_cr": 10459.1,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 12973.1,
   "ni": 2583.3,
@@ -11,7 +18,7 @@
   "eq": 9754.9,
   "debt": 447.4,
   "fcf": -2830.1,
-  "ni_continuing": 2578.4,
+  "ni_continuing_ops_pre_minority": 2578.4,
   "ni_normalized": 2984.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 28.21,
   "pe_normalized": 24.42,
+  "pe_used": 28.21,
   "pb": 7.47,
   "ev_ebitda": 17.63,
   "fcf_yield_pct": -3.9,

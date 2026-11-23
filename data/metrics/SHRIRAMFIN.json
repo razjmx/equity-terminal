@@ -2,22 +2,30 @@
  "symbol": "SHRIRAMFIN",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
-  "financial or no EBIT"
+  "financial or no EBIT",
+  "equity replaced by Yahoo book value (balance sheet / book value = 0.59)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 65918.6,
+  "implied_cr": 111470.9,
+  "ratio": 0.59,
+  "used": "book_value"
+ },
  "snapshot_cr": {
   "rev": 25034.3,
   "ni": 10024.2,
   "ebit": null,
   "ta": 321374.5,
-  "eq": 65918.6,
+  "eq": 111470.9,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 10024.7,
+  "ni_continuing_ops_pre_minority": 10024.7,
   "ni_normalized": 10024.0
  },
  "ratios": {
-  "roe_pct": 15.2,
+  "roe_pct": 9.0,
   "roa_pct": 3.1,
   "net_margin_pct": null,
   "ebit_margin_pct": null,
@@ -29,8 +37,9 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 9.0,
   "roa_pct": 3.1,
-  "equity_multiplier": 4.88
+  "equity_multiplier": 2.88
  },
  "growth": {
   "years_used": 3,
@@ -40,7 +49,8 @@
  "valuation": {
   "pe": 23.23,
   "pe_normalized": 23.23,
-  "pb": 3.53,
+  "pe_used": 23.23,
+  "pb": 2.09,
   "ev_ebitda": null,
   "fcf_yield_pct": null,
   "market_cap_cr": 232855.2

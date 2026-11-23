@@ -2,9 +2,16 @@
  "symbol": "AXISBANK",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 215035.4,
+  "implied_cr": 231402.1,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 88067.3,
   "ni": 26384.8,
@@ -13,7 +20,7 @@
   "eq": 215035.4,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 26547.9,
+  "ni_continuing_ops_pre_minority": 26547.9,
   "ni_normalized": 26246.9
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 12.3,
   "roa_pct": 1.4,
   "equity_multiplier": 9.05
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 16.58,
   "pe_normalized": 16.67,
+  "pe_used": 16.58,
   "pb": 2.03,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

@@ -2,9 +2,16 @@
  "symbol": "LGEINDIA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [
   "short history"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 7665.6,
+  "implied_cr": 8809.9,
+  "ratio": 0.87,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 24459.4,
   "ni": 1685.1,
@@ -13,7 +20,7 @@
   "eq": 7665.6,
   "debt": 459.2,
   "fcf": 549.0,
-  "ni_continuing": 1685.1,
+  "ni_continuing_ops_pre_minority": 1685.1,
   "ni_normalized": 1665.9
  },
  "ratios": {
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 71.74,
   "pe_normalized": 72.57,
+  "pe_used": 71.74,
   "pb": 15.77,
   "ev_ebitda": 42.74,
   "fcf_yield_pct": 0.5,

@@ -2,9 +2,16 @@
  "symbol": "SBILIFE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [
   "no cash flow data"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 19086.0,
+  "implied_cr": 20526.3,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 110478.2,
   "ni": 2470.3,
@@ -13,7 +20,7 @@
   "eq": 19086.0,
   "debt": null,
   "fcf": 34337.7,
-  "ni_continuing": 2470.3,
+  "ni_continuing_ops_pre_minority": 2470.3,
   "ni_normalized": 2470.3
  },
  "ratios": {
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 73.21,
   "pe_normalized": 73.21,
+  "pe_used": 73.21,
   "pb": 9.48,
   "ev_ebitda": null,
   "fcf_yield_pct": 19.0,

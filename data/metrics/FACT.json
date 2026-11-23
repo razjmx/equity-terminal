@@ -2,7 +2,14 @@
  "symbol": "FACT",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1350.3,
+  "implied_cr": 1334.7,
+  "ratio": 1.01,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3150.8,
   "ni": -39.6,
@@ -11,7 +18,7 @@
   "eq": 1350.3,
   "debt": 3985.5,
   "fcf": -1106.9,
-  "ni_continuing": -39.6,
+  "ni_continuing_ops_pre_minority": -39.6,
   "ni_normalized": -40.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": null,
   "pe_normalized": null,
+  "pe_used": null,
   "pb": 36.03,
   "ev_ebitda": 214.03,
   "fcf_yield_pct": -2.3,

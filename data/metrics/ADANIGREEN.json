@@ -2,9 +2,16 @@
  "symbol": "ADANIGREEN",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 19965.0,
+  "implied_cr": 20477.9,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 12326.0,
   "ni": 1652.0,
@@ -13,13 +20,13 @@
   "eq": 19965.0,
   "debt": 101440.0,
   "fcf": -15962.0,
-  "ni_continuing": 1987.0,
+  "ni_continuing_ops_pre_minority": 1987.0,
   "ni_normalized": -133.4
  },
  "ratios": {
-  "roe_pct": 8.3,
-  "roa_pct": 1.1,
-  "net_margin_pct": 13.4,
+  "roe_pct": -0.7,
+  "roa_pct": -0.1,
+  "net_margin_pct": -1.1,
   "ebit_margin_pct": 63.8,
   "roce_pct": 6.3,
   "fcf_margin_pct": -129.5,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.09
  },
  "dupont": {
-  "net_margin_pct": 13.4,
+  "net_margin_pct": -1.1,
   "asset_turnover": 0.09,
   "equity_multiplier": 7.22
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 139.0,
   "pe_normalized": null,
+  "pe_used": null,
   "pb": 11.5,
   "ev_ebitda": 29.11,
   "fcf_yield_pct": -7.0,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 0.25,
   "zone": "distress"
+ },
+ "ratios_reported": {
+  "roe_pct": 8.3,
+  "roa_pct": 1.1,
+  "net_margin_pct": 13.4
  }
 }

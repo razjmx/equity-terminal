@@ -2,7 +2,14 @@
  "symbol": "SOBHA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4719.9,
+  "implied_cr": 4732.6,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5152.1,
   "ni": 193.4,
@@ -11,7 +18,7 @@
   "eq": 4719.9,
   "debt": 1057.4,
   "fcf": 221.4,
-  "ni_continuing": 193.4,
+  "ni_continuing_ops_pre_minority": 193.4,
   "ni_normalized": 197.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 69.29,
   "pe_normalized": 67.75,
+  "pe_used": 69.29,
   "pb": 2.84,
   "ev_ebitda": 29.02,
   "fcf_yield_pct": 1.7,

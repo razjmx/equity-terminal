@@ -2,36 +2,44 @@
  "symbol": "BATAINDIA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
+  "equity replaced by Yahoo book value (balance sheet / book value = 1.29)",
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 1595.6,
+  "implied_cr": 1241.3,
+  "ratio": 1.29,
+  "used": "book_value"
+ },
  "snapshot_cr": {
   "rev": 3514.0,
   "ni": 134.2,
   "ebit": 316.6,
   "ta": 3778.4,
-  "eq": 1595.6,
+  "eq": 1241.3,
   "debt": 1386.6,
   "fcf": 529.1,
-  "ni_continuing": 134.2,
+  "ni_continuing_ops_pre_minority": 134.2,
   "ni_normalized": 161.4
  },
  "ratios": {
-  "roe_pct": 8.4,
-  "roa_pct": 3.6,
-  "net_margin_pct": 3.8,
+  "roe_pct": 13.0,
+  "roa_pct": 4.3,
+  "net_margin_pct": 4.6,
   "ebit_margin_pct": 9.0,
   "roce_pct": 11.2,
   "fcf_margin_pct": 15.1,
-  "debt_equity": 0.87,
+  "debt_equity": 1.12,
   "interest_cover": 2.35,
   "current_ratio": 1.72,
   "asset_turnover": 0.93
  },
  "dupont": {
-  "net_margin_pct": 3.8,
+  "net_margin_pct": 4.6,
   "asset_turnover": 0.93,
-  "equity_multiplier": 2.37
+  "equity_multiplier": 3.04
  },
  "growth": {
   "years_used": 3,
@@ -41,7 +49,8 @@
  "valuation": {
   "pe": 59.86,
   "pe_normalized": 49.77,
-  "pb": 5.03,
+  "pe_used": 49.77,
+  "pb": 6.47,
   "ev_ebitda": 12.07,
   "fcf_yield_pct": 6.6,
   "market_cap_cr": 8033.0
@@ -62,7 +71,12 @@
   }
  },
  "altman_z2": {
-  "z": 3.68,
+  "z": 3.51,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": 10.8,
+  "roa_pct": 3.6,
+  "net_margin_pct": 3.8
  }
 }

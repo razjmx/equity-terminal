@@ -2,7 +2,14 @@
  "symbol": "JAINREC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1561.2,
+  "implied_cr": 1716.7,
+  "ratio": 0.91,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 9411.9,
   "ni": 352.2,
@@ -11,7 +18,7 @@
   "eq": 1561.2,
   "debt": 1275.9,
   "fcf": -693.6,
-  "ni_continuing": 352.2,
+  "ni_continuing_ops_pre_minority": 352.2,
   "ni_normalized": 355.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 28.18,
   "pe_normalized": 27.96,
+  "pe_used": 28.18,
   "pb": 6.36,
   "ev_ebitda": 18.74,
   "fcf_yield_pct": -7.0,

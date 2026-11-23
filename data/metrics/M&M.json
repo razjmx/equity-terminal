@@ -2,7 +2,14 @@
  "symbol": "M&M",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 93096.4,
+  "implied_cr": 105174.6,
+  "ratio": 0.89,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 193098.0,
   "ni": 17098.8,
@@ -11,7 +18,7 @@
   "eq": 93096.4,
   "debt": 133963.1,
   "fcf": 2051.9,
-  "ni_continuing": 18621.7,
+  "ni_continuing_ops_pre_minority": 18621.7,
   "ni_normalized": 17188.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 24.59,
   "pe_normalized": 24.46,
+  "pe_used": 24.59,
   "pb": 4.52,
   "ev_ebitda": 12.2,
   "fcf_yield_pct": 0.5,

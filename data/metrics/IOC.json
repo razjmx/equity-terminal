@@ -2,7 +2,14 @@
  "symbol": "IOC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 219518.0,
+  "implied_cr": 239103.6,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 773992.8,
   "ni": 42096.3,
@@ -11,7 +18,7 @@
   "eq": 219518.0,
   "debt": 131822.4,
   "fcf": 47779.3,
-  "ni_continuing": 43677.3,
+  "ni_continuing_ops_pre_minority": 43677.3,
   "ni_normalized": 43072.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 4.89,
   "pe_normalized": 4.77,
+  "pe_used": 4.89,
   "pb": 0.94,
   "ev_ebitda": 3.9,
   "fcf_yield_pct": 23.2,

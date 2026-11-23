@@ -2,7 +2,14 @@
  "symbol": "IPCALAB",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 8063.8,
+  "implied_cr": 8974.1,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 9562.5,
   "ni": 1141.1,
@@ -11,7 +18,7 @@
   "eq": 8063.8,
   "debt": 808.8,
   "fcf": 486.0,
-  "ni_continuing": 1183.8,
+  "ni_continuing_ops_pre_minority": 1183.8,
   "ni_normalized": 1143.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 40.7,
   "pe_normalized": 40.61,
+  "pe_used": 40.7,
   "pb": 5.76,
   "ev_ebitda": 22.29,
   "fcf_yield_pct": 1.0,

@@ -2,9 +2,16 @@
  "symbol": "KOTAKBANK",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 181225.9,
+  "implied_cr": 195027.4,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 66919.3,
   "ni": 19287.9,
@@ -13,7 +20,7 @@
   "eq": 181225.9,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 19287.9,
+  "ni_continuing_ops_pre_minority": 19287.9,
   "ni_normalized": 19289.2
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 10.6,
   "roa_pct": 1.9,
   "equity_multiplier": 5.54
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 26.07,
   "pe_normalized": 26.07,
+  "pe_used": 26.07,
   "pb": 2.77,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

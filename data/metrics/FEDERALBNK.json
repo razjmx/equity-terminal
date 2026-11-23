@@ -2,9 +2,16 @@
  "symbol": "FEDERALBNK",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 40043.0,
+  "implied_cr": 42786.1,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 16297.6,
   "ni": 4345.3,
@@ -13,7 +20,7 @@
   "eq": 40043.0,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 4490.9,
+  "ni_continuing_ops_pre_minority": 4490.9,
   "ni_normalized": 4183.5
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 10.9,
   "roa_pct": 1.1,
   "equity_multiplier": 10.04
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 20.81,
   "pe_normalized": 21.62,
+  "pe_used": 20.81,
   "pb": 2.26,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

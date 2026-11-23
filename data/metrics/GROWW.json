@@ -2,7 +2,14 @@
  "symbol": "GROWW",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 9651.4,
+  "implied_cr": 11584.7,
+  "ratio": 0.83,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4270.4,
   "ni": 2083.0,
@@ -11,7 +18,7 @@
   "eq": 9651.4,
   "debt": 292.2,
   "fcf": -32.7,
-  "ni_continuing": 2083.0,
+  "ni_continuing_ops_pre_minority": 2083.0,
   "ni_normalized": 2141.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 65.07,
   "pe_normalized": 63.29,
+  "pe_used": 65.07,
   "pb": 14.04,
   "ev_ebitda": 45.75,
   "fcf_yield_pct": -0.0,

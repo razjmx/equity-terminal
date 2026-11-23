@@ -2,7 +2,14 @@
  "symbol": "IRCON",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6638.6,
+  "implied_cr": 6751.3,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8864.9,
   "ni": 595.5,
@@ -11,7 +18,7 @@
   "eq": 6638.6,
   "debt": 5731.2,
   "fcf": -1150.8,
-  "ni_continuing": 591.9,
+  "ni_continuing_ops_pre_minority": 591.9,
   "ni_normalized": 557.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 17.01,
   "pe_normalized": 18.18,
+  "pe_used": 17.01,
   "pb": 1.53,
   "ev_ebitda": 8.41,
   "fcf_yield_pct": -11.4,

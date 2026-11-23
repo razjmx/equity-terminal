@@ -2,9 +2,16 @@
  "symbol": "PNB",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 149972.2,
+  "implied_cr": 160913.8,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 62620.0,
   "ni": 18392.7,
@@ -13,7 +20,7 @@
   "eq": 149972.2,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 18466.7,
+  "ni_continuing_ops_pre_minority": 18466.7,
   "ni_normalized": 18388.0
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 12.3,
   "roa_pct": 0.9,
   "equity_multiplier": 13.56
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 9.39,
   "pe_normalized": 9.4,
+  "pe_used": 9.39,
   "pb": 1.15,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

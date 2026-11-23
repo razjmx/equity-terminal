@@ -2,7 +2,14 @@
  "symbol": "ABDL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1662.7,
+  "implied_cr": 1643.5,
+  "ratio": 1.01,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3711.1,
   "ni": 228.3,
@@ -11,7 +18,7 @@
   "eq": 1662.7,
   "debt": 1150.5,
   "fcf": 12.5,
-  "ni_continuing": 220.1,
+  "ni_continuing_ops_pre_minority": 220.1,
   "ni_normalized": 229.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 97.42,
   "pe_normalized": 97.12,
+  "pe_used": 97.42,
   "pb": 13.38,
   "ev_ebitda": 41.16,
   "fcf_yield_pct": 0.1,

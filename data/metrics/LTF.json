@@ -2,9 +2,16 @@
  "symbol": "LTF",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 27983.5,
+  "implied_cr": 29264.4,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 10635.2,
   "ni": 2981.2,
@@ -13,7 +20,7 @@
   "eq": 27983.5,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 2982.9,
+  "ni_continuing_ops_pre_minority": 2982.9,
   "ni_normalized": 3003.2
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 10.7,
   "roa_pct": 2.1,
   "equity_multiplier": 5.08
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 23.12,
   "pe_normalized": 22.95,
+  "pe_used": 23.12,
   "pb": 2.46,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

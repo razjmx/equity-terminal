@@ -2,7 +2,14 @@
  "symbol": "ELECON",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2305.8,
+  "implied_cr": 2507.2,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2337.1,
   "ni": 341.1,
@@ -11,7 +18,7 @@
   "eq": 2305.8,
   "debt": 272.6,
   "fcf": 194.7,
-  "ni_continuing": 341.1,
+  "ni_continuing_ops_pre_minority": 341.1,
   "ni_normalized": 349.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 29.09,
   "pe_normalized": 28.39,
+  "pe_used": 29.09,
   "pb": 4.3,
   "ev_ebitda": 16.08,
   "fcf_yield_pct": 2.0,

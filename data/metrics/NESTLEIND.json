@@ -2,9 +2,16 @@
  "symbol": "NESTLEIND",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [
   "no cash flow data"
  ],
+ "equity_check": {
+  "balance_sheet_cr": null,
+  "implied_cr": null,
+  "ratio": null,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": null,
   "ni": null,
@@ -13,7 +20,7 @@
   "eq": null,
   "debt": null,
   "fcf": null,
-  "ni_continuing": null,
+  "ni_continuing_ops_pre_minority": null,
   "ni_normalized": 3576.0
  },
  "ratios": {
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": null,
   "pe_normalized": 70.75,
+  "pe_used": null,
   "pb": null,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

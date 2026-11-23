@@ -2,7 +2,14 @@
  "symbol": "KAYNES",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4748.4,
+  "implied_cr": 4761.7,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3626.4,
   "ni": 363.9,
@@ -11,7 +18,7 @@
   "eq": 4748.4,
   "debt": 912.9,
   "fcf": -1840.7,
-  "ni_continuing": 363.9,
+  "ni_continuing_ops_pre_minority": 363.9,
   "ni_normalized": 344.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 52.53,
   "pe_normalized": 55.5,
+  "pe_used": 52.53,
   "pb": 4.03,
   "ev_ebitda": 26.5,
   "fcf_yield_pct": -9.6,

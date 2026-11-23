@@ -2,7 +2,14 @@
  "symbol": "EXIDEIND",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 13904.9,
+  "implied_cr": 13865.2,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 17908.0,
   "ni": 854.2,
@@ -11,7 +18,7 @@
   "eq": 13904.9,
   "debt": 1575.4,
   "fcf": 1260.5,
-  "ni_continuing": 859.9,
+  "ni_continuing_ops_pre_minority": 859.9,
   "ni_normalized": 822.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 40.03,
   "pe_normalized": 41.58,
+  "pe_used": 40.03,
   "pb": 2.46,
   "ev_ebitda": 17.8,
   "fcf_yield_pct": 3.7,

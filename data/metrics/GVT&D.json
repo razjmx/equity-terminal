@@ -2,7 +2,14 @@
  "symbol": "GVT&D",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2690.3,
+  "implied_cr": 3293.1,
+  "ratio": 0.82,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6200.9,
   "ni": 1233.2,
@@ -11,7 +18,7 @@
   "eq": 2690.3,
   "debt": 24.0,
   "fcf": 1521.5,
-  "ni_continuing": 1233.2,
+  "ni_continuing_ops_pre_minority": 1233.2,
   "ni_normalized": 1280.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 86.51,
   "pe_normalized": 83.33,
+  "pe_used": 86.51,
   "pb": 39.66,
   "ev_ebitda": 61.48,
   "fcf_yield_pct": 1.4,

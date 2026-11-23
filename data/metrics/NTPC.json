@@ -2,7 +2,14 @@
  "symbol": "NTPC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 203175.7,
+  "implied_cr": 213487.6,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 184015.3,
   "ni": 27052.5,
@@ -11,7 +18,7 @@
   "eq": 203175.7,
   "debt": 271004.6,
   "fcf": 6852.0,
-  "ni_continuing": 30010.0,
+  "ni_continuing_ops_pre_minority": 30010.0,
   "ni_normalized": 29769.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 11.34,
   "pe_normalized": 10.31,
+  "pe_used": 11.34,
   "pb": 1.51,
   "ev_ebitda": 9.34,
   "fcf_yield_pct": 2.2,

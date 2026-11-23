@@ -2,7 +2,14 @@
  "symbol": "URBANCO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2143.6,
+  "implied_cr": 2139.2,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1555.5,
   "ni": -234.8,
@@ -11,7 +18,7 @@
   "eq": 2143.6,
   "debt": 135.8,
   "fcf": -139.5,
-  "ni_continuing": -234.8,
+  "ni_continuing_ops_pre_minority": -234.8,
   "ni_normalized": -217.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": null,
   "pe_normalized": null,
+  "pe_used": null,
   "pb": 12.81,
   "ev_ebitda": -220.4,
   "fcf_yield_pct": -0.5,

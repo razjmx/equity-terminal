@@ -2,9 +2,16 @@
  "symbol": "MAHABANK",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 33224.6,
+  "implied_cr": 37381.0,
+  "ratio": 0.89,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 15801.9,
   "ni": 7016.9,
@@ -13,7 +20,7 @@
   "eq": 33224.6,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 7016.9,
+  "ni_continuing_ops_pre_minority": 7016.9,
   "ni_normalized": 7015.8
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 21.1,
   "roa_pct": 1.6,
   "equity_multiplier": 12.87
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 10.71,
   "pe_normalized": 10.72,
+  "pe_used": 10.71,
   "pb": 2.26,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

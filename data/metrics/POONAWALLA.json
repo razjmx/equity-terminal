@@ -2,9 +2,16 @@
  "symbol": "POONAWALLA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 10348.1,
+  "implied_cr": 13797.4,
+  "ratio": 0.75,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6490.6,
   "ni": 541.8,
@@ -13,13 +20,13 @@
   "eq": 10348.1,
   "debt": 48435.8,
   "fcf": -21892.6,
-  "ni_continuing": 541.8,
+  "ni_continuing_ops_pre_minority": 541.8,
   "ni_normalized": 1282.8
  },
  "ratios": {
-  "roe_pct": 5.2,
-  "roa_pct": 0.9,
-  "net_margin_pct": 8.3,
+  "roe_pct": 12.4,
+  "roa_pct": 2.1,
+  "net_margin_pct": 19.8,
   "ebit_margin_pct": 11.6,
   "roce_pct": 1.8,
   "fcf_margin_pct": -337.3,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.11
  },
  "dupont": {
-  "net_margin_pct": 8.3,
+  "net_margin_pct": 19.8,
   "asset_turnover": 0.11,
   "equity_multiplier": 5.82
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 82.95,
   "pe_normalized": 35.03,
+  "pe_used": 35.03,
   "pb": 4.34,
   "ev_ebitda": 106.44,
   "fcf_yield_pct": -48.7,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 0.76,
   "zone": "distress"
+ },
+ "ratios_reported": {
+  "roe_pct": 5.2,
+  "roa_pct": 0.9,
+  "net_margin_pct": 8.3
  }
 }

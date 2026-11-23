@@ -2,7 +2,14 @@
  "symbol": "AJANTPHARM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4527.1,
+  "implied_cr": 4859.6,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5407.3,
   "ni": 1056.0,
@@ -11,7 +18,7 @@
   "eq": 4527.1,
   "debt": 260.2,
   "fcf": 164.0,
-  "ni_continuing": 1056.0,
+  "ni_continuing_ops_pre_minority": 1056.0,
   "ni_normalized": 1128.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 38.99,
   "pe_normalized": 36.49,
+  "pe_used": 38.99,
   "pb": 9.1,
   "ev_ebitda": 26.02,
   "fcf_yield_pct": 0.4,

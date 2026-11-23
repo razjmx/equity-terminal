@@ -2,26 +2,35 @@
  "symbol": "APARINDS",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "profit_basis": "reported",
+ "flags": [
+  "equity replaced by Yahoo book value (balance sheet / book value = 0.63)"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 5393.4,
+  "implied_cr": 8520.7,
+  "ratio": 0.63,
+  "used": "book_value"
+ },
  "snapshot_cr": {
   "rev": 22810.2,
   "ni": 976.9,
   "ebit": 1595.4,
   "ta": 13711.3,
-  "eq": 5393.4,
+  "eq": 8520.7,
   "debt": 955.5,
   "fcf": 230.9,
-  "ni_continuing": 976.9,
+  "ni_continuing_ops_pre_minority": 976.9,
   "ni_normalized": 1004.0
  },
  "ratios": {
-  "roe_pct": 18.1,
+  "roe_pct": 11.5,
   "roa_pct": 7.1,
   "net_margin_pct": 4.3,
   "ebit_margin_pct": 7.0,
   "roce_pct": 26.7,
   "fcf_margin_pct": 1.0,
-  "debt_equity": 0.18,
+  "debt_equity": 0.11,
   "interest_cover": 5.59,
   "current_ratio": 1.45,
   "asset_turnover": 1.66
@@ -29,7 +38,7 @@
  "dupont": {
   "net_margin_pct": 4.3,
   "asset_turnover": 1.66,
-  "equity_multiplier": 2.54
+  "equity_multiplier": 1.61
  },
  "growth": {
   "years_used": 3,
@@ -39,7 +48,8 @@
  "valuation": {
   "pe": 61.33,
   "pe_normalized": 59.68,
-  "pb": 11.11,
+  "pe_used": 61.33,
+  "pb": 7.03,
   "ev_ebitda": 34.25,
   "fcf_yield_pct": 0.4,
   "market_cap_cr": 59919.3
@@ -60,7 +70,7 @@
   }
  },
  "altman_z2": {
-  "z": 3.98,
+  "z": 4.38,
   "zone": "safe"
  }
 }

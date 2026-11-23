@@ -2,7 +2,14 @@
  "symbol": "ABCAPITAL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 34423.1,
+  "implied_cr": 42768.0,
+  "ratio": 0.8,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 45927.4,
   "ni": 3764.5,
@@ -11,7 +18,7 @@
   "eq": 34423.1,
   "debt": 179226.6,
   "fcf": -36937.7,
-  "ni_continuing": 3863.8,
+  "ni_continuing_ops_pre_minority": 3863.8,
   "ni_normalized": 3803.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 30.38,
   "pe_normalized": 30.07,
+  "pe_used": 30.38,
   "pb": 3.32,
   "ev_ebitda": null,
   "fcf_yield_pct": -32.3,

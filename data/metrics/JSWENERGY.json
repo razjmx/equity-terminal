@@ -2,7 +2,14 @@
  "symbol": "JSWENERGY",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 30751.5,
+  "implied_cr": 36754.3,
+  "ratio": 0.84,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 18692.1,
   "ni": 2239.3,
@@ -11,7 +18,7 @@
   "eq": 30751.5,
   "debt": 76946.4,
   "fcf": -412.2,
-  "ni_continuing": 2762.4,
+  "ni_continuing_ops_pre_minority": 2762.4,
   "ni_normalized": 2225.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 41.31,
   "pe_normalized": 41.57,
+  "pe_used": 41.31,
   "pb": 3.01,
   "ev_ebitda": 14.95,
   "fcf_yield_pct": -0.4,

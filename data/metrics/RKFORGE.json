@@ -2,7 +2,14 @@
  "symbol": "RKFORGE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3290.4,
+  "implied_cr": 3667.1,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3853.6,
   "ni": 71.8,
@@ -11,7 +18,7 @@
   "eq": 3290.4,
   "debt": 2448.8,
   "fcf": -85.3,
-  "ni_continuing": 71.8,
+  "ni_continuing_ops_pre_minority": 71.8,
   "ni_normalized": 79.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 194.54,
   "pe_normalized": 176.52,
+  "pe_used": 194.54,
   "pb": 4.24,
   "ev_ebitda": 28.56,
   "fcf_yield_pct": -0.6,

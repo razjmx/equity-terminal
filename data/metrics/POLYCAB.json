@@ -2,7 +2,14 @@
  "symbol": "POLYCAB",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 12008.6,
+  "implied_cr": 13094.5,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 28269.5,
   "ni": 2672.0,
@@ -11,7 +18,7 @@
   "eq": 12008.6,
   "debt": 4501.1,
   "fcf": 2330.2,
-  "ni_continuing": 2708.4,
+  "ni_continuing_ops_pre_minority": 2708.4,
   "ni_normalized": 2577.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 41.93,
   "pe_normalized": 43.46,
+  "pe_used": 41.93,
   "pb": 9.33,
   "ev_ebitda": 26.81,
   "fcf_yield_pct": 2.1,

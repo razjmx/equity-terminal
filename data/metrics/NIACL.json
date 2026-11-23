@@ -2,25 +2,33 @@
  "symbol": "NIACL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "no cash flow data",
+  "equity replaced by Yahoo book value (balance sheet / book value = 0.68)",
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 28531.4,
+  "implied_cr": 41822.9,
+  "ratio": 0.68,
+  "used": "book_value"
+ },
  "snapshot_cr": {
   "rev": 51077.9,
   "ni": 1412.3,
   "ebit": 1302.7,
   "ta": 110356.2,
-  "eq": 28531.4,
+  "eq": 41822.9,
   "debt": null,
   "fcf": -4612.1,
-  "ni_continuing": 1416.8,
+  "ni_continuing_ops_pre_minority": 1416.8,
   "ni_normalized": 2256.7
  },
  "ratios": {
-  "roe_pct": 4.9,
-  "roa_pct": 1.3,
-  "net_margin_pct": 2.8,
+  "roe_pct": 5.4,
+  "roa_pct": 2.0,
+  "net_margin_pct": 4.4,
   "ebit_margin_pct": 2.6,
   "roce_pct": null,
   "fcf_margin_pct": -9.0,
@@ -30,9 +38,9 @@
   "asset_turnover": 0.46
  },
  "dupont": {
-  "net_margin_pct": 2.8,
+  "net_margin_pct": 4.4,
   "asset_turnover": 0.46,
-  "equity_multiplier": 3.87
+  "equity_multiplier": 2.64
  },
  "growth": {
   "years_used": 3,
@@ -42,7 +50,8 @@
  "valuation": {
   "pe": 17.43,
   "pe_normalized": 10.91,
-  "pb": 0.86,
+  "pe_used": 10.91,
+  "pb": 0.59,
   "ev_ebitda": null,
   "fcf_yield_pct": -18.7,
   "market_cap_cr": 24614.5
@@ -62,5 +71,10 @@
    "asset_turnover_improved": true
   }
  },
- "altman_z2": null
+ "altman_z2": null,
+ "ratios_reported": {
+  "roe_pct": 3.4,
+  "roa_pct": 1.3,
+  "net_margin_pct": 2.8
+ }
 }

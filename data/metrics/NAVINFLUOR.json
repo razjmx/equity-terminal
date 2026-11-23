@@ -2,7 +2,14 @@
  "symbol": "NAVINFLUOR",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3974.6,
+  "implied_cr": 4464.3,
+  "ratio": 0.89,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3262.2,
   "ni": 663.5,
@@ -11,7 +18,7 @@
   "eq": 3974.6,
   "debt": 1272.1,
   "fcf": 404.3,
-  "ni_continuing": 663.5,
+  "ni_continuing_ops_pre_minority": 663.5,
   "ni_normalized": 633.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 78.66,
   "pe_normalized": 82.37,
+  "pe_used": 78.66,
   "pb": 13.13,
   "ev_ebitda": 45.75,
   "fcf_yield_pct": 0.8,

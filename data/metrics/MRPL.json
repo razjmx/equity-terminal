@@ -2,7 +2,14 @@
  "symbol": "MRPL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 14196.9,
+  "implied_cr": 17045.6,
+  "ratio": 0.83,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 88627.4,
   "ni": 1924.6,
@@ -11,7 +18,7 @@
   "eq": 14196.9,
   "debt": 15341.0,
   "fcf": 1118.9,
-  "ni_continuing": 1924.6,
+  "ni_continuing_ops_pre_minority": 1924.6,
   "ni_normalized": 1985.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 15.96,
   "pe_normalized": 15.47,
+  "pe_used": 15.96,
   "pb": 2.16,
   "ev_ebitda": 7.12,
   "fcf_yield_pct": 3.6,

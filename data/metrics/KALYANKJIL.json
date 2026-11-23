@@ -2,7 +2,14 @@
  "symbol": "KALYANKJIL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6308.7,
+  "implied_cr": 6645.3,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 35615.8,
   "ni": 1350.4,
@@ -11,7 +18,7 @@
   "eq": 6308.7,
   "debt": 6117.3,
   "fcf": 911.4,
-  "ni_continuing": 1350.4,
+  "ni_continuing_ops_pre_minority": 1350.4,
   "ni_normalized": 1360.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 50.31,
   "pe_normalized": 49.93,
+  "pe_used": 50.31,
   "pb": 10.77,
   "ev_ebitda": 28.41,
   "fcf_yield_pct": 1.3,

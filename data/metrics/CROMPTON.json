@@ -2,9 +2,16 @@
  "symbol": "CROMPTON",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 2966.3,
+  "implied_cr": 3027.8,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8056.2,
   "ni": -242.2,
@@ -13,13 +20,13 @@
   "eq": 2966.3,
   "debt": 199.2,
   "fcf": 640.0,
-  "ni_continuing": -230.8,
+  "ni_continuing_ops_pre_minority": -230.8,
   "ni_normalized": 708.2
  },
  "ratios": {
-  "roe_pct": -8.2,
-  "roa_pct": -4.0,
-  "net_margin_pct": -3.0,
+  "roe_pct": 23.9,
+  "roa_pct": 11.6,
+  "net_margin_pct": 8.8,
   "ebit_margin_pct": -0.7,
   "roce_pct": -1.5,
   "fcf_margin_pct": 7.9,
@@ -29,7 +36,7 @@
   "asset_turnover": 1.32
  },
  "dupont": {
-  "net_margin_pct": -3.0,
+  "net_margin_pct": 8.8,
   "asset_turnover": 1.32,
   "equity_multiplier": 2.05
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": null,
   "pe_normalized": 20.03,
+  "pe_used": 20.03,
   "pb": 4.78,
   "ev_ebitda": 115.29,
   "fcf_yield_pct": 4.5,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 3.45,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": -8.2,
+  "roa_pct": -4.0,
+  "net_margin_pct": -3.0
  }
 }

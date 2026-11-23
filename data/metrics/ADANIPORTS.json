@@ -2,7 +2,14 @@
  "symbol": "ADANIPORTS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 96125.3,
+  "implied_cr": 102236.6,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 38735.8,
   "ni": 12806.2,
@@ -11,7 +18,7 @@
   "eq": 96125.3,
   "debt": 63236.2,
   "fcf": 5035.9,
-  "ni_continuing": 12782.0,
+  "ni_continuing_ops_pre_minority": 12782.0,
   "ni_normalized": 13664.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 34.59,
   "pe_normalized": 32.42,
+  "pe_used": 34.59,
   "pb": 4.61,
   "ev_ebitda": 20.69,
   "fcf_yield_pct": 1.1,

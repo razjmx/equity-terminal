@@ -2,7 +2,14 @@
  "symbol": "HAL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 41041.1,
+  "implied_cr": 43994.1,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 31791.7,
   "ni": 9115.6,
@@ -11,7 +18,7 @@
   "eq": 41041.1,
   "debt": 11.0,
   "fcf": 8357.2,
-  "ni_continuing": 9115.5,
+  "ni_continuing_ops_pre_minority": 9115.5,
   "ni_normalized": 9174.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 34.99,
   "pe_normalized": 34.77,
+  "pe_used": 34.99,
   "pb": 7.77,
   "ev_ebitda": 20.17,
   "fcf_yield_pct": 2.6,

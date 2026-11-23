@@ -2,9 +2,16 @@
  "symbol": "HOMEFIRST",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 4356.5,
+  "implied_cr": 4666.6,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1656.2,
   "ni": 540.4,
@@ -13,13 +20,13 @@
   "eq": 4356.5,
   "debt": 10590.0,
   "fcf": -1949.3,
-  "ni_continuing": 540.4,
+  "ni_continuing_ops_pre_minority": 540.4,
   "ni_normalized": 460.5
  },
  "ratios": {
-  "roe_pct": 12.4,
-  "roa_pct": 3.6,
-  "net_margin_pct": 32.6,
+  "roe_pct": 10.6,
+  "roa_pct": 3.0,
+  "net_margin_pct": 27.8,
   "ebit_margin_pct": 45.1,
   "roce_pct": 5.0,
   "fcf_margin_pct": -117.7,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.11
  },
  "dupont": {
-  "net_margin_pct": 32.6,
+  "net_margin_pct": 27.8,
   "asset_turnover": 0.11,
   "equity_multiplier": 3.48
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 19.98,
   "pe_normalized": 23.45,
+  "pe_used": 23.45,
   "pb": 2.48,
   "ev_ebitda": 26.85,
   "fcf_yield_pct": -18.1,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 7.03,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": 12.4,
+  "roa_pct": 3.6,
+  "net_margin_pct": 32.6
  }
 }

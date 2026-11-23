@@ -2,7 +2,14 @@
  "symbol": "VTL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 10513.7,
+  "implied_cr": 11238.1,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 9689.3,
   "ni": 745.2,
@@ -11,7 +18,7 @@
   "eq": 10513.7,
   "debt": 1855.0,
   "fcf": -629.8,
-  "ni_continuing": 753.2,
+  "ni_continuing_ops_pre_minority": 753.2,
   "ni_normalized": 658.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 20.5,
   "pe_normalized": 23.2,
+  "pe_used": 20.5,
   "pb": 1.45,
   "ev_ebitda": 10.63,
   "fcf_yield_pct": -4.1,

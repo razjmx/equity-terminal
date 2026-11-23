@@ -2,7 +2,14 @@
  "symbol": "SANSERA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3087.4,
+  "implied_cr": 3096.7,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3296.5,
   "ni": 324.1,
@@ -11,7 +18,7 @@
   "eq": 3087.4,
   "debt": 591.2,
   "fcf": -125.5,
-  "ni_continuing": 326.9,
+  "ni_continuing_ops_pre_minority": 326.9,
   "ni_normalized": 336.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 89.69,
   "pe_normalized": 86.37,
+  "pe_used": 89.69,
   "pb": 9.41,
   "ev_ebitda": 43.31,
   "fcf_yield_pct": -0.4,

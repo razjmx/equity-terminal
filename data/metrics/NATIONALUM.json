@@ -2,7 +2,14 @@
  "symbol": "NATIONALUM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 21603.7,
+  "implied_cr": 24890.6,
+  "ratio": 0.87,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 17729.2,
   "ni": 5797.0,
@@ -11,7 +18,7 @@
   "eq": 21603.7,
   "debt": 202.1,
   "fcf": 4399.5,
-  "ni_continuing": 5797.0,
+  "ni_continuing_ops_pre_minority": 5797.0,
   "ni_normalized": 5843.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 9.43,
   "pe_normalized": 9.35,
+  "pe_used": 9.43,
   "pb": 2.53,
   "ev_ebitda": 5.45,
   "fcf_yield_pct": 8.0,

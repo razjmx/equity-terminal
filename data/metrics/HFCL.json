@@ -2,7 +2,14 @@
  "symbol": "HFCL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4890.8,
+  "implied_cr": 5645.4,
+  "ratio": 0.87,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4928.3,
   "ni": 311.7,
@@ -11,7 +18,7 @@
   "eq": 4890.8,
   "debt": 1896.3,
   "fcf": -723.4,
-  "ni_continuing": 329.4,
+  "ni_continuing_ops_pre_minority": 329.4,
   "ni_normalized": 335.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 87.67,
   "pe_normalized": 81.59,
+  "pe_used": 87.67,
   "pb": 5.59,
   "ev_ebitda": 38.79,
   "fcf_yield_pct": -2.6,

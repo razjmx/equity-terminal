@@ -2,7 +2,14 @@
  "symbol": "ITC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 72507.3,
+  "implied_cr": 71272.2,
+  "ratio": 1.02,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 78213.3,
   "ni": 20689.5,
@@ -11,7 +18,7 @@
   "eq": 72507.3,
   "debt": 2399.4,
   "fcf": 16281.4,
-  "ni_continuing": 21018.2,
+  "ni_continuing_ops_pre_minority": 21018.2,
   "ni_normalized": 20388.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 18.17,
   "pe_normalized": 18.44,
+  "pe_used": 18.17,
   "pb": 5.19,
   "ev_ebitda": 11.9,
   "fcf_yield_pct": 4.3,

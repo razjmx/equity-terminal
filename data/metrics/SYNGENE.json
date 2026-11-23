@@ -2,9 +2,16 @@
  "symbol": "SYNGENE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 4839.0,
+  "implied_cr": 4851.7,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3610.7,
   "ni": 316.7,
@@ -13,13 +20,13 @@
   "eq": 4839.0,
   "debt": 458.4,
   "fcf": 547.0,
-  "ni_continuing": 316.7,
+  "ni_continuing_ops_pre_minority": 316.7,
   "ni_normalized": 392.2
  },
  "ratios": {
-  "roe_pct": 6.5,
-  "roa_pct": 4.5,
-  "net_margin_pct": 8.8,
+  "roe_pct": 8.1,
+  "roa_pct": 5.6,
+  "net_margin_pct": 10.9,
   "ebit_margin_pct": 12.6,
   "roce_pct": 8.3,
   "fcf_margin_pct": 15.1,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.51
  },
  "dupont": {
-  "net_margin_pct": 8.8,
+  "net_margin_pct": 10.9,
   "asset_turnover": 0.51,
   "equity_multiplier": 1.46
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 57.18,
   "pe_normalized": 46.18,
+  "pe_used": 46.18,
   "pb": 3.74,
   "ev_ebitda": 19.02,
   "fcf_yield_pct": 3.0,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 5.19,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": 6.5,
+  "roa_pct": 4.5,
+  "net_margin_pct": 8.8
  }
 }

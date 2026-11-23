@@ -2,7 +2,14 @@
  "symbol": "CHENNPETRO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 11109.2,
+  "implied_cr": 13593.3,
+  "ratio": 0.82,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 63550.8,
   "ni": 3102.7,
@@ -11,7 +18,7 @@
   "eq": 11109.2,
   "debt": 1964.2,
   "fcf": 2041.9,
-  "ni_continuing": 3102.7,
+  "ni_continuing_ops_pre_minority": 3102.7,
   "ni_normalized": 3087.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 6.85,
   "pe_normalized": 6.89,
+  "pe_used": 6.85,
   "pb": 1.91,
   "ev_ebitda": 4.51,
   "fcf_yield_pct": 9.6,

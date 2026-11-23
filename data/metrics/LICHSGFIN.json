@@ -2,9 +2,16 @@
  "symbol": "LICHSGFIN",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 41428.9,
+  "implied_cr": 43884.4,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8550.0,
   "ni": 5603.7,
@@ -13,7 +20,7 @@
   "eq": 41428.9,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 5604.2,
+  "ni_continuing_ops_pre_minority": 5604.2,
   "ni_normalized": 5599.4
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 13.5,
   "roa_pct": 1.7,
   "equity_multiplier": 7.85
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 5.99,
   "pe_normalized": 5.99,
+  "pe_used": 5.99,
   "pb": 0.81,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

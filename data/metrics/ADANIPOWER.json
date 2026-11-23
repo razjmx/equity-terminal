@@ -2,7 +2,14 @@
  "symbol": "ADANIPOWER",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 64936.9,
+  "implied_cr": 76799.4,
+  "ratio": 0.85,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 54152.2,
   "ni": 12834.3,
@@ -11,7 +18,7 @@
   "eq": 64936.9,
   "debt": 54518.8,
   "fcf": -2836.4,
-  "ni_continuing": 12971.1,
+  "ni_continuing_ops_pre_minority": 12971.1,
   "ni_normalized": 12789.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 31.43,
   "pe_normalized": 31.54,
+  "pe_used": 31.43,
   "pb": 6.21,
   "ev_ebitda": 19.79,
   "fcf_yield_pct": -0.7,

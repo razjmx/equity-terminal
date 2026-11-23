@@ -2,7 +2,14 @@
  "symbol": "GRSE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2626.1,
+  "implied_cr": 2896.2,
+  "ratio": 0.91,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6994.8,
   "ni": 747.9,
@@ -11,7 +18,7 @@
   "eq": 2626.1,
   "debt": 37.4,
   "fcf": -366.6,
-  "ni_continuing": 747.9,
+  "ni_continuing_ops_pre_minority": 747.9,
   "ni_normalized": 744.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 30.71,
   "pe_normalized": 30.83,
+  "pe_used": 30.71,
   "pb": 8.75,
   "ev_ebitda": 18.53,
   "fcf_yield_pct": -1.6,

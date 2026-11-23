@@ -2,7 +2,14 @@
  "symbol": "CLEAN",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1583.8,
+  "implied_cr": 1670.9,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 942.1,
   "ni": 229.7,
@@ -11,7 +18,7 @@
   "eq": 1583.8,
   "debt": 2.1,
   "fcf": 73.5,
-  "ni_continuing": 229.7,
+  "ni_continuing_ops_pre_minority": 229.7,
   "ni_normalized": 214.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 31.71,
   "pe_normalized": 33.98,
+  "pe_used": 31.71,
   "pb": 4.6,
   "ev_ebitda": 17.82,
   "fcf_yield_pct": 1.0,

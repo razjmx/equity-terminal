@@ -2,26 +2,35 @@
  "symbol": "STLTECH",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "profit_basis": "reported",
+ "flags": [
+  "equity replaced by Yahoo book value (balance sheet / book value = 0.50)"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 2268.0,
+  "implied_cr": 4544.3,
+  "ratio": 0.5,
+  "used": "book_value"
+ },
  "snapshot_cr": {
   "rev": 4663.0,
   "ni": 56.0,
   "ebit": 290.0,
   "ta": 6346.0,
-  "eq": 2268.0,
+  "eq": 4544.3,
   "debt": 1942.0,
   "fcf": 327.0,
-  "ni_continuing": 56.0,
+  "ni_continuing_ops_pre_minority": 56.0,
   "ni_normalized": 53.0
  },
  "ratios": {
-  "roe_pct": 2.5,
+  "roe_pct": 1.2,
   "roa_pct": 0.9,
   "net_margin_pct": 1.2,
   "ebit_margin_pct": 6.2,
   "roce_pct": 8.0,
   "fcf_margin_pct": 7.0,
-  "debt_equity": 0.86,
+  "debt_equity": 0.43,
   "interest_cover": 1.58,
   "current_ratio": 0.98,
   "asset_turnover": 0.73
@@ -29,7 +38,7 @@
  "dupont": {
   "net_margin_pct": 1.2,
   "asset_turnover": 0.73,
-  "equity_multiplier": 2.8
+  "equity_multiplier": 1.4
  },
  "growth": {
   "years_used": 3,
@@ -39,7 +48,8 @@
  "valuation": {
   "pe": 542.49,
   "pe_normalized": 573.2,
-  "pb": 13.39,
+  "pe_used": 542.49,
+  "pb": 6.69,
   "ev_ebitda": 53.08,
   "fcf_yield_pct": 1.1,
   "market_cap_cr": 30379.6
@@ -60,7 +70,7 @@
   }
  },
  "altman_z2": {
-  "z": 1.2,
+  "z": 1.78,
   "zone": "grey"
  }
 }

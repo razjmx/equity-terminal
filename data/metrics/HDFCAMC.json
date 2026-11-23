@@ -2,7 +2,14 @@
  "symbol": "HDFCAMC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 9228.7,
+  "implied_cr": 8626.5,
+  "ratio": 1.07,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4122.2,
   "ni": 2858.1,
@@ -11,7 +18,7 @@
   "eq": 9228.7,
   "debt": null,
   "fcf": 2505.2,
-  "ni_continuing": 2858.1,
+  "ni_continuing_ops_pre_minority": 2858.1,
   "ni_normalized": 2508.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 40.79,
   "pe_normalized": 46.47,
+  "pe_used": 40.79,
   "pb": 12.63,
   "ev_ebitda": null,
   "fcf_yield_pct": 2.1,

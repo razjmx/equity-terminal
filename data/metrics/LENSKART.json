@@ -2,9 +2,16 @@
  "symbol": "LENSKART",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [
   "short history"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 8738.5,
+  "implied_cr": 9317.3,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8789.9,
   "ni": 493.6,
@@ -13,7 +20,7 @@
   "eq": 8738.5,
   "debt": 3096.6,
   "fcf": 841.1,
-  "ni_continuing": 500.9,
+  "ni_continuing_ops_pre_minority": 500.9,
   "ni_normalized": 472.3
  },
  "ratios": {
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 251.58,
   "pe_normalized": 262.94,
+  "pe_used": 251.58,
   "pb": 14.21,
   "ev_ebitda": 64.81,
   "fcf_yield_pct": 0.7,

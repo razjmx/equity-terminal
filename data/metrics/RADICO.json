@@ -2,7 +2,14 @@
  "symbol": "RADICO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3315.7,
+  "implied_cr": 3669.8,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6003.6,
   "ni": 604.5,
@@ -11,7 +18,7 @@
   "eq": 3315.7,
   "debt": 798.8,
   "fcf": 498.0,
-  "ni_continuing": 604.5,
+  "ni_continuing_ops_pre_minority": 604.5,
   "ni_normalized": 615.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 103.35,
   "pe_normalized": 101.51,
+  "pe_used": 103.35,
   "pb": 18.84,
   "ev_ebitda": 61.84,
   "fcf_yield_pct": 0.8,

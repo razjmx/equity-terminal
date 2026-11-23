@@ -2,7 +2,14 @@
  "symbol": "RELIANCE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 904030.0,
+  "implied_cr": 944452.9,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1057219.0,
   "ni": 80775.0,
@@ -11,7 +18,7 @@
   "eq": 904030.0,
   "debt": 398000.0,
   "fcf": 69197.0,
-  "ni_continuing": 95754.0,
+  "ni_continuing_ops_pre_minority": 95754.0,
   "ni_normalized": 78578.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 22.72,
   "pe_normalized": 23.35,
+  "pe_used": 22.72,
   "pb": 2.03,
   "ev_ebitda": 9.54,
   "fcf_yield_pct": 3.8,

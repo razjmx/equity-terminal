@@ -2,9 +2,16 @@
  "symbol": "ENRIN",
  "latest_fy": "2025-09-30",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [
   "short history"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 4381.3,
+  "implied_cr": 4811.8,
+  "ratio": 0.91,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 7782.5,
   "ni": 1100.1,
@@ -13,7 +20,7 @@
   "eq": 4381.3,
   "debt": 147.6,
   "fcf": 3454.1,
-  "ni_continuing": 1100.1,
+  "ni_continuing_ops_pre_minority": 1100.1,
   "ni_normalized": 1121.2
  },
  "ratios": {
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 95.34,
   "pe_normalized": 93.55,
+  "pe_used": 95.34,
   "pb": 23.94,
   "ev_ebitda": 62.74,
   "fcf_yield_pct": 3.3,

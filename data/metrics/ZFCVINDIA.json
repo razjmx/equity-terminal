@@ -2,7 +2,14 @@
  "symbol": "ZFCVINDIA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3690.6,
+  "implied_cr": 3690.6,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4090.9,
   "ni": 517.1,
@@ -11,7 +18,7 @@
   "eq": 3690.6,
   "debt": 54.8,
   "fcf": 664.2,
-  "ni_continuing": 517.1,
+  "ni_continuing_ops_pre_minority": 517.1,
   "ni_normalized": 504.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 47.95,
   "pe_normalized": 49.14,
+  "pe_used": 47.95,
   "pb": 6.72,
   "ev_ebitda": 27.24,
   "fcf_yield_pct": 2.7,

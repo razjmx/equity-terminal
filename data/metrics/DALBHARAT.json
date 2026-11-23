@@ -2,7 +2,14 @@
  "symbol": "DALBHARAT",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 17979.0,
+  "implied_cr": 17851.1,
+  "ratio": 1.01,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 14467.0,
   "ni": 1139.0,
@@ -11,7 +18,7 @@
   "eq": 17979.0,
   "debt": 7406.0,
   "fcf": 222.0,
-  "ni_continuing": 1158.0,
+  "ni_continuing_ops_pre_minority": 1158.0,
   "ni_normalized": 1067.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 25.55,
   "pe_normalized": 27.26,
+  "pe_used": 25.55,
   "pb": 1.62,
   "ev_ebitda": 9.46,
   "fcf_yield_pct": 0.8,

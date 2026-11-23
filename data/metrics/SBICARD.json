@@ -2,9 +2,16 @@
  "symbol": "SBICARD",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 15725.5,
+  "implied_cr": 17169.8,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 15626.9,
   "ni": 2166.7,
@@ -13,7 +20,7 @@
   "eq": 15725.5,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 2166.7,
+  "ni_continuing_ops_pre_minority": 2166.7,
   "ni_normalized": 2166.7
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 13.8,
   "roa_pct": 3.3,
   "equity_multiplier": 4.22
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 25.34,
   "pe_normalized": 25.34,
+  "pe_used": 25.34,
   "pb": 3.49,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

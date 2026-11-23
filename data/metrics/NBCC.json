@@ -2,7 +2,14 @@
  "symbol": "NBCC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3017.3,
+  "implied_cr": 3196.3,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 12608.1,
   "ni": 720.0,
@@ -11,7 +18,7 @@
   "eq": 3017.3,
   "debt": 0.3,
   "fcf": 402.1,
-  "ni_continuing": 742.4,
+  "ni_continuing_ops_pre_minority": 742.4,
   "ni_normalized": 719.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 29.08,
   "pe_normalized": 29.12,
+  "pe_used": 29.08,
   "pb": 6.94,
   "ev_ebitda": 12.69,
   "fcf_yield_pct": 1.9,

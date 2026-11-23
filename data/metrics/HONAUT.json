@@ -2,7 +2,14 @@
  "symbol": "HONAUT",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4462.7,
+  "implied_cr": 4661.8,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4678.5,
   "ni": 525.0,
@@ -11,7 +18,7 @@
   "eq": 4462.7,
   "debt": 110.5,
   "fcf": 459.6,
-  "ni_continuing": 525.0,
+  "ni_continuing_ops_pre_minority": 525.0,
   "ni_normalized": 557.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 50.16,
   "pe_normalized": 47.25,
+  "pe_used": 50.16,
   "pb": 5.9,
   "ev_ebitda": 29.32,
   "fcf_yield_pct": 1.7,

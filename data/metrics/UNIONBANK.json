@@ -2,9 +2,16 @@
  "symbol": "UNIONBANK",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 133551.3,
+  "implied_cr": 142685.8,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 58787.9,
   "ni": 19430.2,
@@ -13,7 +20,7 @@
   "eq": 133551.3,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 19430.2,
+  "ni_continuing_ops_pre_minority": 19430.2,
   "ni_normalized": 19424.7
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 14.5,
   "roa_pct": 1.2,
   "equity_multiplier": 11.89
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 8.27,
   "pe_normalized": 8.27,
+  "pe_used": 8.27,
   "pb": 1.2,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

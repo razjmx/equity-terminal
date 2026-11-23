@@ -2,7 +2,14 @@
  "symbol": "CUPID",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 450.8,
+  "implied_cr": 562.9,
+  "ratio": 0.8,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 351.0,
   "ni": 108.2,
@@ -11,7 +18,7 @@
   "eq": 450.8,
   "debt": 56.4,
   "fcf": 21.4,
-  "ni_continuing": 108.2,
+  "ni_continuing_ops_pre_minority": 108.2,
   "ni_normalized": 102.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 445.51,
   "pe_normalized": 472.43,
+  "pe_used": 445.51,
   "pb": 106.96,
   "ev_ebitda": 320.52,
   "fcf_yield_pct": 0.0,

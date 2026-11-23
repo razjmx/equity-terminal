@@ -2,9 +2,16 @@
  "symbol": "ICICIGI",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [
   "no cash flow data"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 16633.9,
+  "implied_cr": 20894.3,
+  "ratio": 0.8,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 28140.8,
   "ni": 2771.9,
@@ -13,7 +20,7 @@
   "eq": 16633.9,
   "debt": null,
   "fcf": 2378.6,
-  "ni_continuing": 2771.9,
+  "ni_continuing_ops_pre_minority": 2771.9,
   "ni_normalized": 2789.7
  },
  "ratios": {
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 31.46,
   "pe_normalized": 31.26,
+  "pe_used": 31.46,
   "pb": 5.24,
   "ev_ebitda": null,
   "fcf_yield_pct": 2.7,

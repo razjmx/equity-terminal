@@ -2,7 +2,14 @@
  "symbol": "JKCEMENT",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 7037.2,
+  "implied_cr": 7345.9,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 13391.0,
   "ni": 992.5,
@@ -11,7 +18,7 @@
   "eq": 7037.2,
   "debt": 6183.0,
   "fcf": -393.5,
-  "ni_continuing": 988.0,
+  "ni_continuing_ops_pre_minority": 988.0,
   "ni_normalized": 1016.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 42.51,
   "pe_normalized": 41.51,
+  "pe_used": 42.51,
   "pb": 5.99,
   "ev_ebitda": 18.86,
   "fcf_yield_pct": -0.9,

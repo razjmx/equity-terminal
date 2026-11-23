@@ -2,7 +2,14 @@
  "symbol": "CGPOWER",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 7970.5,
+  "implied_cr": 8755.2,
+  "ratio": 0.91,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 12279.7,
   "ni": 1206.3,
@@ -11,7 +18,7 @@
   "eq": 7970.5,
   "debt": 118.5,
   "fcf": -75.3,
-  "ni_continuing": 1196.7,
+  "ni_continuing_ops_pre_minority": 1196.7,
   "ni_normalized": 1202.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 103.27,
   "pe_normalized": 103.59,
+  "pe_used": 103.27,
   "pb": 15.63,
   "ev_ebitda": 66.35,
   "fcf_yield_pct": -0.1,

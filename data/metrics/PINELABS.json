@@ -2,9 +2,16 @@
  "symbol": "PINELABS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 5895.4,
+  "implied_cr": 5947.2,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2396.2,
   "ni": 112.5,
@@ -13,13 +20,13 @@
   "eq": 5895.4,
   "debt": 440.6,
   "fcf": 157.0,
-  "ni_continuing": 112.5,
+  "ni_continuing_ops_pre_minority": 112.5,
   "ni_normalized": 157.4
  },
  "ratios": {
-  "roe_pct": 1.9,
-  "roa_pct": 0.8,
-  "net_margin_pct": 4.7,
+  "roe_pct": 2.7,
+  "roa_pct": 1.2,
+  "net_margin_pct": 6.6,
   "ebit_margin_pct": 9.0,
   "roce_pct": 3.5,
   "fcf_margin_pct": 6.6,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.18
  },
  "dupont": {
-  "net_margin_pct": 4.7,
+  "net_margin_pct": 6.6,
   "asset_turnover": 0.18,
   "equity_multiplier": 2.26
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 164.34,
   "pe_normalized": 117.5,
+  "pe_used": 117.5,
   "pb": 3.14,
   "ev_ebitda": 33.45,
   "fcf_yield_pct": 0.8,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 2.68,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": 1.9,
+  "roa_pct": 0.8,
+  "net_margin_pct": 4.7
  }
 }

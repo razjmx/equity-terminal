@@ -2,7 +2,14 @@
  "symbol": "PIRAMALFIN",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 28148.7,
+  "implied_cr": 32259.2,
+  "ratio": 0.87,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 10371.0,
   "ni": 1504.3,
@@ -11,7 +18,7 @@
   "eq": 28148.7,
   "debt": 79989.2,
   "fcf": -16008.8,
-  "ni_continuing": 1506.1,
+  "ni_continuing_ops_pre_minority": 1506.1,
   "ni_normalized": 1538.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 31.2,
   "pe_normalized": 30.51,
+  "pe_used": 31.2,
   "pb": 1.67,
   "ev_ebitda": 50.82,
   "fcf_yield_pct": -34.1,

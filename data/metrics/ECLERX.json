@@ -2,7 +2,14 @@
  "symbol": "ECLERX",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2561.4,
+  "implied_cr": 2919.3,
+  "ratio": 0.88,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4117.0,
   "ni": 706.2,
@@ -11,7 +18,7 @@
   "eq": 2561.4,
   "debt": 385.0,
   "fcf": 754.3,
-  "ni_continuing": 706.5,
+  "ni_continuing_ops_pre_minority": 706.5,
   "ni_normalized": 697.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 19.83,
   "pe_normalized": 20.08,
+  "pe_used": 19.83,
   "pb": 5.47,
   "ev_ebitda": 11.59,
   "fcf_yield_pct": 5.4,

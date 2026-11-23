@@ -2,7 +2,14 @@
  "symbol": "SAGILITY",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 9659.1,
+  "implied_cr": 10276.5,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 7192.9,
   "ni": 924.8,
@@ -11,7 +18,7 @@
   "eq": 9659.1,
   "debt": 1110.5,
   "fcf": 1010.8,
-  "ni_continuing": 924.8,
+  "ni_continuing_ops_pre_minority": 924.8,
   "ni_normalized": 947.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 23.24,
   "pe_normalized": 22.69,
+  "pe_used": 23.24,
   "pb": 2.23,
   "ev_ebitda": 11.89,
   "fcf_yield_pct": 4.7,

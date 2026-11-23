@@ -2,7 +2,14 @@
  "symbol": "OLECTRA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1227.6,
+  "implied_cr": 1301.6,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2307.7,
   "ni": 177.5,
@@ -11,7 +18,7 @@
   "eq": 1227.6,
   "debt": 380.3,
   "fcf": -55.3,
-  "ni_continuing": 179.5,
+  "ni_continuing_ops_pre_minority": 179.5,
   "ni_normalized": 177.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 45.75,
   "pe_normalized": 45.68,
+  "pe_used": 45.75,
   "pb": 6.61,
   "ev_ebitda": 25.83,
   "fcf_yield_pct": -0.7,

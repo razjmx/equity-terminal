@@ -2,9 +2,16 @@
  "symbol": "HDFCLIFE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [
   "no cash flow data"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 17749.5,
+  "implied_cr": 18970.7,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 91606.2,
   "ni": 1912.3,
@@ -13,7 +20,7 @@
   "eq": 17749.5,
   "debt": 3099.0,
   "fcf": 22338.0,
-  "ni_continuing": 1912.3,
+  "ni_continuing_ops_pre_minority": 1912.3,
   "ni_normalized": 1912.3
  },
  "ratios": {
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 65.58,
   "pe_normalized": 65.58,
+  "pe_used": 65.58,
   "pb": 7.07,
   "ev_ebitda": null,
   "fcf_yield_pct": 17.8,

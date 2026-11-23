@@ -2,7 +2,14 @@
  "symbol": "CGCL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 7203.5,
+  "implied_cr": 7961.5,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4710.1,
   "ni": 949.2,
@@ -11,7 +18,7 @@
   "eq": 7203.5,
   "debt": 24112.1,
   "fcf": -8787.4,
-  "ni_continuing": 949.2,
+  "ni_continuing_ops_pre_minority": 949.2,
   "ni_normalized": 1076.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 23.48,
   "pe_normalized": 20.7,
+  "pe_used": 23.48,
   "pb": 3.09,
   "ev_ebitda": 30.62,
   "fcf_yield_pct": -39.4,

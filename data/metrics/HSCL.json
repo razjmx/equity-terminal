@@ -2,7 +2,14 @@
  "symbol": "HSCL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4706.7,
+  "implied_cr": 5135.0,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4657.7,
   "ni": 751.3,
@@ -11,7 +18,7 @@
   "eq": 4706.7,
   "debt": 770.0,
   "fcf": -67.7,
-  "ni_continuing": 755.1,
+  "ni_continuing_ops_pre_minority": 755.1,
   "ni_normalized": 673.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 37.23,
   "pe_normalized": 41.52,
+  "pe_used": 37.23,
   "pb": 5.94,
   "ev_ebitda": 25.14,
   "fcf_yield_pct": -0.2,

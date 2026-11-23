@@ -2,7 +2,14 @@
  "symbol": "ACUTAAS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1653.6,
+  "implied_cr": 1857.6,
+  "ratio": 0.89,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1329.0,
   "ni": 356.3,
@@ -11,7 +18,7 @@
   "eq": 1653.6,
   "debt": 35.6,
   "fcf": -35.8,
-  "ni_continuing": 356.4,
+  "ni_continuing_ops_pre_minority": 356.4,
   "ni_normalized": 356.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 89.12,
   "pe_normalized": 89.12,
+  "pe_used": 89.12,
   "pb": 19.2,
   "ev_ebitda": 60.52,
   "fcf_yield_pct": -0.1,

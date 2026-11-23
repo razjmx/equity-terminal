@@ -2,7 +2,14 @@
  "symbol": "GALLANTT",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3316.2,
+  "implied_cr": 3486.5,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4304.2,
   "ni": 484.3,
@@ -11,7 +18,7 @@
   "eq": 3316.2,
   "debt": 547.7,
   "fcf": 254.1,
-  "ni_continuing": 484.3,
+  "ni_continuing_ops_pre_minority": 484.3,
   "ni_normalized": 482.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 27.07,
   "pe_normalized": 27.18,
+  "pe_used": 27.07,
   "pb": 3.95,
   "ev_ebitda": 16.98,
   "fcf_yield_pct": 1.9,

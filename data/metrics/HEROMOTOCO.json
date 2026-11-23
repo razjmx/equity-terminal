@@ -2,7 +2,14 @@
  "symbol": "HEROMOTOCO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 21611.2,
+  "implied_cr": 23408.8,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 47048.4,
   "ni": 5741.7,
@@ -11,7 +18,7 @@
   "eq": 21611.2,
   "debt": 778.6,
   "fcf": 7214.5,
-  "ni_continuing": 5775.7,
+  "ni_continuing_ops_pre_minority": 5775.7,
   "ni_normalized": 5330.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 19.34,
   "pe_normalized": 20.83,
+  "pe_used": 19.34,
   "pb": 5.14,
   "ev_ebitda": 11.81,
   "fcf_yield_pct": 6.5,

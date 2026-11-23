@@ -2,7 +2,14 @@
  "symbol": "ABB",
  "latest_fy": "2025-12-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 7836.0,
+  "implied_cr": 9335.6,
+  "ratio": 0.84,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 13065.3,
   "ni": 1668.3,
@@ -11,7 +18,7 @@
   "eq": 7836.0,
   "debt": 84.8,
   "fcf": 979.6,
-  "ni_continuing": 1669.4,
+  "ni_continuing_ops_pre_minority": 1669.4,
   "ni_normalized": 1670.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 87.81,
   "pe_normalized": 87.68,
+  "pe_used": 87.81,
   "pb": 18.69,
   "ev_ebitda": 58.77,
   "fcf_yield_pct": 0.7,

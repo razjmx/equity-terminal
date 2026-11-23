@@ -2,9 +2,16 @@
  "symbol": "SHREECEM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 23267.5,
+  "implied_cr": 23860.8,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 20587.8,
   "ni": 1743.6,
@@ -13,13 +20,13 @@
   "eq": 23267.5,
   "debt": 1868.1,
   "fcf": 1884.9,
-  "ni_continuing": 1748.7,
+  "ni_continuing_ops_pre_minority": 1748.7,
   "ni_normalized": 1459.7
  },
  "ratios": {
-  "roe_pct": 7.5,
-  "roa_pct": 5.5,
-  "net_margin_pct": 8.5,
+  "roe_pct": 6.3,
+  "roa_pct": 4.6,
+  "net_margin_pct": 7.1,
   "ebit_margin_pct": 12.1,
   "roce_pct": 10.2,
   "fcf_margin_pct": 9.2,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.65
  },
  "dupont": {
-  "net_margin_pct": 8.5,
+  "net_margin_pct": 7.1,
   "asset_turnover": 0.65,
   "equity_multiplier": 1.35
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 51.8,
   "pe_normalized": 61.87,
+  "pe_used": 61.87,
   "pb": 3.88,
   "ev_ebitda": 15.79,
   "fcf_yield_pct": 2.1,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 6.54,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": 7.5,
+  "roa_pct": 5.5,
+  "net_margin_pct": 8.5
  }
 }

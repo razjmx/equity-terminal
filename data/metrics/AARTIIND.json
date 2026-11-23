@@ -2,7 +2,14 @@
  "symbol": "AARTIIND",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5955.1,
+  "implied_cr": 6289.2,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8161.8,
   "ni": 419.1,
@@ -11,7 +18,7 @@
   "eq": 5955.1,
   "debt": 4966.3,
   "fcf": -343.5,
-  "ni_continuing": 419.2,
+  "ni_continuing_ops_pre_minority": 419.2,
   "ni_normalized": 445.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 38.84,
   "pe_normalized": 36.53,
+  "pe_used": 38.84,
   "pb": 2.73,
   "ev_ebitda": 18.8,
   "fcf_yield_pct": -2.1,

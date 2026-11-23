@@ -2,9 +2,16 @@
  "symbol": "RECLTD",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 85054.4,
+  "implied_cr": 95219.0,
+  "ratio": 0.89,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 21834.2,
   "ni": 16308.2,
@@ -13,7 +20,7 @@
   "eq": 85054.4,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 16308.2,
+  "ni_continuing_ops_pre_minority": 16308.2,
   "ni_normalized": 16330.8
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 19.2,
   "roa_pct": 2.5,
   "equity_multiplier": 7.53
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 4.75,
   "pe_normalized": 4.75,
+  "pe_used": 4.75,
   "pb": 0.91,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

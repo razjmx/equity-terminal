@@ -2,7 +2,14 @@
  "symbol": "DABUR",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 11419.5,
+  "implied_cr": 11494.9,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 13042.0,
   "ni": 1895.0,
@@ -11,7 +18,7 @@
   "eq": 11419.5,
   "debt": 1287.3,
   "fcf": 2158.5,
-  "ni_continuing": 1868.7,
+  "ni_continuing_ops_pre_minority": 1868.7,
   "ni_normalized": 1767.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 37.54,
   "pe_normalized": 40.25,
+  "pe_used": 37.54,
   "pb": 6.23,
   "ev_ebitda": 22.31,
   "fcf_yield_pct": 3.0,

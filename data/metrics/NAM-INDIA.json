@@ -2,7 +2,14 @@
  "symbol": "NAM-INDIA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4659.1,
+  "implied_cr": 4772.8,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2708.7,
   "ni": 1529.4,
@@ -11,7 +18,7 @@
   "eq": 4659.1,
   "debt": 75.3,
   "fcf": 1387.1,
-  "ni_continuing": 1529.4,
+  "ni_continuing_ops_pre_minority": 1529.4,
   "ni_normalized": 1390.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 43.37,
   "pe_normalized": 47.7,
+  "pe_used": 43.37,
   "pb": 14.24,
   "ev_ebitda": 31.35,
   "fcf_yield_pct": 2.1,

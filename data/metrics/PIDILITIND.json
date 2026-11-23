@@ -2,7 +2,14 @@
  "symbol": "PIDILITIND",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 10832.2,
+  "implied_cr": 11224.2,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 14551.3,
   "ni": 2448.9,
@@ -11,7 +18,7 @@
   "eq": 10832.2,
   "debt": 417.2,
   "fcf": 2235.7,
-  "ni_continuing": 2470.7,
+  "ni_continuing_ops_pre_minority": 2470.7,
   "ni_normalized": 2296.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 67.05,
   "pe_normalized": 71.48,
+  "pe_used": 67.05,
   "pb": 15.16,
   "ev_ebitda": 42.62,
   "fcf_yield_pct": 1.4,

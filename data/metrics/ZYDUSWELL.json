@@ -2,7 +2,14 @@
  "symbol": "ZYDUSWELL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5826.0,
+  "implied_cr": 5896.8,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3940.0,
   "ni": 197.2,
@@ -11,7 +18,7 @@
   "eq": 5826.0,
   "debt": 3202.8,
   "fcf": 124.7,
-  "ni_continuing": 197.2,
+  "ni_continuing_ops_pre_minority": 197.2,
   "ni_normalized": 228.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 74.1,
   "pe_normalized": 63.83,
+  "pe_used": 74.1,
   "pb": 2.51,
   "ev_ebitda": 37.49,
   "fcf_yield_pct": 0.9,

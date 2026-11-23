@@ -2,7 +2,14 @@
  "symbol": "EMAMILTD",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2924.0,
+  "implied_cr": 2874.2,
+  "ratio": 1.02,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3745.3,
   "ni": 775.3,
@@ -11,7 +18,7 @@
   "eq": 2924.0,
   "debt": 161.9,
   "fcf": 757.2,
-  "ni_continuing": 775.3,
+  "ni_continuing_ops_pre_minority": 775.3,
   "ni_normalized": 745.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 23.04,
   "pe_normalized": 23.96,
+  "pe_used": 23.04,
   "pb": 6.11,
   "ev_ebitda": 16.55,
   "fcf_yield_pct": 4.2,

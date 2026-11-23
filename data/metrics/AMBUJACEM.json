@@ -2,7 +2,14 @@
  "symbol": "AMBUJACEM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 59347.3,
+  "implied_cr": 59924.1,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 39969.4,
   "ni": 4728.2,
@@ -11,7 +18,7 @@
   "eq": 59347.3,
   "debt": 865.9,
   "fcf": -982.8,
-  "ni_continuing": 5637.1,
+  "ni_continuing_ops_pre_minority": 5637.1,
   "ni_normalized": 4889.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 20.67,
   "pe_normalized": 19.99,
+  "pe_used": 20.67,
   "pb": 1.65,
   "ev_ebitda": 13.77,
   "fcf_yield_pct": -1.0,

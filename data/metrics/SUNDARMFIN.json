@@ -2,9 +2,16 @@
  "symbol": "SUNDARMFIN",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 14893.7,
+  "implied_cr": 16059.9,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4921.9,
   "ni": 2058.9,
@@ -13,7 +20,7 @@
   "eq": 14893.7,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 2058.9,
+  "ni_continuing_ops_pre_minority": 2058.9,
   "ni_normalized": 2106.1
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 13.8,
   "roa_pct": 2.4,
   "equity_multiplier": 5.76
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 23.39,
   "pe_normalized": 22.86,
+  "pe_used": 23.39,
   "pb": 3.23,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

@@ -2,7 +2,14 @@
  "symbol": "RITES",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2681.2,
+  "implied_cr": 2654.4,
+  "ratio": 1.01,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2404.8,
   "ni": 410.3,
@@ -11,7 +18,7 @@
   "eq": 2681.2,
   "debt": 6.6,
   "fcf": 265.5,
-  "ni_continuing": 454.4,
+  "ni_continuing_ops_pre_minority": 454.4,
   "ni_normalized": 419.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 21.78,
   "pe_normalized": 21.33,
+  "pe_used": 21.78,
   "pb": 3.33,
   "ev_ebitda": 8.89,
   "fcf_yield_pct": 3.0,

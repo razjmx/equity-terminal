@@ -2,9 +2,16 @@
  "symbol": "SBIN",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 596130.9,
+  "implied_cr": 671581.0,
+  "ratio": 0.89,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 260245.1,
   "ni": 83298.8,
@@ -13,7 +20,7 @@
   "eq": 596130.9,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 86665.7,
+  "ni_continuing_ops_pre_minority": 86665.7,
   "ni_normalized": 83304.3
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 14.0,
   "roa_pct": 1.0,
   "equity_multiplier": 13.96
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 12.62,
   "pe_normalized": 12.62,
+  "pe_used": 12.62,
   "pb": 1.76,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

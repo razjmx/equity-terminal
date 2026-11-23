@@ -2,7 +2,14 @@
  "symbol": "JBMA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1538.3,
+  "implied_cr": 1627.2,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5811.5,
   "ni": 218.8,
@@ -11,7 +18,7 @@
   "eq": 1538.3,
   "debt": 3145.5,
   "fcf": -361.9,
-  "ni_continuing": 238.1,
+  "ni_continuing_ops_pre_minority": 238.1,
   "ni_normalized": 228.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 51.88,
   "pe_normalized": 49.77,
+  "pe_used": 51.88,
   "pb": 7.38,
   "ev_ebitda": 17.99,
   "fcf_yield_pct": -3.2,

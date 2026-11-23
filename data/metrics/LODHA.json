@@ -2,7 +2,14 @@
  "symbol": "LODHA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 23286.2,
+  "implied_cr": 25293.0,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 16291.2,
   "ni": 3428.2,
@@ -11,7 +18,7 @@
   "eq": 23286.2,
   "debt": 9896.0,
   "fcf": 709.1,
-  "ni_continuing": 3430.7,
+  "ni_continuing_ops_pre_minority": 3430.7,
   "ni_normalized": 3390.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 35.53,
   "pe_normalized": 35.92,
+  "pe_used": 35.53,
   "pb": 5.23,
   "ev_ebitda": 24.23,
   "fcf_yield_pct": 0.6,

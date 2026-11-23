@@ -2,7 +2,14 @@
  "symbol": "JWL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2978.5,
+  "implied_cr": 2978.5,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2888.1,
   "ni": 171.1,
@@ -11,7 +18,7 @@
   "eq": 2978.5,
   "debt": 996.5,
   "fcf": -525.1,
-  "ni_continuing": 166.0,
+  "ni_continuing_ops_pre_minority": 166.0,
   "ni_normalized": 178.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 46.45,
   "pe_normalized": 44.45,
+  "pe_used": 46.45,
   "pb": 2.67,
   "ev_ebitda": 22.46,
   "fcf_yield_pct": -6.6,

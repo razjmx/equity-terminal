@@ -2,7 +2,14 @@
  "symbol": "SHYAMMETL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 11522.8,
+  "implied_cr": 12793.1,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 18487.5,
   "ni": 1070.2,
@@ -11,7 +18,7 @@
   "eq": 11522.8,
   "debt": 1005.1,
   "fcf": -613.7,
-  "ni_continuing": 1060.2,
+  "ni_continuing_ops_pre_minority": 1060.2,
   "ni_normalized": 1027.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 33.69,
   "pe_normalized": 35.11,
+  "pe_used": 33.69,
   "pb": 3.13,
   "ev_ebitda": 14.79,
   "fcf_yield_pct": -1.7,

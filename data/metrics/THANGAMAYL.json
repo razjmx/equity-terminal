@@ -2,7 +2,14 @@
  "symbol": "THANGAMAYL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1416.0,
+  "implied_cr": 1505.3,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8499.3,
   "ni": 351.6,
@@ -11,7 +18,7 @@
   "eq": 1416.0,
   "debt": 913.2,
   "fcf": 248.5,
-  "ni_continuing": 351.6,
+  "ni_continuing_ops_pre_minority": 351.6,
   "ni_normalized": 353.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 33.21,
   "pe_normalized": 33.03,
+  "pe_used": 33.21,
   "pb": 8.25,
   "ev_ebitda": 21.58,
   "fcf_yield_pct": 2.1,

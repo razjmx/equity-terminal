@@ -2,7 +2,14 @@
  "symbol": "NATCOPHARM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 9221.1,
+  "implied_cr": 10693.3,
+  "ratio": 0.86,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4044.5,
   "ni": 1418.5,
@@ -11,7 +18,7 @@
   "eq": 9221.1,
   "debt": 713.9,
   "fcf": 1377.2,
-  "ni_continuing": 1418.5,
+  "ni_continuing_ops_pre_minority": 1418.5,
   "ni_normalized": 1442.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 11.22,
   "pe_normalized": 11.03,
+  "pe_used": 11.22,
   "pb": 1.73,
   "ev_ebitda": 8.03,
   "fcf_yield_pct": 8.7,

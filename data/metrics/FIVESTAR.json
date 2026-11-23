@@ -2,7 +2,14 @@
  "symbol": "FIVESTAR",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 7380.2,
+  "implied_cr": 7904.3,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3046.2,
   "ni": 1098.7,
@@ -11,7 +18,7 @@
   "eq": 7380.2,
   "debt": 8200.4,
   "fcf": -289.9,
-  "ni_continuing": 1098.7,
+  "ni_continuing_ops_pre_minority": 1098.7,
   "ni_normalized": 1216.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 11.58,
   "pe_normalized": 10.46,
+  "pe_used": 11.58,
   "pb": 1.72,
   "ev_ebitda": 11.92,
   "fcf_yield_pct": -2.3,

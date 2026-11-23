@@ -2,9 +2,16 @@
  "symbol": "APOLLOTYRE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 16715.2,
+  "implied_cr": 17551.1,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 28214.5,
   "ni": 1372.4,
@@ -13,13 +20,13 @@
   "eq": 16715.2,
   "debt": 3675.2,
   "fcf": 2264.1,
-  "ni_continuing": 1372.4,
+  "ni_continuing_ops_pre_minority": 1372.4,
   "ni_normalized": 2006.4
  },
  "ratios": {
-  "roe_pct": 8.2,
-  "roa_pct": 4.7,
-  "net_margin_pct": 4.9,
+  "roe_pct": 12.0,
+  "roa_pct": 6.9,
+  "net_margin_pct": 7.1,
   "ebit_margin_pct": 6.0,
   "roce_pct": 8.0,
   "fcf_margin_pct": 8.0,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.96
  },
  "dupont": {
-  "net_margin_pct": 4.9,
+  "net_margin_pct": 7.1,
   "asset_turnover": 0.96,
   "equity_multiplier": 1.75
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 19.36,
   "pe_normalized": 13.24,
+  "pe_used": 13.24,
   "pb": 1.59,
   "ev_ebitda": 8.99,
   "fcf_yield_pct": 8.5,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 3.54,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": 8.2,
+  "roa_pct": 4.7,
+  "net_margin_pct": 4.9
  }
 }

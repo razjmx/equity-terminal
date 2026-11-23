@@ -2,7 +2,14 @@
  "symbol": "LUPIN",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 22448.3,
+  "implied_cr": 24057.1,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 27487.5,
   "ni": 5332.8,
@@ -11,7 +18,7 @@
   "eq": 22448.3,
   "debt": 6616.2,
   "fcf": 5279.6,
-  "ni_continuing": 5355.5,
+  "ni_continuing_ops_pre_minority": 5355.5,
   "ni_normalized": 5647.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 17.0,
   "pe_normalized": 16.06,
+  "pe_used": 17.0,
   "pb": 4.04,
   "ev_ebitda": 10.32,
   "fcf_yield_pct": 5.8,

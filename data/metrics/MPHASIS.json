@@ -2,7 +2,14 @@
  "symbol": "MPHASIS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 10743.7,
+  "implied_cr": 10801.9,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 15879.6,
   "ni": 1862.6,
@@ -11,7 +18,7 @@
   "eq": 10743.7,
   "debt": 2619.7,
   "fcf": 934.8,
-  "ni_continuing": 1862.6,
+  "ni_continuing_ops_pre_minority": 1862.6,
   "ni_normalized": 1818.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 25.41,
   "pe_normalized": 26.03,
+  "pe_used": 25.41,
   "pb": 4.41,
   "ev_ebitda": 14.31,
   "fcf_yield_pct": 2.0,

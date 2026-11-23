@@ -2,7 +2,14 @@
  "symbol": "KIRLOSENG",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3620.2,
+  "implied_cr": 3781.0,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 7641.3,
   "ni": 574.3,
@@ -11,7 +18,7 @@
   "eq": 3620.2,
   "debt": 5374.3,
   "fcf": 592.4,
-  "ni_continuing": 557.7,
+  "ni_continuing_ops_pre_minority": 557.7,
   "ni_normalized": 583.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 43.01,
   "pe_normalized": 42.36,
+  "pe_used": 43.01,
   "pb": 6.82,
   "ev_ebitda": 20.14,
   "fcf_yield_pct": 2.4,

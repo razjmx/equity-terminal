@@ -2,7 +2,14 @@
  "symbol": "RAINBOW",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1648.1,
+  "implied_cr": 1710.9,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1677.7,
   "ni": 278.3,
@@ -11,7 +18,7 @@
   "eq": 1648.1,
   "debt": 891.0,
   "fcf": 203.2,
-  "ni_continuing": 281.5,
+  "ni_continuing_ops_pre_minority": 281.5,
   "ni_normalized": 254.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 46.28,
   "pe_normalized": 50.56,
+  "pe_used": 46.28,
   "pb": 7.82,
   "ev_ebitda": 22.65,
   "fcf_yield_pct": 1.6,

@@ -2,7 +2,14 @@
  "symbol": "NTPCGREEN",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 18965.2,
+  "implied_cr": 19031.7,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2770.9,
   "ni": 522.6,
@@ -11,7 +18,7 @@
   "eq": 18965.2,
   "debt": 31716.1,
   "fcf": -12879.6,
-  "ni_continuing": 521.4,
+  "ni_continuing_ops_pre_minority": 521.4,
   "ni_normalized": 522.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 132.76,
   "pe_normalized": 132.76,
+  "pe_used": 132.76,
   "pb": 3.66,
   "ev_ebitda": 37.62,
   "fcf_yield_pct": -18.6,

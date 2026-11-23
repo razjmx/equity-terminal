@@ -2,9 +2,16 @@
  "symbol": "GMDCLTD",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 7072.7,
+  "implied_cr": 7093.6,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2653.4,
   "ni": 956.7,
@@ -13,13 +20,13 @@
   "eq": 7072.7,
   "debt": 316.5,
   "fcf": -290.3,
-  "ni_continuing": 956.7,
+  "ni_continuing_ops_pre_minority": 956.7,
   "ni_normalized": 587.3
  },
  "ratios": {
-  "roe_pct": 13.5,
-  "roa_pct": 10.6,
-  "net_margin_pct": 36.1,
+  "roe_pct": 8.3,
+  "roa_pct": 6.5,
+  "net_margin_pct": 22.1,
   "ebit_margin_pct": 48.0,
   "roce_pct": 15.5,
   "fcf_margin_pct": -10.9,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.3
  },
  "dupont": {
-  "net_margin_pct": 36.1,
+  "net_margin_pct": 22.1,
   "asset_turnover": 0.3,
   "equity_multiplier": 1.27
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 14.99,
   "pe_normalized": 24.42,
+  "pe_used": 24.42,
   "pb": 2.03,
   "ev_ebitda": 10.47,
   "fcf_yield_pct": -2.0,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 8.06,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": 13.5,
+  "roa_pct": 10.6,
+  "net_margin_pct": 36.1
  }
 }

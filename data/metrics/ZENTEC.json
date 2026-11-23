@@ -2,7 +2,14 @@
  "symbol": "ZENTEC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1889.1,
+  "implied_cr": 1990.6,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 687.7,
   "ni": 193.5,
@@ -11,7 +18,7 @@
   "eq": 1889.1,
   "debt": 18.5,
   "fcf": 182.8,
-  "ni_continuing": 217.9,
+  "ni_continuing_ops_pre_minority": 217.9,
   "ni_normalized": 192.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 79.32,
   "pe_normalized": 79.55,
+  "pe_used": 79.32,
   "pb": 8.12,
   "ev_ebitda": 44.23,
   "fcf_yield_pct": 1.2,

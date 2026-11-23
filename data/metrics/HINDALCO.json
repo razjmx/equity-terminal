@@ -2,9 +2,16 @@
  "symbol": "HINDALCO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 136583.0,
+  "implied_cr": 159664.0,
+  "ratio": 0.86,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 272642.0,
   "ni": 13391.0,
@@ -13,13 +20,13 @@
   "eq": 136583.0,
   "debt": 99161.0,
   "fcf": -19846.0,
-  "ni_continuing": 13391.0,
+  "ni_continuing_ops_pre_minority": 13391.0,
   "ni_normalized": 19360.3
  },
  "ratios": {
-  "roe_pct": 9.8,
-  "roa_pct": 3.9,
-  "net_margin_pct": 4.9,
+  "roe_pct": 14.2,
+  "roa_pct": 5.6,
+  "net_margin_pct": 7.1,
   "ebit_margin_pct": 8.0,
   "roce_pct": 9.4,
   "fcf_margin_pct": -7.3,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.78
  },
  "dupont": {
-  "net_margin_pct": 4.9,
+  "net_margin_pct": 7.1,
   "asset_turnover": 0.78,
   "equity_multiplier": 2.55
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 14.95,
   "pe_normalized": 10.34,
+  "pe_used": 10.34,
   "pb": 1.47,
   "ev_ebitda": 9.03,
   "fcf_yield_pct": -9.9,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 2.37,
   "zone": "grey"
+ },
+ "ratios_reported": {
+  "roe_pct": 9.8,
+  "roa_pct": 3.9,
+  "net_margin_pct": 4.9
  }
 }

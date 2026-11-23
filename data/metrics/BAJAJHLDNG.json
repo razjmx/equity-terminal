@@ -2,9 +2,16 @@
  "symbol": "BAJAJHLDNG",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 73150.6,
+  "implied_cr": 73790.9,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8729.2,
   "ni": 9636.8,
@@ -13,7 +20,7 @@
   "eq": 73150.6,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 9788.9,
+  "ni_continuing_ops_pre_minority": 9788.9,
   "ni_normalized": 9636.8
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 13.2,
   "roa_pct": 11.3,
   "equity_multiplier": 1.16
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 13.45,
   "pe_normalized": 13.45,
+  "pe_used": 13.45,
   "pb": 1.77,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

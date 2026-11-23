@@ -2,7 +2,14 @@
  "symbol": "AEGISLOG",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6055.0,
+  "implied_cr": 7201.9,
+  "ratio": 0.84,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8282.7,
   "ni": 898.2,
@@ -11,7 +18,7 @@
   "eq": 6055.0,
   "debt": 4149.9,
   "fcf": 1206.8,
-  "ni_continuing": 1106.6,
+  "ni_continuing_ops_pre_minority": 1106.6,
   "ni_normalized": 865.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 49.58,
   "pe_normalized": 51.44,
+  "pe_used": 49.58,
   "pb": 7.36,
   "ev_ebitda": 25.01,
   "fcf_yield_pct": 2.7,

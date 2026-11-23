@@ -2,7 +2,14 @@
  "symbol": "ABSLAMC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4041.7,
+  "implied_cr": 3885.5,
+  "ratio": 1.04,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1845.0,
   "ni": 975.1,
@@ -11,7 +18,7 @@
   "eq": 4041.7,
   "debt": 63.7,
   "fcf": 764.4,
-  "ni_continuing": 975.1,
+  "ni_continuing_ops_pre_minority": 975.1,
   "ni_normalized": 863.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 27.39,
   "pe_normalized": 30.95,
+  "pe_used": 27.39,
   "pb": 6.61,
   "ev_ebitda": 18.15,
   "fcf_yield_pct": 2.9,

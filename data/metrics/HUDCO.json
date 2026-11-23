@@ -2,9 +2,16 @@
  "symbol": "HUDCO",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 21975.5,
+  "implied_cr": 22953.0,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3430.8,
   "ni": 4034.4,
@@ -13,7 +20,7 @@
   "eq": 21975.5,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 4034.4,
+  "ni_continuing_ops_pre_minority": 4034.4,
   "ni_normalized": 4018.1
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 18.4,
   "roa_pct": 2.4,
   "equity_multiplier": 7.59
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 7.86,
   "pe_normalized": 7.89,
+  "pe_used": 7.86,
   "pb": 1.44,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

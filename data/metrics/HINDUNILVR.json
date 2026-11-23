@@ -2,9 +2,16 @@
  "symbol": "HINDUNILVR",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 48738.0,
+  "implied_cr": 48811.8,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 63763.0,
   "ni": 15040.0,
@@ -13,13 +20,13 @@
   "eq": 48738.0,
   "debt": 1478.0,
   "fcf": 9638.0,
-  "ni_continuing": 10652.0,
+  "ni_continuing_ops_pre_minority": 10652.0,
   "ni_normalized": 10663.8
  },
  "ratios": {
-  "roe_pct": 30.9,
-  "roa_pct": 18.9,
-  "net_margin_pct": 23.6,
+  "roe_pct": 21.9,
+  "roa_pct": 13.4,
+  "net_margin_pct": 16.7,
   "ebit_margin_pct": 22.3,
   "roce_pct": 22.2,
   "fcf_margin_pct": 15.1,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.8
  },
  "dupont": {
-  "net_margin_pct": 23.6,
+  "net_margin_pct": 16.7,
   "asset_turnover": 0.8,
   "equity_multiplier": 1.64
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 31.94,
   "pe_normalized": 45.05,
+  "pe_used": 45.05,
   "pb": 9.86,
   "ev_ebitda": 30.24,
   "fcf_yield_pct": 2.0,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 3.46,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": 30.9,
+  "roa_pct": 18.9,
+  "net_margin_pct": 23.6
  }
 }

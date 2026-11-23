@@ -2,7 +2,14 @@
  "symbol": "HBLENGINE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2214.2,
+  "implied_cr": 2490.0,
+  "ratio": 0.89,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3282.8,
   "ni": 814.9,
@@ -11,7 +18,7 @@
   "eq": 2214.2,
   "debt": 66.9,
   "fcf": 588.1,
-  "ni_continuing": 814.4,
+  "ni_continuing_ops_pre_minority": 814.4,
   "ni_normalized": 839.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 25.41,
   "pe_normalized": 24.68,
+  "pe_used": 25.41,
   "pb": 9.35,
   "ev_ebitda": 17.44,
   "fcf_yield_pct": 2.8,

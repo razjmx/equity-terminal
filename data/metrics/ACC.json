@@ -2,7 +2,14 @@
  "symbol": "ACC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 20550.5,
+  "implied_cr": 20665.9,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 25045.4,
   "ni": 2137.1,
@@ -11,7 +18,7 @@
   "eq": 20550.5,
   "debt": 539.8,
   "fcf": -2791.2,
-  "ni_continuing": 2137.2,
+  "ni_continuing_ops_pre_minority": 2137.2,
   "ni_normalized": 2075.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 11.06,
   "pe_normalized": 11.39,
+  "pe_used": 11.06,
   "pb": 1.15,
   "ev_ebitda": 6.98,
   "fcf_yield_pct": -11.8,

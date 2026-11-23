@@ -2,7 +2,14 @@
  "symbol": "FLUOROCHEM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 7865.5,
+  "implied_cr": 8387.8,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4875.5,
   "ni": 577.4,
@@ -11,7 +18,7 @@
   "eq": 7865.5,
   "debt": 2290.6,
   "fcf": -291.6,
-  "ni_continuing": 573.8,
+  "ni_continuing_ops_pre_minority": 573.8,
   "ni_normalized": 596.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 94.33,
   "pe_normalized": 91.38,
+  "pe_used": 94.33,
   "pb": 6.92,
   "ev_ebitda": 44.36,
   "fcf_yield_pct": -0.5,

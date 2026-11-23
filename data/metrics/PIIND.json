@@ -2,7 +2,14 @@
  "symbol": "PIIND",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 11230.5,
+  "implied_cr": 11450.2,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6669.9,
   "ni": 1320.8,
@@ -11,7 +18,7 @@
   "eq": 11230.5,
   "debt": 342.3,
   "fcf": -643.8,
-  "ni_continuing": 1320.8,
+  "ni_continuing_ops_pre_minority": 1320.8,
   "ni_normalized": 1230.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 18.38,
   "pe_normalized": 19.73,
+  "pe_used": 18.38,
   "pb": 2.16,
   "ev_ebitda": 9.97,
   "fcf_yield_pct": -2.7,

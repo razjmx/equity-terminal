@@ -2,7 +2,14 @@
  "symbol": "PGEL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3048.6,
+  "implied_cr": 3104.4,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5105.3,
   "ni": 196.6,
@@ -11,7 +18,7 @@
   "eq": 3048.6,
   "debt": 596.5,
   "fcf": -718.6,
-  "ni_continuing": 196.6,
+  "ni_continuing_ops_pre_minority": 196.6,
   "ni_normalized": 197.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 85.54,
   "pe_normalized": 85.21,
+  "pe_used": 85.54,
   "pb": 5.52,
   "ev_ebitda": 44.49,
   "fcf_yield_pct": -4.3,

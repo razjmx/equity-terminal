@@ -2,7 +2,14 @@
  "symbol": "ZYDUSLIFE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 27111.4,
+  "implied_cr": 27822.8,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 26719.7,
   "ni": 5040.0,
@@ -11,7 +18,7 @@
   "eq": 27111.4,
   "debt": 12496.0,
   "fcf": -554.9,
-  "ni_continuing": 5123.5,
+  "ni_continuing_ops_pre_minority": 5123.5,
   "ni_normalized": 5427.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 23.74,
   "pe_normalized": 22.04,
+  "pe_used": 23.74,
   "pb": 4.41,
   "ev_ebitda": 15.15,
   "fcf_yield_pct": -0.5,

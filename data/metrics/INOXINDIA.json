@@ -2,7 +2,14 @@
  "symbol": "INOXINDIA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1117.6,
+  "implied_cr": 1228.2,
+  "ratio": 0.91,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1551.8,
   "ni": 257.9,
@@ -11,7 +18,7 @@
   "eq": 1117.6,
   "debt": 81.0,
   "fcf": 10.7,
-  "ni_continuing": 257.9,
+  "ni_continuing_ops_pre_minority": 257.9,
   "ni_normalized": 249.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 73.47,
   "pe_normalized": 75.94,
+  "pe_used": 73.47,
   "pb": 16.95,
   "ev_ebitda": 48.89,
   "fcf_yield_pct": 0.1,

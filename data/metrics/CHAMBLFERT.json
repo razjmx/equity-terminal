@@ -2,7 +2,14 @@
  "symbol": "CHAMBLFERT",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 10408.0,
+  "implied_cr": 11355.0,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 20793.1,
   "ni": 1953.4,
@@ -11,7 +18,7 @@
   "eq": 10408.0,
   "debt": 1067.5,
   "fcf": -754.5,
-  "ni_continuing": 1953.3,
+  "ni_continuing_ops_pre_minority": 1953.3,
   "ni_normalized": 1900.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 7.58,
   "pe_normalized": 7.79,
+  "pe_used": 7.58,
   "pb": 1.42,
   "ev_ebitda": 5.07,
   "fcf_yield_pct": -5.1,

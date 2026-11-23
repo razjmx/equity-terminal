@@ -2,9 +2,16 @@
  "symbol": "MOTILALOFS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 12888.1,
+  "implied_cr": 15555.2,
+  "ratio": 0.83,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8208.7,
   "ni": 1869.3,
@@ -13,13 +20,13 @@
   "eq": 12888.1,
   "debt": 21255.1,
   "fcf": -6159.7,
-  "ni_continuing": 1872.5,
+  "ni_continuing_ops_pre_minority": 1872.5,
   "ni_normalized": 1441.1
  },
  "ratios": {
-  "roe_pct": 14.5,
-  "roa_pct": 4.3,
-  "net_margin_pct": 22.8,
+  "roe_pct": 11.2,
+  "roa_pct": 3.3,
+  "net_margin_pct": 17.6,
   "ebit_margin_pct": 45.8,
   "roce_pct": 18.1,
   "fcf_margin_pct": -75.0,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.19
  },
  "dupont": {
-  "net_margin_pct": 22.8,
+  "net_margin_pct": 17.6,
   "asset_turnover": 0.19,
   "equity_multiplier": 3.37
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 39.74,
   "pe_normalized": 51.55,
+  "pe_used": 51.55,
   "pb": 5.76,
   "ev_ebitda": 20.96,
   "fcf_yield_pct": -8.3,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 2.49,
   "zone": "grey"
+ },
+ "ratios_reported": {
+  "roe_pct": 14.5,
+  "roa_pct": 4.3,
+  "net_margin_pct": 22.8
  }
 }

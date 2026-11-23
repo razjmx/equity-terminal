@@ -2,9 +2,16 @@
  "symbol": "INDIANB",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 80042.9,
+  "implied_cr": 86873.4,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 37793.8,
   "ni": 11704.3,
@@ -13,7 +20,7 @@
   "eq": 80042.9,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 11706.8,
+  "ni_continuing_ops_pre_minority": 11706.8,
   "ni_normalized": 11704.1
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 14.6,
   "roa_pct": 1.2,
   "equity_multiplier": 12.39
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 10.8,
   "pe_normalized": 10.8,
+  "pe_used": 10.8,
   "pb": 1.58,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

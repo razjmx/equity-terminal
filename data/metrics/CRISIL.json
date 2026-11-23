@@ -2,7 +2,14 @@
  "symbol": "CRISIL",
  "latest_fy": "2025-12-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3033.4,
+  "implied_cr": 3271.4,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3649.0,
   "ni": 766.0,
@@ -11,7 +18,7 @@
   "eq": 3033.4,
   "debt": 296.8,
   "fcf": 682.2,
-  "ni_continuing": 766.0,
+  "ni_continuing_ops_pre_minority": 766.0,
   "ni_normalized": 719.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 38.61,
   "pe_normalized": 41.09,
+  "pe_used": 38.61,
   "pb": 9.75,
   "ev_ebitda": 23.93,
   "fcf_yield_pct": 2.3,

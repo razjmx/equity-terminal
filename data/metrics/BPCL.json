@@ -2,7 +2,14 @@
  "symbol": "BPCL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 100170.3,
+  "implied_cr": 103011.3,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 450302.7,
   "ni": 25843.5,
@@ -11,7 +18,7 @@
   "eq": 100170.3,
   "debt": 54424.4,
   "fcf": 31344.2,
-  "ni_continuing": 25843.5,
+  "ni_continuing_ops_pre_minority": 25843.5,
   "ni_normalized": 27976.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 5.13,
   "pe_normalized": 4.74,
+  "pe_used": 5.13,
   "pb": 1.32,
   "ev_ebitda": 3.67,
   "fcf_yield_pct": 23.6,

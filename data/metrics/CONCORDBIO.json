@@ -2,7 +2,14 @@
  "symbol": "CONCORDBIO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2017.1,
+  "implied_cr": 2043.9,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1046.4,
   "ni": 260.9,
@@ -11,7 +18,7 @@
   "eq": 2017.1,
   "debt": 2.3,
   "fcf": 171.7,
-  "ni_continuing": 259.2,
+  "ni_continuing_ops_pre_minority": 259.2,
   "ni_normalized": 247.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 43.67,
   "pe_normalized": 46.04,
+  "pe_used": 43.67,
   "pb": 5.65,
   "ev_ebitda": 26.21,
   "fcf_yield_pct": 1.5,

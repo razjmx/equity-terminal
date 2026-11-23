@@ -2,7 +2,14 @@
  "symbol": "SAILIFE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2483.7,
+  "implied_cr": 2689.6,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2136.8,
   "ni": 348.9,
@@ -11,7 +18,7 @@
   "eq": 2483.7,
   "debt": 288.5,
   "fcf": -83.8,
-  "ni_continuing": 348.9,
+  "ni_continuing_ops_pre_minority": 348.9,
   "ni_normalized": 355.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 109.92,
   "pe_normalized": 107.87,
+  "pe_used": 109.92,
   "pb": 15.44,
   "ev_ebitda": 57.19,
   "fcf_yield_pct": -0.2,

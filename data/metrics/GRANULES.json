@@ -2,7 +2,14 @@
  "symbol": "GRANULES",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5085.0,
+  "implied_cr": 7112.2,
+  "ratio": 0.71,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5338.9,
   "ni": 595.0,
@@ -11,7 +18,7 @@
   "eq": 5085.0,
   "debt": 1512.0,
   "fcf": 235.0,
-  "ni_continuing": 595.0,
+  "ni_continuing_ops_pre_minority": 595.0,
   "ni_normalized": 611.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 37.84,
   "pe_normalized": 36.83,
+  "pe_used": 37.84,
   "pb": 4.43,
   "ev_ebitda": 20.04,
   "fcf_yield_pct": 1.0,

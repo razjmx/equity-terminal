@@ -2,7 +2,14 @@
  "symbol": "SRF",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 14042.8,
+  "implied_cr": 15307.4,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 15416.4,
   "ni": 1835.2,
@@ -11,7 +18,7 @@
   "eq": 14042.8,
   "debt": 5187.0,
   "fcf": 738.2,
-  "ni_continuing": 1835.2,
+  "ni_continuing_ops_pre_minority": 1835.2,
   "ni_normalized": 1882.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 40.58,
   "pe_normalized": 39.56,
+  "pe_used": 40.58,
   "pb": 5.3,
   "ev_ebitda": 23.07,
   "fcf_yield_pct": 1.0,

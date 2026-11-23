@@ -2,7 +2,14 @@
  "symbol": "POWERINDIA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5176.0,
+  "implied_cr": 5756.0,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 7918.2,
   "ni": 987.8,
@@ -11,7 +18,7 @@
   "eq": 5176.0,
   "debt": 86.1,
   "fcf": 735.0,
-  "ni_continuing": 987.8,
+  "ni_continuing_ops_pre_minority": 987.8,
   "ni_normalized": 1032.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 134.51,
   "pe_normalized": 128.71,
+  "pe_used": 134.51,
   "pb": 25.67,
   "ev_ebitda": 90.6,
   "fcf_yield_pct": 0.6,

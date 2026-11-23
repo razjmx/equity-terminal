@@ -2,7 +2,14 @@
  "symbol": "REDINGTON",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 10160.7,
+  "implied_cr": 10767.4,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 119114.1,
   "ni": 1490.2,
@@ -11,7 +18,7 @@
   "eq": 10160.7,
   "debt": 2841.6,
   "fcf": 48.9,
-  "ni_continuing": 1284.2,
+  "ni_continuing_ops_pre_minority": 1284.2,
   "ni_normalized": 1624.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 17.44,
   "pe_normalized": 15.99,
+  "pe_used": 17.44,
   "pb": 2.56,
   "ev_ebitda": 12.35,
   "fcf_yield_pct": 0.2,

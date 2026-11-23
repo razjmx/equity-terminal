@@ -2,7 +2,14 @@
  "symbol": "VIJAYA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 957.2,
+  "implied_cr": 1058.4,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 813.9,
   "ni": 173.0,
@@ -11,7 +18,7 @@
   "eq": 957.2,
   "debt": 422.6,
   "fcf": 87.9,
-  "ni_continuing": 173.0,
+  "ni_continuing_ops_pre_minority": 173.0,
   "ni_normalized": 162.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 93.03,
   "pe_normalized": 99.19,
+  "pe_used": 93.03,
   "pb": 16.81,
   "ev_ebitda": 45.6,
   "fcf_yield_pct": 0.5,

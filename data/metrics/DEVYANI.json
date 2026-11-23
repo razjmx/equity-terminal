@@ -2,9 +2,16 @@
  "symbol": "DEVYANI",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 1541.8,
+  "implied_cr": 1614.0,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5571.4,
   "ni": -38.6,
@@ -13,13 +20,13 @@
   "eq": 1541.8,
   "debt": 3782.7,
   "fcf": 460.2,
-  "ni_continuing": -42.5,
+  "ni_continuing_ops_pre_minority": -42.5,
   "ni_normalized": -25.9
  },
  "ratios": {
-  "roe_pct": -2.5,
-  "roa_pct": -0.6,
-  "net_margin_pct": -0.7,
+  "roe_pct": -1.7,
+  "roa_pct": -0.4,
+  "net_margin_pct": -0.5,
   "ebit_margin_pct": 3.9,
   "roce_pct": 4.3,
   "fcf_margin_pct": 8.3,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.83
  },
  "dupont": {
-  "net_margin_pct": -0.7,
+  "net_margin_pct": -0.5,
   "asset_turnover": 0.83,
   "equity_multiplier": 4.38
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": null,
   "pe_normalized": null,
+  "pe_used": null,
   "pb": 9.59,
   "ev_ebitda": 20.71,
   "fcf_yield_pct": 3.1,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": -0.47,
   "zone": "distress"
+ },
+ "ratios_reported": {
+  "roe_pct": -2.5,
+  "roa_pct": -0.6,
+  "net_margin_pct": -0.7
  }
 }

@@ -2,9 +2,16 @@
  "symbol": "TMCV",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 12734.0,
+  "implied_cr": 15273.8,
+  "ratio": 0.83,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 83390.0,
   "ni": 3030.0,
@@ -13,13 +20,13 @@
   "eq": 12734.0,
   "debt": 5615.0,
   "fcf": 12733.0,
-  "ni_continuing": 3030.0,
+  "ni_continuing_ops_pre_minority": 3030.0,
   "ni_normalized": 5500.9
  },
  "ratios": {
-  "roe_pct": 23.8,
-  "roa_pct": 5.8,
-  "net_margin_pct": 3.6,
+  "roe_pct": 43.2,
+  "roa_pct": 10.5,
+  "net_margin_pct": 6.6,
   "ebit_margin_pct": 6.6,
   "roce_pct": 25.5,
   "fcf_margin_pct": 15.3,
@@ -29,7 +36,7 @@
   "asset_turnover": 1.59
  },
  "dupont": {
-  "net_margin_pct": 3.6,
+  "net_margin_pct": 6.6,
   "asset_turnover": 1.59,
   "equity_multiplier": 4.11
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 54.59,
   "pe_normalized": 30.07,
+  "pe_used": 30.07,
   "pb": 12.99,
   "ev_ebitda": 21.11,
   "fcf_yield_pct": 7.7,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 0.53,
   "zone": "distress"
+ },
+ "ratios_reported": {
+  "roe_pct": 23.8,
+  "roa_pct": 5.8,
+  "net_margin_pct": 3.6
  }
 }

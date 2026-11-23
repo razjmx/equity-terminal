@@ -2,7 +2,14 @@
  "symbol": "NMDC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 34062.3,
+  "implied_cr": 36862.3,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 32069.1,
   "ni": 7450.4,
@@ -11,7 +18,7 @@
   "eq": 34062.3,
   "debt": 6406.8,
   "fcf": 1825.5,
-  "ni_continuing": 7450.9,
+  "ni_continuing_ops_pre_minority": 7450.9,
   "ni_normalized": 7453.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 7.9,
   "pe_normalized": 7.9,
+  "pe_used": 7.9,
   "pb": 1.73,
   "ev_ebitda": 5.04,
   "fcf_yield_pct": 3.1,

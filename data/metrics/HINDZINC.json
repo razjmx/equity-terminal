@@ -2,7 +2,14 @@
  "symbol": "HINDZINC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 22629.0,
+  "implied_cr": 29968.1,
+  "ratio": 0.76,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 39192.0,
   "ni": 13832.0,
@@ -11,7 +18,7 @@
   "eq": 22629.0,
   "debt": 8833.0,
   "fcf": 11733.0,
-  "ni_continuing": 13832.0,
+  "ni_continuing_ops_pre_minority": 13832.0,
   "ni_normalized": 13809.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 16.12,
   "pe_normalized": 16.14,
+  "pe_used": 16.12,
   "pb": 9.85,
   "ev_ebitda": 9.46,
   "fcf_yield_pct": 5.3,

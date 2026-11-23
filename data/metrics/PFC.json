@@ -2,7 +2,14 @@
  "symbol": "PFC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 132860.9,
+  "implied_cr": 146874.0,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 43199.9,
   "ni": 25901.0,
@@ -11,7 +18,7 @@
   "eq": 132860.9,
   "debt": 1012503.5,
   "fcf": -4841.6,
-  "ni_continuing": 33625.3,
+  "ni_continuing_ops_pre_minority": 33625.3,
   "ni_normalized": 25963.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 4.16,
   "pe_normalized": 4.15,
+  "pe_used": 4.16,
   "pb": 0.81,
   "ev_ebitda": 9.95,
   "fcf_yield_pct": -4.5,

@@ -2,7 +2,14 @@
  "symbol": "MGL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6427.6,
+  "implied_cr": 6578.8,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 8206.6,
   "ni": 841.1,
@@ -11,7 +18,7 @@
   "eq": 6427.6,
   "debt": 222.9,
   "fcf": 86.7,
-  "ni_continuing": 840.5,
+  "ni_continuing_ops_pre_minority": 840.5,
   "ni_normalized": 794.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 12.84,
   "pe_normalized": 13.58,
+  "pe_used": 12.84,
   "pb": 1.68,
   "ev_ebitda": 6.3,
   "fcf_yield_pct": 0.8,

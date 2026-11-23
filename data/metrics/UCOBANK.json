@@ -2,9 +2,16 @@
  "symbol": "UCOBANK",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 33249.2,
+  "implied_cr": 34769.7,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 12328.9,
   "ni": 2767.9,
@@ -13,7 +20,7 @@
   "eq": 33249.2,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 2767.9,
+  "ni_continuing_ops_pre_minority": 2767.9,
   "ni_normalized": 2779.1
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 8.3,
   "roa_pct": 0.7,
   "equity_multiplier": 11.91
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 11.24,
   "pe_normalized": 11.2,
+  "pe_used": 11.24,
   "pb": 0.94,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

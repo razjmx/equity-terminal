@@ -2,7 +2,14 @@
  "symbol": "BAJAJHFL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 22522.8,
+  "implied_cr": 24054.2,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 10838.7,
   "ni": 2560.3,
@@ -11,7 +18,7 @@
   "eq": 22522.8,
   "debt": 103656.8,
   "fcf": -19942.8,
-  "ni_continuing": 2560.3,
+  "ni_continuing_ops_pre_minority": 2560.3,
   "ni_normalized": 2651.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 26.42,
   "pe_normalized": 25.51,
+  "pe_used": 26.42,
   "pb": 3.0,
   "ev_ebitda": 50.59,
   "fcf_yield_pct": -29.5,

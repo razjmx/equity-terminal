@@ -2,9 +2,16 @@
  "symbol": "BANDHANBNK",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 25574.9,
+  "implied_cr": 26476.9,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 13564.0,
   "ni": 1223.6,
@@ -13,7 +20,7 @@
   "eq": 25574.9,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 1223.6,
+  "ni_continuing_ops_pre_minority": 1223.6,
   "ni_normalized": 1217.7
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 4.8,
   "roa_pct": 0.6,
   "equity_multiplier": 8.26
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 22.83,
   "pe_normalized": 22.94,
+  "pe_used": 22.83,
   "pb": 1.09,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

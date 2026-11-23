@@ -2,7 +2,14 @@
  "symbol": "GODREJCP",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 12653.0,
+  "implied_cr": 12619.8,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 15100.1,
   "ni": 1861.5,
@@ -11,7 +18,7 @@
   "eq": 12653.0,
   "debt": 4415.8,
   "fcf": 1918.9,
-  "ni_continuing": 1861.5,
+  "ni_continuing_ops_pre_minority": 1861.5,
   "ni_normalized": 1977.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 50.49,
   "pe_normalized": 47.53,
+  "pe_used": 50.49,
   "pb": 7.43,
   "ev_ebitda": 30.13,
   "fcf_yield_pct": 2.0,

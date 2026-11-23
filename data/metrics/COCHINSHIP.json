@@ -2,7 +2,14 @@
  "symbol": "COCHINSHIP",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5872.8,
+  "implied_cr": 6058.9,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4774.6,
   "ni": 716.7,
@@ -11,7 +18,7 @@
   "eq": 5872.8,
   "debt": 1671.8,
   "fcf": -1385.2,
-  "ni_continuing": 716.7,
+  "ni_continuing_ops_pre_minority": 716.7,
   "ni_normalized": 745.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 40.2,
   "pe_normalized": 38.63,
+  "pe_used": 40.2,
   "pb": 4.91,
   "ev_ebitda": 24.77,
   "fcf_yield_pct": -4.8,

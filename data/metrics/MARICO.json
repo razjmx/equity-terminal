@@ -2,7 +2,14 @@
  "symbol": "MARICO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4210.0,
+  "implied_cr": 4738.2,
+  "ratio": 0.89,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 13548.0,
   "ni": 1762.0,
@@ -11,7 +18,7 @@
   "eq": 4210.0,
   "debt": 557.0,
   "fcf": 1765.0,
-  "ni_continuing": 1813.0,
+  "ni_continuing_ops_pre_minority": 1813.0,
   "ni_normalized": 1643.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 67.7,
   "pe_normalized": 72.59,
+  "pe_used": 67.7,
   "pb": 28.33,
   "ev_ebitda": 46.65,
   "fcf_yield_pct": 1.5,

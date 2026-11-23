@@ -2,9 +2,16 @@
  "symbol": "INDHOTEL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 13052.3,
+  "implied_cr": 13640.3,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 9306.7,
   "ni": 2084.4,
@@ -13,13 +20,13 @@
   "eq": 13052.3,
   "debt": 2836.6,
   "fcf": 1434.8,
-  "ni_continuing": 2247.2,
+  "ni_continuing_ops_pre_minority": 2247.2,
   "ni_normalized": 1784.2
  },
  "ratios": {
-  "roe_pct": 16.0,
-  "roa_pct": 10.3,
-  "net_margin_pct": 22.4,
+  "roe_pct": 13.7,
+  "roa_pct": 8.8,
+  "net_margin_pct": 19.2,
   "ebit_margin_pct": 33.8,
   "roce_pct": 17.4,
   "fcf_margin_pct": 15.4,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.46
  },
  "dupont": {
-  "net_margin_pct": 22.4,
+  "net_margin_pct": 19.2,
   "asset_turnover": 0.46,
   "equity_multiplier": 1.56
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 62.09,
   "pe_normalized": 72.53,
+  "pe_used": 72.53,
   "pb": 9.91,
   "ev_ebitda": 34.09,
   "fcf_yield_pct": 1.1,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 5.39,
   "zone": "safe"
+ },
+ "ratios_reported": {
+  "roe_pct": 16.0,
+  "roa_pct": 10.3,
+  "net_margin_pct": 22.4
  }
 }

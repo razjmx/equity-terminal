@@ -2,7 +2,14 @@
  "symbol": "SONACOMS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5982.9,
+  "implied_cr": 6437.5,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4308.4,
   "ni": 640.2,
@@ -11,7 +18,7 @@
   "eq": 5982.9,
   "debt": 442.3,
   "fcf": 167.2,
-  "ni_continuing": 629.2,
+  "ni_continuing_ops_pre_minority": 629.2,
   "ni_normalized": 650.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 86.34,
   "pe_normalized": 84.94,
+  "pe_used": 86.34,
   "pb": 9.24,
   "ev_ebitda": 47.49,
   "fcf_yield_pct": 0.3,

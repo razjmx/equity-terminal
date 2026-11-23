@@ -2,7 +2,14 @@
  "symbol": "GRASIM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 103469.9,
+  "implied_cr": 106999.9,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 173924.5,
   "ni": 4966.5,
@@ -11,7 +18,7 @@
   "eq": 103469.9,
   "debt": 227842.0,
   "fcf": -33435.9,
-  "ni_continuing": 10300.3,
+  "ni_continuing_ops_pre_minority": 10300.3,
   "ni_normalized": 4853.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 42.21,
   "pe_normalized": 43.2,
+  "pe_used": 42.21,
   "pb": 2.03,
   "ev_ebitda": 15.83,
   "fcf_yield_pct": -15.9,

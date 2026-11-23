@@ -2,7 +2,14 @@
  "symbol": "BLUESTARCO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3431.4,
+  "implied_cr": 3488.8,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 12250.0,
   "ni": 527.7,
@@ -11,7 +18,7 @@
   "eq": 3431.4,
   "debt": 810.0,
   "fcf": -175.2,
-  "ni_continuing": 527.3,
+  "ni_continuing_ops_pre_minority": 527.3,
   "ni_normalized": 559.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 70.26,
   "pe_normalized": 66.28,
+  "pe_used": 70.26,
   "pb": 10.8,
   "ev_ebitda": 39.17,
   "fcf_yield_pct": -0.5,

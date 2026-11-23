@@ -2,7 +2,14 @@
  "symbol": "CAPLIPOINT",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3586.4,
+  "implied_cr": 3829.4,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2171.4,
   "ni": 641.2,
@@ -11,7 +18,7 @@
   "eq": 3586.4,
   "debt": 4.6,
   "fcf": 275.1,
-  "ni_continuing": 649.7,
+  "ni_continuing_ops_pre_minority": 649.7,
   "ni_normalized": 629.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 23.77,
   "pe_normalized": 24.22,
+  "pe_used": 23.77,
   "pb": 4.25,
   "ev_ebitda": 16.26,
   "fcf_yield_pct": 1.8,

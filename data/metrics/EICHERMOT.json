@@ -2,7 +2,14 @@
  "symbol": "EICHERMOT",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 25100.2,
+  "implied_cr": 25942.2,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 22977.6,
   "ni": 5515.2,
@@ -11,7 +18,7 @@
   "eq": 25100.2,
   "debt": 514.0,
   "fcf": 3529.6,
-  "ni_continuing": 5515.2,
+  "ni_continuing_ops_pre_minority": 5515.2,
   "ni_normalized": 4978.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 40.58,
   "pe_normalized": 44.95,
+  "pe_used": 40.58,
   "pb": 8.92,
   "ev_ebitda": 27.23,
   "fcf_yield_pct": 1.6,

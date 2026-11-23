@@ -2,7 +2,14 @@
  "symbol": "FRACTAL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3184.9,
+  "implied_cr": 3454.1,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3299.7,
   "ni": 292.2,
@@ -11,7 +18,7 @@
   "eq": 3184.9,
   "debt": 418.4,
   "fcf": 190.3,
-  "ni_continuing": 286.8,
+  "ni_continuing_ops_pre_minority": 286.8,
   "ni_normalized": 312.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 48.25,
   "pe_normalized": 45.11,
+  "pe_used": 48.25,
   "pb": 4.43,
   "ev_ebitda": 27.55,
   "fcf_yield_pct": 1.3,

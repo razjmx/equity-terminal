@@ -2,7 +2,14 @@
  "symbol": "NCC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 7868.9,
+  "implied_cr": 8117.7,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 20767.0,
   "ni": 675.3,
@@ -11,7 +18,7 @@
   "eq": 7868.9,
   "debt": 3407.0,
   "fcf": -1413.8,
-  "ni_continuing": 724.0,
+  "ni_continuing_ops_pre_minority": 724.0,
   "ni_normalized": 699.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 12.13,
   "pe_normalized": 11.72,
+  "pe_used": 12.13,
   "pb": 1.04,
   "ev_ebitda": 5.52,
   "fcf_yield_pct": -17.3,

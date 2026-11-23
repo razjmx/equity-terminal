@@ -2,7 +2,14 @@
  "symbol": "ATUL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6222.0,
+  "implied_cr": 6568.1,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 6203.1,
   "ni": 677.9,
@@ -11,7 +18,7 @@
   "eq": 6222.0,
   "debt": 183.0,
   "fcf": 847.9,
-  "ni_continuing": 689.4,
+  "ni_continuing_ops_pre_minority": 689.4,
   "ni_normalized": 615.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 21.88,
   "pe_normalized": 24.09,
+  "pe_used": 21.88,
   "pb": 2.38,
   "ev_ebitda": 10.72,
   "fcf_yield_pct": 5.7,

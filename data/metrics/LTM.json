@@ -2,7 +2,14 @@
  "symbol": "LTM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 24025.0,
+  "implied_cr": 25875.5,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 42307.6,
   "ni": 5018.1,
@@ -11,7 +18,7 @@
   "eq": 24025.0,
   "debt": 2310.0,
   "fcf": 3868.2,
-  "ni_continuing": 4982.7,
+  "ni_continuing_ops_pre_minority": 4982.7,
   "ni_normalized": 5121.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 25.17,
   "pe_normalized": 24.66,
+  "pe_used": 25.17,
   "pb": 5.26,
   "ev_ebitda": 14.22,
   "fcf_yield_pct": 3.1,

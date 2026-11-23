@@ -2,7 +2,14 @@
  "symbol": "TATACONSUM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 21787.5,
+  "implied_cr": 22140.6,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 20170.6,
   "ni": 1542.3,
@@ -11,7 +18,7 @@
   "eq": 21787.5,
   "debt": 2819.5,
   "fcf": 1973.3,
-  "ni_continuing": 1546.8,
+  "ni_continuing_ops_pre_minority": 1546.8,
   "ni_normalized": 1551.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 73.22,
   "pe_normalized": 72.77,
+  "pe_used": 73.22,
   "pb": 5.18,
   "ev_ebitda": 37.95,
   "fcf_yield_pct": 1.7,

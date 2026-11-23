@@ -2,7 +2,14 @@
  "symbol": "SUNTV",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 12643.4,
+  "implied_cr": 13464.8,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4334.8,
   "ni": 1439.6,
@@ -11,7 +18,7 @@
   "eq": 12643.4,
   "debt": 105.9,
   "fcf": -412.6,
-  "ni_continuing": 1440.6,
+  "ni_continuing_ops_pre_minority": 1440.6,
   "ni_normalized": 1262.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 18.94,
   "pe_normalized": 21.61,
+  "pe_used": 18.94,
   "pb": 2.16,
   "ev_ebitda": 7.75,
   "fcf_yield_pct": -1.5,

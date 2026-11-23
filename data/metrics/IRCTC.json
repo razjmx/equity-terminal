@@ -2,7 +2,14 @@
  "symbol": "IRCTC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4308.5,
+  "implied_cr": 4855.8,
+  "ratio": 0.89,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5214.4,
   "ni": 1393.5,
@@ -11,7 +18,7 @@
   "eq": 4308.5,
   "debt": 80.7,
   "fcf": 1195.1,
-  "ni_continuing": 1393.5,
+  "ni_continuing_ops_pre_minority": 1393.5,
   "ni_normalized": 1389.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 25.58,
   "pe_normalized": 25.65,
+  "pe_used": 25.58,
   "pb": 8.27,
   "ev_ebitda": 16.94,
   "fcf_yield_pct": 3.4,

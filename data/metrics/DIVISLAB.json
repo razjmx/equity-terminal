@@ -2,7 +2,14 @@
  "symbol": "DIVISLAB",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 16761.0,
+  "implied_cr": 18012.6,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 10476.0,
   "ni": 2568.0,
@@ -11,7 +18,7 @@
   "eq": 16761.0,
   "debt": 7.0,
   "fcf": 218.0,
-  "ni_continuing": 2568.0,
+  "ni_continuing_ops_pre_minority": 2568.0,
   "ni_normalized": 2621.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 116.94,
   "pe_normalized": 114.58,
+  "pe_used": 116.94,
   "pb": 17.92,
   "ev_ebitda": 76.69,
   "fcf_yield_pct": 0.1,

@@ -2,7 +2,14 @@
  "symbol": "POLYMED",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3106.2,
+  "implied_cr": 3263.6,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1859.5,
   "ni": 322.1,
@@ -11,7 +18,7 @@
   "eq": 3106.2,
   "debt": 353.6,
   "fcf": -62.0,
-  "ni_continuing": 320.7,
+  "ni_continuing_ops_pre_minority": 320.7,
   "ni_normalized": 289.5
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 51.04,
   "pe_normalized": 56.79,
+  "pe_used": 51.04,
   "pb": 5.29,
   "ev_ebitda": 28.47,
   "fcf_yield_pct": -0.4,

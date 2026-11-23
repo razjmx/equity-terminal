@@ -2,7 +2,14 @@
  "symbol": "JYOTICNC",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2001.3,
+  "implied_cr": 2137.2,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2091.1,
   "ni": 336.0,
@@ -11,7 +18,7 @@
   "eq": 2001.3,
   "debt": 852.8,
   "fcf": -268.8,
-  "ni_continuing": 336.0,
+  "ni_continuing_ops_pre_minority": 336.0,
   "ni_normalized": 335.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 70.87,
   "pe_normalized": 70.93,
+  "pe_used": 70.87,
   "pb": 11.9,
   "ev_ebitda": 42.34,
   "fcf_yield_pct": -1.1,

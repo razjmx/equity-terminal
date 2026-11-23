@@ -2,9 +2,16 @@
  "symbol": "KARURVYSYA",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 14107.9,
+  "implied_cr": 15395.7,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 7022.9,
   "ni": 2510.3,
@@ -13,7 +20,7 @@
   "eq": 14107.9,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 2510.3,
+  "ni_continuing_ops_pre_minority": 2510.3,
   "ni_normalized": 2510.3
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 17.8,
   "roa_pct": 1.8,
   "equity_multiplier": 9.68
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 14.82,
   "pe_normalized": 14.82,
+  "pe_used": 14.82,
   "pb": 2.64,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

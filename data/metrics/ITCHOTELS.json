@@ -2,9 +2,16 @@
  "symbol": "ITCHOTELS",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [
   "short history"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 11657.8,
+  "implied_cr": 11800.9,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4109.1,
   "ni": 816.9,
@@ -13,7 +20,7 @@
   "eq": 11657.8,
   "debt": 74.2,
   "fcf": 699.6,
-  "ni_continuing": 821.3,
+  "ni_continuing_ops_pre_minority": 821.3,
   "ni_normalized": 862.0
  },
  "ratios": {
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": 47.59,
   "pe_normalized": 45.09,
+  "pe_used": 47.59,
   "pb": 3.33,
   "ev_ebitda": 24.13,
   "fcf_yield_pct": 1.8,

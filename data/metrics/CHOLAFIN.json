@@ -2,9 +2,16 @@
  "symbol": "CHOLAFIN",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 30458.4,
+  "implied_cr": 34682.4,
+  "ratio": 0.88,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 16752.3,
   "ni": 5232.6,
@@ -13,7 +20,7 @@
   "eq": 30458.4,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 5232.6,
+  "ni_continuing_ops_pre_minority": 5232.6,
   "ni_normalized": 5238.0
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 17.2,
   "roa_pct": 2.1,
   "equity_multiplier": 8.06
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 30.44,
   "pe_normalized": 30.41,
+  "pe_used": 30.44,
   "pb": 5.23,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

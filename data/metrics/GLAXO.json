@@ -2,26 +2,35 @@
  "symbol": "GLAXO",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "profit_basis": "reported",
+ "flags": [
+  "equity replaced by Yahoo book value (balance sheet / book value = 1.21)"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 2267.4,
+  "implied_cr": 1881.3,
+  "ratio": 1.21,
+  "used": "book_value"
+ },
  "snapshot_cr": {
   "rev": 3807.6,
   "ni": 1036.0,
   "ebit": 1408.7,
   "ta": 4323.9,
-  "eq": 2267.4,
+  "eq": 1881.3,
   "debt": 33.3,
   "fcf": 848.0,
-  "ni_continuing": 1036.0,
+  "ni_continuing_ops_pre_minority": 1036.0,
   "ni_normalized": 962.1
  },
  "ratios": {
-  "roe_pct": 45.7,
+  "roe_pct": 55.1,
   "roa_pct": 24.0,
   "net_margin_pct": 27.2,
   "ebit_margin_pct": 37.0,
   "roce_pct": 55.4,
   "fcf_margin_pct": 22.3,
-  "debt_equity": 0.01,
+  "debt_equity": 0.02,
   "interest_cover": 515.59,
   "current_ratio": 2.03,
   "asset_turnover": 0.88
@@ -29,7 +38,7 @@
  "dupont": {
   "net_margin_pct": 27.2,
   "asset_turnover": 0.88,
-  "equity_multiplier": 1.91
+  "equity_multiplier": 2.3
  },
  "growth": {
   "years_used": 3,
@@ -39,7 +48,8 @@
  "valuation": {
   "pe": 44.21,
   "pe_normalized": 47.6,
-  "pb": 20.2,
+  "pe_used": 44.21,
+  "pb": 24.34,
   "ev_ebitda": 29.2,
   "fcf_yield_pct": 1.9,
   "market_cap_cr": 45797.2
@@ -60,7 +70,7 @@
   }
  },
  "altman_z2": {
-  "z": 7.16,
+  "z": 6.97,
   "zone": "safe"
  }
 }

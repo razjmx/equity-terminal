@@ -2,7 +2,14 @@
  "symbol": "SUMICHEM",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3389.7,
+  "implied_cr": 3684.9,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3208.9,
   "ni": 543.0,
@@ -11,7 +18,7 @@
   "eq": 3389.7,
   "debt": 63.3,
   "fcf": 401.3,
-  "ni_continuing": 543.0,
+  "ni_continuing_ops_pre_minority": 543.0,
   "ni_normalized": 554.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 31.11,
   "pe_normalized": 30.48,
+  "pe_used": 31.11,
   "pb": 4.98,
   "ev_ebitda": 19.64,
   "fcf_yield_pct": 2.4,

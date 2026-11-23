@@ -2,7 +2,14 @@
  "symbol": "EMMVEE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3694.9,
+  "implied_cr": 4391.5,
+  "ratio": 0.84,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5033.9,
   "ni": 1081.6,
@@ -11,7 +18,7 @@
   "eq": 3694.9,
   "debt": 360.1,
   "fcf": -452.9,
-  "ni_continuing": 1081.6,
+  "ni_continuing_ops_pre_minority": 1081.6,
   "ni_normalized": 1074.6
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 16.72,
   "pe_normalized": 16.83,
+  "pe_used": 16.72,
   "pb": 4.9,
   "ev_ebitda": 10.24,
   "fcf_yield_pct": -2.5,

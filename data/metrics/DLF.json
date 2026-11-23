@@ -2,7 +2,14 @@
  "symbol": "DLF",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 45473.4,
+  "implied_cr": 45524.0,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 7837.7,
   "ni": 4414.7,
@@ -11,7 +18,7 @@
   "eq": 45473.4,
   "debt": 305.9,
   "fcf": 6218.2,
-  "ni_continuing": 4414.7,
+  "ni_continuing_ops_pre_minority": 4414.7,
   "ni_normalized": 4242.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 44.3,
   "pe_normalized": 46.1,
+  "pe_used": 44.3,
   "pb": 4.3,
   "ev_ebitda": 58.71,
   "fcf_yield_pct": 3.2,

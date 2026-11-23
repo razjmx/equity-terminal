@@ -2,26 +2,35 @@
  "symbol": "JSWINFRA",
  "latest_fy": "2026-03-31",
  "type": "standard",
- "flags": [],
+ "profit_basis": "reported",
+ "flags": [
+  "equity replaced by Yahoo book value (balance sheet / book value = 0.61)"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 10877.5,
+  "implied_cr": 17784.8,
+  "ratio": 0.61,
+  "used": "book_value"
+ },
  "snapshot_cr": {
   "rev": 5321.0,
   "ni": 1523.3,
   "ebit": 2209.9,
   "ta": 20358.5,
-  "eq": 10877.5,
+  "eq": 17784.8,
   "debt": 6898.9,
   "fcf": -470.1,
-  "ni_continuing": 1546.9,
+  "ni_continuing_ops_pre_minority": 1546.9,
   "ni_normalized": 1603.0
  },
  "ratios": {
-  "roe_pct": 14.0,
+  "roe_pct": 8.6,
   "roa_pct": 7.5,
   "net_margin_pct": 28.6,
   "ebit_margin_pct": 41.5,
   "roce_pct": 12.0,
   "fcf_margin_pct": -8.8,
-  "debt_equity": 0.63,
+  "debt_equity": 0.39,
   "interest_cover": 6.56,
   "current_ratio": 2.27,
   "asset_turnover": 0.26
@@ -29,7 +38,7 @@
  "dupont": {
   "net_margin_pct": 28.6,
   "asset_turnover": 0.26,
-  "equity_multiplier": 1.87
+  "equity_multiplier": 1.14
  },
  "growth": {
   "years_used": 3,
@@ -39,7 +48,8 @@
  "valuation": {
   "pe": 52.96,
   "pe_normalized": 50.33,
-  "pb": 7.42,
+  "pe_used": 52.96,
+  "pb": 4.54,
   "ev_ebitda": 30.14,
   "fcf_yield_pct": -0.6,
   "market_cap_cr": 80669.7
@@ -60,7 +70,7 @@
   }
  },
  "altman_z2": {
-  "z": 4.05,
+  "z": 4.89,
   "zone": "safe"
  }
 }

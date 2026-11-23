@@ -2,7 +2,14 @@
  "symbol": "PRIVISCL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1412.4,
+  "implied_cr": 1575.2,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2541.8,
   "ni": 327.5,
@@ -11,7 +18,7 @@
   "eq": 1412.4,
   "debt": 1021.3,
   "fcf": 230.1,
-  "ni_continuing": 316.7,
+  "ni_continuing_ops_pre_minority": 316.7,
   "ni_normalized": 327.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 43.44,
   "pe_normalized": 43.47,
+  "pe_used": 43.44,
   "pb": 10.07,
   "ev_ebitda": 22.77,
   "fcf_yield_pct": 1.6,

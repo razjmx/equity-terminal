@@ -2,9 +2,16 @@
  "symbol": "ABREL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "normalized",
  "flags": [
   "reported profit differs from normalized (one-offs)"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 3700.8,
+  "implied_cr": 4579.1,
+  "ratio": 0.81,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 403.8,
   "ni": -103.2,
@@ -13,13 +20,13 @@
   "eq": 3700.8,
   "debt": 5636.5,
   "fcf": 534.8,
-  "ni_continuing": -338.1,
+  "ni_continuing_ops_pre_minority": -338.1,
   "ni_normalized": -319.8
  },
  "ratios": {
-  "roe_pct": -2.8,
-  "roa_pct": -0.5,
-  "net_margin_pct": -25.6,
+  "roe_pct": -8.6,
+  "roa_pct": -1.6,
+  "net_margin_pct": -79.2,
   "ebit_margin_pct": -102.2,
   "roce_pct": -5.2,
   "fcf_margin_pct": 132.5,
@@ -29,7 +36,7 @@
   "asset_turnover": 0.02
  },
  "dupont": {
-  "net_margin_pct": -25.6,
+  "net_margin_pct": -79.2,
   "asset_turnover": 0.02,
   "equity_multiplier": 5.47
  },
@@ -41,6 +48,7 @@
  "valuation": {
   "pe": null,
   "pe_normalized": null,
+  "pe_used": null,
   "pb": 3.74,
   "ev_ebitda": -50.77,
   "fcf_yield_pct": 3.9,
@@ -64,5 +72,10 @@
  "altman_z2": {
   "z": 2.05,
   "zone": "grey"
+ },
+ "ratios_reported": {
+  "roe_pct": -2.8,
+  "roa_pct": -0.5,
+  "net_margin_pct": -25.6
  }
 }

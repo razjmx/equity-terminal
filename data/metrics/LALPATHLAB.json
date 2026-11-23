@@ -2,7 +2,14 @@
  "symbol": "LALPATHLAB",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2508.1,
+  "implied_cr": 2748.2,
+  "ratio": 0.91,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2762.8,
   "ni": 504.8,
@@ -11,7 +18,7 @@
   "eq": 2508.1,
   "debt": 199.0,
   "fcf": 462.2,
-  "ni_continuing": 509.8,
+  "ni_continuing_ops_pre_minority": 509.8,
   "ni_normalized": 507.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 68.01,
   "pe_normalized": 67.69,
+  "pe_used": 68.01,
   "pb": 13.69,
   "ev_ebitda": 38.89,
   "fcf_yield_pct": 1.3,

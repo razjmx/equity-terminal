@@ -2,7 +2,14 @@
  "symbol": "BHEL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 26146.6,
+  "implied_cr": 26779.5,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 32359.8,
   "ni": 1600.3,
@@ -11,7 +18,7 @@
   "eq": 26146.6,
   "debt": 8186.9,
   "fcf": 5248.3,
-  "ni_continuing": 1600.3,
+  "ni_continuing_ops_pre_minority": 1600.3,
   "ni_normalized": 1423.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 91.56,
   "pe_normalized": 102.9,
+  "pe_used": 91.56,
   "pb": 5.6,
   "ev_ebitda": 44.81,
   "fcf_yield_pct": 3.6,

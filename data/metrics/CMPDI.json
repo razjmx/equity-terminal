@@ -2,7 +2,14 @@
  "symbol": "CMPDI",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2283.2,
+  "implied_cr": null,
+  "ratio": null,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 2316.5,
   "ni": 613.2,
@@ -11,7 +18,7 @@
   "eq": 2283.2,
   "debt": 1.4,
   "fcf": 652.1,
-  "ni_continuing": 613.2,
+  "ni_continuing_ops_pre_minority": 613.2,
   "ni_normalized": 612.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": null,
   "pe_normalized": null,
+  "pe_used": null,
   "pb": null,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

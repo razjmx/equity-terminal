@@ -2,7 +2,14 @@
  "symbol": "LLOYDSME",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 13870.9,
+  "implied_cr": 16199.1,
+  "ratio": 0.86,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 16822.4,
   "ni": 3680.8,
@@ -11,7 +18,7 @@
   "eq": 13870.9,
   "debt": 20716.4,
   "fcf": -7040.2,
-  "ni_continuing": 3828.6,
+  "ni_continuing_ops_pre_minority": 3828.6,
   "ni_normalized": 3761.7
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 26.03,
   "pe_normalized": 25.47,
+  "pe_used": 26.03,
   "pb": 6.91,
   "ev_ebitda": 17.95,
   "fcf_yield_pct": -7.3,

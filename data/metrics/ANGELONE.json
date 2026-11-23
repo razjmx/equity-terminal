@@ -2,7 +2,14 @@
  "symbol": "ANGELONE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 6117.8,
+  "implied_cr": 6684.9,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4305.4,
   "ni": 915.1,
@@ -11,7 +18,7 @@
   "eq": 6117.8,
   "debt": 7951.4,
   "fcf": -4222.6,
-  "ni_continuing": 915.1,
+  "ni_continuing_ops_pre_minority": 915.1,
   "ni_normalized": 899.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 33.75,
   "pe_normalized": 34.35,
+  "pe_used": 33.75,
   "pb": 5.05,
   "ev_ebitda": 12.7,
   "fcf_yield_pct": -13.7,

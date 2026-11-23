@@ -2,7 +2,14 @@
  "symbol": "CUMMINSIND",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 8475.2,
+  "implied_cr": 8301.1,
+  "ratio": 1.02,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 11949.7,
   "ni": 2361.8,
@@ -11,7 +18,7 @@
   "eq": 8475.2,
   "debt": 36.5,
   "fcf": 1482.5,
-  "ni_continuing": 2361.8,
+  "ni_continuing_ops_pre_minority": 2361.8,
   "ni_normalized": 2367.9
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 47.69,
   "pe_normalized": 47.57,
+  "pe_used": 47.69,
   "pb": 13.29,
   "ev_ebitda": 32.96,
   "fcf_yield_pct": 1.3,

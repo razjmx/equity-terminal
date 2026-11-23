@@ -2,7 +2,14 @@
  "symbol": "SCI",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 9096.3,
+  "implied_cr": 10301.9,
+  "ratio": 0.88,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5747.6,
   "ni": 1352.9,
@@ -11,7 +18,7 @@
   "eq": 9096.3,
   "debt": 2679.2,
   "fcf": -207.2,
-  "ni_continuing": 1352.9,
+  "ni_continuing_ops_pre_minority": 1352.9,
   "ni_normalized": 1285.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 8.77,
   "pe_normalized": 9.23,
+  "pe_used": 8.77,
   "pb": 1.3,
   "ev_ebitda": 4.5,
   "fcf_yield_pct": -1.7,

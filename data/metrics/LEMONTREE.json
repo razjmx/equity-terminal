@@ -2,7 +2,14 @@
  "symbol": "LEMONTREE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1391.9,
+  "implied_cr": 1500.1,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1319.4,
   "ni": 227.1,
@@ -11,7 +18,7 @@
   "eq": 1391.9,
   "debt": 2003.6,
   "fcf": 403.3,
-  "ni_continuing": 288.3,
+  "ni_continuing_ops_pre_minority": 288.3,
   "ni_normalized": 252.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 45.11,
   "pe_normalized": 40.63,
+  "pe_used": 45.11,
   "pb": 7.36,
   "ev_ebitda": 18.04,
   "fcf_yield_pct": 3.9,

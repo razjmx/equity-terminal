@@ -2,7 +2,14 @@
  "symbol": "ATGL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4864.8,
+  "implied_cr": 5191.8,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 5856.0,
   "ni": 655.7,
@@ -11,7 +18,7 @@
   "eq": 4864.8,
   "debt": 2853.2,
   "fcf": 160.8,
-  "ni_continuing": 655.7,
+  "ni_continuing_ops_pre_minority": 655.7,
   "ni_normalized": 585.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 92.74,
   "pe_normalized": 103.89,
+  "pe_used": 92.74,
   "pb": 12.5,
   "ev_ebitda": 51.0,
   "fcf_yield_pct": 0.3,

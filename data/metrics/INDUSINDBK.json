@@ -2,9 +2,16 @@
  "symbol": "INDUSINDBK",
  "latest_fy": "2026-03-31",
  "type": "financial",
+ "profit_basis": "reported",
  "flags": [
   "financial or no EBIT"
  ],
+ "equity_check": {
+  "balance_sheet_cr": 65739.6,
+  "implied_cr": 67930.4,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 25128.2,
   "ni": 889.3,
@@ -13,7 +20,7 @@
   "eq": 65739.6,
   "debt": null,
   "fcf": null,
-  "ni_continuing": 889.3,
+  "ni_continuing_ops_pre_minority": 889.3,
   "ni_normalized": 890.5
  },
  "ratios": {
@@ -29,6 +36,7 @@
   "asset_turnover": null
  },
  "dupont": {
+  "roe_pct": 1.4,
   "roa_pct": 0.2,
   "equity_multiplier": 8.27
  },
@@ -40,6 +48,7 @@
  "valuation": {
   "pe": 85.81,
   "pe_normalized": 85.7,
+  "pe_used": 85.81,
   "pb": 1.16,
   "ev_ebitda": null,
   "fcf_yield_pct": null,

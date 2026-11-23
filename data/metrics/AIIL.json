@@ -2,7 +2,14 @@
  "symbol": "AIIL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 14727.8,
+  "implied_cr": 18747.6,
+  "ratio": 0.79,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1298.3,
   "ni": 1929.3,
@@ -11,7 +18,7 @@
   "eq": 14727.8,
   "debt": 3598.0,
   "fcf": 1114.6,
-  "ni_continuing": 1929.3,
+  "ni_continuing_ops_pre_minority": 1929.3,
   "ni_normalized": 1891.0
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 24.34,
   "pe_normalized": 24.83,
+  "pe_used": 24.34,
   "pb": 3.19,
   "ev_ebitda": 21.17,
   "fcf_yield_pct": 2.4,

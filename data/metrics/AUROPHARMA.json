@@ -2,7 +2,14 @@
  "symbol": "AUROPHARMA",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 37891.0,
+  "implied_cr": 39397.6,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 33384.7,
   "ni": 3504.8,
@@ -11,7 +18,7 @@
   "eq": 37891.0,
   "debt": 8072.8,
   "fcf": 2421.7,
-  "ni_continuing": 3503.0,
+  "ni_continuing_ops_pre_minority": 3503.0,
   "ni_normalized": 3628.4
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 29.74,
   "pe_normalized": 28.72,
+  "pe_used": 29.74,
   "pb": 2.75,
   "ev_ebitda": 14.08,
   "fcf_yield_pct": 2.3,

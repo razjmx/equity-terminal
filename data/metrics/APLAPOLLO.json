@@ -2,7 +2,14 @@
  "symbol": "APLAPOLLO",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5296.5,
+  "implied_cr": 5676.5,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 22385.4,
   "ni": 1203.1,
@@ -11,7 +18,7 @@
   "eq": 5296.5,
   "debt": 497.6,
   "fcf": 1408.9,
-  "ni_continuing": 1203.1,
+  "ni_continuing_ops_pre_minority": 1203.1,
   "ni_normalized": 1215.3
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 39.17,
   "pe_normalized": 38.78,
+  "pe_used": 39.17,
   "pb": 8.9,
   "ev_ebitda": 24.18,
   "fcf_yield_pct": 3.0,

@@ -2,7 +2,14 @@
  "symbol": "CDSL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1959.8,
+  "implied_cr": 1984.0,
+  "ratio": 0.99,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 1144.9,
   "ni": 456.1,
@@ -11,7 +18,7 @@
   "eq": 1959.8,
   "debt": 2.2,
   "fcf": 345.9,
-  "ni_continuing": 455.1,
+  "ni_continuing_ops_pre_minority": 455.1,
   "ni_normalized": 425.2
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 64.3,
   "pe_normalized": 68.98,
+  "pe_used": 64.3,
   "pb": 14.97,
   "ev_ebitda": 42.15,
   "fcf_yield_pct": 1.2,

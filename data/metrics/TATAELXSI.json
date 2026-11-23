@@ -2,7 +2,14 @@
  "symbol": "TATAELXSI",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3041.3,
+  "implied_cr": 2913.6,
+  "ratio": 1.04,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3757.4,
   "ni": 628.4,
@@ -11,7 +18,7 @@
   "eq": 3041.3,
   "debt": 162.3,
   "fcf": 653.3,
-  "ni_continuing": 628.4,
+  "ni_continuing_ops_pre_minority": 628.4,
   "ni_normalized": 708.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 38.46,
   "pe_normalized": 34.13,
+  "pe_used": 38.46,
   "pb": 7.95,
   "ev_ebitda": 24.26,
   "fcf_yield_pct": 2.7,

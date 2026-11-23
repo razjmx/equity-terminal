@@ -2,7 +2,14 @@
  "symbol": "TECHNOE",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4156.9,
+  "implied_cr": 4334.3,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 3159.8,
   "ni": 473.9,
@@ -11,7 +18,7 @@
   "eq": 4156.9,
   "debt": 72.5,
   "fcf": -657.1,
-  "ni_continuing": 448.7,
+  "ni_continuing_ops_pre_minority": 448.7,
   "ni_normalized": 418.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 22.18,
   "pe_normalized": 25.09,
+  "pe_used": 22.18,
   "pb": 2.53,
   "ev_ebitda": 13.98,
   "fcf_yield_pct": -6.3,

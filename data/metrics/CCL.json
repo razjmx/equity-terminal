@@ -2,7 +2,14 @@
  "symbol": "CCL",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2344.6,
+  "implied_cr": 2659.6,
+  "ratio": 0.88,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 4457.4,
   "ni": 388.1,
@@ -11,7 +18,7 @@
   "eq": 2344.6,
   "debt": 1324.4,
   "fcf": 788.5,
-  "ni_continuing": 388.1,
+  "ni_continuing_ops_pre_minority": 388.1,
   "ni_normalized": 390.8
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 32.11,
   "pe_normalized": 31.89,
+  "pe_used": 32.11,
   "pb": 5.31,
   "ev_ebitda": 18.47,
   "fcf_yield_pct": 6.3,

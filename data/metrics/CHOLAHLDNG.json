@@ -2,7 +2,14 @@
  "symbol": "CHOLAHLDNG",
  "latest_fy": "2026-03-31",
  "type": "standard",
+ "profit_basis": "reported",
  "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 15454.1,
+  "implied_cr": 17124.5,
+  "ratio": 0.9,
+  "used": "balance_sheet"
+ },
  "snapshot_cr": {
   "rev": 40657.9,
   "ni": 2441.3,
@@ -11,7 +18,7 @@
   "eq": 15454.1,
   "debt": 210400.0,
   "fcf": -30393.0,
-  "ni_continuing": 5485.2,
+  "ni_continuing_ops_pre_minority": 5485.2,
   "ni_normalized": 2140.1
  },
  "ratios": {
@@ -39,6 +46,7 @@
  "valuation": {
   "pe": 10.5,
   "pe_normalized": 11.98,
+  "pe_used": 10.5,
   "pb": 1.66,
   "ev_ebitda": 28.35,
   "fcf_yield_pct": -118.6,
