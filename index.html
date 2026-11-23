@@ -4,6 +4,12 @@
 <body>
 <header class="top">
   <a class="brand" href="#/market"><svg width="26" height="24" viewBox="0 0 26 24" aria-hidden="true"><rect x="1" y="13" width="5" height="10" rx="1.2"/><rect x="9" y="7" width="5" height="16" rx="1.2"/><rect x="17" y="1" width="5" height="22" rx="1.2"/></svg><span>The Analyst Cave</span></a>
+  <nav class="topnav" id="topnav"><span class="pill" id="pill"></span>
+    <a href="#/research" data-k="research">Company Research</a>
+    <a href="#/market" data-k="market">Market Overview</a>
+    <a href="#/screener" data-k="screener">Stock Screener</a>
+    <a href="#/financials" data-k="financials">Banks &amp; Financials</a>
+  </nav>
   <div class="searchbox"><input id="search" list="symlist" placeholder="Search company (e.g., RELIANCE, TCS, HDFCBANK)" autocomplete="off"><datalist id="symlist"></datalist></div>
   <details class="assump"><summary>Assumptions</summary>
     <div class="pop">
@@ -17,20 +23,6 @@
   <button id="theme" class="icon" title="Switch light / dark" aria-label="Switch theme"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 1.8a6.2 6.2 0 0 0 0 12.4z" fill="currentColor"/></svg></button>
 </header>
 <div class="layout">
-  <aside class="side">
-    <nav>
-      <a href="#/research" id="s-research" data-k="research"><i>⌕</i>Company Research</a>
-      <a href="#/market" data-k="market"><i>▥</i>Market Overview</a>
-      <a href="#/screener" data-k="screener"><i>☰</i>Stock Screener</a>
-      <a href="#/financials" data-k="financials"><i>⌂</i>Banks &amp; Financials</a>
-      <div class="sep"></div>
-      <span class="soon"><i>♡</i>Watchlist <em>soon</em></span>
-      <span class="soon"><i>▤</i>Portfolio <em>soon</em></span>
-      <span class="soon"><i>⇄</i>Compare <em>soon</em></span>
-      <span class="soon"><i>✎</i>Notes <em>soon</em></span>
-    </nav>
-    <div class="idx" id="idx"></div>
-  </aside>
   <div class="content">
     <main id="view">Loading…</main>
     <footer>Data: Yahoo Finance via GitHub Actions. Not investment advice. Model values are estimates.</footer>
