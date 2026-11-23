@@ -8,7 +8,7 @@ import pandas as pd
 
 # ---------- ASSUMPTIONS: edit these lines, then re-run the workflow ----------
 RF = 0.072            # risk-free rate: 10-year G-sec
-ERP = 0.055           # equity risk premium (placeholder: replace with house number)
+ERP = 0.06           # equity risk premium (placeholder: replace with house number)
 KD = 0.09             # pre-tax cost of debt
 TAX = 0.25            # tax rate on EBIT
 TERMINAL_G = 0.065    # default terminal growth (per-stock override in data/dcf_inputs.csv)
