@@ -18,7 +18,7 @@ concurrency:
 jobs:
   shareholding:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 300
     env:
       LIMIT: ${{ github.event.inputs.limit || '0' }}
     steps:
