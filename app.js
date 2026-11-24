@@ -468,38 +468,60 @@ function scenarioRows(dcf,fin,price){
   }
   return out;
 }
-function scenarioPanel(dcf,fin,rl,price){
-  const body=$('#vbody'),models=scenarioRows(dcf,fin,price);
-  if(!models.length){body.innerHTML='<div class="card"><p class="mut">Scenarios are available for the DCF and Justified P/B models. This stock has neither with enough data'+(rl?' (the realty NAV model has no scenarios yet)':'')+'.</p></div>';return}
+function scenarioPanel(sel,dcf,fin,price){
+  const body=$(sel),models=scenarioRows(dcf,fin,price);
+  if(!body)return;
+  if(!models.length){body.innerHTML='';return}
   const draw=()=>{
     const pw=VS.pw,tot=pw.reduce((a,b)=>a+(+b||0),0)||1;
     body.innerHTML=models.map(m=>{
       const f=m.res.map(r=>r.fair),ok=f.every(v=>v!=null);
       const wv=ok?f.reduce((a,v,i)=>a+v*(pw[i]||0),0)/tot:null,up=v=>v!=null&&price?(v/price-1)*100:null;
       const lo=Math.min(...f.filter(v=>v!=null),price),hi=Math.max(...f.filter(v=>v!=null),price),pos=v=>hi>lo?((v-lo)/(hi-lo))*100:50;
-      return `<div class="fcard card"><h3>${esc(m.title)}<span class="mut" style="font-weight:400;font-size:12px">fair value per share, ₹</span></h3>
-       <div class="scn">${m.res.map((r,i)=>`<div class="sc sc-${r.n.toLowerCase()}"><div class="sn">${r.n}</div><div class="sv">${r.fair!=null?'₹'+T.fmt(r.fair,0):'–'}</div><div class="su ${cls(up(r.fair))}">${r.fair!=null?T.pct(up(r.fair),0)+' vs price':'–'}</div>
+      return `<div class="card" style="margin-top:14px"><h3>Scenarios: bear / base / bull<span class="mut" style="font-weight:400;font-size:12px">${esc(m.title)} · fair value per share, ₹</span></h3>
+       <div class="scn">${m.res.map(r=>`<div class="sc sc-${r.n.toLowerCase()}"><div class="sn">${r.n}</div><div class="sv">${r.fair!=null?'₹'+T.fmt(r.fair,0):'–'}</div><div class="su ${cls(up(r.fair))}">${r.fair!=null?T.pct(up(r.fair),0)+' vs price':'–'}</div>
          <table>${r.a.map(x=>`<tr><td class="l">${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table></div>`).join('')}</div>
        ${ok?`<div class="rng"><div class="rl"></div>${m.res.map(r=>`<span class="rd rd-${r.n.toLowerCase()}" style="left:${pos(r.fair)}%" title="${r.n} ₹${T.fmt(r.fair,0)}"></span>`).join('')}<span class="rp" style="left:${pos(price)}%"><b>Price ₹${T.fmt(price,0)}</b></span></div>`:''}
        <div class="pw"><span class="mut">Probability weights %</span>${['Bear','Base','Bull'].map((n,i)=>`<label>${n} <input type="number" min="0" max="100" step="5" value="${pw[i]}" data-i="${i}"></label>`).join('')}
-        <span class="pwv">Weighted value <b>${wv!=null?'₹'+T.fmt(wv,0):'–'}</b> <span class="${cls(up(wv))}">${wv!=null?T.pct(up(wv),0):''}</span></span></div></div>`}).join('')
-      +'<p class="mut" style="max-width:1040px;margin:0 auto;font-size:12px">Scenarios move the main drivers together: operating margin, growth, discount rate and terminal growth for the DCF; ROE, cost of equity and growth for the P/B model. The base case uses your current Assumptions. Illustrative ranges, not forecasts.</p>';
+        <span class="pwv">Weighted value <b>${wv!=null?'₹'+T.fmt(wv,0):'–'}</b> <span class="${cls(up(wv))}">${wv!=null?T.pct(up(wv),0):''}</span></span></div>
+       <p class="mut" style="font-size:12px;margin:8px 0 0">The base case uses your current Assumptions. Bear and bull move the main drivers together. Illustrative ranges, not forecasts.</p></div>`}).join('');
     body.querySelectorAll('.pw input').forEach(i=>i.onchange=e=>{VS.pw[+e.target.dataset.i]=parseFloat(e.target.value)||0;draw()});
   };
   draw();
 }
-function valTabs(dcf,fin,rl,price){
-  const subs=[];if(dcf)subs.push(['dcf','DCF']);if(fin)subs.push(['fin','Justified P/B']);if(rl)subs.push(['rl','Realty NAV']);if(dcf||fin)subs.push(['sc','Bear / Base / Bull']);
-  if(!VS.sub||!subs.some(s=>s[0]===VS.sub))VS.sub=subs[0][0];
+const VAL_MODELS={
+ mult:{label:'Price multiples',what:'Values the stock by applying a fair multiple to earnings, book value or sales, using the stock\'s own history and its peers.',best:'Almost every listed company; the quickest cross-check.',inputs:['P/E, P/B, P/S and EV/EBITDA now vs own 5-year range','Peer median multiples (same industry)','Target multiple x forward EPS / BVPS / sales per share','Implied price range: low, median, high']},
+ ev:{label:'EV multiples',what:'Applies an enterprise-value multiple (EV/EBITDA, EV/Sales, EV/FCF), then bridges to equity by subtracting net debt.',best:'Non-financial companies with different debt levels, or where earnings are volatile.',inputs:['EV/EBITDA, EV/Sales and EV/FCF vs history and peers','Net debt, minority interest and investments bridge','Implied equity value per share']},
+ ddm:{label:'DDM',what:'Dividend discount model: present value of expected dividends, usually Gordon growth or a two-stage version.',best:'Steady dividend payers such as banks, utilities, FMCG, REITs and PSUs. Not usable where dividends are zero or irregular.',inputs:['Dividend per share (last 4 years) and payout ratio','Growth stage 1 and long-term growth','Cost of equity from CAPM (uses your Assumptions)']},
+ asset:{label:'Asset based',what:'Values the business at what its assets are worth: adjusted book value, tangible book, replacement cost or liquidation value, minus liabilities.',best:'Banks and NBFCs (tangible book), holding companies, real estate, asset-heavy and loss-making businesses.',inputs:['Book value and tangible book value per share','Adjustments for investments at market value, revalued land and intangibles','Net asset value per share, with a discount or premium to NAV']},
+ ri:{label:'Residual income',what:'Book value today plus the present value of profits earned above the cost of equity (excess returns, also called EVA or economic profit).',best:'Financials and any business where book value is meaningful and dividends are not a clean signal.',inputs:['Book value per share and forecast ROE','Cost of equity (uses your Assumptions)','Fade of excess returns over time']},
+ epv:{label:'Earnings power',what:'Earnings power value: normalised, no-growth after-tax earnings divided by the cost of capital. A conservative floor that shows what the business is worth without growth.',best:'Mature, steady non-financial companies; useful next to a growth DCF.',inputs:['Normalised EBIT margin over a full cycle','Tax rate and maintenance capex','WACC (uses your Assumptions)']},
+ sotp:{label:'Sum of the parts',what:'Values each business segment separately with its own method, adds them up, then adjusts for holding-company discount and net debt.',best:'Conglomerates and groups with listed subsidiaries or very different divisions.',inputs:['Segment revenue and profit','Multiple or method for each segment','Market value of listed holdings, and holding-company discount']},
+ graham:{label:'Graham value',what:'Benjamin Graham\'s quick formulas: the Graham number and the growth formula (EPS x (8.5 + 2g)) as a margin-of-safety screen.',best:'Profitable, stable companies; a sanity check, not a full valuation.',inputs:['EPS, book value per share','Expected growth rate','Margin of safety vs current price']},
+ embv:{label:'Embedded value',what:'For life insurers: embedded value (net worth plus value of in-force business) and a multiple on value of new business.',best:'Life insurance companies.',inputs:['Embedded value and value of new business (VNB) from company disclosures','VNB margin and growth','Target P/EV multiple']},
+ ff:{label:'Summary',what:'A football-field chart that lines up the fair-value range from every model above against the current price.',best:'The final view once the models are calculated.',inputs:['Low and high value from each model','Current price marker','Average and median of the models']}
+};
+async function valTabs(s,dcf,fin,rl,price,met,u){
+  const fnc=(met&&met.type==='financial')||!!fin,ins=/insur/i.test((u&&u.industry)||'')||/insur/i.test((u&&u.company)||'');
+  let payer=null;
+  try{const st=await get(`data/statements/${s}.json`,'json');const cf=st&&st.annual_cashflow;if(cf){const row=cf.rows.find(r=>/dividend/i.test(r[0])&&/paid/i.test(r[0]))||cf.rows.find(r=>/dividend/i.test(r[0]));payer=row?row[1].slice(-3).some(v=>v!=null&&Math.abs(v)>0):false}}catch(e){}
+  const live=[];if(dcf)live.push(['dcf','DCF']);if(fin)live.push(['fin','Justified P/B']);if(rl)live.push(['rl','Realty NAV']);
+  const soon=['mult'];if(!fnc)soon.push('ev');soon.push('ddm','asset','ri');if(!fnc)soon.push('epv','sotp','graham');if(ins)soon.push('embv');soon.push('ff');
+  const subs=live.concat(soon.map(k=>[k,VAL_MODELS[k].label,true]));
+  if(!VS.sub||!subs.some(x=>x[0]===VS.sub))VS.sub=subs[0][0];
+  const ph=k=>{const m=VAL_MODELS[k];
+    const use=k==='ddm'?(payer==null?'':payer?'<span class="ok">Usable: this company has paid dividends recently.</span>':'<span class="no">Limited use: no dividends found in the latest statements.</span>'):'';
+    return `<div class="card mph"><h3>${esc(m.label)}<span class="soonbadge">calculation coming</span></h3>
+     <p>${esc(m.what)}</p>${use?`<p class="use">${use}</p>`:''}
+     <div class="mphg"><div><div class="k">Best for</div><div>${esc(m.best)}</div></div><div><div class="k">Planned inputs</div><ul>${m.inputs.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div></div>`};
   const draw=()=>{
-    if(!subs.some(s=>s[0]===VS.sub))VS.sub=subs[0][0];
     const t=$('#vsub'),b=$('#vbody');if(!t||!b)return;
-    t.innerHTML=subs.map(x=>`<button data-s="${x[0]}" class="${VS.sub===x[0]?'on':''}">${x[1]}</button>`).join('');
+    t.innerHTML=subs.map(x=>`<button data-s="${x[0]}" class="${VS.sub===x[0]?'on':''}${x[2]?' soon':''}">${x[1]}${x[0]==='ddm'&&payer===false?' <small>n/a</small>':''}</button>`).join('');
     t.querySelectorAll('button').forEach(x=>x.onclick=()=>{VS.sub=x.dataset.s;draw()});
-    if(VS.sub==='dcf'){b.innerHTML='<div id="dcfbox"></div>';dcfPanel(dcf,price)}
-    else if(VS.sub==='fin'){b.innerHTML='<div id="finbox"></div>';finPanel(fin)}
+    if(VS.sub==='dcf'){b.innerHTML='<div id="dcfbox"></div><div id="scbox"></div>';dcfPanel(dcf,price);scenarioPanel('#scbox',dcf,null,price)}
+    else if(VS.sub==='fin'){b.innerHTML='<div id="finbox"></div><div id="scbox"></div>';finPanel(fin);scenarioPanel('#scbox',null,fin,price)}
     else if(VS.sub==='rl'){b.innerHTML='<div id="rlbox"></div>';realtyPanel(rl)}
-    else scenarioPanel(dcf,fin,rl,price);
+    else b.innerHTML=ph(VS.sub);
   };
   draw();
 }
@@ -559,8 +581,7 @@ async function stock(s,tab){
     FIN_RATIO=FIN_RATIO.replace('<div id="ratslot"></div>',ratiosHtml(rat));
     h+='<div class="subtabs" id="fsub"></div><div id="fbody"></div>';
   }else if(tab==='valuation'){
-    if(dcf||fin||rl)h+='<div class="subtabs" id="vsub"></div><div id="vbody"></div>';
-    else h+=`<div class="card"><h3>Valuation</h3>No model available for this stock (excluded or data missing).</div>`;
+    h+='<div class="subtabs" id="vsub"></div><div id="vbody"></div>';
   }else if(tab==='quant'){
     h+=technicals()||'<div class="card">No risk data for this stock.</div>';
   }
@@ -587,7 +608,7 @@ async function stock(s,tab){
   }
   countUps(view);
   if(tab==='financials')finTabs(s);
-  if(tab==='valuation'&&(dcf||fin||rl))valTabs(dcf,fin,rl,price);
+  if(tab==='valuation')valTabs(s,dcf,fin,rl,price,met,u);
 }
 
 
