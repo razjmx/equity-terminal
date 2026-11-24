@@ -5,6 +5,9 @@ const cache={};
 const DEF={rf:7.2,erp:6,g:6.5};
 let A=Object.assign({},DEF);
 try{const s=JSON.parse(localStorage.getItem('tl_assump')||'null');if(s&&s.rf!=null)A=s}catch(e){}
+// market-cap class, thresholds in ₹ crore
+const CAP_LARGE=105000,CAP_MID=35000;
+const capOf=mc=>mc==null||!isFinite(mc)?'':mc>=CAP_LARGE?'Large cap':mc>=CAP_MID?'Mid cap':'Small cap';
 function saveA(){try{localStorage.setItem('tl_assump',JSON.stringify(A))}catch(e){}}
 async function get(path,type){
   if(cache[path]!==undefined)return cache[path];
@@ -365,7 +368,7 @@ async function glPanel(){
     const set=new Set(mem[GL.ix]||[]);
     const rows=[...set].map(s=>by[s]&&by[s].r&&by[s].r[GL.tf]!=null?{s,r:by[s].r[GL.tf],mc:by[s].mc}:null).filter(Boolean).sort((a,b)=>b.r-a.r);
     const top=rows.slice(0,10),bot=rows.slice(-10).reverse();
-    const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">Price ₹</th><th class="num">Return</th></tr></thead><tbody>${a.map(r=>`<tr class="row" onclick="location.hash='#/stock/${esc(r.s)}'"><td><b>${esc(r.s)}</b><div class="mut" style="font-size:11px">${esc((nm[r.s]||'').slice(0,28))}</div></td><td class="num">${px[r.s]!=null?T.fmt(px[r.s],1):'–'}</td><td class="num ${cls(r.r)}">${r.r>=0?'+':''}${T.fmt(r.r,2)}%</td></tr>`).join('')}</tbody></table>`;
+    const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">Price ₹</th><th class="num">Return</th></tr></thead><tbody>${a.map(r=>`<tr class="row" onclick="location.hash='#/stock/${esc(r.s)}'"><td><b>${esc(r.s)}</b><div class="mut" style="font-size:11px">${esc((nm[r.s]||'').slice(0,28))} · ${capOf(r.mc).split(' ')[0]}</div></td><td class="num">${px[r.s]!=null?T.fmt(px[r.s],1):'–'}</td><td class="num ${cls(r.r)}">${r.r>=0?'+':''}${T.fmt(r.r,2)}%</td></tr>`).join('')}</tbody></table>`;
     const src=(mem.source||{})[GL.ix]==='NSE'?'official NSE constituent list':'approximated by market-cap rank (NSE list not available)';
     box.innerHTML=`<div class="card"><div class="seg" id="gl-ix" style="margin:0 0 8px">${GL_IX.map(([k,l])=>`<button data-k="${k}" class="${GL.ix===k?'on':''}">${l}</button>`).join('')}</div>
       <div class="seg" id="gl-tf" style="margin:0 0 12px">${GL_TF.map(([k,l])=>`<button data-k="${k}" class="${GL.tf===k?'on':''}">${l}</button>`).join('')}</div>
@@ -464,7 +467,7 @@ async function peersTab(s){
     const rank=(k,hi)=>{const v=me[k];if(!num(v))return '–';const a=g.filter(x=>num(x[k])).map(x=>x[k]).sort((p,q)=>hi?q-p:p-q);return (a.indexOf(v)+1)+' of '+a.length};
     const prem=(k)=>{const v=me[k],m=med[k];if(!num(v)||!num(m)||!m)return '';const p=(v/m-1)*100;return `<span class="${p>0?'neg':'pos'}" style="font-size:12px">${p>=0?'+':''}${T.fmt(p,0)}% vs median</span>`};
     const tl=(k,l,d,hi)=>`<div class="tile"><div class="k">${l}</div><div class="tv">${num(me[k])?T.fmt(me[k],d):'–'}</div><div class="k" style="margin-top:2px">Median ${num(med[k])?T.fmt(med[k],d):'–'} · rank ${rank(k,hi)}</div></div>`;
-    const cell=(r,c)=>{const v=r[c[0]];return `<td class="num ${PR.sort===c[0]?'sorted':''}">${num(v)?T.fmt(v,c[2]):'–'}</td>`};
+    const cell=(r,c)=>{const v=r[c[0]];return `<td class="num ${PR.sort===c[0]?'sorted':''}">${num(v)?T.fmt(v,c[2]):'–'}${c[0]==='mc'&&num(v)?` <small class="mut">${capOf(v).split(' ')[0]}</small>`:''}</td>`};
     box.innerHTML=`<div class="card"><h3>Peers · ${esc(name)} <span class="mut" style="font-weight:400;font-size:12px">${g.length} stocks · <a href="#/sector/${PR.lvl}/${encodeURIComponent(name)}">Open ${esc(name)} page →</a></span>
        <span class="seg" id="plv" style="margin-left:auto">${PLV.filter(l=>members(l[0]).length>=2).map(l=>`<button data-k="${l[0]}" class="${PR.lvl===l[0]?'on':''}">${l[1]}</button>`).join('')}</span></h3>
       <div class="mtiles">${has('pe')?tl('pe','P/E',1,false):''}${has('pb')?tl('pb','P/B',2,false):''}${has('ev')?tl('ev','EV/EBITDA',1,false):''}${has('roe')?tl('roe','ROE %',1,true):''}${has('roce')?tl('roce','ROCE %',1,true):''}${has('rg')?tl('rg','Revenue CAGR %',1,true):''}</div>
@@ -961,7 +964,7 @@ async function stock(s,tab){
   const dl=pcsv?`<a class="btn" href="data/prices/${esc(s)}.csv" download>Download prices (CSV)</a>`:'';
   let h=`<div class="crumb"><a href="#/market">Research</a> › ${esc(s)}</div>
    <div class="card"><div class="sh"><div class="logo">${esc(ini)}</div>
-    <div><h1>${esc(u.company||s)}</h1><div class="sub">${esc(s)}.NSE</div><span class="tag">${esc(u.industry||'')}</span>${met?`<span class="tag">${esc(met.type)}</span>`:''}</div>
+    <div><h1>${esc(u.company||s)}</h1><div class="sub">${esc(s)}.NSE</div><span class="tag">${esc(u.industry||'')}</span>${V.market_cap_cr!=null?`<span class="tag">${capOf(V.market_cap_cr)}</span>`:''}${met?`<span class="tag">${esc(met.type)}</span>`:''}</div>
     <div class="acts">${dl}</div></div>
     <div class="pricerow"><div><span class="bigp" data-n="${price}" data-d="2" data-pre="₹">₹${T.fmt(price,2)}</span>${chg!=null?`<span class="chg ${cls(chg)}">${chgAbs>=0?'+':''}${T.fmt(chgAbs,2)} (${chg>=0?'+':''}${T.fmt(chg,2)}%)</span>`:''}<div class="k" style="margin-top:6px">NSE · As of ${esc(asof)} (daily close)</div></div>
      <div class="stats">${stat('Market cap',V.market_cap_cr!=null?'₹'+T.fmt(V.market_cap_cr,0)+' Cr':'–')}${stat('P/E',V.pe_used!=null?T.fmt(V.pe_used,1)+'x':'–')}${stat('P/B',V.pb!=null?T.fmt(V.pb,2)+'x':'–')}${stat('EV/EBITDA',V.ev_ebitda!=null?T.fmt(V.ev_ebitda,1)+'x':'–')}${stat('ROE',R.roe_pct!=null?T.fmt(R.roe_pct,1)+'%':'–')}${stat('ROCE',R.roce_pct!=null?T.fmt(R.roce_pct,1)+'%':'–')}${stat('Debt/Equity',R.debt_equity!=null?T.fmt(R.debt_equity,2):'–')}</div></div></div>`;
