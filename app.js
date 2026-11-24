@@ -677,6 +677,13 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
 // ---------- price multiples model ----------
 function pctile(a,p){a=a.filter(v=>v!=null&&isFinite(v)).sort((x,y)=>x-y);if(!a.length)return null;const i=(a.length-1)*p,lo=Math.floor(i),hi=Math.ceil(i);return a[lo]+(a[hi]-a[lo])*(i-lo)}
 const MS={set:'all'};
+// ---------- editable model inputs ----------
+const OV={};
+const ovs=(m,s)=>OV[m+':'+s]||(OV[m+':'+s]={});
+const ed=(o,k,val,step,dp)=>`<input class="ed${o[k]!=null?' chg':''}" data-k="${k}" type="number" step="${step||'any'}" value="${val==null||!isFinite(val)?'':(+val).toFixed(dp==null?2:dp)}">`;
+const edBar=o=>`<p class="mut" style="font-size:12px;margin:8px 0 0">Values in boxes are editable; the model updates as you change them. ${Object.keys(o).length?'<button class="ed-reset">Reset to model values</button>':'Edited values turn blue.'}</p>`;
+const edBind=(box,o,redo)=>{box.querySelectorAll('input.ed').forEach(i=>i.onchange=e=>{const v=parseFloat(e.target.value);if(isFinite(v))o[i.dataset.k]=v;else delete o[i.dataset.k];redo()});const r=box.querySelector('.ed-reset');if(r)r.onclick=()=>{for(const k in o)delete o[k];redo()}};
+
 async function multPanel(s,price){
   const box=$('#multbox');if(!box)return;
   const P=await get('data/peers.json','json');
@@ -691,11 +698,14 @@ async function multPanel(s,price){
   if(MS.set==='size'&&ok(me.mc)){peers=allPeers.filter(x=>ok(x.mc)).sort((a,b)=>Math.abs(Math.log(a.mc/me.mc))-Math.abs(Math.log(b.mc/me.mc))).slice(0,10)}
   const lvName=LV.find(x=>x[0]===lv)[1],gname=me[lv];
   const M=[['pe','P/E',1],['pb','P/B',2]];
+  const o=ovs('mult',s);
   const rows=M.map(([k,l,d])=>{const vals=peers.map(x=>x[k]).filter(ok);
-    const q=vals.length>=6?[pctile(vals,.25),pctile(vals,.5),pctile(vals,.75)]:null;
-    const own=ok(me[k])?me[k]:null;
-    const imp=q&&own?q.map(m=>price*m/own):null;
-    return {k,l,d,n:vals.length,own,q,imp}});
+    const qd=vals.length>=6?[pctile(vals,.25),pctile(vals,.5),pctile(vals,.75)]:null;
+    const qa=[0,1,2].map(i=>o[`q${i}_${k}`]!=null?o[`q${i}_${k}`]:(qd?qd[i]:null));
+    const q=qa.every(v=>v!=null&&v>0)?qa:null;
+    const own=o['own_'+k]!=null?o['own_'+k]:(ok(me[k])?me[k]:null);
+    const imp=q&&own>0?q.map(m=>price*m/own):null;
+    return {k,l,d,n:vals.length,own,q,qa,imp}});
   const use=rows.filter(r=>r.imp);
   const avg=i=>use.length?use.reduce((a,r)=>a+r.imp[i],0)/use.length:null;
   const bl=[avg(0),avg(1),avg(2)];
@@ -708,9 +718,11 @@ async function multPanel(s,price){
     ${use.length?`<div class="scn">${card('sc-bear','Bear (25th pct)',bl[0])}${card('sc-base','Base (median)',bl[1])}${card('sc-bull','Bull (75th pct)',bl[2])}</div>
     <p class="mut" style="font-size:12px;margin:8px 0 0">Average of ${use.map(r=>r.l).join(' and ')} values. Current price ₹${T.fmt(price,2)}.</p>`:'<p class="warn">This company has no positive P/E or P/B, so it cannot be valued on these multiples.</p>'}
     <div style="overflow-x:auto;margin-top:14px"><table class="peer"><thead><tr><th>Multiple</th><th class="num">${esc(s)}</th><th class="num">Peer 25th</th><th class="num">Peer median</th><th class="num">Peer 75th</th><th class="num">Value @ 25th</th><th class="num">@ median</th><th class="num">@ 75th</th><th class="num">Peers used</th></tr></thead><tbody>
-    ${rows.map(r=>`<tr><td><b>${r.l}</b></td><td class="num">${r.own?fx(r.own,r.d)+'x':'–'}</td>${[0,1,2].map(i=>`<td class="num">${r.q?fx(r.q[i],r.d)+'x':'–'}</td>`).join('')}${[0,1,2].map(i=>`<td class="num">${r.imp?'₹'+T.fmt(r.imp[i],0):'–'}</td>`).join('')}<td class="num">${r.n}</td></tr>`).join('')}</tbody></table></div>
+    ${rows.map(r=>`<tr><td><b>${r.l}</b></td><td class="num">${ed(o,'own_'+r.k,r.own,0.1,r.d)}x</td>${[0,1,2].map(i=>`<td class="num">${ed(o,`q${i}_${r.k}`,r.qa[i],0.1,r.d)}x</td>`).join('')}${[0,1,2].map(i=>`<td class="num">${r.imp?'₹'+T.fmt(r.imp[i],0):'–'}</td>`).join('')}<td class="num">${r.n}</td></tr>`).join('')}</tbody></table></div>
+    ${edBar(o)}
     <p class="mut" style="font-size:12px;margin-top:10px">This is a relative value: it says what the stock would be worth if it traded like its peers, not what it is worth in itself. If the whole group is expensive or cheap, the answer moves with it. Peers with negative or missing multiples are left out.</p></div>`;
   box.querySelectorAll('#msset button').forEach(b=>b.onclick=()=>{MS.set=b.dataset.k;multPanel(s,price)});
+  edBind(box,o,()=>multPanel(s,price));
 }
 
 // ---------- EV multiples model ----------
@@ -730,9 +742,12 @@ async function evPanel(s,price){
   const allPeers=peers;
   if(MS.set==='size')peers=allPeers.slice().sort((a,b)=>Math.abs(Math.log(a.mc/me.mc))-Math.abs(Math.log(b.mc/me.mc))).slice(0,10);
   const vals=peers.map(evm).filter(pos);
-  const q=vals.length>=6?[pctile(vals,.25),pctile(vals,.5),pctile(vals,.75)]:null;
-  const shares=me.mc/price;
-  const imp=q?q.map(m=>(me.ebitda*m-me.nd)/shares):null;
+  const o=ovs('ev',s);
+  const qd=vals.length>=6?[pctile(vals,.25),pctile(vals,.5),pctile(vals,.75)]:null;
+  const qa=[0,1,2].map(i=>o['q'+i]!=null?o['q'+i]:(qd?qd[i]:null));
+  const q=qa.every(v=>v!=null&&v>0)?qa:null;
+  const E=o.ebitda!=null?o.ebitda:me.ebitda,N=o.nd!=null?o.nd:me.nd,shares=o.sh!=null?o.sh:me.mc/price;
+  const imp=q&&shares>0?q.map(m=>(E*m-N)/shares):null;
   const up=v=>v!=null&&price?(v/price-1)*100:null;
   const card=(cl,name,v)=>`<div class="sc ${cl}"><div class="sn">${name}</div><div class="sv">${v!=null&&v>0?'₹'+T.fmt(v,0):'–'}</div><div class="su ${cls(up(v))}">${v!=null&&v>0&&up(v)!=null?(up(v)>=0?'+':'')+T.fmt(up(v),1)+'% vs price':''}</div></div>`;
   const lvName=LV.find(x=>x[0]===lv)[1];
@@ -741,14 +756,19 @@ async function evPanel(s,price){
     <p class="mut" style="margin-top:0">Applies the peers' EV/EBITDA (25th percentile, median, 75th percentile) to this company's EBITDA, subtracts net debt and minority interest, and divides by shares. Low = bear, median = base, high = bull.</p>
     ${imp?`<div class="scn">${card('sc-bear','Bear (25th pct)',imp[0])}${card('sc-base','Base (median)',imp[1])}${card('sc-bull','Bull (75th pct)',imp[2])}</div>`:'<p class="warn">Fewer than 6 peers in this set, so percentiles are not shown. Switch to All peers.</p>'}
     <div style="overflow-x:auto;margin-top:14px"><table class="peer kv"><thead><tr><th>Item</th><th class="num">Value</th></tr></thead><tbody>
-     <tr><td>EBITDA (latest year, ₹ cr)</td><td class="num">${T.fmt(me.ebitda,0)}</td></tr>
-     <tr><td>Net debt + minorities (₹ cr)</td><td class="num">${T.fmt(me.nd,0)}</td></tr>
+     <tr><td>EBITDA (₹ cr; use a forward estimate if you prefer)</td><td class="num">${ed(o,'ebitda',E,1,0)}</td></tr>
+     <tr><td>Net debt + minorities (₹ cr)</td><td class="num">${ed(o,'nd',N,1,0)}</td></tr>
+     <tr><td>Shares (crore)</td><td class="num">${ed(o,'sh',shares,0.01,2)}</td></tr>
      <tr><td>Market cap (₹ cr)</td><td class="num">${T.fmt(me.mc,0)}</td></tr>
      <tr><td>${esc(s)} EV/EBITDA</td><td class="num">${mine!=null?T.fmt(mine,1)+'x':'–'}</td></tr>
-     <tr><td>Peer EV/EBITDA 25th / median / 75th</td><td class="num">${q?q.map(v=>T.fmt(v,1)+'x').join(' / '):'–'}</td></tr>
+     <tr><td>Target EV/EBITDA: bear (25th)</td><td class="num">${ed(o,'q0',qa[0],0.1,1)}x</td></tr>
+     <tr><td>Target EV/EBITDA: base (median)</td><td class="num">${ed(o,'q1',qa[1],0.1,1)}x</td></tr>
+     <tr><td>Target EV/EBITDA: bull (75th)</td><td class="num">${ed(o,'q2',qa[2],0.1,1)}x</td></tr>
      <tr><td>Peers used</td><td class="num">${vals.length}</td></tr></tbody></table></div>
+    ${edBar(o)}
     <p class="mut" style="font-size:12px;margin-top:10px">EV = market cap + total debt − cash and short-term investments + minority interest, using the latest annual balance sheet. EBITDA is the latest financial year from Yahoo Finance. Banks and financial companies are excluded. This is a relative value, so it moves with how the peer group is priced.</p></div>`;
   box.querySelectorAll('#msset button').forEach(b=>b.onclick=()=>{MS.set=b.dataset.k;evPanel(s,price)});
+  edBind(box,o,()=>evPanel(s,price));
 }
 
 // ---------- DDM (dividend discount model) ----------
@@ -774,10 +794,12 @@ async function ddmPanel(s,price,dcf,fin){
   let ke=null;
   try{if(dcf){const r=T.recompute(dcf,{rf:A.rf/100,erp:A.erp/100,gT:A.g/100});ke=r&&r.ke}else if(fin){const r=T.finModel(fin,{rf:A.rf/100,erp:A.erp/100,g:A.g/100});ke=r&&r.ke}}catch(e){}
   if(ke==null){const rk=await get(`data/risk/${s}.json`,'json');const beta=rk&&rk.beta&&rk.beta.adjusted!=null?rk.beta.adjusted:1;ke=A.rf/100+beta*A.erp/100}
+  const o=ovs('ddm',s);
   const gT0=A.g/100,g10=cagr==null?gT0:Math.min(Math.max(cagr,0),0.12);
-  const run=(g1,k,gT)=>{gT=Math.min(gT,k-0.01);let pv=0,d=dps;for(let t=1;t<=5;t++){d*=1+g1;pv+=d/Math.pow(1+k,t)}const tv=d*(1+gT)/(k-gT);return pv+tv/Math.pow(1+k,5)};
-  const gTb=gT0;
-  const sc=[['sc-bear','Bear',run(Math.max(g10-0.03,0),ke+0.01,gTb-0.01)],['sc-base','Base',run(g10,ke,gTb)],['sc-bull','Bull',run(g10+0.03,ke-0.01,gTb+0.005)]];
+  const dpsU=o.dps!=null?o.dps:dps,g1U=o.g1!=null?o.g1/100:g10,gTU=o.gT!=null?o.gT/100:gT0,keU=o.ke!=null?o.ke/100:ke;
+  const nU=Math.max(1,Math.min(15,Math.round(o.n!=null?o.n:5))),gsU=(o.gs!=null?o.gs:3)/100,ksU=(o.ks!=null?o.ks:1)/100;
+  const run=(g1,k,gT)=>{gT=Math.min(gT,k-0.01);let pv=0,d=dpsU;for(let t=1;t<=nU;t++){d*=1+g1;pv+=d/Math.pow(1+k,t)}const tv=d*(1+gT)/(k-gT);return pv+tv/Math.pow(1+k,nU)};
+  const sc=[['sc-bear','Bear',run(Math.max(g1U-gsU,0),keU+ksU,gTU-ksU)],['sc-base','Base',run(g1U,keU,gTU)],['sc-bull','Bull',run(g1U+gsU,keU-ksU,gTU+0.005)]];
   const low=(payout!=null&&payout<35)||yld<2;
   const up=v=>price?(v/price-1)*100:null;
   box.innerHTML=`<div class="card mph"><h3>DDM <span class="mut" style="font-weight:400;font-size:12px">two-stage dividend discount model</span></h3>
@@ -786,14 +808,19 @@ async function ddmPanel(s,price,dcf,fin){
     <div class="scn">${sc.map(([c,n,v])=>`<div class="sc ${c}"><div class="sn">${n}</div><div class="sv">₹${T.fmt(v,0)}</div><div class="su ${cls(up(v))}">${up(v)>=0?'+':''}${T.fmt(up(v),1)}% vs price</div></div>`).join('')}</div>
     <div style="overflow-x:auto;margin-top:14px"><table class="peer kv"><thead><tr><th>Input</th><th class="num">Value</th></tr></thead><tbody>
      <tr><td>Dividends paid, ${esc(last.d.slice(0,4))} (₹ cr)</td><td class="num">${T.fmt(last.div,0)}</td></tr>
-     <tr><td>Dividend per share (approx.)</td><td class="num">₹${T.fmt(dps,2)}</td></tr>
-     <tr><td>Dividend yield</td><td class="num">${T.fmt(yld,2)}%</td></tr>
+     <tr><td>Dividend per share, ₹ (approx.)</td><td class="num">${ed(o,'dps',dpsU,0.1,2)}</td></tr>
+     <tr><td>Dividend yield</td><td class="num">${T.fmt(dpsU/price*100,2)}%</td></tr>
      <tr><td>Payout ratio (of net income)</td><td class="num">${payout!=null?T.fmt(payout,0)+'%':'–'}</td></tr>
      <tr><td>Dividend growth, ${pos.length>=3?(pos.length-1)+'-year CAGR':'not enough history'}</td><td class="num">${cagr!=null?T.fmt(cagr*100,1)+'%':'–'}</td></tr>
-     <tr><td>Stage 1 growth used (5 years, base)</td><td class="num">${T.fmt(g10*100,1)}%</td></tr>
-     <tr><td>Terminal growth (your GDP growth setting)</td><td class="num">${T.fmt(gTb*100,1)}%</td></tr>
-     <tr><td>Cost of equity</td><td class="num">${T.fmt(ke*100,2)}%</td></tr></tbody></table></div>
-    <p class="mut" style="font-size:12px;margin-top:10px">Dividend per share is total dividends paid divided by today's share count, so it is approximate. One-off or special dividends raise it and can overstate the value. Stage 1 growth is the past dividend growth, kept between 0% and 12%. Terminal growth is your long-run GDP growth assumption. Bear uses 3 points lower growth, 1 point higher cost of equity and 1 point lower terminal growth; Bull uses 3 points higher growth, 1 point lower cost of equity and 0.5 point higher terminal growth.</p></div>`;
+     <tr><td>Stage 1 growth, % (base)</td><td class="num">${ed(o,'g1',g1U*100,0.5,1)}</td></tr>
+     <tr><td>Stage 1 length, years</td><td class="num">${ed(o,'n',nU,1,0)}</td></tr>
+     <tr><td>Terminal growth, % (default: your GDP growth setting)</td><td class="num">${ed(o,'gT',gTU*100,0.1,1)}</td></tr>
+     <tr><td>Cost of equity, %</td><td class="num">${ed(o,'ke',keU*100,0.25,2)}</td></tr>
+     <tr><td>Bear / bull growth spread, points</td><td class="num">${ed(o,'gs',gsU*100,0.5,1)}</td></tr>
+     <tr><td>Bear / bull cost of equity spread, points</td><td class="num">${ed(o,'ks',ksU*100,0.25,2)}</td></tr></tbody></table></div>
+    ${edBar(o)}
+    <p class="mut" style="font-size:12px;margin-top:10px">Dividend per share is total dividends paid divided by today's share count, so it is approximate. One-off or special dividends raise it and can overstate the value. Stage 1 growth is the past dividend growth, kept between 0% and 12%. Terminal growth is your long-run GDP growth assumption. Bear lowers growth by the growth spread, raises cost of equity by the spread and lowers terminal growth by the same spread; Bull does the reverse (terminal growth rises only 0.5 point).</p></div>`;
+  edBind(box,o,()=>ddmPanel(s,price,dcf,fin));
 }
 
 // ---------- stock ----------
