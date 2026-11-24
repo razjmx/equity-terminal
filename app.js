@@ -139,11 +139,12 @@ async function boot(){
 
 function route(){
   const h=location.hash||'#/market';const p=h.split('/');
-  const key=p[1]==='stock'?'research':(p[1]||'market');
+  const key=p[1]==='stock'?'research':(p[1]==='sector'?'market':(p[1]||'market'));
   document.querySelectorAll('#topnav a').forEach(a=>a.classList.toggle('on',a.dataset.k===key));
   try{const on=document.querySelector('#topnav a.on'),pl=document.getElementById('pill');if(on&&pl){pl.style.left=on.offsetLeft+'px';pl.style.width=on.offsetWidth+'px';pl.style.opacity=1}else if(pl)pl.style.opacity=0}catch(e){}
   if(route.last!==h){window.scrollTo(0,0);route.last=h}
   if(p[1]==='stock'&&p[2])return stock(decodeURIComponent(p[2]),p[3]);
+  if(p[1]==='sector'&&p[2]&&p[3])return sectorPage(p[2],decodeURIComponent(p[3]));
   if(p[1]==='screener')return screener();
   if(p[1]==='financials')return financials();
   if(p[1]==='research')return research();
@@ -399,7 +400,7 @@ function hmDraw(){
   const crumb=$('#hm-crumb');
   if(drill){const g=groups.find(x=>x.name===drill);
     items=g.stocks.map(s=>({name:s.s,v:s.mc,ret:s.ret,stock:s.s,mc:s.mc}));
-    crumb.innerHTML=`<a id="hm-back">← All</a> <b>${esc(drill)}</b> <span class="mut">${g.n} stocks · ${T.pct(g.ret,1)} weighted · ${T.pct(g.med,1)} median</span>`;
+    crumb.innerHTML=`<a id="hm-back">← All</a> <b>${esc(drill)}</b> <a href="#/sector/${HM.level}/${encodeURIComponent(drill)}" style="margin:0 6px">Open page →</a> <span class="mut">${g.n} stocks · ${T.pct(g.ret,1)} weighted · ${T.pct(g.med,1)} median</span>`;
     crumb.querySelector('#hm-back').onclick=()=>{HM.drill=null;hmDraw()}}
   else{items=groups.map(g=>({name:g.name,v:g.v,ret:g.ret,n:g.n,med:g.med}));crumb.innerHTML=`<span class="mut">Click a block to see its stocks</span>`}
   items=items.filter(i=>i.v>0).sort((a,b)=>b.v-a.v);
@@ -437,7 +438,7 @@ async function peersTab(s){
     const prem=(k)=>{const v=me[k],m=med[k];if(!num(v)||!num(m)||!m)return '';const p=(v/m-1)*100;return `<span class="${p>0?'neg':'pos'}" style="font-size:12px">${p>=0?'+':''}${T.fmt(p,0)}% vs median</span>`};
     const tl=(k,l,d,hi)=>`<div class="tile"><div class="k">${l}</div><div class="tv">${num(me[k])?T.fmt(me[k],d):'–'}</div><div class="k" style="margin-top:2px">Median ${num(med[k])?T.fmt(med[k],d):'–'} · rank ${rank(k,hi)}</div></div>`;
     const cell=(r,c)=>{const v=r[c[0]];return `<td class="num ${PR.sort===c[0]?'sorted':''}">${num(v)?T.fmt(v,c[2]):'–'}</td>`};
-    box.innerHTML=`<div class="card"><h3>Peers · ${esc(name)} <span class="mut" style="font-weight:400;font-size:12px">${g.length} stocks</span>
+    box.innerHTML=`<div class="card"><h3>Peers · ${esc(name)} <span class="mut" style="font-weight:400;font-size:12px">${g.length} stocks · <a href="#/sector/${PR.lvl}/${encodeURIComponent(name)}">Open ${esc(name)} page →</a></span>
        <span class="seg" id="plv" style="margin-left:auto">${PLV.filter(l=>members(l[0]).length>=2).map(l=>`<button data-k="${l[0]}" class="${PR.lvl===l[0]?'on':''}">${l[1]}</button>`).join('')}</span></h3>
       <div class="mtiles">${has('pe')?tl('pe','P/E',1,false):''}${has('pb')?tl('pb','P/B',2,false):''}${has('ev')?tl('ev','EV/EBITDA',1,false):''}${has('roe')?tl('roe','ROE %',1,true):''}${has('roce')?tl('roce','ROCE %',1,true):''}${has('rg')?tl('rg','Revenue CAGR %',1,true):''}</div>
       <p class="mut" style="font-size:12.5px;margin:10px 0 0">${esc(s)} P/E ${num(me.pe)?T.fmt(me.pe,1)+'x':'–'} ${prem('pe')} · P/B ${num(me.pb)?T.fmt(me.pb,2)+'x':'–'} ${prem('pb')} · group weighted P/E ${num(wv('pe'))?T.fmt(wv('pe'),1)+'x':'–'}, weighted P/B ${num(wv('pb'))?T.fmt(wv('pb'),2)+'x':'–'}.
@@ -450,6 +451,43 @@ async function peersTab(s){
     box.querySelectorAll('th.sortable').forEach(th=>th.onclick=()=>{const k=th.dataset.k;if(PR.sort===k)PR.dir*=-1;else{PR.sort=k;PR.dir=-1}draw()});
     box.querySelectorAll('tbody tr[data-s]').forEach(tr=>tr.onclick=()=>{location.hash='#/stock/'+tr.dataset.s+'/peers'});
   };
+  draw();
+}
+
+// ---------- sector / industry page ----------
+const SR={sort:'mc',dir:-1};
+async function sectorPage(lv,name){
+  view.innerHTML=SKEL;
+  const P=await get('data/peers.json','json');
+  if(!P||!P.stocks){view.innerHTML='<div class="card"><p class="mut">Peer data not built yet. Run the Daily refresh once.</p></div>';return}
+  const num=v=>v!=null&&isFinite(v);
+  const g=P.stocks.filter(x=>x[lv]===name),all=P.stocks.filter(x=>num(x.mc));
+  if(!g.length){view.innerHTML=`<div class="crumb"><a href="#/market">Market Overview</a></div><div class="card"><p class="mut">No stocks found for ${esc(name)}.</p></div>`;return}
+  const tot=all.reduce((a,x)=>a+x.mc,0),gm=g.reduce((a,x)=>a+(num(x.mc)?x.mc:0),0);
+  const wv=k=>{let mc=0,e=0;g.forEach(x=>{if(num(x.mc)&&num(x[k])&&x[k]>0){mc+=x.mc;e+=x.mc/x[k]}});return e?mc/e:null};
+  const wr=k=>{let m=0,s=0;g.forEach(x=>{if(num(x.mc)&&num(x[k])){m+=x.mc;s+=x.mc*x[k]}});return m?s/m:null};
+  const withT=g.filter(x=>x.a200!=null),a200=withT.length?withT.filter(x=>x.a200===1).length/withT.length*100:null;
+  const lvName={ind:'Industry',sec:'Sector',macro:'NSE group'}[lv]||'Group';
+  const tl=(k,v,sub)=>`<div class="tile"><div class="k">${k}</div><div class="tv">${v}</div>${sub?`<div class="k" style="margin-top:2px">${sub}</div>`:''}</div>`;
+  const f=(v,d,s='')=>num(v)?T.fmt(v,d)+s:'–';
+  const pc=v=>num(v)?`<span class="${cls(v)}">${v>=0?'+':''}${T.fmt(v,1)}%</span>`:'–';
+  // parent groups for context
+  const first=g[0],others=[['sec','Sector'],['macro','NSE group']].filter(([l])=>l!==lv&&first[l]);
+  const cols=PCOLS.filter(c=>c[0]==='mc'||g.filter(x=>num(x[c[0]])).length>=Math.max(2,g.length*0.3));
+  const draw=()=>{
+    const rows=g.slice().sort((a,b)=>{const x=a[SR.sort],y=b[SR.sort];if(!num(x)&&!num(y))return 0;if(!num(x))return 1;if(!num(y))return -1;return (x-y)*SR.dir});
+    const med={};cols.forEach(c=>med[c[0]]=medOf(g.map(x=>x[c[0]])));
+    const top=g.filter(x=>num(x.mc)).sort((a,b)=>b.mc-a.mc),t5=top.slice(0,5).reduce((a,x)=>a+x.mc,0);
+    $('#sbody').innerHTML=`<div class="card"><h3>${esc(lvName)} snapshot <span class="mut" style="font-weight:400;font-size:12px">${g.length} stocks${others.length?' · '+others.map(([l,n])=>`${n}: <a href="#/sector/${l}/${encodeURIComponent(first[l])}">${esc(first[l])}</a>`).join(' · '):''}</span></h3>
+      <div class="mtiles">${tl('Market cap',num(gm)?'₹'+T.fmt(gm,0)+' cr':'–',num(tot)&&tot?T.fmt(gm/tot*100,1)+'% of Nifty 500':'')}${tl('Weighted P/E',f(wv('pe'),1,'x'),'Median '+f(medOf(g.map(x=>x.pe)),1,'x'))}${tl('Weighted P/B',f(wv('pb'),2,'x'),'Median '+f(medOf(g.map(x=>x.pb)),2,'x'))}${tl('Median ROE',f(medOf(g.map(x=>x.roe)),1,'%'))}${tl('Median ROCE',f(medOf(g.map(x=>x.roce)),1,'%'))}${tl('Median revenue CAGR',f(medOf(g.map(x=>x.rg)),1,'%'))}${tl('1M return',pc(wr('r1m')),'cap-weighted')}${tl('1Y return',pc(wr('r1y')),'cap-weighted')}${tl('Above 200-DMA',a200==null?'–':T.fmt(a200,0)+'%','of stocks')}${tl('Top 5 share',gm?T.fmt(t5/gm*100,0)+'%':'–','of group market cap')}</div></div>
+     <div class="card" style="overflow-x:auto"><h3>Constituents</h3><table class="peer"><thead><tr><th>Company</th>${cols.map(c=>`<th class="num sortable ${SR.sort===c[0]?'sorted':''}" data-k="${c[0]}">${c[1]}${SR.sort===c[0]?(SR.dir<0?' ▼':' ▲'):''}</th>`).join('')}</tr></thead><tbody>
+      ${rows.map(r=>`<tr data-s="${esc(r.s)}"><td><b>${esc(r.s)}</b><div class="k">${esc(r.n)}</div></td>${cols.map(c=>`<td class="num ${SR.sort===c[0]?'sorted':''}">${num(r[c[0]])?T.fmt(r[c[0]],c[2]):'–'}</td>`).join('')}</tr>`).join('')}
+      <tr class="medrow"><td><b>Median</b></td>${cols.map(c=>`<td class="num">${num(med[c[0]])?T.fmt(med[c[0]],c[2]):'–'}</td>`).join('')}</tr></tbody></table></div>
+     <p class="mut" style="font-size:12px">Weighted P/E and P/B = total market cap divided by total earnings (or book value) of the stocks with positive values. Returns are weighted by market cap. Groups come from NSE's Nifty 500 list and Yahoo Finance tags.</p>`;
+    document.querySelectorAll('#sbody th.sortable').forEach(th=>th.onclick=()=>{const k=th.dataset.k;if(SR.sort===k)SR.dir*=-1;else{SR.sort=k;SR.dir=-1}draw()});
+    document.querySelectorAll('#sbody tbody tr[data-s]').forEach(tr=>tr.onclick=()=>{location.hash='#/stock/'+tr.dataset.s+'/peers'});
+  };
+  view.innerHTML=`<div class="crumb"><a href="#/market">Market Overview</a> › ${esc(lvName)}</div><h1 style="margin:0 0 12px;font-size:24px">${esc(name)}</h1><div id="sbody"></div>`;
   draw();
 }
 
