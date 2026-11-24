@@ -651,7 +651,7 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
   let payer=null;
   try{const st=await get(`data/statements/${s}.json`,'json');const cf=st&&st.annual_cashflow;if(cf){const row=cf.rows.find(r=>/dividend/i.test(r[0])&&/paid/i.test(r[0]))||cf.rows.find(r=>/dividend/i.test(r[0]));payer=row?row[1].slice(-3).some(v=>v!=null&&Math.abs(v)>0):false}}catch(e){}
   const live=[];if(dcf)live.push(['dcf','DCF']);if(fin)live.push(['fin','Justified P/B']);if(rl)live.push(['rl','Realty NAV']);
-  live.push(['mult','Price multiples']);if(!fnc)live.push(['ev','EV multiples']);const soon=[];if(payer)live.push(['ddm','DDM']);else soon.push('ddm');soon.push('asset','ri');if(!fnc)soon.push('epv','sotp','graham');if(ins)soon.push('embv');soon.push('ff');
+  live.push(['mult','Price multiples']);if(!fnc)live.push(['ev','EV multiples']);const soon=[];if(payer)live.push(['ddm','DDM']);else soon.push('ddm');live.push(['ri','Residual income'],['asset','Asset based']);if(!fnc)soon.push('epv','sotp','graham');if(ins)soon.push('embv');soon.push('ff');
   const subs=live.concat(soon.map(k=>[k,VAL_MODELS[k].label,true]));
   if(!VS.sub||!subs.some(x=>x[0]===VS.sub))VS.sub=subs[0][0];
   const ph=k=>{const m=VAL_MODELS[k];
@@ -667,6 +667,8 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
     else if(VS.sub==='fin'){b.innerHTML='<div id="finbox"></div><div id="scbox"></div>';finPanel(fin);scenarioPanel('#scbox',null,fin,price)}
     else if(VS.sub==='rl'){b.innerHTML='<div id="rlbox"></div>';realtyPanel(rl)}
     else if(VS.sub==='ddm'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';ddmPanel(s,price,dcf,fin)}
+    else if(VS.sub==='ri'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';riPanel(s,price,dcf,fin)}
+    else if(VS.sub==='asset'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';assetPanel(s,price)}
     else if(VS.sub==='ev'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';evPanel(s,price)}
     else if(VS.sub==='mult'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';multPanel(s,price)}
     else b.innerHTML=ph(VS.sub);
@@ -821,6 +823,95 @@ async function ddmPanel(s,price,dcf,fin){
     ${edBar(o)}
     <p class="mut" style="font-size:12px;margin-top:10px">Dividend per share is total dividends paid divided by today's share count, so it is approximate. One-off or special dividends raise it and can overstate the value. Stage 1 growth is the past dividend growth, kept between 0% and 12%. Terminal growth is your long-run GDP growth assumption. Bear lowers growth by the growth spread, raises cost of equity by the spread and lowers terminal growth by the same spread; Bull does the reverse (terminal growth rises only 0.5 point).</p></div>`;
   edBind(box,o,()=>ddmPanel(s,price,dcf,fin));
+}
+
+
+// ---------- Residual income model ----------
+async function riPanel(s,price,dcf,fin){
+  const box=$('#multbox');if(!box)return;
+  const P=await get('data/peers.json','json');
+  const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
+  const st=await get(`data/statements/${s}.json`,'json');
+  let bv=null,roe=null;
+  if(fin&&fin.model&&fin.model.bvps){bv=fin.model.bvps;roe=fin.model.roe_pct}
+  if(bv==null&&me&&me.pb>0&&price)bv=price/me.pb;
+  if(roe==null&&me)roe=me.roe;
+  if(!(bv>0)||roe==null||!isFinite(roe)){box.innerHTML='<div class="card"><h3>Residual income</h3><p class="mut">Book value or ROE is not available for this stock, so the model cannot be run.</p></div>';return}
+  let ke=null;
+  try{if(dcf){const r=T.recompute(dcf,{rf:A.rf/100,erp:A.erp/100,gT:A.g/100});ke=r&&r.ke}else if(fin){const r=T.finModel(fin,{rf:A.rf/100,erp:A.erp/100,g:A.g/100});ke=r&&r.ke}}catch(e){}
+  if(ke==null){const rk=await get(`data/risk/${s}.json`,'json');const beta=rk&&rk.beta&&rk.beta.adjusted!=null?rk.beta.adjusted:1;ke=A.rf/100+beta*A.erp/100}
+  // payout from the latest year's dividends and net income
+  let po=null;
+  try{const cf=st&&st.annual_cashflow,inc=st&&st.annual_income;
+    const dr=cf&&(cf.rows.find(r=>/dividend/i.test(r[0])&&/paid/i.test(r[0]))||cf.rows.find(r=>/dividend/i.test(r[0])));
+    const nr=inc&&(inc.rows.find(r=>/^net income common stockholders$/i.test(r[0]))||inc.rows.find(r=>/^net income$/i.test(r[0])));
+    const lastv=r=>{for(let i=r[1].length-1;i>=0;i--)if(r[1][i]!=null)return r[1][i];return null};
+    if(dr&&nr){const d=lastv(dr),n=lastv(nr);if(d!=null&&n>0)po=Math.min(0.9,Math.abs(d)/n)}}catch(e){}
+  const poDef=po!=null?po*100:30;
+  const o=ovs('ri',s);
+  const bvU=o.bv!=null?o.bv:bv,roeU=(o.roe!=null?o.roe:roe)/100,keU=o.ke!=null?o.ke/100:ke,poU=Math.min(1,Math.max(0,(o.po!=null?o.po:poDef)/100));
+  const nU=Math.max(1,Math.min(20,Math.round(o.n!=null?o.n:10))),gTU=(o.gT!=null?o.gT:A.g)/100,rsU=(o.rs!=null?o.rs:2)/100,ksU=(o.ks!=null?o.ks:1)/100;
+  const run=(r0,k,rT)=>{let b=bvU,pv=0;for(let t=1;t<=nU;t++){const r=r0+(rT-r0)*t/nU;pv+=(r-k)*b/Math.pow(1+k,t);b*=1+r*(1-poU)}
+    if(rT>k){const g=Math.min(gTU,k-0.01);pv+=((rT-k)*b/(k-g))/Math.pow(1+k,nU)}
+    return Math.max(0,bvU+pv)};
+  const rTb=o.roeT!=null?o.roeT/100:null;
+  const sc=[['sc-bear','Bear',run(roeU-rsU,keU+ksU,rTb!=null?rTb:keU+ksU)],['sc-base','Base',run(roeU,keU,rTb!=null?rTb:keU)],['sc-bull','Bull',run(roeU+rsU,keU-ksU,rTb!=null?rTb:keU-ksU)]];
+  const up=v=>price?(v/price-1)*100:null;
+  box.innerHTML=`<div class="card mph"><h3>Residual income <span class="mut" style="font-weight:400;font-size:12px">book value plus the value of excess returns</span></h3>
+    <p class="mut" style="margin-top:0">Value = book value per share + present value of profits earned above the cost of equity. ROE fades in a straight line from today's level to the long-term ROE over the forecast years, and book value grows by the profit that is retained.</p>
+    <div class="scn">${sc.map(([c,n,v])=>`<div class="sc ${c}"><div class="sn">${n}</div><div class="sv">₹${T.fmt(v,0)}</div><div class="su ${cls(up(v))}">${up(v)>=0?'+':''}${T.fmt(up(v),1)}% vs price</div></div>`).join('')}</div>
+    <div style="overflow-x:auto;margin-top:14px"><table class="peer kv"><thead><tr><th>Input</th><th class="num">Value</th></tr></thead><tbody>
+     <tr><td>Book value per share, ₹</td><td class="num">${ed(o,'bv',bvU,1,1)}</td></tr>
+     <tr><td>Current P/B</td><td class="num">${T.fmt(price/bvU,2)}x</td></tr>
+     <tr><td>Return on equity today, %</td><td class="num">${ed(o,'roe',roeU*100,0.5,1)}</td></tr>
+     <tr><td>Cost of equity, %</td><td class="num">${ed(o,'ke',keU*100,0.25,2)}</td></tr>
+     <tr><td>Long-term ROE, % (default: equals cost of equity, so excess returns fade away)</td><td class="num">${ed(o,'roeT',rTb!=null?rTb*100:keU*100,0.5,1)}</td></tr>
+     <tr><td>Fade period, years</td><td class="num">${ed(o,'n',nU,1,0)}</td></tr>
+     <tr><td>Dividend payout, % of profit${po==null?' (assumed, no data)':''}</td><td class="num">${ed(o,'po',poU*100,5,0)}</td></tr>
+     <tr><td>Terminal growth, % (used only if long-term ROE is above cost of equity)</td><td class="num">${ed(o,'gT',gTU*100,0.1,1)}</td></tr>
+     <tr><td>Bear / bull ROE spread, points</td><td class="num">${ed(o,'rs',rsU*100,0.5,1)}</td></tr>
+     <tr><td>Bear / bull cost of equity spread, points</td><td class="num">${ed(o,'ks',ksU*100,0.25,2)}</td></tr></tbody></table></div>
+    ${edBar(o)}
+    <p class="mut" style="font-size:12px;margin-top:10px">Best for banks, NBFCs and other companies where book value is meaningful. The default assumes excess returns fade to zero, which is conservative: a business that keeps earning above its cost of equity is worth more, so raise the long-term ROE if you believe in a lasting advantage. ROE and book value come from the latest annual data. Bear lowers ROE and raises cost of equity by the spreads; Bull does the reverse.</p></div>`;
+  edBind(box,o,()=>riPanel(s,price,dcf,fin));
+}
+
+// ---------- Asset based (net asset value) ----------
+async function assetPanel(s,price){
+  const box=$('#multbox');if(!box)return;
+  const P=await get('data/peers.json','json');
+  const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
+  const st=await get(`data/statements/${s}.json`,'json');
+  const bs=st&&st.annual_balance;
+  const lastv=r=>{if(!r)return null;for(let i=r[1].length-1;i>=0;i--)if(r[1][i]!=null)return r[1][i];return null};
+  const find=(...res)=>{if(!bs)return null;for(const re of res){const r=bs.rows.find(x=>re.test(x[0]));if(r&&lastv(r)!=null)return r}return null};
+  const eqR=find(/^stockholders equity$/i,/^common stock equity$/i,/^total equity gross minority interest$/i);
+  if(!eqR||!me||!me.mc||!price){box.innerHTML='<div class="card"><h3>Asset based</h3><p class="mut">No balance sheet found for this stock, so a net asset value cannot be calculated.</p></div>';return}
+  const cr=v=>v==null?null:v/1e7;
+  const eq=cr(lastv(eqR));
+  const gwR=find(/^goodwill and other intangible assets$/i);
+  let intang=gwR?cr(lastv(gwR)):null;
+  if(intang==null){const g=find(/^goodwill$/i),i=find(/other intangible assets/i);intang=(g?cr(lastv(g)):0)+(i?cr(lastv(i)):0)}
+  const shares=me.mc/price;
+  const o=ovs('asset',s);
+  const eqU=o.eq!=null?o.eq:eq,inU=o.int!=null?o.int:intang,rvU=o.rv!=null?o.rv:0,shU=o.sh!=null?o.sh:shares,spU=(o.sp!=null?o.sp:15)/100;
+  const nav=(eqU-inU+rvU)/shU;
+  const sc=[['sc-bear','Bear',nav*(1-spU)],['sc-base','Base',nav],['sc-bull','Bull',nav*(1+spU)]];
+  const up=v=>price?(v/price-1)*100:null;
+  box.innerHTML=`<div class="card mph"><h3>Asset based <span class="mut" style="font-weight:400;font-size:12px">net asset value per share</span></h3>
+    <p class="mut" style="margin-top:0">Value = shareholders' equity − goodwill and intangibles + your revaluation adjustment, divided by shares. It says what the balance sheet is worth, not what the earnings are worth.</p>
+    <div class="scn">${sc.map(([c,n,v])=>`<div class="sc ${c}"><div class="sn">${n}</div><div class="sv">${v>0?'₹'+T.fmt(v,0):'–'}</div><div class="su ${cls(up(v))}">${v>0?(up(v)>=0?'+':'')+T.fmt(up(v),1)+'% vs price':''}</div></div>`).join('')}</div>
+    <div style="overflow-x:auto;margin-top:14px"><table class="peer kv"><thead><tr><th>Input</th><th class="num">Value</th></tr></thead><tbody>
+     <tr><td>Shareholders' equity (₹ cr, latest year)</td><td class="num">${ed(o,'eq',eqU,1,0)}</td></tr>
+     <tr><td>Goodwill and intangibles (₹ cr)</td><td class="num">${ed(o,'int',inU,1,0)}</td></tr>
+     <tr><td>Revaluation adjustment (₹ cr; + if assets such as land or investments are worth more than book, − if less)</td><td class="num">${ed(o,'rv',rvU,1,0)}</td></tr>
+     <tr><td>Shares (crore)</td><td class="num">${ed(o,'sh',shU,0.01,2)}</td></tr>
+     <tr><td>Net asset value per share, ₹</td><td class="num">${T.fmt(nav,1)}</td></tr>
+     <tr><td>Price / net asset value</td><td class="num">${nav>0?T.fmt(price/nav,2)+'x':'–'}</td></tr>
+     <tr><td>Bear / bull spread around NAV, %</td><td class="num">${ed(o,'sp',spU*100,1,0)}</td></tr></tbody></table></div>
+    ${edBar(o)}
+    <p class="mut" style="font-size:12px;margin-top:10px">Most useful for asset-heavy companies, holding companies and as a floor value. It undervalues asset-light businesses whose worth lies in earnings and brands. The bear and bull values simply move NAV down and up by the spread, as they are not forecasts. Book values are as reported, not market values.</p></div>`;
+  edBind(box,o,()=>assetPanel(s,price));
 }
 
 // ---------- stock ----------
