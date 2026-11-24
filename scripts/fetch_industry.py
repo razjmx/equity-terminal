@@ -9,6 +9,7 @@ import csv, io, os, time, datetime, requests
 import yfinance as yf
 
 LIMIT = int(os.environ.get("LIMIT", "0") or 0)
+ONLY_NEW = os.environ.get("ONLY_NEW", "") in ("1", "true", "True")
 H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"}
 log = [f"Run (UTC): {datetime.datetime.utcnow():%Y-%m-%d %H:%M}"]
 
@@ -21,23 +22,24 @@ if LIMIT:
     syms = syms[:LIMIT]
 
 lst = {}
-for u in ("https://nsearchives.nseindia.com/content/indices/ind_nifty500list.csv",
-          "https://archives.nseindia.com/content/indices/ind_nifty500list.csv"):
-    try:
-        r = requests.get(u, headers=H, timeout=30)
-        if r.status_code == 200 and "Symbol" in r.text[:300]:
-            for x in csv.DictReader(io.StringIO(r.text)):
-                lst[x["Symbol"].strip()] = (x.get("Industry") or "").strip()
-            log.append(f"Nifty 500 list: {len(lst)} rows")
-            break
-        log.append(f"Nifty 500 list {u}: HTTP {r.status_code}")
-    except Exception as e:
-        log.append(f"Nifty 500 list {u}: {e!r}"[:200])
+for fn in ("ind_nifty500list.csv", "ind_niftymicrocap250_list.csv", "ind_niftymicrocap250list.csv"):
+    for u in ("https://nsearchives.nseindia.com/content/indices/" + fn, "https://archives.nseindia.com/content/indices/" + fn):
+        try:
+            r = requests.get(u, headers=H, timeout=30)
+            if r.status_code == 200 and "Symbol" in r.text[:300]:
+                n0 = len(lst)
+                for x in csv.DictReader(io.StringIO(r.text)):
+                    lst[x["Symbol"].strip()] = (x.get("Industry") or "").strip()
+                log.append(f"{fn}: {len(lst) - n0} rows")
+                break
+            log.append(f"{fn} {u.split('/')[2]}: HTTP {r.status_code}")
+        except Exception as e:
+            log.append(f"{fn} {u.split('/')[2]}: {e!r}"[:200])
 
 rows = {}; ok = part = bad = 0
 for i, sym in enumerate(syms):
     sec = ind = ""
-    for attempt in range(2):
+    for attempt in range(0 if (ONLY_NEW and sym in old) else 2):
         try:
             info = yf.Ticker(sym + ".NS").info or {}
             sec = info.get("sector") or ""; ind = info.get("industry") or ""
