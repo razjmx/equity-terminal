@@ -452,3 +452,8 @@ table.sotp select.ed{padding:4px 6px}
 .navrow .searchbox #search{height:44px;width:100%;box-sizing:border-box;padding:0 18px;border-radius:999px;background:var(--p);box-shadow:var(--sh);border:1px solid var(--b)}
 .tabs{top:102px}.mh-bar{position:static}
 @media(max-width:860px){.navrow{position:static;flex-wrap:wrap}.navrow .searchbox{position:static;transform:none;width:100%;margin-top:8px}.navrow .searchbox #search{height:auto;padding:9px 14px}.tape{position:static}.tabs{top:0}}
+
+/* pop grows by a few pixels at most, so it never covers the controls above or leaves the map */
+.hmbox{margin:18px 14px 20px}
+.hmbox:hover .hmt:hover>div{transform:scale(var(--s,1.05)) translateY(-2px)}
+.hmbox:hover .hmt>div{transform:scale(.97)}
