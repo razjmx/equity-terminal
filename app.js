@@ -872,7 +872,7 @@ const VAL_MODELS={
  ff:{label:'Summary',what:'A football-field chart that lines up the fair-value range from every model above against the current price.',best:'The final view once the models are calculated.',inputs:['Low and high value from each model','Current price marker','Average and median of the models']}
 };
 async function valTabs(s,dcf,fin,rl,price,met,u){
-  const fnc=(met&&met.type==='financial')||!!fin,ins=/life/i.test((u&&u.industry)||(met&&met.industry)||'')||/\blife\b/i.test((u&&u.company)||'');
+  const fnc=(met&&met.type==='financial')||!!fin,ins=(/life/i.test((u&&u.industry)||(met&&met.industry)||'')||/\blife\b/i.test((u&&u.company)||''))&&!/health|general|reinsur/i.test((u&&u.company)||'');
   window.__ins=ins;let payer=null;
   try{const st=await get(`data/statements/${s}.json`,'json');const cf=st&&st.annual_cashflow;if(cf){const row=cf.rows.find(r=>/dividend/i.test(r[0])&&/paid/i.test(r[0]))||cf.rows.find(r=>/dividend/i.test(r[0]));payer=row?row[1].slice(-3).some(v=>v!=null&&Math.abs(v)>0):false}}catch(e){}
   const live=[];if(dcf)live.push(['dcf','DCF']);if(fin)live.push(['fin','Justified P/B']);if(rl)live.push(['rl','Realty NAV']);
