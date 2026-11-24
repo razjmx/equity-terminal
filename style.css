@@ -406,3 +406,17 @@ table.sotp input.ed,table.sotp select.ed{width:100%;min-width:88px;box-sizing:bo
 table.sotp input.tx{min-width:130px;text-align:left}
 table.sotp select.ed{padding:4px 6px}
 .rmrow{border:0;background:transparent;color:var(--r);font-size:20px;line-height:1;cursor:pointer;padding:0 6px}
+/* screener */
+.scpre{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.scpre button{border:1px solid var(--b);background:var(--p);color:var(--t);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
+.scpre button:hover{border-color:var(--brand)}
+.scgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.scg .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--m);margin-bottom:6px}
+.scf{display:flex;align-items:center;gap:6px;margin:5px 0;font-size:13px}
+.scf>span:first-child{flex:1;min-width:0}
+.scf input[type=number]{width:70px;padding:5px 6px;border:1px solid var(--b);border-radius:6px;background:var(--p);color:var(--t)}
+.scf select,.scf input#sc-q{max-width:150px;padding:5px 6px;border:1px solid var(--b);border-radius:6px;background:var(--p);color:var(--t)}
+.sccaps{display:flex;gap:8px;flex:0 0 auto!important}.sccaps label{font-size:12px;display:flex;gap:3px;align-items:center}
+.schd{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.sctb th{cursor:pointer;white-space:nowrap}.sctb td.l{white-space:nowrap;max-width:200px;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:600px){.scf input[type=number]{width:62px}.scgrid{grid-template-columns:1fr}}
