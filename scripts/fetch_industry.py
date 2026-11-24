@@ -25,7 +25,22 @@ if os.path.exists("data/industry.csv"):
 syms = [r["symbol"] for r in csv.DictReader(open("data/universe.csv", newline=""))]
 if LIMIT:
     syms = syms[:LIMIT]
-s = new_session(); rows = {}; ok = bad = 0; shown = 0
+# fallback: NSE published Nifty 500 list (one "Industry" per stock)
+lst = {}
+for u in ("https://nsearchives.nseindia.com/content/indices/ind_nifty500list.csv",
+          "https://archives.nseindia.com/content/indices/ind_nifty500list.csv"):
+    try:
+        r = requests.get(u, headers=H, timeout=30)
+        if r.status_code == 200 and "Symbol" in r.text[:300]:
+            import io
+            for x in csv.DictReader(io.StringIO(r.text)):
+                lst[x["Symbol"].strip()] = (x.get("Industry") or "").strip()
+            log.append(f"Nifty 500 list: {len(lst)} rows from {u}")
+            break
+        log.append(f"Nifty 500 list {u}: HTTP {r.status_code}")
+    except Exception as e:
+        log.append(f"Nifty 500 list {u}: {e!r}"[:200])
+s = new_session(); rows = {}; ok = bad = 0; shown = 0; fb = 0
 for i, sym in enumerate(syms):
     if i and i % 60 == 0:
         s = new_session()
@@ -37,17 +52,25 @@ for i, sym in enumerate(syms):
             if r.status_code == 200:
                 j = r.json()
                 info = j.get("industryInfo") or None
-                if not info and shown < 2:
+                if not info and shown < 4:
                     log.append(f"{sym}: 200 but no industryInfo. keys={list(j.keys())[:12]}"); shown += 1
                 break
-            if r.status_code in (401, 403):
-                time.sleep(2); s = new_session()
-        except Exception:
+            else:
+                if shown < 4:
+                    log.append(f"{sym}: HTTP {r.status_code} {r.text[:120]!r}"); shown += 1
+                if r.status_code in (401, 403):
+                    time.sleep(2); s = new_session()
+        except Exception as e:
+            if shown < 4:
+                log.append(f"{sym}: error {e!r}"[:200]); shown += 1
             time.sleep(1.5)
     if info and (info.get("sector") or info.get("industry")):
         rows[sym] = {"symbol": sym, "macro": info.get("macro") or "", "sector": info.get("sector") or "",
                      "industry": info.get("industry") or "", "basic_industry": info.get("basicIndustry") or ""}
         ok += 1
+    elif lst.get(sym):
+        rows[sym] = {"symbol": sym, "macro": lst[sym], "sector": lst[sym], "industry": lst[sym], "basic_industry": ""}
+        fb += 1
     else:
         bad += 1
         if sym in old:
@@ -64,6 +87,6 @@ with open("data/industry.csv", "w", newline="") as f:
     w.writeheader()
     for k in sorted(rows):
         w.writerow({c: rows[k].get(c, "") for c in w.fieldnames})
-log.append(f"Classified {ok}, failed {bad}, of {len(syms)}. Distinct sectors: {len({r['sector'] for r in rows.values() if r.get('sector')})}, industries: {len({r['industry'] for r in rows.values() if r.get('industry')})}")
+log.append(f"Classified {ok} (NSE quote) + {fb} (Nifty 500 list), failed {bad}, of {len(syms)}. Distinct sectors: {len({r['sector'] for r in rows.values() if r.get('sector')})}, industries: {len({r['industry'] for r in rows.values() if r.get('industry')})}")
 open("data/industry_log.txt", "w").write("\n".join(log[:300]) + "\n")
 print("\n".join(log[-4:]))
