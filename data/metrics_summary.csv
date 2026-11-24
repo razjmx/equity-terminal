@@ -1,195 +1,195 @@
 symbol,industry,type,latest_fy,profit_basis,roe_pct,roce_pct,net_margin_pct,ebit_margin_pct,core_ebit_margin_pct,debt_equity,rev_cagr_pct,pe_reported,pe_used,pb,equity_ratio,piotroski,piotroski_tested,altman_z2,altman_zone,dcf_eligible,flags
 360ONE,Financial Services,financial,2026-03-31,reported,12.4,,,,,,24.0,42.36,42.36,5.24,0.9,,,,,False,override: financial (wealth and asset manager with lending book)
 ABB,Capital Goods,standard,2025-12-31,reported,21.3,28.5,12.8,17.2,14.4,0.01,15.4,87.25,87.25,18.57,0.84,4.0,9.0,6.65,safe,True,
-ACC,Construction Materials,standard,2026-03-31,reported,10.4,10.4,8.5,9.1,7.3,0.03,12.9,11.03,11.03,1.15,0.99,5.0,9.0,6.97,safe,True,
-ACMESOLAR,Power,standard,2026-03-31,core,8.1,7.0,20.3,88.0,65.9,3.93,16.0,58.29,70.72,5.75,0.58,6.0,9.0,1.63,grey,True,equity check mismatch (ratio 0.58); figures NOT changed; one-off items removed from profit
-AIAENG,Capital Goods,standard,2026-03-31,reported,15.8,19.9,29.1,37.3,26.3,0.0,-3.4,24.89,24.89,3.94,0.95,7.0,9.0,26.22,safe,True,recurring unusual items kept in profit
+ACC,Construction Materials,standard,2026-03-31,reported,10.4,10.4,8.5,9.1,7.3,0.03,12.9,11.22,11.22,1.17,0.99,5.0,9.0,6.97,safe,True,
+ACMESOLAR,Power,standard,2026-03-31,core,8.1,7.0,20.3,88.0,65.9,3.93,16.0,57.41,69.65,5.66,0.58,6.0,9.0,1.63,grey,True,equity check mismatch (ratio 0.58); figures NOT changed; one-off items removed from profit
+AIAENG,Capital Goods,standard,2026-03-31,reported,15.8,19.9,29.1,37.3,26.3,0.0,-3.4,25.23,25.23,3.99,0.95,7.0,9.0,26.22,safe,True,recurring unusual items kept in profit
 APLAPOLLO,Capital Goods,standard,2026-03-31,reported,22.7,28.0,5.4,7.4,7.1,0.09,12.6,38.54,38.54,8.75,0.93,8.0,9.0,5.33,safe,True,
-AUBANK,Financial Services,financial,2026-03-31,reported,13.2,,,,,,30.4,27.91,27.91,3.69,0.92,,,,,False,financial or no EBIT
+AUBANK,Financial Services,financial,2026-03-31,reported,13.2,,,,,,30.4,27.95,27.95,3.7,0.92,,,,,False,financial or no EBIT
 AWL,Fast Moving Consumer Goods,standard,2026-03-31,core,8.8,15.3,1.2,2.5,2.3,0.78,8.7,20.8,23.71,2.08,0.96,7.0,9.0,2.96,safe,True,one-off items removed from profit
-AADHARHFC,Financial Services,financial,2026-03-31,reported,14.5,,,,,,21.7,16.63,16.63,2.42,0.92,,,,,False,override: financial (housing finance)
+AADHARHFC,Financial Services,financial,2026-03-31,reported,14.5,,,,,,21.7,16.69,16.69,2.43,0.92,,,,,False,override: financial (housing finance)
 AARTIIND,Chemicals,standard,2026-03-31,reported,7.0,7.5,5.1,7.6,8.2,0.83,7.9,38.9,38.9,2.74,0.95,5.0,9.0,1.7,grey,True,
 AAVAS,Financial Services,financial,2026-03-31,reported,13.0,,,,,,18.8,13.21,13.21,1.71,0.94,,,,,False,override: financial (housing finance)
-ABBOTINDIA,Healthcare,standard,2026-03-31,reported,32.5,41.9,22.4,30.4,26.3,0.04,9.0,35.77,35.77,11.63,1.12,5.0,9.0,9.2,safe,True,equity check mismatch (ratio 1.12); figures NOT changed
-ACE,Capital Goods,standard,2026-03-31,reported,20.6,28.5,12.7,17.7,14.8,0.0,15.0,34.05,34.05,7.03,0.88,7.0,9.0,5.4,safe,True,
-ACUTAAS,Healthcare,standard,2026-03-31,reported,21.5,27.7,26.8,36.5,33.5,0.02,29.4,89.05,89.05,19.19,0.89,6.0,9.0,11.46,safe,True,
+ABBOTINDIA,Healthcare,standard,2026-03-31,reported,32.5,41.9,22.4,30.4,26.3,0.04,9.0,36.32,36.32,11.81,1.12,5.0,9.0,9.2,safe,True,equity check mismatch (ratio 1.12); figures NOT changed
+ACE,Capital Goods,standard,2026-03-31,reported,20.6,28.5,12.7,17.7,14.8,0.0,15.0,33.56,33.56,6.93,0.88,7.0,9.0,5.4,safe,True,
+ACUTAAS,Healthcare,standard,2026-03-31,reported,21.5,27.7,26.8,36.5,33.5,0.02,29.4,88.1,88.1,18.98,0.89,6.0,9.0,11.46,safe,True,
 ADANIENSOL,Power,standard,2026-03-31,reported,9.0,8.4,8.4,24.0,23.3,1.93,27.7,78.76,78.76,7.07,0.8,6.0,9.0,1.31,grey,True,discontinued operations excluded from profit
 ADANIENT,Metals & Mining,standard,2026-03-31,reported,11.5,9.8,9.3,19.9,8.4,1.32,-7.7,38.82,38.82,4.48,0.82,4.0,9.0,1.48,grey,True,recurring unusual items kept in profit; core EBIT 58% below reported EBIT
 ADANIGREEN,Power,standard,2026-03-31,core,1.5,6.3,2.5,63.8,49.2,5.08,16.6,138.69,,11.48,0.97,6.0,9.0,0.25,distress,True,"one-off items removed from profit; P/E 755 not meaningful, shown blank"
 ADANIPORTS,Services,standard,2026-03-31,reported,13.3,11.0,33.1,48.0,45.1,0.66,22.9,34.52,34.52,4.6,0.94,6.0,9.0,3.06,safe,True,
 ADANIPOWER,Power,standard,2026-03-31,reported,19.8,15.1,23.7,34.1,29.1,0.84,12.5,31.24,31.24,6.17,0.85,4.0,9.0,3.15,safe,True,
 ATGL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,13.5,13.6,11.2,17.0,15.4,0.59,10.4,92.32,92.32,12.44,0.94,4.0,9.0,2.8,safe,True,
-ABCAPITAL,Financial Services,financial,2026-03-31,reported,10.9,,,,,,17.1,30.25,30.25,3.31,0.8,,,,,False,override: financial (NBFC and insurance group)
-ABREL,Realty,realty,2026-03-31,core,-8.8,-5.2,-80.9,-102.2,-102.8,1.52,-52.6,,,3.77,0.81,6.0,9.0,2.05,grey,False,override: realty (developer: value on NAV); discontinued operations excluded from profit
-ABSLAMC,Financial Services,standard,2026-03-31,reported,24.1,30.7,52.8,68.9,57.4,0.02,14.6,27.58,27.58,6.65,1.04,6.0,9.0,20.13,safe,True,
+ABCAPITAL,Financial Services,financial,2026-03-31,reported,10.9,,,,,,17.1,30.78,30.78,3.37,0.8,,,,,False,override: financial (NBFC and insurance group)
+ABREL,Realty,realty,2026-03-31,core,-8.8,-5.2,-80.9,-102.2,-102.8,1.52,-52.6,,,3.64,0.81,6.0,9.0,2.05,grey,False,override: realty (developer: value on NAV); discontinued operations excluded from profit
+ABSLAMC,Financial Services,standard,2026-03-31,reported,24.1,30.7,52.8,68.9,57.4,0.02,14.6,27.78,27.78,6.7,1.04,6.0,9.0,20.13,safe,True,
 CPPLUS,Capital Goods,standard,2026-03-31,reported,19.6,25.9,8.7,12.4,12.3,0.1,22.7,135.83,135.83,26.63,0.49,7.0,9.0,4.43,safe,True,equity check mismatch (ratio 0.49); figures NOT changed
 AEGISLOG,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,14.8,14.2,10.8,18.9,15.5,0.69,-1.3,49.01,49.01,7.27,0.84,7.0,9.0,3.27,safe,True,
-AEGISVOPAK,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,7.2,7.9,33.6,55.6,51.9,0.87,37.7,100.25,100.25,7.25,0.97,6.0,9.0,0.76,distress,True,
-AETHER,Chemicals,standard,2026-03-31,reported,8.9,12.1,19.4,27.2,24.0,0.19,20.2,96.58,96.58,8.63,0.95,6.0,9.0,5.94,safe,True,
-AFCONS,Construction,standard,2026-03-31,reported,4.6,10.0,2.1,7.6,7.6,0.67,-1.8,32.2,32.2,1.49,1.0,3.0,9.0,2.34,grey,True,recurring unusual items kept in profit
+AEGISVOPAK,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,7.2,7.9,33.6,55.6,51.9,0.87,37.7,103.61,103.61,7.5,0.97,6.0,9.0,0.76,distress,True,
+AETHER,Chemicals,standard,2026-03-31,reported,8.9,12.1,19.4,27.2,24.0,0.19,20.2,98.0,98.0,8.76,0.95,6.0,9.0,5.94,safe,True,
+AFCONS,Construction,standard,2026-03-31,reported,4.6,10.0,2.1,7.6,7.6,0.67,-1.8,32.0,32.0,1.48,1.0,3.0,9.0,2.34,grey,True,recurring unusual items kept in profit
 AFFLE,Information Technology,standard,2026-03-31,reported,12.5,15.2,16.8,20.7,18.6,0.0,23.6,51.06,51.06,6.36,0.85,6.0,9.0,10.0,safe,True,
-AJANTPHARM,Healthcare,standard,2026-03-31,reported,23.3,29.4,19.5,25.8,24.5,0.06,13.4,39.17,39.17,9.14,0.93,4.0,9.0,9.23,safe,True,
+AJANTPHARM,Healthcare,standard,2026-03-31,reported,23.3,29.4,19.5,25.8,24.5,0.06,13.4,39.26,39.26,9.16,0.93,4.0,9.0,9.23,safe,True,
 ALKEM,Healthcare,standard,2026-03-31,reported,16.7,18.6,15.8,20.6,18.2,0.15,8.3,26.32,26.32,4.38,0.93,4.0,9.0,7.34,safe,True,
-ABDL,Fast Moving Consumer Goods,standard,2026-03-31,reported,13.7,24.6,6.2,13.1,12.5,0.69,7.4,98.35,98.35,13.51,1.01,5.0,9.0,3.0,safe,True,
+ABDL,Fast Moving Consumer Goods,standard,2026-03-31,reported,13.7,24.6,6.2,13.1,12.5,0.69,7.4,97.31,97.31,13.36,1.01,5.0,9.0,3.0,safe,True,
 ARE&M,Automobile and Auto Components,standard,2026-03-31,reported,11.1,14.2,6.5,9.0,6.6,0.05,10.0,14.91,14.91,1.65,0.97,4.0,9.0,6.11,safe,True,recurring unusual items kept in profit
-AMBER,Consumer Durables,standard,2026-03-31,reported,4.1,7.2,1.5,4.9,5.2,0.62,20.7,135.99,135.99,5.53,1.0,6.0,9.0,1.52,grey,True,recurring unusual items kept in profit
+AMBER,Consumer Durables,standard,2026-03-31,reported,4.1,7.2,1.5,4.9,5.2,0.62,20.7,133.82,133.82,5.44,1.0,6.0,9.0,1.52,grey,True,recurring unusual items kept in profit
 AMBUJACEM,Construction Materials,standard,2026-03-31,reported,8.0,4.6,11.8,8.8,7.7,0.01,8.9,20.6,20.6,1.64,0.99,7.0,9.0,4.51,safe,True,
-ANANDRATHI,Financial Services,standard,2026-03-31,core,34.9,50.0,30.3,48.0,38.9,0.08,27.9,98.8,112.26,39.19,0.77,6.0,9.0,11.49,safe,True,one-off items removed from profit
-ANANTRAJ,Realty,realty,2026-03-31,reported,9.6,10.4,22.2,26.8,24.2,0.12,37.9,28.55,28.55,2.75,0.96,3.0,9.0,10.76,safe,False,override: realty (developer: value on NAV)
+ANANDRATHI,Financial Services,standard,2026-03-31,core,34.9,50.0,30.3,48.0,38.9,0.08,27.9,99.64,113.21,39.52,0.77,6.0,9.0,11.49,safe,True,one-off items removed from profit
+ANANTRAJ,Realty,realty,2026-03-31,reported,9.6,10.4,22.2,26.8,24.2,0.12,37.9,29.14,29.14,2.8,0.96,3.0,9.0,10.76,safe,False,override: realty (developer: value on NAV)
 ANGELONE,Financial Services,financial,2026-03-31,reported,15.0,,,,,,20.3,33.7,33.7,5.04,0.92,,,,,False,override: financial (broking with margin funding)
-ANTHEM,Healthcare,standard,2026-03-31,reported,19.5,26.8,27.9,39.1,33.2,0.02,26.2,91.16,91.16,17.73,0.93,8.0,9.0,15.05,safe,True,
-ANURAS,Chemicals,standard,2026-03-31,reported,5.2,7.3,7.3,17.1,17.0,0.57,14.1,87.91,87.91,4.53,0.42,7.0,9.0,2.67,safe,True,equity check mismatch (ratio 0.42); figures NOT changed
+ANTHEM,Healthcare,standard,2026-03-31,reported,19.5,26.8,27.9,39.1,33.2,0.02,26.2,90.56,90.56,17.62,0.93,8.0,9.0,15.05,safe,True,
+ANURAS,Chemicals,standard,2026-03-31,reported,5.2,7.3,7.3,17.1,17.0,0.57,14.1,88.97,88.97,4.58,0.42,7.0,9.0,2.67,safe,True,equity check mismatch (ratio 0.42); figures NOT changed
 APARINDS,Capital Goods,standard,2026-03-31,reported,18.1,26.7,4.3,7.0,7.2,0.18,17.0,60.79,60.79,11.01,0.63,5.0,9.0,3.98,safe,True,equity check mismatch (ratio 0.63); figures NOT changed
 APOLLOHOSP,Healthcare,standard,2026-03-31,reported,20.5,19.2,7.8,12.1,11.7,0.9,14.8,68.55,68.55,14.04,0.89,7.0,9.0,2.59,grey,True,
 APOLLOTYRE,Automobile and Auto Components,standard,2026-03-31,core,13.0,8.0,7.7,6.0,9.5,0.22,5.4,19.39,12.29,1.59,0.95,8.0,9.0,3.54,safe,True,one-off items removed from profit
-APTUS,Financial Services,financial,2026-03-31,reported,18.6,,,,,,23.0,10.16,10.16,1.89,0.93,,,,,False,financial or no EBIT
-ASAHIINDIA,Automobile and Auto Components,standard,2026-03-31,reported,8.8,10.6,7.1,13.3,13.2,0.56,7.0,87.15,87.15,7.64,0.94,6.0,9.0,3.3,safe,True,
+APTUS,Financial Services,financial,2026-03-31,reported,18.6,,,,,,23.0,10.39,10.39,1.94,0.93,,,,,False,financial or no EBIT
+ASAHIINDIA,Automobile and Auto Components,standard,2026-03-31,reported,8.8,10.6,7.1,13.3,13.2,0.56,7.0,86.06,86.06,7.54,0.94,6.0,9.0,3.3,safe,True,
 ASHOKLEY,Capital Goods,standard,2026-03-31,core,32.6,14.5,8.3,17.6,19.6,4.49,10.6,26.86,20.1,6.55,1.08,4.0,9.0,1.77,grey,True,one-off items removed from profit
 ASIANPAINT,Consumer Durables,standard,2026-03-31,reported,20.2,24.4,12.2,17.4,15.8,0.18,1.1,57.18,57.18,11.57,0.98,7.0,9.0,6.71,safe,True,
 ASTERDM,Healthcare,standard,2026-03-31,reported,8.5,9.4,8.5,14.6,14.2,0.49,15.7,177.29,,15.04,0.55,5.0,9.0,2.81,safe,True,"equity check mismatch (ratio 0.55); figures NOT changed; P/E 177 not meaningful, shown blank"
-ASTRAL,Capital Goods,standard,2026-03-31,reported,13.2,17.6,8.2,11.6,11.5,0.06,8.4,61.33,61.33,8.11,0.96,6.0,9.0,6.59,safe,True,
+ASTRAL,Capital Goods,standard,2026-03-31,reported,13.2,17.6,8.2,11.6,11.5,0.06,8.4,62.71,62.71,8.29,0.96,6.0,9.0,6.59,safe,True,
 ATHERENERG,Automobile and Auto Components,standard,2026-03-31,reported,-20.1,-13.4,-14.1,-12.2,-15.7,0.26,27.2,,,30.55,0.63,6.0,9.0,0.44,distress,False,equity check mismatch (ratio 0.63); figures NOT changed
-ATUL,Chemicals,standard,2026-03-31,reported,10.9,13.5,10.9,14.8,11.5,0.03,4.9,21.82,21.82,2.38,0.95,7.0,9.0,9.51,safe,True,
-AUROPHARMA,Healthcare,standard,2026-03-31,reported,9.2,13.5,10.5,16.4,15.6,0.21,10.7,29.49,29.49,2.73,0.96,6.0,9.0,6.07,safe,True,
-AIIL,Financial Services,financial,2026-03-31,reported,13.1,,,,,,44.4,24.05,24.05,3.15,0.79,,,,,False,override: financial (investment company)
-AVANTIFEED,Fast Moving Consumer Goods,standard,2026-03-31,reported,18.4,23.5,10.1,14.8,11.5,0.0,5.9,15.74,15.74,2.9,0.99,5.0,9.0,13.45,safe,True,
+ATUL,Chemicals,standard,2026-03-31,reported,10.9,13.5,10.9,14.8,11.5,0.03,4.9,21.91,21.91,2.39,0.95,7.0,9.0,9.51,safe,True,
+AUROPHARMA,Healthcare,standard,2026-03-31,reported,9.2,13.5,10.5,16.4,15.6,0.21,10.7,29.53,29.53,2.73,0.96,6.0,9.0,6.07,safe,True,
+AIIL,Financial Services,financial,2026-03-31,reported,13.1,,,,,,44.4,24.3,24.3,3.18,0.79,,,,,False,override: financial (investment company)
+AVANTIFEED,Fast Moving Consumer Goods,standard,2026-03-31,reported,18.4,23.5,10.1,14.8,11.5,0.0,5.9,16.12,16.12,2.97,0.99,5.0,9.0,13.45,safe,True,
 DMART,Consumer Services,standard,2026-03-31,reported,12.1,16.4,4.3,6.1,6.0,0.1,17.1,74.78,74.78,9.08,0.94,5.0,9.0,8.8,safe,True,
 AXISBANK,Financial Services,financial,2026-03-31,reported,12.3,,,,,,12.2,16.39,16.39,2.01,0.93,,,,,False,financial or no EBIT
 AZAD,Capital Goods,standard,2026-03-31,reported,8.7,11.0,22.4,35.2,29.1,0.31,35.0,111.29,111.29,9.67,0.96,5.0,9.0,5.66,safe,True,
 BEML,Capital Goods,standard,2026-03-31,reported,4.8,5.9,3.4,5.9,5.3,0.24,3.0,118.14,118.14,5.7,1.02,2.0,9.0,4.34,safe,True,
-BLS,Consumer Services,standard,2026-03-31,reported,27.9,26.1,22.9,27.4,25.2,0.17,25.5,13.21,13.21,3.68,0.87,8.0,9.0,7.73,safe,True,
+BLS,Consumer Services,standard,2026-03-31,reported,27.9,26.1,22.9,27.4,25.2,0.17,25.5,13.35,13.35,3.72,0.87,8.0,9.0,7.73,safe,True,
 BSE,Financial Services,standard,2026-03-31,reported,37.4,40.9,55.7,73.6,65.9,0.0,76.5,61.11,61.11,22.87,0.73,8.0,9.0,5.4,safe,True,
 BAJAJ-AUTO,Automobile and Auto Components,standard,2026-03-31,reported,27.7,26.1,17.8,25.0,21.3,0.58,19.5,27.2,27.2,7.53,1.07,6.0,9.0,4.9,safe,True,
 BAJFINANCE,Financial Services,financial,2026-03-31,reported,16.7,,,,,,22.6,36.51,36.51,6.09,0.91,,,,,False,financial or no EBIT
 BAJAJFINSV,Financial Services,financial,2026-03-31,reported,12.6,,,,,,22.9,30.7,30.7,3.86,0.93,,,,,False,override: financial (financial holding company)
-BAJAJHLDNG,Financial Services,financial,2026-03-31,reported,13.2,,,,,,19.0,13.33,13.33,1.76,0.99,,,,,False,financial or no EBIT
+BAJAJHLDNG,Financial Services,financial,2026-03-31,reported,13.2,,,,,,19.0,13.48,13.48,1.78,0.99,,,,,False,financial or no EBIT
 BAJAJHFL,Financial Services,financial,2026-03-31,reported,11.4,,,,,,25.5,26.13,26.13,2.97,0.94,,,,,False,override: financial (housing finance)
-BALKRISIND,Automobile and Auto Components,standard,2026-03-31,reported,11.3,13.8,11.6,16.3,14.7,0.38,3.6,36.47,36.47,4.14,0.94,5.0,9.0,3.27,safe,True,
-BALRAMCHIN,Fast Moving Consumer Goods,standard,2026-03-31,reported,9.1,11.8,6.0,10.2,9.3,0.77,10.4,34.63,34.63,3.17,0.87,4.0,9.0,2.33,grey,True,
-BANDHANBNK,Financial Services,financial,2026-03-31,reported,4.8,,,,,,5.0,22.7,22.7,1.09,0.97,,,,,False,financial or no EBIT
+BALKRISIND,Automobile and Auto Components,standard,2026-03-31,reported,11.3,13.8,11.6,16.3,14.7,0.38,3.6,36.76,36.76,4.17,0.94,5.0,9.0,3.27,safe,True,
+BALRAMCHIN,Fast Moving Consumer Goods,standard,2026-03-31,reported,9.1,11.8,6.0,10.2,9.3,0.77,10.4,34.59,34.59,3.16,0.87,4.0,9.0,2.33,grey,True,
+BANDHANBNK,Financial Services,financial,2026-03-31,reported,4.8,,,,,,5.0,23.05,23.05,1.1,0.97,,,,,False,financial or no EBIT
 BANKBARODA,Financial Services,financial,2026-03-31,reported,12.0,,,,,,10.3,7.18,7.18,0.86,0.95,,,,,False,financial or no EBIT
 BANKINDIA,Financial Services,financial,2026-03-31,reported,11.5,,,,,,7.3,7.02,7.02,0.8,0.96,,,,,False,financial or no EBIT
 MAHABANK,Financial Services,financial,2026-03-31,reported,21.1,,,,,,15.6,10.69,10.69,2.26,0.89,,,,,False,financial or no EBIT
-BATAINDIA,Consumer Durables,standard,2026-03-31,core,10.1,11.2,4.6,9.0,9.4,0.87,0.6,60.02,49.91,5.05,1.29,6.0,9.0,3.68,safe,True,equity check mismatch (ratio 1.29); figures NOT changed; one-off items removed from profit
+BATAINDIA,Consumer Durables,standard,2026-03-31,core,10.1,11.2,4.6,9.0,9.4,0.87,0.6,60.77,50.53,5.11,1.29,6.0,9.0,3.68,safe,True,equity check mismatch (ratio 1.29); figures NOT changed; one-off items removed from profit
 BELRISE,Automobile and Auto Components,standard,2026-03-31,reported,9.5,14.4,5.3,9.4,8.5,0.29,13.5,46.34,46.34,4.41,0.73,7.0,9.0,5.21,safe,True,
-BERGEPAINT,Consumer Durables,standard,2026-03-31,reported,16.3,20.6,9.6,13.1,12.6,0.09,4.2,47.83,47.83,7.79,0.98,7.0,9.0,7.26,safe,True,
+BERGEPAINT,Consumer Durables,standard,2026-03-31,reported,16.3,20.6,9.6,13.1,12.6,0.09,4.2,48.06,48.06,7.83,0.98,7.0,9.0,7.26,safe,True,
 BHARATCOAL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,2.2,2.3,0.9,1.6,-6.4,0.39,3.4,,,,,2.0,9.0,0.39,distress,False,core EBIT 488% below reported EBIT
 BDL,Capital Goods,standard,2026-03-31,reported,9.9,7.2,17.4,23.6,6.2,0.0,-0.9,88.95,88.95,8.82,0.94,5.0,9.0,3.67,safe,True,core EBIT 74% below reported EBIT
 BEL,Capital Goods,standard,2026-03-31,reported,25.3,31.9,22.6,30.1,29.1,0.0,15.5,47.73,47.73,12.06,0.91,8.0,9.0,6.55,safe,True,
-BHARATFORG,Automobile and Auto Components,standard,2026-03-31,reported,11.3,15.6,6.7,12.2,12.1,0.76,9.7,77.94,77.94,8.78,0.81,7.0,9.0,2.87,safe,True,
+BHARATFORG,Automobile and Auto Components,standard,2026-03-31,reported,11.3,15.6,6.7,12.2,12.1,0.76,9.7,79.21,79.21,8.93,0.81,7.0,9.0,2.87,safe,True,
 BHEL,Capital Goods,standard,2026-03-31,reported,6.1,6.6,4.9,8.9,5.0,0.31,13.5,90.45,90.45,5.54,0.98,8.0,9.0,2.26,grey,True,core EBIT 45% below reported EBIT
-BPCL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,25.8,26.4,5.7,8.4,8.3,0.54,-1.2,5.13,5.13,1.32,0.97,7.0,9.0,1.46,grey,True,
-BHARTIARTL,Telecommunication,standard,2026-03-31,reported,17.9,16.7,12.7,29.9,31.3,1.31,14.9,49.75,49.75,8.91,0.94,8.0,9.0,0.55,distress,True,
-BHARTIHEXA,Telecommunication,standard,2026-03-31,reported,24.2,21.1,18.5,29.6,29.7,0.82,12.4,46.13,46.13,11.16,0.98,9.0,9.0,1.47,grey,True,
+BPCL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,25.8,26.4,5.7,8.4,8.3,0.54,-1.2,5.27,5.27,1.36,0.97,7.0,9.0,1.46,grey,True,
+BHARTIARTL,Telecommunication,standard,2026-03-31,reported,17.9,16.7,12.7,29.9,31.3,1.31,14.9,50.53,50.53,9.05,0.94,8.0,9.0,0.55,distress,True,
+BHARTIHEXA,Telecommunication,standard,2026-03-31,reported,24.2,21.1,18.5,29.6,29.7,0.82,12.4,47.06,47.06,11.38,0.98,9.0,9.0,1.47,grey,True,
 GROWW,Financial Services,standard,2026-03-31,reported,21.6,29.3,48.8,67.1,57.7,0.03,,64.54,64.54,13.93,0.83,2.0,5.0,4.72,safe,True,
 BIOCON,Healthcare,standard,2026-03-31,core,1.8,2.8,3.6,8.4,10.1,0.45,15.3,151.5,95.86,1.72,0.99,7.0,9.0,2.51,grey,True,one-off items removed from profit
 BSOFT,Information Technology,standard,2026-03-31,reported,12.6,18.6,9.8,15.3,15.1,0.03,3.5,16.44,16.44,2.07,0.95,5.0,9.0,10.48,safe,True,
 BBOX,Information Technology,standard,2026-03-31,reported,16.9,12.6,3.4,5.0,6.7,0.9,0.2,69.73,69.73,11.79,0.91,5.0,9.0,3.6,safe,True,recurring unusual items kept in profit
-BLUESTARCO,Consumer Durables,standard,2026-03-31,reported,15.4,20.7,4.3,6.3,6.4,0.24,15.8,69.55,69.55,10.7,0.98,4.0,9.0,3.21,safe,True,
+BLUESTARCO,Consumer Durables,standard,2026-03-31,reported,15.4,20.7,4.3,6.3,6.4,0.24,15.8,69.78,69.78,10.73,0.98,4.0,9.0,3.21,safe,True,
 BOSCHLTD,Automobile and Auto Components,standard,2026-03-31,reported,18.7,24.2,14.2,18.7,11.4,0.01,10.3,51.9,51.9,9.7,1.94,7.0,9.0,7.4,safe,True,equity check mismatch (ratio 1.94); figures NOT changed; recurring unusual items kept in profit; core EBIT 39% below reported EBIT
 FIRSTCRY,Consumer Services,standard,2026-03-31,reported,-2.9,-0.2,-1.7,-0.2,-1.7,0.33,16.5,,,1.7,0.96,5.0,9.0,2.93,safe,False,recurring unusual items kept in profit
-BRIGADE,Realty,realty,2026-03-31,reported,9.4,9.8,11.4,22.9,19.9,1.01,18.6,29.41,29.41,2.78,0.95,4.0,9.0,1.9,grey,False,override: realty (developer: value on NAV)
+BRIGADE,Realty,realty,2026-03-31,reported,9.4,9.8,11.4,22.9,19.9,1.01,18.6,29.25,29.25,2.76,0.95,4.0,9.0,1.9,grey,False,override: realty (developer: value on NAV)
 BRITANNIA,Fast Moving Consumer Goods,standard,2026-03-31,reported,49.6,61.2,13.4,18.0,17.0,0.27,5.7,45.93,45.93,22.79,1.2,7.0,9.0,5.44,safe,True,equity check mismatch (ratio 1.20); figures NOT changed
 BIRET,Realty,reit,2026-03-31,reported,2.7,4.6,16.2,58.3,57.0,0.95,35.4,45.44,45.44,1.25,0.89,4.0,9.0,1.0,distress,False,override: reit (REIT: value on distributions)
 CCL,Fast Moving Consumer Goods,standard,2026-03-31,reported,16.6,20.5,8.7,13.1,11.4,0.56,29.1,32.21,32.21,5.33,0.88,8.0,9.0,4.63,safe,True,
 CESC,Power,standard,2026-03-31,reported,12.3,10.0,8.3,19.3,13.2,1.73,9.2,10.83,10.83,1.33,1.0,5.0,9.0,1.72,grey,True,core EBIT 32% below reported EBIT
 CGPOWER,Capital Goods,standard,2026-03-31,reported,15.1,19.3,9.8,13.3,11.8,0.01,21.2,103.26,103.26,15.63,0.91,4.0,9.0,5.4,safe,True,
-CIEINDIA,Automobile and Auto Components,standard,2025-12-31,reported,11.1,13.4,9.1,12.1,11.4,0.06,3.5,16.8,16.8,1.87,0.96,6.0,9.0,4.95,safe,True,
-CRISIL,Financial Services,standard,2025-12-31,reported,25.3,31.0,21.0,29.1,26.2,0.1,9.6,38.52,38.52,9.73,0.93,4.0,9.0,6.74,safe,True,
+CIEINDIA,Automobile and Auto Components,standard,2025-12-31,reported,11.1,13.4,9.1,12.1,11.4,0.06,3.5,16.88,16.88,1.87,0.96,6.0,9.0,4.95,safe,True,
+CRISIL,Financial Services,standard,2025-12-31,reported,25.3,31.0,21.0,29.1,26.2,0.1,9.6,38.97,38.97,9.84,0.93,4.0,9.0,6.74,safe,True,
 CANFINHOME,Financial Services,financial,2026-03-31,reported,18.2,,,,,,17.6,9.77,9.77,1.77,0.93,,,,,False,financial or no EBIT
 CANBK,Financial Services,financial,2026-03-31,reported,16.7,,,,,,5.0,6.16,6.16,1.03,0.92,,,,,False,financial or no EBIT
 CANHLIFE,Financial Services,financial,2026-03-31,reported,7.9,,,,,,7.3,93.03,93.03,7.34,0.98,,,,,False,override: financial (insurer); short history; no cash flow data
-CAPLIPOINT,Healthcare,standard,2026-03-31,reported,17.9,22.0,29.5,37.0,32.0,0.0,14.3,24.1,24.1,4.31,0.94,5.0,9.0,16.37,safe,True,
+CAPLIPOINT,Healthcare,standard,2026-03-31,reported,17.9,22.0,29.5,37.0,32.0,0.0,14.3,24.05,24.05,4.3,0.94,5.0,9.0,16.37,safe,True,
 CGCL,Financial Services,financial,2026-03-31,reported,13.2,,,,,,49.7,23.58,23.58,3.11,0.9,,,,,False,override: financial (NBFC)
 CARBORUNIV,Capital Goods,standard,2026-03-31,reported,5.0,7.1,3.8,5.8,6.7,0.08,3.8,95.6,95.6,4.77,0.98,4.0,9.0,7.28,safe,True,recurring unusual items kept in profit
-CARTRADE,Consumer Services,standard,2026-03-31,reported,9.0,11.0,28.8,39.0,28.5,0.06,28.7,56.98,56.98,5.12,0.94,7.0,9.0,9.61,safe,True,recurring unusual items kept in profit
+CARTRADE,Consumer Services,standard,2026-03-31,reported,9.0,11.0,28.8,39.0,28.5,0.06,28.7,57.9,57.9,5.2,0.94,7.0,9.0,9.61,safe,True,recurring unusual items kept in profit
 CASTROLIND,Oil Gas & Consumable Fuels,standard,2025-12-31,reported,50.0,65.0,16.7,22.7,21.9,0.03,6.2,19.82,19.82,9.91,1.0,8.0,9.0,6.94,safe,True,
-CEATLTD,Automobile and Auto Components,standard,2026-03-31,reported,13.8,17.7,4.5,8.6,8.8,0.65,11.6,20.17,20.17,2.79,1.02,7.0,9.0,1.25,grey,True,
+CEATLTD,Automobile and Auto Components,standard,2026-03-31,reported,13.8,17.7,4.5,8.6,8.8,0.65,11.6,20.46,20.46,2.83,1.02,7.0,9.0,1.25,grey,True,
 CEMPRO,Construction,standard,2026-03-31,reported,24.9,37.1,5.9,9.5,8.5,0.42,25.5,44.39,44.39,11.06,0.85,7.0,9.0,3.22,safe,True,
 CENTRALBK,Financial Services,financial,2026-03-31,reported,11.6,,,,,,9.3,6.68,6.68,0.78,0.94,,,,,False,financial or no EBIT
 CDSL,Financial Services,standard,2026-03-31,reported,23.3,29.7,39.8,53.2,45.6,0.0,27.3,63.92,63.92,14.88,0.99,5.0,9.0,,,True,
 CMPDI,Services,standard,2026-03-31,reported,26.9,34.6,26.5,35.6,32.1,0.0,18.7,,,,,5.0,9.0,10.3,safe,False,
 CHAMBLFERT,Chemicals,standard,2026-03-31,reported,18.8,21.8,9.4,12.4,11.4,0.1,-9.2,7.58,7.58,1.42,0.92,3.0,9.0,7.56,safe,True,
 CHENNPETRO,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,27.9,33.4,4.9,6.7,6.7,0.18,-6.0,6.93,6.93,1.94,0.82,7.0,9.0,4.4,safe,True,
-CHOICEIN,Financial Services,standard,2026-03-31,reported,13.0,17.6,19.4,35.8,34.9,0.54,42.3,76.55,76.55,9.97,0.89,5.0,9.0,4.87,safe,True,
-CHOLAHLDNG,Financial Services,financial,2026-03-31,reported,15.8,,,,,,28.0,10.44,10.44,1.65,0.9,,,,,False,override: financial (financial holding company)
+CHOICEIN,Financial Services,standard,2026-03-31,reported,13.0,17.6,19.4,35.8,34.9,0.54,42.3,74.53,74.53,9.71,0.89,5.0,9.0,4.87,safe,True,
+CHOLAHLDNG,Financial Services,financial,2026-03-31,reported,15.8,,,,,,28.0,10.77,10.77,1.7,0.9,,,,,False,override: financial (financial holding company)
 CHOLAFIN,Financial Services,financial,2026-03-31,reported,17.2,,,,,,32.8,30.01,30.01,5.16,0.88,,,,,False,financial or no EBIT
-CIPLA,Healthcare,standard,2026-03-31,reported,11.3,14.9,14.0,19.0,17.5,0.02,7.2,29.15,29.15,3.28,0.97,4.0,9.0,10.18,safe,True,
+CIPLA,Healthcare,standard,2026-03-31,reported,11.3,14.9,14.0,19.0,17.5,0.02,7.2,29.47,29.47,3.32,0.97,4.0,9.0,10.18,safe,True,
 CUB,Financial Services,financial,2026-03-31,reported,12.6,,,,,,9.1,18.34,18.34,2.3,0.94,,,,,False,financial or no EBIT
-CLEANMAX,Power,standard,2026-03-31,reported,2.0,4.9,4.9,45.7,41.7,2.76,27.1,156.2,,3.17,0.96,7.0,9.0,-0.01,distress,True,"recurring unusual items kept in profit; P/E 156 not meaningful, shown blank"
-CLEAN,Chemicals,standard,2026-03-31,reported,14.5,19.2,24.4,32.9,29.7,0.0,0.6,31.9,31.9,4.63,0.95,5.0,9.0,14.81,safe,True,
+CLEANMAX,Power,standard,2026-03-31,reported,2.0,4.9,4.9,45.7,41.7,2.76,27.1,153.22,,3.11,0.96,7.0,9.0,-0.01,distress,True,"recurring unusual items kept in profit; P/E 153 not meaningful, shown blank"
+CLEAN,Chemicals,standard,2026-03-31,reported,14.5,19.2,24.4,32.9,29.7,0.0,0.6,31.94,31.94,4.63,0.95,5.0,9.0,14.81,safe,True,
 COALINDIA,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,26.1,19.6,18.7,25.7,19.0,0.12,9.3,7.57,7.57,1.98,0.93,5.0,9.0,4.11,safe,True,
 COCHINSHIP,Capital Goods,standard,2026-03-31,reported,12.2,16.7,15.0,22.9,20.4,0.28,26.9,40.01,40.01,4.88,0.97,3.0,9.0,3.47,safe,True,
 COFORGE,Information Technology,standard,2026-03-31,reported,16.3,18.6,9.5,12.8,13.9,0.08,26.9,61.01,61.01,9.95,0.43,8.0,9.0,4.8,safe,True,equity check mismatch (ratio 0.43); figures NOT changed; discontinued operations excluded from profit
 COHANCE,Healthcare,standard,2026-03-31,reported,4.6,4.8,8.1,11.0,11.2,0.1,18.3,101.36,101.36,4.64,0.99,6.0,9.0,5.35,safe,True,
 COLPAL,Fast Moving Consumer Goods,standard,2026-03-31,reported,83.7,107.4,22.1,29.9,28.9,0.03,4.9,36.03,36.03,30.14,0.98,5.0,9.0,6.5,safe,True,
-CAMS,Financial Services,standard,2026-03-31,reported,36.0,44.2,31.4,41.9,39.1,0.05,16.0,37.7,37.7,13.58,0.92,7.0,9.0,10.19,safe,True,
-CONCORDBIO,Healthcare,standard,2026-03-31,reported,12.9,16.7,24.9,33.0,29.1,0.0,8.0,43.87,43.87,5.67,0.99,7.0,9.0,16.62,safe,True,
+CAMS,Financial Services,standard,2026-03-31,reported,36.0,44.2,31.4,41.9,39.1,0.05,16.0,37.83,37.83,13.63,0.92,7.0,9.0,10.19,safe,True,
+CONCORDBIO,Healthcare,standard,2026-03-31,reported,12.9,16.7,24.9,33.0,29.1,0.0,8.0,43.96,43.96,5.69,0.99,7.0,9.0,16.62,safe,True,
 CONCOR,Services,standard,2026-03-31,reported,9.6,12.4,14.8,20.6,15.9,0.07,4.1,26.2,26.2,2.51,0.97,5.0,9.0,11.02,safe,True,
 COROMANDEL,Chemicals,standard,2026-03-31,reported,15.6,20.9,9.7,14.5,14.0,0.52,10.2,29.69,29.69,4.62,0.94,3.0,9.0,4.72,safe,True,
-CRAFTSMAN,Automobile and Auto Components,standard,2026-03-31,reported,11.8,14.0,4.8,10.3,9.9,1.11,36.2,79.34,79.34,9.33,0.59,6.0,9.0,2.23,grey,True,equity check mismatch (ratio 0.59); figures NOT changed
+CRAFTSMAN,Automobile and Auto Components,standard,2026-03-31,reported,11.8,14.0,4.8,10.3,9.9,1.11,36.2,79.85,79.85,9.39,0.59,6.0,9.0,2.23,grey,True,equity check mismatch (ratio 0.59); figures NOT changed
 CREDITACC,Financial Services,financial,2026-03-31,reported,9.9,,,,,,20.9,20.28,20.28,2.01,0.88,,,,,False,override: financial (microfinance NBFC)
-CROMPTON,Consumer Durables,standard,2026-03-31,core,-2.2,-1.5,-0.8,-0.7,2.2,0.07,5.6,,,4.75,0.98,6.0,9.0,3.45,safe,True,one-off items removed from profit
+CROMPTON,Consumer Durables,standard,2026-03-31,core,-2.2,-1.5,-0.8,-0.7,2.2,0.07,5.6,,,4.85,0.98,6.0,9.0,3.45,safe,True,one-off items removed from profit
 CUMMINSIND,Capital Goods,standard,2026-03-31,reported,27.9,35.0,19.8,25.9,20.1,0.0,16.1,47.57,47.57,13.26,1.02,7.0,9.0,10.36,safe,True,
 CUPID,Fast Moving Consumer Goods,standard,2026-03-31,reported,24.0,30.8,30.8,41.3,32.2,0.13,31.2,449.93,,108.02,0.8,5.0,9.0,11.85,safe,True,"P/E 450 not meaningful, shown blank"
-CYIENT,Information Technology,standard,2026-03-31,core,8.8,10.5,6.9,9.7,9.1,0.08,6.5,28.27,24.26,2.13,1.12,5.0,9.0,7.02,safe,True,equity check mismatch (ratio 1.12); figures NOT changed; one-off items removed from profit
+CYIENT,Information Technology,standard,2026-03-31,core,8.8,10.5,6.9,9.7,9.1,0.08,6.5,28.15,24.15,2.12,1.12,5.0,9.0,7.02,safe,True,equity check mismatch (ratio 1.12); figures NOT changed; one-off items removed from profit
 DLF,Realty,realty,2026-03-31,reported,9.7,6.3,56.3,39.7,16.4,0.01,11.3,44.53,44.53,4.32,1.0,5.0,9.0,3.86,safe,False,override: realty (developer: value on NAV); core EBIT 59% below reported EBIT
-DOMS,Fast Moving Consumer Goods,standard,2026-03-31,reported,18.9,23.4,10.0,14.3,13.6,0.12,24.2,56.18,56.18,10.6,0.95,8.0,9.0,7.25,safe,True,
+DOMS,Fast Moving Consumer Goods,standard,2026-03-31,reported,18.9,23.4,10.0,14.3,13.6,0.12,24.2,56.74,56.74,10.71,0.95,8.0,9.0,7.25,safe,True,
 DABUR,Fast Moving Consumer Goods,standard,2026-03-31,reported,16.6,20.8,14.5,19.5,15.4,0.11,4.5,37.35,37.35,6.2,0.99,6.0,9.0,6.37,safe,True,
 DALBHARAT,Construction Materials,standard,2026-03-31,reported,6.3,7.0,7.9,13.3,12.0,0.41,3.0,25.78,25.78,1.63,1.01,6.0,9.0,3.05,safe,True,
-DATAPATTNS,Capital Goods,standard,2026-03-31,reported,15.6,20.4,29.3,39.4,38.3,0.0,26.8,87.16,87.16,13.63,1.02,8.0,9.0,16.77,safe,True,
-DEEPAKFERT,Chemicals,standard,2026-03-31,reported,10.8,11.2,7.8,14.4,13.6,0.83,2.6,24.28,24.28,2.62,0.9,4.0,9.0,3.06,safe,True,
+DATAPATTNS,Capital Goods,standard,2026-03-31,reported,15.6,20.4,29.3,39.4,38.3,0.0,26.8,86.96,86.96,13.59,1.02,8.0,9.0,16.77,safe,True,
+DEEPAKFERT,Chemicals,standard,2026-03-31,reported,10.8,11.2,7.8,14.4,13.6,0.83,2.6,24.63,24.63,2.65,0.9,4.0,9.0,3.06,safe,True,
 DEEPAKNTR,Chemicals,standard,2026-03-31,reported,9.4,10.8,7.1,10.3,9.8,0.28,-0.5,37.68,37.68,3.55,0.9,4.0,9.0,6.14,safe,True,
-DELHIVERY,Services,standard,2026-03-31,reported,1.6,2.6,1.5,2.7,-0.5,0.15,13.2,224.35,,3.54,0.99,7.0,9.0,3.29,safe,False,"recurring unusual items kept in profit; core EBIT 119% below reported EBIT; P/E 224 not meaningful, shown blank"
+DELHIVERY,Services,standard,2026-03-31,reported,1.6,2.6,1.5,2.7,-0.5,0.15,13.2,225.28,,3.55,0.99,7.0,9.0,3.29,safe,False,"recurring unusual items kept in profit; core EBIT 119% below reported EBIT; P/E 225 not meaningful, shown blank"
 DEVYANI,Consumer Services,standard,2026-03-31,core,-1.7,4.3,-0.5,3.9,3.4,2.45,23.3,,,9.57,0.96,4.0,9.0,-0.47,distress,True,one-off items removed from profit
 DIVISLAB,Healthcare,standard,2026-03-31,reported,15.3,19.0,24.5,32.6,28.4,0.0,11.0,115.81,115.81,17.74,0.93,5.0,9.0,11.99,safe,True,
 DIXON,Consumer Durables,standard,2026-03-31,reported,30.8,34.1,3.0,4.5,3.0,0.21,58.6,56.93,56.93,17.51,0.66,6.0,9.0,2.03,grey,True,equity check mismatch (ratio 0.66); figures NOT changed; recurring unusual items kept in profit; core EBIT 33% below reported EBIT
-LALPATHLAB,Healthcare,standard,2026-03-31,reported,20.1,25.7,18.3,25.0,25.2,0.08,11.1,67.59,67.59,13.6,0.91,6.0,9.0,10.39,safe,True,
+LALPATHLAB,Healthcare,standard,2026-03-31,reported,20.1,25.7,18.3,25.0,25.2,0.08,11.1,66.45,66.45,13.37,0.91,6.0,9.0,10.39,safe,True,
 DRREDDY,Healthcare,standard,2026-03-31,reported,11.4,14.2,12.8,17.4,14.9,0.21,11.0,26.85,26.85,3.05,0.98,4.0,9.0,6.17,safe,True,
-EIDPARRY,Fast Moving Consumer Goods,standard,2026-03-31,core,8.2,15.7,2.6,9.2,10.0,0.98,9.6,20.3,16.15,1.32,1.0,4.0,9.0,3.06,safe,True,one-off items removed from profit
+EIDPARRY,Fast Moving Consumer Goods,standard,2026-03-31,core,8.2,15.7,2.6,9.2,10.0,0.98,9.6,20.24,16.1,1.32,1.0,4.0,9.0,3.06,safe,True,one-off items removed from profit
 EIHOTEL,Consumer Services,standard,2026-03-31,reported,11.9,16.2,21.4,33.0,30.6,0.05,13.3,33.19,33.19,3.96,0.97,5.0,9.0,7.91,safe,True,recurring unusual items kept in profit
-EMBASSY,Realty,reit,2026-03-31,core,0.9,6.1,4.0,58.0,49.6,1.12,10.9,103.57,,1.69,1.01,7.0,9.0,0.28,distress,False,"override: reit (REIT: value on distributions); one-off items removed from profit; P/E 194 not meaningful, shown blank"
+EMBASSY,Realty,reit,2026-03-31,core,0.9,6.1,4.0,58.0,49.6,1.12,10.9,103.07,,1.68,1.01,7.0,9.0,0.28,distress,False,"override: reit (REIT: value on distributions); one-off items removed from profit; P/E 193 not meaningful, shown blank"
 EICHERMOT,Automobile and Auto Components,standard,2026-03-31,reported,22.0,26.4,24.0,31.2,21.6,0.02,17.5,40.68,40.68,8.94,0.97,6.0,9.0,8.6,safe,True,core EBIT 31% below reported EBIT
 ELECON,Capital Goods,standard,2026-03-31,reported,14.8,18.6,14.6,20.4,18.4,0.12,15.9,28.84,28.84,4.27,0.92,3.0,9.0,8.0,safe,True,
-ELGIEQUIP,Capital Goods,standard,2026-03-31,reported,19.3,25.7,10.9,15.3,12.8,0.24,9.1,39.81,39.81,7.67,0.93,6.0,9.0,7.2,safe,True,
-EMAMILTD,Fast Moving Consumer Goods,standard,2026-03-31,reported,26.5,28.6,20.7,22.9,21.0,0.06,3.7,23.07,23.07,6.12,1.02,6.0,9.0,8.73,safe,True,
-EMCURE,Healthcare,standard,2026-03-31,reported,18.7,24.7,10.1,15.5,15.1,0.31,15.4,47.41,47.41,8.85,0.93,5.0,9.0,4.5,safe,True,
+ELGIEQUIP,Capital Goods,standard,2026-03-31,reported,19.3,25.7,10.9,15.3,12.8,0.24,9.1,40.81,40.81,7.87,0.93,6.0,9.0,7.2,safe,True,
+EMAMILTD,Fast Moving Consumer Goods,standard,2026-03-31,reported,26.5,28.6,20.7,22.9,21.0,0.06,3.7,23.37,23.37,6.2,1.02,6.0,9.0,8.73,safe,True,
+EMCURE,Healthcare,standard,2026-03-31,reported,18.7,24.7,10.1,15.5,15.1,0.31,15.4,47.98,47.98,8.96,0.93,5.0,9.0,4.5,safe,True,
 EMMVEE,Capital Goods,standard,2026-03-31,reported,29.3,34.5,21.5,29.4,29.2,0.1,102.7,16.69,16.69,4.89,0.84,8.0,9.0,6.22,safe,True,
-ENDURANCE,Automobile and Auto Components,standard,2026-03-31,reported,13.9,16.3,6.6,9.3,8.6,0.19,18.2,37.78,37.78,5.26,0.95,4.0,9.0,5.02,safe,True,
+ENDURANCE,Automobile and Auto Components,standard,2026-03-31,reported,13.9,16.3,6.6,9.3,8.6,0.19,18.2,37.85,37.85,5.27,0.95,4.0,9.0,5.02,safe,True,
 ENGINERSIN,Construction,standard,2026-03-31,reported,22.0,28.1,17.6,22.8,16.8,0.01,5.7,24.25,24.25,5.33,0.94,7.0,9.0,3.36,safe,True,
-ESCORTS,Capital Goods,standard,2026-03-31,core,11.0,14.4,12.0,16.0,10.9,0.01,11.3,11.26,19.73,2.18,0.98,6.0,9.0,9.13,safe,True,discontinued operations excluded from profit; recurring unusual items kept in profit; core EBIT 32% below reported EBIT
+ESCORTS,Capital Goods,standard,2026-03-31,core,11.0,14.4,12.0,16.0,10.9,0.01,11.3,11.36,19.9,2.2,0.98,6.0,9.0,9.13,safe,True,discontinued operations excluded from profit; recurring unusual items kept in profit; core EBIT 32% below reported EBIT
 ETERNAL,Consumer Services,standard,2026-03-31,reported,1.2,2.9,0.7,1.8,-0.1,0.15,97.7,911.46,,10.77,0.96,4.0,9.0,4.77,safe,False,"recurring unusual items kept in profit; core EBIT 106% below reported EBIT; P/E 911 not meaningful, shown blank"
 EXIDEIND,Automobile and Auto Components,standard,2026-03-31,reported,6.1,8.8,4.8,7.6,7.3,0.11,6.1,39.99,39.99,2.46,1.0,7.0,9.0,4.89,safe,True,
 NYKAA,Consumer Services,standard,2026-03-31,reported,13.9,24.0,2.0,4.5,4.4,0.86,24.7,512.9,,71.14,0.87,8.0,9.0,1.93,grey,True,"P/E 513 not meaningful, shown blank"
 FEDERALBNK,Financial Services,financial,2026-03-31,reported,10.9,,,,,,16.6,20.46,20.46,2.22,0.94,,,,,False,financial or no EBIT
-FACT,Chemicals,standard,2026-03-31,reported,-2.9,14.2,-1.3,6.7,1.2,2.95,-0.0,,,35.99,1.01,2.0,9.0,0.48,distress,True,core EBIT 81% below reported EBIT
+FACT,Chemicals,standard,2026-03-31,reported,-2.9,14.2,-1.3,6.7,1.2,2.95,-0.0,,,36.29,1.01,2.0,9.0,0.48,distress,True,core EBIT 81% below reported EBIT
 FINCABLES,Capital Goods,standard,2026-03-31,reported,11.7,14.2,11.6,15.1,9.4,0.0,11.8,25.16,25.16,2.95,0.94,5.0,9.0,13.34,safe,True,recurring unusual items kept in profit; core EBIT 38% below reported EBIT
-FSL,Services,standard,2026-03-31,reported,15.4,17.7,7.0,10.7,11.7,0.67,17.1,29.09,29.09,4.48,0.9,7.0,9.0,2.08,grey,True,
+FSL,Services,standard,2026-03-31,reported,15.4,17.7,7.0,10.7,11.7,0.67,17.1,28.87,28.87,4.44,0.9,7.0,9.0,2.08,grey,True,
 FIVESTAR,Financial Services,financial,2026-03-31,reported,14.9,,,,,,27.5,11.54,11.54,1.72,0.93,,,,,False,override: financial (NBFC)
 FORCEMOT,Automobile and Auto Components,standard,2026-03-31,reported,28.9,33.8,13.5,16.9,13.3,0.0,21.7,21.86,21.86,6.31,0.9,8.0,9.0,7.1,safe,True,recurring unusual items kept in profit
 FORTIS,Healthcare,standard,2026-03-31,reported,10.5,11.9,11.5,18.2,17.8,0.35,13.3,58.63,58.63,6.17,0.94,7.0,9.0,2.7,safe,True,
-FRACTAL,Information Technology,standard,2026-03-31,reported,9.2,10.4,8.9,10.6,11.3,0.13,18.5,48.09,48.09,4.41,0.92,7.0,9.0,6.56,safe,True,
+FRACTAL,Information Technology,standard,2026-03-31,reported,9.2,10.4,8.9,10.6,11.3,0.13,18.5,48.63,48.63,4.46,0.92,7.0,9.0,6.56,safe,True,
 GAIL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,8.5,9.1,5.4,7.5,5.4,0.28,-0.9,16.09,16.09,1.37,0.92,4.0,9.0,3.8,safe,True,
-GVT&D,Capital Goods,standard,2026-03-31,reported,45.8,58.5,19.9,26.8,27.9,0.01,31.1,87.1,87.1,39.93,0.82,8.0,9.0,4.44,safe,True,
+GVT&D,Capital Goods,standard,2026-03-31,reported,45.8,58.5,19.9,26.8,27.9,0.01,31.1,87.93,87.93,40.31,0.82,8.0,9.0,4.44,safe,True,
 GMRAIRPORT,Services,standard,2026-03-31,reported,-7.1,10.4,1.3,32.6,29.9,-17.45,31.8,621.59,,-43.99,,8.0,9.0,-0.01,distress,True,"recurring unusual items kept in profit; P/E 622 not meaningful, shown blank"
-GABRIEL,Automobile and Auto Components,standard,2026-03-31,reported,18.4,22.8,5.4,7.6,7.4,0.11,16.3,114.59,114.59,21.11,0.57,6.0,9.0,5.68,safe,True,equity check mismatch (ratio 0.57); figures NOT changed
-GALLANTT,Capital Goods,standard,2026-03-31,reported,14.6,17.9,11.3,14.9,13.6,0.17,2.2,27.07,27.07,3.95,0.95,6.0,9.0,8.19,safe,True,
+GABRIEL,Automobile and Auto Components,standard,2026-03-31,reported,18.4,22.8,5.4,7.6,7.4,0.11,16.3,118.54,118.54,21.84,0.57,6.0,9.0,5.68,safe,True,equity check mismatch (ratio 0.57); figures NOT changed
+GALLANTT,Capital Goods,standard,2026-03-31,reported,14.6,17.9,11.3,14.9,13.6,0.17,2.2,26.81,26.81,3.92,0.95,6.0,9.0,8.19,safe,True,
 GRSE,Capital Goods,standard,2026-03-31,reported,28.5,36.8,10.7,14.6,11.1,0.01,40.0,30.84,30.84,8.78,0.91,6.0,9.0,2.87,safe,True,
-GICRE,Financial Services,financial,2026-03-31,reported,13.7,,,,,,4.3,6.06,6.06,0.83,0.7,,,,,False,override: financial (reinsurer); no cash flow data
-GILLETTE,Fast Moving Consumer Goods,standard,2026-03-31,reported,69.1,84.6,21.1,28.8,28.6,0.0,11.1,35.44,35.44,24.5,0.88,7.0,9.0,6.65,safe,True,
+GICRE,Financial Services,financial,2026-03-31,reported,13.7,,,,,,4.3,6.03,6.03,0.83,0.7,,,,,False,override: financial (reinsurer); no cash flow data
+GILLETTE,Fast Moving Consumer Goods,standard,2026-03-31,reported,69.1,84.6,21.1,28.8,28.6,0.0,11.1,35.31,35.31,24.41,0.88,7.0,9.0,6.65,safe,True,
 GLAND,Healthcare,standard,2026-03-31,reported,9.9,13.7,16.0,23.3,18.8,0.03,21.3,52.97,52.97,5.25,0.97,9.0,9.0,11.01,safe,True,
-GLAXO,Healthcare,standard,2026-03-31,reported,45.7,55.4,27.2,37.0,32.8,0.01,5.7,44.17,44.17,20.18,1.21,6.0,9.0,7.16,safe,True,equity check mismatch (ratio 1.21); figures NOT changed
+GLAXO,Healthcare,standard,2026-03-31,reported,45.7,55.4,27.2,37.0,32.8,0.01,5.7,44.6,44.6,20.38,1.21,6.0,9.0,7.16,safe,True,equity check mismatch (ratio 1.21); figures NOT changed
 GLENMARK,Healthcare,standard,2026-03-31,core,27.9,16.2,17.6,13.1,24.1,0.06,13.5,55.06,25.56,7.13,0.94,9.0,9.0,5.16,safe,True,one-off items removed from profit
 MEDANTA,Healthcare,standard,2026-03-31,reported,14.0,15.0,12.9,18.4,16.8,0.3,17.2,72.49,72.49,10.18,0.92,6.0,9.0,5.78,safe,True,
 GPIL,Capital Goods,standard,2026-03-31,reported,13.8,17.6,14.9,21.0,20.5,0.08,-2.1,17.72,17.72,2.44,1.03,6.0,9.0,9.31,safe,True,
-GODFRYPHLP,Fast Moving Consumer Goods,standard,2026-03-31,reported,24.6,30.0,24.0,30.7,23.2,0.04,21.6,17.85,17.85,4.39,1.02,6.0,9.0,8.78,safe,True,
+GODFRYPHLP,Fast Moving Consumer Goods,standard,2026-03-31,reported,24.6,30.0,24.0,30.7,23.2,0.04,21.6,18.24,18.24,4.48,1.02,6.0,9.0,8.78,safe,True,
 GODREJCP,Fast Moving Consumer Goods,standard,2026-03-31,reported,14.7,21.3,12.3,19.2,19.3,0.35,4.6,50.16,50.16,7.38,1.0,5.0,9.0,3.61,safe,True,
 GODREJIND,Diversified,standard,2026-03-31,reported,11.1,12.3,5.6,25.5,7.4,4.61,9.8,29.22,29.22,3.24,0.93,4.0,9.0,0.96,distress,True,recurring unusual items kept in profit; core EBIT 71% below reported EBIT
-GODREJPROP,Realty,realty,2026-03-31,reported,9.7,11.1,36.8,49.6,-10.5,0.83,32.4,31.31,31.31,3.02,0.99,4.0,9.0,2.01,grey,False,override: realty (developer: value on NAV); recurring unusual items kept in profit; core EBIT 121% below reported EBIT
-GRANULES,Healthcare,standard,2026-03-31,reported,11.7,15.2,11.1,16.0,16.4,0.3,5.9,38.41,38.41,4.49,0.71,6.0,9.0,5.72,safe,True,
+GODREJPROP,Realty,realty,2026-03-31,reported,9.7,11.1,36.8,49.6,-10.5,0.83,32.4,31.43,31.43,3.04,0.99,4.0,9.0,2.01,grey,False,override: realty (developer: value on NAV); recurring unusual items kept in profit; core EBIT 121% below reported EBIT
+GRANULES,Healthcare,standard,2026-03-31,reported,11.7,15.2,11.1,16.0,16.4,0.3,5.9,37.71,37.71,4.41,0.71,6.0,9.0,5.72,safe,True,
 GRAPHITE,Capital Goods,standard,2026-03-31,reported,3.0,4.4,6.1,9.4,5.7,0.06,-3.1,88.02,88.02,2.63,0.98,4.0,9.0,8.55,safe,True,core EBIT 39% below reported EBIT
 GRASIM,Construction Materials,standard,2026-03-31,reported,4.8,4.0,2.9,10.3,9.7,2.2,14.3,42.0,42.0,2.02,0.97,6.0,9.0,0.49,distress,True,
-GRAVITA,Metals & Mining,standard,2026-03-31,reported,15.5,18.1,9.0,11.2,9.5,0.3,14.9,28.28,28.28,4.37,0.93,4.0,9.0,7.83,safe,True,
+GRAVITA,Metals & Mining,standard,2026-03-31,reported,15.5,18.1,9.0,11.2,9.5,0.3,14.9,28.5,28.5,4.4,0.93,4.0,9.0,7.83,safe,True,
 GESHIP,Services,standard,2026-03-31,reported,17.3,17.4,54.6,58.5,36.7,0.06,-1.6,6.74,6.74,1.17,0.99,7.0,9.0,12.73,safe,True,recurring unusual items kept in profit; core EBIT 37% below reported EBIT
 FLUOROCHEM,Chemicals,standard,2026-03-31,reported,7.3,9.6,11.8,18.4,17.1,0.29,-4.5,93.13,93.13,6.84,0.94,6.0,9.0,4.6,safe,True,
 GMDCLTD,Metals & Mining,standard,2026-03-31,core,8.3,15.5,22.1,48.0,16.4,0.04,-8.8,15.51,25.26,2.1,1.0,4.0,9.0,8.06,safe,True,one-off items removed from profit; core EBIT 66% below reported EBIT
@@ -198,7 +198,7 @@ HCLTECH,Information Technology,standard,2026-03-31,reported,22.1,27.2,12.8,17.7,
 HDBFS,Financial Services,financial,2026-03-31,reported,12.3,,,,,,13.5,18.5,18.5,2.28,0.93,,,,,False,override: financial (NBFC)
 HDFCAMC,Financial Services,standard,2026-03-31,reported,31.0,38.5,69.3,90.3,78.2,,23.9,40.28,40.28,12.47,1.07,7.0,8.0,19.36,safe,True,recurring unusual items kept in profit
 HDFCBANK,Financial Services,financial,2026-03-31,reported,11.6,,,,,,27.5,17.91,17.91,2.07,1.34,,,,,False,financial or no EBIT; equity overridden with book value x shares (ratio 1.34; verified vs Screener)
-HDFCLIFE,Financial Services,financial,2026-03-31,reported,10.8,,,,,,9.3,65.31,65.31,7.04,0.94,,,,,False,override: financial (insurer); no cash flow data
+HDFCLIFE,Financial Services,financial,2026-03-31,reported,10.8,,,,,,9.3,66.86,66.86,7.2,0.94,,,,,False,override: financial (insurer); no cash flow data
 HEGAM,Capital Goods,standard,2026-03-31,reported,7.2,8.8,13.4,16.8,12.2,0.17,1.6,24.99,24.99,1.79,1.81,6.0,9.0,8.13,safe,True,equity check mismatch (ratio 1.81); figures NOT changed
 HFCL,Telecommunication,standard,2026-03-31,reported,6.4,10.8,6.3,12.0,12.6,0.39,1.3,87.67,87.67,5.59,0.87,5.0,9.0,5.16,safe,True,
 HAVELLS,Consumer Durables,standard,2026-03-31,reported,17.9,22.1,7.6,10.1,8.4,0.03,9.9,43.95,43.95,7.86,0.97,5.0,9.0,6.2,safe,True,
@@ -209,107 +209,107 @@ HINDALCO,Metals & Mining,standard,2026-03-31,core,14.2,9.4,7.1,8.0,10.7,0.73,7.1
 HAL,Capital Goods,standard,2026-03-31,reported,22.2,13.8,28.7,38.2,27.4,0.0,6.4,35.07,35.07,7.79,0.93,5.0,9.0,4.63,safe,True,
 HINDCOPPER,Metals & Mining,standard,2026-03-31,reported,27.5,34.5,30.0,40.2,42.3,0.03,22.5,43.3,43.3,11.9,0.79,9.0,9.0,7.58,safe,True,
 HINDPETRO,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,27.5,23.3,4.1,6.1,5.7,0.85,0.2,4.54,4.54,1.25,1.24,8.0,9.0,1.38,grey,True,equity check mismatch (ratio 1.24); figures NOT changed
-HINDUNILVR,Fast Moving Consumer Goods,standard,2026-03-31,core,21.8,22.2,16.7,22.3,21.5,0.03,2.3,31.54,44.62,9.73,1.0,6.0,9.0,3.46,safe,True,discontinued operations excluded from profit
+HINDUNILVR,Fast Moving Consumer Goods,standard,2026-03-31,core,21.8,22.2,16.7,22.3,21.5,0.03,2.3,32.06,45.35,9.89,1.0,6.0,9.0,3.46,safe,True,discontinued operations excluded from profit
 HINDZINC,Metals & Mining,standard,2026-03-31,reported,61.1,62.0,35.3,49.2,47.2,0.39,5.6,16.16,16.16,9.88,0.76,8.0,9.0,,,True,
 POWERINDIA,Capital Goods,standard,2026-03-31,reported,19.1,24.9,12.5,16.8,14.8,0.02,22.2,136.45,136.45,26.04,0.9,7.0,9.0,4.12,safe,True,
 HOMEFIRST,Financial Services,financial,2026-03-31,reported,12.4,,,,,,33.7,19.81,19.81,2.46,0.93,,,,,False,override: financial (housing finance)
-HONASA,Fast Moving Consumer Goods,standard,2026-03-31,reported,14.2,17.7,8.4,11.3,8.0,0.1,17.0,88.08,88.08,12.47,0.95,5.0,9.0,4.72,safe,True,
+HONASA,Fast Moving Consumer Goods,standard,2026-03-31,reported,14.2,17.7,8.4,11.3,8.0,0.1,17.0,85.74,85.74,12.14,0.95,5.0,9.0,4.72,safe,True,
 HONAUT,Capital Goods,standard,2026-03-31,reported,11.8,15.7,11.2,15.4,12.6,0.02,10.9,50.08,50.08,5.89,0.96,5.0,9.0,10.02,safe,True,
 HUDCO,Financial Services,financial,2026-03-31,reported,18.4,,,,,,10.0,7.85,7.85,1.44,0.96,,,,,False,financial or no EBIT
 HYUNDAI,Automobile and Auto Components,standard,2026-03-31,reported,27.1,32.6,7.8,10.6,9.2,0.05,5.5,32.24,32.24,8.75,0.98,6.0,9.0,5.93,safe,True,
 ICICIBANK,Financial Services,financial,2026-03-31,reported,14.9,,,,,,18.1,21.01,21.01,3.14,0.93,,,,,False,financial or no EBIT
-ICICILIFE,Financial Services,financial,2026-03-31,reported,11.8,,,,,,8.5,41.97,41.97,4.95,1.0,,,,,False,override: financial (insurer); no cash flow data
-ICICIGI,Financial Services,financial,2026-03-31,reported,16.7,,,,,,14.9,31.41,31.41,5.23,0.8,,,,,False,override: financial (insurer); no cash flow data
+ICICILIFE,Financial Services,financial,2026-03-31,reported,11.8,,,,,,8.5,41.7,41.7,4.92,1.0,,,,,False,override: financial (insurer); no cash flow data
+ICICIGI,Financial Services,financial,2026-03-31,reported,16.7,,,,,,14.9,31.29,31.29,5.21,0.8,,,,,False,override: financial (insurer); no cash flow data
 ICICIAMC,Financial Services,standard,2026-03-31,reported,79.1,98.3,57.2,76.8,72.7,,28.9,43.95,43.95,34.75,0.78,5.0,7.0,15.34,safe,True,
 IDBI,Financial Services,financial,2026-03-31,reported,13.4,,,,,,7.9,9.16,9.16,1.23,0.95,,,,,False,financial or no EBIT
 IDFCFIRSTB,Financial Services,financial,2026-03-31,reported,3.4,,,,,,19.6,45.75,45.75,1.55,0.95,,,,,False,financial or no EBIT
 IFCI,Financial Services,financial,2026-03-31,reported,2.0,,,,,,11.5,87.55,87.55,1.77,0.98,,,,,False,financial or no EBIT
 IIFL,Financial Services,financial,2026-03-31,reported,11.9,,,,,,13.6,15.81,15.81,1.89,0.9,,,,,False,financial or no EBIT
-INOXINDIA,Capital Goods,standard,2026-03-31,reported,23.1,30.6,16.6,22.5,19.9,0.07,18.2,73.65,73.65,17.0,0.91,4.0,9.0,6.41,safe,True,
+INOXINDIA,Capital Goods,standard,2026-03-31,reported,23.1,30.6,16.6,22.5,19.9,0.07,18.2,74.8,74.8,17.26,0.91,4.0,9.0,6.41,safe,True,
 IRB,Construction,standard,2026-03-31,reported,4.1,5.8,13.6,46.4,27.6,0.96,-0.4,24.71,24.71,1.0,0.96,5.0,9.0,1.95,grey,True,recurring unusual items kept in profit; core EBIT 40% below reported EBIT
 IRCON,Construction,standard,2026-03-31,reported,9.0,8.2,6.7,13.0,6.9,0.86,-5.0,17.03,17.03,1.53,0.98,4.0,9.0,2.76,safe,True,core EBIT 47% below reported EBIT
 ITCHOTELS,Consumer Services,standard,2026-03-31,reported,7.0,9.2,19.9,27.5,25.9,0.01,16.5,46.96,46.96,3.29,0.99,8.0,9.0,8.69,safe,False,short history
 ITC,Fast Moving Consumer Goods,standard,2026-03-31,reported,28.5,36.5,26.5,36.0,32.7,0.03,3.6,18.23,18.23,5.2,1.02,4.0,9.0,9.83,safe,True,
 ITI,Telecommunication,standard,2026-03-31,core,-2.2,14.4,-1.9,21.0,0.6,0.4,16.1,90.82,,13.96,1.04,6.0,9.0,-0.71,distress,True,one-off items removed from profit; core EBIT 97% below reported EBIT
-INDIACEM,Construction Materials,standard,2026-03-31,core,-0.2,0.3,-0.5,0.8,2.2,0.13,-7.3,,,1.47,1.0,6.0,9.0,,,True,one-off items removed from profit
-INDIAMART,Consumer Services,standard,2026-03-31,reported,19.8,20.0,30.3,41.5,29.3,0.01,16.8,19.6,19.6,3.88,1.04,7.0,9.0,5.61,safe,True,recurring unusual items kept in profit
+INDIACEM,Construction Materials,standard,2026-03-31,core,-0.2,0.3,-0.5,0.8,2.2,0.13,-7.3,,,1.5,1.0,6.0,9.0,,,True,one-off items removed from profit
+INDIAMART,Consumer Services,standard,2026-03-31,reported,19.8,20.0,30.3,41.5,29.3,0.01,16.8,19.49,19.49,3.85,1.04,7.0,9.0,5.61,safe,True,recurring unusual items kept in profit
 INDIANB,Financial Services,financial,2026-03-31,reported,14.6,,,,,,10.4,10.74,10.74,1.57,0.92,,,,,False,financial or no EBIT
 IEX,Financial Services,standard,2026-03-31,reported,36.1,45.7,80.1,105.3,80.7,0.01,15.4,19.69,19.69,7.11,0.94,7.0,9.0,7.54,safe,True,
-INDHOTEL,Consumer Services,standard,2026-03-31,reported,16.0,17.4,22.4,33.8,27.8,0.22,18.6,61.87,61.87,9.88,0.96,7.0,9.0,5.39,safe,True,recurring unusual items kept in profit
+INDHOTEL,Consumer Services,standard,2026-03-31,reported,16.0,17.4,22.4,33.8,27.8,0.22,18.6,62.28,62.28,9.95,0.96,7.0,9.0,5.39,safe,True,recurring unusual items kept in profit
 IOC,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,19.2,20.5,5.4,8.4,8.6,0.6,-2.2,4.86,4.86,0.93,0.92,8.0,9.0,1.13,grey,True,
 IOB,Financial Services,financial,2026-03-31,reported,14.6,,,,,,14.2,11.1,11.1,1.63,0.92,,,,,False,financial or no EBIT
 IRCTC,Consumer Services,standard,2026-03-31,reported,32.3,41.1,26.7,36.3,31.2,0.02,13.8,25.67,25.67,8.3,0.89,6.0,9.0,7.52,safe,True,
 IRFC,Financial Services,financial,2026-03-31,reported,12.4,,,,,,4.6,15.07,15.07,1.86,0.94,,,,,False,override: financial (lender)
 IREDA,Financial Services,financial,2026-03-31,reported,13.6,,,,,,34.5,19.82,19.82,2.69,0.96,,,,,False,override: financial (lender)
-IGL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,13.5,16.3,9.6,12.4,8.5,0.01,4.6,13.85,13.85,1.87,1.15,6.0,9.0,5.36,safe,True,equity check mismatch (ratio 1.15); figures NOT changed; core EBIT 31% below reported EBIT
+IGL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,13.5,16.3,9.6,12.4,8.5,0.01,4.6,13.98,13.98,1.88,1.15,6.0,9.0,5.36,safe,True,equity check mismatch (ratio 1.15); figures NOT changed; core EBIT 31% below reported EBIT
 INDUSTOWER,Telecommunication,standard,2026-03-31,reported,18.0,18.4,22.0,35.3,33.3,0.53,4.6,14.04,14.04,2.53,1.0,7.0,9.0,4.56,safe,True,
 INDUSINDBK,Financial Services,financial,2026-03-31,reported,1.4,,,,,,-0.4,84.37,84.37,1.14,0.97,,,,,False,financial or no EBIT
-NAUKRI,Consumer Services,standard,2026-03-31,reported,3.8,4.7,44.1,65.4,32.4,0.01,11.9,53.08,53.08,2.03,0.82,7.0,9.0,7.53,safe,True,recurring unusual items kept in profit; core EBIT 50% below reported EBIT
+NAUKRI,Consumer Services,standard,2026-03-31,reported,3.8,4.7,44.1,65.4,32.4,0.01,11.9,52.64,52.64,2.01,0.82,7.0,9.0,7.53,safe,True,recurring unusual items kept in profit; core EBIT 50% below reported EBIT
 INFY,Information Technology,standard,2026-03-31,reported,33.9,41.7,16.4,22.6,20.3,0.1,3.4,,,,0.01,6.0,9.0,8.24,safe,False,"currency or units mismatch (equity ratio 0.01); market-cap multiples blanked; P/E 1349 not meaningful, shown blank"
 INOXWIND,Capital Goods,standard,2026-03-31,core,5.3,9.4,8.0,18.4,16.0,0.25,79.3,22.91,27.54,1.45,0.94,3.0,9.0,4.26,safe,True,one-off items removed from profit
 INTELLECT,Information Technology,standard,2026-03-31,core,12.1,13.7,12.7,15.4,13.4,0.05,10.8,23.55,21.17,2.57,0.94,5.0,9.0,6.32,safe,True,one-off items removed from profit
-INDIGO,Services,standard,2026-03-31,reported,-34.3,4.0,-2.9,4.8,4.1,11.15,15.6,,,30.63,1.4,6.0,9.0,1.25,grey,True,equity check mismatch (ratio 1.40); figures NOT changed; recurring unusual items kept in profit
-IGIL,Services,standard,2025-12-31,reported,30.3,38.4,40.6,56.4,53.0,0.1,29.6,43.6,43.6,13.22,0.81,7.0,9.0,,,True,
+INDIGO,Services,standard,2026-03-31,reported,-34.3,4.0,-2.9,4.8,4.1,11.15,15.6,,,30.99,1.4,6.0,9.0,1.25,grey,True,equity check mismatch (ratio 1.40); figures NOT changed; recurring unusual items kept in profit
+IGIL,Services,standard,2025-12-31,reported,30.3,38.4,40.6,56.4,53.0,0.1,29.6,42.7,42.7,12.94,0.81,7.0,9.0,,,True,
 IKS,Information Technology,standard,2026-03-31,reported,25.8,29.6,22.6,30.5,28.4,0.27,45.8,37.29,37.29,9.61,0.84,6.0,9.0,5.74,safe,True,
-IPCALAB,Healthcare,standard,2026-03-31,reported,14.2,16.4,11.9,17.2,17.0,0.1,15.5,40.37,40.37,5.71,0.9,9.0,9.0,7.78,safe,True,
+IPCALAB,Healthcare,standard,2026-03-31,reported,14.2,16.4,11.9,17.2,17.0,0.1,15.5,40.99,40.99,5.8,0.9,9.0,9.0,7.78,safe,True,
 JKCEMENT,Construction Materials,standard,2026-03-31,reported,14.1,13.3,7.4,13.9,13.0,0.88,12.1,42.34,42.34,5.97,0.96,8.0,9.0,1.93,grey,True,
-JBMA,Automobile and Auto Components,standard,2026-03-31,reported,14.2,22.4,3.8,10.7,9.3,2.04,18.1,51.6,51.6,7.34,0.95,5.0,9.0,1.9,grey,True,
-JKTYRE,Automobile and Auto Components,standard,2026-03-31,core,14.6,13.9,5.5,9.1,9.6,0.81,3.7,13.68,12.0,1.75,0.99,8.0,9.0,2.75,safe,True,one-off items removed from profit
+JBMA,Automobile and Auto Components,standard,2026-03-31,reported,14.2,22.4,3.8,10.7,9.3,2.04,18.1,52.85,52.85,7.52,0.95,5.0,9.0,1.9,grey,True,
+JKTYRE,Automobile and Auto Components,standard,2026-03-31,core,14.6,13.9,5.5,9.1,9.6,0.81,3.7,13.69,12.01,1.75,0.99,8.0,9.0,2.75,safe,True,one-off items removed from profit
 JMFINANCIL,Financial Services,financial,2026-03-31,reported,11.3,,,,,,19.1,8.8,8.8,0.99,0.97,,,,,False,financial or no EBIT
-JSWCEMENT,Construction Materials,standard,2026-03-31,core,5.0,-4.1,5.0,-6.6,14.1,0.68,4.7,,51.85,2.6,0.97,5.0,9.0,0.24,distress,True,one-off items removed from profit
+JSWCEMENT,Construction Materials,standard,2026-03-31,core,5.0,-4.1,5.0,-6.6,14.1,0.68,4.7,,52.15,2.61,0.97,5.0,9.0,0.24,distress,True,one-off items removed from profit
 JSWENERGY,Power,standard,2026-03-31,reported,7.3,7.3,12.0,40.7,38.4,2.5,23.6,41.14,41.14,3.0,0.84,5.0,9.0,0.85,distress,True,
 JSWINFRA,Services,standard,2026-03-31,reported,14.0,12.0,28.6,41.5,37.6,0.63,19.0,53.99,53.99,7.56,0.61,3.0,9.0,4.05,safe,True,equity check mismatch (ratio 0.61); figures NOT changed
 JSWSTEEL,Metals & Mining,standard,2026-03-31,core,6.9,18.7,3.8,20.6,10.9,1.19,3.6,14.36,46.12,3.2,0.88,8.0,9.0,3.29,safe,True,one-off items removed from profit; core EBIT 47% below reported EBIT
 JAINREC,Metals & Mining,standard,2026-03-31,reported,22.6,35.5,3.7,6.1,5.9,0.82,45.4,27.31,27.31,6.16,0.91,4.0,9.0,5.64,safe,True,
 JPPOWER,Power,standard,2026-03-31,reported,3.5,6.7,8.1,19.9,16.3,0.27,-1.3,20.14,20.14,0.71,1.64,7.0,9.0,3.75,safe,True,equity check mismatch (ratio 1.64); figures NOT changed
-J&KBANK,Financial Services,financial,2026-03-31,reported,14.3,,,,,,8.2,6.85,6.85,0.98,0.94,,,,,False,financial or no EBIT
-JINDALSAW,Capital Goods,standard,2026-03-31,reported,7.7,9.7,5.6,8.7,9.0,0.37,0.4,15.76,15.76,1.22,0.99,6.0,9.0,4.19,safe,True,
-JSL,Metals & Mining,standard,2026-03-31,reported,16.1,17.8,7.5,11.1,10.4,0.38,6.4,18.7,18.7,3.02,0.93,6.0,9.0,3.57,safe,True,
+J&KBANK,Financial Services,financial,2026-03-31,reported,14.3,,,,,,8.2,6.99,6.99,1.0,0.94,,,,,False,financial or no EBIT
+JINDALSAW,Capital Goods,standard,2026-03-31,reported,7.7,9.7,5.6,8.7,9.0,0.37,0.4,16.15,16.15,1.25,0.99,6.0,9.0,4.19,safe,True,
+JSL,Metals & Mining,standard,2026-03-31,reported,16.1,17.8,7.5,11.1,10.4,0.38,6.4,19.01,19.01,3.07,0.93,6.0,9.0,3.57,safe,True,
 JINDALSTEL,Metals & Mining,standard,2026-03-31,reported,6.6,7.5,7.7,13.8,13.8,0.44,-13.1,34.2,34.2,2.26,0.97,5.0,9.0,3.51,safe,True,recurring unusual items kept in profit
 JIOFIN,Financial Services,financial,2026-03-31,reported,1.2,,,,,,431.7,96.46,96.46,1.12,1.01,,,,,False,override: financial (NBFC)
 JUBLFOOD,Consumer Services,standard,2026-03-31,core,16.2,16.2,4.1,10.9,10.6,2.14,20.2,64.62,74.78,12.08,0.92,6.0,9.0,0.31,distress,True,discontinued operations excluded from profit
-JUBLINGREA,Chemicals,standard,2026-03-31,reported,8.9,10.7,6.4,9.6,9.5,0.25,-2.9,31.74,31.74,2.82,0.94,6.0,9.0,3.42,safe,True,
-JWL,Capital Goods,standard,2026-03-31,reported,5.7,9.0,5.9,10.5,10.6,0.33,12.1,46.31,46.31,2.66,1.0,2.0,9.0,4.93,safe,True,
+JUBLINGREA,Chemicals,standard,2026-03-31,reported,8.9,10.7,6.4,9.6,9.5,0.25,-2.9,32.26,32.26,2.87,0.94,6.0,9.0,3.42,safe,True,
+JWL,Capital Goods,standard,2026-03-31,reported,5.7,9.0,5.9,10.5,10.6,0.33,12.1,47.77,47.77,2.74,1.0,2.0,9.0,4.93,safe,True,
 JYOTICNC,Capital Goods,standard,2026-03-31,reported,16.8,21.8,16.1,25.4,22.8,0.43,31.2,70.59,70.59,11.85,0.94,5.0,9.0,5.57,safe,True,
-KPRMILL,Textiles,standard,2026-03-31,reported,15.2,20.0,13.6,18.4,17.0,0.1,2.3,47.71,47.71,7.26,0.92,6.0,9.0,12.08,safe,True,
+KPRMILL,Textiles,standard,2026-03-31,reported,15.2,20.0,13.6,18.4,17.0,0.1,2.3,47.09,47.09,7.16,0.92,6.0,9.0,12.08,safe,True,
 KEI,Capital Goods,standard,2026-03-31,reported,13.8,18.7,7.9,11.1,10.0,0.04,19.1,39.58,39.58,5.45,1.0,6.0,9.0,8.47,safe,True,
 KPITTECH,Information Technology,standard,2026-03-31,reported,18.0,21.3,9.9,14.6,14.7,0.24,24.3,22.45,22.45,4.04,0.96,5.0,9.0,3.1,safe,True,
-KSB,Capital Goods,standard,2025-12-31,reported,16.1,20.6,10.1,13.6,12.2,0.0,14.0,41.62,41.62,6.71,0.99,4.0,9.0,6.72,safe,True,
-KAJARIACER,Consumer Durables,standard,2026-03-31,reported,15.8,21.0,10.1,14.6,14.5,0.07,3.3,38.88,38.88,6.16,1.03,7.0,9.0,8.91,safe,True,
-KPIL,Construction,standard,2026-03-31,reported,13.4,19.9,3.9,6.8,6.5,0.46,18.4,21.55,21.55,2.88,0.92,8.0,9.0,2.55,grey,True,
+KSB,Capital Goods,standard,2025-12-31,reported,16.1,20.6,10.1,13.6,12.2,0.0,14.0,42.54,42.54,6.85,0.99,4.0,9.0,6.72,safe,True,
+KAJARIACER,Consumer Durables,standard,2026-03-31,reported,15.8,21.0,10.1,14.6,14.5,0.07,3.3,38.86,38.86,6.15,1.03,7.0,9.0,8.91,safe,True,
+KPIL,Construction,standard,2026-03-31,reported,13.4,19.9,3.9,6.8,6.5,0.46,18.4,21.77,21.77,2.91,0.92,8.0,9.0,2.55,grey,True,
 KALYANKJIL,Consumer Durables,standard,2026-03-31,reported,21.4,26.7,3.8,6.1,6.1,0.97,36.4,49.93,49.93,10.69,0.95,8.0,9.0,2.85,safe,True,
-KARURVYSYA,Financial Services,financial,2026-03-31,reported,17.8,,,,,,18.7,14.79,14.79,2.63,0.92,,,,,False,financial or no EBIT
+KARURVYSYA,Financial Services,financial,2026-03-31,reported,17.8,,,,,,18.7,14.52,14.52,2.58,0.92,,,,,False,financial or no EBIT
 KAYNES,Capital Goods,standard,2026-03-31,reported,7.7,12.0,10.0,17.1,13.1,0.19,47.7,51.89,51.89,3.98,1.0,4.0,9.0,5.45,safe,True,
 KEC,Construction,standard,2026-03-31,core,12.2,20.2,3.2,6.2,7.0,0.87,11.1,12.98,10.48,1.28,1.01,3.0,9.0,2.39,grey,True,one-off items removed from profit
 KFINTECH,Financial Services,standard,2026-03-31,reported,20.5,18.9,27.0,37.1,35.3,0.03,22.5,46.77,46.77,9.61,1.03,5.0,9.0,5.2,safe,True,
-KIRLOSBROS,Capital Goods,standard,2026-03-31,reported,15.2,17.4,8.3,10.5,10.0,0.1,6.9,33.38,33.38,5.06,0.96,3.0,9.0,5.39,safe,True,
+KIRLOSBROS,Capital Goods,standard,2026-03-31,reported,15.2,17.4,8.3,10.5,10.0,0.1,6.9,34.56,34.56,5.24,0.96,3.0,9.0,5.39,safe,True,
 KIRLOSENG,Capital Goods,standard,2026-03-31,reported,15.9,17.9,7.5,16.2,16.3,1.48,15.4,43.57,43.57,6.91,0.96,8.0,9.0,3.06,safe,True,
 KOTAKBANK,Financial Services,financial,2026-03-31,reported,10.6,,,,,,14.1,25.94,25.94,2.76,0.93,,,,,False,financial or no EBIT
-KIMS,Healthcare,standard,2026-03-31,reported,10.7,8.1,6.2,13.7,13.8,1.89,21.3,138.17,138.17,14.84,0.57,4.0,9.0,1.15,grey,True,equity check mismatch (ratio 0.57); figures NOT changed
+KIMS,Healthcare,standard,2026-03-31,reported,10.7,8.1,6.2,13.7,13.8,1.89,21.3,138.42,138.42,14.87,0.57,4.0,9.0,1.15,grey,True,equity check mismatch (ratio 0.57); figures NOT changed
 LTF,Financial Services,financial,2026-03-31,reported,10.7,,,,,,17.7,23.04,23.04,2.45,0.96,,,,,False,financial or no EBIT
 LTTS,Information Technology,standard,2026-03-31,core,21.6,24.0,12.7,15.8,14.5,0.09,7.6,35.02,32.11,6.92,0.91,7.0,9.0,7.23,safe,True,discontinued operations excluded from profit; one-off items removed from profit
 LGEINDIA,Consumer Durables,standard,2026-03-31,reported,22.0,27.6,6.9,9.6,8.9,0.06,1.3,71.6,71.6,15.74,0.87,3.0,4.0,6.81,safe,False,short history
-LICHSGFIN,Financial Services,financial,2026-03-31,reported,13.5,,,,,,10.3,5.95,5.95,0.8,0.94,,,,,False,financial or no EBIT
-LTFOODS,Fast Moving Consumer Goods,standard,2026-03-31,reported,13.8,18.4,5.7,9.1,8.4,0.36,16.5,23.54,23.54,3.26,0.92,5.0,9.0,5.02,safe,True,
+LICHSGFIN,Financial Services,financial,2026-03-31,reported,13.5,,,,,,10.3,6.04,6.04,0.82,0.94,,,,,False,financial or no EBIT
+LTFOODS,Fast Moving Consumer Goods,standard,2026-03-31,reported,13.8,18.4,5.7,9.1,8.4,0.36,16.5,24.01,24.01,3.32,0.92,5.0,9.0,5.02,safe,True,
 LTM,Information Technology,standard,2026-03-31,reported,20.9,25.4,11.9,16.5,15.5,0.1,8.4,24.9,24.9,5.2,0.93,5.0,9.0,8.45,safe,True,
 LT,Construction,standard,2026-03-31,reported,14.7,14.6,5.7,10.1,9.5,1.15,16.1,35.07,35.07,5.16,0.97,6.0,9.0,2.43,grey,True,recurring unusual items kept in profit
 LAURUSLABS,Healthcare,standard,2026-03-31,reported,16.8,19.5,13.2,20.0,19.4,0.48,3.8,144.12,144.12,24.17,0.87,9.0,9.0,4.07,safe,True,
-LEMONTREE,Consumer Services,standard,2026-03-31,reported,16.3,13.5,17.2,40.2,42.1,1.44,16.3,44.5,44.5,7.26,0.93,9.0,9.0,1.84,grey,True,
-LENSKART,Consumer Services,standard,2026-03-31,reported,5.6,7.2,5.6,9.8,8.8,0.35,35.4,250.78,,14.17,0.94,8.0,9.0,3.37,safe,False,"short history; P/E 251 not meaningful, shown blank"
+LEMONTREE,Consumer Services,standard,2026-03-31,reported,16.3,13.5,17.2,40.2,42.1,1.44,16.3,44.47,44.47,7.26,0.93,9.0,9.0,1.84,grey,True,
+LENSKART,Consumer Services,standard,2026-03-31,reported,5.6,7.2,5.6,9.8,8.8,0.35,35.4,261.25,,14.76,0.94,8.0,9.0,3.37,safe,False,"short history; P/E 261 not meaningful, shown blank"
 LICI,Financial Services,financial,2026-03-31,reported,32.5,,,,,,7.3,4.48,4.48,1.46,2.09,,,,,False,override: financial (insurer); no cash flow data; equity check mismatch (ratio 2.09); figures NOT changed
 LINDEINDIA,Chemicals,standard,2026-03-31,reported,12.9,16.3,21.7,29.6,26.7,0.02,0.3,108.15,108.15,13.92,0.97,6.0,9.0,5.48,safe,True,
-LLOYDSME,Metals & Mining,standard,2026-03-31,reported,26.5,19.4,21.9,34.0,33.8,1.49,71.4,25.99,25.99,6.9,0.86,3.0,9.0,1.57,grey,True,
+LLOYDSME,Metals & Mining,standard,2026-03-31,reported,26.5,19.4,21.9,34.0,33.8,1.49,71.4,26.36,26.36,6.99,0.86,3.0,9.0,1.57,grey,True,
 LODHA,Realty,realty,2026-03-31,reported,14.7,18.2,21.0,31.2,28.9,0.42,20.4,35.53,35.53,5.23,0.92,7.0,9.0,4.53,safe,False,override: realty (developer: value on NAV)
 LUPIN,Healthcare,standard,2026-03-31,reported,23.8,28.3,19.4,26.5,24.8,0.29,19.1,16.94,16.94,4.02,0.93,8.0,9.0,6.31,safe,True,
-MMTC,Services,exclude,2026-03-31,core,4.2,29.7,2601.8,18750.4,-3236.1,0.0,-90.1,19.67,85.9,3.59,0.92,6.0,9.0,9.98,safe,False,override: exclude (near-zero revenue: margins meaningless); one-off items removed from profit; core EBIT 117% below reported EBIT
-MRF,Automobile and Auto Components,standard,2026-03-31,reported,11.6,15.6,7.8,11.6,10.4,0.15,10.6,22.66,22.66,2.62,0.96,9.0,9.0,3.95,safe,True,
+MMTC,Services,exclude,2026-03-31,core,4.2,29.7,2601.8,18750.4,-3236.1,0.0,-90.1,19.88,86.8,3.63,0.92,6.0,9.0,9.98,safe,False,override: exclude (near-zero revenue: margins meaningless); one-off items removed from profit; core EBIT 117% below reported EBIT
+MRF,Automobile and Auto Components,standard,2026-03-31,reported,11.6,15.6,7.8,11.6,10.4,0.15,10.6,22.88,22.88,2.65,0.96,9.0,9.0,3.95,safe,True,
 MTARTECH,Capital Goods,standard,2026-03-31,reported,11.4,14.8,10.9,17.4,15.7,0.46,15.4,185.02,,21.15,0.88,5.0,9.0,3.91,safe,True,"P/E 185 not meaningful, shown blank"
-MGL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,13.1,16.5,10.2,14.1,12.8,0.03,9.3,12.79,12.79,1.67,0.98,5.0,9.0,5.65,safe,True,
+MGL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,13.1,16.5,10.2,14.1,12.8,0.03,9.3,13.1,13.1,1.71,0.98,5.0,9.0,5.65,safe,True,
 M&MFIN,Financial Services,financial,2026-03-31,reported,10.7,,,,,,13.3,13.96,13.96,1.5,0.97,,,,,False,financial or no EBIT
-M&M,Automobile and Auto Components,standard,2026-03-31,reported,18.4,17.1,8.9,17.9,15.6,1.44,17.5,24.49,24.49,4.5,0.89,6.0,9.0,2.69,safe,True,
+M&M,Automobile and Auto Components,standard,2026-03-31,reported,18.4,17.1,8.9,17.9,15.6,1.44,17.5,24.89,24.89,4.57,0.89,6.0,9.0,2.69,safe,True,
 MANAPPURAM,Financial Services,financial,2026-03-31,reported,6.3,,,,,,7.3,25.37,25.37,1.59,1.0,,,,,False,financial or no EBIT
-MRPL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,13.6,19.0,2.2,5.5,5.6,1.08,-6.7,15.97,15.97,2.16,0.83,8.0,9.0,2.6,safe,True,
-MANKIND,Healthcare,standard,2026-03-31,reported,11.7,13.7,13.4,20.8,19.9,0.39,17.7,56.47,56.47,6.63,0.93,7.0,9.0,3.9,safe,True,
+MRPL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,13.6,19.0,2.2,5.5,5.6,1.08,-6.7,15.98,15.98,2.17,0.83,8.0,9.0,2.6,safe,True,
+MANKIND,Healthcare,standard,2026-03-31,reported,11.7,13.7,13.4,20.8,19.9,0.39,17.7,57.55,57.55,6.75,0.93,7.0,9.0,3.9,safe,True,
 MARICO,Fast Moving Consumer Goods,standard,2026-03-31,reported,41.9,38.8,13.0,17.1,15.7,0.13,11.8,67.74,67.74,28.35,0.89,6.0,9.0,4.7,safe,True,
 MARUTI,Automobile and Auto Components,standard,2026-03-31,reported,13.7,17.2,8.3,10.9,8.4,0.0,15.9,30.01,30.01,4.11,0.98,6.0,9.0,5.59,safe,True,recurring unusual items kept in profit
 MFSL,Financial Services,financial,2026-03-31,reported,1.6,,,,,,15.0,588.37,,9.36,0.92,,,,,False,"override: financial (insurance holding company); P/E 588 not meaningful, shown blank"
@@ -317,7 +317,7 @@ MAXHEALTH,Healthcare,standard,2026-03-31,reported,13.4,12.6,17.5,23.0,22.8,0.32,
 MAZDOCK,Capital Goods,standard,2026-03-31,reported,26.5,28.5,19.9,25.5,20.9,0.05,19.6,28.12,28.12,7.45,0.93,5.0,9.0,3.78,safe,True,recurring unusual items kept in profit
 MEESHO,Consumer Services,standard,2026-03-31,reported,-31.0,-27.0,-10.8,-9.5,-11.4,0.01,30.1,,,26.73,1.07,4.0,8.0,-2.96,distress,False,
 MINDACORP,Automobile and Auto Components,standard,2026-03-31,reported,13.6,14.9,5.9,8.2,8.1,0.56,12.8,47.5,47.5,6.47,0.89,8.0,9.0,2.54,grey,True,
-MSUMI,Automobile and Auto Components,standard,2026-03-31,reported,28.9,35.4,5.5,7.4,7.3,0.11,17.6,44.18,44.18,12.78,1.0,6.0,9.0,4.85,safe,True,
+MSUMI,Automobile and Auto Components,standard,2026-03-31,reported,28.9,35.4,5.5,7.4,7.3,0.11,17.6,45.3,45.3,13.1,1.0,6.0,9.0,4.85,safe,True,
 MOTILALOFS,Financial Services,financial,2026-03-31,reported,14.5,,,,,,29.1,39.84,39.84,5.78,0.83,,,,,False,override: financial (broking plus lending)
 MPHASIS,Information Technology,standard,2026-03-31,reported,17.3,23.0,11.7,17.1,15.3,0.24,4.8,25.32,25.32,4.39,0.99,3.0,9.0,4.98,safe,True,
 MCX,Financial Services,standard,2026-03-31,reported,46.8,39.0,62.9,79.8,74.4,0.0,67.9,68.46,68.46,32.01,0.57,7.0,9.0,4.08,safe,True,equity check mismatch (ratio 0.57); figures NOT changed
@@ -333,107 +333,107 @@ NTPCGREEN,Power,standard,2026-03-31,reported,2.8,2.9,18.9,56.6,49.9,1.67,156.2,1
 NTPC,Power,standard,2026-03-31,core,14.5,8.9,16.0,21.5,20.9,1.33,1.9,11.31,10.36,1.51,0.95,6.0,9.0,0.95,distress,True,discontinued operations excluded from profit
 NH,Healthcare,standard,2026-03-31,reported,17.8,11.4,10.3,15.4,15.5,1.29,20.5,49.77,49.77,8.84,0.91,6.0,9.0,3.26,safe,True,
 NATIONALUM,Metals & Mining,standard,2026-03-31,reported,26.8,33.3,32.7,43.8,40.7,0.01,7.8,9.46,9.46,2.54,0.87,6.0,9.0,10.15,safe,True,
-NAVA,Power,standard,2026-03-31,reported,9.0,11.1,18.4,35.4,31.4,0.25,6.8,19.81,19.81,1.78,0.94,5.0,9.0,,,True,
-NAVINFLUOR,Chemicals,standard,2026-03-31,reported,16.7,18.7,20.3,30.4,28.6,0.32,16.5,78.55,78.55,13.11,0.89,8.0,9.0,6.04,safe,True,
+NAVA,Power,standard,2026-03-31,reported,9.0,11.1,18.4,35.4,31.4,0.25,6.8,20.31,20.31,1.83,0.94,5.0,9.0,,,True,
+NAVINFLUOR,Chemicals,standard,2026-03-31,reported,16.7,18.7,20.3,30.4,28.6,0.32,16.5,77.95,77.95,13.01,0.89,8.0,9.0,6.04,safe,True,
 NESTLEIND,Fast Moving Consumer Goods,standard,2026-03-31,reported,,,,,,,,,,,,0.0,0.0,,,False,no cash flow data
 NETWEB,Information Technology,standard,2026-03-31,reported,28.5,38.8,9.4,13.1,12.7,0.39,70.4,115.84,115.84,32.96,0.34,2.0,9.0,3.95,safe,True,equity check mismatch (ratio 0.34); figures NOT changed
-NEULANDLAB,Healthcare,standard,2026-03-31,reported,19.4,22.9,18.8,26.3,25.4,0.16,18.5,72.43,72.43,14.07,0.92,6.0,9.0,6.25,safe,True,
-NAM-INDIA,Financial Services,standard,2026-03-31,reported,32.8,40.0,56.5,73.1,64.7,0.02,26.1,43.34,43.34,14.23,0.98,6.0,9.0,17.14,safe,True,
-NUVAMA,Financial Services,financial,2026-03-31,reported,25.3,,,,,,20.0,31.17,31.17,7.87,0.9,,,,,False,override: financial (wealth and broking with lending book)
-NUVOCO,Construction Materials,standard,2026-03-31,reported,3.8,6.2,3.2,8.4,8.7,0.53,2.7,35.4,35.4,1.36,0.99,7.0,9.0,0.88,distress,True,
-OBEROIRLTY,Realty,realty,2026-03-31,reported,14.0,16.7,41.7,58.4,53.7,0.16,12.9,26.97,26.97,3.77,0.94,6.0,9.0,8.66,safe,False,override: realty (developer: value on NAV)
+NEULANDLAB,Healthcare,standard,2026-03-31,reported,19.4,22.9,18.8,26.3,25.4,0.16,18.5,72.76,72.76,14.13,0.92,6.0,9.0,6.25,safe,True,
+NAM-INDIA,Financial Services,standard,2026-03-31,reported,32.8,40.0,56.5,73.1,64.7,0.02,26.1,43.95,43.95,14.43,0.98,6.0,9.0,17.14,safe,True,
+NUVAMA,Financial Services,financial,2026-03-31,reported,25.3,,,,,,20.0,32.28,32.28,8.15,0.9,,,,,False,override: financial (wealth and broking with lending book)
+NUVOCO,Construction Materials,standard,2026-03-31,reported,3.8,6.2,3.2,8.4,8.7,0.53,2.7,35.63,35.63,1.37,0.99,7.0,9.0,0.88,distress,True,
+OBEROIRLTY,Realty,realty,2026-03-31,reported,14.0,16.7,41.7,58.4,53.7,0.16,12.9,26.73,26.73,3.74,0.94,6.0,9.0,8.66,safe,False,override: realty (developer: value on NAV)
 ONGC,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,11.1,12.6,6.8,12.9,13.5,0.47,-1.3,6.77,6.77,0.75,0.93,8.0,9.0,1.64,grey,True,recurring unusual items kept in profit
 OIL,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,11.4,10.0,19.5,31.3,35.2,0.65,-2.0,10.38,10.38,1.18,0.91,5.0,9.0,2.27,grey,True,recurring unusual items kept in profit
 OLAELEC,Automobile and Auto Components,standard,2026-03-31,reported,-54.7,-29.7,-88.9,-71.3,-79.3,0.82,-7.5,,,4.58,1.03,2.0,9.0,-3.56,distress,False,
 OLECTRA,Automobile and Auto Components,standard,2026-03-31,reported,14.5,19.4,7.7,12.3,12.3,0.31,28.4,46.05,46.05,6.66,0.94,5.0,9.0,3.95,safe,True,
 PAYTM,Financial Services,standard,2026-03-31,core,4.9,3.7,9.5,7.3,3.5,0.01,1.2,200.34,142.13,6.91,0.97,6.0,9.0,3.87,safe,True,one-off items removed from profit; core EBIT 52% below reported EBIT
-ONESOURCE,Healthcare,standard,2026-03-31,reported,-1.3,0.3,-5.2,1.4,-0.4,0.26,232.4,,,3.15,0.99,4.0,9.0,1.82,grey,False,core EBIT 128% below reported EBIT
+ONESOURCE,Healthcare,standard,2026-03-31,reported,-1.3,0.3,-5.2,1.4,-0.4,0.26,232.4,,,3.16,0.99,4.0,9.0,1.82,grey,False,core EBIT 128% below reported EBIT
 OFSS,Information Technology,standard,2026-03-31,reported,33.7,43.2,34.4,48.0,44.8,0.0,10.4,31.95,31.95,10.77,1.02,7.0,9.0,11.8,safe,True,
 POLICYBZR,Financial Services,standard,2026-03-31,reported,9.2,9.7,9.9,11.0,6.1,0.05,38.5,75.52,75.52,6.92,0.94,5.0,9.0,8.16,safe,True,core EBIT 44% below reported EBIT
-PCBL,Chemicals,standard,2026-03-31,reported,4.9,8.7,2.4,8.3,7.4,1.25,12.2,52.92,52.92,2.61,0.99,5.0,9.0,1.32,grey,True,
+PCBL,Chemicals,standard,2026-03-31,reported,4.9,8.7,2.4,8.3,7.4,1.25,12.2,53.85,53.85,2.66,0.99,5.0,9.0,1.32,grey,True,
 PGEL,Consumer Durables,standard,2026-03-31,reported,6.4,8.7,3.9,5.7,5.8,0.2,33.8,85.6,85.6,5.52,0.98,2.0,9.0,3.18,safe,True,
 PIIND,Chemicals,standard,2026-03-31,reported,11.8,14.7,19.8,25.7,20.4,0.03,1.1,18.04,18.04,2.12,0.98,5.0,9.0,11.09,safe,True,
-PNBHOUSING,Financial Services,financial,2026-03-31,reported,11.9,,,,,,12.5,13.44,13.44,1.6,0.95,,,,,False,financial or no EBIT
-PTCIL,Capital Goods,standard,2026-03-31,reported,6.7,7.9,17.0,22.3,16.5,0.17,40.7,381.28,,25.69,0.91,5.0,9.0,6.63,safe,True,"P/E 381 not meaningful, shown blank"
+PNBHOUSING,Financial Services,financial,2026-03-31,reported,11.9,,,,,,12.5,13.57,13.57,1.62,0.95,,,,,False,financial or no EBIT
+PTCIL,Capital Goods,standard,2026-03-31,reported,6.7,7.9,17.0,22.3,16.5,0.17,40.7,376.52,,25.37,0.91,5.0,9.0,6.63,safe,True,"P/E 377 not meaningful, shown blank"
 PVRINOX,Media Entertainment & Publication,standard,2026-03-31,core,2.9,7.1,3.2,14.2,12.5,0.92,20.9,48.91,77.48,2.21,1.02,9.0,9.0,0.53,distress,True,discontinued operations excluded from profit; one-off items removed from profit
 PAGEIND,Textiles,standard,2026-03-31,reported,50.8,61.5,14.6,20.6,20.4,0.18,3.8,43.95,43.95,22.34,1.0,7.0,9.0,7.11,safe,True,
-PARADEEP,Chemicals,standard,2026-03-31,reported,14.7,20.7,9.8,16.3,16.7,1.02,28.8,14.71,14.71,2.16,0.95,2.0,9.0,2.43,grey,True,
-PATANJALI,Fast Moving Consumer Goods,standard,2026-03-31,reported,13.9,11.2,4.5,3.7,3.8,0.21,8.7,24.41,24.41,3.38,0.97,3.0,9.0,6.44,safe,True,
+PARADEEP,Chemicals,standard,2026-03-31,reported,14.7,20.7,9.8,16.3,16.7,1.02,28.8,14.81,14.81,2.18,0.95,2.0,9.0,2.43,grey,True,
+PATANJALI,Fast Moving Consumer Goods,standard,2026-03-31,reported,13.9,11.2,4.5,3.7,3.8,0.21,8.7,24.24,24.24,3.36,0.97,3.0,9.0,6.44,safe,True,
 PERSISTENT,Information Technology,standard,2026-03-31,reported,23.8,29.4,12.6,16.8,16.4,0.06,20.9,55.44,55.44,13.19,0.87,5.0,9.0,7.4,safe,True,
 PETRONET,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,17.6,21.2,9.0,12.3,11.1,0.11,-9.7,12.5,12.5,2.19,0.92,7.0,9.0,10.71,safe,True,
-PHOENIXLTD,Realty,standard,2026-03-31,reported,11.1,11.8,28.4,56.0,53.0,0.48,18.4,66.53,66.53,7.41,1.21,7.0,9.0,3.4,safe,True,equity check mismatch (ratio 1.21); figures NOT changed
+PHOENIXLTD,Realty,standard,2026-03-31,reported,11.1,11.8,28.4,56.0,53.0,0.48,18.4,66.8,66.8,7.44,1.21,7.0,9.0,3.4,safe,True,equity check mismatch (ratio 1.21); figures NOT changed
 PWL,Consumer Services,standard,2026-03-31,core,-1.6,1.6,-1.8,2.5,-1.4,0.23,73.6,,,9.0,0.98,7.0,9.0,4.11,safe,False,one-off items removed from profit; core EBIT 158% below reported EBIT
 PIDILITIND,Chemicals,standard,2026-03-31,reported,22.6,28.5,16.8,23.2,21.6,0.04,7.4,66.31,66.31,14.99,0.97,9.0,9.0,8.06,safe,True,
 PINELABS,Financial Services,standard,2026-03-31,reported,1.9,3.5,4.7,9.0,-50.8,0.07,21.0,164.69,,3.14,0.99,9.0,9.0,2.68,safe,False,"recurring unusual items kept in profit; core EBIT 663% below reported EBIT; P/E 165 not meaningful, shown blank"
 PIRAMALFIN,Financial Services,financial,2026-03-31,reported,5.3,,,,,,16.9,31.06,31.06,1.66,0.87,,,,,False,override: financial (NBFC)
 PPLPHARMA,Healthcare,standard,2026-03-31,core,-1.8,1.2,-1.7,1.9,1.8,0.7,7.6,,,3.85,1.05,3.0,9.0,1.95,grey,True,one-off items removed from profit
-POLYMED,Healthcare,standard,2026-03-31,reported,10.4,13.3,17.3,23.9,18.3,0.11,18.8,51.24,51.24,5.31,0.95,4.0,9.0,8.35,safe,True,
-POLYCAB,Capital Goods,standard,2026-03-31,reported,22.3,30.4,9.5,13.5,13.0,0.37,26.6,41.9,41.9,9.32,0.92,5.0,9.0,6.62,safe,True,
+POLYMED,Healthcare,standard,2026-03-31,reported,10.4,13.3,17.3,23.9,18.3,0.11,18.8,51.47,51.47,5.34,0.95,4.0,9.0,8.35,safe,True,
+POLYCAB,Capital Goods,standard,2026-03-31,reported,22.3,30.4,9.5,13.5,13.0,0.37,26.6,42.69,42.69,9.5,0.92,5.0,9.0,6.62,safe,True,
 POONAWALLA,Financial Services,financial,2026-03-31,reported,5.2,,,,,,51.4,84.1,84.1,4.4,0.75,,,,,False,override: financial (NBFC)
 PFC,Financial Services,financial,2026-03-31,reported,19.5,,,,,,16.2,4.13,4.13,0.81,0.9,,,,,False,override: financial (lender)
 POWERGRID,Power,standard,2026-03-31,core,18.6,11.2,41.8,60.0,57.0,1.51,0.6,15.47,13.17,2.45,0.94,4.0,9.0,0.75,distress,True,discontinued operations excluded from profit
 PREMIERENE,Capital Goods,standard,2026-03-31,reported,35.0,27.4,19.3,26.9,25.2,0.86,76.2,24.22,24.22,8.49,0.83,4.0,9.0,4.44,safe,True,
-PRESTIGE,Realty,realty,2026-03-31,reported,7.3,12.5,9.5,25.4,22.4,1.09,15.2,60.78,60.78,4.47,0.98,6.0,9.0,1.56,grey,False,override: realty (developer: value on NAV)
+PRESTIGE,Realty,realty,2026-03-31,reported,7.3,12.5,9.5,25.4,22.4,1.09,15.2,60.53,60.53,4.45,0.98,6.0,9.0,1.56,grey,False,override: realty (developer: value on NAV)
 PFOCUS,Media Entertainment & Publication,standard,2026-03-31,reported,10.5,23.0,4.8,17.1,16.7,2.74,-0.3,84.25,84.25,8.82,0.95,7.0,9.0,-2.16,distress,True,
 PRIVISCL,Chemicals,standard,2026-03-31,reported,23.2,25.1,12.9,20.5,20.0,0.72,16.6,43.14,43.14,10.0,0.9,9.0,9.0,4.04,safe,True,
 PNB,Financial Services,financial,2026-03-31,reported,12.3,,,,,,10.0,9.36,9.36,1.15,0.93,,,,,False,financial or no EBIT
 RRKABEL,Capital Goods,standard,2026-03-31,reported,19.1,26.5,5.1,7.6,7.3,0.13,20.1,41.88,41.88,8.01,0.85,6.0,9.0,5.35,safe,True,
 RBLBANK,Financial Services,financial,2026-03-31,reported,5.3,,,,,,12.2,69.52,69.52,3.65,0.38,,,,,False,financial or no EBIT; equity check mismatch (ratio 0.38); figures NOT changed
 RECLTD,Financial Services,financial,2026-03-31,reported,19.2,,,,,,14.4,4.73,4.73,0.91,0.89,,,,,False,financial or no EBIT
-RHIM,Capital Goods,standard,2026-03-31,reported,-10.8,-7.2,-9.6,-7.1,-7.4,0.13,13.9,,,2.06,0.98,4.0,9.0,4.66,safe,False,
+RHIM,Capital Goods,standard,2026-03-31,reported,-10.8,-7.2,-9.6,-7.1,-7.4,0.13,13.9,,,2.04,0.98,4.0,9.0,4.66,safe,False,
 RITES,Construction,standard,2026-03-31,reported,15.3,18.7,17.1,25.3,20.7,0.0,-2.5,21.78,21.78,3.33,1.01,8.0,9.0,3.96,safe,True,
 RADICO,Fast Moving Consumer Goods,standard,2026-03-31,reported,18.2,24.0,10.1,14.5,14.3,0.24,24.6,102.77,102.77,18.74,0.9,9.0,9.0,6.54,safe,True,
 RVNL,Construction,standard,2026-03-31,reported,8.9,11.0,4.3,7.8,3.6,0.49,0.2,44.12,44.12,3.93,1.0,3.0,9.0,,,True,recurring unusual items kept in profit; core EBIT 54% below reported EBIT
 RAILTEL,Telecommunication,standard,2026-03-31,reported,15.3,18.7,8.1,11.2,10.5,0.03,29.8,22.76,22.76,3.48,0.96,6.0,9.0,3.14,safe,True,
 RAINBOW,Healthcare,standard,2026-03-31,reported,16.9,16.8,16.6,26.0,23.7,0.54,13.1,45.94,45.94,7.76,0.96,5.0,9.0,5.1,safe,True,
-RKFORGE,Automobile and Auto Components,standard,2026-03-31,reported,2.2,4.7,1.9,6.1,6.3,0.74,10.5,193.71,,4.23,0.9,5.0,9.0,2.07,grey,True,"P/E 194 not meaningful, shown blank"
+RKFORGE,Automobile and Auto Components,standard,2026-03-31,reported,2.2,4.7,1.9,6.1,6.3,0.74,10.5,192.78,,4.21,0.9,5.0,9.0,2.07,grey,True,"P/E 193 not meaningful, shown blank"
 REDINGTON,Services,standard,2026-03-31,reported,14.7,18.8,1.3,1.7,1.8,0.28,14.5,17.38,17.38,2.55,0.94,4.0,9.0,3.51,safe,True,
 RELIANCE,Oil Gas & Consumable Fuels,standard,2026-03-31,reported,8.9,9.0,7.6,13.9,11.5,0.44,6.4,22.63,22.63,2.02,0.96,7.0,9.0,2.18,grey,True,
 RPOWER,Power,standard,2026-03-31,core,-0.0,4.5,-0.1,19.4,17.9,0.92,0.8,,,0.44,0.99,6.0,9.0,0.05,distress,True,one-off items removed from profit
-RUBICON,Healthcare,standard,2026-03-31,reported,19.1,23.6,14.3,20.3,20.4,0.24,36.6,112.43,112.43,21.52,0.91,2.0,4.0,5.41,safe,False,short history
+RUBICON,Healthcare,standard,2026-03-31,reported,19.1,23.6,14.3,20.3,20.4,0.24,36.6,115.31,115.31,22.08,0.91,2.0,4.0,5.41,safe,False,short history
 SBICARD,Financial Services,financial,2026-03-31,reported,13.8,,,,,,13.5,25.26,25.26,3.48,0.92,,,,,False,financial or no EBIT
-SBILIFE,Financial Services,financial,2026-03-31,reported,12.9,,,,,,11.1,73.32,73.32,9.49,0.93,,,,,False,override: financial (insurer); no cash flow data
+SBILIFE,Financial Services,financial,2026-03-31,reported,12.9,,,,,,11.1,74.19,74.19,9.6,0.93,,,,,False,override: financial (insurer); no cash flow data
 SJVN,Power,standard,2026-03-31,core,4.9,5.0,16.4,50.1,51.1,2.27,14.6,33.64,31.06,1.52,0.95,5.0,9.0,0.54,distress,True,discontinued operations excluded from profit
-SHRIPISTON,Automobile and Auto Components,standard,2026-03-31,reported,19.0,18.0,12.5,18.4,16.6,0.68,19.8,35.79,35.79,6.82,0.68,4.0,9.0,,,True,equity check mismatch (ratio 0.68); figures NOT changed
+SHRIPISTON,Automobile and Auto Components,standard,2026-03-31,reported,19.0,18.0,12.5,18.4,16.6,0.68,19.8,35.45,35.45,6.75,0.68,4.0,9.0,,,True,equity check mismatch (ratio 0.68); figures NOT changed
 SRF,Chemicals,standard,2026-03-31,reported,13.1,14.5,11.9,16.5,16.9,0.37,1.8,40.62,40.62,5.31,0.92,7.0,9.0,4.03,safe,True,
 SAGILITY,Information Technology,standard,2026-03-31,reported,9.6,12.5,12.9,18.6,17.8,0.11,19.5,23.33,23.33,2.23,0.94,7.0,9.0,5.17,safe,True,
-SAILIFE,Healthcare,standard,2026-03-31,reported,14.0,18.1,16.3,23.7,21.9,0.12,21.3,110.17,110.17,15.48,0.92,7.0,9.0,5.23,safe,True,
+SAILIFE,Healthcare,standard,2026-03-31,reported,14.0,18.1,16.3,23.7,21.9,0.12,21.3,109.66,109.66,15.4,0.92,7.0,9.0,5.23,safe,True,
 SAMMAANCAP,Financial Services,financial,2026-03-31,reported,-37.6,,,,,,21.0,,,0.82,0.91,,,,,False,override: financial (housing finance)
 MOTHERSON,Automobile and Auto Components,standard,2026-03-31,reported,9.4,11.5,3.1,5.6,5.5,0.47,17.1,45.65,45.65,4.3,0.9,6.0,9.0,1.8,grey,True,
 SANSERA,Automobile and Auto Components,standard,2026-03-31,reported,10.5,13.6,9.8,14.3,13.0,0.19,14.8,88.97,88.97,9.34,1.0,5.0,9.0,5.35,safe,True,
-SARDAEN,Metals & Mining,standard,2026-03-31,reported,15.0,16.1,19.6,29.6,25.6,0.36,10.4,14.52,14.52,2.18,0.91,9.0,9.0,6.48,safe,True,
+SARDAEN,Metals & Mining,standard,2026-03-31,reported,15.0,16.1,19.6,29.6,25.6,0.36,10.4,14.94,14.94,2.24,0.91,9.0,9.0,6.48,safe,True,
 SCHAEFFLER,Automobile and Auto Components,standard,2025-12-31,reported,19.0,25.7,12.0,16.4,14.9,0.01,12.3,49.02,49.02,9.32,0.99,7.0,9.0,9.07,safe,True,
 SCHNEIDER,Capital Goods,standard,2026-03-31,reported,27.4,24.8,7.4,11.8,11.9,0.45,17.6,113.48,113.48,31.15,0.95,6.0,9.0,4.05,safe,True,
 SCI,Services,standard,2026-03-31,reported,14.9,14.1,23.5,27.5,22.5,0.29,-0.1,8.8,8.8,1.31,0.88,6.0,9.0,4.93,safe,True,
-SHREECEM,Construction Materials,standard,2026-03-31,reported,7.5,10.2,8.5,12.1,9.0,0.08,5.7,52.04,52.04,3.9,0.98,7.0,9.0,6.54,safe,True,recurring unusual items kept in profit
+SHREECEM,Construction Materials,standard,2026-03-31,reported,7.5,10.2,8.5,12.1,9.0,0.08,5.7,52.72,52.72,3.95,0.98,7.0,9.0,6.54,safe,True,recurring unusual items kept in profit
 SHRIRAMFIN,Financial Services,financial,2026-03-31,reported,15.2,,,,,,13.9,23.37,23.37,3.55,0.59,,,,,False,financial or no EBIT; equity check mismatch (ratio 0.59); figures NOT changed
 SHYAMMETL,Capital Goods,standard,2026-03-31,reported,9.3,12.4,5.8,8.6,8.3,0.09,13.6,33.2,33.2,3.08,0.9,5.0,9.0,3.36,safe,True,
-ENRIN,Capital Goods,standard,2025-09-30,reported,25.1,29.2,14.1,19.5,18.3,0.03,63.5,96.35,96.35,24.19,0.91,9.0,9.0,,,False,short history
+ENRIN,Capital Goods,standard,2025-09-30,reported,25.1,29.2,14.1,19.5,18.3,0.03,63.5,95.3,95.3,23.93,0.91,9.0,9.0,,,False,short history
 SIEMENS,Capital Goods,standard,2025-09-30,core,12.8,16.5,9.7,13.2,9.9,0.01,3.0,60.56,75.53,9.63,0.84,7.0,9.0,,,True,discontinued operations excluded from profit
 SIGNATURE,Realty,realty,2026-03-31,core,2.2,36.2,1.6,52.9,-2.3,1.61,18.6,11.05,,6.54,0.96,6.0,9.0,1.59,grey,False,"override: realty (developer: value on NAV); one-off items removed from profit; core EBIT 104% below reported EBIT; P/E 294 not meaningful, shown blank"
-SOBHA,Realty,realty,2026-03-31,reported,4.1,7.4,3.8,7.5,4.0,0.22,16.3,69.19,69.19,2.84,1.0,7.0,9.0,1.34,grey,False,override: realty (developer: value on NAV); core EBIT 47% below reported EBIT
+SOBHA,Realty,realty,2026-03-31,reported,4.1,7.4,3.8,7.5,4.0,0.22,16.3,69.82,69.82,2.86,1.0,7.0,9.0,1.34,grey,False,override: realty (developer: value on NAV); core EBIT 47% below reported EBIT
 SOLARINDS,Chemicals,standard,2026-03-31,reported,26.7,29.5,17.5,26.0,24.9,0.29,12.4,98.06,98.06,26.2,0.82,6.0,9.0,6.09,safe,True,
 SONACOMS,Automobile and Auto Components,standard,2026-03-31,reported,10.7,13.2,14.9,20.0,18.4,0.07,18.8,86.58,86.58,9.26,0.93,5.0,9.0,8.46,safe,True,
-STARHEALTH,Financial Services,financial,2026-03-31,reported,7.4,,,,,,14.0,59.59,59.59,4.4,0.72,,,,,False,override: financial (insurer); no cash flow data
+STARHEALTH,Financial Services,financial,2026-03-31,reported,7.4,,,,,,14.0,58.74,58.74,4.33,0.72,,,,,False,override: financial (insurer); no cash flow data
 SBIN,Financial Services,financial,2026-03-31,reported,14.0,,,,,,10.6,12.55,12.55,1.75,0.89,,,,,False,financial or no EBIT
 SAIL,Metals & Mining,standard,2026-03-31,reported,5.6,7.2,3.1,6.0,6.1,0.53,2.0,19.84,19.84,1.11,0.96,7.0,9.0,1.98,grey,True,recurring unusual items kept in profit
 STLTECH,Telecommunication,standard,2026-03-31,reported,2.5,8.0,1.2,6.2,5.9,0.86,-11.8,542.49,,13.39,0.5,8.0,9.0,1.2,grey,True,"equity check mismatch (ratio 0.50); figures NOT changed; P/E 542 not meaningful, shown blank"
 SUMICHEM,Chemicals,standard,2026-03-31,reported,16.0,21.0,16.9,22.9,20.5,0.02,-2.6,30.81,30.81,4.93,0.92,5.0,9.0,8.24,safe,True,
-SUNPHARMA,Healthcare,standard,2026-03-31,reported,13.7,17.9,19.7,26.6,23.4,0.06,10.4,38.88,38.88,5.34,0.93,5.0,9.0,9.05,safe,True,
-SUNTV,Media Entertainment & Publication,standard,2026-03-31,reported,11.4,15.3,33.2,45.1,34.6,0.01,4.7,18.58,18.58,2.12,0.94,5.0,9.0,18.38,safe,True,recurring unusual items kept in profit
-SUNDARMFIN,Financial Services,financial,2026-03-31,reported,13.8,,,,,,18.6,23.0,23.0,3.18,0.93,,,,,False,financial or no EBIT
+SUNPHARMA,Healthcare,standard,2026-03-31,reported,13.7,17.9,19.7,26.6,23.4,0.06,10.4,39.4,39.4,5.41,0.93,5.0,9.0,9.05,safe,True,
+SUNTV,Media Entertainment & Publication,standard,2026-03-31,reported,11.4,15.3,33.2,45.1,34.6,0.01,4.7,19.0,19.0,2.16,0.94,5.0,9.0,18.38,safe,True,recurring unusual items kept in profit
+SUNDARMFIN,Financial Services,financial,2026-03-31,reported,13.8,,,,,,18.6,23.14,23.14,3.2,0.93,,,,,False,financial or no EBIT
 SUPREMEIND,Capital Goods,standard,2026-03-31,reported,15.5,19.6,8.6,11.2,10.4,0.01,6.8,42.04,42.04,6.5,0.96,5.0,9.0,6.63,safe,True,
 SUZLON,Capital Goods,standard,2026-03-31,reported,33.4,24.8,19.1,16.0,15.5,0.1,41.4,15.58,15.58,5.21,0.91,7.0,9.0,5.0,safe,True,
-SWANCORP,Chemicals,standard,2026-03-31,reported,3.6,4.0,6.3,10.2,-7.9,0.3,45.6,26.28,26.28,0.96,0.87,3.0,9.0,3.45,safe,False,recurring unusual items kept in profit; core EBIT 178% below reported EBIT
+SWANCORP,Chemicals,standard,2026-03-31,reported,3.6,4.0,6.3,10.2,-7.9,0.3,45.6,26.4,26.4,0.96,0.87,3.0,9.0,3.45,safe,False,recurring unusual items kept in profit; core EBIT 178% below reported EBIT
 SWIGGY,Consumer Services,standard,2026-03-31,reported,-22.7,-19.4,-18.2,-17.3,-19.3,0.14,41.0,,,2.53,1.1,4.0,9.0,-0.04,distress,False,
 SYNGENE,Healthcare,standard,2026-03-31,core,8.1,8.3,10.9,12.6,15.3,0.09,5.4,56.3,45.47,3.68,1.0,6.0,9.0,5.19,safe,True,one-off items removed from profit
 SYRMA,Capital Goods,standard,2026-03-31,reported,11.1,14.7,6.8,10.4,10.3,0.14,32.8,90.38,90.38,10.04,0.94,6.0,9.0,3.98,safe,True,
-TBOTEK,Consumer Services,standard,2026-03-31,reported,15.8,15.0,9.7,13.4,13.8,0.49,36.7,67.68,67.68,10.66,0.9,3.0,9.0,1.18,grey,True,
+TBOTEK,Consumer Services,standard,2026-03-31,reported,15.8,15.0,9.7,13.4,13.8,0.49,36.7,67.79,67.79,10.68,0.9,3.0,9.0,1.18,grey,True,
 TDPOWERSYS,Capital Goods,standard,2026-03-31,reported,22.3,30.3,13.0,17.9,17.0,0.02,29.2,81.49,81.49,18.15,0.78,4.0,9.0,6.64,safe,True,
 TVSMOTOR,Automobile and Auto Components,standard,2026-03-31,reported,31.6,28.8,6.3,14.8,1.9,3.43,20.2,71.3,71.3,22.5,0.84,6.0,9.0,1.48,grey,True,core EBIT 87% below reported EBIT
-TATACAP,Financial Services,financial,2026-03-31,reported,10.6,,,,,,34.5,29.85,29.85,3.15,0.94,,,,,False,override: financial (NBFC)
+TATACAP,Financial Services,financial,2026-03-31,reported,10.6,,,,,,34.5,30.04,30.04,3.17,0.94,,,,,False,override: financial (NBFC)
 TATACHEM,Chemicals,standard,2026-03-31,reported,-8.9,-3.0,-13.2,-6.6,-6.3,0.38,-4.8,,,0.78,0.97,3.0,9.0,1.84,grey,False,
-TATACOMM,Telecommunication,standard,2026-03-31,reported,29.1,15.3,4.0,8.9,8.3,3.55,11.6,49.07,49.07,14.26,1.01,6.0,9.0,-0.99,distress,True,discontinued operations excluded from profit
+TATACOMM,Telecommunication,standard,2026-03-31,reported,29.1,15.3,4.0,8.9,8.3,3.55,11.6,49.85,49.85,14.48,1.01,6.0,9.0,-0.99,distress,True,discontinued operations excluded from profit
 TCS,Information Technology,standard,2026-03-31,reported,45.9,54.9,18.4,25.0,25.1,0.11,5.8,18.09,18.09,8.3,0.9,5.0,9.0,8.46,safe,True,
 TATACONSUM,Fast Moving Consumer Goods,standard,2026-03-31,reported,7.1,8.3,7.6,11.5,10.8,0.13,13.9,72.71,72.71,5.15,0.98,7.0,9.0,3.99,safe,True,
 TATAELXSI,Information Technology,standard,2026-03-31,core,23.3,26.2,18.8,22.4,20.7,0.05,6.1,37.9,33.63,7.83,1.04,5.0,9.0,10.84,safe,True,one-off items removed from profit
@@ -445,15 +445,15 @@ TATASTEEL,Metals & Mining,standard,2026-03-31,reported,10.6,11.3,4.7,10.0,9.7,0.
 TATATECH,Information Technology,standard,2026-03-31,core,15.5,15.5,11.1,14.5,13.1,0.24,7.7,52.59,47.19,7.33,1.02,4.0,9.0,4.01,safe,True,one-off items removed from profit
 TTML,Telecommunication,standard,2026-03-31,core,3.6,-6.8,-61.9,99.6,41.4,-0.95,1.5,,,-0.34,,6.0,9.0,-156.67,distress,True,one-off items removed from profit; core EBIT 58% below reported EBIT
 TECHM,Information Technology,standard,2026-03-31,reported,16.2,19.8,8.5,12.2,12.8,0.07,2.2,32.74,32.74,5.32,1.0,8.0,9.0,5.88,safe,True,
-TECHNOE,Construction,standard,2026-03-31,core,10.8,12.5,14.2,18.3,14.1,0.02,56.3,22.34,23.6,2.55,0.96,3.0,9.0,8.38,safe,True,discontinued operations excluded from profit
-TEGA,Capital Goods,standard,2026-03-31,reported,4.2,6.2,8.5,13.3,8.2,0.12,11.8,81.6,81.6,3.42,1.06,6.0,9.0,9.28,safe,True,recurring unusual items kept in profit; core EBIT 38% below reported EBIT
+TECHNOE,Construction,standard,2026-03-31,core,10.8,12.5,14.2,18.3,14.1,0.02,56.3,22.64,23.91,2.58,0.96,3.0,9.0,8.38,safe,True,discontinued operations excluded from profit
+TEGA,Capital Goods,standard,2026-03-31,reported,4.2,6.2,8.5,13.3,8.2,0.12,11.8,83.7,83.7,3.5,1.06,6.0,9.0,9.28,safe,True,recurring unusual items kept in profit; core EBIT 38% below reported EBIT
 TEJASNET,Telecommunication,standard,2026-03-31,reported,-31.0,-29.5,-82.8,-97.9,-99.1,1.43,6.1,,,2.43,1.16,3.0,9.0,0.39,distress,False,equity check mismatch (ratio 1.16); figures NOT changed
 TENNIND,Automobile and Auto Components,standard,2026-03-31,reported,50.4,64.3,11.2,15.8,15.2,0.07,3.9,29.45,29.45,14.85,0.78,8.0,9.0,4.94,safe,True,
 THANGAMAYL,Consumer Durables,standard,2026-03-31,reported,24.8,34.2,4.1,6.2,6.2,0.64,39.2,33.34,33.34,8.28,0.94,7.0,9.0,4.28,safe,True,
 NIACL,Financial Services,financial,2026-03-31,reported,4.9,,,,,,6.9,17.43,17.43,0.86,0.68,,,,,False,override: financial (insurer); no cash flow data; equity check mismatch (ratio 0.68); figures NOT changed
-RAMCOCEM,Construction Materials,standard,2026-03-31,core,3.1,9.6,2.8,13.1,6.8,0.48,3.3,27.56,76.83,2.38,1.0,9.0,9.0,0.69,distress,True,one-off items removed from profit; core EBIT 48% below reported EBIT
-THERMAX,Capital Goods,standard,2026-03-31,core,11.3,15.3,5.9,10.7,9.0,0.43,9.8,42.3,48.48,5.49,1.01,4.0,9.0,3.14,safe,True,one-off items removed from profit
-TIMKEN,Capital Goods,standard,2026-03-31,reported,14.2,18.5,12.0,16.1,15.5,0.0,7.5,55.72,55.72,7.93,0.93,6.0,9.0,9.45,safe,True,
+RAMCOCEM,Construction Materials,standard,2026-03-31,core,3.1,9.6,2.8,13.1,6.8,0.48,3.3,28.3,78.89,2.44,1.0,9.0,9.0,0.69,distress,True,one-off items removed from profit; core EBIT 48% below reported EBIT
+THERMAX,Capital Goods,standard,2026-03-31,core,11.3,15.3,5.9,10.7,9.0,0.43,9.8,42.5,48.7,5.52,1.01,4.0,9.0,3.14,safe,True,one-off items removed from profit
+TIMKEN,Capital Goods,standard,2026-03-31,reported,14.2,18.5,12.0,16.1,15.5,0.0,7.5,56.22,56.22,8.0,0.93,6.0,9.0,9.45,safe,True,
 TITAGARH,Capital Goods,standard,2026-03-31,reported,5.0,8.6,3.9,7.7,9.6,0.25,4.7,78.58,78.58,3.94,0.95,8.0,9.0,4.31,safe,True,recurring unusual items kept in profit
 TITAN,Consumer Durables,standard,2026-03-31,reported,32.3,38.4,5.8,9.1,8.7,1.95,29.2,81.86,81.86,26.44,0.86,6.0,9.0,3.14,safe,True,
 TORNTPHARM,Healthcare,standard,2026-03-31,reported,25.8,9.1,15.7,23.7,24.0,1.79,13.3,83.76,83.76,21.6,0.46,4.0,9.0,,,True,equity check mismatch (ratio 0.46); figures NOT changed
@@ -461,40 +461,40 @@ TORNTPOWER,Power,standard,2026-03-31,reported,12.7,11.9,8.4,14.7,14.2,0.73,4.0,2
 TARIL,Capital Goods,standard,2026-03-31,reported,17.5,24.4,10.7,16.2,16.3,0.3,21.5,32.86,32.86,5.74,0.92,6.0,9.0,5.38,safe,True,
 TRENT,Consumer Services,standard,2026-03-31,reported,24.6,28.2,8.7,12.1,12.0,0.37,34.8,99.47,99.47,24.49,0.9,6.0,9.0,4.71,safe,True,
 TRIDENT,Textiles,standard,2026-03-31,reported,7.9,10.7,6.0,10.0,9.0,0.38,1.8,31.31,31.31,2.47,0.99,5.0,9.0,4.39,safe,True,
-TRITURBINE,Capital Goods,standard,2026-03-31,reported,24.2,31.9,16.2,22.0,19.9,0.02,20.4,41.34,41.34,10.0,0.96,4.0,9.0,7.09,safe,True,
-TIINDIA,Automobile and Auto Components,standard,2026-03-31,reported,8.2,12.8,2.9,8.6,7.5,0.1,15.5,67.17,67.17,5.52,0.96,7.0,9.0,4.49,safe,True,
+TRITURBINE,Capital Goods,standard,2026-03-31,reported,24.2,31.9,16.2,22.0,19.9,0.02,20.4,42.39,42.39,10.25,0.96,4.0,9.0,7.09,safe,True,
+TIINDIA,Automobile and Auto Components,standard,2026-03-31,reported,8.2,12.8,2.9,8.6,7.5,0.1,15.5,67.73,67.73,5.56,0.96,7.0,9.0,4.49,safe,True,
 UCOBANK,Financial Services,financial,2026-03-31,reported,8.3,,,,,,7.8,11.21,11.21,0.93,0.96,,,,,False,financial or no EBIT
-UNOMINDA,Automobile and Auto Components,standard,2026-03-31,reported,17.5,20.5,6.2,9.2,8.0,0.4,20.5,65.45,65.45,11.47,0.92,7.0,9.0,3.59,safe,True,
-UPL,Chemicals,standard,2026-03-31,reported,5.5,9.9,3.7,11.7,13.0,0.68,-1.2,24.53,24.53,1.36,1.0,8.0,9.0,2.38,grey,True,recurring unusual items kept in profit
-UTIAMC,Financial Services,standard,2026-03-31,reported,9.0,14.2,26.3,43.3,39.4,0.03,10.8,26.55,26.55,2.38,1.02,5.0,9.0,15.33,safe,True,
-ULTRACEMCO,Construction Materials,standard,2026-03-31,reported,10.7,11.8,9.3,14.6,14.0,0.31,11.9,45.56,45.56,4.85,1.04,8.0,9.0,1.92,grey,True,
+UNOMINDA,Automobile and Auto Components,standard,2026-03-31,reported,17.5,20.5,6.2,9.2,8.0,0.4,20.5,66.57,66.57,11.67,0.92,7.0,9.0,3.59,safe,True,
+UPL,Chemicals,standard,2026-03-31,reported,5.5,9.9,3.7,11.7,13.0,0.68,-1.2,25.15,25.15,1.39,1.0,8.0,9.0,2.38,grey,True,recurring unusual items kept in profit
+UTIAMC,Financial Services,standard,2026-03-31,reported,9.0,14.2,26.3,43.3,39.4,0.03,10.8,26.59,26.59,2.39,1.02,5.0,9.0,15.33,safe,True,
+ULTRACEMCO,Construction Materials,standard,2026-03-31,reported,10.7,11.8,9.3,14.6,14.0,0.31,11.9,46.6,46.6,4.97,1.04,8.0,9.0,1.92,grey,True,
 UNIONBANK,Financial Services,financial,2026-03-31,reported,14.5,,,,,,7.6,8.18,8.18,1.19,0.94,,,,,False,financial or no EBIT
 UBL,Fast Moving Consumer Goods,standard,2026-03-31,reported,9.1,13.5,4.7,7.1,6.1,0.29,6.6,80.27,80.27,7.33,0.99,5.0,9.0,3.23,safe,True,
-UNITDSPR,Fast Moving Consumer Goods,standard,2026-03-31,core,19.1,25.5,13.8,19.1,16.1,0.05,5.6,57.1,61.41,11.72,0.99,7.0,9.0,5.86,safe,True,discontinued operations excluded from profit
+UNITDSPR,Fast Moving Consumer Goods,standard,2026-03-31,core,19.1,25.5,13.8,19.1,16.1,0.05,5.6,56.65,60.93,11.63,0.99,7.0,9.0,5.86,safe,True,discontinued operations excluded from profit
 URBANCO,Consumer Services,standard,2026-03-31,reported,-11.0,-7.2,-15.1,-10.5,-15.2,0.06,34.7,,,12.93,1.0,3.0,9.0,5.42,safe,False,
-USHAMART,Capital Goods,standard,2026-03-31,core,14.9,18.7,13.7,18.3,16.5,0.07,4.1,29.65,28.15,4.18,1.0,7.0,9.0,9.01,safe,True,discontinued operations excluded from profit
-VTL,Textiles,standard,2026-03-31,reported,7.1,8.6,7.7,10.8,9.3,0.18,-0.8,20.35,20.35,1.44,0.94,5.0,9.0,8.45,safe,True,
-VBL,Fast Moving Consumer Goods,standard,2025-12-31,reported,15.5,19.4,14.6,20.1,18.5,0.13,17.3,47.59,47.59,7.38,0.9,7.0,9.0,6.81,safe,True,
+USHAMART,Capital Goods,standard,2026-03-31,core,14.9,18.7,13.7,18.3,16.5,0.07,4.1,30.12,28.6,4.25,1.0,7.0,9.0,9.01,safe,True,discontinued operations excluded from profit
+VTL,Textiles,standard,2026-03-31,reported,7.1,8.6,7.7,10.8,9.3,0.18,-0.8,20.52,20.52,1.45,0.94,5.0,9.0,8.45,safe,True,
+VBL,Fast Moving Consumer Goods,standard,2025-12-31,reported,15.5,19.4,14.6,20.1,18.5,0.13,17.3,47.63,47.63,7.39,0.9,7.0,9.0,6.81,safe,True,
 VAML,Metals & Mining,standard,2026-03-31,reported,49.4,42.0,,,,-0.84,,,,-1906766.37,,3.0,8.0,,,False,
 VISL,Metals & Mining,standard,2026-03-31,core,24.6,11.8,-13.1,-3.3,2.2,-2.44,-2.7,,,-1.28,,3.0,9.0,,,False,short history; one-off items removed from profit
 VEDL,Metals & Mining,exclude,2026-03-31,core,11.7,21.3,6.2,25.6,24.1,0.68,-19.2,5.29,19.26,2.25,3.2,8.0,9.0,1.81,grey,False,override: exclude (restated series: Yahoo misses Rs 12.7k cr exceptional per Screener); equity check mismatch (ratio 3.20); figures NOT changed; discontinued operations excluded from profit
 VOGL,Oil Gas & Consumable Fuels,standard,2026-03-31,core,0.4,4.1,0.8,9.7,-1.8,0.36,161.8,208.51,,0.68,0.9,4.0,9.0,,,False,"one-off items removed from profit; core EBIT 119% below reported EBIT; P/E 153 not meaningful, shown blank"
 VEDPOWER,Power,standard,2026-03-31,core,0.3,-7.7,0.4,-17.6,8.2,0.71,15.7,,,0.99,1.01,6.0,9.0,,,True,"one-off items removed from profit; P/E 333 not meaningful, shown blank"
-VIJAYA,Healthcare,standard,2026-03-31,reported,18.1,19.1,21.3,32.4,30.1,0.44,21.0,93.64,93.64,16.92,0.9,8.0,9.0,5.74,safe,True,
+VIJAYA,Healthcare,standard,2026-03-31,reported,18.1,19.1,21.3,32.4,30.1,0.44,21.0,93.62,93.62,16.92,0.9,8.0,9.0,5.74,safe,True,
 VMM,Consumer Services,standard,2026-03-31,reported,11.3,14.6,6.5,10.1,9.5,0.27,19.4,52.75,52.75,5.97,0.93,6.0,9.0,4.29,safe,True,
 IDEA,Telecommunication,standard,2026-03-31,core,26.4,36.9,-21.1,125.2,-7.0,-5.38,2.1,3.73,,-3.61,,6.0,9.0,-2.68,distress,False,one-off items removed from profit; core EBIT 106% below reported EBIT
 VOLTAS,Consumer Durables,standard,2026-03-31,reported,5.9,9.3,2.7,4.6,4.1,0.16,14.5,107.26,107.26,6.32,0.95,3.0,9.0,3.27,safe,True,recurring unusual items kept in profit
 WAAREEENER,Capital Goods,standard,2026-03-31,reported,25.7,30.1,14.3,20.2,19.1,0.26,57.8,18.52,18.52,4.76,0.9,6.0,9.0,4.07,safe,True,
 WELCORP,Capital Goods,standard,2026-03-31,reported,17.6,19.5,10.0,14.5,12.3,0.26,19.5,35.19,35.19,6.2,0.86,4.0,9.0,3.59,safe,True,
 WELSPUNLIV,Textiles,standard,2026-03-31,reported,4.2,5.8,2.4,5.0,4.6,0.47,5.7,124.68,124.68,5.18,0.97,4.0,9.0,3.74,safe,True,
-WHIRLPOOL,Consumer Durables,standard,2026-03-31,reported,7.1,9.0,3.7,5.5,3.8,0.09,6.4,34.94,34.94,2.47,0.98,4.0,9.0,5.7,safe,True,core EBIT 30% below reported EBIT
+WHIRLPOOL,Consumer Durables,standard,2026-03-31,reported,7.1,9.0,3.7,5.5,3.8,0.09,6.4,35.41,35.41,2.5,0.98,4.0,9.0,5.7,safe,True,core EBIT 30% below reported EBIT
 WIPRO,Information Technology,standard,2026-03-31,reported,14.9,17.8,14.2,19.6,16.1,0.23,0.8,14.04,14.04,2.09,1.11,5.0,9.0,6.25,safe,True,equity check mismatch (ratio 1.11); figures NOT changed
 WOCKPHARMA,Healthcare,standard,2026-03-31,core,5.8,6.4,8.6,13.4,12.1,0.45,7.8,164.21,123.11,7.08,0.96,8.0,9.0,2.9,safe,True,one-off items removed from profit
 YESBANK,Financial Services,financial,2026-03-31,reported,6.9,,,,,,25.3,15.85,15.85,1.09,0.95,,,,,False,financial or no EBIT
 ZFCVINDIA,Automobile and Auto Components,standard,2026-03-31,reported,14.0,18.5,12.6,17.1,13.1,0.01,6.2,47.52,47.52,6.66,1.0,6.0,9.0,13.06,safe,True,
 ZEEL,Media Entertainment & Publication,standard,2026-03-31,core,2.0,2.5,2.8,3.7,1.8,0.02,0.0,25.2,30.03,0.59,0.95,5.0,8.0,11.66,safe,True,one-off items removed from profit; core EBIT 53% below reported EBIT
 ZENTEC,Capital Goods,standard,2026-03-31,reported,10.2,15.4,28.1,44.4,32.4,0.01,46.5,78.79,78.79,8.07,0.95,7.0,9.0,15.66,safe,True,
-ZENSARTECH,Information Technology,standard,2026-03-31,reported,16.4,20.9,13.6,18.1,14.7,0.02,5.5,15.53,15.53,2.55,0.97,6.0,9.0,9.59,safe,True,
+ZENSARTECH,Information Technology,standard,2026-03-31,reported,16.4,20.9,13.6,18.1,14.7,0.02,5.5,15.51,15.51,2.55,0.97,6.0,9.0,9.59,safe,True,
 ZYDUSLIFE,Healthcare,standard,2026-03-31,reported,18.6,19.0,18.9,26.1,21.7,0.46,16.5,23.74,23.74,4.41,0.97,4.0,9.0,4.44,safe,True,
 ZYDUSWELL,Fast Moving Consumer Goods,standard,2026-03-31,core,3.9,3.4,5.8,8.3,9.0,0.55,20.7,75.16,64.74,2.54,0.99,6.0,9.0,2.67,safe,True,one-off items removed from profit
-ECLERX,Services,standard,2026-03-31,reported,27.6,32.7,17.2,23.7,21.8,0.15,15.8,19.69,19.69,5.43,0.88,7.0,9.0,9.36,safe,True,
+ECLERX,Services,standard,2026-03-31,reported,27.6,32.7,17.2,23.7,21.8,0.15,15.8,18.95,18.95,5.22,0.88,7.0,9.0,9.36,safe,True,

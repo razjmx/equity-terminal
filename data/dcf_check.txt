@@ -6,13 +6,13 @@ Terminal: {'roic_pct': 20.0, 'fcff_cr': 63318.0, 'pv_share_of_ev_pct': 54.7}
 Bridge (Rs cr): {'enterprise_value': 798335.0, 'debt': 11283.0, 'cash': 41373.0, 'investments': 0.0, 'minority': 1238.0, 'equity_value': 827187.0, 'shares_cr': 361.809, 'market_cap': 890049.0}
 Reverse DCF: {'implied_first_year_growth_pct': 5.3, 'implied_ebit_margin_pct': 25.1, 'implied_discount_rate_pct': 11.6, 'implied_rate_note': '', 'note': ''}
 
-=== HINDUNILVR | FY 2026-03-31 | ok | indicative | price 2019.1 | fair value 686.7 (range 587.3 to 837.0) | upside -66.0% ===
+=== HINDUNILVR | FY 2026-03-31 | ok | indicative | price 2052.5 | fair value 686.2 (range 586.9 to 836.2) | upside -66.6% ===
 Flags: ['growth path: first-year growth below terminal growth (path rises)']
-Assumptions: {'rf_pct': 7.2, 'erp_pct': 6.0, 'beta_raw': 0.54, 'beta_used': 0.69, 'beta_weeks': 156, 'cost_of_equity_pct': 11.34, 'wacc_pct': 11.33, 'terminal_growth_pct': 6.5, 'tax_pct': 25.0, 'forecast_years': 10, 'hold_years': 3, 'growth_years': 2, 'historic_growth_pct': 2.3, 'first_year_growth_pct': 2.3, 'ebit_margin_pct': 21.5, 'margin_basis': 'latest', 'sales_to_capital': 1.52, 'roic_now_pct': 24.4, 'mid_year': True, 'roll_forward_years': 0.66, 'roll_factor': 1.074}
+Assumptions: {'rf_pct': 7.2, 'erp_pct': 6.0, 'beta_raw': 0.54, 'beta_used': 0.69, 'beta_weeks': 156, 'cost_of_equity_pct': 11.35, 'wacc_pct': 11.33, 'terminal_growth_pct': 6.5, 'tax_pct': 25.0, 'forecast_years': 10, 'hold_years': 3, 'growth_years': 2, 'historic_growth_pct': 2.3, 'first_year_growth_pct': 2.3, 'ebit_margin_pct': 21.5, 'margin_basis': 'latest', 'sales_to_capital': 1.52, 'roic_now_pct': 24.4, 'mid_year': True, 'roll_forward_years': 0.66, 'roll_factor': 1.074}
 Projection (Rs cr), years 1, 5, 10: [{'year': 1, 'growth_pct': 2.3, 'revenue': 65209.0, 'nopat': 10515.0, 'reinvestment': 954.0, 'fcff': 9561.0}, {'year': 5, 'growth_pct': 3.5, 'revenue': 72600.0, 'nopat': 11707.0, 'reinvestment': 1610.0, 'fcff': 10097.0}, {'year': 10, 'growth_pct': 6.5, 'revenue': 93933.0, 'nopat': 15147.0, 'reinvestment': 3783.0, 'fcff': 11364.0}]
 Terminal: {'roic_pct': 20.0, 'fcff_cr': 10889.0, 'pv_share_of_ev_pct': 56.6}
-Bridge (Rs cr): {'enterprise_value': 143636.0, 'debt': 1478.0, 'cash': 8409.0, 'investments': 0.0, 'minority': 269.0, 'equity_value': 150298.0, 'shares_cr': 234.959, 'market_cap': 474406.0}
-Reverse DCF: {'implied_first_year_growth_pct': 30.6, 'implied_ebit_margin_pct': None, 'implied_discount_rate_pct': None, 'implied_rate_note': 'below 8.6%', 'note': '; margin outside 0% to 60%'}
+Bridge (Rs cr): {'enterprise_value': 143518.0, 'debt': 1478.0, 'cash': 8409.0, 'investments': 0.0, 'minority': 269.0, 'equity_value': 150180.0, 'shares_cr': 234.959, 'market_cap': 482254.0}
+Reverse DCF: {'implied_first_year_growth_pct': 31.0, 'implied_ebit_margin_pct': None, 'implied_discount_rate_pct': None, 'implied_rate_note': 'below 8.6%', 'note': '; margin outside 0% to 60%'}
 
 === TITAN | FY 2026-03-31 | ok | low confidence | price 4680.0 | fair value 751.0 (range 478.6 to 1151.0) | upside -84.0% ===
 Flags: ['growth clamped: 2-year 30.9% to 30%', 'far from price: model value is 16% of the market price']

@@ -1,153 +1,153 @@
 symbol,status,reliability,price,fair_value,fair_low,fair_high,upside_pct,wacc_pct,beta,hist_growth_pct,g1_pct,terminal_g_pct,ebit_margin_pct,tv_share_pct,implied_g1_pct,implied_margin_pct,implied_rate_pct,flags
 ABB,ok,low confidence,6868.5,1312.6,1206.3,1448.2,-80.9,14.63,1.24,12.3,12.3,6.5,14.4,46.7,,,,far from price: model value is 19% of the market price
-ACC,ok,low confidence,1255.8,166.9,103.8,245.2,-86.7,13.59,1.09,13.1,13.1,6.5,7.3,305.8,,13.5,,low return: ROIC 6.7% below WACC 13.6%; far from price: model value is 13% of the market price
-ACMESOLAR,ok,indicative,411.6,386.6,236.3,644.3,-6.1,10.34,0.93,23.8,23.8,6.5,65.9,82.1,24.8,,10.2,margin: very high EBIT margin (66%); low return: ROIC 4.6% below WACC 10.3%
-AIAENG,ok,indicative,3388.2,1524.9,1392.3,1720.7,-55.0,11.54,0.72,-4.4,-4.4,6.5,26.3,49.1,22.4,,,growth path: first-year growth below terminal growth (path rises)
+ACC,ok,low confidence,1277.0,164.6,101.9,242.4,-87.1,13.62,1.1,13.1,13.1,6.5,7.3,308.6,,13.7,,low return: ROIC 6.7% below WACC 13.6%; far from price: model value is 13% of the market price
+ACMESOLAR,ok,indicative,405.4,387.8,237.1,646.5,-4.3,10.34,0.94,23.8,23.8,6.5,65.9,82.1,24.5,,10.2,margin: very high EBIT margin (66%); low return: ROIC 4.6% below WACC 10.3%
+AIAENG,ok,indicative,3433.5,1522.9,1390.9,1717.5,-55.6,11.56,0.73,-4.4,-4.4,6.5,26.3,49.0,22.8,,,growth path: first-year growth below terminal growth (path rises)
 APLAPOLLO,ok,indicative,1670.0,692.2,604.2,810.4,-58.6,13.45,1.05,13.1,13.1,6.5,7.1,61.0,39.9,15.3,9.4,
 AWL,not meaningful,not meaningful,167.8,,,,,11.07,0.91,20.8,20.8,6.5,2.3,652.0,,3.7,,growth gap: 2-year growth differs from 3-year CAGR (8.7%) by over 10 points; low return: ROIC 8.1% below WACC 11.1%; not meaningful: negative equity value
 AARTIIND,not meaningful,not meaningful,449.35,,,,,12.5,1.17,14.8,14.8,6.5,8.2,-220.1,,24.5,,low return: ROIC 4.9% below WACC 12.5%; not meaningful: negative equity value
-ABBOTINDIA,ok,usable,26125.0,15551.9,13183.6,19230.9,-40.5,11.04,0.64,8.8,8.8,6.5,26.3,60.6,21.3,44.9,9.0,
-ACE,ok,indicative,1187.45,396.7,366.2,434.9,-66.6,15.13,1.32,6.1,6.1,6.5,14.8,41.5,42.2,46.3,8.8,
-ACUTAAS,ok,indicative,3875.0,1089.7,909.3,1333.6,-71.9,13.57,1.06,36.5,30.0,6.5,33.5,79.7,,,9.0,margin swing: latest core EBIT margin 33.5% vs 3-year average 23.3% (possible peak or trough); growth clamped: 2-year 36.5% to 30%
+ABBOTINDIA,ok,usable,26525.0,15697.5,13281.1,19471.4,-40.8,10.99,0.63,8.8,8.8,6.5,26.3,60.9,21.4,45.1,9.0,
+ACE,ok,indicative,1170.35,397.0,366.4,435.3,-66.1,15.12,1.32,6.1,6.1,6.5,14.8,41.5,41.7,45.5,8.8,
+ACUTAAS,ok,indicative,3833.5,1102.4,918.9,1351.2,-71.2,13.51,1.05,36.5,30.0,6.5,33.5,79.9,,,9.0,margin swing: latest core EBIT margin 33.5% vs 3-year average 23.3% (possible peak or trough); growth clamped: 2-year 36.5% to 30%
 ADANIENSOL,not meaningful,not meaningful,1470.0,,,,,14.15,1.5,29.0,29.0,6.5,23.3,-1875.3,,52.1,,low return: ROIC 7.1% below WACC 14.2%; not meaningful: negative equity value
 ADANIENT,not meaningful,not meaningful,2677.9,,,,,13.33,1.34,2.0,2.0,6.5,8.4,87.0,,55.1,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 3.6% below WACC 13.3%; not meaningful: negative equity value
 ADANIGREEN,not meaningful,not meaningful,1391.0,,,,,13.98,1.66,15.6,15.6,6.5,49.2,65.3,,,,margin: very high EBIT margin (49%); low return: ROIC 3.6% below WACC 14.0%; not meaningful: negative equity value
 ADANIPORTS,ok,indicative,1919.0,618.4,474.2,813.1,-67.8,13.58,1.23,20.4,20.4,6.5,45.1,77.7,49.8,,9.9,margin: very high EBIT margin (45%); low return: ROIC 8.7% below WACC 13.6%
 ADANIPOWER,ok,low confidence,207.9,26.1,20.9,32.3,-87.4,12.8,1.07,4.0,4.0,6.5,29.1,51.2,,,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 10.0% below WACC 12.8%; far from price: model value is 13% of the market price
 ATGL,ok,low confidence,550.45,34.4,28.1,42.1,-93.7,14.24,1.23,14.8,14.8,6.5,15.4,90.4,,,,low return: ROIC 11.1% below WACC 14.2%; far from price: model value is 6% of the market price
-ABSLAMC,ok,indicative,928.85,672.9,604.7,762.9,-27.6,13.64,1.08,16.8,16.8,6.5,57.4,51.6,25.9,,11.4,margin: very high EBIT margin (57%)
+ABSLAMC,ok,indicative,935.5,678.6,609.0,770.6,-27.5,13.56,1.06,16.8,16.8,6.5,57.4,51.9,25.8,,11.3,margin: very high EBIT margin (57%)
 CPPLUS,ok,low confidence,4074.1,702.2,583.8,865.6,-82.8,13.03,0.97,23.1,23.1,6.5,12.3,76.3,,52.5,,margin swing: latest core EBIT margin 12.3% vs 3-year average 8.7% (possible peak or trough); far from price: model value is 17% of the market price
 AEGISLOG,ok,low confidence,1158.6,167.0,141.5,197.8,-85.6,12.93,1.05,8.5,8.5,6.5,15.5,63.7,,48.9,,low return: ROIC 11.4% below WACC 12.9%; far from price: model value is 14% of the market price
-AEGISVOPAK,ok,low confidence,280.9,22.7,13.6,34.5,-91.9,14.93,1.45,28.2,28.2,6.5,51.9,80.6,,,8.7,margin: very high EBIT margin (52%); low return: ROIC 4.6% below WACC 14.9%; far from price: model value is 8% of the market price
-AETHER,ok,low confidence,1596.9,54.4,9.6,111.5,-96.6,11.66,0.76,37.6,30.0,6.5,24.0,369.0,,,,growth clamped: 2-year 37.6% to 30%; growth gap: 2-year growth differs from 3-year CAGR (20.2%) by over 10 points; low return: ROIC 7.0% below WACC 11.7%; far from price: model value is 3% of the market price
-AFCONS,ok,indicative,220.22,70.6,59.2,84.3,-67.9,12.05,1.2,-5.1,-5.0,6.5,7.6,38.5,,14.2,,growth clamped: 2-year -5.1% to -5%; growth path: first-year growth below terminal growth (path rises); low return: ROIC 8.4% below WACC 12.0%
+AEGISVOPAK,ok,low confidence,290.33,22.6,13.5,34.4,-92.2,14.93,1.45,28.2,28.2,6.5,51.9,80.6,,,8.7,margin: very high EBIT margin (52%); low return: ROIC 4.6% below WACC 14.9%; far from price: model value is 8% of the market price
+AETHER,ok,low confidence,1620.3,64.7,17.8,124.7,-96.0,11.46,0.73,37.6,30.0,6.5,24.0,342.8,,,,growth clamped: 2-year 37.6% to 30%; growth gap: 2-year growth differs from 3-year CAGR (20.2%) by over 10 points; low return: ROIC 7.0% below WACC 11.5%; far from price: model value is 4% of the market price
+AFCONS,ok,indicative,218.8,70.4,59.0,84.1,-67.8,12.07,1.21,-5.1,-5.0,6.5,7.6,38.4,,14.1,,growth clamped: 2-year -5.1% to -5%; growth path: first-year growth below terminal growth (path rises); low return: ROIC 8.4% below WACC 12.1%
 AFFLE,ok,indicative,1616.6,518.3,464.5,587.5,-67.9,14.95,1.29,21.3,21.3,6.5,18.6,69.4,,51.1,9.3,
-AJANTPHARM,ok,usable,3310.4,2202.1,1760.4,2926.1,-33.5,10.65,0.58,14.0,14.0,6.5,24.5,73.5,24.0,35.1,9.3,
+AJANTPHARM,ok,usable,3317.7,2211.0,1766.1,2941.7,-33.4,10.63,0.58,14.0,14.0,6.5,24.5,73.6,23.9,35.0,9.3,
 ALKEM,ok,usable,5067.0,2633.7,2223.3,3244.9,-48.0,11.6,0.76,8.1,8.1,6.5,18.2,64.5,29.2,30.2,9.1,
-ABDL,ok,low confidence,802.85,58.8,49.8,69.3,-92.7,15.08,1.38,8.1,8.1,6.5,12.5,52.4,,,,low return: ROIC 12.9% below WACC 15.1%; far from price: model value is 7% of the market price
+ABDL,ok,low confidence,794.3,58.6,49.6,69.0,-92.6,15.1,1.39,8.1,8.1,6.5,12.5,52.3,,,,low return: ROIC 12.9% below WACC 15.1%; far from price: model value is 7% of the market price
 ARE&M,ok,indicative,729.8,232.8,206.1,264.6,-68.1,14.5,1.26,8.7,8.7,6.5,6.6,78.8,,12.7,,low return: ROIC 8.6% below WACC 14.5%
-AMBER,not meaningful,not meaningful,6850.0,,,,,13.71,1.21,34.7,30.0,6.5,5.2,-110.1,,14.7,,growth clamped: 2-year 34.7% to 30%; growth gap: 2-year growth differs from 3-year CAGR (20.7%) by over 10 points; low return: ROIC 6.3% below WACC 13.7%; not meaningful: negative equity value
+AMBER,not meaningful,not meaningful,6740.5,,,,,13.62,1.2,34.7,30.0,6.5,5.2,-112.8,,14.4,,growth clamped: 2-year 34.7% to 30%; growth gap: 2-year growth differs from 3-year CAGR (20.7%) by over 10 points; low return: ROIC 6.3% below WACC 13.6%; not meaningful: negative equity value
 AMBUJACEM,not meaningful,not meaningful,391.95,,,,,13.84,1.12,10.8,10.8,6.5,7.7,-58.8,,35.6,,margin swing: latest core EBIT margin 7.7% vs 3-year average 11.1% (possible peak or trough); low return: ROIC 3.2% below WACC 13.8%; not meaningful: negative equity value
-ANANDRATHI,ok,indicative,2355.9,933.6,784.9,1155.2,-60.4,11.54,0.73,25.9,25.9,6.5,38.9,64.2,48.9,,,
-ANTHEM,ok,low confidence,957.35,230.4,197.1,276.0,-75.9,13.13,0.99,22.3,22.3,6.5,33.2,69.8,,,,far from price: model value is 24% of the market price
-ANURAS,not meaningful,not meaningful,1313.6,,,,,10.96,0.71,26.9,26.9,6.5,17.0,-479.2,,37.7,,growth gap: 2-year growth differs from 3-year CAGR (14.1%) by over 10 points; low return: ROIC 4.8% below WACC 11.0%; not meaningful: negative equity value
+ANANDRATHI,ok,indicative,2375.8,932.6,784.2,1153.7,-60.7,11.55,0.73,25.9,25.9,6.5,38.9,64.2,49.1,,,
+ANTHEM,ok,low confidence,951.05,229.0,196.1,274.0,-75.9,13.17,1.0,22.3,22.3,6.5,33.2,69.7,,,,far from price: model value is 24% of the market price
+ANURAS,not meaningful,not meaningful,1329.4,,,,,11.03,0.73,26.9,26.9,6.5,17.0,-452.8,,38.2,,growth gap: 2-year growth differs from 3-year CAGR (14.1%) by over 10 points; low return: ROIC 4.8% below WACC 11.0%; not meaningful: negative equity value
 APARINDS,ok,indicative,14184.0,4162.4,3620.6,4854.6,-70.7,15.09,1.34,19.2,19.2,6.5,7.2,62.7,56.4,18.6,9.5,
 APOLLOHOSP,ok,low confidence,9257.0,1540.5,1152.2,2106.7,-83.4,12.04,0.86,14.9,14.9,6.5,11.7,79.8,,32.9,,far from price: model value is 17% of the market price
 APOLLOTYRE,ok,indicative,420.7,231.7,203.9,265.0,-44.9,13.11,1.13,6.2,6.2,6.5,9.5,58.4,,13.2,9.7,low return: ROIC 10.4% below WACC 13.1%
-ASAHIINDIA,ok,low confidence,1178.45,68.6,50.6,90.6,-94.2,12.36,0.93,6.5,6.5,6.5,13.2,72.2,,57.1,,low return: ROIC 8.2% below WACC 12.4%; far from price: model value is 6% of the market price
+ASAHIINDIA,ok,low confidence,1163.6,68.9,50.8,90.9,-94.1,12.35,0.93,6.5,6.5,6.5,13.2,72.3,,56.3,,low return: ROIC 8.2% below WACC 12.3%; far from price: model value is 6% of the market price
 ASHOKLEY,ok,usable,158.7,85.3,52.5,134.2,-46.3,11.63,1.3,11.0,11.0,6.5,19.6,72.7,27.3,23.0,10.3,
 ASIANPAINT,ok,low confidence,2580.4,587.3,521.2,680.5,-77.2,12.23,0.85,0.2,0.2,6.5,15.8,48.6,41.7,,,growth path: first-year growth below terminal growth (path rises); far from price: model value is 23% of the market price
 ASTERDM,ok,low confidence,790.35,38.2,29.4,49.2,-95.2,11.07,0.67,12.2,12.2,6.5,14.2,106.1,,,,low return: ROIC 8.6% below WACC 11.1%; far from price: model value is 5% of the market price
-ASTRAL,ok,indicative,1225.0,324.3,279.4,388.8,-73.5,12.08,0.82,7.9,7.9,6.5,11.5,61.5,49.6,37.2,,
-ATUL,ok,indicative,5034.5,2396.7,2131.4,2720.9,-52.4,12.5,0.89,15.3,15.3,6.5,11.5,90.8,,17.2,9.3,growth gap: 2-year growth differs from 3-year CAGR (4.9%) by over 10 points; low return: ROIC 11.4% below WACC 12.5%
-AUROPHARMA,ok,indicative,1796.5,734.3,656.9,831.3,-59.1,12.06,0.88,7.8,7.8,6.5,15.6,65.1,,26.5,,
-AVANTIFEED,ok,usable,700.35,477.5,442.5,521.2,-31.8,15.42,1.37,6.1,6.1,6.5,11.5,41.4,21.8,17.2,11.9,
+ASTRAL,ok,indicative,1252.6,324.1,279.2,388.5,-74.1,12.09,0.82,7.9,7.9,6.5,11.5,61.5,50.2,38.1,,
+ATUL,ok,indicative,5057.0,2394.9,2130.0,2718.7,-52.6,12.5,0.9,15.3,15.3,6.5,11.5,90.8,,17.3,9.3,growth gap: 2-year growth differs from 3-year CAGR (4.9%) by over 10 points; low return: ROIC 11.4% below WACC 12.5%
+AUROPHARMA,ok,indicative,1799.0,736.4,658.6,835.7,-59.1,12.03,0.87,7.8,7.8,6.5,15.6,65.1,,26.4,,
+AVANTIFEED,ok,usable,717.1,480.3,444.7,524.7,-33.0,15.34,1.36,6.1,6.1,6.5,11.5,41.7,22.4,17.6,11.7,
 DMART,ok,low confidence,3405.4,536.3,448.3,720.9,-84.3,11.77,0.77,16.4,16.4,6.5,6.0,92.2,,17.3,,far from price: model value is 16% of the market price
 AZAD,not meaningful,not meaningful,2289.7,,,,,15.55,1.44,34.6,30.0,6.5,29.1,375.5,,,,growth clamped: 2-year 34.6% to 30%; low return: ROIC 6.6% below WACC 15.6%; not meaningful: negative equity value
 BEML,not meaningful,not meaningful,2008.1,,,,,16.06,1.54,2.4,2.4,6.5,5.3,61.5,,,,margin swing: latest core EBIT margin 5.3% vs 3-year average 8.9% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 4.6% below WACC 16.1%; not meaningful: negative equity value
-BLS,ok,indicative,220.44,366.8,322.6,423.3,66.4,15.06,1.38,33.7,30.0,6.5,25.2,61.6,14.6,17.3,19.7,growth clamped: 2-year 33.7% to 30%
+BLS,ok,indicative,222.78,368.2,323.7,425.0,65.3,15.03,1.37,33.7,30.0,6.5,25.2,61.7,14.8,17.4,19.6,growth clamped: 2-year 33.7% to 30%
 BSE,ok,indicative,3757.0,1795.0,1609.0,2029.7,-52.2,15.07,1.31,80.9,30.0,6.5,65.9,50.1,50.0,,10.6,margin swing: latest core EBIT margin 65.9% vs 3-year average 47.2% (possible peak or trough); margin: very high EBIT margin (66%); growth clamped: 2-year 80.9% to 30%
 BAJAJ-AUTO,ok,usable,10643.0,6551.9,5521.6,7970.6,-38.4,12.96,1.04,17.4,17.4,6.5,21.3,67.5,30.7,31.0,10.7,
-BALKRISIND,ok,low confidence,2345.3,344.5,290.5,409.8,-85.3,13.1,1.08,7.4,7.4,6.5,14.7,70.3,,43.1,,low return: ROIC 9.0% below WACC 13.1%; far from price: model value is 15% of the market price
-BALRAMCHIN,ok,low confidence,619.25,3.9,-15.7,28.1,-99.4,11.91,0.99,5.9,5.9,6.5,9.3,87.4,,24.6,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.4% below WACC 11.9%; far from price: model value is 1% of the market price
-BATAINDIA,ok,low confidence,626.7,114.8,98.8,134.0,-81.7,12.01,0.95,0.5,0.5,6.5,9.4,44.8,,26.6,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 10.1% below WACC 12.0%; far from price: model value is 18% of the market price
+BALKRISIND,ok,low confidence,2363.8,346.4,292.0,412.0,-85.3,13.07,1.07,7.4,7.4,6.5,14.7,70.4,,43.2,,low return: ROIC 9.0% below WACC 13.1%; far from price: model value is 15% of the market price
+BALRAMCHIN,ok,low confidence,618.6,3.8,-15.7,28.0,-99.4,11.91,0.99,5.9,5.9,6.5,9.3,87.4,,24.6,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.4% below WACC 11.9%; far from price: model value is 1% of the market price
+BATAINDIA,ok,low confidence,634.5,114.8,98.8,133.9,-81.9,12.01,0.95,0.5,0.5,6.5,9.4,44.8,,26.9,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 10.1% below WACC 12.0%; far from price: model value is 18% of the market price
 BELRISE,ok,low confidence,238.05,40.0,33.3,48.0,-83.2,13.41,1.11,13.0,13.0,6.5,8.5,91.8,,21.3,,low return: ROIC 10.1% below WACC 13.4%; far from price: model value is 17% of the market price
-BERGEPAINT,ok,indicative,462.25,126.4,111.1,147.9,-72.7,12.37,0.87,3.1,3.1,6.5,12.6,52.2,43.1,43.3,,growth path: first-year growth below terminal growth (path rises)
+BERGEPAINT,ok,indicative,464.45,126.2,110.9,147.5,-72.8,12.38,0.87,3.1,3.1,6.5,12.6,52.1,43.4,43.6,,growth path: first-year growth below terminal growth (path rises)
 BDL,ok,low confidence,1020.0,161.0,159.6,162.5,-84.2,16.04,1.47,1.2,1.2,6.5,6.2,38.6,,,,"margin swing: latest core EBIT margin 6.2% vs 3-year average 12.7% (possible peak or trough); invested capital: not positive, sales-to-capital set to 1.5; growth path: first-year growth below terminal growth (path rises); far from price: model value is 16% of the market price"
 BEL,ok,indicative,395.8,143.9,129.2,162.7,-63.6,14.66,1.24,16.0,16.0,6.5,29.1,50.6,44.7,,9.3,
-BHARATFORG,ok,low confidence,1722.0,135.5,113.6,161.4,-92.1,13.61,1.17,3.9,3.9,6.5,12.1,49.7,,,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 10.0% below WACC 13.6%; far from price: model value is 8% of the market price
+BHARATFORG,ok,low confidence,1750.0,135.2,113.4,161.1,-92.3,13.63,1.17,3.9,3.9,6.5,12.1,49.6,,,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 10.0% below WACC 13.6%; far from price: model value is 8% of the market price
 BHEL,not meaningful,not meaningful,415.7,,,,,16.06,1.56,18.8,18.8,6.5,5.0,-67.1,,37.4,,margin swing: latest core EBIT margin 5.0% vs 3-year average 2.9% (possible peak or trough); low return: ROIC 5.2% below WACC 16.1%; not meaningful: negative equity value
-BPCL,ok,indicative,305.35,779.4,679.4,920.5,155.2,12.21,1.21,0.4,0.4,6.5,8.3,49.0,,4.2,24.3,"investments added: Rs 25,582 cr of non-operating investments (19% of market cap); growth path: first-year growth below terminal growth (path rises)"
-BHARTIARTL,ok,indicative,2128.5,1363.2,987.1,1956.3,-36.0,11.09,0.76,18.6,18.6,6.5,31.3,86.8,29.8,37.7,9.9,
-BHARTIHEXA,ok,usable,1599.1,857.1,666.9,1155.7,-46.4,11.08,0.7,14.9,14.9,6.5,29.7,76.5,30.2,45.9,9.2,
+BPCL,ok,indicative,314.1,771.2,673.4,908.6,145.5,12.28,1.21,0.4,0.4,6.5,8.3,48.6,,4.3,23.7,"investments added: Rs 25,582 cr of non-operating investments (19% of market cap); growth path: first-year growth below terminal growth (path rises)"
+BHARTIARTL,ok,indicative,2161.7,1350.2,978.4,1934.9,-37.5,11.12,0.76,18.6,18.6,6.5,31.3,86.7,30.5,38.1,9.8,
+BHARTIHEXA,ok,usable,1631.4,859.7,668.5,1159.8,-47.3,11.07,0.7,14.9,14.9,6.5,29.7,76.5,30.6,46.6,9.2,
 GROWW,ok,low confidence,216.46,45.0,39.9,51.9,-79.2,13.19,1.0,,8.0,6.5,57.7,53.4,53.1,,,"margin: very high EBIT margin (58%); growth source: no history, default used; beta: defaulted to 1.0 (short price history); far from price: model value is 21% of the market price"
 BIOCON,not meaningful,not meaningful,356.7,,,,,12.07,1.05,8.7,8.7,6.5,10.1,-337.2,,42.0,,low return: ROIC 2.6% below WACC 12.1%; not meaningful: negative equity value
 BSOFT,ok,usable,304.7,310.5,288.9,338.6,1.9,13.76,1.11,0.3,0.3,6.5,15.1,40.5,-0.4,14.7,14.0,growth path: first-year growth below terminal growth (path rises)
 BBOX,ok,low confidence,854.05,121.4,107.2,139.4,-85.8,14.35,1.29,0.3,0.3,6.5,6.7,37.2,,33.6,,growth path: first-year growth below terminal growth (path rises); far from price: model value is 14% of the market price
-BLUESTARCO,ok,low confidence,1785.1,376.5,324.7,445.9,-78.9,13.61,1.09,13.1,13.1,6.5,6.4,63.2,,22.4,,far from price: model value is 21% of the market price
+BLUESTARCO,ok,low confidence,1791.0,380.7,327.8,451.5,-78.7,13.54,1.08,13.1,13.1,6.5,6.4,63.5,,22.3,,far from price: model value is 21% of the market price
 BOSCHLTD,ok,low confidence,48800.0,10059.1,9072.5,11384.9,-79.4,13.36,1.03,9.4,9.4,6.5,11.4,56.8,,57.4,,far from price: model value is 21% of the market price
 BRITANNIA,ok,indicative,4830.7,2141.4,1778.5,2721.3,-55.7,10.78,0.61,6.8,6.8,6.5,17.0,61.5,25.4,37.7,,
 CCL,ok,indicative,937.55,411.8,268.7,729.9,-56.1,10.72,0.66,29.6,29.6,6.5,11.4,150.5,57.7,13.8,9.3,
 CESC,not meaningful,not meaningful,125.93,,,,,10.22,1.26,10.2,10.2,6.5,13.2,142.4,,20.4,,margin swing: latest core EBIT margin 13.2% vs 3-year average 10.1% (possible peak or trough); low return: ROIC 6.3% below WACC 10.2%; not meaningful: negative equity value
 CGPOWER,ok,low confidence,790.6,158.3,135.8,188.5,-80.0,13.69,1.08,24.2,24.2,6.5,11.8,76.0,,46.3,,far from price: model value is 20% of the market price
-CIEINDIA,ok,usable,366.85,228.1,213.0,247.5,-37.8,13.39,1.07,1.7,1.7,6.5,11.4,41.7,50.3,16.8,9.9,growth path: first-year growth below terminal growth (path rises)
-CRISIL,ok,usable,4034.8,2039.8,1747.0,2476.4,-49.4,11.51,0.73,7.8,7.8,6.5,26.2,59.4,25.2,51.6,8.8,
-CAPLIPOINT,ok,usable,2033.3,1165.3,1025.2,1352.9,-42.7,13.56,1.06,13.7,13.7,6.5,32.0,62.2,32.4,52.2,10.5,
+CIEINDIA,ok,usable,368.45,227.9,212.9,247.2,-38.1,13.4,1.07,1.7,1.7,6.5,11.4,41.6,50.7,16.9,9.9,growth path: first-year growth below terminal growth (path rises)
+CRISIL,ok,usable,4082.0,2058.5,1759.9,2505.8,-49.6,11.45,0.72,7.8,7.8,6.5,26.2,59.7,25.2,51.7,8.8,
+CAPLIPOINT,ok,usable,2029.1,1157.8,1019.5,1342.6,-42.9,13.61,1.07,13.7,13.7,6.5,32.0,62.0,32.6,52.4,10.5,
 CARBORUNIV,ok,low confidence,977.1,130.0,118.2,144.3,-86.7,12.55,0.91,5.5,5.5,6.5,6.7,70.1,,32.5,,margin swing: latest core EBIT margin 6.7% vs 3-year average 9.9% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 7.6% below WACC 12.6%; far from price: model value is 13% of the market price
-CARTRADE,ok,low confidence,2613.5,418.3,355.3,496.0,-84.0,13.38,1.04,25.8,25.8,6.5,28.5,186.5,,,,margin swing: latest core EBIT margin 28.5% vs 3-year average 18.7% (possible peak or trough); low return: ROIC 9.6% below WACC 13.4%; far from price: model value is 16% of the market price
+CARTRADE,ok,low confidence,2655.7,430.7,365.4,511.4,-83.8,13.2,1.01,25.8,25.8,6.5,28.5,182.5,,,,margin swing: latest core EBIT margin 28.5% vs 3-year average 18.7% (possible peak or trough); low return: ROIC 9.6% below WACC 13.2%; far from price: model value is 16% of the market price
 CASTROLIND,ok,usable,190.35,158.0,140.3,182.2,-17.0,12.76,0.93,6.2,6.2,6.5,21.9,48.9,11.0,26.5,11.5,
-CEATLTD,ok,usable,3492.4,1920.8,1563.6,2596.7,-45.0,12.71,1.15,14.6,14.6,6.5,8.8,79.5,42.3,10.7,10.8,
+CEATLTD,ok,usable,3543.0,1914.0,1558.0,2582.5,-46.0,12.73,1.15,14.6,14.6,6.5,8.8,79.4,43.1,10.8,10.8,
 CEMPRO,ok,indicative,1438.8,540.9,463.3,645.5,-62.4,13.36,1.07,14.2,14.2,6.5,8.5,61.2,40.9,18.9,9.3,growth gap: 2-year growth differs from 3-year CAGR (25.5%) by over 10 points
 CDSL,ok,low confidence,1395.0,312.5,286.6,344.2,-77.6,16.65,1.58,18.7,18.7,6.5,45.6,46.2,,,8.7,margin: very high EBIT margin (46%); far from price: model value is 22% of the market price
 CHAMBLFERT,ok,indicative,369.6,610.6,527.8,725.7,65.2,12.62,0.97,7.6,7.6,6.5,11.4,58.2,-6.1,8.5,16.9,growth gap: 2-year growth differs from 3-year CAGR (-9.2%) by over 10 points
 CHENNPETRO,ok,indicative,1443.8,2217.5,1960.7,2573.4,53.6,12.47,0.97,-2.1,-2.1,6.5,6.7,45.0,-9.4,4.9,16.9,margin swing: latest core EBIT margin 6.7% vs 3-year average 4.5% (possible peak or trough); growth path: first-year growth below terminal growth (path rises)
-CHOICEIN,ok,low confidence,747.9,105.0,83.4,136.6,-86.0,13.69,1.14,22.2,22.2,6.5,34.9,103.7,,,,growth gap: 2-year growth differs from 3-year CAGR (42.3%) by over 10 points; low return: ROIC 12.5% below WACC 13.7%; far from price: model value is 14% of the market price
-CIPLA,ok,indicative,1399.9,699.5,614.1,826.2,-50.0,11.59,0.74,4.4,4.4,6.5,17.5,57.3,32.4,31.8,8.7,growth path: first-year growth below terminal growth (path rises)
-CLEANMAX,ok,low confidence,1250.2,291.7,-63.7,916.3,-76.7,10.2,1.0,17.2,17.2,6.5,41.7,85.7,30.5,56.6,8.9,beta: defaulted to 1.0 (short price history); low return: ROIC 3.5% below WACC 10.2%; far from price: model value is 23% of the market price
-CLEAN,ok,indicative,689.35,325.7,281.8,387.9,-52.8,12.34,0.86,9.9,9.9,6.5,29.7,63.6,35.0,56.2,9.1,
+CHOICEIN,ok,low confidence,728.2,105.8,84.1,137.9,-85.5,13.65,1.14,22.2,22.2,6.5,34.9,103.6,,,,growth gap: 2-year growth differs from 3-year CAGR (42.3%) by over 10 points; low return: ROIC 12.5% below WACC 13.7%; far from price: model value is 15% of the market price
+CIPLA,ok,indicative,1415.0,701.3,615.3,829.0,-50.4,11.57,0.73,4.4,4.4,6.5,17.5,57.4,32.6,32.1,8.6,growth path: first-year growth below terminal growth (path rises)
+CLEANMAX,ok,low confidence,1226.4,305.8,-55.0,943.1,-75.1,10.17,1.0,17.2,17.2,6.5,41.7,85.8,30.0,55.7,8.9,beta: defaulted to 1.0 (short price history); low return: ROIC 3.5% below WACC 10.2%; far from price: model value is 25% of the market price
+CLEAN,ok,indicative,690.2,320.5,278.0,380.3,-53.6,12.44,0.87,9.9,9.9,6.5,29.7,63.0,35.8,57.1,9.1,
 COALINDIA,ok,indicative,382.0,1024.2,867.0,1259.4,168.1,11.53,0.77,14.4,14.4,6.5,19.0,65.1,,8.4,22.1,
 COCHINSHIP,ok,low confidence,1090.0,62.6,46.9,80.9,-94.3,17.24,1.78,12.6,12.6,6.5,20.4,89.8,,,,growth gap: 2-year growth differs from 3-year CAGR (26.9%) by over 10 points; low return: ROIC 10.0% below WACC 17.2%; far from price: model value is 6% of the market price
 COFORGE,ok,indicative,2142.3,856.0,701.3,1065.2,-60.0,13.69,1.09,34.9,30.0,6.5,13.9,88.7,57.2,25.2,10.2,growth clamped: 2-year 34.9% to 30%
 COHANCE,not meaningful,not meaningful,474.8,,,,,12.53,0.91,46.0,30.0,6.5,11.2,-57.9,,42.7,,margin swing: latest core EBIT margin 11.2% vs 3-year average 23.9% (possible peak or trough); growth clamped: 2-year 46.0% to 30%; growth gap: 2-year growth differs from 3-year CAGR (18.3%) by over 10 points; low return: ROIC 4.5% below WACC 12.5%; not meaningful: negative equity value
 COLPAL,ok,indicative,1755.5,731.7,646.4,851.8,-58.3,12.22,0.84,3.0,3.0,6.5,28.9,49.1,24.1,,,growth path: first-year growth below terminal growth (path rises)
-CAMS,ok,indicative,722.15,346.8,314.9,387.2,-52.0,14.82,1.28,15.5,15.5,6.5,39.1,44.7,35.2,,10.1,
-CONCORDBIO,ok,low confidence,547.0,128.1,116.4,143.7,-76.6,13.09,0.98,2.4,2.4,6.5,29.1,44.8,,,,growth path: first-year growth below terminal growth (path rises); far from price: model value is 23% of the market price
+CAMS,ok,indicative,724.65,348.0,315.9,388.8,-52.0,14.79,1.27,15.5,15.5,6.5,39.1,44.9,35.2,,10.1,
+CONCORDBIO,ok,low confidence,548.2,127.6,116.1,143.2,-76.7,13.12,0.99,2.4,2.4,6.5,29.1,44.6,,,,growth path: first-year growth below terminal growth (path rises); far from price: model value is 23% of the market price
 CONCOR,ok,indicative,427.25,141.9,134.7,150.4,-66.8,15.13,1.36,2.7,2.7,6.5,15.9,41.2,,48.1,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 10.1% below WACC 15.1%
 COROMANDEL,ok,indicative,1971.7,693.4,549.4,992.6,-64.8,12.24,0.94,20.9,20.9,6.5,14.0,105.9,,19.9,9.5,growth gap: 2-year growth differs from 3-year CAGR (10.2%) by over 10 points
-CRAFTSMAN,not meaningful,not meaningful,11649.0,,,,,12.63,1.02,34.6,30.0,6.5,9.9,773.4,,20.6,,growth clamped: 2-year 34.6% to 30%; low return: ROIC 8.8% below WACC 12.6%; not meaningful: negative equity value
-CROMPTON,ok,low confidence,219.0,17.2,16.0,18.7,-92.2,13.88,1.13,5.2,5.2,6.5,2.2,99.3,,18.3,,margin swing: latest core EBIT margin 2.2% vs 3-year average 6.8% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 5.4% below WACC 13.9%; far from price: model value is 8% of the market price
+CRAFTSMAN,not meaningful,not meaningful,11723.0,,,,,12.59,1.01,34.6,30.0,6.5,9.9,744.4,,20.5,,growth clamped: 2-year 34.6% to 30%; low return: ROIC 8.8% below WACC 12.6%; not meaningful: negative equity value
+CROMPTON,ok,low confidence,223.4,17.2,16.0,18.7,-92.3,13.87,1.13,5.2,5.2,6.5,2.2,99.3,,18.6,,margin swing: latest core EBIT margin 2.2% vs 3-year average 6.8% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 5.4% below WACC 13.9%; far from price: model value is 8% of the market price
 CUMMINSIND,ok,indicative,4052.8,1527.6,1349.1,1769.4,-62.3,13.09,0.98,16.1,16.1,6.5,20.1,56.0,42.5,53.0,8.8,
 CUPID,ok,low confidence,362.15,19.4,16.9,22.7,-94.6,14.09,1.15,44.7,30.0,6.5,32.2,66.1,,,,growth clamped: 2-year 44.7% to 30%; growth gap: 2-year growth differs from 3-year CAGR (31.2%) by over 10 points; far from price: model value is 5% of the market price
-CYIENT,ok,indicative,1160.5,498.5,466.8,536.1,-57.0,13.4,1.07,0.8,0.8,6.5,9.1,41.1,,19.3,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 10.2% below WACC 13.4%
-DOMS,ok,low confidence,2131.0,481.1,401.6,584.4,-77.4,14.84,1.29,22.9,22.9,6.5,13.6,79.2,,35.4,9.2,far from price: model value is 23% of the market price
+CYIENT,ok,indicative,1155.5,495.5,464.2,532.4,-57.1,13.5,1.09,0.8,0.8,6.5,9.1,40.8,,19.4,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 10.2% below WACC 13.5%
+DOMS,ok,low confidence,2151.9,480.3,400.9,583.4,-77.7,14.85,1.29,22.9,22.9,6.5,13.6,79.1,,35.8,9.2,far from price: model value is 22% of the market price
 DABUR,ok,indicative,399.0,133.2,118.0,154.9,-66.6,12.09,0.83,3.1,3.1,6.5,15.4,54.1,38.1,47.5,,growth path: first-year growth below terminal growth (path rises)
 DALBHARAT,ok,indicative,1564.4,495.7,441.1,562.0,-68.3,11.93,1.01,0.5,0.5,6.5,12.0,49.3,,26.3,,margin swing: latest core EBIT margin 12.0% vs 3-year average 9.3% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.5% below WACC 11.9%
-DATAPATTNS,ok,low confidence,4225.0,898.9,776.0,1055.3,-78.7,15.67,1.41,33.4,30.0,6.5,38.3,79.9,,,9.2,growth clamped: 2-year 33.4% to 30%; far from price: model value is 21% of the market price
-DEEPAKFERT,not meaningful,not meaningful,1416.5,,,,,12.32,1.15,15.1,15.1,6.5,13.6,183.2,,24.7,,growth gap: 2-year growth differs from 3-year CAGR (2.6%) by over 10 points; low return: ROIC 7.7% below WACC 12.3%; not meaningful: negative equity value
+DATAPATTNS,ok,low confidence,4215.0,898.1,775.3,1054.3,-78.7,15.68,1.41,33.4,30.0,6.5,38.3,79.8,,,9.2,growth clamped: 2-year 33.4% to 30%; far from price: model value is 21% of the market price
+DEEPAKFERT,not meaningful,not meaningful,1437.2,,,,,12.34,1.15,15.1,15.1,6.5,13.6,183.8,,24.9,,growth gap: 2-year growth differs from 3-year CAGR (2.6%) by over 10 points; low return: ROIC 7.7% below WACC 12.3%; not meaningful: negative equity value
 DEEPAKNTR,ok,low confidence,1520.9,266.9,236.6,303.1,-82.5,12.73,1.0,1.0,1.0,6.5,9.8,45.9,,32.3,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 8.1% below WACC 12.7%; far from price: model value is 18% of the market price
 DEVYANI,not meaningful,not meaningful,119.72,,,,,12.57,1.14,25.6,25.6,6.5,3.4,-27.0,,20.2,,margin swing: latest core EBIT margin 3.4% vs 3-year average 4.6% (possible peak or trough); low return: ROIC 2.8% below WACC 12.6%; not meaningful: negative equity value
 DIVISLAB,ok,low confidence,11203.0,1436.6,1219.1,1741.1,-87.2,12.69,0.92,15.9,15.9,6.5,28.4,73.1,,,,far from price: model value is 13% of the market price
 DIXON,not meaningful,not meaningful,13390.0,,,,,14.77,1.28,66.0,30.0,6.5,3.0,-1015.6,,9.3,,growth clamped: 2-year 66.0% to 30%; not meaningful: negative equity value
-LALPATHLAB,ok,indicative,2040.5,725.4,622.6,876.8,-64.4,11.69,0.75,11.4,11.4,6.5,25.2,61.1,38.1,,,
+LALPATHLAB,ok,indicative,2006.0,722.3,620.4,872.0,-64.0,11.72,0.76,11.4,11.4,6.5,25.2,61.0,37.8,,,
 DRREDDY,ok,indicative,1380.1,523.8,455.2,644.1,-62.0,10.91,0.66,9.7,9.7,6.5,14.9,78.0,,24.1,,margin swing: latest core EBIT margin 14.9% vs 3-year average 20.1% (possible peak or trough)
-EIDPARRY,ok,indicative,649.85,638.5,427.6,983.8,-1.8,10.85,1.11,13.4,13.4,6.5,10.0,94.5,14.7,10.0,10.8,
+EIDPARRY,ok,indicative,647.85,644.1,432.1,999.0,-0.6,10.82,1.11,13.4,13.4,6.5,10.0,94.5,13.8,10.0,10.8,
 EIHOTEL,ok,indicative,333.4,137.2,123.1,155.9,-58.8,13.78,1.11,8.2,8.2,6.5,30.6,53.9,44.9,,9.2,
 EICHERMOT,ok,indicative,8172.5,3756.6,3354.6,4295.6,-54.0,13.34,1.03,19.0,19.0,6.5,21.6,56.3,41.3,48.6,9.3,"investments added: Rs 11,728 cr of non-operating investments (5% of market cap)"
 ELECON,ok,indicative,438.5,171.4,156.1,190.5,-60.9,15.55,1.43,10.7,10.7,6.5,18.4,50.7,50.1,42.0,9.8,
-ELGIEQUIP,ok,indicative,543.3,158.4,141.6,180.1,-70.8,14.49,1.26,10.8,10.8,6.5,12.8,53.8,51.2,38.7,8.8,
-EMAMILTD,ok,indicative,416.7,197.3,175.5,227.4,-52.7,12.57,0.9,3.0,3.0,6.5,21.0,49.8,24.7,45.1,9.0,growth path: first-year growth below terminal growth (path rises)
-EMCURE,ok,indicative,2309.9,703.5,574.2,880.4,-69.5,13.22,1.04,17.7,17.7,6.5,15.1,75.3,54.0,32.1,9.1,
+ELGIEQUIP,ok,indicative,556.9,159.2,142.2,181.1,-71.4,14.45,1.25,10.8,10.8,6.5,12.8,53.9,51.7,39.4,8.7,
+EMAMILTD,ok,indicative,422.2,197.1,175.4,227.1,-53.3,12.58,0.91,3.0,3.0,6.5,21.0,49.8,25.1,45.8,8.9,growth path: first-year growth below terminal growth (path rises)
+EMCURE,ok,indicative,2337.8,703.4,574.1,880.3,-69.9,13.22,1.04,17.7,17.7,6.5,15.1,75.3,54.4,32.4,9.1,
 EMMVEE,ok,indicative,260.73,517.3,433.8,631.9,98.4,13.07,1.0,131.2,30.0,6.5,29.2,72.0,11.9,18.7,17.7,margin swing: latest core EBIT margin 29.2% vs 3-year average 22.1% (possible peak or trough); growth clamped: 2-year 131.2% to 30%; growth gap: 2-year growth differs from 3-year CAGR (102.7%) by over 10 points; beta: defaulted to 1.0 (short price history)
-ENDURANCE,ok,indicative,2555.9,1008.7,828.8,1261.4,-60.5,12.74,0.96,19.3,19.3,6.5,8.6,84.0,52.2,14.9,9.4,
+ENDURANCE,ok,indicative,2560.9,1003.5,825.1,1253.9,-60.8,12.77,0.96,19.3,19.3,6.5,8.6,84.0,52.5,15.0,9.4,
 ENGINERSIN,ok,indicative,298.4,136.2,127.7,146.5,-54.4,16.24,1.51,9.4,9.4,6.5,16.8,38.7,36.9,41.1,9.9,
-ESCORTS,ok,usable,2450.0,1525.2,1421.7,1660.3,-37.7,14.12,1.16,8.7,8.7,6.5,10.9,53.5,39.1,18.3,10.2,
+ESCORTS,ok,usable,2471.4,1530.1,1425.4,1666.9,-38.1,14.07,1.15,8.7,8.7,6.5,10.9,53.7,39.1,18.4,10.2,
 EXIDEIND,ok,indicative,401.85,143.6,135.6,153.0,-64.3,13.81,1.16,3.6,3.6,6.5,7.3,48.7,,19.9,,"investments added: Rs 4,468 cr of non-operating investments (13% of market cap); growth path: first-year growth below terminal growth (path rises); low return: ROIC 9.8% below WACC 13.8%"
 NYKAA,ok,low confidence,357.0,11.0,8.4,15.7,-96.9,13.02,0.98,25.1,25.1,6.5,4.4,112.1,,41.2,,margin swing: latest core EBIT margin 4.4% vs 3-year average 3.0% (possible peak or trough); far from price: model value is 3% of the market price
-FACT,not meaningful,not meaningful,751.0,,,,,14.65,1.35,3.5,3.5,6.5,1.2,-8.0,,,,margin swing: latest core EBIT margin 1.2% vs 3-year average 5.0% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 0.6% below WACC 14.6%; not meaningful: negative equity value
+FACT,not meaningful,not meaningful,757.3,,,,,14.67,1.35,3.5,3.5,6.5,1.2,-7.9,,,,margin swing: latest core EBIT margin 1.2% vs 3-year average 5.0% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 0.6% below WACC 14.7%; not meaningful: negative equity value
 FINCABLES,ok,usable,1174.2,591.2,549.7,645.2,-49.7,14.26,1.18,11.8,11.8,6.5,9.4,58.0,46.9,20.5,9.5,"investments added: Rs 1,601 cr of non-operating investments (9% of market cap)"
-FSL,ok,indicative,283.6,76.7,54.0,104.5,-73.0,13.04,1.13,23.2,23.2,6.5,11.7,127.6,,16.9,9.8,low return: ROIC 11.7% below WACC 13.0%
+FSL,ok,indicative,281.45,76.3,53.6,104.0,-72.9,13.05,1.13,23.2,23.2,6.5,11.7,127.7,,16.9,9.8,low return: ROIC 11.7% below WACC 13.1%
 FORCEMOT,ok,usable,20098.0,11751.4,10724.8,13046.7,-41.5,15.06,1.31,13.8,13.8,6.5,13.3,46.8,30.4,22.8,11.1,
 FORTIS,ok,low confidence,809.0,78.4,57.1,104.6,-90.3,12.6,0.96,15.1,15.1,6.5,17.8,117.5,,48.8,,low return: ROIC 9.4% below WACC 12.6%; far from price: model value is 10% of the market price
-FRACTAL,ok,indicative,809.4,252.1,221.9,309.5,-68.8,13.01,1.0,22.6,22.6,6.5,11.3,105.2,,22.0,8.9,margin swing: latest core EBIT margin 11.3% vs 3-year average 6.3% (possible peak or trough); beta: defaulted to 1.0 (short price history)
+FRACTAL,ok,indicative,818.45,252.1,221.9,309.4,-69.2,13.02,1.0,22.6,22.6,6.5,11.3,105.2,,22.2,8.9,margin swing: latest core EBIT margin 11.3% vs 3-year average 6.3% (possible peak or trough); beta: defaulted to 1.0 (short price history)
 GAIL,ok,indicative,185.6,64.9,58.9,72.2,-65.0,13.22,1.22,3.2,3.2,6.5,5.4,59.9,,11.5,,"margin swing: latest core EBIT margin 5.4% vs 3-year average 7.3% (possible peak or trough); investments added: Rs 25,328 cr of non-operating investments (21% of market cap); growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.6% below WACC 13.2%"
-GVT&D,ok,indicative,4195.0,1618.4,1443.1,1840.5,-61.4,14.98,1.3,40.0,30.0,6.5,27.9,51.2,55.4,,9.8,margin swing: latest core EBIT margin 27.9% vs 3-year average 18.6% (possible peak or trough); growth clamped: 2-year 40.0% to 30%
+GVT&D,ok,indicative,4235.0,1633.1,1454.8,1859.5,-61.4,14.9,1.28,40.0,30.0,6.5,27.9,51.5,55.4,,9.8,margin swing: latest core EBIT margin 27.9% vs 3-year average 18.6% (possible peak or trough); growth clamped: 2-year 40.0% to 30%
 GMRAIRPORT,not meaningful,not meaningful,102.32,,,,,12.78,1.33,33.0,30.0,6.5,29.9,186.4,,51.9,,margin swing: latest core EBIT margin 29.9% vs 3-year average 22.4% (possible peak or trough); growth clamped: 2-year 33.0% to 30%; low return: ROIC 8.5% below WACC 12.8%; not meaningful: negative equity value
-GABRIEL,ok,low confidence,1507.9,190.1,167.9,218.4,-87.4,15.13,1.33,17.2,17.2,6.5,7.4,59.8,,44.4,,far from price: model value is 13% of the market price
-GALLANTT,ok,indicative,543.35,137.2,128.0,147.8,-74.7,15.86,1.51,1.9,1.9,6.5,13.6,34.7,,45.0,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 13.1% below WACC 15.9%
+GABRIEL,ok,low confidence,1559.8,191.9,169.3,220.7,-87.7,15.06,1.32,17.2,17.2,6.5,7.4,60.1,,45.5,,far from price: model value is 12% of the market price
+GALLANTT,ok,indicative,538.1,137.8,128.5,148.4,-74.4,15.8,1.5,1.9,1.9,6.5,13.6,34.9,,44.4,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 13.1% below WACC 15.8%
 GRSE,ok,low confidence,2013.8,474.4,421.9,537.0,-76.4,17.98,1.8,39.6,30.0,6.5,11.1,263.7,,23.9,10.2,"margin swing: latest core EBIT margin 11.1% vs 3-year average 8.4% (possible peak or trough); invested capital: not positive, sales-to-capital set to 1.5; growth clamped: 2-year 39.6% to 30%; far from price: model value is 24% of the market price"
-GILLETTE,ok,usable,7116.5,4316.2,3737.2,5132.5,-39.3,12.26,0.84,11.8,11.8,6.5,28.6,54.4,23.5,46.6,9.8,
+GILLETTE,ok,usable,7090.5,4334.3,3750.3,5158.9,-38.9,12.23,0.84,11.8,11.8,6.5,28.6,54.5,23.3,46.2,9.8,
 GLAND,ok,low confidence,3297.4,800.5,722.8,930.7,-75.7,11.91,0.79,6.5,6.5,6.5,18.8,59.5,,,,growth gap: 2-year growth differs from 3-year CAGR (21.3%) by over 10 points; far from price: model value is 24% of the market price
-GLAXO,ok,indicative,2701.2,908.2,822.4,1024.0,-66.4,13.08,0.98,5.2,5.2,6.5,32.8,48.4,36.9,,,"invested capital: not positive, sales-to-capital set to 1.5; growth path: first-year growth below terminal growth (path rises)"
+GLAXO,ok,indicative,2727.6,909.2,823.1,1025.4,-66.7,13.07,0.98,5.2,5.2,6.5,32.8,48.4,37.1,,,"invested capital: not positive, sales-to-capital set to 1.5; growth path: first-year growth below terminal growth (path rises)"
 GLENMARK,ok,indicative,2657.0,2642.7,2236.0,3212.9,-0.5,12.55,0.9,19.8,19.8,6.5,24.1,65.7,20.0,24.2,12.5,margin swing: latest core EBIT margin 24.1% vs 3-year average 14.6% (possible peak or trough)
 MEDANTA,ok,low confidence,1500.2,250.3,203.8,317.1,-83.3,12.41,0.9,15.4,15.4,6.5,16.8,80.1,,55.7,,far from price: model value is 17% of the market price
 GPIL,ok,usable,217.95,134.7,123.6,149.2,-38.2,13.74,1.13,-0.6,-0.6,6.5,20.5,38.9,22.2,32.9,10.2,growth path: first-year growth below terminal growth (path rises)
-GODFRYPHLP,ok,usable,1746.9,1803.7,1583.8,2089.5,3.3,14.46,1.22,26.5,26.5,6.5,23.2,63.9,25.5,22.6,14.7,"investments added: Rs 2,154 cr of non-operating investments (8% of market cap)"
+GODFRYPHLP,ok,usable,1785.0,1813.1,1591.1,2101.8,1.6,14.42,1.21,26.5,26.5,6.5,23.2,64.1,26.0,22.9,14.5,"investments added: Rs 2,154 cr of non-operating investments (8% of market cap)"
 GODREJCP,ok,indicative,912.3,247.8,211.0,300.9,-72.8,11.94,0.83,4.0,4.0,6.5,19.3,54.8,45.1,55.7,,growth path: first-year growth below terminal growth (path rises)
 GODREJIND,not meaningful,not meaningful,1075.95,,,,,9.88,1.19,15.6,15.6,6.5,7.4,-63.0,,29.3,,"investments added: Rs 4,706 cr of non-operating investments (13% of market cap); low return: ROIC 2.1% below WACC 9.9%; not meaningful: negative equity value"
-GRANULES,ok,low confidence,837.75,204.0,178.9,234.4,-75.6,12.88,1.01,9.0,9.0,6.5,16.4,65.2,,38.7,,low return: ROIC 11.6% below WACC 12.9%; far from price: model value is 24% of the market price
+GRANULES,ok,low confidence,822.65,204.1,178.9,234.5,-75.2,12.87,1.01,9.0,9.0,6.5,16.4,65.2,,38.1,,low return: ROIC 11.6% below WACC 12.9%; far from price: model value is 25% of the market price
 GRAPHITE,ok,low confidence,789.9,185.2,182.2,188.8,-76.6,13.73,1.12,-0.9,-0.9,6.5,5.7,46.2,,59.2,,margin swing: latest core EBIT margin 5.7% vs 3-year average 0.8% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 3.7% below WACC 13.7%; far from price: model value is 23% of the market price
 GRASIM,not meaningful,not meaningful,3075.2,,,,,9.87,1.01,15.9,15.9,6.5,9.7,-129.4,,26.5,,investments: set by dcf_inputs.csv; low return: ROIC 3.5% below WACC 9.9%; not meaningful: negative equity value
-GRAVITA,ok,low confidence,1470.3,201.2,168.6,239.9,-86.3,16.2,1.61,16.0,16.0,6.5,9.5,96.9,,26.3,,low return: ROIC 11.3% below WACC 16.2%; far from price: model value is 14% of the market price
+GRAVITA,ok,low confidence,1482.0,203.7,170.7,242.7,-86.3,16.12,1.59,16.0,16.0,6.5,9.5,96.8,,26.3,,low return: ROIC 11.3% below WACC 16.1%; far from price: model value is 14% of the market price
 GESHIP,ok,usable,1538.3,2135.8,1888.5,2523.7,38.8,10.94,0.66,2.0,2.0,6.5,36.7,56.9,-6.9,27.8,14.4,growth path: first-year growth below terminal growth (path rises)
 FLUOROCHEM,ok,low confidence,4895.0,149.1,99.0,210.7,-97.0,12.63,0.95,7.8,7.8,6.5,17.1,107.6,,,,growth gap: 2-year growth differs from 3-year CAGR (-4.5%) by over 10 points; low return: ROIC 6.5% below WACC 12.6%; far from price: model value is 3% of the market price
 GMDCLTD,ok,low confidence,466.55,56.1,52.1,60.9,-88.0,16.6,1.6,3.8,3.8,6.5,16.4,57.7,,,,growth gap: 2-year growth differs from 3-year CAGR (-8.8%) by over 10 points; growth path: first-year growth below terminal growth (path rises); low return: ROIC 4.8% below WACC 16.6%; far from price: model value is 12% of the market price
@@ -157,90 +157,90 @@ HDFCAMC,ok,indicative,2682.0,1724.3,1554.3,1939.9,-35.7,14.85,1.27,26.3,26.3,6.5
 HEGAM,ok,low confidence,258.67,57.1,53.8,61.1,-77.9,15.18,1.46,3.5,3.5,6.5,12.2,64.4,,43.6,,investments added: Rs 742 cr of non-operating investments (9% of market cap); growth path: first-year growth below terminal growth (path rises); low return: ROIC 5.7% below WACC 15.2%; far from price: model value is 22% of the market price
 HFCL,ok,low confidence,178.6,3.5,1.8,5.5,-98.0,14.94,1.38,5.1,5.1,6.5,12.6,66.8,,,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.9% below WACC 14.9%; far from price: model value is 2% of the market price
 HAVELLS,ok,indicative,1184.0,303.4,270.8,346.0,-74.4,14.03,1.14,9.8,9.8,6.5,8.4,55.1,55.8,29.0,,
-HEROMOTOCO,ok,usable,5535.0,4702.9,4232.2,5330.7,-15.0,13.41,1.04,11.9,11.9,6.5,13.2,52.3,16.9,15.7,12.1,
+HEROMOTOCO,ok,usable,5536.0,4672.6,4209.2,5289.1,-15.6,13.47,1.05,11.9,11.9,6.5,13.2,52.1,17.1,15.8,12.1,
 HEXT,ok,usable,483.1,431.2,374.3,509.4,-10.7,12.88,0.97,13.7,13.7,6.5,13.2,60.2,17.0,14.6,12.2,
 HSCL,ok,low confidence,552.95,121.3,112.2,134.2,-78.1,15.66,1.45,5.5,5.5,6.5,20.1,40.9,,,,growth path: first-year growth below terminal growth (path rises); far from price: model value is 22% of the market price
 HINDALCO,ok,indicative,900.45,860.4,685.4,1265.0,-4.4,10.9,0.96,12.7,12.7,6.5,10.7,86.7,15.9,10.9,10.7,
 HAL,ok,indicative,4780.0,1793.4,1698.8,1911.6,-62.5,15.31,1.35,6.2,6.2,6.5,27.4,40.7,45.7,,,"invested capital: not positive, sales-to-capital set to 1.5"
 HINDCOPPER,ok,indicative,411.25,251.1,222.1,287.6,-38.9,15.58,1.4,34.1,30.0,6.5,42.3,57.9,43.9,,12.4,margin swing: latest core EBIT margin 42.3% vs 3-year average 32.0% (possible peak or trough); growth clamped: 2-year 34.1% to 30%; growth gap: 2-year growth differs from 3-year CAGR (22.5%) by over 10 points
 HINDPETRO,ok,indicative,385.0,898.1,765.7,1086.7,133.3,12.06,1.41,0.5,0.5,6.5,5.7,49.0,,3.5,19.9,"margin swing: latest core EBIT margin 5.7% vs 3-year average 4.1% (possible peak or trough); investments large: Rs 22,897 cr is 28% of market cap, verify; growth path: first-year growth below terminal growth (path rises)"
-HINDUNILVR,ok,indicative,2019.1,686.7,587.3,837.0,-66.0,11.33,0.69,2.3,2.3,6.5,21.5,56.6,30.6,,,growth path: first-year growth below terminal growth (path rises)
+HINDUNILVR,ok,indicative,2052.5,686.2,586.9,836.2,-66.6,11.33,0.69,2.3,2.3,6.5,21.5,56.6,31.0,,,growth path: first-year growth below terminal growth (path rises)
 HINDZINC,ok,indicative,528.95,721.5,638.6,829.8,36.4,13.88,1.16,18.1,18.1,6.5,47.2,50.4,10.5,35.4,16.7,margin: very high EBIT margin (47%); growth gap: 2-year growth differs from 3-year CAGR (5.6%) by over 10 points
 POWERINDIA,ok,low confidence,30240.0,4982.8,4430.5,5695.5,-83.5,14.58,1.23,24.7,24.7,6.5,14.8,59.3,,,,margin swing: latest core EBIT margin 14.8% vs 3-year average 9.4% (possible peak or trough); far from price: model value is 16% of the market price
-HONASA,ok,low confidence,539.75,82.8,72.3,97.7,-84.7,12.27,0.85,11.6,11.6,6.5,8.0,67.3,,45.9,,margin swing: latest core EBIT margin 8.0% vs 3-year average 5.0% (possible peak or trough); far from price: model value is 15% of the market price
+HONASA,ok,low confidence,525.4,85.8,74.4,102.2,-83.7,12.03,0.81,11.6,11.6,6.5,8.0,68.4,,43.1,,margin swing: latest core EBIT margin 8.0% vs 3-year average 5.0% (possible peak or trough); far from price: model value is 16% of the market price
 HONAUT,ok,indicative,29715.0,12375.5,11339.3,13818.8,-58.4,12.48,0.88,7.4,7.4,6.5,12.6,53.4,36.5,37.9,,
 HYUNDAI,ok,indicative,2155.0,763.2,696.1,852.4,-64.6,13.3,1.02,0.6,0.6,6.5,9.2,43.3,33.0,28.3,,growth path: first-year growth below terminal growth (path rises)
 ICICIAMC,ok,indicative,2933.0,2661.4,2317.8,3123.7,-9.3,13.2,1.0,30.7,30.0,6.5,72.7,55.5,32.4,,12.6,margin: very high EBIT margin (73%); growth clamped: 2-year 30.7% to 30%; beta: defaulted to 1.0 (short price history)
-INOXINDIA,ok,indicative,2088.0,538.9,464.2,640.5,-74.2,13.16,1.0,18.5,18.5,6.5,19.9,64.4,55.8,,,
+INOXINDIA,ok,indicative,2120.7,539.4,464.6,641.2,-74.6,13.16,1.0,18.5,18.5,6.5,19.9,64.5,56.2,,,
 IRB,not meaningful,not meaningful,17.4,,,,,11.31,1.41,-7.8,-5.0,6.5,27.6,40.3,,,,investments: set by dcf_inputs.csv; growth clamped: 2-year -7.8% to -5%; growth path: first-year growth below terminal growth (path rises); low return: ROIC 3.3% below WACC 11.3%; not meaningful: negative equity value
 IRCON,ok,indicative,107.83,36.4,34.0,39.2,-66.2,13.5,1.69,-15.1,-5.0,6.5,6.9,34.6,,18.7,,"investments added: Rs 1,065 cr of non-operating investments (10% of market cap); growth clamped: 2-year -15.1% to -5%; growth gap: 2-year growth differs from 3-year CAGR (-5.0%) by over 10 points; growth path: first-year growth below terminal growth (path rises); low return: ROIC 7.0% below WACC 13.5%"
 ITC,ok,usable,301.0,337.7,284.6,420.6,12.2,11.02,0.64,7.7,7.7,6.5,32.7,61.6,4.8,29.2,11.7,
 ITI,not meaningful,not meaningful,276.21,,,,,16.07,1.52,31.5,30.0,6.5,0.6,-1.6,,,,growth clamped: 2-year 31.5% to 30%; growth gap: 2-year growth differs from 3-year CAGR (16.1%) by over 10 points; low return: ROIC 0.4% below WACC 16.1%; not meaningful: negative equity value
-INDIACEM,not meaningful,not meaningful,320.65,,,,,12.63,0.99,-5.6,-5.0,6.5,2.2,167.0,,54.8,,shares: count differs from Yahoo shares outstanding by more than 10%; growth clamped: 2-year -5.6% to -5%; growth path: first-year growth below terminal growth (path rises); low return: ROIC 0.6% below WACC 12.6%; not meaningful: negative equity value
-INDIAMART,ok,indicative,1547.0,1718.9,1567.0,1927.4,11.1,12.88,0.95,14.5,14.5,6.5,29.3,58.7,10.0,25.4,14.0,"invested capital: not positive, sales-to-capital set to 1.5"
+INDIACEM,not meaningful,not meaningful,326.9,,,,,12.81,1.02,-5.6,-5.0,6.5,2.2,164.9,,56.4,,shares: count differs from Yahoo shares outstanding by more than 10%; growth clamped: 2-year -5.6% to -5%; growth path: first-year growth below terminal growth (path rises); low return: ROIC 0.6% below WACC 12.8%; not meaningful: negative equity value
+INDIAMART,ok,indicative,1538.1,1720.3,1568.0,1929.3,11.8,12.87,0.95,14.5,14.5,6.5,29.3,58.7,9.7,25.2,14.1,"invested capital: not positive, sales-to-capital set to 1.5"
 IEX,ok,indicative,109.15,93.4,86.1,102.6,-14.4,15.31,1.35,17.1,17.1,6.5,80.7,43.4,21.9,,13.7,"margin: very high EBIT margin (81%); invested capital: not positive, sales-to-capital set to 1.5"
-INDHOTEL,ok,low confidence,906.0,161.1,134.9,196.2,-82.2,14.08,1.17,19.6,19.6,6.5,27.8,80.7,,,,far from price: model value is 18% of the market price
+INDHOTEL,ok,low confidence,912.0,161.9,135.3,197.2,-82.3,14.06,1.17,19.6,19.6,6.5,27.8,80.8,,,,far from price: model value is 18% of the market price
 IOC,ok,indicative,145.0,400.6,338.2,493.1,176.3,11.53,1.23,0.1,0.1,6.5,8.6,51.6,,4.8,21.5,"margin swing: latest core EBIT margin 8.6% vs 3-year average 6.5% (possible peak or trough); investments large: Rs 56,713 cr is 28% of market cap, verify; growth path: first-year growth below terminal growth (path rises)"
 IRCTC,ok,usable,447.2,274.2,248.8,307.1,-38.7,14.02,1.14,10.6,10.6,6.5,31.2,45.5,24.0,52.5,10.6,
-IGL,ok,usable,153.31,129.6,119.8,142.6,-15.4,13.82,1.11,7.5,7.5,6.5,8.5,52.2,17.0,10.2,12.2,"investments added: Rs 1,791 cr of non-operating investments (8% of market cap)"
+IGL,ok,usable,154.79,129.9,120.0,142.9,-16.1,13.8,1.11,7.5,7.5,6.5,8.5,52.3,17.4,10.3,12.1,"investments added: Rs 1,791 cr of non-operating investments (8% of market cap)"
 INDUSTOWER,ok,usable,380.25,358.6,291.6,458.3,-5.7,11.58,0.9,6.6,6.6,6.5,33.3,61.8,8.6,34.3,11.3,
-NAUKRI,ok,indicative,1187.5,872.8,846.0,908.5,-26.5,13.49,1.05,13.8,13.8,6.5,32.4,54.3,37.2,,9.3,"invested capital: not positive, sales-to-capital set to 1.5; investments large: Rs 37,406 cr is 49% of market cap, verify"
+NAUKRI,ok,indicative,1177.7,873.6,846.6,909.6,-25.8,13.46,1.05,13.8,13.8,6.5,32.4,54.4,36.6,,9.4,"invested capital: not positive, sales-to-capital set to 1.5; investments large: Rs 37,406 cr is 49% of market cap, verify"
 INOXWIND,not meaningful,not meaningful,53.7,,,,,16.36,1.8,59.3,30.0,6.5,16.0,-55.5,,40.7,,growth clamped: 2-year 59.3% to 30%; growth gap: 2-year growth differs from 3-year CAGR (79.3%) by over 10 points; low return: ROIC 5.5% below WACC 16.4%; not meaningful: negative equity value
 INTELLECT,ok,indicative,578.45,231.9,213.5,253.8,-59.9,14.46,1.24,10.1,10.1,6.5,13.4,62.2,,26.2,9.2,low return: ROIC 12.3% below WACC 14.5%
-INDIGO,not meaningful,not meaningful,5523.0,,,,,12.24,1.17,10.8,10.8,6.5,4.1,317.2,,22.4,,margin swing: latest core EBIT margin 4.1% vs 3-year average 11.4% (possible peak or trough); low return: ROIC 5.6% below WACC 12.2%; not meaningful: negative equity value
-IGIL,ok,indicative,431.1,168.1,151.0,190.6,-61.0,13.51,1.06,8.9,8.9,6.5,53.0,47.6,33.9,,8.9,margin: very high EBIT margin (53%); growth gap: 2-year growth differs from 3-year CAGR (29.6%) by over 10 points
+INDIGO,not meaningful,not meaningful,5587.6,,,,,12.3,1.18,10.8,10.8,6.5,4.1,322.6,,22.8,,margin swing: latest core EBIT margin 4.1% vs 3-year average 11.4% (possible peak or trough); low return: ROIC 5.6% below WACC 12.3%; not meaningful: negative equity value
+IGIL,ok,indicative,422.2,167.1,150.3,189.4,-60.4,13.57,1.07,8.9,8.9,6.5,53.0,47.4,33.5,,8.9,margin: very high EBIT margin (53%); growth gap: 2-year growth differs from 3-year CAGR (29.6%) by over 10 points
 IKS,ok,indicative,1603.8,1598.1,1286.3,2059.4,-0.4,11.83,0.8,32.6,30.0,6.5,28.4,81.0,30.1,28.5,11.8,growth clamped: 2-year 32.6% to 30%; growth gap: 2-year growth differs from 3-year CAGR (45.8%) by over 10 points
-IPCALAB,ok,usable,1815.9,912.1,693.9,1289.7,-49.8,10.28,0.52,12.0,12.0,6.5,17.0,80.0,31.7,24.7,,
-JKCEMENT,ok,low confidence,5439.0,841.4,653.8,1069.1,-84.5,12.52,1.03,9.3,9.3,6.5,13.0,71.1,,29.9,,low return: ROIC 10.7% below WACC 12.5%; far from price: model value is 15% of the market price
-JBMA,not meaningful,not meaningful,477.35,,,,,13.97,1.46,10.9,10.9,6.5,9.3,84.7,,23.9,,low return: ROIC 9.6% below WACC 14.0%; not meaningful: negative equity value
-JKTYRE,ok,indicative,368.15,212.5,176.0,256.4,-42.3,12.58,1.34,4.3,4.3,6.5,9.6,52.6,,12.0,10.2,growth path: first-year growth below terminal growth (path rises); low return: ROIC 11.0% below WACC 12.6%
-JSWCEMENT,ok,low confidence,125.74,8.7,3.7,14.8,-93.1,11.76,0.98,5.6,5.6,6.5,14.1,80.8,,32.3,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.7% below WACC 11.8%; far from price: model value is 7% of the market price
+IPCALAB,ok,indicative,1843.8,898.6,685.5,1264.5,-51.3,10.33,0.53,12.0,12.0,6.5,17.0,79.7,32.7,25.2,,
+JKCEMENT,ok,low confidence,5438.7,836.7,649.9,1063.3,-84.6,12.54,1.03,9.3,9.3,6.5,13.0,71.0,,30.0,,low return: ROIC 10.7% below WACC 12.5%; far from price: model value is 15% of the market price
+JBMA,not meaningful,not meaningful,488.9,,,,,13.94,1.45,10.9,10.9,6.5,9.3,84.7,,24.2,,low return: ROIC 9.6% below WACC 13.9%; not meaningful: negative equity value
+JKTYRE,ok,indicative,368.45,211.9,175.5,255.7,-42.5,12.59,1.35,4.3,4.3,6.5,9.6,52.6,,12.0,10.2,growth path: first-year growth below terminal growth (path rises); low return: ROIC 11.0% below WACC 12.6%
+JSWCEMENT,ok,low confidence,126.47,8.5,3.6,14.7,-93.3,11.79,0.98,5.6,5.6,6.5,14.1,80.8,,32.5,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.7% below WACC 11.8%; far from price: model value is 7% of the market price
 JSWENERGY,ok,indicative,502.55,663.9,365.8,1173.6,32.1,10.46,1.06,28.8,28.8,6.5,38.4,103.5,24.2,36.1,10.9,low return: ROIC 5.5% below WACC 10.5%
 JSWINFRA,ok,low confidence,353.55,40.0,31.6,53.2,-88.7,14.35,1.3,18.9,18.9,6.5,37.6,83.0,,,,low return: ROIC 9.3% below WACC 14.4%; far from price: model value is 11% of the market price
 JSWSTEEL,ok,low confidence,1311.9,291.3,230.3,366.0,-77.8,11.38,0.98,2.7,2.7,6.5,10.9,55.6,,20.9,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 8.7% below WACC 11.4%; far from price: model value is 22% of the market price
 JAINREC,ok,indicative,278.7,257.2,193.4,348.8,-7.7,12.44,1.0,46.0,30.0,6.5,5.9,99.6,32.2,6.1,12.2,growth clamped: 2-year 46.0% to 30%; beta: defaulted to 1.0 (short price history)
 JPPOWER,ok,low confidence,13.24,2.9,2.4,3.5,-77.9,13.23,1.41,-9.3,-5.0,6.5,16.3,35.9,,37.2,,margin swing: latest core EBIT margin 16.3% vs 3-year average 22.8% (possible peak or trough); growth clamped: 2-year -9.3% to -5%; growth path: first-year growth below terminal growth (path rises); low return: ROIC 4.4% below WACC 13.2%; far from price: model value is 22% of the market price
-JINDALSAW,ok,indicative,240.52,71.5,61.7,83.0,-70.3,12.88,1.26,-7.3,-5.0,6.5,9.0,36.4,,19.1,,growth clamped: 2-year -7.3% to -5%; growth path: first-year growth below terminal growth (path rises); low return: ROIC 7.1% below WACC 12.9%
-JSL,ok,indicative,724.85,337.5,295.6,400.2,-53.4,13.31,1.15,5.6,5.6,6.5,10.4,50.4,42.7,16.3,9.8,growth path: first-year growth below terminal growth (path rises)
+JINDALSAW,ok,indicative,246.42,70.9,61.2,82.4,-71.2,12.94,1.26,-7.3,-5.0,6.5,9.0,36.2,,19.5,,growth clamped: 2-year -7.3% to -5%; growth path: first-year growth below terminal growth (path rises); low return: ROIC 7.1% below WACC 12.9%
+JSL,ok,indicative,736.65,342.6,298.6,407.3,-53.5,13.21,1.13,5.6,5.6,6.5,10.4,50.9,41.9,16.4,9.7,growth path: first-year growth below terminal growth (path rises)
 JINDALSTEL,ok,low confidence,1131.3,135.2,105.7,170.7,-88.0,13.16,1.2,1.9,1.9,6.5,13.8,52.6,,38.2,,growth gap: 2-year growth differs from 3-year CAGR (-13.1%) by over 10 points; growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.5% below WACC 13.2%; far from price: model value is 12% of the market price
 JUBLFOOD,ok,low confidence,421.0,31.8,3.7,67.0,-92.5,11.79,0.91,26.4,26.4,6.5,10.6,180.3,,17.7,,low return: ROIC 10.2% below WACC 11.8%; far from price: model value is 8% of the market price
-JUBLINGREA,ok,low confidence,559.2,122.7,107.9,140.4,-78.1,12.95,1.05,2.9,2.9,6.5,9.5,52.2,,24.4,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 8.4% below WACC 13.0%; far from price: model value is 22% of the market price
-JWL,ok,low confidence,185.39,26.4,24.3,28.9,-85.7,14.99,1.47,-10.7,-5.0,6.5,10.6,30.5,,51.6,,growth clamped: 2-year -10.7% to -5%; growth gap: 2-year growth differs from 3-year CAGR (12.1%) by over 10 points; growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.9% below WACC 15.0%; far from price: model value is 14% of the market price
+JUBLINGREA,ok,low confidence,568.25,123.2,108.3,141.0,-78.3,12.92,1.04,2.9,2.9,6.5,9.5,52.3,,24.6,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 8.4% below WACC 12.9%; far from price: model value is 22% of the market price
+JWL,ok,low confidence,191.23,26.5,24.4,28.9,-86.2,14.97,1.46,-10.7,-5.0,6.5,10.6,30.6,,53.1,,growth clamped: 2-year -10.7% to -5%; growth gap: 2-year growth differs from 3-year CAGR (12.1%) by over 10 points; growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.9% below WACC 15.0%; far from price: model value is 14% of the market price
 JYOTICNC,ok,low confidence,1042.95,70.8,50.9,94.7,-93.2,15.79,1.49,25.2,25.2,6.5,22.8,133.5,,,,low return: ROIC 12.8% below WACC 15.8%; far from price: model value is 7% of the market price
-KPRMILL,ok,indicative,1206.9,338.9,294.2,403.5,-71.9,11.94,0.8,4.6,4.6,6.5,17.0,56.6,44.9,54.1,,growth path: first-year growth below terminal growth (path rises)
+KPRMILL,ok,indicative,1191.3,338.0,293.6,402.2,-71.6,11.96,0.81,4.6,4.6,6.5,17.0,56.5,44.7,53.6,,growth path: first-year growth below terminal growth (path rises)
 KEI,ok,low confidence,3800.6,927.4,826.1,1058.9,-75.6,15.67,1.42,20.0,20.0,6.5,10.0,79.7,,24.5,9.4,far from price: model value is 24% of the market price
 KPITTECH,ok,usable,525.5,452.5,397.6,525.0,-13.9,13.81,1.17,15.1,15.1,6.5,14.7,58.5,19.7,16.7,12.8,
-KSB,ok,indicative,646.9,277.0,233.7,341.9,-57.2,11.53,0.72,9.6,9.6,6.5,12.2,66.8,34.2,26.1,,
-KAJARIACER,ok,indicative,1200.9,432.6,380.8,503.9,-64.0,12.7,0.93,4.0,4.0,6.5,14.5,52.1,36.0,37.7,,growth path: first-year growth below terminal growth (path rises)
-KPIL,ok,usable,1312.6,760.3,635.2,949.1,-42.1,13.77,1.28,17.6,17.6,6.5,6.5,79.1,42.2,8.1,11.5,
+KSB,ok,indicative,661.15,275.6,232.8,339.7,-58.3,11.56,0.73,9.6,9.6,6.5,12.2,66.6,35.0,26.7,,
+KAJARIACER,ok,indicative,1200.5,430.1,379.0,500.4,-64.2,12.74,0.94,4.0,4.0,6.5,14.5,51.8,36.3,37.9,,growth path: first-year growth below terminal growth (path rises)
+KPIL,ok,usable,1325.6,755.9,632.6,943.1,-43.0,13.8,1.28,17.6,17.6,6.5,6.5,79.1,43.0,8.2,11.4,
 KALYANKJIL,ok,low confidence,652.9,93.7,63.9,129.6,-85.7,14.75,1.38,38.9,30.0,6.5,6.1,138.4,,11.7,9.7,growth clamped: 2-year 38.9% to 30%; low return: ROIC 13.4% below WACC 14.7%; far from price: model value is 14% of the market price
 KAYNES,not meaningful,not meaningful,2809.0,,,,,15.12,1.39,41.8,30.0,6.5,13.1,-134.1,,36.6,,growth clamped: 2-year 41.8% to 30%; low return: ROIC 7.3% below WACC 15.1%; not meaningful: negative equity value
 KEC,ok,indicative,295.25,249.2,196.4,313.2,-15.6,12.41,1.51,9.0,9.0,6.5,7.0,68.5,32.9,7.4,11.7,low return: ROIC 11.1% below WACC 12.4%
 KFINTECH,ok,indicative,929.75,405.1,358.9,463.5,-56.4,15.4,1.37,25.4,25.4,6.5,35.3,60.5,50.3,,10.7,
-KIRLOSBROS,ok,indicative,1570.6,519.0,478.1,570.6,-67.0,15.21,1.36,6.7,6.7,6.5,10.0,45.1,50.7,30.0,8.9,
+KIRLOSBROS,ok,indicative,1626.1,519.9,478.7,571.7,-68.0,15.19,1.36,6.7,6.7,6.5,10.0,45.2,51.7,31.0,8.8,
 KIRLOSENG,ok,low confidence,1718.9,360.2,278.8,480.1,-79.0,13.24,1.24,14.4,14.4,6.5,16.3,77.9,,30.3,9.0,far from price: model value is 21% of the market price
-KIMS,not meaningful,not meaningful,794.15,,,,,11.39,0.8,25.1,25.1,6.5,13.8,-281.8,,42.0,,low return: ROIC 6.0% below WACC 11.4%; not meaningful: negative equity value
+KIMS,not meaningful,not meaningful,795.6,,,,,11.38,0.79,25.1,25.1,6.5,13.8,-283.7,,41.9,,low return: ROIC 6.0% below WACC 11.4%; not meaningful: negative equity value
 LTTS,ok,indicative,4222.6,1927.4,1706.8,2234.0,-54.4,12.54,0.9,6.8,6.8,6.5,14.5,53.8,29.2,32.2,8.9,
-LTFOODS,ok,indicative,423.95,132.5,108.2,161.6,-68.8,14.38,1.34,18.6,18.6,6.5,8.4,97.6,,13.2,10.1,low return: ROIC 12.3% below WACC 14.4%
+LTFOODS,ok,indicative,432.4,133.0,108.6,162.2,-69.2,14.36,1.33,18.6,18.6,6.5,8.4,97.6,,13.3,10.0,low return: ROIC 12.3% below WACC 14.4%
 LTM,ok,usable,4215.0,3066.3,2740.8,3507.6,-27.3,13.01,0.99,9.1,9.1,6.5,15.5,51.7,18.3,21.6,10.9,
 LT,ok,low confidence,4099.9,1013.5,802.6,1314.0,-75.3,12.32,1.06,13.9,13.9,6.5,9.5,84.2,,16.3,8.7,far from price: model value is 25% of the market price
 LAURUSLABS,ok,low confidence,2370.7,146.7,121.5,192.0,-93.8,13.08,1.0,15.9,15.9,6.5,19.4,81.4,,,,margin swing: latest core EBIT margin 19.4% vs 3-year average 12.9% (possible peak or trough); growth gap: 2-year growth differs from 3-year CAGR (3.8%) by over 10 points; far from price: model value is 6% of the market price
-LEMONTREE,ok,indicative,127.63,35.6,24.6,50.6,-72.1,13.06,1.18,14.1,14.1,6.5,42.1,69.4,43.2,,9.6,low return: ROIC 10.6% below WACC 13.1%
+LEMONTREE,ok,indicative,127.54,36.1,25.1,51.4,-71.7,13.01,1.18,14.1,14.1,6.5,42.1,69.5,42.8,,9.6,low return: ROIC 10.6% below WACC 13.0%
 LINDEINDIA,ok,low confidence,6961.5,462.2,431.7,497.8,-93.4,13.59,1.07,-4.4,-4.4,6.5,26.7,33.3,,,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 12.2% below WACC 13.6%; far from price: model value is 7% of the market price
-LLOYDSME,ok,indicative,1700.1,934.8,619.4,1383.7,-45.0,12.76,1.14,61.1,30.0,6.5,33.8,118.9,47.7,39.7,11.2,growth clamped: 2-year 61.1% to 30%; growth gap: 2-year growth differs from 3-year CAGR (71.4%) by over 10 points
+LLOYDSME,ok,indicative,1723.8,962.6,639.4,1424.3,-44.2,12.69,1.13,61.1,30.0,6.5,33.8,118.5,47.1,39.6,11.2,growth clamped: 2-year 61.1% to 30%; growth gap: 2-year growth differs from 3-year CAGR (71.4%) by over 10 points
 LUPIN,ok,indicative,1975.6,3107.8,2526.0,3996.5,57.3,11.35,0.75,18.3,18.3,6.5,24.8,73.8,6.4,18.2,13.8,margin swing: latest core EBIT margin 24.8% vs 3-year average 19.5% (possible peak or trough)
-MRF,ok,usable,129605.0,64945.3,57729.3,78233.5,-49.9,12.65,0.97,11.2,11.2,6.5,10.4,68.7,51.4,15.1,9.7,
+MRF,ok,indicative,130885.0,65265.2,57907.3,78696.5,-50.1,12.62,0.96,11.2,11.2,6.5,10.4,68.8,51.2,15.2,9.6,
 MTARTECH,ok,low confidence,5659.0,152.5,102.4,213.9,-97.3,13.77,1.12,22.9,22.9,6.5,15.7,176.7,,,,low return: ROIC 10.4% below WACC 13.8%; far from price: model value is 3% of the market price
-MGL,ok,indicative,1088.9,873.3,790.4,1008.2,-19.8,14.62,1.26,14.4,14.4,6.5,12.8,66.5,31.5,14.4,13.1,margin swing: latest core EBIT margin 12.8% vs 3-year average 18.3% (possible peak or trough)
-M&M,ok,indicative,3487.4,1244.1,947.5,1714.0,-64.3,13.22,1.35,19.2,19.2,6.5,15.6,94.8,,21.3,10.4,
-MRPL,ok,usable,175.36,125.8,102.3,161.6,-28.2,11.88,1.21,-1.0,-1.0,6.5,5.6,43.1,11.1,6.4,10.6,growth path: first-year growth below terminal growth (path rises)
-MANKIND,ok,low confidence,2615.1,457.6,355.4,585.5,-82.5,11.4,0.75,18.0,18.0,6.5,19.9,114.4,,40.5,,far from price: model value is 17% of the market price
+MGL,ok,indicative,1115.3,873.0,790.1,1007.6,-21.7,14.62,1.26,14.4,14.4,6.5,12.8,66.5,33.0,14.6,13.0,margin swing: latest core EBIT margin 12.8% vs 3-year average 18.3% (possible peak or trough)
+M&M,ok,indicative,3545.0,1234.1,939.2,1694.6,-65.2,13.25,1.35,19.2,19.2,6.5,15.6,94.8,,21.5,10.3,
+MRPL,ok,usable,175.52,125.8,102.3,161.6,-28.3,11.88,1.21,-1.0,-1.0,6.5,5.6,43.1,11.1,6.4,10.6,growth path: first-year growth below terminal growth (path rises)
+MANKIND,ok,low confidence,2665.0,461.1,358.2,594.0,-82.7,11.37,0.74,18.0,18.0,6.5,19.9,114.3,,40.8,,far from price: model value is 17% of the market price
 MARICO,ok,indicative,919.5,407.6,338.4,513.0,-55.7,11.3,0.69,19.0,19.0,6.5,15.7,66.6,38.7,34.0,8.6,
 MARUTI,ok,usable,14010.0,8420.6,7499.1,9694.9,-39.9,12.79,0.93,13.9,13.9,6.5,8.4,62.6,31.1,14.3,9.9,"investments added: Rs 44,156 cr of non-operating investments (10% of market cap)"
 MAXHEALTH,ok,low confidence,1089.55,63.2,38.7,93.4,-94.2,13.49,1.09,24.5,24.5,6.5,22.8,191.3,,,,low return: ROIC 10.4% below WACC 13.5%; far from price: model value is 6% of the market price
 MAZDOCK,ok,indicative,1801.0,1056.6,976.2,1157.3,-41.3,15.88,1.46,19.6,19.6,6.5,20.9,58.0,42.8,36.1,11.5,"invested capital: not positive, sales-to-capital set to 1.5"
 MINDACORP,ok,indicative,727.2,198.8,169.5,238.4,-72.7,13.45,1.14,15.1,15.1,6.5,8.1,71.1,,20.1,8.7,"investments added: Rs 1,551 cr of non-operating investments (9% of market cap)"
-MSUMI,ok,indicative,41.65,15.4,13.2,18.3,-63.0,13.81,1.11,17.5,17.5,6.5,7.3,64.7,46.0,16.1,9.5,
+MSUMI,ok,indicative,42.71,15.5,13.3,18.4,-63.8,13.79,1.11,17.5,17.5,6.5,7.3,64.8,46.5,16.4,9.5,
 MPHASIS,ok,indicative,2468.4,1224.1,1068.4,1433.2,-50.4,13.38,1.09,9.4,9.4,6.5,15.3,57.5,33.3,26.7,9.9,
 MCX,ok,indicative,3581.6,1652.7,1473.8,1882.5,-53.9,14.49,1.22,90.5,30.0,6.5,74.4,53.0,51.1,,10.1,"margin swing: latest core EBIT margin 74.4% vs 3-year average 47.1% (possible peak or trough); margin: very high EBIT margin (74%); invested capital: not positive, sales-to-capital set to 1.5; growth clamped: 2-year 90.5% to 30%; growth gap: 2-year growth differs from 3-year CAGR (67.9%) by over 10 points"
 NATCOPHARM,ok,indicative,806.55,745.8,692.6,816.5,-7.5,13.36,1.08,0.8,0.8,6.5,31.1,44.0,5.4,34.3,12.5,"investments added: Rs 2,276 cr of non-operating investments (14% of market cap); growth gap: 2-year growth differs from 3-year CAGR (14.5%) by over 10 points; growth path: first-year growth below terminal growth (path rises)"
@@ -254,33 +254,33 @@ NTPCGREEN,ok,low confidence,82.3,1.5,-6.6,14.3,-98.2,11.0,0.96,20.8,20.8,6.5,49.
 NTPC,ok,low confidence,315.45,51.3,14.8,97.0,-83.7,10.16,1.0,2.0,2.0,6.5,20.9,59.5,,30.7,,"investments added: Rs 23,555 cr of non-operating investments (8% of market cap); growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.4% below WACC 10.2%; far from price: model value is 16% of the market price"
 NH,ok,low confidence,1974.2,443.8,314.8,740.2,-77.5,11.66,0.86,27.0,27.0,6.5,15.5,137.7,,24.0,8.8,far from price: model value is 22% of the market price
 NATIONALUM,ok,usable,298.65,583.7,520.5,665.9,95.4,14.11,1.16,16.5,16.5,6.5,40.7,52.5,-3.8,22.2,22.5,
-NAVA,ok,indicative,550.15,247.8,224.1,275.6,-55.0,14.92,1.48,6.0,6.0,6.5,31.4,49.1,,51.4,9.9,growth path: first-year growth below terminal growth (path rises); low return: ROIC 10.6% below WACC 14.9%
-NAVINFLUOR,ok,indicative,10154.0,3500.2,2798.7,4515.6,-65.5,12.23,0.86,26.2,26.2,6.5,28.6,87.6,55.8,,8.9,margin swing: latest core EBIT margin 28.6% vs 3-year average 20.4% (possible peak or trough)
+NAVA,ok,indicative,563.95,248.6,224.7,276.5,-55.9,14.88,1.47,6.0,6.0,6.5,31.4,49.2,,52.1,9.8,growth path: first-year growth below terminal growth (path rises); low return: ROIC 10.6% below WACC 14.9%
+NAVINFLUOR,ok,indicative,10077.0,3524.2,2815.7,4551.6,-65.0,12.2,0.86,26.2,26.2,6.5,28.6,87.7,55.4,,8.9,margin swing: latest core EBIT margin 28.6% vs 3-year average 20.4% (possible peak or trough)
 NETWEB,ok,low confidence,4010.6,988.3,870.9,1138.4,-75.4,14.91,1.3,73.7,30.0,6.5,12.7,59.7,,44.5,8.8,growth clamped: 2-year 73.7% to 30%; far from price: model value is 25% of the market price
-NEULANDLAB,ok,low confidence,20550.0,4275.7,3678.6,5082.4,-79.2,13.33,1.03,12.9,12.9,6.5,25.4,62.6,58.4,,,far from price: model value is 21% of the market price
-NAM-INDIA,ok,indicative,1035.5,587.3,531.8,656.2,-43.3,15.8,1.43,28.4,28.4,6.5,64.7,47.7,44.2,,11.7,margin: very high EBIT margin (65%)
-NUVOCO,not meaningful,not meaningful,356.15,,,,,11.45,1.01,2.8,2.8,6.5,8.7,76.7,,20.5,,margin swing: latest core EBIT margin 8.7% vs 3-year average 6.8% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 4.9% below WACC 11.4%; not meaningful: negative equity value
+NEULANDLAB,ok,low confidence,20642.0,4255.3,3663.2,5054.1,-79.4,13.36,1.04,12.9,12.9,6.5,25.4,62.4,58.8,,,far from price: model value is 21% of the market price
+NAM-INDIA,ok,indicative,1050.0,586.4,531.1,655.0,-44.2,15.81,1.44,28.4,28.4,6.5,64.7,47.6,44.6,,11.6,margin: very high EBIT margin (65%)
+NUVOCO,not meaningful,not meaningful,358.5,,,,,11.46,1.01,2.8,2.8,6.5,8.7,76.7,,20.6,,margin swing: latest core EBIT margin 8.7% vs 3-year average 6.8% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 4.9% below WACC 11.5%; not meaningful: negative equity value
 ONGC,ok,indicative,222.85,637.1,505.1,871.5,185.9,10.02,0.81,0.6,0.6,6.5,13.5,58.9,,7.7,18.3,"investments large: Rs 74,812 cr is 27% of market cap, verify; growth path: first-year growth below terminal growth (path rises)"
 OIL,ok,indicative,422.5,798.2,648.7,1049.9,88.9,10.37,0.86,2.3,2.3,6.5,35.2,60.8,-8.2,25.4,14.5,"investments large: Rs 31,696 cr is 46% of market cap, verify; growth path: first-year growth below terminal growth (path rises)"
 OLECTRA,ok,low confidence,995.9,182.2,142.5,229.6,-81.7,16.07,1.55,41.4,30.0,6.5,12.3,133.1,,24.3,10.3,growth clamped: 2-year 41.4% to 30%; growth gap: 2-year growth differs from 3-year CAGR (28.4%) by over 10 points; low return: ROIC 14.1% below WACC 16.1%; far from price: model value is 18% of the market price
 PAYTM,ok,low confidence,1730.6,191.4,189.9,193.2,-88.9,13.2,1.0,-8.9,-5.0,6.5,3.5,39.4,,,,growth clamped: 2-year -8.9% to -5%; growth gap: 2-year growth differs from 3-year CAGR (1.2%) by over 10 points; growth path: first-year growth below terminal growth (path rises); low return: ROIC 3.6% below WACC 13.2%; far from price: model value is 11% of the market price
 OFSS,ok,usable,9675.0,5886.8,5247.9,6756.7,-39.2,12.84,0.94,9.7,9.7,6.5,44.8,49.7,22.4,,10.0,
 POLICYBZR,ok,low confidence,1089.1,59.5,48.4,73.6,-94.5,13.83,1.11,40.6,30.0,6.5,6.1,-466.5,,29.3,,growth clamped: 2-year 40.6% to 30%; low return: ROIC 8.1% below WACC 13.8%; far from price: model value is 5% of the market price
-PCBL,not meaningful,not meaningful,266.15,,,,,12.42,1.32,12.8,12.8,6.5,7.4,4010.9,,19.1,,low return: ROIC 5.5% below WACC 12.4%; not meaningful: negative equity value
+PCBL,not meaningful,not meaningful,270.8,,,,,12.44,1.32,12.8,12.8,6.5,7.4,4293.8,,19.3,,low return: ROIC 5.5% below WACC 12.4%; not meaningful: negative equity value
 PGEL,not meaningful,not meaningful,586.8,,,,,16.78,1.66,37.2,30.0,6.5,5.8,-77.7,,23.8,,growth clamped: 2-year 37.2% to 30%; low return: ROIC 7.0% below WACC 16.8%; not meaningful: negative equity value
 PIIND,ok,indicative,1571.0,812.5,764.9,881.8,-48.3,11.35,0.7,-6.4,-5.0,6.5,20.4,39.7,27.8,37.5,,growth clamped: 2-year -6.4% to -5%; growth path: first-year growth below terminal growth (path rises)
-PTCIL,not meaningful,not meaningful,24425.0,,,,,13.34,1.03,54.3,30.0,6.5,16.5,-114.8,,,,growth clamped: 2-year 54.3% to 30%; growth gap: 2-year growth differs from 3-year CAGR (40.7%) by over 10 points; low return: ROIC 4.7% below WACC 13.3%; not meaningful: negative equity value
+PTCIL,not meaningful,not meaningful,24120.0,,,,,13.32,1.03,54.3,30.0,6.5,16.5,-115.5,,,,growth clamped: 2-year 54.3% to 30%; growth gap: 2-year growth differs from 3-year CAGR (40.7%) by over 10 points; low return: ROIC 4.7% below WACC 13.3%; not meaningful: negative equity value
 PVRINOX,not meaningful,not meaningful,1699.7,,,,,11.41,1.02,4.1,4.1,6.5,12.5,100.8,,36.6,,margin swing: latest core EBIT margin 12.5% vs 3-year average 9.1% (possible peak or trough); growth gap: 2-year growth differs from 3-year CAGR (20.9%) by over 10 points; growth path: first-year growth below terminal growth (path rises); low return: ROIC 4.6% below WACC 11.4%; not meaningful: negative equity value
 PAGEIND,ok,indicative,30100.0,12484.8,10792.9,14898.1,-58.5,12.06,0.82,7.2,7.2,6.5,20.4,53.7,28.0,47.9,8.6,
-PARADEEP,ok,indicative,141.11,101.7,50.2,199.5,-27.9,10.29,0.79,34.4,30.0,6.5,16.7,202.8,46.3,17.8,9.7,growth clamped: 2-year 34.4% to 30%
-PATANJALI,ok,low confidence,407.0,37.8,25.5,53.0,-90.7,12.35,0.92,12.6,12.6,6.5,3.8,145.9,,9.3,,low return: ROIC 7.5% below WACC 12.3%; far from price: model value is 9% of the market price
+PARADEEP,ok,indicative,142.08,102.4,50.8,201.7,-27.9,10.28,0.79,34.4,30.0,6.5,16.7,202.5,46.2,17.8,9.7,growth clamped: 2-year 34.4% to 30%
+PATANJALI,ok,low confidence,404.2,37.3,25.1,52.4,-90.8,12.39,0.92,12.6,12.6,6.5,3.8,146.3,,9.3,,low return: ROIC 7.5% below WACC 12.4%; far from price: model value is 9% of the market price
 PERSISTENT,ok,indicative,6282.5,3062.3,2584.1,3734.7,-51.3,12.53,0.89,22.5,22.5,6.5,16.4,68.9,41.4,30.4,9.6,
 PETRONET,ok,indicative,326.05,270.0,247.7,300.1,-17.2,12.88,1.0,-8.6,-5.0,6.5,11.1,41.2,0.5,13.9,11.2,growth clamped: 2-year -8.6% to -5%; growth path: first-year growth below terminal growth (path rises)
-PHOENIXLTD,ok,low confidence,2276.2,324.4,267.1,399.2,-85.7,14.0,1.21,5.2,5.2,6.5,53.0,47.9,53.7,,,margin: very high EBIT margin (53%); growth gap: 2-year growth differs from 3-year CAGR (18.4%) by over 10 points; growth path: first-year growth below terminal growth (path rises); low return: ROIC 9.8% below WACC 14.0%; far from price: model value is 14% of the market price
+PHOENIXLTD,ok,low confidence,2285.3,327.3,269.3,403.0,-85.7,13.95,1.2,5.2,5.2,6.5,53.0,48.1,53.5,,,margin: very high EBIT margin (53%); growth gap: 2-year growth differs from 3-year CAGR (18.4%) by over 10 points; growth path: first-year growth below terminal growth (path rises); low return: ROIC 9.8% below WACC 14.0%; far from price: model value is 14% of the market price
 PIDILITIND,ok,indicative,1594.2,433.2,377.5,512.4,-72.8,12.19,0.83,8.6,8.6,6.5,21.6,56.8,43.0,,,
 PPLPHARMA,not meaningful,not meaningful,236.89,,,,,12.29,1.02,3.9,3.9,6.5,1.8,-20.8,,40.4,,margin swing: latest core EBIT margin 1.8% vs 3-year average 5.0% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 1.0% below WACC 12.3%; not meaningful: negative equity value
-POLYMED,ok,low confidence,1628.4,211.2,181.7,247.2,-87.0,13.67,1.1,16.7,16.7,6.5,18.3,129.5,,,,low return: ROIC 9.7% below WACC 13.7%; far from price: model value is 13% of the market price
-POLYCAB,ok,usable,7430.0,3834.9,3235.3,4629.6,-48.4,14.04,1.19,26.2,26.2,6.5,13.0,74.3,45.0,20.8,11.0,
+POLYMED,ok,low confidence,1635.7,210.3,181.0,246.1,-87.1,13.7,1.11,16.7,16.7,6.5,18.3,129.7,,,,low return: ROIC 9.7% below WACC 13.7%; far from price: model value is 13% of the market price
+POLYCAB,ok,usable,7570.0,3875.9,3266.7,4685.2,-48.8,13.98,1.18,26.2,26.2,6.5,13.0,74.5,45.1,21.0,10.9,
 POWERGRID,ok,indicative,264.85,186.7,122.3,295.8,-29.5,10.34,0.89,0.6,0.6,6.5,57.0,61.7,5.8,,9.6,margin: very high EBIT margin (57%); growth path: first-year growth below terminal growth (path rises); low return: ROIC 7.8% below WACC 10.3%
 PREMIERENE,ok,indicative,809.85,783.6,660.0,946.3,-3.2,14.24,1.3,57.7,30.0,6.5,25.2,72.6,30.9,25.7,14.1,margin swing: latest core EBIT margin 25.2% vs 3-year average 19.2% (possible peak or trough); growth clamped: 2-year 57.7% to 30%; growth gap: 2-year growth differs from 3-year CAGR (76.2%) by over 10 points
 PFOCUS,not meaningful,not meaningful,236.65,,,,,12.24,1.12,8.0,8.0,6.5,16.7,83.7,,44.6,,margin swing: latest core EBIT margin 16.7% vs 3-year average 6.2% (possible peak or trough); low return: ROIC 8.1% below WACC 12.2%; not meaningful: negative equity value
@@ -291,22 +291,22 @@ RADICO,ok,low confidence,4636.5,888.7,717.5,1131.8,-80.8,12.52,0.9,21.0,21.0,6.5
 RVNL,ok,low confidence,185.1,8.3,7.3,9.5,-95.5,15.4,1.55,-3.4,-3.4,6.5,3.6,32.8,,34.1,,"margin swing: latest core EBIT margin 3.6% vs 3-year average 5.1% (possible peak or trough); investments added: Rs 2,618 cr of non-operating investments (7% of market cap); growth path: first-year growth below terminal growth (path rises); low return: ROIC 4.8% below WACC 15.4%; far from price: model value is 5% of the market price"
 RAILTEL,ok,usable,245.55,172.8,153.5,196.6,-29.6,17.16,1.67,29.0,29.0,6.5,10.5,71.1,42.9,13.2,14.6,
 RAINBOW,ok,indicative,1263.9,426.2,336.4,560.5,-66.3,11.64,0.8,14.2,14.2,6.5,23.7,77.3,46.7,46.1,,
-RKFORGE,not meaningful,not meaningful,749.35,,,,,13.87,1.32,7.4,7.4,6.5,6.3,-152.8,,45.0,,margin swing: latest core EBIT margin 6.3% vs 3-year average 9.2% (possible peak or trough); low return: ROIC 3.4% below WACC 13.9%; not meaningful: negative equity value
-REDINGTON,not meaningful,not meaningful,331.3,,,,,13.84,1.24,15.5,15.5,6.5,1.8,-198.0,,3.8,,not meaningful: negative equity value
+RKFORGE,not meaningful,not meaningful,745.75,,,,,13.9,1.33,7.4,7.4,6.5,6.3,-151.5,,45.0,,margin swing: latest core EBIT margin 6.3% vs 3-year average 9.2% (possible peak or trough); low return: ROIC 3.4% below WACC 13.9%; not meaningful: negative equity value
+REDINGTON,not meaningful,not meaningful,331.3,,,,,13.78,1.22,15.5,15.5,6.5,1.8,-202.8,,3.8,,not meaningful: negative equity value
 RELIANCE,ok,low confidence,1351.0,272.6,200.4,361.5,-79.8,12.03,1.0,8.3,8.3,6.5,11.5,91.0,,21.3,,low return: ROIC 7.7% below WACC 12.0%; far from price: model value is 20% of the market price
 RPOWER,not meaningful,not meaningful,17.24,,,,,10.13,1.66,-1.5,-1.5,6.5,17.9,50.6,,32.7,,margin swing: latest core EBIT margin 17.9% vs 3-year average 11.0% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 3.2% below WACC 10.1%; not meaningful: negative equity value
 SJVN,ok,indicative,54.96,127.6,73.9,220.0,132.2,10.37,1.43,28.6,28.6,6.5,51.1,90.9,18.2,41.4,11.9,margin: very high EBIT margin (51%); growth gap: 2-year growth differs from 3-year CAGR (14.6%) by over 10 points; low return: ROIC 3.7% below WACC 10.4%
-SHRIPISTON,ok,indicative,4262.4,1338.7,1025.9,1777.3,-68.6,12.84,1.04,20.4,20.4,6.5,16.6,90.7,59.7,28.6,9.4,
-SRF,ok,low confidence,2514.8,553.0,466.4,680.4,-78.0,11.62,0.79,9.3,9.3,6.5,16.9,72.1,,37.1,,far from price: model value is 22% of the market price
+SHRIPISTON,ok,indicative,4222.0,1375.4,1052.6,1830.3,-67.4,12.74,1.02,20.4,20.4,6.5,16.6,90.8,58.0,28.0,9.4,
+SRF,ok,low confidence,2514.8,551.5,465.2,677.0,-78.1,11.63,0.8,9.3,9.3,6.5,16.9,72.1,,37.2,,far from price: model value is 22% of the market price
 SAGILITY,ok,indicative,46.09,12.1,8.7,16.4,-73.7,13.07,1.03,23.0,23.0,6.5,17.8,202.4,,27.0,9.1,margin swing: latest core EBIT margin 17.8% vs 3-year average 13.7% (possible peak or trough); low return: ROIC 9.7% below WACC 13.1%
-SAILIFE,ok,low confidence,1809.1,169.8,144.4,211.1,-90.6,13.85,1.12,21.1,21.1,6.5,21.9,94.7,,,,margin swing: latest core EBIT margin 21.9% vs 3-year average 16.9% (possible peak or trough); far from price: model value is 9% of the market price
+SAILIFE,ok,low confidence,1800.7,169.3,144.0,210.3,-90.6,13.87,1.12,21.1,21.1,6.5,21.9,94.7,,,,margin swing: latest core EBIT margin 21.9% vs 3-year average 16.9% (possible peak or trough); far from price: model value is 9% of the market price
 MOTHERSON,ok,low confidence,165.76,28.9,24.2,34.5,-82.6,14.2,1.3,13.1,13.1,6.5,5.5,84.7,,13.6,,low return: ROIC 10.8% below WACC 14.2%; far from price: model value is 17% of the market price
 SANSERA,ok,low confidence,4619.3,307.3,263.7,359.5,-93.3,14.48,1.24,11.7,11.7,6.5,13.0,85.9,,,,low return: ROIC 9.9% below WACC 14.5%; far from price: model value is 7% of the market price
-SARDAEN,ok,indicative,455.75,576.7,446.6,772.5,26.5,11.67,0.88,21.5,21.5,6.5,25.6,92.9,12.9,23.5,12.6,growth gap: 2-year growth differs from 3-year CAGR (10.4%) by over 10 points
+SARDAEN,ok,indicative,468.8,573.8,444.6,768.0,22.4,11.69,0.88,21.5,21.5,6.5,25.6,92.9,14.1,23.8,12.5,growth gap: 2-year growth differs from 3-year CAGR (10.4%) by over 10 points
 SCHAEFFLER,ok,indicative,3607.9,1272.0,1121.2,1471.3,-64.7,13.83,1.11,15.7,15.7,6.5,14.9,59.6,46.8,38.1,9.1,
 SCHNEIDER,ok,low confidence,1008.8,149.4,133.8,169.1,-85.2,15.23,1.36,14.0,14.0,6.5,11.9,48.0,,,,far from price: model value is 15% of the market price
 SCI,ok,indicative,255.59,169.4,156.0,185.1,-33.7,15.4,1.69,6.9,6.9,6.5,22.5,51.2,,30.4,11.4,margin swing: latest core EBIT margin 22.5% vs 3-year average 16.5% (possible peak or trough); investments added: Rs 682 cr of non-operating investments (6% of market cap); low return: ROIC 11.5% below WACC 15.4%
-SHREECEM,ok,low confidence,25150.0,5489.5,5183.4,5858.0,-78.2,12.25,0.86,1.2,1.2,6.5,9.0,48.0,,42.2,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 8.4% below WACC 12.2%; far from price: model value is 22% of the market price
+SHREECEM,ok,low confidence,25475.0,5473.5,5170.2,5838.3,-78.5,12.3,0.87,1.2,1.2,6.5,9.0,47.8,,43.0,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 8.4% below WACC 12.3%; far from price: model value is 21% of the market price
 SHYAMMETL,ok,low confidence,1276.2,181.0,134.3,237.9,-85.8,14.2,1.2,18.6,18.6,6.5,8.3,169.7,,17.1,,low return: ROIC 9.5% below WACC 14.2%; far from price: model value is 14% of the market price
 SIEMENS,ok,low confidence,3578.1,500.8,480.1,526.6,-86.0,14.92,1.29,-5.1,-5.0,6.5,9.9,30.5,,,,growth clamped: 2-year -5.1% to -5%; growth path: first-year growth below terminal growth (path rises); far from price: model value is 14% of the market price
 SOLARINDS,ok,indicative,18178.0,6099.3,4955.2,7737.2,-66.4,12.33,0.87,27.5,27.5,6.5,24.9,78.8,55.8,59.5,8.8,growth gap: 2-year growth differs from 3-year CAGR (12.4%) by over 10 points
@@ -314,16 +314,16 @@ SONACOMS,ok,low confidence,886.0,94.1,80.4,110.8,-89.4,13.17,1.0,18.2,18.2,6.5,1
 SAIL,ok,low confidence,162.0,15.4,6.3,26.5,-90.5,12.47,1.33,2.6,2.6,6.5,6.1,63.2,,12.2,,"investments added: Rs 4,272 cr of non-operating investments (6% of market cap); growth path: first-year growth below terminal growth (path rises); low return: ROIC 5.7% below WACC 12.5%; far from price: model value is 10% of the market price"
 STLTECH,not meaningful,not meaningful,590.8,,,,,13.09,1.05,8.0,8.0,6.5,5.9,182.8,,59.9,,margin swing: latest core EBIT margin 5.9% vs 3-year average 4.2% (possible peak or trough); growth gap: 2-year growth differs from 3-year CAGR (-11.8%) by over 10 points; low return: ROIC 5.4% below WACC 13.1%; not meaningful: negative equity value
 SUMICHEM,ok,indicative,335.1,137.3,125.2,152.9,-59.0,14.26,1.18,6.7,6.7,6.5,20.5,48.0,38.4,50.7,9.2,
-SUNPHARMA,ok,usable,1860.0,964.0,811.9,1199.4,-48.2,11.19,0.67,10.4,10.4,6.5,23.4,69.7,29.9,43.1,8.8,
-SUNTV,ok,usable,678.8,531.0,487.4,592.6,-21.8,12.17,0.83,0.6,0.6,6.5,34.6,49.8,12.2,48.0,10.2,growth path: first-year growth below terminal growth (path rises)
+SUNPHARMA,ok,usable,1884.9,961.5,810.1,1195.3,-49.0,11.2,0.67,10.4,10.4,6.5,23.4,69.6,30.3,43.8,8.8,
+SUNTV,ok,usable,694.2,532.5,488.5,595.0,-23.3,12.14,0.83,0.6,0.6,6.5,34.6,50.0,13.0,49.2,10.1,growth path: first-year growth below terminal growth (path rises)
 SUPREMEIND,ok,indicative,3156.0,1013.2,888.4,1190.2,-67.9,12.24,0.84,5.1,5.1,6.5,10.4,56.1,41.4,30.4,,growth path: first-year growth below terminal growth (path rises)
 SUZLON,ok,indicative,35.86,26.9,23.0,31.9,-25.0,15.44,1.4,60.8,30.0,6.5,15.5,76.0,39.1,18.5,13.8,growth clamped: 2-year 60.8% to 30%; growth gap: 2-year growth differs from 3-year CAGR (41.4%) by over 10 points
 SYNGENE,ok,indicative,443.65,117.6,108.7,128.2,-73.5,12.51,0.91,3.5,3.5,6.5,15.3,51.5,,47.0,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 10.3% below WACC 12.5%
 SYRMA,ok,low confidence,1491.1,193.3,166.2,226.5,-87.0,14.6,1.25,22.6,22.6,6.5,10.3,100.2,,36.5,,margin swing: latest core EBIT margin 10.3% vs 3-year average 7.3% (possible peak or trough); growth gap: 2-year growth differs from 3-year CAGR (32.8%) by over 10 points; far from price: model value is 13% of the market price
-TBOTEK,ok,indicative,1545.0,808.6,698.5,956.0,-47.7,13.62,1.12,40.0,30.0,6.5,13.8,68.6,48.4,24.1,10.4,growth clamped: 2-year 40.0% to 30%
+TBOTEK,ok,indicative,1547.4,806.7,697.1,953.4,-47.9,13.64,1.13,40.0,30.0,6.5,13.8,68.5,48.5,24.2,10.4,growth clamped: 2-year 40.0% to 30%
 TDPOWERSYS,ok,indicative,605.3,166.2,143.0,196.1,-72.5,14.92,1.29,37.0,30.0,6.5,17.0,71.2,,46.8,9.4,growth clamped: 2-year 37.0% to 30%
 TVSMOTOR,not meaningful,not meaningful,4528.2,,,,,13.99,1.32,20.8,20.8,6.5,1.9,-12.2,,34.0,,low return: ROIC 1.7% below WACC 14.0%; not meaningful: negative equity value
-TATACOMM,ok,low confidence,1723.6,226.3,156.8,368.0,-86.9,11.91,1.0,9.2,9.2,6.5,8.3,67.1,,18.0,,far from price: model value is 13% of the market price
+TATACOMM,ok,low confidence,1751.0,233.4,160.7,378.8,-86.7,11.85,0.98,9.2,9.2,6.5,8.3,67.4,,18.1,,far from price: model value is 13% of the market price
 TCS,ok,usable,2460.0,2459.1,2116.3,2964.0,-0.0,11.61,0.75,5.3,5.3,6.5,25.1,54.7,5.3,25.1,11.6,growth path: first-year growth below terminal growth (path rises)
 TATACONSUM,ok,low confidence,1133.0,95.8,71.5,126.2,-91.5,11.82,0.79,15.6,15.6,6.5,10.8,187.7,,33.1,,low return: ROIC 7.7% below WACC 11.8%; far from price: model value is 8% of the market price
 TATAELXSI,ok,indicative,3822.4,1331.6,1219.8,1478.5,-65.2,13.62,1.08,2.8,2.8,6.5,20.7,43.5,34.4,,,growth path: first-year growth below terminal growth (path rises)
@@ -332,13 +332,13 @@ TATASTEEL,ok,indicative,163.0,62.3,50.9,76.2,-61.8,11.85,1.16,0.7,0.7,6.5,9.7,46
 TATATECH,ok,low confidence,707.9,152.3,137.3,172.1,-78.5,13.51,1.09,3.8,3.8,6.5,13.1,46.8,,54.9,,growth path: first-year growth below terminal growth (path rises); far from price: model value is 22% of the market price
 TTML,not meaningful,not meaningful,34.7,,,,,9.0,1.18,-1.6,-1.6,6.5,41.4,69.8,23.2,,,"invested capital: not positive, sales-to-capital set to 1.5; growth path: first-year growth below terminal growth (path rises); wacc clamped: 8.7% to 9.0%; not meaningful: negative equity value"
 TECHM,ok,indicative,1777.5,1000.1,862.7,1201.6,-43.7,11.72,0.77,4.5,4.5,6.5,12.8,57.5,20.9,22.4,9.2,margin swing: latest core EBIT margin 12.8% vs 3-year average 9.7% (possible peak or trough); growth path: first-year growth below terminal growth (path rises)
-TECHNOE,ok,indicative,910.45,576.7,513.1,657.9,-36.7,15.81,1.45,45.3,30.0,6.5,14.1,94.9,55.1,18.8,12.8,growth clamped: 2-year 45.3% to 30%; growth gap: 2-year growth differs from 3-year CAGR (56.3%) by over 10 points
-TEGA,ok,low confidence,1539.6,378.2,364.4,395.3,-75.4,11.85,0.8,6.8,6.8,6.5,8.2,86.7,,44.8,,margin swing: latest core EBIT margin 8.2% vs 3-year average 13.5% (possible peak or trough); low return: ROIC 7.1% below WACC 11.8%; far from price: model value is 25% of the market price
+TECHNOE,ok,indicative,922.4,577.6,513.8,659.0,-37.4,15.8,1.44,45.3,30.0,6.5,14.1,94.9,55.6,19.0,12.7,growth clamped: 2-year 45.3% to 30%; growth gap: 2-year growth differs from 3-year CAGR (56.3%) by over 10 points
+TEGA,ok,low confidence,1579.2,379.6,365.5,397.0,-76.0,11.74,0.78,6.8,6.8,6.5,8.2,86.9,,45.3,,margin swing: latest core EBIT margin 8.2% vs 3-year average 13.5% (possible peak or trough); low return: ROIC 7.1% below WACC 11.7%; far from price: model value is 24% of the market price
 TENNIND,ok,indicative,440.45,175.1,158.2,197.6,-60.3,13.17,1.0,-0.6,-0.6,6.5,15.2,42.1,23.9,39.6,8.6,growth path: first-year growth below terminal growth (path rises); beta: defaulted to 1.0 (short price history)
 THANGAMAYL,ok,indicative,3772.0,4857.9,3698.6,6668.1,28.8,11.23,0.73,49.0,30.0,6.5,6.2,91.4,23.7,5.5,12.2,growth clamped: 2-year 49.0% to 30%
-RAMCOCEM,not meaningful,not meaningful,814.8,,,,,12.26,1.03,-2.2,-2.2,6.5,6.8,47.1,,32.7,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 3.9% below WACC 12.3%; not meaningful: negative equity value
-THERMAX,ok,indicative,2705.5,795.0,668.1,983.4,-70.6,11.63,0.8,7.3,7.3,6.5,9.0,63.1,53.2,21.5,,
-TIMKEN,ok,low confidence,3073.6,665.8,580.6,781.8,-78.3,13.1,0.98,9.3,9.3,6.5,15.5,59.6,,54.5,,far from price: model value is 22% of the market price
+RAMCOCEM,not meaningful,not meaningful,836.65,,,,,12.31,1.03,-2.2,-2.2,6.5,6.8,46.9,,33.4,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 3.9% below WACC 12.3%; not meaningful: negative equity value
+THERMAX,ok,indicative,2718.1,799.4,671.2,990.2,-70.6,11.6,0.8,7.3,7.3,6.5,9.0,63.2,52.9,21.5,,
+TIMKEN,ok,low confidence,3100.8,667.9,582.2,784.8,-78.5,13.07,0.98,9.3,9.3,6.5,15.5,59.7,,54.8,,far from price: model value is 22% of the market price
 TITAGARH,ok,low confidence,717.6,94.3,87.9,101.7,-86.9,15.36,1.45,-8.9,-5.0,6.5,9.6,29.0,,57.6,,growth clamped: 2-year -8.9% to -5%; growth gap: 2-year growth differs from 3-year CAGR (4.7%) by over 10 points; growth path: first-year growth below terminal growth (path rises); low return: ROIC 8.6% below WACC 15.4%; far from price: model value is 13% of the market price
 TITAN,ok,low confidence,4680.0,751.0,478.6,1151.0,-84.0,12.55,0.96,30.9,30.0,6.5,8.7,121.7,,18.8,8.6,growth clamped: 2-year 30.9% to 30%; far from price: model value is 16% of the market price
 TORNTPHARM,ok,low confidence,4763.7,28.6,-88.0,175.3,-99.4,10.9,0.67,14.1,14.1,6.5,24.0,112.7,,,,low return: ROIC 8.2% below WACC 10.9%; far from price: model value is 1% of the market price
@@ -346,31 +346,31 @@ TORNTPOWER,ok,low confidence,1198.4,267.4,219.3,325.0,-77.7,12.87,1.18,3.1,3.1,6
 TARIL,ok,indicative,289.45,154.1,122.3,196.3,-46.8,14.24,1.24,39.5,30.0,6.5,16.3,98.2,50.5,21.3,11.8,growth clamped: 2-year 39.5% to 30%; growth gap: 2-year growth differs from 3-year CAGR (21.5%) by over 10 points
 TRENT,ok,low confidence,3208.0,733.7,611.6,896.8,-77.1,13.87,1.13,27.5,27.5,6.5,12.0,77.0,,37.1,8.7,far from price: model value is 23% of the market price
 TRIDENT,ok,low confidence,23.17,4.6,4.1,5.2,-80.1,13.22,1.17,-1.0,-1.0,6.5,9.0,39.9,,26.8,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 7.3% below WACC 13.2%; far from price: model value is 20% of the market price
-TRITURBINE,ok,indicative,454.75,200.3,181.4,224.5,-56.0,14.37,1.2,14.6,14.6,6.5,19.9,48.3,37.9,46.1,9.6,
-TIINDIA,ok,low confidence,2210.0,409.0,320.7,516.3,-81.5,13.14,1.01,16.6,16.6,6.5,7.5,97.2,,15.3,,low return: ROIC 11.4% below WACC 13.1%; far from price: model value is 19% of the market price
-UNOMINDA,ok,low confidence,1356.9,138.1,115.6,164.9,-89.8,14.93,1.34,18.0,18.0,6.5,8.0,84.7,,30.7,,low return: ROIC 13.4% below WACC 14.9%; far from price: model value is 10% of the market price
-UPL,ok,indicative,557.7,304.4,217.5,412.8,-45.4,10.97,0.98,9.7,9.7,6.5,13.0,88.6,,15.9,8.9,margin swing: latest core EBIT margin 13.0% vs 3-year average 8.9% (possible peak or trough); growth gap: 2-year growth differs from 3-year CAGR (-1.2%) by over 10 points; low return: ROIC 8.8% below WACC 11.0%
-UTIAMC,ok,usable,834.75,709.7,648.8,788.8,-15.0,14.36,1.21,14.1,14.1,6.5,39.4,57.0,21.2,46.9,12.9,
-ULTRACEMCO,ok,low confidence,12650.0,1371.0,1051.5,1759.0,-89.2,13.3,1.09,11.9,11.9,6.5,14.0,95.6,,38.9,,low return: ROIC 9.3% below WACC 13.3%; far from price: model value is 11% of the market price
+TRITURBINE,ok,indicative,466.25,200.3,181.4,224.6,-57.0,14.37,1.2,14.6,14.6,6.5,19.9,48.3,38.5,47.3,9.5,
+TIINDIA,ok,low confidence,2228.3,418.5,328.6,527.9,-81.2,13.04,0.99,16.6,16.6,6.5,7.5,97.1,,15.2,,low return: ROIC 11.4% below WACC 13.0%; far from price: model value is 19% of the market price
+UNOMINDA,ok,low confidence,1380.0,140.6,117.7,168.0,-89.8,14.83,1.32,18.0,18.0,6.5,8.0,84.8,,30.8,,low return: ROIC 13.4% below WACC 14.8%; far from price: model value is 10% of the market price
+UPL,ok,indicative,571.95,301.2,214.9,408.8,-47.3,11.01,0.98,9.7,9.7,6.5,13.0,88.5,,16.1,8.8,margin swing: latest core EBIT margin 13.0% vs 3-year average 8.9% (possible peak or trough); growth gap: 2-year growth differs from 3-year CAGR (-1.2%) by over 10 points; low return: ROIC 8.8% below WACC 11.0%
+UTIAMC,ok,usable,836.05,707.3,646.9,785.6,-15.4,14.4,1.22,14.1,14.1,6.5,39.4,56.8,21.4,47.1,12.9,
+ULTRACEMCO,ok,low confidence,12939.0,1357.8,1040.6,1742.9,-89.5,13.34,1.09,11.9,11.9,6.5,14.0,95.6,,39.7,,low return: ROIC 9.3% below WACC 13.3%; far from price: model value is 10% of the market price
 UBL,ok,low confidence,1254.3,106.0,87.3,129.3,-91.6,10.93,0.65,6.2,6.2,6.5,6.1,78.7,,26.5,,low return: ROIC 7.6% below WACC 10.9%; far from price: model value is 8% of the market price
-UNITDSPR,ok,low confidence,1478.0,348.2,305.0,410.1,-76.4,12.06,0.81,5.0,5.0,6.5,16.1,55.9,45.7,,,growth path: first-year growth below terminal growth (path rises); far from price: model value is 24% of the market price
-USHAMART,ok,indicative,453.95,168.4,148.5,195.1,-62.9,13.19,1.02,7.0,7.0,6.5,16.5,54.4,48.2,36.1,8.8,
-VTL,ok,indicative,523.9,162.3,144.0,184.6,-69.0,12.12,0.93,2.0,2.0,6.5,9.3,58.2,,20.5,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.1% below WACC 12.1%
-VBL,ok,low confidence,427.15,94.2,80.2,114.6,-78.0,13.61,1.09,15.5,15.5,6.5,18.5,73.7,,49.2,,far from price: model value is 22% of the market price
+UNITDSPR,ok,low confidence,1466.4,348.1,304.9,410.0,-76.3,12.07,0.81,5.0,5.0,6.5,16.1,55.9,45.5,,,growth path: first-year growth below terminal growth (path rises); far from price: model value is 24% of the market price
+USHAMART,ok,indicative,461.15,169.8,149.6,197.1,-63.2,13.13,1.0,7.0,7.0,6.5,16.5,54.7,48.1,36.3,8.8,
+VTL,ok,indicative,528.35,163.3,144.8,185.9,-69.1,12.07,0.92,2.0,2.0,6.5,9.3,58.4,,20.5,,growth path: first-year growth below terminal growth (path rises); low return: ROIC 6.1% below WACC 12.1%
+VBL,ok,low confidence,427.5,94.1,80.1,114.6,-78.0,13.62,1.09,15.5,15.5,6.5,18.5,73.7,,49.2,,far from price: model value is 22% of the market price
 VEDPOWER,not meaningful,not meaningful,33.53,,,,,10.5,1.0,29.9,29.9,6.5,8.2,-41.3,,25.7,,margin swing: latest core EBIT margin 8.2% vs 3-year average 6.5% (possible peak or trough); growth gap: 2-year growth differs from 3-year CAGR (15.7%) by over 10 points; beta: defaulted to 1.0 (short price history); low return: ROIC 2.5% below WACC 10.5%; not meaningful: negative equity value
-VIJAYA,ok,indicative,1572.6,424.5,332.4,564.2,-73.0,11.54,0.74,21.9,21.9,6.5,30.1,85.7,57.2,,,
+VIJAYA,ok,indicative,1572.3,422.5,331.0,561.0,-73.1,11.56,0.75,21.9,21.9,6.5,30.1,85.7,57.3,,,
 VMM,ok,low confidence,94.5,18.5,15.3,22.4,-80.4,13.11,1.03,20.3,20.3,6.5,9.5,109.7,,21.2,,low return: ROIC 11.9% below WACC 13.1%; far from price: model value is 20% of the market price
 VOLTAS,ok,low confidence,1218.5,199.9,189.2,212.6,-83.6,13.78,1.13,6.7,6.7,6.5,4.1,54.7,,26.0,,"investments added: Rs 2,118 cr of non-operating investments (5% of market cap); low return: ROIC 11.7% below WACC 13.8%; far from price: model value is 16% of the market price"
 WAAREEENER,ok,indicative,2390.0,2858.3,2415.5,3435.8,19.6,14.59,1.3,51.1,30.0,6.5,19.1,75.1,24.8,17.2,15.7,growth clamped: 2-year 51.1% to 30%
 WELCORP,ok,indicative,2152.8,628.3,575.0,698.5,-70.8,13.46,1.09,-2.1,-2.1,6.5,12.3,40.6,38.9,45.7,,growth gap: 2-year growth differs from 3-year CAGR (19.5%) by over 10 points; growth path: first-year growth below terminal growth (path rises)
 WELSPUNLIV,ok,low confidence,270.76,5.5,4.0,7.2,-98.0,14.23,1.28,-1.1,-1.1,6.5,4.6,40.7,,45.3,,margin swing: latest core EBIT margin 4.6% vs 3-year average 8.6% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 4.6% below WACC 14.2%; far from price: model value is 2% of the market price
-WHIRLPOOL,ok,indicative,808.6,365.1,345.9,388.4,-54.8,12.6,0.93,8.5,8.5,6.5,3.8,64.6,,8.5,,
+WHIRLPOOL,ok,indicative,819.5,368.3,348.4,392.3,-55.1,12.43,0.9,8.5,8.5,6.5,3.8,65.1,,8.4,,
 WIPRO,ok,usable,187.29,199.2,175.0,235.5,6.4,11.39,0.78,1.6,1.6,6.5,16.1,56.1,-0.6,15.1,11.8,growth path: first-year growth below terminal growth (path rises)
 WOCKPHARMA,not meaningful,not meaningful,2152.3,,,,,14.86,1.36,9.1,9.1,6.5,12.1,-363.6,,,,margin swing: latest core EBIT margin 12.1% vs 3-year average 5.5% (possible peak or trough); low return: ROIC 4.4% below WACC 14.9%; not meaningful: negative equity value
 ZFCVINDIA,ok,indicative,2159.6,783.5,691.9,923.4,-63.7,11.23,0.67,4.0,4.0,6.5,13.1,58.9,34.2,41.8,,growth path: first-year growth below terminal growth (path rises)
 ZEEL,ok,indicative,71.64,30.1,29.9,30.3,-58.0,14.78,1.31,-3.2,-3.2,6.5,1.8,92.1,,10.2,,margin swing: latest core EBIT margin 1.8% vs 3-year average 6.6% (possible peak or trough); growth path: first-year growth below terminal growth (path rises); low return: ROIC 1.2% below WACC 14.8%
 ZENTEC,ok,low confidence,1694.6,239.6,216.8,266.6,-85.9,16.24,1.51,25.0,25.0,6.5,32.4,106.0,,,,growth gap: 2-year growth differs from 3-year CAGR (46.5%) by over 10 points; low return: ROIC 14.3% below WACC 16.2%; far from price: model value is 14% of the market price
-ZENSARTECH,ok,usable,529.6,494.9,449.9,554.9,-6.6,13.37,1.03,7.7,7.7,6.5,14.7,51.1,10.3,15.9,12.7,
+ZENSARTECH,ok,usable,529.05,496.7,451.3,557.4,-6.1,13.33,1.03,7.7,7.7,6.5,14.7,51.3,10.1,15.8,12.8,
 ZYDUSLIFE,ok,indicative,1199.5,604.8,430.0,884.4,-49.6,11.0,0.71,18.5,18.5,6.5,21.7,97.7,41.6,27.8,9.3,
 ZYDUSWELL,not meaningful,not meaningful,465.85,,,,,11.76,0.94,30.5,30.0,6.5,9.0,-38.2,,33.7,,growth clamped: 2-year 30.5% to 30%; low return: ROIC 3.0% below WACC 11.8%; not meaningful: negative equity value
-ECLERX,ok,usable,1511.4,1608.6,1402.4,1884.8,6.4,13.41,1.07,18.6,18.6,6.5,21.8,58.9,16.9,20.7,13.9,
+ECLERX,ok,usable,1454.1,1602.4,1397.8,1876.4,10.2,13.44,1.07,18.6,18.6,6.5,21.8,58.8,15.9,20.1,14.1,
