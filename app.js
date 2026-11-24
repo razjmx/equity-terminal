@@ -636,7 +636,7 @@ function hmDraw(){
     items=items.slice(0,CAP).concat([{name:'Other '+rest.length+' stocks',v:tv,ret:rest.reduce((x,y)=>x+y.v*y.ret,0)/tv,other:true,n:rest.length}])}
   const rects=squarify(items,0,0,W,Hh);
   box.innerHTML=rects.map((r,i)=>{const [bg,fg]=hmColor(r.ret,tf),big=r.w>110&&r.h>64,mid=r.w>70&&r.h>46;
-    return `<div class="hmt${r.other?' oth':''}" data-i="${i}" style="left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px;animation-delay:${Math.min(i*12,400)}ms"><div style="background:${bg};color:${fg}">${mid?`<b>${esc(r.name)}</b><span>${T.pct(r.ret,1)}</span>${big&&!r.stock&&!r.other?`<small>${r.n} stocks</small>`:''}`:''}</div></div>`}).join('')+'<div id="hmtip" class="hmtip"></div>';
+    return `<div class="hmt${r.other?' oth':''}" data-i="${i}" style="--s:${(1+Math.min(.09,18/Math.max(r.w,r.h))).toFixed(4)};left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px;animation-delay:${Math.min(i*12,400)}ms"><div style="background:${bg};color:${fg}">${mid?`<b>${esc(r.name)}</b><span>${T.pct(r.ret,1)}</span>${big&&!r.stock&&!r.other?`<small>${r.n} stocks</small>`:''}`:''}</div></div>`}).join('')+'<div id="hmtip" class="hmtip"></div>';
   const tip=$('#hmtip');
   const tipTxt=r=>r.stock?`<b>${esc(r.name)}</b><br>${T.pct(r.ret,2)} · ₹${T.fmt(r.mc,0)} cr`:r.other?`<b>${esc(r.name)}</b><br>${T.pct(r.ret,2)} weighted`:`<b>${esc(r.name)}</b><br>${T.pct(r.ret,2)} weighted · ${T.pct(r.med,2)} median<br>${r.n} stocks`;
   const pop=document.createElement('div');pop.className='hmpop';box.appendChild(pop);
