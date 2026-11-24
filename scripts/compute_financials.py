@@ -109,11 +109,19 @@ def build(sym, f, m, rk, ind, ov):
     roe_ttm = None
     if ttm is not None and bvps and shares:
         roe_ttm = ttm / (bvps * shares / scale) * 100
+    # per-share ROE from Yahoo's own EPS and book value per share: same share base, so it is not
+    # distorted by mergers, bonus issues or statement-equity scaling
+    eps = num(info.get("trailingEps"))
+    roe_eps = (eps / bvps * 100) if (eps and bvps and bvps > 0) else None
+    if roe_eps is not None and not (0 < roe_eps < 45):
+        roe_eps = None
     roes = [x["roe"] for x in fy if x["roe"] is not None]
     roe_avg3 = sum(roes[-3:]) / len(roes[-3:]) if roes else None
     basis = "3-year average ROE"
     roe_used = roe_avg3
-    if stmt_over and roe_ttm is not None:
+    if stmt_over and roe_eps is not None:
+        roe_used, basis = roe_eps, "Yahoo trailing EPS / book value per share (statement equity overstated)"
+    elif stmt_over and roe_ttm is not None:
         roe_used, basis = roe_ttm, "TTM profit / Yahoo book value (statement equity overstated)"
     elif stmt_over and roe_avg3 is not None:
         roe_used = roe_avg3 / eq_ratio
@@ -169,7 +177,7 @@ def build(sym, f, m, rk, ind, ov):
         bv_growth = ((fy[-1]["eq"] / fy[0]["eq"]) ** (1 / (len(fy) - 1)) - 1) * 100
     out = {
         "symbol": sym, "subtype": sub, "industry": ind, "yahoo_industry": yind, "price": price, "bvps": bvps, "pb": pb,
-        "roe_used_pct": roe_used, "roe_basis": basis, "roe_ttm_pct": roe_ttm, "roe_avg3_pct": roe_avg3, "ttm_quarters": len(qs),
+        "roe_used_pct": roe_used, "roe_basis": basis, "roe_ttm_pct": roe_ttm, "roe_eps_pct": roe_eps, "roe_avg3_pct": roe_avg3, "ttm_quarters": len(qs),
         "fy": [{k: (round(v, 2) if isinstance(v, float) else v) for k, v in x.items() if k in ("year", "roe", "roa")} for x in fy],
         "payout_pct": None if payout is None else payout * 100, "sustainable_growth_pct": None if sust is None else sust * 100,
         "bv_cagr_pct": bv_growth, "beta_adj": beta, "beta_used": bu, "equity_check_ratio": eq_ratio,
