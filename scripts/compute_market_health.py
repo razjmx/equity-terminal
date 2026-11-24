@@ -231,6 +231,36 @@ def main():
     ratio("Mid cap 150 vs Large cap 100", Mi, L)
     ratio("Equal-weight vs cap-weight (all)", All_e, All_c)
 
+    # per-stock returns over fixed calendar windows (for the heatmap)
+    stocks = []
+    try:
+        Cf = C.ffill()
+        offs = {"r1d": None, "r1w": pd.DateOffset(days=7), "r1m": pd.DateOffset(months=1), "r3m": pd.DateOffset(months=3),
+                "r6m": pd.DateOffset(months=6), "r1y": pd.DateOffset(years=1)}
+        bases = {}
+        for k, off in offs.items():
+            if off is None:
+                bases[k] = Cf.iloc[-2] if len(Cf) > 1 else None
+            else:
+                t = last - off
+                sub = Cf.loc[:t]
+                bases[k] = sub.iloc[-1] if len(sub) and (t - sub.index[-1]).days <= 10 else None
+        lastrow = Cf.iloc[-1]
+        for sym in cols:
+            mc = mcap.get(sym)
+            if not mc:
+                continue
+            r = {}
+            for k, b in bases.items():
+                if b is None:
+                    continue
+                v0, v1 = b.get(sym), lastrow.get(sym)
+                if v0 and v1 and v0 > 0 and not (np.isnan(v0) or np.isnan(v1)):
+                    r[k] = round(float((v1 / v0 - 1) * 100), 2)
+            if r:
+                stocks.append({"s": sym, "mc": round(float(mc)), "r": r})
+    except Exception as e:
+        errors.append(f"stock returns: {e!r}")
     keep = C.index[-MAXD:]
     out = {"generated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M"), "last_date": str(last.date()),
            "n_stocks": int(C.shape[1]), "has_volume": bool(has_vol), "real_indices": bool(extra),
@@ -239,7 +269,7 @@ def main():
            "indices": [{"name": c["name"], "real": c["real"], "y": jl(c["y"].reindex(keep).values, 2)} for c in idx_cards],
            "ratios": [{"name": r["name"], "y": jl(r["y"].reindex(keep).values, 2)} for r in ratios],
            "industries": [{k: (round(v, 2) if isinstance(v, float) else v) for k, v in r.items()} for r in rows],
-           "size_counts": {k: len(v) for k, v in size.items()}}
+           "size_counts": {k: len(v) for k, v in size.items()}, "stocks": stocks}
     # fix integer-like series that fell through to 2 decimals
     for k in list(out["series"].keys()):
         if k in ("upvol_pct", "ratio4_10", "netnh10") or k.endswith("_pct"):
