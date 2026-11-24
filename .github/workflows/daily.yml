@@ -52,6 +52,10 @@ jobs:
       - name: 5b Market health (breadth, stages, industries)
         run: python scripts/compute_market_health.py
 
+      - name: 5c Peer table (industry and sector comparison)
+        continue-on-error: true
+        run: python scripts/compute_peers.py
+
       - name: Stamp update time
         if: always()
         run: |
