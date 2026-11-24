@@ -428,6 +428,8 @@ async function peersTab(s){
     const g=members(PR.lvl),name=me[PR.lvl];
     const num=v=>v!=null&&isFinite(v);
     const rows=g.slice().sort((a,b)=>{const x=a[PR.sort],y=b[PR.sort];if(!num(x)&&!num(y))return 0;if(!num(x))return 1;if(!num(y))return -1;return (x-y)*PR.dir});
+    const cols=PCOLS.filter(c=>c[0]==='mc'||g.filter(x=>num(x[c[0]])).length>=Math.max(2,g.length*0.3));
+    const has=k=>cols.some(c=>c[0]===k);
     const med={};PCOLS.forEach(c=>med[c[0]]=medOf(g.map(x=>x[c[0]])));
     // cap-weighted P/E and P/B (total cap / total earnings)
     const wv=(k)=>{let mc=0,e=0;g.forEach(x=>{if(num(x.mc)&&num(x[k])&&x[k]>0){mc+=x.mc;e+=x.mc/x[k]}});return e?mc/e:null};
@@ -437,13 +439,13 @@ async function peersTab(s){
     const cell=(r,c)=>{const v=r[c[0]];return `<td class="num ${PR.sort===c[0]?'sorted':''}">${num(v)?T.fmt(v,c[2]):'–'}</td>`};
     box.innerHTML=`<div class="card"><h3>Peers · ${esc(name)} <span class="mut" style="font-weight:400;font-size:12px">${g.length} stocks</span>
        <span class="seg" id="plv" style="margin-left:auto">${PLV.filter(l=>members(l[0]).length>=2).map(l=>`<button data-k="${l[0]}" class="${PR.lvl===l[0]?'on':''}">${l[1]}</button>`).join('')}</span></h3>
-      <div class="mtiles">${tl('pe','P/E',1,false)}${tl('pb','P/B',2,false)}${tl('ev','EV/EBITDA',1,false)}${tl('roe','ROE %',1,true)}${tl('roce','ROCE %',1,true)}${tl('rg','Revenue CAGR %',1,true)}</div>
+      <div class="mtiles">${has('pe')?tl('pe','P/E',1,false):''}${has('pb')?tl('pb','P/B',2,false):''}${has('ev')?tl('ev','EV/EBITDA',1,false):''}${has('roe')?tl('roe','ROE %',1,true):''}${has('roce')?tl('roce','ROCE %',1,true):''}${has('rg')?tl('rg','Revenue CAGR %',1,true):''}</div>
       <p class="mut" style="font-size:12.5px;margin:10px 0 0">${esc(s)} P/E ${num(me.pe)?T.fmt(me.pe,1)+'x':'–'} ${prem('pe')} · P/B ${num(me.pb)?T.fmt(me.pb,2)+'x':'–'} ${prem('pb')} · group weighted P/E ${num(wv('pe'))?T.fmt(wv('pe'),1)+'x':'–'}, weighted P/B ${num(wv('pb'))?T.fmt(wv('pb'),2)+'x':'–'}.
       Rank 1 is the highest for ROE, ROCE and growth, and the cheapest for the multiples.</p></div>
-     <div class="card scroll"><table class="peer"><thead><tr><th>Company</th>${PCOLS.map(c=>`<th class="num sortable ${PR.sort===c[0]?'sorted':''}" data-k="${c[0]}">${c[1]}${PR.sort===c[0]?(PR.dir<0?' ▼':' ▲'):''}</th>`).join('')}</tr></thead><tbody>
-      ${rows.map(r=>`<tr class="${r.s===s?'me':''}" data-s="${esc(r.s)}"><td><b>${esc(r.s)}</b><div class="k">${esc(r.n)}</div></td>${PCOLS.map(c=>cell(r,c)).join('')}</tr>`).join('')}
-      <tr class="medrow"><td><b>Median</b></td>${PCOLS.map(c=>`<td class="num">${num(med[c[0]])?T.fmt(med[c[0]],c[2]):'–'}</td>`).join('')}</tr></tbody></table></div>
-     <p class="mut" style="font-size:12px">Groups come from Yahoo Finance industry tags (the NSE group is shown as a wider fallback). Multiples are for the latest financial year. Negative or missing values are left out of medians.</p>`;
+     <div class="card" style="overflow-x:auto"><table class="peer"><thead><tr><th>Company</th>${cols.map(c=>`<th class="num sortable ${PR.sort===c[0]?'sorted':''}" data-k="${c[0]}">${c[1]}${PR.sort===c[0]?(PR.dir<0?' ▼':' ▲'):''}</th>`).join('')}</tr></thead><tbody>
+      ${rows.map(r=>`<tr class="${r.s===s?'me':''}" data-s="${esc(r.s)}"><td><b>${esc(r.s)}</b><div class="k">${esc(r.n)}</div></td>${cols.map(c=>cell(r,c)).join('')}</tr>`).join('')}
+      <tr class="medrow"><td><b>Median</b></td>${cols.map(c=>`<td class="num">${num(med[c[0]])?T.fmt(med[c[0]],c[2]):'–'}</td>`).join('')}</tr></tbody></table></div>
+     <p class="mut" style="font-size:12px">Groups come from Yahoo Finance industry tags (the NSE group is shown as a wider fallback). Multiples are for the latest financial year. Negative or missing values are left out of medians. Columns that do not apply to most of the group (for example EV/EBITDA for banks) are hidden. Revenue CAGR can be distorted by mergers.</p>`;
     box.querySelectorAll('#plv button').forEach(b=>b.onclick=()=>{PR.lvl=b.dataset.k;draw()});
     box.querySelectorAll('th.sortable').forEach(th=>th.onclick=()=>{const k=th.dataset.k;if(PR.sort===k)PR.dir*=-1;else{PR.sort=k;PR.dir=-1}draw()});
     box.querySelectorAll('tbody tr[data-s]').forEach(tr=>tr.onclick=()=>{location.hash='#/stock/'+tr.dataset.s+'/peers'});
