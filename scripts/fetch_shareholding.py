@@ -56,7 +56,7 @@ def parse_xbrl(content):
             if m in want and want[m] not in got:
                 v = num((f.text or "").strip())
                 if v is not None:
-                    got[want[m]] = round(v * 100, 2)
+                    got[want[m]] = v
     return got or None
 
 syms = [r["symbol"] for r in csv.DictReader(open("data/universe.csv", newline=""))]
@@ -108,6 +108,14 @@ for i, sym in enumerate(syms):
                 s = new_session(); r = s.get(q["xbrl"], timeout=40, headers={"Accept": "*/*"})
             if r.status_code == 200:
                 g = parse_xbrl(r.content)
+                if g:
+                    # filings differ: some give decimals (0.59), older ones give percent (59.2). Detect the scale.
+                    rp, qp = g.get("promoter"), q["promoter"]
+                    if rp is not None and qp is not None and (rp > 0 or qp > 0):
+                        k = 100 if abs(rp * 100 - qp) <= abs(rp - qp) else 1
+                    else:
+                        k = 100 if (g.get("fii", 0) + g.get("dii", 0) + (rp or 0)) <= 1.05 else 1
+                    g = {a: round(b * k, 2) for a, b in g.items()}
                 if g and g.get("fii") is not None and g.get("dii") is not None:
                     pr = g.get("promoter", q["promoter"] if q["promoter"] is not None else 0)
                     tot = (pr or 0) + g["fii"] + g["dii"]
