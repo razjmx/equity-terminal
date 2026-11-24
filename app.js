@@ -353,7 +353,7 @@ let _rz;window.addEventListener('resize',()=>{clearTimeout(_rz);_rz=setTimeout((
 const HM={tf:'r1m',level:'sector',drill:null};
 const HM_TF=[['r1d','1D'],['r1w','1W'],['r1m','1M'],['r3m','3M'],['r6m','6M'],['r1y','1Y']];
 const HM_SC={r1d:3,r1w:5,r1m:10,r3m:18,r6m:28,r1y:45};
-const HM_LV=[['macro','Macro sector'],['sector','Sector'],['industry','Industry'],['basic_industry','Basic industry']];
+const HM_LV=[['macro','NSE group'],['sector','Sector'],['industry','Industry'],['basic_industry','Basic industry']];
 function squarify(items,x,y,w,h){
   const tot=items.reduce((a,b)=>a+b.v,0);if(!tot||w<=0||h<=0)return [];
   const sc=w*h/tot,it=items.map(i=>Object.assign({},i,{a:i.v*sc})),out=[];let rect={x,y,w,h},row=[],i=0;
@@ -378,9 +378,11 @@ function hmGroups(){
 function heatmapPanel(){
   const w=$('#hmwrap');if(!w)return;
   const have=D.ind&&Object.keys(D.ind).length>0;
+  const lvs=HM_LV.filter(([k])=>have&&Object.values(D.ind).some(r=>r[k]));
   if(!have&&['macro','basic_industry'].includes(HM.level))HM.level='sector';
+  if(have&&lvs.length&&!lvs.some(([k])=>k===HM.level))HM.level=lvs[0][0];
   w.innerHTML=`<div class="hmbar"><div class="seg" id="hm-tf">${HM_TF.map(([k,l])=>`<button data-k="${k}" class="${HM.tf===k?'on':''}">${l}</button>`).join('')}</div>
-   ${have?`<div class="seg" id="hm-lv">${HM_LV.map(([k,l])=>`<button data-k="${k}" class="${HM.level===k?'on':''}">${l}</button>`).join('')}</div>`:'<span class="mut" style="font-size:12px">Using the basic industry tag. Run <b>Fetch industry classification</b> in Actions for NSE sectors.</span>'}
+   ${have?`<div class="seg" id="hm-lv">${lvs.map(([k,l])=>`<button data-k="${k}" class="${HM.level===k?'on':''}">${l}</button>`).join('')}</div>`:'<span class="mut" style="font-size:12px">Using the basic industry tag. Run <b>Fetch industry classification</b> in Actions for NSE sectors.</span>'}
    <span class="hmcrumb" id="hm-crumb"></span></div>
    <div id="hmbox" class="hmbox"></div>
    <div class="hmleg"><span>−${HM_SC[HM.tf]}%</span><i></i><span>0</span><i class="g"></i><span>+${HM_SC[HM.tf]}%</span><em class="mut">Returns use the latest close vs the close ${({r1d:'one trading day',r1w:'7 days',r1m:'one month',r3m:'three months',r6m:'six months',r1y:'one year'})[HM.tf]} earlier. Group return is weighted by market cap.</em></div>`;
@@ -402,7 +404,7 @@ function hmDraw(){
   else{items=groups.map(g=>({name:g.name,v:g.v,ret:g.ret,n:g.n,med:g.med}));crumb.innerHTML=`<span class="mut">Click a block to see its stocks</span>`}
   items=items.filter(i=>i.v>0).sort((a,b)=>b.v-a.v);
   const rects=squarify(items,0,0,W,Hh);
-  box.innerHTML=rects.map((r,i)=>{const [bg,fg]=hmColor(r.ret,tf),big=r.w>96&&r.h>54,mid=r.w>58&&r.h>34;
+  box.innerHTML=rects.map((r,i)=>{const [bg,fg]=hmColor(r.ret,tf),big=r.w>96&&r.h>54,mid=r.w>62&&r.h>46;
     const tip=r.stock?`${r.name}: ${T.pct(r.ret,2)} · ₹${T.fmt(r.mc,0)} cr`:`${r.name}: ${T.pct(r.ret,2)} weighted, ${T.pct(r.med,2)} median · ${r.n} stocks`;
     return `<div class="hmt" data-i="${i}" title="${esc(tip)}" style="left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px;animation-delay:${Math.min(i*12,400)}ms"><div style="background:${bg};color:${fg}">${mid?`<b>${esc(r.name)}</b><span>${T.pct(r.ret,1)}</span>${big&&!r.stock?`<small>${r.n} stocks</small>`:''}`:''}</div></div>`}).join('');
   box.querySelectorAll('.hmt').forEach(el=>el.onclick=()=>{const r=rects[+el.dataset.i];if(r.stock)location.hash='#/stock/'+r.stock;else{HM.drill=r.name;hmDraw()}});
