@@ -776,10 +776,13 @@ async function ddmPanel(s,price,dcf,fin){
   if(ke==null){const rk=await get(`data/risk/${s}.json`,'json');const beta=rk&&rk.beta&&rk.beta.adjusted!=null?rk.beta.adjusted:1;ke=A.rf/100+beta*A.erp/100}
   const gT0=A.g/100,g10=cagr==null?gT0:Math.min(Math.max(cagr,0),0.12);
   const run=(g1,k,gT)=>{gT=Math.min(gT,k-0.01);let pv=0,d=dps;for(let t=1;t<=5;t++){d*=1+g1;pv+=d/Math.pow(1+k,t)}const tv=d*(1+gT)/(k-gT);return pv+tv/Math.pow(1+k,5)};
-  const sc=[['sc-bear','Bear',run(Math.max(g10-0.03,0),ke+0.01,gT0-0.01)],['sc-base','Base',run(g10,ke,gT0)],['sc-bull','Bull',run(g10+0.03,ke-0.01,gT0+0.005)]];
+  const gTb=gT0;
+  const sc=[['sc-bear','Bear',run(Math.max(g10-0.03,0),ke+0.01,gTb-0.01)],['sc-base','Base',run(g10,ke,gTb)],['sc-bull','Bull',run(g10+0.03,ke-0.01,gTb+0.005)]];
+  const low=(payout!=null&&payout<35)||yld<2;
   const up=v=>price?(v/price-1)*100:null;
   box.innerHTML=`<div class="card mph"><h3>DDM <span class="mut" style="font-weight:400;font-size:12px">two-stage dividend discount model</span></h3>
     <p class="mut" style="margin-top:0">Values the stock as the present value of its dividends: five years of growth, then a steady terminal growth rate. Cost of equity and terminal growth follow your Assumptions settings.</p>
+    ${low?`<p class="warn" style="margin:8px 0"><b>Low reliability for this stock.</b> It pays out only ${payout!=null?T.fmt(payout,0)+'% of earnings':'a small part of earnings'} (yield ${T.fmt(yld,1)}%) and reinvests the rest. A dividend model counts only the cash paid out, so it undervalues companies that retain most profit to grow. Banks in particular are better valued on the Justified P/B or Residual income models.</p>`:''}
     <div class="scn">${sc.map(([c,n,v])=>`<div class="sc ${c}"><div class="sn">${n}</div><div class="sv">₹${T.fmt(v,0)}</div><div class="su ${cls(up(v))}">${up(v)>=0?'+':''}${T.fmt(up(v),1)}% vs price</div></div>`).join('')}</div>
     <div style="overflow-x:auto;margin-top:14px"><table class="peer kv"><thead><tr><th>Input</th><th class="num">Value</th></tr></thead><tbody>
      <tr><td>Dividends paid, ${esc(last.d.slice(0,4))} (₹ cr)</td><td class="num">${T.fmt(last.div,0)}</td></tr>
@@ -788,9 +791,9 @@ async function ddmPanel(s,price,dcf,fin){
      <tr><td>Payout ratio (of net income)</td><td class="num">${payout!=null?T.fmt(payout,0)+'%':'–'}</td></tr>
      <tr><td>Dividend growth, ${pos.length>=3?(pos.length-1)+'-year CAGR':'not enough history'}</td><td class="num">${cagr!=null?T.fmt(cagr*100,1)+'%':'–'}</td></tr>
      <tr><td>Stage 1 growth used (5 years, base)</td><td class="num">${T.fmt(g10*100,1)}%</td></tr>
-     <tr><td>Terminal growth</td><td class="num">${T.fmt(gT0*100,1)}%</td></tr>
+     <tr><td>Terminal growth (your GDP growth setting)</td><td class="num">${T.fmt(gTb*100,1)}%</td></tr>
      <tr><td>Cost of equity</td><td class="num">${T.fmt(ke*100,2)}%</td></tr></tbody></table></div>
-    <p class="mut" style="font-size:12px;margin-top:10px">Dividend per share is total dividends paid divided by today's share count, so it is approximate. One-off or special dividends raise it and can overstate the value. Stage 1 growth is the past dividend growth, kept between 0% and 12%. Bear uses 3 points lower growth, 1 point higher cost of equity and 1 point lower terminal growth; Bull uses the reverse.</p></div>`;
+    <p class="mut" style="font-size:12px;margin-top:10px">Dividend per share is total dividends paid divided by today's share count, so it is approximate. One-off or special dividends raise it and can overstate the value. Stage 1 growth is the past dividend growth, kept between 0% and 12%. Terminal growth is your long-run GDP growth assumption. Bear uses 3 points lower growth, 1 point higher cost of equity and 1 point lower terminal growth; Bull uses 3 points higher growth, 1 point lower cost of equity and 0.5 point higher terminal growth.</p></div>`;
 }
 
 // ---------- stock ----------
