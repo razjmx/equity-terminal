@@ -330,11 +330,10 @@ function renderMarket(anim){
   {h+=sec('ind','Sector heatmap','block size = market cap, colour = market-cap-weighted return over the chosen period');
    h+='<div id="hmwrap"></div>'}
 
-  // 8 size and style
-  if(d.ratios&&d.ratios.length){h+=sec('sz','Size and style','ratio of two groups, rebased to 100 at the start of the data; rising = first group outperforming')+'<div class="mh-grid">';
-   d.ratios.forEach((r,i)=>{const a=W(r.y),l=last(a),f=first(a),ch=l!=null&&f?(l/f-1)*100:null;h+=mcard('rt'+i,r.name,{big:T.fmt(l,1),delta:ch==null?'':sgn(ch,1,'%'),dcls:cls(ch)});specs.push({id:'rt'+i,x:X,layers:[{y:a,type:'area'}],auto:true,dec:1})});h+='</div>'}
+  // top gainers and losers
+  {h+=sec('gl','Top gainers and losers','by index and time frame · from daily closes')+'<div id="glbox"></div>'}
 
-  const chips=[['idx','Indices'],['ind','Sector heatmap'],['sz','Size & style']];
+  const chips=[['idx','Indices'],['ind','Sector heatmap'],['gl','Gainers & losers']];
   const bar=`<div class="mh-bar"><div class="chips">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</div>
    <div class="seg" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div></div>
    <div class="mut" style="font-size:12px;margin:-4px 0 6px">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</div>`;
@@ -344,11 +343,39 @@ function renderMarket(anim){
   document.querySelectorAll('.mh-bar .chips a').forEach(a=>a.onclick=()=>{const el=document.getElementById(a.dataset.s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})});
   document.querySelectorAll('tr.ind').forEach(tr=>tr.onclick=()=>{FILT.ind=tr.dataset.ind;FILT.q='';FILT.rel='all';location.hash='#/screener'});
   MH.charts=specs;specs.forEach(sp=>{const cv=document.getElementById(sp.id);if(cv)mchart(cv,sp,anim)});
+  try{glPanel()}catch(e){}
   try{heatmapPanel()}catch(e){const w=$('#hmwrap');if(w)w.innerHTML='<div class="card"><p class="mut">Heatmap needs the latest market data. Run the Daily refresh once.</p></div>'}
   countUps(view);
 }
 let _rz;window.addEventListener('resize',()=>{clearTimeout(_rz);_rz=setTimeout(()=>{if(document.getElementById('hmbox'))try{hmDraw()}catch(e){}
     if(MH.data&&(location.hash===''||location.hash==='#/market'))MH.charts.forEach(sp=>{const cv=document.getElementById(sp.id);if(cv)mchart(cv,sp,false)})},150)});
+
+// ---------- top gainers and losers ----------
+const GL={ix:'nifty50',tf:'r1d'};
+const GL_IX=[['nifty50','Nifty 50'],['midcap150','Midcap 150'],['smallcap250','Smallcap 250']];
+const GL_TF=[['r1d','1D'],['r1w','1W'],['r1m','1M'],['r3m','3M']];
+async function glPanel(){
+  const box=$('#glbox');if(!box)return;
+  const mem=await get('data/index_members.json','json');
+  if(!mem){box.innerHTML='<div class="card"><p class="mut">Index lists are not built yet. Run the Daily refresh once (step 5d).</p></div>';return}
+  const P=await get('data/peers.json','json');
+  const nm={},px={};if(P&&P.stocks)P.stocks.forEach(x=>{nm[x.s]=x.n;px[x.s]=x.px});
+  const by={};(MH.data.stocks||[]).forEach(x=>by[x.s]=x);
+  const draw=()=>{
+    const set=new Set(mem[GL.ix]||[]);
+    const rows=[...set].map(s=>by[s]&&by[s].r&&by[s].r[GL.tf]!=null?{s,r:by[s].r[GL.tf],mc:by[s].mc}:null).filter(Boolean).sort((a,b)=>b.r-a.r);
+    const top=rows.slice(0,10),bot=rows.slice(-10).reverse();
+    const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">Price ₹</th><th class="num">Return</th></tr></thead><tbody>${a.map(r=>`<tr class="row" onclick="location.hash='#/stock/${esc(r.s)}'"><td><b>${esc(r.s)}</b><div class="mut" style="font-size:11px">${esc((nm[r.s]||'').slice(0,28))}</div></td><td class="num">${px[r.s]!=null?T.fmt(px[r.s],1):'–'}</td><td class="num ${cls(r.r)}">${r.r>=0?'+':''}${T.fmt(r.r,2)}%</td></tr>`).join('')}</tbody></table>`;
+    const src=(mem.source||{})[GL.ix]==='NSE'?'official NSE constituent list':'approximated by market-cap rank (NSE list not available)';
+    box.innerHTML=`<div class="card"><div class="seg" id="gl-ix" style="margin:0 0 8px">${GL_IX.map(([k,l])=>`<button data-k="${k}" class="${GL.ix===k?'on':''}">${l}</button>`).join('')}</div>
+      <div class="seg" id="gl-tf" style="margin:0 0 12px">${GL_TF.map(([k,l])=>`<button data-k="${k}" class="${GL.tf===k?'on':''}">${l}</button>`).join('')}</div>
+      <div class="two"><div><h3 style="margin:0 0 6px">Top gainers</h3>${tb(top)}</div><div><h3 style="margin:0 0 6px">Top losers</h3>${tb(bot)}</div></div>
+      <p class="mut" style="font-size:12px;margin:10px 0 0">${rows.length} stocks in ${esc(GL_IX.find(x=>x[0]===GL.ix)[1])} with data · ${src} · returns are price returns to the last close.</p></div>`;
+    box.querySelectorAll('#gl-ix button').forEach(b=>b.onclick=()=>{GL.ix=b.dataset.k;draw()});
+    box.querySelectorAll('#gl-tf button').forEach(b=>b.onclick=()=>{GL.tf=b.dataset.k;draw()});
+  };
+  draw();
+}
 
 // ---------- treemap heatmap ----------
 const HM={tf:'r1m',level:'sector',drill:null};
