@@ -872,11 +872,11 @@ const VAL_MODELS={
  ff:{label:'Summary',what:'A football-field chart that lines up the fair-value range from every model above against the current price.',best:'The final view once the models are calculated.',inputs:['Low and high value from each model','Current price marker','Average and median of the models']}
 };
 async function valTabs(s,dcf,fin,rl,price,met,u){
-  const fnc=(met&&met.type==='financial')||!!fin,ins=/insur/i.test((u&&u.industry)||'')||/insur/i.test((u&&u.company)||'');
-  let payer=null;
+  const fnc=(met&&met.type==='financial')||!!fin,ins=/life/i.test((u&&u.industry)||(met&&met.industry)||'')||/\blife\b/i.test((u&&u.company)||'');
+  window.__ins=ins;let payer=null;
   try{const st=await get(`data/statements/${s}.json`,'json');const cf=st&&st.annual_cashflow;if(cf){const row=cf.rows.find(r=>/dividend/i.test(r[0])&&/paid/i.test(r[0]))||cf.rows.find(r=>/dividend/i.test(r[0]));payer=row?row[1].slice(-3).some(v=>v!=null&&Math.abs(v)>0):false}}catch(e){}
   const live=[];if(dcf)live.push(['dcf','DCF']);if(fin)live.push(['fin','Justified P/B']);if(rl)live.push(['rl','Realty NAV']);
-  live.push(['mult','Price multiples']);if(!fnc)live.push(['ev','EV multiples']);const soon=[];if(payer)live.push(['ddm','DDM']);else soon.push('ddm');live.push(['ri','Residual income'],['asset','Asset based']);if(!fnc)live.push(['epv','Earnings power']);live.push(['graham','Graham value']);if(!fnc)soon.push('sotp');if(ins)soon.push('embv');live.push(['ff','Summary']);
+  live.push(['mult','Price multiples']);if(!fnc)live.push(['ev','EV multiples']);const soon=[];if(payer)live.push(['ddm','DDM']);else soon.push('ddm');live.push(['ri','Residual income'],['asset','Asset based']);if(!fnc)live.push(['epv','Earnings power']);live.push(['graham','Graham value'],['sotp','Sum of the parts']);if(ins)live.push(['embv','Embedded value']);live.push(['ff','Summary']);
   const subs=live.concat(soon.map(k=>[k,VAL_MODELS[k].label,true]));
   if(!VS.sub||!subs.some(x=>x[0]===VS.sub))VS.sub=subs[0][0];
   const ph=k=>{const m=VAL_MODELS[k];
@@ -894,6 +894,8 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
     else if(VS.sub==='ddm'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';ddmPanel(s,price,dcf,fin)}
     else if(VS.sub==='ff'){b.innerHTML='<div id="ffbox"><div class="skel" style="height:300px"></div></div>';ffPanel(s,price,dcf,fin,rl,fnc,payer)}
     else if(VS.sub==='epv'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';epvPanel(s,price,dcf,fin)}
+    else if(VS.sub==='sotp'){b.innerHTML='<div id="multbox"></div>';sotpPanel(s,price)}
+    else if(VS.sub==='embv'){b.innerHTML='<div id="multbox"></div>';embvPanel(s,price)}
     else if(VS.sub==='graham'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';grahamPanel(s,price)}
     else if(VS.sub==='ri'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';riPanel(s,price,dcf,fin)}
     else if(VS.sub==='asset'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';assetPanel(s,price)}
@@ -1231,19 +1233,112 @@ async function grahamPanel(s,price){
   edBind(box,o,()=>grahamPanel(s,price));
 }
 
+// ---------- saved manual inputs (SOTP, Embedded value) ----------
+const LSK=k=>'tl_'+k;
+const lsGet=k=>{try{return JSON.parse(localStorage.getItem(LSK(k))||'null')}catch(e){return null}};
+const lsSet=(k,v)=>{try{if(v==null)localStorage.removeItem(LSK(k));else localStorage.setItem(LSK(k),JSON.stringify(v))}catch(e){}};
+const numIn=(k,val,step,dp,extra)=>`<input class="ed${extra||''}" data-k="${k}" type="number" step="${step||'any'}" value="${val==null||!isFinite(val)?'':(+val).toFixed(dp==null?2:dp)}">`;
+
+// ---------- Sum of the parts ----------
+const SOTP_KINDS={ebitda:['EV / EBITDA','EBITDA, ₹ cr',true],pe:['P / E','Net profit, ₹ cr',false],sales:['EV / Sales','Revenue, ₹ cr',true],pb:['P / B','Book value, ₹ cr',false],listed:['Listed stake','Market value of stake, ₹ cr',false],other:['Fixed value','Value, ₹ cr',false]};
+async function sotpPanel(s,price){
+  const box=SUMBOX||$('#multbox');if(!box)return;
+  const P=await get('data/peers.json','json');
+  const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
+  if(!me||!(price>0)||!(me.mc>0)){box.innerHTML='<div class="card"><h3>Sum of the parts</h3><p class="mut">Market data for this stock is not available.</p></div>';return}
+  let D=lsGet('sotp_'+s);
+  if(!D)D={rows:[],nd:me.nd!=null?+me.nd.toFixed(0):0,mi:0,hd:me.type==='financial'?20:15,sh:+(me.mc/price).toFixed(2),sp:20};
+  const save=()=>lsSet('sotp_'+s,D);
+  const rows=D.rows;
+  const val=(r,m)=>{const k=SOTP_KINDS[r.kind]||SOTP_KINDS.ebitda,v=(+r.metric||0)*(r.kind==='listed'||r.kind==='other'?1:(+r.mult||0)*m);return v};
+  const calc=m=>{let ev=0,eq=0;rows.forEach(r=>{const v=val(r,m);if(SOTP_KINDS[r.kind||'ebitda'][2])ev+=v;else eq+=v});
+    const gross=ev-(+D.nd||0)-(+D.mi||0)+eq,net=gross*(1-(+D.hd||0)/100);return{ev,eq,gross,net,ps:D.sh>0?net/D.sh:null}};
+  const spr=(+D.sp||0)/100;
+  const res=rows.length?[calc(1-spr),calc(1),calc(1+spr)]:null;
+  const sc=res?res.map(x=>x.ps):null;
+  if(sc&&sc.every(v=>v!=null&&v>0))REGV.sotp=sc;
+  const up=v=>v!=null&&price?(v/price-1)*100:null;
+  box.innerHTML=`<div class="card mph"><h3>Sum of the parts <span class="mut" style="font-weight:400;font-size:12px">value each segment on its own, then add up</span></h3>
+   <p class="mut" style="margin-top:0">Segment figures are not available from any free data feed, so you enter them from the company's annual report or investor presentation (segment note). Add one row per business, pick how it is valued, and type its profit measure and a fair multiple. Your entries are saved in this browser for ${esc(s)}.</p>
+   ${res&&sc[1]>0?`<div class="scn">${[['sc-bear','Bear',sc[0]],['sc-base','Base',sc[1]],['sc-bull','Bull',sc[2]]].map(([c,n,v])=>`<div class="sc ${c}"><div class="sn">${n}</div><div class="sv">${v>0?'₹'+T.fmt(v,0):'–'}</div><div class="su ${cls(up(v))}">${v>0?(up(v)>=0?'+':'')+T.fmt(up(v),1)+'% vs price':''}</div></div>`).join('')}</div>`:`<p class="warn">${rows.length?'The parts add up to zero or less after debt, so no value per share can be shown.':'No segments yet. Press "Add segment" to start.'}</p>`}
+   <div style="overflow-x:auto;margin-top:14px"><table class="peer kv sotp"><thead><tr><th>Segment</th><th>Method</th><th class="num">Profit measure, ₹ cr</th><th class="num">Multiple</th><th class="num">Value, ₹ cr</th><th></th></tr></thead><tbody>
+   ${rows.map((r,i)=>{const kd=r.kind||'ebitda',fixed=kd==='listed'||kd==='other';return `<tr><td><input class="ed tx" data-r="${i}" data-f="name" type="text" value="${esc(r.name||'')}" placeholder="Segment name"></td>
+     <td><select class="ed" data-r="${i}" data-f="kind">${Object.keys(SOTP_KINDS).map(k=>`<option value="${k}"${k===kd?' selected':''}>${SOTP_KINDS[k][0]}</option>`).join('')}</select></td>
+     <td class="num"><input class="ed" data-r="${i}" data-f="metric" type="number" step="any" value="${r.metric!=null&&r.metric!==''?r.metric:''}" title="${esc(SOTP_KINDS[kd][1])}" placeholder="${esc(SOTP_KINDS[kd][1])}"></td>
+     <td class="num">${fixed?'–':`<input class="ed" data-r="${i}" data-f="mult" type="number" step="0.5" value="${r.mult!=null&&r.mult!==''?r.mult:''}">x`}</td>
+     <td class="num">₹${T.fmt(val(r,1),0)}</td><td><button class="rmrow" data-r="${i}" title="Remove">×</button></td></tr>`}).join('')}
+   </tbody></table></div>
+   <p style="margin:10px 0"><button id="sotp-add" class="ed-reset">+ Add segment</button> ${rows.length?'<button id="sotp-clear" class="ed-reset">Clear all</button>':''}</p>
+   <table class="peer kv"><thead><tr><th>Adjustment</th><th class="num">Value</th></tr></thead><tbody>
+    <tr><td>Sum of enterprise-value segments, ₹ cr</td><td class="num">${res?T.fmt(res[1].ev,0):'–'}</td></tr>
+    <tr><td>Sum of equity-value segments (P/E, P/B, listed stakes, fixed), ₹ cr</td><td class="num">${res?T.fmt(res[1].eq,0):'–'}</td></tr>
+    <tr><td>Net debt, ₹ cr (default: latest balance sheet)</td><td class="num">${numIn('nd',D.nd,10,0)}</td></tr>
+    <tr><td>Minority interest and other claims, ₹ cr</td><td class="num">${numIn('mi',D.mi,10,0)}</td></tr>
+    <tr><td>Holding-company discount, % (applied to the total)</td><td class="num">${numIn('hd',D.hd,5,0)}</td></tr>
+    <tr><td>Shares outstanding, crore (price ÷ market cap)</td><td class="num">${numIn('sh',D.sh,0.1,2)}</td></tr>
+    <tr><td>Bear / bull spread on multiples, %</td><td class="num">${numIn('sp',D.sp,5,0)}</td></tr></tbody></table>
+   <p class="mut" style="font-size:12px;margin-top:10px">Use EV methods for operating businesses, which then bear the net debt. Use "Listed stake" for holdings you can price on the market (your share of the subsidiary's market cap), and apply the holding-company discount, usually 10% to 30%, because such holdings trade below their parts. Bear and bull scale the multiples (not stakes or fixed values) by the spread. Values for the whole company need to include every segment, or the answer will be too low.</p></div>`;
+  box.querySelectorAll('[data-f]').forEach(i=>i.onchange=()=>{const r=rows[+i.dataset.r],f=i.dataset.f;r[f]=i.type==='number'?(i.value===''?'':parseFloat(i.value)):i.value;if(f==='kind'&&!r.mult)r.mult=r.kind==='pe'?20:r.kind==='pb'?3:r.kind==='sales'?2:12;save();sotpPanel(s,price)});
+  box.querySelectorAll('[data-k]').forEach(i=>i.onchange=()=>{const v=parseFloat(i.value);D[i.dataset.k]=isFinite(v)?v:0;save();sotpPanel(s,price)});
+  box.querySelectorAll('.rmrow').forEach(b=>b.onclick=()=>{rows.splice(+b.dataset.r,1);save();sotpPanel(s,price)});
+  const ad=$('#sotp-add',box);if(ad)ad.onclick=()=>{rows.push({name:'',kind:'ebitda',metric:'',mult:12});save();sotpPanel(s,price)};
+  const cl=$('#sotp-clear',box);if(cl)cl.onclick=()=>{D.rows=[];save();sotpPanel(s,price)};
+}
+
+// ---------- Embedded value (life insurers) ----------
+async function embvPanel(s,price){
+  const box=SUMBOX||$('#multbox');if(!box)return;
+  const P=await get('data/peers.json','json');
+  const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
+  if(!me||!(price>0)||!(me.mc>0)){box.innerHTML='<div class="card"><h3>Embedded value</h3><p class="mut">Market data for this stock is not available.</p></div>';return}
+  const sh0=me.mc/price;
+  let D=lsGet('embv_'+s)||{ev:'',vnb:'',vg:15,x:18,pev:'',sh:+sh0.toFixed(2),sp:20,mg:''};
+  const save=()=>lsSet('embv_'+s,D);
+  const ok=+D.ev>0&&+D.sh>0;
+  const spr=(+D.sp||0)/100;
+  const apprais=m=>ok?((+D.ev)+(+D.vnb||0)*(+D.x||0)*m)/D.sh:null;
+  const pevV=ok&&+D.pev>0?(+D.ev)*(+D.pev)/D.sh:null;
+  // base = appraisal value (EV + VNB multiple). bear/bull scale the VNB multiple; if only P/EV is given, use that.
+  let sc=null;
+  if(ok&&+D.vnb>0)sc=[apprais(1-spr),apprais(1),apprais(1+spr)];
+  else if(pevV)sc=[pevV*(1-spr),pevV,pevV*(1+spr)];
+  if(sc&&sc.every(v=>v>0))REGV.embv=sc;
+  const up=v=>v!=null&&price?(v/price-1)*100:null;
+  const curPEV=ok?(me.mc/(+D.ev)):null,fwd=+D.vnb>0?(+D.vnb)*(1+(+D.vg||0)/100):null;
+  box.innerHTML=`<div class="card mph"><h3>Embedded value <span class="mut" style="font-weight:400;font-size:12px">for life insurers</span></h3>
+   <p class="mut" style="margin-top:0">Value per share = embedded value (EV, the net worth plus the value of the policies already sold) + value of future new business, taken as a multiple of this year's value of new business (VNB). Embedded value and VNB are published by the insurer each quarter or half-year, but are not in any free data feed, so enter the latest figures from the investor presentation. They are saved in this browser for ${esc(s)}.</p>
+   ${sc&&sc.every(v=>v>0)?`<div class="scn">${[['sc-bear','Bear',sc[0]],['sc-base','Base',sc[1]],['sc-bull','Bull',sc[2]]].map(([c,n,v])=>`<div class="sc ${c}"><div class="sn">${n}</div><div class="sv">₹${T.fmt(v,0)}</div><div class="su ${cls(up(v))}">${up(v)>=0?'+':''}${T.fmt(up(v),1)}% vs price</div></div>`).join('')}</div>`:'<p class="warn">Enter the embedded value (and VNB, or a target P/EV) below to see a value.</p>'}
+   <div style="overflow-x:auto;margin-top:14px"><table class="peer kv"><thead><tr><th>Input</th><th class="num">Value</th></tr></thead><tbody>
+    <tr><td>Embedded value, ₹ crore (latest reported)</td><td class="num">${numIn('ev',D.ev,100,0)}</td></tr>
+    <tr><td>Value of new business (VNB), ₹ crore (last full year)</td><td class="num">${numIn('vnb',D.vnb,10,0)}</td></tr>
+    <tr><td>Multiple on VNB, times (typical range 12 to 25)</td><td class="num">${numIn('x',D.x,0.5,1)}</td></tr>
+    <tr><td>Target P/EV, times (optional; used when VNB is blank)</td><td class="num">${numIn('pev',D.pev,0.1,2)}</td></tr>
+    <tr><td>VNB growth, % a year (information only)</td><td class="num">${numIn('vg',D.vg,1,0)}</td></tr>
+    <tr><td>Shares outstanding, crore (market cap ÷ price)</td><td class="num">${numIn('sh',D.sh,0.1,2)}</td></tr>
+    <tr><td>Bear / bull spread on the VNB multiple, %</td><td class="num">${numIn('sp',D.sp,5,0)}</td></tr>
+    <tr><td>Market cap, ₹ crore</td><td class="num">${T.fmt(me.mc,0)}</td></tr>
+    <tr><td>Current P/EV</td><td class="num">${curPEV?T.fmt(curPEV,2)+'x':'–'}</td></tr>
+    <tr><td>Embedded value per share, ₹</td><td class="num">${ok?T.fmt((+D.ev)/D.sh,0):'–'}</td></tr>
+    ${fwd?`<tr><td>Next year VNB at this growth, ₹ crore</td><td class="num">${T.fmt(fwd,0)}</td></tr>`:''}</tbody></table></div>
+   <p style="margin:10px 0"><button id="embv-clear" class="ed-reset">Clear saved figures</button></p>
+   <p class="mut" style="font-size:12px;margin-top:6px">Use the same basis for embedded value and VNB (for example both "Indian Embedded Value" as reported). A higher multiple on VNB suits a faster-growing insurer with a high VNB margin. Insurers usually trade between 1.5 and 3.5 times embedded value. This is a valuation for life insurers only, not for general or health insurers.</p></div>`;
+  box.querySelectorAll('[data-k]').forEach(i=>i.onchange=()=>{const v=parseFloat(i.value);D[i.dataset.k]=isFinite(v)?v:'';save();embvPanel(s,price)});
+  const cl=$('#embv-clear',box);if(cl)cl.onclick=()=>{lsSet('embv_'+s,null);embvPanel(s,price)};
+}
+
 // ---------- Summary: football field ----------
 const FFX={off:{}};
 async function ffPanel(s,price,dcf,fin,rl,fnc,payer){
   const box=$('#ffbox');if(!box)return;
-  const rows=[];
+  const rows=[];const ffIns=!!(window.__ins);
   const sr=scenarioRows(dcf,fin,price);
   sr.forEach(m=>{const v=m.res.map(x=>x.fair);if(v.every(x=>x!=null&&x>0))rows.push({k:m.title.startsWith('DCF')?'dcf':'fin',n:m.title.startsWith('DCF')?'DCF':'Justified P/B',v})});
   if(rl&&rl.fair_value>0)rows.push({k:'rl',n:'Realty NAV',v:[rl.fair_value,rl.fair_value,rl.fair_value]});
-  const list=[['mult','Price multiples'],['ev','EV multiples',fnc],['ddm','DDM',!payer],['ri','Residual income'],['asset','Asset based'],['epv','Earnings power',fnc],['graham','Graham value']];
+  const list=[['mult','Price multiples'],['ev','EV multiples',fnc],['ddm','DDM',!payer],['ri','Residual income'],['asset','Asset based'],['epv','Earnings power',fnc],['graham','Graham value'],['sotp','Sum of the parts'],['embv','Embedded value',!ffIns]];
   for(const [k,n,skip] of list){
     if(skip)continue;
     REGV={};const tmp=document.createElement('div');SUMBOX=tmp;
-    try{if(k==='mult')await multPanel(s,price);else if(k==='ev')await evPanel(s,price);else if(k==='ddm')await ddmPanel(s,price,dcf,fin);else if(k==='ri')await riPanel(s,price,dcf,fin);else if(k==='epv')await epvPanel(s,price,dcf,fin);else if(k==='graham')await grahamPanel(s,price);else await assetPanel(s,price)}catch(e){}
+    try{if(k==='mult')await multPanel(s,price);else if(k==='ev')await evPanel(s,price);else if(k==='ddm')await ddmPanel(s,price,dcf,fin);else if(k==='ri')await riPanel(s,price,dcf,fin);else if(k==='epv')await epvPanel(s,price,dcf,fin);else if(k==='graham')await grahamPanel(s,price);else if(k==='sotp')await sotpPanel(s,price);else if(k==='embv')await embvPanel(s,price);else await assetPanel(s,price)}catch(e){}
     SUMBOX=null;
     const v=REGV[k];if(v&&v.every(x=>x!=null&&isFinite(x)&&x>0))rows.push({k,n,v:Array.from(v),low:!!v.low});
   }
