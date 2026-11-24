@@ -1,22 +1,16 @@
-"""NSE industry classification (4 levels) for every stock in data/universe.csv -> data/industry.csv
-Columns: symbol, macro, sector, industry, basic_industry.   Source: NSE quote data (industryInfo).
-Env: LIMIT=N for a test. Existing rows are kept if NSE fails for a stock. Writes data/industry_log.txt."""
-import csv, os, time, datetime, requests
+"""Industry classification for every stock in data/universe.csv -> data/industry.csv
+Columns: symbol, macro, sector, industry, basic_industry
+  macro    = NSE's own industry from the published Nifty 500 list (reliable, ~20 groups)
+  sector   = Yahoo Finance sector   (~11 groups)
+  industry = Yahoo Finance industry (~100+ finer groups, used for peers)
+(NSE's quote API blocks GitHub Actions, so the 4-level NSE tags are not available; basic_industry stays empty.)
+Env: LIMIT=N for a test. Existing rows are kept if a lookup fails. Writes data/industry_log.txt."""
+import csv, io, os, time, datetime, requests
+import yfinance as yf
 
 LIMIT = int(os.environ.get("LIMIT", "0") or 0)
-H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
-     "Accept": "application/json,text/plain,*/*", "Accept-Language": "en-US,en;q=0.9", "Referer": "https://www.nseindia.com/"}
-HOME = "https://www.nseindia.com/get-quotes/equity?symbol=RELIANCE"
-API = "https://www.nseindia.com/api/quote-equity"
+H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"}
 log = [f"Run (UTC): {datetime.datetime.utcnow():%Y-%m-%d %H:%M}"]
-
-def new_session():
-    s = requests.Session(); s.headers.update(H)
-    try:
-        s.get(HOME, timeout=25)
-    except Exception as e:
-        log.append(f"session: {e!r}")
-    return s
 
 old = {}
 if os.path.exists("data/industry.csv"):
@@ -25,61 +19,48 @@ if os.path.exists("data/industry.csv"):
 syms = [r["symbol"] for r in csv.DictReader(open("data/universe.csv", newline=""))]
 if LIMIT:
     syms = syms[:LIMIT]
-# fallback: NSE published Nifty 500 list (one "Industry" per stock)
+
 lst = {}
 for u in ("https://nsearchives.nseindia.com/content/indices/ind_nifty500list.csv",
           "https://archives.nseindia.com/content/indices/ind_nifty500list.csv"):
     try:
         r = requests.get(u, headers=H, timeout=30)
         if r.status_code == 200 and "Symbol" in r.text[:300]:
-            import io
             for x in csv.DictReader(io.StringIO(r.text)):
                 lst[x["Symbol"].strip()] = (x.get("Industry") or "").strip()
-            log.append(f"Nifty 500 list: {len(lst)} rows from {u}")
+            log.append(f"Nifty 500 list: {len(lst)} rows")
             break
         log.append(f"Nifty 500 list {u}: HTTP {r.status_code}")
     except Exception as e:
         log.append(f"Nifty 500 list {u}: {e!r}"[:200])
-s = new_session(); rows = {}; ok = bad = 0; shown = 0; fb = 0
+
+rows = {}; ok = part = bad = 0
 for i, sym in enumerate(syms):
-    if i and i % 60 == 0:
-        s = new_session()
-    info = None
-    for attempt in range(3):
+    sec = ind = ""
+    for attempt in range(2):
         try:
-            s.headers["Referer"] = f"https://www.nseindia.com/get-quotes/equity?symbol={sym}"
-            r = s.get(API, params={"symbol": sym}, timeout=25)
-            if r.status_code == 200:
-                j = r.json()
-                info = j.get("industryInfo") or None
-                if not info and shown < 4:
-                    log.append(f"{sym}: 200 but no industryInfo. keys={list(j.keys())[:12]}"); shown += 1
+            info = yf.Ticker(sym + ".NS").info or {}
+            sec = info.get("sector") or ""; ind = info.get("industry") or ""
+            if sec or ind:
                 break
-            else:
-                if shown < 4:
-                    log.append(f"{sym}: HTTP {r.status_code} {r.text[:120]!r}"); shown += 1
-                if r.status_code in (401, 403):
-                    time.sleep(2); s = new_session()
         except Exception as e:
-            if shown < 4:
-                log.append(f"{sym}: error {e!r}"[:200]); shown += 1
+            if attempt:
+                log.append(f"{sym}: yahoo {e!r}"[:160])
             time.sleep(1.5)
-    if info and (info.get("sector") or info.get("industry")):
-        rows[sym] = {"symbol": sym, "macro": info.get("macro") or "", "sector": info.get("sector") or "",
-                     "industry": info.get("industry") or "", "basic_industry": info.get("basicIndustry") or ""}
-        ok += 1
-    elif lst.get(sym):
-        rows[sym] = {"symbol": sym, "macro": lst[sym], "sector": lst[sym], "industry": lst[sym], "basic_industry": ""}
-        fb += 1
+    prev = old.get(sym, {})
+    macro = lst.get(sym) or prev.get("macro", "")
+    sec = sec or prev.get("sector", ""); ind = ind or prev.get("industry", "")
+    if macro or sec or ind:
+        rows[sym] = {"symbol": sym, "macro": macro, "sector": sec or macro, "industry": ind or sec or macro, "basic_industry": ""}
+        if sec and ind:
+            ok += 1
+        else:
+            part += 1; log.append(f"{sym}: Yahoo had no sector/industry, used NSE group")
     else:
-        bad += 1
-        if sym in old:
-            rows[sym] = old[sym]
-        log.append(f"{sym}: no classification")
-    time.sleep(0.5)
+        bad += 1; log.append(f"{sym}: no classification")
+    time.sleep(0.3)
     if (i + 1) % 50 == 0:
         print(f"{i+1}/{len(syms)} done", flush=True)
-# keep rows for symbols not in this (limited) run
 for k, v in old.items():
     rows.setdefault(k, v)
 with open("data/industry.csv", "w", newline="") as f:
@@ -87,6 +68,7 @@ with open("data/industry.csv", "w", newline="") as f:
     w.writeheader()
     for k in sorted(rows):
         w.writerow({c: rows[k].get(c, "") for c in w.fieldnames})
-log.append(f"Classified {ok} (NSE quote) + {fb} (Nifty 500 list), failed {bad}, of {len(syms)}. Distinct sectors: {len({r['sector'] for r in rows.values() if r.get('sector')})}, industries: {len({r['industry'] for r in rows.values() if r.get('industry')})}")
+d = lambda c: len({r[c] for r in rows.values() if r.get(c)})
+log.append(f"Full {ok}, partial {part}, none {bad}, of {len(syms)}. Distinct: NSE groups {d('macro')}, Yahoo sectors {d('sector')}, Yahoo industries {d('industry')}")
 open("data/industry_log.txt", "w").write("\n".join(log[:300]) + "\n")
 print("\n".join(log[-4:]))
