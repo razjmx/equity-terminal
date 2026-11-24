@@ -1,0 +1,79 @@
+{
+ "symbol": "SUNTECK",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3611.1,
+  "implied_cr": 3694.2,
+  "ratio": 0.98,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 26.1,
+ "snapshot_cr": {
+  "rev": 1111.9,
+  "ni": 204.4,
+  "ebit": 327.1,
+  "ta": 9912.8,
+  "eq": 3611.1,
+  "debt": 774.2,
+  "fcf": -589.2,
+  "ni_core": 204.4,
+  "ebit_core": 290.4,
+  "operating_income": 290.4
+ },
+ "ratios": {
+  "roe_pct": 5.7,
+  "roa_pct": 2.1,
+  "net_margin_pct": 18.4,
+  "ebit_margin_pct": 29.4,
+  "roce_pct": 6.6,
+  "fcf_margin_pct": -53.0,
+  "debt_equity": 0.21,
+  "interest_cover": 5.54,
+  "current_ratio": 1.81,
+  "asset_turnover": 0.11
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 18.4,
+  "asset_turnover": 0.11,
+  "equity_multiplier": 2.75
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 46.7,
+  "net_income_cagr_pct": 425.4
+ },
+ "valuation": {
+  "pe_reported": 22.73,
+  "pe_core": 22.73,
+  "pe_used": 22.73,
+  "pb": 1.29,
+  "ev_ebitda": 15.65,
+  "fcf_yield_pct": -12.7,
+  "market_cap_cr": 4644.6
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 4.07,
+  "zone": "safe"
+ }
+}

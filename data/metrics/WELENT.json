@@ -1,0 +1,81 @@
+{
+ "symbol": "WELENT",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "discontinued operations excluded from profit"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 3044.1,
+  "implied_cr": 3349.0,
+  "ratio": 0.91,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 15.9,
+ "snapshot_cr": {
+  "rev": 3408.1,
+  "ni": 349.9,
+  "ebit": 729.5,
+  "ta": 7329.4,
+  "eq": 3044.1,
+  "debt": 1986.5,
+  "fcf": 78.2,
+  "ni_core": 363.2,
+  "ebit_core": 540.4,
+  "operating_income": 540.4
+ },
+ "ratios": {
+  "roe_pct": 11.5,
+  "roa_pct": 4.8,
+  "net_margin_pct": 10.3,
+  "ebit_margin_pct": 21.4,
+  "roce_pct": 14.3,
+  "fcf_margin_pct": 2.3,
+  "debt_equity": 0.65,
+  "interest_cover": 3.96,
+  "current_ratio": 1.96,
+  "asset_turnover": 0.46
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 10.3,
+  "asset_turnover": 0.46,
+  "equity_multiplier": 2.41
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 8.0,
+  "net_income_cagr_pct": -21.5
+ },
+ "valuation": {
+  "pe_reported": 26.54,
+  "pe_core": 25.57,
+  "pe_used": 26.54,
+  "pb": 3.05,
+  "ev_ebitda": 12.4,
+  "fcf_yield_pct": 0.8,
+  "market_cap_cr": 9285.5
+ },
+ "piotroski": {
+  "score": 5,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 4.16,
+  "zone": "safe"
+ }
+}

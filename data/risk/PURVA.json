@@ -1,0 +1,73 @@
+{
+ "symbol": "PURVA",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 195.12,
+ "returns_pct": {
+  "1m": 0.3,
+  "3m": -9.8,
+  "6m": -12.7,
+  "1y": -25.0,
+  "3y_cagr": 11.5,
+  "ytd": -18.4
+ },
+ "relative_strength_pp": {
+  "3m": -10.8,
+  "6m": -17.7,
+  "1y": -24.6
+ },
+ "range": {
+  "high_52w": 259.49,
+  "low_52w": 163.06,
+  "pct_from_high": -24.8,
+  "pct_above_low": 19.7,
+  "high_date": "2025-12-23",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 198.47,
+  "pct_vs_dma20": -1.7,
+  "dma50": 204.34,
+  "pct_vs_dma50": -4.5,
+  "dma100": 211.11,
+  "pct_vs_dma100": -7.6,
+  "dma200": 211.23,
+  "pct_vs_dma200": -7.6
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 43.6,
+  "macd_pct": -0.71,
+  "macd_signal_pct": -0.68,
+  "macd_hist_pct": -0.02,
+  "bollinger_pctb": 0.35,
+  "atr_pct": 3.55
+ },
+ "risk": {
+  "volatility_1y_pct": 44.0,
+  "downside_deviation_pct": 27.6,
+  "max_drawdown_1y_pct": -37.2,
+  "max_drawdown_all_pct": -70.3,
+  "var95_1d_pct": -3.61,
+  "cvar95_1d_pct": -5.09,
+  "sharpe_1y": -0.6,
+  "sortino_1y": -0.96
+ },
+ "beta": {
+  "raw": 1.93,
+  "adjusted": 1.62,
+  "weeks": 156,
+  "correlation": 0.52,
+  "r_squared": 0.27,
+  "alpha_pct": 8.6
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 10.54
+ },
+ "flags": []
+}

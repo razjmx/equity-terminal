@@ -1,0 +1,73 @@
+{
+ "symbol": "LXCHEM",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 148.97,
+ "returns_pct": {
+  "1m": -4.3,
+  "3m": -14.6,
+  "6m": -6.2,
+  "1y": -20.8,
+  "3y_cagr": -16.3,
+  "ytd": -12.0
+ },
+ "relative_strength_pp": {
+  "3m": -15.6,
+  "6m": -11.3,
+  "1y": -20.4
+ },
+ "range": {
+  "high_52w": 200.51,
+  "low_52w": 108.11,
+  "pct_from_high": -25.7,
+  "pct_above_low": 37.8,
+  "high_date": "2026-07-29",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 157.26,
+  "pct_vs_dma20": -5.3,
+  "dma50": 168.89,
+  "pct_vs_dma50": -11.8,
+  "dma100": 171.01,
+  "pct_vs_dma100": -12.9,
+  "dma200": 156.02,
+  "pct_vs_dma200": -4.5
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 37.9,
+  "macd_pct": -3.16,
+  "macd_signal_pct": -2.8,
+  "macd_hist_pct": -0.36,
+  "bollinger_pctb": 0.11,
+  "atr_pct": 4.19
+ },
+ "risk": {
+  "volatility_1y_pct": 46.3,
+  "downside_deviation_pct": 31.2,
+  "max_drawdown_1y_pct": -42.2,
+  "max_drawdown_all_pct": -77.7,
+  "var95_1d_pct": -4.42,
+  "cvar95_1d_pct": -5.57,
+  "sharpe_1y": -0.43,
+  "sortino_1y": -0.64
+ },
+ "beta": {
+  "raw": 1.42,
+  "adjusted": 1.28,
+  "weeks": 156,
+  "correlation": 0.56,
+  "r_squared": 0.31,
+  "alpha_pct": -25.6
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 19.07
+ },
+ "flags": []
+}

@@ -1,0 +1,73 @@
+{
+ "symbol": "IXIGO",
+ "as_of": "2026-11-23",
+ "rows": 604,
+ "price": 167.12,
+ "returns_pct": {
+  "1m": 12.2,
+  "3m": -2.0,
+  "6m": 2.1,
+  "1y": -39.7,
+  "3y_cagr": null,
+  "ytd": -34.4
+ },
+ "relative_strength_pp": {
+  "3m": -3.0,
+  "6m": -2.9,
+  "1y": -39.3
+ },
+ "range": {
+  "high_52w": 277.15,
+  "low_52w": 138.12,
+  "pct_from_high": -39.7,
+  "pct_above_low": 21.0,
+  "high_date": "2025-11-25",
+  "low_date": "2026-10-15"
+ },
+ "moving_averages": {
+  "dma20": 157.94,
+  "pct_vs_dma20": 5.8,
+  "dma50": 156.56,
+  "pct_vs_dma50": 6.7,
+  "dma100": 171.73,
+  "pct_vs_dma100": -2.7,
+  "dma200": 173.97,
+  "pct_vs_dma200": -3.9
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 56.8,
+  "macd_pct": 3.27,
+  "macd_signal_pct": 2.25,
+  "macd_hist_pct": 1.02,
+  "bollinger_pctb": 0.67,
+  "atr_pct": 4.26
+ },
+ "risk": {
+  "volatility_1y_pct": 52.0,
+  "downside_deviation_pct": 36.7,
+  "max_drawdown_1y_pct": -50.2,
+  "max_drawdown_all_pct": -58.8,
+  "var95_1d_pct": -4.8,
+  "cvar95_1d_pct": -6.89,
+  "sharpe_1y": -0.85,
+  "sortino_1y": -1.21
+ },
+ "beta": {
+  "raw": 1.39,
+  "adjusted": 1.26,
+  "weeks": 127,
+  "correlation": 0.42,
+  "r_squared": 0.17,
+  "alpha_pct": 9.2
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 48.41
+ },
+ "flags": []
+}

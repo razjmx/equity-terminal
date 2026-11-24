@@ -1,0 +1,73 @@
+{
+ "symbol": "JYOTHYLAB",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 187.87,
+ "returns_pct": {
+  "1m": 5.9,
+  "3m": -9.9,
+  "6m": -9.0,
+  "1y": -39.6,
+  "3y_cagr": -20.0,
+  "ytd": -33.5
+ },
+ "relative_strength_pp": {
+  "3m": -10.9,
+  "6m": -14.1,
+  "1y": -39.2
+ },
+ "range": {
+  "high_52w": 312.3,
+  "low_52w": 171.91,
+  "pct_from_high": -39.8,
+  "pct_above_low": 9.3,
+  "high_date": "2025-11-17",
+  "low_date": "2026-10-30"
+ },
+ "moving_averages": {
+  "dma20": 189.09,
+  "pct_vs_dma20": -0.6,
+  "dma50": 189.14,
+  "pct_vs_dma50": -0.7,
+  "dma100": 195.54,
+  "pct_vs_dma100": -3.9,
+  "dma200": 211.3,
+  "pct_vs_dma200": -11.1
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 46.1,
+  "macd_pct": 0.9,
+  "macd_signal_pct": 0.92,
+  "macd_hist_pct": -0.02,
+  "bollinger_pctb": 0.47,
+  "atr_pct": 3.36
+ },
+ "risk": {
+  "volatility_1y_pct": 31.3,
+  "downside_deviation_pct": 22.5,
+  "max_drawdown_1y_pct": -45.0,
+  "max_drawdown_all_pct": -70.3,
+  "var95_1d_pct": -2.98,
+  "cvar95_1d_pct": -4.08,
+  "sharpe_1y": -1.68,
+  "sortino_1y": -2.34
+ },
+ "beta": {
+  "raw": 1.03,
+  "adjusted": 1.02,
+  "weeks": 156,
+  "correlation": 0.45,
+  "r_squared": 0.2,
+  "alpha_pct": -33.2
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 13.37
+ },
+ "flags": []
+}

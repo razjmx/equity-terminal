@@ -1,0 +1,81 @@
+{
+ "symbol": "HERITGFOOD",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "recurring unusual items kept in profit"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 1103.3,
+  "implied_cr": 1136.9,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 4.3,
+ "snapshot_cr": {
+  "rev": 4523.1,
+  "ni": 150.1,
+  "ebit": 217.5,
+  "ta": 1949.8,
+  "eq": 1103.3,
+  "debt": 361.5,
+  "fcf": -145.2,
+  "ni_core": 150.1,
+  "ebit_core": 192.6,
+  "operating_income": 192.6
+ },
+ "ratios": {
+  "roe_pct": 13.6,
+  "roa_pct": 7.7,
+  "net_margin_pct": 3.3,
+  "ebit_margin_pct": 4.8,
+  "roce_pct": 14.9,
+  "fcf_margin_pct": -3.2,
+  "debt_equity": 0.33,
+  "interest_cover": 13.27,
+  "current_ratio": 1.4,
+  "asset_turnover": 2.32
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 3.3,
+  "asset_turnover": 2.32,
+  "equity_multiplier": 1.77
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 11.8,
+  "net_income_cagr_pct": 37.3
+ },
+ "valuation": {
+  "pe_reported": 23.04,
+  "pe_core": 23.04,
+  "pe_used": 23.04,
+  "pb": 3.14,
+  "ev_ebitda": 11.93,
+  "fcf_yield_pct": -4.2,
+  "market_cap_cr": 3459.4
+ },
+ "piotroski": {
+  "score": 4,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 4.36,
+  "zone": "safe"
+ }
+}

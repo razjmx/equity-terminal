@@ -1,0 +1,73 @@
+{
+ "symbol": "DIACABS",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 364.05,
+ "returns_pct": {
+  "1m": 11.4,
+  "3m": 2.9,
+  "6m": 87.8,
+  "1y": 141.6,
+  "3y_cagr": 272.4,
+  "ytd": 163.7
+ },
+ "relative_strength_pp": {
+  "3m": 1.9,
+  "6m": 82.8,
+  "1y": 141.9
+ },
+ "range": {
+  "high_52w": 394.75,
+  "low_52w": 117.94,
+  "pct_from_high": -7.8,
+  "pct_above_low": 208.7,
+  "high_date": "2026-09-16",
+  "low_date": "2026-03-23"
+ },
+ "moving_averages": {
+  "dma20": 361.47,
+  "pct_vs_dma20": 0.7,
+  "dma50": 361.57,
+  "pct_vs_dma50": 0.7,
+  "dma100": 333.06,
+  "pct_vs_dma100": 9.3,
+  "dma200": 246.19,
+  "pct_vs_dma200": 47.9
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 50.9,
+  "macd_pct": 0.88,
+  "macd_signal_pct": 1.09,
+  "macd_hist_pct": -0.21,
+  "bollinger_pctb": 0.53,
+  "atr_pct": 4.76
+ },
+ "risk": {
+  "volatility_1y_pct": 48.1,
+  "downside_deviation_pct": 27.6,
+  "max_drawdown_1y_pct": -22.6,
+  "max_drawdown_all_pct": -88.1,
+  "var95_1d_pct": -4.09,
+  "cvar95_1d_pct": -4.98,
+  "sharpe_1y": 1.92,
+  "sortino_1y": 3.35
+ },
+ "beta": {
+  "raw": 1.35,
+  "adjusted": 1.24,
+  "weeks": 156,
+  "correlation": 0.33,
+  "r_squared": 0.11,
+  "alpha_pct": 123.5
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 39.19
+ },
+ "flags": []
+}

@@ -1,0 +1,79 @@
+{
+ "symbol": "OSWALPUMPS",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1682.9,
+  "implied_cr": 1683.3,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 24.5,
+ "snapshot_cr": {
+  "rev": 2041.3,
+  "ni": 376.3,
+  "ebit": 516.5,
+  "ta": 2146.2,
+  "eq": 1682.9,
+  "debt": 237.5,
+  "fcf": -212.0,
+  "ni_core": 376.3,
+  "ebit_core": 499.3,
+  "operating_income": 499.3
+ },
+ "ratios": {
+  "roe_pct": 22.4,
+  "roa_pct": 17.5,
+  "net_margin_pct": 18.4,
+  "ebit_margin_pct": 25.3,
+  "roce_pct": 29.7,
+  "fcf_margin_pct": -10.4,
+  "debt_equity": 0.14,
+  "interest_cover": 15.22,
+  "current_ratio": 4.55,
+  "asset_turnover": 0.95
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 18.4,
+  "asset_turnover": 0.95,
+  "equity_multiplier": 1.28
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 76.7,
+  "net_income_cagr_pct": 122.4
+ },
+ "valuation": {
+  "pe_reported": 6.55,
+  "pe_core": 6.55,
+  "pe_used": 6.55,
+  "pb": 1.46,
+  "ev_ebitda": 4.89,
+  "fcf_yield_pct": -8.6,
+  "market_cap_cr": 2465.2
+ },
+ "piotroski": {
+  "score": 4,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 11.11,
+  "zone": "safe"
+ }
+}

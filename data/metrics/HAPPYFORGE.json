@@ -1,0 +1,79 @@
+{
+ "symbol": "HAPPYFORGE",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2128.1,
+  "implied_cr": 2286.0,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 26.9,
+ "snapshot_cr": {
+  "rev": 1422.8,
+  "ni": 301.6,
+  "ebit": 411.8,
+  "ta": 2632.8,
+  "eq": 2128.1,
+  "debt": 329.6,
+  "fcf": -16.6,
+  "ni_core": 301.6,
+  "ebit_core": 382.3,
+  "operating_income": 382.3
+ },
+ "ratios": {
+  "roe_pct": 14.2,
+  "roa_pct": 11.5,
+  "net_margin_pct": 21.2,
+  "ebit_margin_pct": 28.9,
+  "roce_pct": 18.9,
+  "fcf_margin_pct": -1.2,
+  "debt_equity": 0.15,
+  "interest_cover": 41.91,
+  "current_ratio": 2.35,
+  "asset_turnover": 0.54
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 21.2,
+  "asset_turnover": 0.54,
+  "equity_multiplier": 1.24
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 9.8,
+  "net_income_cagr_pct": 13.1
+ },
+ "valuation": {
+  "pe_reported": 55.38,
+  "pe_core": 55.38,
+  "pe_used": 55.38,
+  "pb": 7.85,
+  "ev_ebitda": 33.2,
+  "fcf_yield_pct": -0.1,
+  "market_cap_cr": 16703.2
+ },
+ "piotroski": {
+  "score": 5,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 8.87,
+  "zone": "safe"
+ }
+}

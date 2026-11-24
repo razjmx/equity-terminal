@@ -1,0 +1,214 @@
+{
+ "symbol": "INDIAGLYCO",
+ "latest_fy": "2026-03-31",
+ "status": "ok",
+ "reliability": "indicative",
+ "price": 294.85,
+ "fair_value": 345.3,
+ "fair_low": 257.2,
+ "fair_high": 454.9,
+ "upside_pct": 17.1,
+ "flags": [
+  "investments added: Rs 391 cr of non-operating investments (20% of market cap)",
+  "low return: ROIC 9.1% below WACC 11.3%"
+ ],
+ "assumptions": {
+  "rf_pct": 7.2,
+  "erp_pct": 6.0,
+  "beta_raw": 1.52,
+  "beta_used": 1.35,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 15.28,
+  "wacc_pct": 11.34,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
+  "growth_years": 2,
+  "historic_growth_pct": 12.4,
+  "first_year_growth_pct": 12.4,
+  "ebit_margin_pct": 12.2,
+  "margin_basis": "latest",
+  "sales_to_capital": 1.0,
+  "roic_now_pct": 9.1,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.098
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "growth_pct": 12.4,
+   "revenue": 4672.0,
+   "nopat": 428.0,
+   "reinvestment": 514.0,
+   "fcff": -87.0
+  },
+  {
+   "year": 2,
+   "growth_pct": 12.4,
+   "revenue": 5250.0,
+   "nopat": 480.0,
+   "reinvestment": 578.0,
+   "fcff": -98.0
+  },
+  {
+   "year": 3,
+   "growth_pct": 12.4,
+   "revenue": 5899.0,
+   "nopat": 540.0,
+   "reinvestment": 649.0,
+   "fcff": -110.0
+  },
+  {
+   "year": 4,
+   "growth_pct": 11.5,
+   "revenue": 6578.0,
+   "nopat": 602.0,
+   "reinvestment": 680.0,
+   "fcff": -78.0
+  },
+  {
+   "year": 5,
+   "growth_pct": 10.7,
+   "revenue": 7281.0,
+   "nopat": 666.0,
+   "reinvestment": 703.0,
+   "fcff": -37.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 9.8,
+   "revenue": 7998.0,
+   "nopat": 732.0,
+   "reinvestment": 718.0,
+   "fcff": 14.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 9.0,
+   "revenue": 8719.0,
+   "nopat": 798.0,
+   "reinvestment": 721.0,
+   "fcff": 77.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 8.2,
+   "revenue": 9432.0,
+   "nopat": 863.0,
+   "reinvestment": 713.0,
+   "fcff": 150.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 7.3,
+   "revenue": 10124.0,
+   "nopat": 926.0,
+   "reinvestment": 693.0,
+   "fcff": 234.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 10782.0,
+   "nopat": 987.0,
+   "reinvestment": 659.0,
+   "fcff": 328.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 11.3,
+  "fcff_cr": 449.0,
+  "pv_share_of_ev_pct": 100.0
+ },
+ "bridge_cr": {
+  "enterprise_value": 3336.0,
+  "debt": 1691.0,
+  "cash": 71.0,
+  "investments": 391.0,
+  "minority": 0.0,
+  "equity_value": 2107.0,
+  "shares_cr": 6.703,
+  "market_cap": 1976.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   9.34,
+   10.34,
+   11.34,
+   12.34,
+   13.34
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    582.5,
+    588.0,
+    593.7,
+    599.5,
+    null
+   ],
+   [
+    448.3,
+    451.6,
+    454.9,
+    458.4,
+    462.0
+   ],
+   [
+    342.0,
+    343.6,
+    345.3,
+    347.0,
+    348.9
+   ],
+   [
+    256.4,
+    256.8,
+    257.2,
+    257.7,
+    258.2
+   ],
+   [
+    186.7,
+    186.1,
+    185.5,
+    185.0,
+    184.6
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "implied_ebit_margin_pct": 11.7,
+  "implied_discount_rate_pct": 11.9,
+  "implied_rate_note": "",
+  "note": "growth outside -10% to 60%"
+ },
+ "model": {
+  "rev": 4158.5,
+  "margin": 0.122,
+  "tax": 0.25,
+  "s2c": 0.999244649379506,
+  "g1": 0.12358704002015042,
+  "wacc": 0.11344741725367524,
+  "terminal_g": 0.065,
+  "n": 10,
+  "hold_years": 3,
+  "roic_cap": 0.2,
+  "debt": 1690.606,
+  "cash": 71.2004,
+  "invest": 390.5406,
+  "minority": 0.0,
+  "shares_cr": 6.702676479565881,
+  "roll": 1.0984058663538812,
+  "mid_year": true
+ }
+}

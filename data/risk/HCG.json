@@ -1,0 +1,73 @@
+{
+ "symbol": "HCG",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 622.5,
+ "returns_pct": {
+  "1m": 13.0,
+  "3m": -14.8,
+  "6m": -0.7,
+  "1y": -15.9,
+  "3y_cagr": 20.0,
+  "ytd": -6.0
+ },
+ "relative_strength_pp": {
+  "3m": -15.8,
+  "6m": -5.8,
+  "1y": -15.5
+ },
+ "range": {
+  "high_52w": 747.45,
+  "low_52w": 521.75,
+  "pct_from_high": -16.7,
+  "pct_above_low": 19.3,
+  "high_date": "2025-11-19",
+  "low_date": "2026-03-23"
+ },
+ "moving_averages": {
+  "dma20": 593.04,
+  "pct_vs_dma20": 5.0,
+  "dma50": 627.17,
+  "pct_vs_dma50": -0.7,
+  "dma100": 656.6,
+  "pct_vs_dma100": -5.2,
+  "dma200": 623.51,
+  "pct_vs_dma200": -0.2
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 57.0,
+  "macd_pct": -0.4,
+  "macd_signal_pct": -1.59,
+  "macd_hist_pct": 1.2,
+  "bollinger_pctb": 0.88,
+  "atr_pct": 3.8
+ },
+ "risk": {
+  "volatility_1y_pct": 32.3,
+  "downside_deviation_pct": 22.7,
+  "max_drawdown_1y_pct": -30.2,
+  "max_drawdown_all_pct": -32.8,
+  "var95_1d_pct": -3.04,
+  "cvar95_1d_pct": -4.38,
+  "sharpe_1y": -0.6,
+  "sortino_1y": -0.85
+ },
+ "beta": {
+  "raw": 0.6,
+  "adjusted": 0.73,
+  "weeks": 156,
+  "correlation": 0.31,
+  "r_squared": 0.1,
+  "alpha_pct": 12.7
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 9.15
+ },
+ "flags": []
+}

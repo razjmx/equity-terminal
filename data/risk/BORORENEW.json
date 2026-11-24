@@ -1,0 +1,73 @@
+{
+ "symbol": "BORORENEW",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 365.65,
+ "returns_pct": {
+  "1m": -7.8,
+  "3m": -32.7,
+  "6m": -28.6,
+  "1y": -44.6,
+  "3y_cagr": -3.4,
+  "ytd": -32.7
+ },
+ "relative_strength_pp": {
+  "3m": -33.7,
+  "6m": -33.6,
+  "1y": -44.2
+ },
+ "range": {
+  "high_52w": 651.65,
+  "low_52w": 365.65,
+  "pct_from_high": -43.9,
+  "pct_above_low": 0.0,
+  "high_date": "2026-07-09",
+  "low_date": "2026-11-23"
+ },
+ "moving_averages": {
+  "dma20": 395.05,
+  "pct_vs_dma20": -7.4,
+  "dma50": 426.43,
+  "pct_vs_dma50": -14.3,
+  "dma100": 497.25,
+  "pct_vs_dma100": -26.5,
+  "dma200": 495.69,
+  "pct_vs_dma200": -26.2
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 30.8,
+  "macd_pct": -3.66,
+  "macd_signal_pct": -3.2,
+  "macd_hist_pct": -0.45,
+  "bollinger_pctb": 0.06,
+  "atr_pct": 4.19
+ },
+ "risk": {
+  "volatility_1y_pct": 40.0,
+  "downside_deviation_pct": 27.0,
+  "max_drawdown_1y_pct": -43.9,
+  "max_drawdown_all_pct": -53.3,
+  "var95_1d_pct": -3.71,
+  "cvar95_1d_pct": -4.61,
+  "sharpe_1y": -1.46,
+  "sortino_1y": -2.16
+ },
+ "beta": {
+  "raw": 1.27,
+  "adjusted": 1.18,
+  "weeks": 156,
+  "correlation": 0.43,
+  "r_squared": 0.18,
+  "alpha_pct": -7.3
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 18.77
+ },
+ "flags": []
+}

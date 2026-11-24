@@ -1,0 +1,79 @@
+{
+ "symbol": "ATLANTAELE",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 929.2,
+  "implied_cr": 1008.2,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 17.0,
+ "snapshot_cr": {
+  "rev": 1826.1,
+  "ni": 201.8,
+  "ebit": 309.3,
+  "ta": 1508.6,
+  "eq": 929.2,
+  "debt": 50.7,
+  "fcf": 68.2,
+  "ni_core": 201.8,
+  "ebit_core": 310.0,
+  "operating_income": 319.8
+ },
+ "ratios": {
+  "roe_pct": 21.7,
+  "roa_pct": 13.4,
+  "net_margin_pct": 11.0,
+  "ebit_margin_pct": 16.9,
+  "roce_pct": 32.2,
+  "fcf_margin_pct": 3.7,
+  "debt_equity": 0.05,
+  "interest_cover": 9.34,
+  "current_ratio": 1.69,
+  "asset_turnover": 1.21
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 11.0,
+  "asset_turnover": 1.21,
+  "equity_multiplier": 1.62
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 28.1,
+  "net_income_cagr_pct": 32.1
+ },
+ "valuation": {
+  "pe_reported": 54.69,
+  "pe_core": 54.69,
+  "pe_used": 54.69,
+  "pb": 11.88,
+  "ev_ebitda": 33.03,
+  "fcf_yield_pct": 0.6,
+  "market_cap_cr": 11035.4
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 5.83,
+  "zone": "safe"
+ }
+}

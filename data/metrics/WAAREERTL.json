@@ -1,0 +1,79 @@
+{
+ "symbol": "WAAREERTL",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 934.3,
+  "implied_cr": 1117.0,
+  "ratio": 0.84,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 19.0,
+ "snapshot_cr": {
+  "rev": 3330.4,
+  "ni": 478.7,
+  "ebit": 644.0,
+  "ta": 2373.8,
+  "eq": 934.3,
+  "debt": 145.7,
+  "fcf": 164.5,
+  "ni_core": 478.7,
+  "ebit_core": 632.9,
+  "operating_income": 632.9
+ },
+ "ratios": {
+  "roe_pct": 51.2,
+  "roa_pct": 20.2,
+  "net_margin_pct": 14.4,
+  "ebit_margin_pct": 19.3,
+  "roce_pct": 61.6,
+  "fcf_margin_pct": 4.9,
+  "debt_equity": 0.16,
+  "interest_cover": 146.79,
+  "current_ratio": 1.35,
+  "asset_turnover": 1.4
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 14.4,
+  "asset_turnover": 1.4,
+  "equity_multiplier": 2.54
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 111.7,
+  "net_income_cagr_pct": 105.2
+ },
+ "valuation": {
+  "pe_reported": 14.88,
+  "pe_core": 14.88,
+  "pe_used": 14.88,
+  "pb": 7.62,
+  "ev_ebitda": 10.93,
+  "fcf_yield_pct": 2.3,
+  "market_cap_cr": 7121.8
+ },
+ "piotroski": {
+  "score": 4,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 5.01,
+  "zone": "safe"
+ }
+}

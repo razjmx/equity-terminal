@@ -1,0 +1,79 @@
+{
+ "symbol": "PFIZER",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4202.9,
+  "implied_cr": 4385.2,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 33.6,
+ "snapshot_cr": {
+  "rev": 2519.3,
+  "ni": 722.4,
+  "ebit": 985.1,
+  "ta": 4921.9,
+  "eq": 4202.9,
+  "debt": 70.2,
+  "fcf": 942.3,
+  "ni_core": 722.4,
+  "ebit_core": 847.1,
+  "operating_income": 847.1
+ },
+ "ratios": {
+  "roe_pct": 17.2,
+  "roa_pct": 14.7,
+  "net_margin_pct": 28.7,
+  "ebit_margin_pct": 39.1,
+  "roce_pct": 22.9,
+  "fcf_margin_pct": 37.4,
+  "debt_equity": 0.02,
+  "interest_cover": 103.92,
+  "current_ratio": 6.06,
+  "asset_turnover": 0.51
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 28.7,
+  "asset_turnover": 0.51,
+  "equity_multiplier": 1.17
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 1.3,
+  "net_income_cagr_pct": 5.0
+ },
+ "valuation": {
+  "pe_reported": 24.3,
+  "pe_core": 24.3,
+  "pe_used": 24.3,
+  "pb": 4.18,
+  "ev_ebitda": 13.94,
+  "fcf_yield_pct": 5.4,
+  "market_cap_cr": 17555.2
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 13.31,
+  "zone": "safe"
+ }
+}

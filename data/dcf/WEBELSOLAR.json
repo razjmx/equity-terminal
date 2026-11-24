@@ -1,0 +1,214 @@
+{
+ "symbol": "WEBELSOLAR",
+ "latest_fy": "2026-03-31",
+ "status": "ok",
+ "reliability": "indicative",
+ "price": 64.27,
+ "fair_value": 181.1,
+ "fair_low": 159.0,
+ "fair_high": 209.3,
+ "upside_pct": 181.8,
+ "flags": [
+  "growth clamped: 2-year 536.9% to 30%",
+  "growth gap: 2-year growth differs from 3-year CAGR (293.4%) by over 10 points"
+ ],
+ "assumptions": {
+  "rf_pct": 7.2,
+  "erp_pct": 6.0,
+  "beta_raw": 1.53,
+  "beta_used": 1.35,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 15.33,
+  "wacc_pct": 14.94,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
+  "growth_years": 2,
+  "historic_growth_pct": 536.9,
+  "first_year_growth_pct": 30.0,
+  "ebit_margin_pct": 36.2,
+  "margin_basis": "latest",
+  "sales_to_capital": 1.63,
+  "roic_now_pct": 44.3,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.099
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "growth_pct": 30.0,
+   "revenue": 1364.0,
+   "nopat": 370.0,
+   "reinvestment": 193.0,
+   "fcff": 177.0
+  },
+  {
+   "year": 2,
+   "growth_pct": 30.0,
+   "revenue": 1773.0,
+   "nopat": 481.0,
+   "reinvestment": 251.0,
+   "fcff": 231.0
+  },
+  {
+   "year": 3,
+   "growth_pct": 30.0,
+   "revenue": 2305.0,
+   "nopat": 626.0,
+   "reinvestment": 326.0,
+   "fcff": 300.0
+  },
+  {
+   "year": 4,
+   "growth_pct": 26.6,
+   "revenue": 2919.0,
+   "nopat": 792.0,
+   "reinvestment": 376.0,
+   "fcff": 416.0
+  },
+  {
+   "year": 5,
+   "growth_pct": 23.3,
+   "revenue": 3599.0,
+   "nopat": 977.0,
+   "reinvestment": 417.0,
+   "fcff": 561.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 19.9,
+   "revenue": 4316.0,
+   "nopat": 1172.0,
+   "reinvestment": 439.0,
+   "fcff": 732.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 16.6,
+   "revenue": 5031.0,
+   "nopat": 1366.0,
+   "reinvestment": 438.0,
+   "fcff": 928.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 13.2,
+   "revenue": 5696.0,
+   "nopat": 1546.0,
+   "reinvestment": 407.0,
+   "fcff": 1139.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 9.9,
+   "revenue": 6257.0,
+   "nopat": 1699.0,
+   "reinvestment": 344.0,
+   "fcff": 1355.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 6664.0,
+   "nopat": 1809.0,
+   "reinvestment": 249.0,
+   "fcff": 1560.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 20.0,
+  "fcff_cr": 1301.0,
+  "pv_share_of_ev_pct": 57.2
+ },
+ "bridge_cr": {
+  "enterprise_value": 7168.0,
+  "debt": 131.0,
+  "cash": 119.0,
+  "investments": 0.0,
+  "minority": 0.0,
+  "equity_value": 7156.0,
+  "shares_cr": 43.416,
+  "market_cap": 2790.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   12.94,
+   13.94,
+   14.94,
+   15.94,
+   16.94
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    228.5,
+    236.9,
+    246.5,
+    257.4,
+    270.1
+   ],
+   [
+    197.1,
+    202.9,
+    209.3,
+    216.5,
+    224.6
+   ],
+   [
+    172.5,
+    176.6,
+    181.1,
+    186.0,
+    191.4
+   ],
+   [
+    152.7,
+    155.7,
+    159.0,
+    162.4,
+    166.1
+   ],
+   [
+    136.6,
+    138.8,
+    141.2,
+    143.6,
+    146.3
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": 2.0,
+  "implied_ebit_margin_pct": 17.5,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "above 25%",
+  "note": ""
+ },
+ "model": {
+  "rev": 1049.1,
+  "margin": 0.36200000000000004,
+  "tax": 0.25,
+  "s2c": 1.631849927670363,
+  "g1": 0.3,
+  "wacc": 0.1494381526573728,
+  "terminal_g": 0.065,
+  "n": 10,
+  "hold_years": 3,
+  "roic_cap": 0.2,
+  "debt": 130.74,
+  "cash": 118.55,
+  "invest": 0.0,
+  "minority": 0.0,
+  "shares_cr": 43.41634449665474,
+  "roll": 1.0987356990113921,
+  "mid_year": true
+ }
+}

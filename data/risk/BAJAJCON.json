@@ -1,0 +1,73 @@
+{
+ "symbol": "BAJAJCON",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 400.1,
+ "returns_pct": {
+  "1m": -3.8,
+  "3m": -17.8,
+  "6m": -26.8,
+  "1y": 48.0,
+  "3y_cagr": 18.1,
+  "ytd": 56.2
+ },
+ "relative_strength_pp": {
+  "3m": -18.8,
+  "6m": -31.9,
+  "1y": 48.4
+ },
+ "range": {
+  "high_52w": 670.25,
+  "low_52w": 247.45,
+  "pct_from_high": -40.3,
+  "pct_above_low": 61.7,
+  "high_date": "2026-07-10",
+  "low_date": "2026-01-21"
+ },
+ "moving_averages": {
+  "dma20": 403.86,
+  "pct_vs_dma20": -0.9,
+  "dma50": 455.22,
+  "pct_vs_dma50": -12.1,
+  "dma100": 496.02,
+  "pct_vs_dma100": -19.3,
+  "dma200": 476.53,
+  "pct_vs_dma200": -16.0
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "death cross in last 20 days"
+ },
+ "momentum": {
+  "rsi14": 41.8,
+  "macd_pct": -2.87,
+  "macd_signal_pct": -3.41,
+  "macd_hist_pct": 0.54,
+  "bollinger_pctb": 0.46,
+  "atr_pct": 5.14
+ },
+ "risk": {
+  "volatility_1y_pct": 51.3,
+  "downside_deviation_pct": 31.6,
+  "max_drawdown_1y_pct": -44.8,
+  "max_drawdown_all_pct": -44.8,
+  "var95_1d_pct": -4.58,
+  "cvar95_1d_pct": -5.97,
+  "sharpe_1y": 0.88,
+  "sortino_1y": 1.42
+ },
+ "beta": {
+  "raw": 1.17,
+  "adjusted": 1.12,
+  "weeks": 156,
+  "correlation": 0.4,
+  "r_squared": 0.16,
+  "alpha_pct": 18.2
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 37.86
+ },
+ "flags": []
+}

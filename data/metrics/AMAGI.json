@@ -1,0 +1,82 @@
+{
+ "symbol": "AMAGI",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "core EBIT 56% below reported EBIT",
+  "P/E 171 not meaningful, shown blank"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 1756.8,
+  "implied_cr": 1823.5,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 2.7,
+ "snapshot_cr": {
+  "rev": 1505.6,
+  "ni": 71.7,
+  "ebit": 91.0,
+  "ta": 2353.3,
+  "eq": 1756.8,
+  "debt": 31.0,
+  "fcf": -32.5,
+  "ni_core": 71.7,
+  "ebit_core": 40.1,
+  "operating_income": 40.1
+ },
+ "ratios": {
+  "roe_pct": 4.1,
+  "roa_pct": 3.0,
+  "net_margin_pct": 4.8,
+  "ebit_margin_pct": 6.0,
+  "roce_pct": 5.0,
+  "fcf_margin_pct": -2.2,
+  "debt_equity": 0.02,
+  "interest_cover": 24.09,
+  "current_ratio": 3.98,
+  "asset_turnover": 0.64
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 4.8,
+  "asset_turnover": 0.64,
+  "equity_multiplier": 1.34
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 30.3,
+  "net_income_cagr_pct": null
+ },
+ "valuation": {
+  "pe_reported": 170.92,
+  "pe_core": 170.92,
+  "pe_used": null,
+  "pb": 6.97,
+  "ev_ebitda": 94.73,
+  "fcf_yield_pct": -0.3,
+  "market_cap_cr": 12250.2
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 4.8,
+  "zone": "safe"
+ }
+}

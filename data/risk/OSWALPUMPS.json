@@ -1,0 +1,73 @@
+{
+ "symbol": "OSWALPUMPS",
+ "as_of": "2026-11-23",
+ "rows": 353,
+ "price": 216.24,
+ "returns_pct": {
+  "1m": -6.3,
+  "3m": -29.0,
+  "6m": -40.3,
+  "1y": -67.1,
+  "3y_cagr": null,
+  "ytd": -59.0
+ },
+ "relative_strength_pp": {
+  "3m": -30.0,
+  "6m": -45.4,
+  "1y": -66.7
+ },
+ "range": {
+  "high_52w": 670.85,
+  "low_52w": 202.05,
+  "pct_from_high": -67.8,
+  "pct_above_low": 7.0,
+  "high_date": "2025-11-17",
+  "low_date": "2026-10-30"
+ },
+ "moving_averages": {
+  "dma20": 220.16,
+  "pct_vs_dma20": -1.8,
+  "dma50": 246.39,
+  "pct_vs_dma50": -12.2,
+  "dma100": 293.03,
+  "pct_vs_dma100": -26.2,
+  "dma200": 330.66,
+  "pct_vs_dma200": -34.6
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 37.4,
+  "macd_pct": -3.02,
+  "macd_signal_pct": -3.57,
+  "macd_hist_pct": 0.54,
+  "bollinger_pctb": 0.41,
+  "atr_pct": 4.26
+ },
+ "risk": {
+  "volatility_1y_pct": 45.3,
+  "downside_deviation_pct": 34.5,
+  "max_drawdown_1y_pct": -69.9,
+  "max_drawdown_all_pct": -76.9,
+  "var95_1d_pct": -4.92,
+  "cvar95_1d_pct": -5.7,
+  "sharpe_1y": -2.38,
+  "sortino_1y": -3.13
+ },
+ "beta": {
+  "raw": 1.78,
+  "adjusted": 1.52,
+  "weeks": 75,
+  "correlation": 0.54,
+  "r_squared": 0.29,
+  "alpha_pct": -62.5
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 11.61
+ },
+ "flags": []
+}

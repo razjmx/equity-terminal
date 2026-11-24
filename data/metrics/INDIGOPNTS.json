@@ -1,0 +1,79 @@
+{
+ "symbol": "INDIGOPNTS",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1154.0,
+  "implied_cr": 1187.2,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 13.9,
+ "snapshot_cr": {
+  "rev": 1398.8,
+  "ni": 145.1,
+  "ebit": 201.1,
+  "ta": 1629.0,
+  "eq": 1154.0,
+  "debt": 21.1,
+  "fcf": 87.6,
+  "ni_core": 145.1,
+  "ebit_core": 194.6,
+  "operating_income": 195.3
+ },
+ "ratios": {
+  "roe_pct": 12.6,
+  "roa_pct": 8.9,
+  "net_margin_pct": 10.4,
+  "ebit_margin_pct": 14.4,
+  "roce_pct": 15.9,
+  "fcf_margin_pct": 6.3,
+  "debt_equity": 0.02,
+  "interest_cover": 77.57,
+  "current_ratio": 2.21,
+  "asset_turnover": 0.86
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 10.4,
+  "asset_turnover": 0.86,
+  "equity_multiplier": 1.41
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 9.4,
+  "net_income_cagr_pct": 3.2
+ },
+ "valuation": {
+  "pe_reported": 32.62,
+  "pe_core": 32.62,
+  "pe_used": 32.62,
+  "pb": 4.1,
+  "ev_ebitda": 16.92,
+  "fcf_yield_pct": 1.9,
+  "market_cap_cr": 4731.7
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 6.58,
+  "zone": "safe"
+ }
+}

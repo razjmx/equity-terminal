@@ -1,0 +1,85 @@
+{
+ "symbol": "TVSSCS",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "one-off items removed from profit"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 2033.5,
+  "implied_cr": 2104.2,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 2.7,
+ "snapshot_cr": {
+  "rev": 11000.5,
+  "ni": 114.3,
+  "ebit": 317.1,
+  "ta": 7199.9,
+  "eq": 2033.5,
+  "debt": 2755.4,
+  "fcf": 468.2,
+  "ni_core": 224.3,
+  "ebit_core": 299.3,
+  "operating_income": 299.3
+ },
+ "ratios": {
+  "roe_pct": 11.0,
+  "roa_pct": 3.1,
+  "net_margin_pct": 2.0,
+  "ebit_margin_pct": 2.9,
+  "roce_pct": 9.0,
+  "fcf_margin_pct": 4.3,
+  "debt_equity": 1.35,
+  "interest_cover": 2.13,
+  "current_ratio": 1.02,
+  "asset_turnover": 1.53
+ },
+ "ratios_reported": {
+  "roe_pct": 5.6,
+  "roa_pct": 1.6,
+  "net_margin_pct": 1.0
+ },
+ "dupont": {
+  "net_margin_pct": 2.0,
+  "asset_turnover": 1.53,
+  "equity_multiplier": 3.54
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 3.3,
+  "net_income_cagr_pct": 42.1
+ },
+ "valuation": {
+  "pe_reported": 50.19,
+  "pe_core": 25.57,
+  "pe_used": 25.57,
+  "pb": 2.82,
+  "ev_ebitda": 8.73,
+  "fcf_yield_pct": 8.2,
+  "market_cap_cr": 5735.7
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 0.49,
+  "zone": "distress"
+ }
+}

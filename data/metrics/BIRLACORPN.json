@@ -1,0 +1,79 @@
+{
+ "symbol": "BIRLACORPN",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 7364.7,
+  "implied_cr": 7602.3,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 9.7,
+ "snapshot_cr": {
+  "rev": 9518.0,
+  "ni": 557.6,
+  "ebit": 1023.0,
+  "ta": 14510.1,
+  "eq": 7364.7,
+  "debt": 3390.7,
+  "fcf": 481.4,
+  "ni_core": 557.6,
+  "ebit_core": 922.8,
+  "operating_income": 922.8
+ },
+ "ratios": {
+  "roe_pct": 7.6,
+  "roa_pct": 3.8,
+  "net_margin_pct": 5.9,
+  "ebit_margin_pct": 10.7,
+  "roce_pct": 8.6,
+  "fcf_margin_pct": 5.1,
+  "debt_equity": 0.46,
+  "interest_cover": 4.02,
+  "current_ratio": 1.26,
+  "asset_turnover": 0.66
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 5.9,
+  "asset_turnover": 0.66,
+  "equity_multiplier": 1.97
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 3.8,
+  "net_income_cagr_pct": 139.7
+ },
+ "valuation": {
+  "pe_reported": 11.34,
+  "pe_core": 11.34,
+  "pe_used": 11.34,
+  "pb": 0.86,
+  "ev_ebitda": 5.47,
+  "fcf_yield_pct": 7.6,
+  "market_cap_cr": 6324.1
+ },
+ "piotroski": {
+  "score": 9,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 2.52,
+  "zone": "grey"
+ }
+}

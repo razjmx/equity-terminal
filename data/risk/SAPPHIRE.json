@@ -1,0 +1,73 @@
+{
+ "symbol": "SAPPHIRE",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 193.47,
+ "returns_pct": {
+  "1m": -1.2,
+  "3m": -19.8,
+  "6m": 6.1,
+  "1y": -21.3,
+  "3y_cagr": -9.0,
+  "ytd": -24.7
+ },
+ "relative_strength_pp": {
+  "3m": -20.8,
+  "6m": 1.0,
+  "1y": -20.9
+ },
+ "range": {
+  "high_52w": 263.15,
+  "low_52w": 150.42,
+  "pct_from_high": -26.5,
+  "pct_above_low": 28.6,
+  "high_date": "2025-11-19",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 203.05,
+  "pct_vs_dma20": -4.7,
+  "dma50": 209.59,
+  "pct_vs_dma50": -7.7,
+  "dma100": 208.91,
+  "pct_vs_dma100": -7.4,
+  "dma200": 196.24,
+  "pct_vs_dma200": -1.4
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 39.2,
+  "macd_pct": -0.96,
+  "macd_signal_pct": -0.5,
+  "macd_hist_pct": -0.46,
+  "bollinger_pctb": 0.21,
+  "atr_pct": 3.98
+ },
+ "risk": {
+  "volatility_1y_pct": 46.9,
+  "downside_deviation_pct": 29.4,
+  "max_drawdown_1y_pct": -42.8,
+  "max_drawdown_all_pct": -60.6,
+  "var95_1d_pct": -4.04,
+  "cvar95_1d_pct": -5.34,
+  "sharpe_1y": -0.44,
+  "sortino_1y": -0.7
+ },
+ "beta": {
+  "raw": 1.25,
+  "adjusted": 1.17,
+  "weeks": 156,
+  "correlation": 0.45,
+  "r_squared": 0.2,
+  "alpha_pct": -15.3
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 15.79
+ },
+ "flags": []
+}

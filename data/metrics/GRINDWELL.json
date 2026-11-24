@@ -1,0 +1,79 @@
+{
+ "symbol": "GRINDWELL",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2534.8,
+  "implied_cr": 2603.1,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 15.9,
+ "snapshot_cr": {
+  "rev": 3060.4,
+  "ni": 415.7,
+  "ebit": 563.5,
+  "ta": 3437.9,
+  "eq": 2534.8,
+  "debt": 60.7,
+  "fcf": 423.2,
+  "ni_core": 415.7,
+  "ebit_core": 486.3,
+  "operating_income": 486.3
+ },
+ "ratios": {
+  "roe_pct": 16.4,
+  "roa_pct": 12.1,
+  "net_margin_pct": 13.6,
+  "ebit_margin_pct": 18.4,
+  "roce_pct": 21.0,
+  "fcf_margin_pct": 13.8,
+  "debt_equity": 0.02,
+  "interest_cover": 69.0,
+  "current_ratio": 2.81,
+  "asset_turnover": 0.89
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 13.6,
+  "asset_turnover": 0.89,
+  "equity_multiplier": 1.36
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 6.6,
+  "net_income_cagr_pct": 4.7
+ },
+ "valuation": {
+  "pe_reported": 47.45,
+  "pe_core": 47.45,
+  "pe_used": 47.45,
+  "pb": 7.78,
+  "ev_ebitda": 27.85,
+  "fcf_yield_pct": 2.1,
+  "market_cap_cr": 19721.4
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 8.4,
+  "zone": "safe"
+ }
+}

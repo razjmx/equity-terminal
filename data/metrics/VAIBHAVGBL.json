@@ -1,0 +1,79 @@
+{
+ "symbol": "VAIBHAVGBL",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1647.9,
+  "implied_cr": 1715.1,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 7.0,
+ "snapshot_cr": {
+  "rev": 3671.8,
+  "ni": 266.1,
+  "ebit": 296.5,
+  "ta": 2547.3,
+  "eq": 1647.9,
+  "debt": 415.8,
+  "fcf": 277.0,
+  "ni_core": 266.1,
+  "ebit_core": 257.9,
+  "operating_income": 257.9
+ },
+ "ratios": {
+  "roe_pct": 16.1,
+  "roa_pct": 10.4,
+  "net_margin_pct": 7.2,
+  "ebit_margin_pct": 8.1,
+  "roce_pct": 15.3,
+  "fcf_margin_pct": 7.5,
+  "debt_equity": 0.25,
+  "interest_cover": 20.31,
+  "current_ratio": 2.76,
+  "asset_turnover": 1.44
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 7.2,
+  "asset_turnover": 1.44,
+  "equity_multiplier": 1.55
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 11.1,
+  "net_income_cagr_pct": 36.4
+ },
+ "valuation": {
+  "pe_reported": 9.8,
+  "pe_core": 9.8,
+  "pe_used": 9.8,
+  "pb": 1.58,
+  "ev_ebitda": 6.67,
+  "fcf_yield_pct": 10.6,
+  "market_cap_cr": 2609.1
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": false,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 6.63,
+  "zone": "safe"
+ }
+}

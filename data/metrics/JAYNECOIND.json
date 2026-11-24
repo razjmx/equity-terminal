@@ -1,0 +1,79 @@
+{
+ "symbol": "JAYNECOIND",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2841.4,
+  "implied_cr": 3316.4,
+  "ratio": 0.86,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 14.1,
+ "snapshot_cr": {
+  "rev": 7112.8,
+  "ni": 463.1,
+  "ebit": 994.6,
+  "ta": 5970.1,
+  "eq": 2841.4,
+  "debt": 2124.3,
+  "fcf": 1251.3,
+  "ni_core": 463.1,
+  "ebit_core": 1004.7,
+  "operating_income": 1038.8
+ },
+ "ratios": {
+  "roe_pct": 16.3,
+  "roa_pct": 7.8,
+  "net_margin_pct": 6.5,
+  "ebit_margin_pct": 14.0,
+  "roce_pct": 23.4,
+  "fcf_margin_pct": 17.6,
+  "debt_equity": 0.75,
+  "interest_cover": 2.54,
+  "current_ratio": 1.39,
+  "asset_turnover": 1.19
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 6.5,
+  "asset_turnover": 1.19,
+  "equity_multiplier": 2.1
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 4.0,
+  "net_income_cagr_pct": 26.9
+ },
+ "valuation": {
+  "pe_reported": 18.68,
+  "pe_core": 18.68,
+  "pe_used": 18.68,
+  "pb": 3.04,
+  "ev_ebitda": 8.22,
+  "fcf_yield_pct": 14.5,
+  "market_cap_cr": 8650.6
+ },
+ "piotroski": {
+  "score": 8,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 2.8,
+  "zone": "safe"
+ }
+}

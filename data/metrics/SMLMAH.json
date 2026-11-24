@@ -1,0 +1,79 @@
+{
+ "symbol": "SMLMAH",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 519.3,
+  "implied_cr": 612.3,
+  "ratio": 0.85,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 8.1,
+ "snapshot_cr": {
+  "rev": 2818.9,
+  "ni": 159.8,
+  "ebit": 234.5,
+  "ta": 1396.8,
+  "eq": 519.3,
+  "debt": 289.1,
+  "fcf": 85.9,
+  "ni_core": 159.8,
+  "ebit_core": 227.9,
+  "operating_income": 227.9
+ },
+ "ratios": {
+  "roe_pct": 30.8,
+  "roa_pct": 11.4,
+  "net_margin_pct": 5.7,
+  "ebit_margin_pct": 8.3,
+  "roce_pct": 38.6,
+  "fcf_margin_pct": 3.0,
+  "debt_equity": 0.56,
+  "interest_cover": 11.42,
+  "current_ratio": 1.25,
+  "asset_turnover": 2.02
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 5.7,
+  "asset_turnover": 2.02,
+  "equity_multiplier": 2.69
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 15.9,
+  "net_income_cagr_pct": 100.4
+ },
+ "valuation": {
+  "pe_reported": 47.88,
+  "pe_core": 47.88,
+  "pe_used": 47.88,
+  "pb": 14.73,
+  "ev_ebitda": 27.68,
+  "fcf_yield_pct": 1.1,
+  "market_cap_cr": 7649.2
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 8,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": null,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 3.45,
+  "zone": "safe"
+ }
+}

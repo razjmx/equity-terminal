@@ -1,0 +1,86 @@
+{
+ "symbol": "CAPILLARY",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "one-off items removed from profit",
+  "core EBIT 57% below reported EBIT"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 1023.5,
+  "implied_cr": 1059.2,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 3.2,
+ "snapshot_cr": {
+  "rev": 734.6,
+  "ni": 52.4,
+  "ebit": 55.5,
+  "ta": 1300.2,
+  "eq": 1023.5,
+  "debt": 53.6,
+  "fcf": -212.7,
+  "ni_core": 32.5,
+  "ebit_core": 23.8,
+  "operating_income": 23.8
+ },
+ "ratios": {
+  "roe_pct": 3.2,
+  "roa_pct": 2.5,
+  "net_margin_pct": 4.4,
+  "ebit_margin_pct": 7.5,
+  "roce_pct": 5.3,
+  "fcf_margin_pct": -29.0,
+  "debt_equity": 0.05,
+  "interest_cover": 12.74,
+  "current_ratio": 2.8,
+  "asset_turnover": 0.56
+ },
+ "ratios_reported": {
+  "roe_pct": 5.1,
+  "roa_pct": 4.0,
+  "net_margin_pct": 7.1
+ },
+ "dupont": {
+  "net_margin_pct": 4.4,
+  "asset_turnover": 0.56,
+  "equity_multiplier": 1.27
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 42.2,
+  "net_income_cagr_pct": null
+ },
+ "valuation": {
+  "pe_reported": 76.96,
+  "pe_core": 123.89,
+  "pe_used": 123.89,
+  "pb": 3.94,
+  "ev_ebitda": 30.16,
+  "fcf_yield_pct": -5.3,
+  "market_cap_cr": 4032.0
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 5.46,
+  "zone": "safe"
+ }
+}

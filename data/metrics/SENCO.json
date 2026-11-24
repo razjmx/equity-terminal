@@ -1,0 +1,79 @@
+{
+ "symbol": "SENCO",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2513.7,
+  "implied_cr": 2684.8,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 11.0,
+ "snapshot_cr": {
+  "rev": 8416.6,
+  "ni": 574.3,
+  "ebit": 943.8,
+  "ta": 7061.5,
+  "eq": 2513.7,
+  "debt": 2699.1,
+  "fcf": -849.9,
+  "ni_core": 574.3,
+  "ebit_core": 925.4,
+  "operating_income": 925.4
+ },
+ "ratios": {
+  "roe_pct": 22.8,
+  "roa_pct": 8.1,
+  "net_margin_pct": 6.8,
+  "ebit_margin_pct": 11.2,
+  "roce_pct": 33.0,
+  "fcf_margin_pct": -10.1,
+  "debt_equity": 1.07,
+  "interest_cover": 5.21,
+  "current_ratio": 1.54,
+  "asset_turnover": 1.19
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 6.8,
+  "asset_turnover": 1.19,
+  "equity_multiplier": 2.81
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 27.4,
+  "net_income_cagr_pct": 53.6
+ },
+ "valuation": {
+  "pe_reported": 8.92,
+  "pe_core": 8.92,
+  "pe_used": 8.92,
+  "pb": 2.04,
+  "ev_ebitda": 7.58,
+  "fcf_yield_pct": -16.6,
+  "market_cap_cr": 5125.2
+ },
+ "piotroski": {
+  "score": 5,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 4.34,
+  "zone": "safe"
+ }
+}

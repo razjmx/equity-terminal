@@ -1,0 +1,79 @@
+{
+ "symbol": "LOTUSDEV",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1911.1,
+  "implied_cr": 2035.4,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 36.3,
+ "snapshot_cr": {
+  "rev": 769.0,
+  "ni": 237.1,
+  "ebit": 328.2,
+  "ta": 2351.5,
+  "eq": 1911.1,
+  "debt": 129.6,
+  "fcf": -326.3,
+  "ni_core": 237.1,
+  "ebit_core": 278.9,
+  "operating_income": 278.9
+ },
+ "ratios": {
+  "roe_pct": 12.4,
+  "roa_pct": 10.1,
+  "net_margin_pct": 30.8,
+  "ebit_margin_pct": 42.7,
+  "roce_pct": 16.7,
+  "fcf_margin_pct": -42.4,
+  "debt_equity": 0.07,
+  "interest_cover": 219.12,
+  "current_ratio": 6.08,
+  "asset_turnover": 0.33
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 30.8,
+  "asset_turnover": 0.33,
+  "equity_multiplier": 1.23
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 66.4,
+  "net_income_cagr_pct": 142.4
+ },
+ "valuation": {
+  "pe_reported": 47.37,
+  "pe_core": 47.37,
+  "pe_used": 47.37,
+  "pb": 5.88,
+  "ev_ebitda": 31.87,
+  "fcf_yield_pct": -2.9,
+  "market_cap_cr": 11231.8
+ },
+ "piotroski": {
+  "score": 4,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 11.85,
+  "zone": "safe"
+ }
+}

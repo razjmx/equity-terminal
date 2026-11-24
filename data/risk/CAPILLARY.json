@@ -1,0 +1,68 @@
+{
+ "symbol": "CAPILLARY",
+ "as_of": "2026-11-23",
+ "rows": 248,
+ "price": 506.0,
+ "returns_pct": {
+  "1m": -7.6,
+  "3m": -0.2,
+  "6m": -1.6,
+  "1y": null,
+  "3y_cagr": null,
+  "ytd": -24.8
+ },
+ "relative_strength_pp": {
+  "3m": -1.2,
+  "6m": -6.7,
+  "1y": null
+ },
+ "range": {
+  "high_52w": 732.15,
+  "low_52w": 448.95,
+  "pct_from_high": -30.9,
+  "pct_above_low": 12.7,
+  "high_date": "2025-11-25",
+  "low_date": "2026-09-17"
+ },
+ "moving_averages": {
+  "dma20": 514.79,
+  "pct_vs_dma20": -1.7,
+  "dma50": 526.8,
+  "pct_vs_dma50": -3.9,
+  "dma100": 517.47,
+  "pct_vs_dma100": -2.2,
+  "dma200": 523.23,
+  "pct_vs_dma200": -3.3
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "golden cross in last 20 days"
+ },
+ "momentum": {
+  "rsi14": 44.9,
+  "macd_pct": -1.55,
+  "macd_signal_pct": -1.56,
+  "macd_hist_pct": 0.0,
+  "bollinger_pctb": 0.39,
+  "atr_pct": 4.69
+ },
+ "risk": {
+  "volatility_1y_pct": 47.5,
+  "downside_deviation_pct": 29.1,
+  "max_drawdown_1y_pct": -38.7,
+  "max_drawdown_all_pct": -38.7,
+  "var95_1d_pct": -4.12,
+  "cvar95_1d_pct": -5.85,
+  "sharpe_1y": -0.31,
+  "sortino_1y": -0.5
+ },
+ "beta": null,
+ "liquidity": {
+  "avg_daily_value_3m_cr": 16.58
+ },
+ "flags": [
+  "short history: risk and trend figures use fewer than 250 days"
+ ]
+}

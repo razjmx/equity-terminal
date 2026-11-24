@@ -1,0 +1,73 @@
+{
+ "symbol": "BLUESTONE",
+ "as_of": "2026-11-23",
+ "rows": 312,
+ "price": 665.15,
+ "returns_pct": {
+  "1m": -12.6,
+  "3m": -19.0,
+  "6m": 44.2,
+  "1y": 15.7,
+  "3y_cagr": null,
+  "ytd": 41.3
+ },
+ "relative_strength_pp": {
+  "3m": -20.0,
+  "6m": 39.1,
+  "1y": 16.1
+ },
+ "range": {
+  "high_52w": 930.4,
+  "low_52w": 403.45,
+  "pct_from_high": -28.5,
+  "pct_above_low": 64.9,
+  "high_date": "2026-09-22",
+  "low_date": "2026-02-24"
+ },
+ "moving_averages": {
+  "dma20": 714.1,
+  "pct_vs_dma20": -6.9,
+  "dma50": 772.34,
+  "pct_vs_dma50": -13.9,
+  "dma100": 762.17,
+  "pct_vs_dma100": -12.7,
+  "dma200": 624.49,
+  "pct_vs_dma200": 6.5
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 38.3,
+  "macd_pct": -3.13,
+  "macd_signal_pct": -2.7,
+  "macd_hist_pct": -0.43,
+  "bollinger_pctb": 0.18,
+  "atr_pct": 5.68
+ },
+ "risk": {
+  "volatility_1y_pct": 50.7,
+  "downside_deviation_pct": 31.0,
+  "max_drawdown_1y_pct": -29.3,
+  "max_drawdown_all_pct": -47.0,
+  "var95_1d_pct": -3.91,
+  "cvar95_1d_pct": -5.76,
+  "sharpe_1y": 0.39,
+  "sortino_1y": 0.64
+ },
+ "beta": {
+  "raw": 0.42,
+  "adjusted": 0.61,
+  "weeks": 66,
+  "correlation": 0.11,
+  "r_squared": 0.01,
+  "alpha_pct": 23.2
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 80.43
+ },
+ "flags": []
+}

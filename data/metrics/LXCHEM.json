@@ -1,0 +1,79 @@
+{
+ "symbol": "LXCHEM",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1985.6,
+  "implied_cr": 2118.2,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 3.7,
+ "snapshot_cr": {
+  "rev": 2770.7,
+  "ni": 79.4,
+  "ebit": 109.9,
+  "ta": 3445.8,
+  "eq": 1985.6,
+  "debt": 543.0,
+  "fcf": -427.6,
+  "ni_core": 79.4,
+  "ebit_core": 102.3,
+  "operating_income": 111.0
+ },
+ "ratios": {
+  "roe_pct": 4.0,
+  "roa_pct": 2.3,
+  "net_margin_pct": 2.9,
+  "ebit_margin_pct": 4.0,
+  "roce_pct": 4.4,
+  "fcf_margin_pct": -15.4,
+  "debt_equity": 0.27,
+  "interest_cover": 5.02,
+  "current_ratio": 1.36,
+  "asset_turnover": 0.8
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 2.9,
+  "asset_turnover": 0.8,
+  "equity_multiplier": 1.74
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": -0.2,
+  "net_income_cagr_pct": -14.0
+ },
+ "valuation": {
+  "pe_reported": 52.17,
+  "pe_core": 52.17,
+  "pe_used": 52.17,
+  "pb": 2.09,
+  "ev_ebitda": 24.6,
+  "fcf_yield_pct": -10.3,
+  "market_cap_cr": 4140.1
+ },
+ "piotroski": {
+  "score": 5,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 3.33,
+  "zone": "safe"
+ }
+}

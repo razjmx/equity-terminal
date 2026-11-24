@@ -1,0 +1,79 @@
+{
+ "symbol": "SHILPAMED",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2591.2,
+  "implied_cr": 2758.7,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 17.6,
+ "snapshot_cr": {
+  "rev": 1538.0,
+  "ni": 243.3,
+  "ebit": 341.9,
+  "ta": 3705.6,
+  "eq": 2591.2,
+  "debt": 659.9,
+  "fcf": -28.4,
+  "ni_core": 243.3,
+  "ebit_core": 270.5,
+  "operating_income": 270.5
+ },
+ "ratios": {
+  "roe_pct": 9.4,
+  "roa_pct": 6.6,
+  "net_margin_pct": 15.8,
+  "ebit_margin_pct": 22.2,
+  "roce_pct": 12.0,
+  "fcf_margin_pct": -1.8,
+  "debt_equity": 0.25,
+  "interest_cover": 7.34,
+  "current_ratio": 1.31,
+  "asset_turnover": 0.42
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 15.8,
+  "asset_turnover": 0.42,
+  "equity_multiplier": 1.43
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 13.8,
+  "net_income_cagr_pct": null
+ },
+ "valuation": {
+  "pe_reported": 68.9,
+  "pe_core": 68.9,
+  "pe_used": 68.9,
+  "pb": 6.47,
+  "ev_ebitda": 37.66,
+  "fcf_yield_pct": -0.2,
+  "market_cap_cr": 16765.3
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": false,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 4.7,
+  "zone": "safe"
+ }
+}

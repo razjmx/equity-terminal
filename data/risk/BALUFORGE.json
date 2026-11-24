@@ -1,0 +1,73 @@
+{
+ "symbol": "BALUFORGE",
+ "as_of": "2026-11-23",
+ "rows": 637,
+ "price": 501.0,
+ "returns_pct": {
+  "1m": 13.2,
+  "3m": -8.4,
+  "6m": 3.8,
+  "1y": -19.5,
+  "3y_cagr": null,
+  "ytd": -17.2
+ },
+ "relative_strength_pp": {
+  "3m": -9.4,
+  "6m": -1.2,
+  "1y": -19.1
+ },
+ "range": {
+  "high_52w": 653.4,
+  "low_52w": 356.3,
+  "pct_from_high": -23.3,
+  "pct_above_low": 40.6,
+  "high_date": "2025-12-15",
+  "low_date": "2026-01-28"
+ },
+ "moving_averages": {
+  "dma20": 499.01,
+  "pct_vs_dma20": 0.4,
+  "dma50": 496.25,
+  "pct_vs_dma50": 1.0,
+  "dma100": 496.32,
+  "pct_vs_dma100": 0.9,
+  "dma200": 483.17,
+  "pct_vs_dma200": 3.7
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 48.7,
+  "macd_pct": 2.07,
+  "macd_signal_pct": 1.92,
+  "macd_hist_pct": 0.15,
+  "bollinger_pctb": 0.51,
+  "atr_pct": 4.65
+ },
+ "risk": {
+  "volatility_1y_pct": 53.5,
+  "downside_deviation_pct": 35.2,
+  "max_drawdown_1y_pct": -45.5,
+  "max_drawdown_all_pct": -58.3,
+  "var95_1d_pct": -4.76,
+  "cvar95_1d_pct": -6.46,
+  "sharpe_1y": -0.28,
+  "sortino_1y": -0.42
+ },
+ "beta": {
+  "raw": 2.19,
+  "adjusted": 1.8,
+  "weeks": 134,
+  "correlation": 0.54,
+  "r_squared": 0.3,
+  "alpha_pct": 35.4
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 70.89
+ },
+ "flags": []
+}

@@ -1,0 +1,68 @@
+{
+ "symbol": "UTLSOLAR",
+ "as_of": "2026-11-23",
+ "rows": 249,
+ "price": 295.2,
+ "returns_pct": {
+  "1m": -20.0,
+  "3m": -38.2,
+  "6m": 11.6,
+  "1y": null,
+  "3y_cagr": null,
+  "ytd": 32.7
+ },
+ "relative_strength_pp": {
+  "3m": -39.2,
+  "6m": 6.5,
+  "1y": null
+ },
+ "range": {
+  "high_52w": 483.95,
+  "low_52w": 174.83,
+  "pct_from_high": -39.0,
+  "pct_above_low": 68.8,
+  "high_date": "2026-08-19",
+  "low_date": "2026-03-04"
+ },
+ "moving_averages": {
+  "dma20": 350.89,
+  "pct_vs_dma20": -15.9,
+  "dma50": 387.12,
+  "pct_vs_dma50": -23.7,
+  "dma100": 394.47,
+  "pct_vs_dma100": -25.2,
+  "dma200": 322.03,
+  "pct_vs_dma200": -8.3
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 27.0,
+  "macd_pct": -7.82,
+  "macd_signal_pct": -5.95,
+  "macd_hist_pct": -1.87,
+  "bollinger_pctb": 0.01,
+  "atr_pct": 6.5
+ },
+ "risk": {
+  "volatility_1y_pct": 47.8,
+  "downside_deviation_pct": 31.6,
+  "max_drawdown_1y_pct": -39.0,
+  "max_drawdown_all_pct": -39.0,
+  "var95_1d_pct": -4.78,
+  "cvar95_1d_pct": -5.72,
+  "sharpe_1y": 0.83,
+  "sortino_1y": 1.25
+ },
+ "beta": null,
+ "liquidity": {
+  "avg_daily_value_3m_cr": 10.73
+ },
+ "flags": [
+  "short history: risk and trend figures use fewer than 250 days"
+ ]
+}

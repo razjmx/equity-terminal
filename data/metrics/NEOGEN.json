@@ -1,0 +1,82 @@
+{
+ "symbol": "NEOGEN",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "equity check mismatch (ratio 0.48); figures NOT changed",
+  "P/E 291 not meaningful, shown blank"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 816.3,
+  "implied_cr": 1704.5,
+  "ratio": 0.48,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 12.1,
+ "snapshot_cr": {
+  "rev": 848.3,
+  "ni": 28.8,
+  "ebit": 102.1,
+  "ta": 2901.9,
+  "eq": 816.3,
+  "debt": 1395.1,
+  "fcf": -787.2,
+  "ni_core": 28.8,
+  "ebit_core": 102.2,
+  "operating_income": 110.0
+ },
+ "ratios": {
+  "roe_pct": 3.5,
+  "roa_pct": 1.0,
+  "net_margin_pct": 3.4,
+  "ebit_margin_pct": 12.0,
+  "roce_pct": 6.0,
+  "fcf_margin_pct": -92.8,
+  "debt_equity": 1.71,
+  "interest_cover": 1.67,
+  "current_ratio": 1.17,
+  "asset_turnover": 0.29
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 3.4,
+  "asset_turnover": 0.29,
+  "equity_multiplier": 3.56
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 8.7,
+  "net_income_cagr_pct": -16.8
+ },
+ "valuation": {
+  "pe_reported": 291.3,
+  "pe_core": 291.3,
+  "pe_used": null,
+  "pb": 10.26,
+  "ev_ebitda": 75.36,
+  "fcf_yield_pct": -9.4,
+  "market_cap_cr": 8374.9
+ },
+ "piotroski": {
+  "score": 3,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 1.4,
+  "zone": "grey"
+ }
+}

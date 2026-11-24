@@ -1,0 +1,79 @@
+{
+ "symbol": "ERIS",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3902.7,
+  "implied_cr": 4147.7,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 27.0,
+ "snapshot_cr": {
+  "rev": 3114.9,
+  "ni": 619.5,
+  "ebit": 831.2,
+  "ta": 7365.5,
+  "eq": 3902.7,
+  "debt": 2358.6,
+  "fcf": 241.1,
+  "ni_core": 619.5,
+  "ebit_core": 841.3,
+  "operating_income": 841.3
+ },
+ "ratios": {
+  "roe_pct": 15.9,
+  "roa_pct": 8.4,
+  "net_margin_pct": 19.9,
+  "ebit_margin_pct": 26.7,
+  "roce_pct": 15.7,
+  "fcf_margin_pct": 7.7,
+  "debt_equity": 0.6,
+  "interest_cover": 4.31,
+  "current_ratio": 0.74,
+  "asset_turnover": 0.42
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 19.9,
+  "asset_turnover": 0.42,
+  "equity_multiplier": 1.89
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 23.3,
+  "net_income_cagr_pct": 17.5
+ },
+ "valuation": {
+  "pe_reported": 28.88,
+  "pe_core": 28.88,
+  "pe_used": 28.88,
+  "pb": 4.58,
+  "ev_ebitda": 18.18,
+  "fcf_yield_pct": 1.3,
+  "market_cap_cr": 17889.0
+ },
+ "piotroski": {
+  "score": 5,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": false,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 2.97,
+  "zone": "safe"
+ }
+}

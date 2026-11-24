@@ -1,0 +1,73 @@
+{
+ "symbol": "FEDFINA",
+ "as_of": "2026-11-23",
+ "rows": 736,
+ "price": 136.66,
+ "returns_pct": {
+  "1m": -12.6,
+  "3m": -11.3,
+  "6m": -12.0,
+  "1y": -6.0,
+  "3y_cagr": null,
+  "ytd": -9.4
+ },
+ "relative_strength_pp": {
+  "3m": -12.3,
+  "6m": -17.0,
+  "1y": -5.6
+ },
+ "range": {
+  "high_52w": 176.39,
+  "low_52w": 120.82,
+  "pct_from_high": -22.5,
+  "pct_above_low": 13.1,
+  "high_date": "2026-01-14",
+  "low_date": "2026-03-09"
+ },
+ "moving_averages": {
+  "dma20": 151.58,
+  "pct_vs_dma20": -9.8,
+  "dma50": 152.46,
+  "pct_vs_dma50": -10.4,
+  "dma100": 153.66,
+  "pct_vs_dma100": -11.1,
+  "dma200": 149.06,
+  "pct_vs_dma200": -8.3
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 32.3,
+  "macd_pct": -1.7,
+  "macd_signal_pct": -0.2,
+  "macd_hist_pct": -1.5,
+  "bollinger_pctb": -0.03,
+  "atr_pct": 4.43
+ },
+ "risk": {
+  "volatility_1y_pct": 41.3,
+  "downside_deviation_pct": 28.8,
+  "max_drawdown_1y_pct": -31.5,
+  "max_drawdown_all_pct": -44.1,
+  "var95_1d_pct": -3.77,
+  "cvar95_1d_pct": -5.58,
+  "sharpe_1y": -0.12,
+  "sortino_1y": -0.17
+ },
+ "beta": {
+  "raw": 0.97,
+  "adjusted": 0.98,
+  "weeks": 156,
+  "correlation": 0.42,
+  "r_squared": 0.18,
+  "alpha_pct": -6.0
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 15.7
+ },
+ "flags": []
+}

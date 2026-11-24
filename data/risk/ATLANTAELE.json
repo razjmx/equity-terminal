@@ -1,0 +1,73 @@
+{
+ "symbol": "ATLANTAELE",
+ "as_of": "2026-11-23",
+ "rows": 284,
+ "price": 1435.1,
+ "returns_pct": {
+  "1m": -15.0,
+  "3m": -15.0,
+  "6m": -12.5,
+  "1y": 48.6,
+  "3y_cagr": null,
+  "ytd": 63.2
+ },
+ "relative_strength_pp": {
+  "3m": -16.0,
+  "6m": -17.6,
+  "1y": 48.9
+ },
+ "range": {
+  "high_52w": 2151.5,
+  "low_52w": 726.3,
+  "pct_from_high": -33.3,
+  "pct_above_low": 97.6,
+  "high_date": "2026-06-04",
+  "low_date": "2026-01-27"
+ },
+ "moving_averages": {
+  "dma20": 1510.54,
+  "pct_vs_dma20": -5.0,
+  "dma50": 1637.13,
+  "pct_vs_dma50": -12.3,
+  "dma100": 1668.26,
+  "pct_vs_dma100": -14.0,
+  "dma200": 1531.17,
+  "pct_vs_dma200": -6.3
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 36.4,
+  "macd_pct": -4.17,
+  "macd_signal_pct": -4.17,
+  "macd_hist_pct": -0.0,
+  "bollinger_pctb": 0.26,
+  "atr_pct": 5.16
+ },
+ "risk": {
+  "volatility_1y_pct": 54.5,
+  "downside_deviation_pct": 33.3,
+  "max_drawdown_1y_pct": -34.3,
+  "max_drawdown_all_pct": -34.3,
+  "var95_1d_pct": -4.89,
+  "cvar95_1d_pct": -5.94,
+  "sharpe_1y": 0.86,
+  "sortino_1y": 1.41
+ },
+ "beta": {
+  "raw": -0.22,
+  "adjusted": 0.18,
+  "weeks": 60,
+  "correlation": -0.06,
+  "r_squared": 0.0,
+  "alpha_pct": 45.6
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 25.86
+ },
+ "flags": []
+}

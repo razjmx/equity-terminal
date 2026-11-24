@@ -1,0 +1,215 @@
+{
+ "symbol": "GUJALKALI",
+ "latest_fy": "2026-03-31",
+ "status": "not meaningful",
+ "reliability": "not meaningful",
+ "price": 580.1,
+ "fair_value": null,
+ "fair_low": null,
+ "fair_high": null,
+ "upside_pct": null,
+ "flags": [
+  "investments large: Rs 1,587 cr is 37% of market cap, verify",
+  "low return: ROIC 0.5% below WACC 12.4%",
+  "not meaningful: negative equity value"
+ ],
+ "assumptions": {
+  "rf_pct": 7.2,
+  "erp_pct": 6.0,
+  "beta_raw": 1.06,
+  "beta_used": 1.04,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 13.42,
+  "wacc_pct": 12.36,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
+  "growth_years": 2,
+  "historic_growth_pct": 7.1,
+  "first_year_growth_pct": 7.1,
+  "ebit_margin_pct": 0.6,
+  "margin_basis": "latest",
+  "sales_to_capital": 1.0,
+  "roic_now_pct": 0.5,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.087
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "growth_pct": 7.1,
+   "revenue": 4548.0,
+   "nopat": 20.0,
+   "reinvestment": 300.0,
+   "fcff": -279.0
+  },
+  {
+   "year": 2,
+   "growth_pct": 7.1,
+   "revenue": 4870.0,
+   "nopat": 22.0,
+   "reinvestment": 321.0,
+   "fcff": -299.0
+  },
+  {
+   "year": 3,
+   "growth_pct": 7.1,
+   "revenue": 5215.0,
+   "nopat": 23.0,
+   "reinvestment": 344.0,
+   "fcff": -320.0
+  },
+  {
+   "year": 4,
+   "growth_pct": 7.0,
+   "revenue": 5581.0,
+   "nopat": 25.0,
+   "reinvestment": 364.0,
+   "fcff": -339.0
+  },
+  {
+   "year": 5,
+   "growth_pct": 6.9,
+   "revenue": 5967.0,
+   "nopat": 27.0,
+   "reinvestment": 385.0,
+   "fcff": -358.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 6.8,
+   "revenue": 6375.0,
+   "nopat": 29.0,
+   "reinvestment": 406.0,
+   "fcff": -377.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 6.8,
+   "revenue": 6806.0,
+   "nopat": 31.0,
+   "reinvestment": 429.0,
+   "fcff": -398.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 6.7,
+   "revenue": 7260.0,
+   "nopat": 33.0,
+   "reinvestment": 452.0,
+   "fcff": -419.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 6.6,
+   "revenue": 7737.0,
+   "nopat": 35.0,
+   "reinvestment": 476.0,
+   "fcff": -441.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 8240.0,
+   "nopat": 37.0,
+   "reinvestment": 501.0,
+   "fcff": -464.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 12.4,
+  "fcff_cr": 19.0,
+  "pv_share_of_ev_pct": -5.4
+ },
+ "bridge_cr": {
+  "enterprise_value": -1963.0,
+  "debt": 809.0,
+  "cash": 186.0,
+  "investments": 1587.0,
+  "minority": 0.0,
+  "equity_value": -999.0,
+  "shares_cr": 7.344,
+  "market_cap": 4260.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   10.36,
+   11.36,
+   12.36,
+   13.36,
+   14.36
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    -147.7,
+    -157.6,
+    -167.6,
+    -177.8,
+    -188.1
+   ],
+   [
+    -139.0,
+    -148.2,
+    -157.7,
+    -167.2,
+    -176.9
+   ],
+   [
+    -130.3,
+    -139.0,
+    -147.9,
+    -156.8,
+    -165.9
+   ],
+   [
+    -121.8,
+    -130.0,
+    -138.3,
+    -146.8,
+    -155.3
+   ],
+   [
+    -113.6,
+    -121.3,
+    -129.1,
+    -137.0,
+    -145.1
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "implied_ebit_margin_pct": 11.9,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "not meaningful",
+  "note": "growth outside -10% to 60%"
+ },
+ "model": {
+  "rev": 4246.5,
+  "margin": 0.006,
+  "tax": 0.25,
+  "s2c": 1.004531379192369,
+  "g1": 0.07090801122473245,
+  "wacc": 0.12356930694650604,
+  "terminal_g": 0.065,
+  "n": 10,
+  "hold_years": 3,
+  "roic_cap": 0.2,
+  "debt": 808.9126,
+  "cash": 185.5376,
+  "invest": 1586.922,
+  "minority": 0.0,
+  "shares_cr": 7.343692345457679,
+  "roll": 1.086711242916445,
+  "mid_year": true
+ }
+}

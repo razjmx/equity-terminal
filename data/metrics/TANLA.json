@@ -1,0 +1,79 @@
+{
+ "symbol": "TANLA",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2488.0,
+  "implied_cr": 2710.4,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 13.9,
+ "snapshot_cr": {
+  "rev": 4417.7,
+  "ni": 509.1,
+  "ebit": 638.8,
+  "ta": 3730.0,
+  "eq": 2488.0,
+  "debt": 52.7,
+  "fcf": 476.5,
+  "ni_core": 509.1,
+  "ebit_core": 615.2,
+  "operating_income": 615.2
+ },
+ "ratios": {
+  "roe_pct": 20.5,
+  "roa_pct": 13.6,
+  "net_margin_pct": 11.5,
+  "ebit_margin_pct": 14.5,
+  "roce_pct": 25.2,
+  "fcf_margin_pct": 10.8,
+  "debt_equity": 0.02,
+  "interest_cover": 145.46,
+  "current_ratio": 2.3,
+  "asset_turnover": 1.18
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 11.5,
+  "asset_turnover": 1.18,
+  "equity_multiplier": 1.5
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 9.6,
+  "net_income_cagr_pct": 4.4
+ },
+ "valuation": {
+  "pe_reported": 17.65,
+  "pe_core": 17.65,
+  "pe_used": 17.65,
+  "pb": 3.61,
+  "ev_ebitda": 10.46,
+  "fcf_yield_pct": 5.3,
+  "market_cap_cr": 8986.1
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 7.99,
+  "zone": "safe"
+ }
+}

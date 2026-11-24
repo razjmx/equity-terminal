@@ -1,0 +1,73 @@
+{
+ "symbol": "KIRLPNU",
+ "as_of": "2026-11-23",
+ "rows": 884,
+ "price": 625.05,
+ "returns_pct": {
+  "1m": 3.6,
+  "3m": -15.5,
+  "6m": -22.4,
+  "1y": 13.0,
+  "3y_cagr": 30.7,
+  "ytd": 18.0
+ },
+ "relative_strength_pp": {
+  "3m": -16.5,
+  "6m": -27.5,
+  "1y": 13.3
+ },
+ "range": {
+  "high_52w": 1045.75,
+  "low_52w": 499.75,
+  "pct_from_high": -40.2,
+  "pct_above_low": 25.1,
+  "high_date": "2026-06-22",
+  "low_date": "2025-12-08"
+ },
+ "moving_averages": {
+  "dma20": 597.67,
+  "pct_vs_dma20": 4.6,
+  "dma50": 644.38,
+  "pct_vs_dma50": -3.0,
+  "dma100": 715.48,
+  "pct_vs_dma100": -12.6,
+  "dma200": 700.07,
+  "pct_vs_dma200": -10.7
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "death cross in last 20 days"
+ },
+ "momentum": {
+  "rsi14": 51.0,
+  "macd_pct": -0.41,
+  "macd_signal_pct": -1.3,
+  "macd_hist_pct": 0.89,
+  "bollinger_pctb": 0.67,
+  "atr_pct": 4.45
+ },
+ "risk": {
+  "volatility_1y_pct": 40.1,
+  "downside_deviation_pct": 26.4,
+  "max_drawdown_1y_pct": -48.8,
+  "max_drawdown_all_pct": -48.8,
+  "var95_1d_pct": -3.65,
+  "cvar95_1d_pct": -5.05,
+  "sharpe_1y": 0.32,
+  "sortino_1y": 0.49
+ },
+ "beta": {
+  "raw": 1.52,
+  "adjusted": 1.35,
+  "weeks": 156,
+  "correlation": 0.47,
+  "r_squared": 0.22,
+  "alpha_pct": 24.3
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 14.79
+ },
+ "flags": []
+}

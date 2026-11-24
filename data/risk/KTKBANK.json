@@ -1,0 +1,73 @@
+{
+ "symbol": "KTKBANK",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 341.25,
+ "returns_pct": {
+  "1m": 8.8,
+  "3m": 1.9,
+  "6m": 26.0,
+  "1y": 96.0,
+  "3y_cagr": 13.6,
+  "ytd": 66.1
+ },
+ "relative_strength_pp": {
+  "3m": 0.9,
+  "6m": 20.9,
+  "1y": 96.4
+ },
+ "range": {
+  "high_52w": 368.8,
+  "low_52w": 174.68,
+  "pct_from_high": -7.5,
+  "pct_above_low": 95.4,
+  "high_date": "2026-11-17",
+  "low_date": "2025-11-18"
+ },
+ "moving_averages": {
+  "dma20": 329.27,
+  "pct_vs_dma20": 3.6,
+  "dma50": 327.41,
+  "pct_vs_dma50": 4.2,
+  "dma100": 313.55,
+  "pct_vs_dma100": 8.8,
+  "dma200": 276.36,
+  "pct_vs_dma200": 23.5
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 53.7,
+  "macd_pct": 2.33,
+  "macd_signal_pct": 1.97,
+  "macd_hist_pct": 0.35,
+  "bollinger_pctb": 0.62,
+  "atr_pct": 3.77
+ },
+ "risk": {
+  "volatility_1y_pct": 37.4,
+  "downside_deviation_pct": 21.5,
+  "max_drawdown_1y_pct": -17.1,
+  "max_drawdown_all_pct": -40.7,
+  "var95_1d_pct": -2.98,
+  "cvar95_1d_pct": -4.11,
+  "sharpe_1y": 1.79,
+  "sortino_1y": 3.12
+ },
+ "beta": {
+  "raw": 1.01,
+  "adjusted": 1.0,
+  "weeks": 156,
+  "correlation": 0.46,
+  "r_squared": 0.21,
+  "alpha_pct": 9.7
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 73.78
+ },
+ "flags": []
+}

@@ -1,0 +1,79 @@
+{
+ "symbol": "JKPAPER",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 5520.5,
+  "implied_cr": 5663.5,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 7.5,
+ "snapshot_cr": {
+  "rev": 6969.3,
+  "ni": 265.8,
+  "ebit": 520.4,
+  "ta": 10538.2,
+  "eq": 5520.5,
+  "debt": 2577.5,
+  "fcf": 269.6,
+  "ni_core": 265.8,
+  "ebit_core": 521.8,
+  "operating_income": 567.2
+ },
+ "ratios": {
+  "roe_pct": 4.8,
+  "roa_pct": 2.5,
+  "net_margin_pct": 3.8,
+  "ebit_margin_pct": 7.5,
+  "roce_pct": 6.2,
+  "fcf_margin_pct": 3.9,
+  "debt_equity": 0.47,
+  "interest_cover": 3.34,
+  "current_ratio": 1.39,
+  "asset_turnover": 0.66
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 3.8,
+  "asset_turnover": 0.66,
+  "equity_multiplier": 1.91
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 2.8,
+  "net_income_cagr_pct": -39.4
+ },
+ "valuation": {
+  "pe_reported": 24.29,
+  "pe_core": 24.29,
+  "pe_used": 24.29,
+  "pb": 1.17,
+  "ev_ebitda": 9.43,
+  "fcf_yield_pct": 4.2,
+  "market_cap_cr": 6457.7
+ },
+ "piotroski": {
+  "score": 3,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": false,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 2.99,
+  "zone": "safe"
+ }
+}

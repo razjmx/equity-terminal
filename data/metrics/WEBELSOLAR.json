@@ -1,0 +1,79 @@
+{
+ "symbol": "WEBELSOLAR",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 630.7,
+  "implied_cr": 778.0,
+  "ratio": 0.81,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 36.2,
+ "snapshot_cr": {
+  "rev": 1049.1,
+  "ni": 303.0,
+  "ebit": 375.3,
+  "ta": 931.0,
+  "eq": 630.7,
+  "debt": 130.7,
+  "fcf": 75.3,
+  "ni_core": 303.0,
+  "ebit_core": 379.4,
+  "operating_income": 379.4
+ },
+ "ratios": {
+  "roe_pct": 48.0,
+  "roa_pct": 32.5,
+  "net_margin_pct": 28.9,
+  "ebit_margin_pct": 35.8,
+  "roce_pct": 48.2,
+  "fcf_margin_pct": 7.2,
+  "debt_equity": 0.21,
+  "interest_cover": 23.71,
+  "current_ratio": 2.94,
+  "asset_turnover": 1.13
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 28.9,
+  "asset_turnover": 1.13,
+  "equity_multiplier": 1.48
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 293.4,
+  "net_income_cagr_pct": null
+ },
+ "valuation": {
+  "pe_reported": 9.21,
+  "pe_core": 9.21,
+  "pe_used": 9.21,
+  "pb": 4.42,
+  "ev_ebitda": 6.41,
+  "fcf_yield_pct": 2.7,
+  "market_cap_cr": 2790.4
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": false,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 7.35,
+  "zone": "safe"
+ }
+}

@@ -1,0 +1,73 @@
+{
+ "symbol": "LLOYDSENT",
+ "as_of": "2026-11-23",
+ "rows": 519,
+ "price": 61.54,
+ "returns_pct": {
+  "1m": -3.5,
+  "3m": -21.7,
+  "6m": -10.4,
+  "1y": -5.8,
+  "3y_cagr": null,
+  "ytd": 3.0
+ },
+ "relative_strength_pp": {
+  "3m": -22.7,
+  "6m": -15.5,
+  "1y": -5.4
+ },
+ "range": {
+  "high_52w": 83.5,
+  "low_52w": 41.38,
+  "pct_from_high": -26.3,
+  "pct_above_low": 48.7,
+  "high_date": "2026-08-07",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 63.09,
+  "pct_vs_dma20": -2.5,
+  "dma50": 68.54,
+  "pct_vs_dma50": -10.2,
+  "dma100": 72.82,
+  "pct_vs_dma100": -15.5,
+  "dma200": 67.05,
+  "pct_vs_dma200": -8.2
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 39.6,
+  "macd_pct": -2.39,
+  "macd_signal_pct": -2.63,
+  "macd_hist_pct": 0.23,
+  "bollinger_pctb": 0.33,
+  "atr_pct": 4.36
+ },
+ "risk": {
+  "volatility_1y_pct": 52.3,
+  "downside_deviation_pct": 32.7,
+  "max_drawdown_1y_pct": -43.5,
+  "max_drawdown_all_pct": -55.4,
+  "var95_1d_pct": -4.45,
+  "cvar95_1d_pct": -5.65,
+  "sharpe_1y": 0.0,
+  "sortino_1y": 0.01
+ },
+ "beta": {
+  "raw": 1.73,
+  "adjusted": 1.49,
+  "weeks": 110,
+  "correlation": 0.46,
+  "r_squared": 0.21,
+  "alpha_pct": 25.9
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 21.16
+ },
+ "flags": []
+}

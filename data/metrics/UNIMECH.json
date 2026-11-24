@@ -1,0 +1,81 @@
+{
+ "symbol": "UNIMECH",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "core EBIT 42% below reported EBIT"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 737.4,
+  "implied_cr": 797.8,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 20.8,
+ "snapshot_cr": {
+  "rev": 239.8,
+  "ni": 63.3,
+  "ebit": 86.0,
+  "ta": 923.5,
+  "eq": 737.4,
+  "debt": 126.7,
+  "fcf": 24.7,
+  "ni_core": 63.3,
+  "ebit_core": 49.9,
+  "operating_income": 49.9
+ },
+ "ratios": {
+  "roe_pct": 8.6,
+  "roa_pct": 6.9,
+  "net_margin_pct": 26.4,
+  "ebit_margin_pct": 35.9,
+  "roce_pct": 11.0,
+  "fcf_margin_pct": 10.3,
+  "debt_equity": 0.17,
+  "interest_cover": 15.42,
+  "current_ratio": 4.81,
+  "asset_turnover": 0.26
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 26.4,
+  "asset_turnover": 0.26,
+  "equity_multiplier": 1.25
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 37.1,
+  "net_income_cagr_pct": 40.5
+ },
+ "valuation": {
+  "pe_reported": 140.78,
+  "pe_core": 140.78,
+  "pe_used": 140.78,
+  "pb": 12.08,
+  "ev_ebitda": 75.21,
+  "fcf_yield_pct": 0.3,
+  "market_cap_cr": 8908.9
+ },
+ "piotroski": {
+  "score": 3,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 9.52,
+  "zone": "safe"
+ }
+}

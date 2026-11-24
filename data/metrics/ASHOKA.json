@@ -1,0 +1,86 @@
+{
+ "symbol": "ASHOKA",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "one-off items removed from profit",
+  "core EBIT 66% below reported EBIT"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 6579.3,
+  "implied_cr": 6585.5,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 19.3,
+ "snapshot_cr": {
+  "rev": 6952.8,
+  "ni": 2550.0,
+  "ebit": 3999.8,
+  "ta": 13050.1,
+  "eq": 6579.3,
+  "debt": 1835.3,
+  "fcf": 537.4,
+  "ni_core": 786.2,
+  "ebit_core": 1342.7,
+  "operating_income": 1342.7
+ },
+ "ratios": {
+  "roe_pct": 11.9,
+  "roa_pct": 6.0,
+  "net_margin_pct": 11.3,
+  "ebit_margin_pct": 57.5,
+  "roce_pct": 47.1,
+  "fcf_margin_pct": 7.7,
+  "debt_equity": 0.28,
+  "interest_cover": 4.61,
+  "current_ratio": 2.23,
+  "asset_turnover": 0.53
+ },
+ "ratios_reported": {
+  "roe_pct": 38.8,
+  "roa_pct": 19.5,
+  "net_margin_pct": 36.7
+ },
+ "dupont": {
+  "net_margin_pct": 11.3,
+  "asset_turnover": 0.53,
+  "equity_multiplier": 1.98
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": -1.9,
+  "net_income_cagr_pct": 105.8
+ },
+ "valuation": {
+  "pe_reported": 1.28,
+  "pe_core": 4.16,
+  "pe_used": 4.16,
+  "pb": 0.5,
+  "ev_ebitda": 1.08,
+  "fcf_yield_pct": 16.4,
+  "market_cap_cr": 3272.7
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 7.31,
+  "zone": "safe"
+ }
+}

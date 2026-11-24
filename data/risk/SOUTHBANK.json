@@ -1,0 +1,73 @@
+{
+ "symbol": "SOUTHBANK",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 58.87,
+ "returns_pct": {
+  "1m": 5.6,
+  "3m": 30.4,
+  "6m": 43.6,
+  "1y": 54.9,
+  "3y_cagr": 34.4,
+  "ytd": 53.6
+ },
+ "relative_strength_pp": {
+  "3m": 29.4,
+  "6m": 38.5,
+  "1y": 55.3
+ },
+ "range": {
+  "high_52w": 61.86,
+  "low_52w": 33.6,
+  "pct_from_high": -4.8,
+  "pct_above_low": 75.2,
+  "high_date": "2026-11-13",
+  "low_date": "2026-03-23"
+ },
+ "moving_averages": {
+  "dma20": 57.76,
+  "pct_vs_dma20": 1.9,
+  "dma50": 52.25,
+  "pct_vs_dma50": 12.7,
+  "dma100": 49.19,
+  "pct_vs_dma100": 19.7,
+  "dma200": 44.89,
+  "pct_vs_dma200": 31.1
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 59.4,
+  "macd_pct": 3.89,
+  "macd_signal_pct": 4.35,
+  "macd_hist_pct": -0.46,
+  "bollinger_pctb": 0.59,
+  "atr_pct": 3.31
+ },
+ "risk": {
+  "volatility_1y_pct": 38.7,
+  "downside_deviation_pct": 27.3,
+  "max_drawdown_1y_pct": -26.9,
+  "max_drawdown_all_pct": -42.0,
+  "var95_1d_pct": -3.03,
+  "cvar95_1d_pct": -5.6,
+  "sharpe_1y": 1.14,
+  "sortino_1y": 1.62
+ },
+ "beta": {
+  "raw": 0.91,
+  "adjusted": 0.94,
+  "weeks": 156,
+  "correlation": 0.37,
+  "r_squared": 0.14,
+  "alpha_pct": 25.3
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 85.23
+ },
+ "flags": []
+}

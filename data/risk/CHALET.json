@@ -1,0 +1,73 @@
+{
+ "symbol": "CHALET",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 869.25,
+ "returns_pct": {
+  "1m": 6.1,
+  "3m": 1.9,
+  "6m": 8.5,
+  "1y": -1.7,
+  "3y_cagr": 16.5,
+  "ytd": -0.1
+ },
+ "relative_strength_pp": {
+  "3m": 0.9,
+  "6m": 3.4,
+  "1y": -1.3
+ },
+ "range": {
+  "high_52w": 912.45,
+  "low_52w": 702.3,
+  "pct_from_high": -4.7,
+  "pct_above_low": 23.8,
+  "high_date": "2026-08-26",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 817.62,
+  "pct_vs_dma20": 6.3,
+  "dma50": 835.15,
+  "pct_vs_dma50": 4.1,
+  "dma100": 843.08,
+  "pct_vs_dma100": 3.1,
+  "dma200": 815.29,
+  "pct_vs_dma200": 6.6
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 64.6,
+  "macd_pct": 0.15,
+  "macd_signal_pct": -0.48,
+  "macd_hist_pct": 0.63,
+  "bollinger_pctb": 1.38,
+  "atr_pct": 2.91
+ },
+ "risk": {
+  "volatility_1y_pct": 28.6,
+  "downside_deviation_pct": 19.5,
+  "max_drawdown_1y_pct": -22.9,
+  "max_drawdown_all_pct": -34.3,
+  "var95_1d_pct": -2.79,
+  "cvar95_1d_pct": -3.5,
+  "sharpe_1y": -0.17,
+  "sortino_1y": -0.25
+ },
+ "beta": {
+  "raw": 1.1,
+  "adjusted": 1.07,
+  "weeks": 156,
+  "correlation": 0.49,
+  "r_squared": 0.24,
+  "alpha_pct": 8.0
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 14.74
+ },
+ "flags": []
+}

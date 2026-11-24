@@ -1,0 +1,73 @@
+{
+ "symbol": "RATNAMANI",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 2328.6,
+ "returns_pct": {
+  "1m": -1.9,
+  "3m": 1.7,
+  "6m": -7.9,
+  "1y": -5.3,
+  "3y_cagr": -5.9,
+  "ytd": -2.2
+ },
+ "relative_strength_pp": {
+  "3m": 0.7,
+  "6m": -13.0,
+  "1y": -4.9
+ },
+ "range": {
+  "high_52w": 3046.2,
+  "low_52w": 1946.4,
+  "pct_from_high": -23.6,
+  "pct_above_low": 19.6,
+  "high_date": "2026-05-11",
+  "low_date": "2026-02-11"
+ },
+ "moving_averages": {
+  "dma20": 2397.16,
+  "pct_vs_dma20": -2.9,
+  "dma50": 2546.09,
+  "pct_vs_dma50": -8.5,
+  "dma100": 2520.58,
+  "pct_vs_dma100": -7.6,
+  "dma200": 2487.95,
+  "pct_vs_dma200": -6.4
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 37.9,
+  "macd_pct": -1.6,
+  "macd_signal_pct": -1.51,
+  "macd_hist_pct": -0.1,
+  "bollinger_pctb": 0.22,
+  "atr_pct": 3.46
+ },
+ "risk": {
+  "volatility_1y_pct": 46.5,
+  "downside_deviation_pct": 26.9,
+  "max_drawdown_1y_pct": -27.9,
+  "max_drawdown_all_pct": -49.6,
+  "var95_1d_pct": -3.78,
+  "cvar95_1d_pct": -5.38,
+  "sharpe_1y": -0.05,
+  "sortino_1y": -0.08
+ },
+ "beta": {
+  "raw": 0.85,
+  "adjusted": 0.9,
+  "weeks": 156,
+  "correlation": 0.39,
+  "r_squared": 0.15,
+  "alpha_pct": -21.2
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 18.56
+ },
+ "flags": []
+}

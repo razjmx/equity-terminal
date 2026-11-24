@@ -1,0 +1,73 @@
+{
+ "symbol": "DYNAMATECH",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 13294.0,
+ "returns_pct": {
+  "1m": 5.6,
+  "3m": 13.0,
+  "6m": 21.6,
+  "1y": 36.8,
+  "3y_cagr": 49.4,
+  "ytd": 41.8
+ },
+ "relative_strength_pp": {
+  "3m": 12.0,
+  "6m": 16.5,
+  "1y": 37.2
+ },
+ "range": {
+  "high_52w": 14424.0,
+  "low_52w": 7899.5,
+  "pct_from_high": -7.8,
+  "pct_above_low": 68.3,
+  "high_date": "2026-10-14",
+  "low_date": "2026-01-23"
+ },
+ "moving_averages": {
+  "dma20": 12751.6,
+  "pct_vs_dma20": 4.3,
+  "dma50": 12901.1,
+  "pct_vs_dma50": 3.0,
+  "dma100": 11916.5,
+  "pct_vs_dma100": 11.6,
+  "dma200": 11112.97,
+  "pct_vs_dma200": 19.6
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 55.4,
+  "macd_pct": 1.24,
+  "macd_signal_pct": 0.61,
+  "macd_hist_pct": 0.63,
+  "bollinger_pctb": 0.74,
+  "atr_pct": 4.06
+ },
+ "risk": {
+  "volatility_1y_pct": 45.4,
+  "downside_deviation_pct": 29.8,
+  "max_drawdown_1y_pct": -21.1,
+  "max_drawdown_all_pct": -35.8,
+  "var95_1d_pct": -4.57,
+  "cvar95_1d_pct": -5.85,
+  "sharpe_1y": 0.76,
+  "sortino_1y": 1.15
+ },
+ "beta": {
+  "raw": 1.26,
+  "adjusted": 1.17,
+  "weeks": 156,
+  "correlation": 0.43,
+  "r_squared": 0.18,
+  "alpha_pct": 34.6
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 26.36
+ },
+ "flags": []
+}

@@ -1,0 +1,79 @@
+{
+ "symbol": "MASTEK",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2991.8,
+  "implied_cr": 3190.6,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 14.8,
+ "snapshot_cr": {
+  "rev": 3694.4,
+  "ni": 404.0,
+  "ebit": 551.7,
+  "ta": 4308.8,
+  "eq": 2991.8,
+  "debt": 438.3,
+  "fcf": 513.7,
+  "ni_core": 404.0,
+  "ebit_core": 548.0,
+  "operating_income": 548.0
+ },
+ "ratios": {
+  "roe_pct": 13.5,
+  "roa_pct": 9.4,
+  "net_margin_pct": 10.9,
+  "ebit_margin_pct": 14.9,
+  "roce_pct": 16.6,
+  "fcf_margin_pct": 13.9,
+  "debt_equity": 0.15,
+  "interest_cover": 18.11,
+  "current_ratio": 2.16,
+  "asset_turnover": 0.86
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 10.9,
+  "asset_turnover": 0.86,
+  "equity_multiplier": 1.44
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 13.0,
+  "net_income_cagr_pct": 11.3
+ },
+ "valuation": {
+  "pe_reported": 11.15,
+  "pe_core": 11.15,
+  "pe_used": 11.15,
+  "pb": 1.51,
+  "ev_ebitda": 6.42,
+  "fcf_yield_pct": 11.4,
+  "market_cap_cr": 4506.2
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 6.6,
+  "zone": "safe"
+ }
+}

@@ -1,0 +1,79 @@
+{
+ "symbol": "PCJEWELLER",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 8174.2,
+  "implied_cr": 9353.7,
+  "ratio": 0.87,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 19.6,
+ "snapshot_cr": {
+  "rev": 3352.9,
+  "ni": 714.5,
+  "ebit": 846.4,
+  "ta": 9424.8,
+  "eq": 8174.2,
+  "debt": 1166.6,
+  "fcf": -80.8,
+  "ni_core": 714.5,
+  "ebit_core": 656.7,
+  "operating_income": 656.7
+ },
+ "ratios": {
+  "roe_pct": 8.7,
+  "roa_pct": 7.6,
+  "net_margin_pct": 21.3,
+  "ebit_margin_pct": 25.2,
+  "roce_pct": 10.3,
+  "fcf_margin_pct": -2.4,
+  "debt_equity": 0.14,
+  "interest_cover": 6.37,
+  "current_ratio": 7.05,
+  "asset_turnover": 0.36
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 21.3,
+  "asset_turnover": 0.36,
+  "equity_multiplier": 1.15
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 10.7,
+  "net_income_cagr_pct": null
+ },
+ "valuation": {
+  "pe_reported": 19.19,
+  "pe_core": 19.19,
+  "pe_used": 19.19,
+  "pb": 1.68,
+  "ev_ebitda": 17.09,
+  "fcf_yield_pct": -0.6,
+  "market_cap_cr": 13711.2
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": false,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 13.28,
+  "zone": "safe"
+ }
+}

@@ -1,0 +1,73 @@
+{
+ "symbol": "BIRLACORPN",
+ "as_of": "2026-11-23",
+ "rows": 1236,
+ "price": 821.25,
+ "returns_pct": {
+  "1m": 4.7,
+  "3m": -7.9,
+  "6m": -19.0,
+  "1y": -30.8,
+  "3y_cagr": -11.3,
+  "ytd": -22.8
+ },
+ "relative_strength_pp": {
+  "3m": -8.9,
+  "6m": -24.1,
+  "1y": -30.4
+ },
+ "range": {
+  "high_52w": 1179.3,
+  "low_52w": 776.3,
+  "pct_from_high": -30.4,
+  "pct_above_low": 5.8,
+  "high_date": "2025-11-17",
+  "low_date": "2026-10-30"
+ },
+ "moving_averages": {
+  "dma20": 814.56,
+  "pct_vs_dma20": 0.8,
+  "dma50": 815.44,
+  "pct_vs_dma50": 0.7,
+  "dma100": 869.65,
+  "pct_vs_dma100": -5.6,
+  "dma200": 916.47,
+  "pct_vs_dma200": -10.4
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": true,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 50.7,
+  "macd_pct": 0.5,
+  "macd_signal_pct": 0.28,
+  "macd_hist_pct": 0.22,
+  "bollinger_pctb": 0.58,
+  "atr_pct": 2.82
+ },
+ "risk": {
+  "volatility_1y_pct": 33.5,
+  "downside_deviation_pct": 22.4,
+  "max_drawdown_1y_pct": -34.2,
+  "max_drawdown_all_pct": -56.1,
+  "var95_1d_pct": -2.91,
+  "cvar95_1d_pct": -4.25,
+  "sharpe_1y": -1.15,
+  "sortino_1y": -1.72
+ },
+ "beta": {
+  "raw": 1.38,
+  "adjusted": 1.25,
+  "weeks": 156,
+  "correlation": 0.57,
+  "r_squared": 0.32,
+  "alpha_pct": -23.5
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 4.82
+ },
+ "flags": []
+}

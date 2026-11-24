@@ -1,0 +1,79 @@
+{
+ "symbol": "ASTRAMICRO",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1314.6,
+  "implied_cr": 1356.4,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 25.0,
+ "snapshot_cr": {
+  "rev": 1162.8,
+  "ni": 193.0,
+  "ebit": 306.0,
+  "ta": 1988.0,
+  "eq": 1314.6,
+  "debt": 287.7,
+  "fcf": 304.1,
+  "ni_core": 193.0,
+  "ebit_core": 290.4,
+  "operating_income": 290.4
+ },
+ "ratios": {
+  "roe_pct": 14.7,
+  "roa_pct": 9.7,
+  "net_margin_pct": 16.6,
+  "ebit_margin_pct": 26.3,
+  "roce_pct": 20.8,
+  "fcf_margin_pct": 26.2,
+  "debt_equity": 0.22,
+  "interest_cover": 6.77,
+  "current_ratio": 3.13,
+  "asset_turnover": 0.58
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 16.6,
+  "asset_turnover": 0.58,
+  "equity_multiplier": 1.51
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 12.6,
+  "net_income_cagr_pct": 40.3
+ },
+ "valuation": {
+  "pe_reported": 79.87,
+  "pe_core": 79.87,
+  "pe_used": 79.87,
+  "pb": 11.72,
+  "ev_ebitda": 44.4,
+  "fcf_yield_pct": 2.0,
+  "market_cap_cr": 15412.4
+ },
+ "piotroski": {
+  "score": 9,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 8.18,
+  "zone": "safe"
+ }
+}

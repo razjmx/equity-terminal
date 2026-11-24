@@ -1,0 +1,73 @@
+{
+ "symbol": "ASTRAMICRO",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 1623.3,
+ "returns_pct": {
+  "1m": 5.2,
+  "3m": -3.6,
+  "6m": 37.0,
+  "1y": 62.4,
+  "3y_cagr": 51.4,
+  "ytd": 65.4
+ },
+ "relative_strength_pp": {
+  "3m": -4.6,
+  "6m": 32.0,
+  "1y": 62.8
+ },
+ "range": {
+  "high_52w": 1861.6,
+  "low_52w": 855.7,
+  "pct_from_high": -12.8,
+  "pct_above_low": 89.7,
+  "high_date": "2026-07-31",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 1614.72,
+  "pct_vs_dma20": 0.5,
+  "dma50": 1625.27,
+  "pct_vs_dma50": -0.1,
+  "dma100": 1686.15,
+  "pct_vs_dma100": -3.7,
+  "dma200": 1408.59,
+  "pct_vs_dma200": 15.2
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 48.8,
+  "macd_pct": 0.87,
+  "macd_signal_pct": 0.69,
+  "macd_hist_pct": 0.18,
+  "bollinger_pctb": 0.53,
+  "atr_pct": 3.83
+ },
+ "risk": {
+  "volatility_1y_pct": 40.6,
+  "downside_deviation_pct": 25.5,
+  "max_drawdown_1y_pct": -20.2,
+  "max_drawdown_all_pct": -40.8,
+  "var95_1d_pct": -3.76,
+  "cvar95_1d_pct": -4.7,
+  "sharpe_1y": 1.22,
+  "sortino_1y": 1.94
+ },
+ "beta": {
+  "raw": 1.22,
+  "adjusted": 1.15,
+  "weeks": 156,
+  "correlation": 0.44,
+  "r_squared": 0.2,
+  "alpha_pct": 31.6
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 56.43
+ },
+ "flags": []
+}

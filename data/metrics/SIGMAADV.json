@@ -1,0 +1,88 @@
+{
+ "symbol": "SIGMAADV",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "equity check mismatch (ratio 0.40); figures NOT changed",
+  "one-off items removed from profit",
+  "core EBIT 84% below reported EBIT",
+  "P/E 322 not meaningful, shown blank"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 468.4,
+  "implied_cr": 1159.6,
+  "ratio": 0.4,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 10.6,
+ "snapshot_cr": {
+  "rev": 490.4,
+  "ni": 268.0,
+  "ebit": 317.5,
+  "ta": 1059.1,
+  "eq": 468.4,
+  "debt": 331.7,
+  "fcf": -279.0,
+  "ni_core": 55.5,
+  "ebit_core": 51.9,
+  "operating_income": 51.9
+ },
+ "ratios": {
+  "roe_pct": 11.8,
+  "roa_pct": 5.2,
+  "net_margin_pct": 11.3,
+  "ebit_margin_pct": 64.7,
+  "roce_pct": 52.6,
+  "fcf_margin_pct": -56.9,
+  "debt_equity": 0.71,
+  "interest_cover": 19.75,
+  "current_ratio": 1.42,
+  "asset_turnover": 0.46
+ },
+ "ratios_reported": {
+  "roe_pct": 57.2,
+  "roa_pct": 25.3,
+  "net_margin_pct": 54.7
+ },
+ "dupont": {
+  "net_margin_pct": 11.3,
+  "asset_turnover": 0.46,
+  "equity_multiplier": 2.26
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 529.0,
+  "net_income_cagr_pct": 212.0
+ },
+ "valuation": {
+  "pe_reported": 66.56,
+  "pe_core": 321.59,
+  "pe_used": null,
+  "pb": 38.09,
+  "ev_ebitda": 54.68,
+  "fcf_yield_pct": -1.6,
+  "market_cap_cr": 17841.9
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": false,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 5.04,
+  "zone": "safe"
+ }
+}

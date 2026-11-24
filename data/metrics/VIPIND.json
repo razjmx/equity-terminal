@@ -1,0 +1,88 @@
+{
+ "symbol": "VIPIND",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "core",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "core EBIT missing or not positive"
+ ],
+ "flags": [
+  "equity check mismatch (ratio 1.39); figures NOT changed",
+  "one-off items removed from profit"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 289.5,
+  "implied_cr": 208.7,
+  "ratio": 1.39,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": -19.9,
+ "snapshot_cr": {
+  "rev": 1851.9,
+  "ni": -338.0,
+  "ebit": -289.4,
+  "ta": 1604.2,
+  "eq": 289.5,
+  "debt": 737.8,
+  "fcf": 133.0,
+  "ni_core": -397.6,
+  "ebit_core": -368.8,
+  "operating_income": -359.1
+ },
+ "ratios": {
+  "roe_pct": -137.3,
+  "roa_pct": -24.8,
+  "net_margin_pct": -21.5,
+  "ebit_margin_pct": -15.6,
+  "roce_pct": -50.6,
+  "fcf_margin_pct": 7.2,
+  "debt_equity": 2.55,
+  "interest_cover": -5.95,
+  "current_ratio": 0.94,
+  "asset_turnover": 1.15
+ },
+ "ratios_reported": {
+  "roe_pct": -116.8,
+  "roa_pct": -21.1,
+  "net_margin_pct": -18.3
+ },
+ "dupont": {
+  "net_margin_pct": -21.5,
+  "asset_turnover": 1.15,
+  "equity_multiplier": 5.54
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": -3.8,
+  "net_income_cagr_pct": null
+ },
+ "valuation": {
+  "pe_reported": null,
+  "pe_core": null,
+  "pe_used": null,
+  "pb": 11.93,
+  "ev_ebitda": -25.16,
+  "fcf_yield_pct": 3.8,
+  "market_cap_cr": 3454.1
+ },
+ "piotroski": {
+  "score": 3,
+  "tested": 9,
+  "tests": {
+   "roa_positive": false,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": -1.27,
+  "zone": "distress"
+ }
+}

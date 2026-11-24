@@ -1,0 +1,217 @@
+{
+ "symbol": "LLOYDSENT",
+ "latest_fy": "2026-03-31",
+ "status": "not meaningful",
+ "reliability": "not meaningful",
+ "price": 61.54,
+ "fair_value": null,
+ "fair_low": null,
+ "fair_high": null,
+ "upside_pct": null,
+ "flags": [
+  "investments large: Rs 2,835 cr is 30% of market cap, verify",
+  "growth clamped: 2-year 33.8% to 30%",
+  "growth gap: 2-year growth differs from 3-year CAGR (64.4%) by over 10 points",
+  "low return: ROIC 2.9% below WACC 15.4%",
+  "not meaningful: negative equity value"
+ ],
+ "assumptions": {
+  "rf_pct": 7.2,
+  "erp_pct": 6.0,
+  "beta_raw": 1.73,
+  "beta_used": 1.49,
+  "beta_weeks": 110,
+  "cost_of_equity_pct": 16.15,
+  "wacc_pct": 15.41,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
+  "growth_years": 2,
+  "historic_growth_pct": 33.8,
+  "first_year_growth_pct": 30.0,
+  "ebit_margin_pct": 5.6,
+  "margin_basis": "latest",
+  "sales_to_capital": 0.69,
+  "roic_now_pct": 2.9,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.104
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "growth_pct": 30.0,
+   "revenue": 2182.0,
+   "nopat": 92.0,
+   "reinvestment": 730.0,
+   "fcff": -638.0
+  },
+  {
+   "year": 2,
+   "growth_pct": 30.0,
+   "revenue": 2836.0,
+   "nopat": 119.0,
+   "reinvestment": 949.0,
+   "fcff": -830.0
+  },
+  {
+   "year": 3,
+   "growth_pct": 30.0,
+   "revenue": 3687.0,
+   "nopat": 155.0,
+   "reinvestment": 1233.0,
+   "fcff": -1078.0
+  },
+  {
+   "year": 4,
+   "growth_pct": 26.6,
+   "revenue": 4670.0,
+   "nopat": 196.0,
+   "reinvestment": 1424.0,
+   "fcff": -1228.0
+  },
+  {
+   "year": 5,
+   "growth_pct": 23.3,
+   "revenue": 5757.0,
+   "nopat": 242.0,
+   "reinvestment": 1576.0,
+   "fcff": -1334.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 19.9,
+   "revenue": 6904.0,
+   "nopat": 290.0,
+   "reinvestment": 1663.0,
+   "fcff": -1373.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 16.6,
+   "revenue": 8048.0,
+   "nopat": 338.0,
+   "reinvestment": 1658.0,
+   "fcff": -1320.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 13.2,
+   "revenue": 9112.0,
+   "nopat": 383.0,
+   "reinvestment": 1541.0,
+   "fcff": -1159.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 9.9,
+   "revenue": 10010.0,
+   "nopat": 420.0,
+   "reinvestment": 1302.0,
+   "fcff": -881.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 10661.0,
+   "nopat": 448.0,
+   "reinvestment": 943.0,
+   "fcff": -495.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 15.4,
+  "fcff_cr": 276.0,
+  "pv_share_of_ev_pct": -17.3
+ },
+ "bridge_cr": {
+  "enterprise_value": -4594.0,
+  "debt": 798.0,
+  "cash": 964.0,
+  "investments": 2835.0,
+  "minority": 1290.0,
+  "equity_value": -2884.0,
+  "shares_cr": 152.669,
+  "market_cap": 9395.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   13.41,
+   14.41,
+   15.41,
+   16.41,
+   17.41
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    -20.7,
+    -21.2,
+    -21.7,
+    -22.3,
+    -22.8
+   ],
+   [
+    -20.4,
+    -20.9,
+    -21.4,
+    -21.9,
+    -22.4
+   ],
+   [
+    -19.9,
+    -20.4,
+    -20.9,
+    -21.3,
+    -21.8
+   ],
+   [
+    -19.4,
+    -19.8,
+    -20.3,
+    -20.7,
+    -21.2
+   ],
+   [
+    -18.8,
+    -19.2,
+    -19.7,
+    -20.1,
+    -20.5
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "implied_ebit_margin_pct": 36.2,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "not meaningful",
+  "note": "growth outside -10% to 60%"
+ },
+ "model": {
+  "rev": 1678.3,
+  "margin": 0.055999999999999994,
+  "tax": 0.25,
+  "s2c": 0.6899627947131494,
+  "g1": 0.3,
+  "wacc": 0.1541309974008816,
+  "terminal_g": 0.065,
+  "n": 10,
+  "hold_years": 3,
+  "roic_cap": 0.2,
+  "debt": 798.31,
+  "cash": 964.0,
+  "invest": 2834.58,
+  "minority": 1290.14,
+  "shares_cr": 152.6691284237894,
+  "roll": 1.1038969067029973,
+  "mid_year": true
+ }
+}

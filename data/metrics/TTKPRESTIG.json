@@ -1,0 +1,79 @@
+{
+ "symbol": "TTKPRESTIG",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1979.9,
+  "implied_cr": 2052.7,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 6.7,
+ "snapshot_cr": {
+  "rev": 2950.0,
+  "ni": 160.6,
+  "ebit": 234.7,
+  "ta": 2725.0,
+  "eq": 1979.9,
+  "debt": 173.5,
+  "fcf": 121.7,
+  "ni_core": 160.6,
+  "ebit_core": 196.7,
+  "operating_income": 196.7
+ },
+ "ratios": {
+  "roe_pct": 8.1,
+  "roa_pct": 5.9,
+  "net_margin_pct": 5.4,
+  "ebit_margin_pct": 8.0,
+  "roce_pct": 10.8,
+  "fcf_margin_pct": 4.1,
+  "debt_equity": 0.09,
+  "interest_cover": 15.76,
+  "current_ratio": 3.5,
+  "asset_turnover": 1.08
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 5.4,
+  "asset_turnover": 1.08,
+  "equity_multiplier": 1.38
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 2.3,
+  "net_income_cagr_pct": -14.2
+ },
+ "valuation": {
+  "pe_reported": 45.14,
+  "pe_core": 45.14,
+  "pe_used": 45.14,
+  "pb": 3.66,
+  "ev_ebitda": 20.79,
+  "fcf_yield_pct": 1.7,
+  "market_cap_cr": 7249.7
+ },
+ "piotroski": {
+  "score": 8,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 8.79,
+  "zone": "safe"
+ }
+}

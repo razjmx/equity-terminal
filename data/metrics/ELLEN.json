@@ -1,0 +1,81 @@
+{
+ "symbol": "ELLEN",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "core EBIT 43% below reported EBIT"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 977.1,
+  "implied_cr": 1047.7,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 25.6,
+ "snapshot_cr": {
+  "rev": 322.7,
+  "ni": 104.4,
+  "ebit": 144.2,
+  "ta": 1299.0,
+  "eq": 977.1,
+  "debt": 184.4,
+  "fcf": -25.8,
+  "ni_core": 104.4,
+  "ebit_core": 82.8,
+  "operating_income": 82.8
+ },
+ "ratios": {
+  "roe_pct": 10.7,
+  "roa_pct": 8.0,
+  "net_margin_pct": 32.4,
+  "ebit_margin_pct": 44.7,
+  "roce_pct": 13.0,
+  "fcf_margin_pct": -8.0,
+  "debt_equity": 0.19,
+  "interest_cover": 16.12,
+  "current_ratio": 1.6,
+  "asset_turnover": 0.25
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 32.4,
+  "asset_turnover": 0.25,
+  "equity_multiplier": 1.33
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 16.9,
+  "net_income_cagr_pct": 54.8
+ },
+ "valuation": {
+  "pe_reported": 38.32,
+  "pe_core": 38.32,
+  "pe_used": 38.32,
+  "pb": 4.09,
+  "ev_ebitda": 24.74,
+  "fcf_yield_pct": -0.6,
+  "market_cap_cr": 4000.5
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 5.5,
+  "zone": "safe"
+ }
+}

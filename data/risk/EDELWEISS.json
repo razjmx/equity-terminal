@@ -1,0 +1,73 @@
+{
+ "symbol": "EDELWEISS",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 128.15,
+ "returns_pct": {
+  "1m": 7.0,
+  "3m": 1.2,
+  "6m": 17.1,
+  "1y": 10.1,
+  "3y_cagr": 26.9,
+  "ytd": 18.6
+ },
+ "relative_strength_pp": {
+  "3m": 0.2,
+  "6m": 12.0,
+  "1y": 10.5
+ },
+ "range": {
+  "high_52w": 142.73,
+  "low_52w": 99.67,
+  "pct_from_high": -10.2,
+  "pct_above_low": 28.6,
+  "high_date": "2026-09-30",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 127.66,
+  "pct_vs_dma20": 0.4,
+  "dma50": 130.99,
+  "pct_vs_dma50": -2.2,
+  "dma100": 126.7,
+  "pct_vs_dma100": 1.1,
+  "dma200": 120.56,
+  "pct_vs_dma200": 6.3
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 48.1,
+  "macd_pct": 0.32,
+  "macd_signal_pct": 0.05,
+  "macd_hist_pct": 0.27,
+  "bollinger_pctb": 0.53,
+  "atr_pct": 4.11
+ },
+ "risk": {
+  "volatility_1y_pct": 39.9,
+  "downside_deviation_pct": 26.6,
+  "max_drawdown_1y_pct": -21.9,
+  "max_drawdown_all_pct": -47.2,
+  "var95_1d_pct": -3.96,
+  "cvar95_1d_pct": -4.83,
+  "sharpe_1y": 0.26,
+  "sortino_1y": 0.39
+ },
+ "beta": {
+  "raw": 1.5,
+  "adjusted": 1.34,
+  "weeks": 156,
+  "correlation": 0.47,
+  "r_squared": 0.22,
+  "alpha_pct": 16.9
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 84.91
+ },
+ "flags": []
+}

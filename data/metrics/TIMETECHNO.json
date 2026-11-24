@@ -1,0 +1,79 @@
+{
+ "symbol": "TIMETECHNO",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4088.3,
+  "implied_cr": 4275.1,
+  "ratio": 0.96,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 11.3,
+ "snapshot_cr": {
+  "rev": 6105.2,
+  "ni": 468.7,
+  "ebit": 696.1,
+  "ta": 5638.6,
+  "eq": 4088.3,
+  "debt": 733.5,
+  "fcf": -137.2,
+  "ni_core": 468.7,
+  "ebit_core": 688.8,
+  "operating_income": 709.7
+ },
+ "ratios": {
+  "roe_pct": 11.5,
+  "roa_pct": 8.3,
+  "net_margin_pct": 7.7,
+  "ebit_margin_pct": 11.4,
+  "roce_pct": 15.3,
+  "fcf_margin_pct": -2.2,
+  "debt_equity": 0.18,
+  "interest_cover": 12.04,
+  "current_ratio": 3.63,
+  "asset_turnover": 1.08
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 7.7,
+  "asset_turnover": 1.08,
+  "equity_multiplier": 1.38
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 12.5,
+  "net_income_cagr_pct": 28.9
+ },
+ "valuation": {
+  "pe_reported": 20.16,
+  "pe_core": 20.16,
+  "pe_used": 20.16,
+  "pb": 2.31,
+  "ev_ebitda": 10.92,
+  "fcf_yield_pct": -1.5,
+  "market_cap_cr": 9448.2
+ },
+ "piotroski": {
+  "score": 4,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": false,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 8.75,
+  "zone": "safe"
+ }
+}

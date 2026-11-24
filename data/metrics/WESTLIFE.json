@@ -1,0 +1,86 @@
+{
+ "symbol": "WESTLIFE",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "one-off items removed from profit",
+  "core EBIT 35% below reported EBIT"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 619.1,
+  "implied_cr": 602.3,
+  "ratio": 1.03,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 4.6,
+ "snapshot_cr": {
+  "rev": 2600.4,
+  "ni": 32.3,
+  "ebit": 183.9,
+  "ta": 2830.2,
+  "eq": 619.1,
+  "debt": 1804.8,
+  "fcf": 115.5,
+  "ni_core": -5.8,
+  "ebit_core": 119.3,
+  "operating_income": 119.3
+ },
+ "ratios": {
+  "roe_pct": -0.9,
+  "roa_pct": -0.2,
+  "net_margin_pct": -0.2,
+  "ebit_margin_pct": 7.1,
+  "roce_pct": 9.0,
+  "fcf_margin_pct": 4.4,
+  "debt_equity": 2.92,
+  "interest_cover": 1.28,
+  "current_ratio": 0.32,
+  "asset_turnover": 0.92
+ },
+ "ratios_reported": {
+  "roe_pct": 5.2,
+  "roa_pct": 1.1,
+  "net_margin_pct": 1.2
+ },
+ "dupont": {
+  "net_margin_pct": -0.2,
+  "asset_turnover": 0.92,
+  "equity_multiplier": 4.57
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 4.8,
+  "net_income_cagr_pct": -33.8
+ },
+ "valuation": {
+  "pe_reported": 313.33,
+  "pe_core": null,
+  "pe_used": null,
+  "pb": 16.36,
+  "ev_ebitda": 28.81,
+  "fcf_yield_pct": 1.1,
+  "market_cap_cr": 10130.9
+ },
+ "piotroski": {
+  "score": 5,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 0.04,
+  "zone": "distress"
+ }
+}

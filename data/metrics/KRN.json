@@ -1,0 +1,81 @@
+{
+ "symbol": "KRN",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "equity check mismatch (ratio 0.58); figures NOT changed"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 574.0,
+  "implied_cr": 984.9,
+  "ratio": 0.58,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 16.1,
+ "snapshot_cr": {
+  "rev": 600.0,
+  "ni": 76.5,
+  "ebit": 102.7,
+  "ta": 931.8,
+  "eq": 574.0,
+  "debt": 187.3,
+  "fcf": -361.3,
+  "ni_core": 76.5,
+  "ebit_core": 96.6,
+  "operating_income": 96.6
+ },
+ "ratios": {
+  "roe_pct": 13.3,
+  "roa_pct": 8.2,
+  "net_margin_pct": 12.7,
+  "ebit_margin_pct": 17.1,
+  "roce_pct": 17.8,
+  "fcf_margin_pct": -60.2,
+  "debt_equity": 0.33,
+  "interest_cover": 21.5,
+  "current_ratio": 1.64,
+  "asset_turnover": 0.64
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 12.7,
+  "asset_turnover": 0.64,
+  "equity_multiplier": 1.62
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 34.4,
+  "net_income_cagr_pct": 33.3
+ },
+ "valuation": {
+  "pe_reported": 81.26,
+  "pe_core": 81.26,
+  "pe_used": 81.26,
+  "pb": 10.83,
+  "ev_ebitda": 52.6,
+  "fcf_yield_pct": -5.8,
+  "market_cap_cr": 6214.0
+ },
+ "piotroski": {
+  "score": 3,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 4.64,
+  "zone": "safe"
+ }
+}

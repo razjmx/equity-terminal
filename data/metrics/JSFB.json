@@ -1,0 +1,67 @@
+{
+ "symbol": "JSFB",
+ "latest_fy": "2026-03-31",
+ "type": "financial",
+ "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: financial",
+  "core EBIT missing or not positive"
+ ],
+ "flags": [
+  "financial or no EBIT"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 4470.2,
+  "implied_cr": 4927.9,
+  "ratio": 0.91,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": null,
+ "snapshot_cr": {
+  "rev": 3354.2,
+  "ni": 326.4,
+  "ebit": null,
+  "ta": 47447.7,
+  "eq": 4470.2,
+  "debt": null,
+  "fcf": null,
+  "ni_core": null,
+  "ebit_core": null,
+  "operating_income": null
+ },
+ "ratios": {
+  "roe_pct": 7.3,
+  "roa_pct": 0.7,
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
+  "roce_pct": null,
+  "fcf_margin_pct": null,
+  "debt_equity": null,
+  "interest_cover": null,
+  "current_ratio": null,
+  "asset_turnover": null
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "roe_pct": 7.3,
+  "roa_pct": 0.7,
+  "equity_multiplier": 10.61
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 14.8,
+  "net_income_cagr_pct": 8.4
+ },
+ "valuation": {
+  "pe_reported": 13.64,
+  "pe_core": null,
+  "pe_used": 13.64,
+  "pb": 1.0,
+  "ev_ebitda": null,
+  "fcf_yield_pct": null,
+  "market_cap_cr": 4452.2
+ },
+ "piotroski": null,
+ "altman_z2": null
+}

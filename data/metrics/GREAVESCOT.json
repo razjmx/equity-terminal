@@ -1,0 +1,85 @@
+{
+ "symbol": "GREAVESCOT",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "core",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "one-off items removed from profit"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 1430.7,
+  "implied_cr": 1320.0,
+  "ratio": 1.08,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 3.9,
+ "snapshot_cr": {
+  "rev": 3417.5,
+  "ni": 107.1,
+  "ebit": 141.0,
+  "ta": 2893.8,
+  "eq": 1430.7,
+  "debt": 394.4,
+  "fcf": -63.1,
+  "ni_core": 131.3,
+  "ebit_core": 133.9,
+  "operating_income": 133.9
+ },
+ "ratios": {
+  "roe_pct": 9.2,
+  "roa_pct": 4.5,
+  "net_margin_pct": 3.8,
+  "ebit_margin_pct": 4.1,
+  "roce_pct": 7.2,
+  "fcf_margin_pct": -1.8,
+  "debt_equity": 0.28,
+  "interest_cover": 5.41,
+  "current_ratio": 1.86,
+  "asset_turnover": 1.18
+ },
+ "ratios_reported": {
+  "roe_pct": 7.5,
+  "roa_pct": 3.7,
+  "net_margin_pct": 3.1
+ },
+ "dupont": {
+  "net_margin_pct": 3.8,
+  "asset_turnover": 1.18,
+  "equity_multiplier": 2.02
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 8.6,
+  "net_income_cagr_pct": 11.1
+ },
+ "valuation": {
+  "pe_reported": 58.52,
+  "pe_core": 47.76,
+  "pe_used": 47.76,
+  "pb": 4.38,
+  "ev_ebitda": 24.19,
+  "fcf_yield_pct": -1.0,
+  "market_cap_cr": 6269.4
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 4.33,
+  "zone": "safe"
+ }
+}

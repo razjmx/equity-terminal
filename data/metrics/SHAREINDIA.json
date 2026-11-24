@@ -1,0 +1,79 @@
+{
+ "symbol": "SHAREINDIA",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2634.9,
+  "implied_cr": 2993.0,
+  "ratio": 0.88,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 28.8,
+ "snapshot_cr": {
+  "rev": 1369.2,
+  "ni": 323.5,
+  "ebit": 541.2,
+  "ta": 4589.9,
+  "eq": 2634.9,
+  "debt": 694.9,
+  "fcf": -187.5,
+  "ni_core": 323.5,
+  "ebit_core": 393.7,
+  "operating_income": 393.7
+ },
+ "ratios": {
+  "roe_pct": 12.3,
+  "roa_pct": 7.0,
+  "net_margin_pct": 23.6,
+  "ebit_margin_pct": 39.5,
+  "roce_pct": 19.1,
+  "fcf_margin_pct": -13.7,
+  "debt_equity": 0.26,
+  "interest_cover": 5.37,
+  "current_ratio": 2.04,
+  "asset_turnover": 0.3
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 23.6,
+  "asset_turnover": 0.3,
+  "equity_multiplier": 1.74
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 9.6,
+  "net_income_cagr_pct": -0.5
+ },
+ "valuation": {
+  "pe_reported": 12.02,
+  "pe_core": 12.02,
+  "pe_used": 12.02,
+  "pb": 1.48,
+  "ev_ebitda": 3.35,
+  "fcf_yield_pct": -4.8,
+  "market_cap_cr": 3889.1
+ },
+ "piotroski": {
+  "score": 3,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 6.01,
+  "zone": "safe"
+ }
+}

@@ -1,0 +1,216 @@
+{
+ "symbol": "SENORES",
+ "latest_fy": "2026-03-31",
+ "status": "ok",
+ "reliability": "low confidence",
+ "price": 1068.5,
+ "fair_value": 62.7,
+ "fair_low": 4.0,
+ "fair_high": 136.8,
+ "upside_pct": -94.1,
+ "flags": [
+  "growth clamped: 2-year 70.7% to 30%",
+  "growth gap: 2-year growth differs from 3-year CAGR (159.1%) by over 10 points",
+  "low return: ROIC 9.2% below WACC 12.3%",
+  "far from price: model value is 6% of the market price"
+ ],
+ "assumptions": {
+  "rf_pct": 7.2,
+  "erp_pct": 6.0,
+  "beta_raw": 0.88,
+  "beta_used": 0.92,
+  "beta_weeks": 99,
+  "cost_of_equity_pct": 12.7,
+  "wacc_pct": 12.32,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
+  "growth_years": 2,
+  "historic_growth_pct": 70.7,
+  "first_year_growth_pct": 30.0,
+  "ebit_margin_pct": 23.0,
+  "margin_basis": "latest",
+  "sales_to_capital": 0.54,
+  "roic_now_pct": 9.2,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.082
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "growth_pct": 30.0,
+   "revenue": 798.0,
+   "nopat": 138.0,
+   "reinvestment": 344.0,
+   "fcff": -206.0
+  },
+  {
+   "year": 2,
+   "growth_pct": 30.0,
+   "revenue": 1038.0,
+   "nopat": 179.0,
+   "reinvestment": 447.0,
+   "fcff": -268.0
+  },
+  {
+   "year": 3,
+   "growth_pct": 30.0,
+   "revenue": 1349.0,
+   "nopat": 233.0,
+   "reinvestment": 581.0,
+   "fcff": -349.0
+  },
+  {
+   "year": 4,
+   "growth_pct": 26.6,
+   "revenue": 1709.0,
+   "nopat": 295.0,
+   "reinvestment": 671.0,
+   "fcff": -377.0
+  },
+  {
+   "year": 5,
+   "growth_pct": 23.3,
+   "revenue": 2107.0,
+   "nopat": 363.0,
+   "reinvestment": 743.0,
+   "fcff": -380.0
+  },
+  {
+   "year": 6,
+   "growth_pct": 19.9,
+   "revenue": 2527.0,
+   "nopat": 436.0,
+   "reinvestment": 784.0,
+   "fcff": -348.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 16.6,
+   "revenue": 2945.0,
+   "nopat": 508.0,
+   "reinvestment": 782.0,
+   "fcff": -274.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 13.2,
+   "revenue": 3335.0,
+   "nopat": 575.0,
+   "reinvestment": 727.0,
+   "fcff": -152.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 9.9,
+   "revenue": 3663.0,
+   "nopat": 632.0,
+   "reinvestment": 614.0,
+   "fcff": 18.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 3901.0,
+   "nopat": 673.0,
+   "reinvestment": 445.0,
+   "fcff": 228.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 12.3,
+  "fcff_cr": 339.0,
+  "pv_share_of_ev_pct": 402.1
+ },
+ "bridge_cr": {
+  "enterprise_value": 480.0,
+  "debt": 342.0,
+  "cash": 160.0,
+  "investments": 0.0,
+  "minority": 31.0,
+  "equity_value": 267.0,
+  "shares_cr": 4.605,
+  "market_cap": 4921.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   10.32,
+   11.32,
+   12.32,
+   13.32,
+   14.32
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    224.8,
+    228.1,
+    231.6,
+    235.2,
+    238.9
+   ],
+   [
+    133.2,
+    135.0,
+    136.8,
+    138.8,
+    140.8
+   ],
+   [
+    61.4,
+    62.0,
+    62.7,
+    63.4,
+    64.1
+   ],
+   [
+    4.5,
+    4.2,
+    4.0,
+    3.8,
+    3.6
+   ],
+   [
+    -40.9,
+    -41.9,
+    -42.8,
+    -43.7,
+    -44.6
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "implied_ebit_margin_pct": 41.8,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "below 8.6%",
+  "note": "growth outside -10% to 60%"
+ },
+ "model": {
+  "rev": 614.2,
+  "margin": 0.23,
+  "tax": 0.25,
+  "s2c": 0.5355118837951419,
+  "g1": 0.3,
+  "wacc": 0.12317384109721806,
+  "terminal_g": 0.065,
+  "n": 10,
+  "hold_years": 3,
+  "roic_cap": 0.2,
+  "debt": 342.01,
+  "cash": 159.61,
+  "invest": 0.0,
+  "minority": 30.94,
+  "shares_cr": 4.605358779597567,
+  "roll": 1.0821688565243486,
+  "mid_year": true
+ }
+}

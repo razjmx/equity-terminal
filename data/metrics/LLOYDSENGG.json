@@ -1,0 +1,81 @@
+{
+ "symbol": "LLOYDSENGG",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "equity check mismatch (ratio 0.60); figures NOT changed"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 1670.8,
+  "implied_cr": 2765.4,
+  "ratio": 0.6,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 13.0,
+ "snapshot_cr": {
+  "rev": 1293.8,
+  "ni": 189.9,
+  "ebit": 215.6,
+  "ta": 2369.1,
+  "eq": 1670.8,
+  "debt": 108.6,
+  "fcf": -333.6,
+  "ni_core": 189.9,
+  "ebit_core": 168.0,
+  "operating_income": 168.0
+ },
+ "ratios": {
+  "roe_pct": 11.4,
+  "roa_pct": 8.0,
+  "net_margin_pct": 14.7,
+  "ebit_margin_pct": 16.7,
+  "roce_pct": 12.2,
+  "fcf_margin_pct": -25.8,
+  "debt_equity": 0.06,
+  "interest_cover": 17.04,
+  "current_ratio": 2.77,
+  "asset_turnover": 0.55
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 14.7,
+  "asset_turnover": 0.55,
+  "equity_multiplier": 1.42
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 60.9,
+  "net_income_cagr_pct": 72.8
+ },
+ "valuation": {
+  "pe_reported": 68.9,
+  "pe_core": 68.9,
+  "pe_used": 68.9,
+  "pb": 7.83,
+  "ev_ebitda": 54.08,
+  "fcf_yield_pct": -2.5,
+  "market_cap_cr": 13083.4
+ },
+ "piotroski": {
+  "score": 3,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": false,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 6.61,
+  "zone": "safe"
+ }
+}

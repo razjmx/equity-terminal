@@ -1,0 +1,81 @@
+{
+ "symbol": "MSTCLTD",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [
+  "core EBIT 35% below reported EBIT"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 903.9,
+  "implied_cr": 980.1,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 57.3,
+ "snapshot_cr": {
+  "rev": 331.2,
+  "ni": 218.4,
+  "ebit": 292.4,
+  "ta": 2010.7,
+  "eq": 903.9,
+  "debt": 145.2,
+  "fcf": -50.0,
+  "ni_core": 218.4,
+  "ebit_core": 189.9,
+  "operating_income": 189.9
+ },
+ "ratios": {
+  "roe_pct": 24.2,
+  "roa_pct": 10.9,
+  "net_margin_pct": 66.0,
+  "ebit_margin_pct": 88.3,
+  "roce_pct": 31.3,
+  "fcf_margin_pct": -15.1,
+  "debt_equity": 0.16,
+  "interest_cover": null,
+  "current_ratio": 1.49,
+  "asset_turnover": 0.16
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 66.0,
+  "asset_turnover": 0.16,
+  "equity_multiplier": 2.22
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 4.4,
+  "net_income_cagr_pct": -3.4
+ },
+ "valuation": {
+  "pe_reported": 21.12,
+  "pe_core": 21.12,
+  "pe_used": 21.12,
+  "pb": 5.1,
+  "ev_ebitda": 11.43,
+  "fcf_yield_pct": -1.1,
+  "market_cap_cr": 4612.6
+ },
+ "piotroski": {
+  "score": 4,
+  "tested": 8,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": false,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": null,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 4.11,
+  "zone": "safe"
+ }
+}

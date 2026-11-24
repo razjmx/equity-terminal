@@ -1,0 +1,79 @@
+{
+ "symbol": "SAREGAMA",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1692.7,
+  "implied_cr": 1823.3,
+  "ratio": 0.93,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 27.0,
+ "snapshot_cr": {
+  "rev": 954.6,
+  "ni": 207.1,
+  "ebit": 289.0,
+  "ta": 2322.0,
+  "eq": 1692.7,
+  "debt": 72.6,
+  "fcf": -114.0,
+  "ni_core": 207.1,
+  "ebit_core": 258.1,
+  "operating_income": 258.1
+ },
+ "ratios": {
+  "roe_pct": 12.2,
+  "roa_pct": 8.9,
+  "net_margin_pct": 21.7,
+  "ebit_margin_pct": 30.3,
+  "roce_pct": 16.0,
+  "fcf_margin_pct": -11.9,
+  "debt_equity": 0.04,
+  "interest_cover": 59.08,
+  "current_ratio": 1.75,
+  "asset_turnover": 0.41
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 21.7,
+  "asset_turnover": 0.41,
+  "equity_multiplier": 1.37
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 10.6,
+  "net_income_cagr_pct": 3.8
+ },
+ "valuation": {
+  "pe_reported": 60.96,
+  "pe_core": 60.96,
+  "pe_used": 60.96,
+  "pb": 7.46,
+  "ev_ebitda": 33.73,
+  "fcf_yield_pct": -0.9,
+  "market_cap_cr": 12623.3
+ },
+ "piotroski": {
+  "score": 4,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 5.79,
+  "zone": "safe"
+ }
+}

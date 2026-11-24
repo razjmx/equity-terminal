@@ -1,0 +1,79 @@
+{
+ "symbol": "SUNDRMFAST",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4275.0,
+  "implied_cr": 4555.3,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 12.6,
+ "snapshot_cr": {
+  "rev": 6103.2,
+  "ni": 591.2,
+  "ebit": 826.2,
+  "ta": 5937.4,
+  "eq": 4275.0,
+  "debt": 624.6,
+  "fcf": 465.0,
+  "ni_core": 591.2,
+  "ebit_core": 769.2,
+  "operating_income": 769.2
+ },
+ "ratios": {
+  "roe_pct": 13.8,
+  "roa_pct": 10.0,
+  "net_margin_pct": 9.7,
+  "ebit_margin_pct": 13.5,
+  "roce_pct": 18.2,
+  "fcf_margin_pct": 7.6,
+  "debt_equity": 0.15,
+  "interest_cover": 21.66,
+  "current_ratio": 2.12,
+  "asset_turnover": 1.03
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 9.7,
+  "asset_turnover": 1.03,
+  "equity_multiplier": 1.39
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 3.6,
+  "net_income_cagr_pct": 6.1
+ },
+ "valuation": {
+  "pe_reported": 35.58,
+  "pe_core": 35.58,
+  "pe_used": 35.58,
+  "pb": 4.92,
+  "ev_ebitda": 20.3,
+  "fcf_yield_pct": 2.2,
+  "market_cap_cr": 21033.8
+ },
+ "piotroski": {
+  "score": 8,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 6.2,
+  "zone": "safe"
+ }
+}

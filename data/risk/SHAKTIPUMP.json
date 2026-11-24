@@ -1,0 +1,73 @@
+{
+ "symbol": "SHAKTIPUMP",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 358.75,
+ "returns_pct": {
+  "1m": -10.5,
+  "3m": -29.1,
+  "6m": -28.7,
+  "1y": -50.8,
+  "3y_cagr": 28.6,
+  "ytd": -50.5
+ },
+ "relative_strength_pp": {
+  "3m": -30.1,
+  "6m": -33.7,
+  "1y": -50.4
+ },
+ "range": {
+  "high_52w": 780.45,
+  "low_52w": 348.65,
+  "pct_from_high": -54.0,
+  "pct_above_low": 2.9,
+  "high_date": "2025-12-16",
+  "low_date": "2026-11-06"
+ },
+ "moving_averages": {
+  "dma20": 365.87,
+  "pct_vs_dma20": -1.9,
+  "dma50": 414.8,
+  "pct_vs_dma50": -13.5,
+  "dma100": 469.13,
+  "pct_vs_dma100": -23.5,
+  "dma200": 504.81,
+  "pct_vs_dma200": -28.9
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 37.8,
+  "macd_pct": -3.85,
+  "macd_signal_pct": -4.45,
+  "macd_hist_pct": 0.6,
+  "bollinger_pctb": 0.36,
+  "atr_pct": 4.13
+ },
+ "risk": {
+  "volatility_1y_pct": 47.8,
+  "downside_deviation_pct": 31.9,
+  "max_drawdown_1y_pct": -55.3,
+  "max_drawdown_all_pct": -74.1,
+  "var95_1d_pct": -4.19,
+  "cvar95_1d_pct": -5.86,
+  "sharpe_1y": -1.4,
+  "sortino_1y": -2.1
+ },
+ "beta": {
+  "raw": 1.06,
+  "adjusted": 1.04,
+  "weeks": 156,
+  "correlation": 0.27,
+  "r_squared": 0.08,
+  "alpha_pct": 30.1
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 38.18
+ },
+ "flags": []
+}

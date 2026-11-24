@@ -1,0 +1,89 @@
+{
+ "symbol": "NAZARA",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "core",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "core EBIT missing or not positive"
+ ],
+ "flags": [
+  "discontinued operations excluded from profit",
+  "one-off items removed from profit",
+  "core EBIT 426% below reported EBIT"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 3473.5,
+  "implied_cr": 4099.3,
+  "ratio": 0.85,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": -12.1,
+ "snapshot_cr": {
+  "rev": 1829.0,
+  "ni": 95.8,
+  "ebit": 67.8,
+  "ta": 4371.2,
+  "eq": 3473.5,
+  "debt": 214.9,
+  "fcf": 35.9,
+  "ni_core": -135.4,
+  "ebit_core": -220.6,
+  "operating_income": 29.0
+ },
+ "ratios": {
+  "roe_pct": -3.9,
+  "roa_pct": -3.1,
+  "net_margin_pct": -7.4,
+  "ebit_margin_pct": 3.7,
+  "roce_pct": 1.8,
+  "fcf_margin_pct": 2.0,
+  "debt_equity": 0.06,
+  "interest_cover": 3.01,
+  "current_ratio": 2.05,
+  "asset_turnover": 0.42
+ },
+ "ratios_reported": {
+  "roe_pct": 2.8,
+  "roa_pct": 2.2,
+  "net_margin_pct": 5.2
+ },
+ "dupont": {
+  "net_margin_pct": -7.4,
+  "asset_turnover": 0.42,
+  "equity_multiplier": 1.26
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 18.8,
+  "net_income_cagr_pct": 34.5
+ },
+ "valuation": {
+  "pe_reported": 174.75,
+  "pe_core": null,
+  "pe_used": null,
+  "pb": 4.82,
+  "ev_ebitda": 54.47,
+  "fcf_yield_pct": 0.2,
+  "market_cap_cr": 16749.6
+ },
+ "piotroski": {
+  "score": 8,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": false,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 5.57,
+  "zone": "safe"
+ }
+}

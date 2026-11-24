@@ -1,0 +1,79 @@
+{
+ "symbol": "AARTIPHARM",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 2124.6,
+  "implied_cr": 2124.4,
+  "ratio": 1.0,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 15.8,
+ "snapshot_cr": {
+  "rev": 1787.8,
+  "ni": 174.7,
+  "ebit": 279.8,
+  "ta": 3481.7,
+  "eq": 2124.6,
+  "debt": 769.4,
+  "fcf": -186.4,
+  "ni_core": 174.7,
+  "ebit_core": 282.6,
+  "operating_income": 298.1
+ },
+ "ratios": {
+  "roe_pct": 8.2,
+  "roa_pct": 5.0,
+  "net_margin_pct": 9.8,
+  "ebit_margin_pct": 15.7,
+  "roce_pct": 11.0,
+  "fcf_margin_pct": -10.4,
+  "debt_equity": 0.36,
+  "interest_cover": 5.97,
+  "current_ratio": 1.49,
+  "asset_turnover": 0.51
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 9.8,
+  "asset_turnover": 0.51,
+  "equity_multiplier": 1.64
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": -2.6,
+  "net_income_cagr_pct": -3.3
+ },
+ "valuation": {
+  "pe_reported": 52.98,
+  "pe_core": 52.98,
+  "pe_used": 52.98,
+  "pb": 4.36,
+  "ev_ebitda": 26.07,
+  "fcf_yield_pct": -2.0,
+  "market_cap_cr": 9255.2
+ },
+ "piotroski": {
+  "score": 5,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 4.51,
+  "zone": "safe"
+ }
+}

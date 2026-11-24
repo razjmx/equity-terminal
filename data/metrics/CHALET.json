@@ -1,0 +1,81 @@
+{
+ "symbol": "CHALET",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "no market cap"
+ ],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 3697.8,
+  "implied_cr": null,
+  "ratio": null,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 34.9,
+ "snapshot_cr": {
+  "rev": 2769.8,
+  "ni": 645.1,
+  "ebit": 999.0,
+  "ta": 7308.6,
+  "eq": 3697.8,
+  "debt": 2367.7,
+  "fcf": 728.5,
+  "ni_core": 645.1,
+  "ebit_core": 967.9,
+  "operating_income": 967.9
+ },
+ "ratios": {
+  "roe_pct": 17.4,
+  "roa_pct": 8.8,
+  "net_margin_pct": 23.3,
+  "ebit_margin_pct": 36.1,
+  "roce_pct": 16.6,
+  "fcf_margin_pct": 26.3,
+  "debt_equity": 0.64,
+  "interest_cover": 5.54,
+  "current_ratio": 0.7,
+  "asset_turnover": 0.38
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 23.3,
+  "asset_turnover": 0.38,
+  "equity_multiplier": 1.98
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 34.9,
+  "net_income_cagr_pct": 52.1
+ },
+ "valuation": {
+  "pe_reported": null,
+  "pe_core": null,
+  "pe_used": null,
+  "pb": null,
+  "ev_ebitda": null,
+  "fcf_yield_pct": null,
+  "market_cap_cr": null
+ },
+ "piotroski": {
+  "score": 8,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 2.14,
+  "zone": "grey"
+ }
+}

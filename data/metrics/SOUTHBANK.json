@@ -1,0 +1,67 @@
+{
+ "symbol": "SOUTHBANK",
+ "latest_fy": "2026-03-31",
+ "type": "financial",
+ "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "type: financial",
+  "core EBIT missing or not positive"
+ ],
+ "flags": [
+  "financial or no EBIT"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 11416.3,
+  "implied_cr": 12112.7,
+  "ratio": 0.94,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": null,
+ "snapshot_cr": {
+  "rev": 5199.6,
+  "ni": 1455.6,
+  "ebit": null,
+  "ta": 141756.5,
+  "eq": 11416.3,
+  "debt": null,
+  "fcf": null,
+  "ni_core": null,
+  "ebit_core": null,
+  "operating_income": null
+ },
+ "ratios": {
+  "roe_pct": 12.8,
+  "roa_pct": 1.0,
+  "net_margin_pct": null,
+  "ebit_margin_pct": null,
+  "roce_pct": null,
+  "fcf_margin_pct": null,
+  "debt_equity": null,
+  "interest_cover": null,
+  "current_ratio": null,
+  "asset_turnover": null
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "roe_pct": 12.8,
+  "roa_pct": 1.0,
+  "equity_multiplier": 12.42
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 9.5,
+  "net_income_cagr_pct": 23.4
+ },
+ "valuation": {
+  "pe_reported": 10.6,
+  "pe_core": null,
+  "pe_used": 10.6,
+  "pb": 1.35,
+  "ev_ebitda": null,
+  "fcf_yield_pct": null,
+  "market_cap_cr": 15425.4
+ },
+ "piotroski": null,
+ "altman_z2": null
+}

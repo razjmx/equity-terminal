@@ -1,0 +1,73 @@
+{
+ "symbol": "HAPPYFORGE",
+ "as_of": "2026-11-23",
+ "rows": 718,
+ "price": 1769.0,
+ "returns_pct": {
+  "1m": -2.7,
+  "3m": -24.0,
+  "6m": 22.0,
+  "1y": 70.8,
+  "3y_cagr": null,
+  "ytd": 53.9
+ },
+ "relative_strength_pp": {
+  "3m": -25.0,
+  "6m": 16.9,
+  "1y": 71.1
+ },
+ "range": {
+  "high_52w": 2420.4,
+  "low_52w": 1000.5,
+  "pct_from_high": -26.9,
+  "pct_above_low": 76.8,
+  "high_date": "2026-09-01",
+  "low_date": "2025-11-24"
+ },
+ "moving_averages": {
+  "dma20": 1810.92,
+  "pct_vs_dma20": -2.3,
+  "dma50": 1932.8,
+  "pct_vs_dma50": -8.5,
+  "dma100": 1907.05,
+  "pct_vs_dma100": -7.2,
+  "dma200": 1612.18,
+  "pct_vs_dma200": 9.7
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 43.2,
+  "macd_pct": -1.51,
+  "macd_signal_pct": -1.75,
+  "macd_hist_pct": 0.24,
+  "bollinger_pctb": 0.33,
+  "atr_pct": 5.02
+ },
+ "risk": {
+  "volatility_1y_pct": 39.1,
+  "downside_deviation_pct": 24.0,
+  "max_drawdown_1y_pct": -30.0,
+  "max_drawdown_all_pct": -40.8,
+  "var95_1d_pct": -3.1,
+  "cvar95_1d_pct": -4.52,
+  "sharpe_1y": 1.38,
+  "sortino_1y": 2.25
+ },
+ "beta": {
+  "raw": 0.93,
+  "adjusted": 0.95,
+  "weeks": 152,
+  "correlation": 0.41,
+  "r_squared": 0.17,
+  "alpha_pct": 15.9
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 32.94
+ },
+ "flags": []
+}

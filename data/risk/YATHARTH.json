@@ -1,0 +1,73 @@
+{
+ "symbol": "YATHARTH",
+ "as_of": "2026-11-23",
+ "rows": 813,
+ "price": 1085.05,
+ "returns_pct": {
+  "1m": 17.8,
+  "3m": 28.0,
+  "6m": 26.2,
+  "1y": 36.5,
+  "3y_cagr": 44.6,
+  "ytd": 59.1
+ },
+ "relative_strength_pp": {
+  "3m": 27.0,
+  "6m": 21.2,
+  "1y": 36.9
+ },
+ "range": {
+  "high_52w": 1162.2,
+  "low_52w": 550.8,
+  "pct_from_high": -6.6,
+  "pct_above_low": 97.0,
+  "high_date": "2026-09-23",
+  "low_date": "2026-01-23"
+ },
+ "moving_averages": {
+  "dma20": 1021.21,
+  "pct_vs_dma20": 6.3,
+  "dma50": 1026.58,
+  "pct_vs_dma50": 5.7,
+  "dma100": 951.04,
+  "pct_vs_dma100": 14.1,
+  "dma200": 848.58,
+  "pct_vs_dma200": 27.9
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": true,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 61.7,
+  "macd_pct": 2.55,
+  "macd_signal_pct": 1.78,
+  "macd_hist_pct": 0.77,
+  "bollinger_pctb": 0.75,
+  "atr_pct": 3.55
+ },
+ "risk": {
+  "volatility_1y_pct": 38.2,
+  "downside_deviation_pct": 24.3,
+  "max_drawdown_1y_pct": -30.6,
+  "max_drawdown_all_pct": -47.7,
+  "var95_1d_pct": -3.24,
+  "cvar95_1d_pct": -4.65,
+  "sharpe_1y": 0.82,
+  "sortino_1y": 1.28
+ },
+ "beta": {
+  "raw": 1.3,
+  "adjusted": 1.2,
+  "weeks": 156,
+  "correlation": 0.46,
+  "r_squared": 0.21,
+  "alpha_pct": 31.7
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 57.13
+ },
+ "flags": []
+}

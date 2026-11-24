@@ -1,0 +1,79 @@
+{
+ "symbol": "RATNAMANI",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 4110.6,
+  "implied_cr": 4242.4,
+  "ratio": 0.97,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 14.4,
+ "snapshot_cr": {
+  "rev": 4417.1,
+  "ni": 482.6,
+  "ebit": 724.5,
+  "ta": 5387.6,
+  "eq": 4110.6,
+  "debt": 317.6,
+  "fcf": 450.8,
+  "ni_core": 482.6,
+  "ebit_core": 634.4,
+  "operating_income": 634.4
+ },
+ "ratios": {
+  "roe_pct": 11.7,
+  "roa_pct": 9.0,
+  "net_margin_pct": 10.9,
+  "ebit_margin_pct": 16.4,
+  "roce_pct": 16.0,
+  "fcf_margin_pct": 10.2,
+  "debt_equity": 0.08,
+  "interest_cover": 39.85,
+  "current_ratio": 3.92,
+  "asset_turnover": 0.82
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 10.9,
+  "asset_turnover": 0.82,
+  "equity_multiplier": 1.31
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": -0.3,
+  "net_income_cagr_pct": -1.9
+ },
+ "valuation": {
+  "pe_reported": 33.82,
+  "pe_core": 33.82,
+  "pe_used": 33.82,
+  "pb": 3.97,
+  "ev_ebitda": 18.38,
+  "fcf_yield_pct": 2.8,
+  "market_cap_cr": 16321.6
+ },
+ "piotroski": {
+  "score": 6,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": false,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 9.65,
+  "zone": "safe"
+ }
+}

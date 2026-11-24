@@ -1,0 +1,73 @@
+{
+ "symbol": "BLUEJET",
+ "as_of": "2026-11-23",
+ "rows": 755,
+ "price": 513.85,
+ "returns_pct": {
+  "1m": 5.4,
+  "3m": -13.7,
+  "6m": 16.8,
+  "1y": -10.8,
+  "3y_cagr": null,
+  "ytd": -3.1
+ },
+ "relative_strength_pp": {
+  "3m": -14.7,
+  "6m": 11.7,
+  "1y": -10.4
+ },
+ "range": {
+  "high_52w": 626.25,
+  "low_52w": 327.25,
+  "pct_from_high": -17.9,
+  "pct_above_low": 57.0,
+  "high_date": "2026-07-31",
+  "low_date": "2026-03-30"
+ },
+ "moving_averages": {
+  "dma20": 520.4,
+  "pct_vs_dma20": -1.3,
+  "dma50": 533.59,
+  "pct_vs_dma50": -3.7,
+  "dma100": 559.89,
+  "pct_vs_dma100": -8.2,
+  "dma200": 492.64,
+  "pct_vs_dma200": 4.3
+ },
+ "trend": {
+  "above_dma200": true,
+  "above_dma50": false,
+  "dma50_above_dma200": true,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 45.8,
+  "macd_pct": -0.52,
+  "macd_signal_pct": -0.43,
+  "macd_hist_pct": -0.09,
+  "bollinger_pctb": 0.43,
+  "atr_pct": 4.06
+ },
+ "risk": {
+  "volatility_1y_pct": 46.6,
+  "downside_deviation_pct": 30.0,
+  "max_drawdown_1y_pct": -43.7,
+  "max_drawdown_all_pct": -67.6,
+  "var95_1d_pct": -4.32,
+  "cvar95_1d_pct": -5.86,
+  "sharpe_1y": -0.17,
+  "sortino_1y": -0.26
+ },
+ "beta": {
+  "raw": 1.34,
+  "adjusted": 1.23,
+  "weeks": 156,
+  "correlation": 0.4,
+  "r_squared": 0.16,
+  "alpha_pct": 13.5
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 32.51
+ },
+ "flags": []
+}

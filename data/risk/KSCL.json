@@ -1,0 +1,73 @@
+{
+ "symbol": "KSCL",
+ "as_of": "2026-11-23",
+ "rows": 1237,
+ "price": 698.05,
+ "returns_pct": {
+  "1m": -4.7,
+  "3m": -9.7,
+  "6m": -23.8,
+  "1y": -34.8,
+  "3y_cagr": 3.6,
+  "ytd": -29.2
+ },
+ "relative_strength_pp": {
+  "3m": -10.7,
+  "6m": -28.9,
+  "1y": -34.4
+ },
+ "range": {
+  "high_52w": 1069.0,
+  "low_52w": 659.1,
+  "pct_from_high": -34.7,
+  "pct_above_low": 5.9,
+  "high_date": "2025-11-17",
+  "low_date": "2026-10-30"
+ },
+ "moving_averages": {
+  "dma20": 696.96,
+  "pct_vs_dma20": 0.2,
+  "dma50": 711.15,
+  "pct_vs_dma50": -1.8,
+  "dma100": 759.71,
+  "pct_vs_dma100": -8.1,
+  "dma200": 818.01,
+  "pct_vs_dma200": -14.7
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "none"
+ },
+ "momentum": {
+  "rsi14": 46.8,
+  "macd_pct": 0.17,
+  "macd_signal_pct": -0.27,
+  "macd_hist_pct": 0.44,
+  "bollinger_pctb": 0.51,
+  "atr_pct": 3.72
+ },
+ "risk": {
+  "volatility_1y_pct": 37.5,
+  "downside_deviation_pct": 25.1,
+  "max_drawdown_1y_pct": -38.3,
+  "max_drawdown_all_pct": -58.0,
+  "var95_1d_pct": -3.53,
+  "cvar95_1d_pct": -4.48,
+  "sharpe_1y": -1.15,
+  "sortino_1y": -1.72
+ },
+ "beta": {
+  "raw": 0.94,
+  "adjusted": 0.96,
+  "weeks": 156,
+  "correlation": 0.34,
+  "r_squared": 0.11,
+  "alpha_pct": 3.0
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 45.12
+ },
+ "flags": []
+}

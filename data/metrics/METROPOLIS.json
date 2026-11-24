@@ -1,0 +1,79 @@
+{
+ "symbol": "METROPOLIS",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1513.2,
+  "implied_cr": 1646.0,
+  "ratio": 0.92,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 18.1,
+ "snapshot_cr": {
+  "rev": 1645.8,
+  "ni": 190.0,
+  "ebit": 283.7,
+  "ta": 2138.1,
+  "eq": 1513.2,
+  "debt": 231.9,
+  "fcf": 299.5,
+  "ni_core": 190.0,
+  "ebit_core": 298.3,
+  "operating_income": 298.3
+ },
+ "ratios": {
+  "roe_pct": 12.6,
+  "roa_pct": 8.9,
+  "net_margin_pct": 11.5,
+  "ebit_margin_pct": 17.2,
+  "roce_pct": 15.7,
+  "fcf_margin_pct": 18.2,
+  "debt_equity": 0.15,
+  "interest_cover": 11.56,
+  "current_ratio": 1.4,
+  "asset_turnover": 0.77
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 11.5,
+  "asset_turnover": 0.77,
+  "equity_multiplier": 1.41
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 12.8,
+  "net_income_cagr_pct": 10.0
+ },
+ "valuation": {
+  "pe_reported": 61.47,
+  "pe_core": 61.47,
+  "pe_used": 61.47,
+  "pb": 7.72,
+  "ev_ebitda": 28.05,
+  "fcf_yield_pct": 2.6,
+  "market_cap_cr": 11679.7
+ },
+ "piotroski": {
+  "score": 8,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": true,
+   "current_ratio_improved": true,
+   "no_dilution": true,
+   "gross_margin_improved": false,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 5.73,
+  "zone": "safe"
+ }
+}

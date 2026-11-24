@@ -1,0 +1,79 @@
+{
+ "symbol": "YATHARTH",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": true,
+ "dcf_reasons": [],
+ "flags": [],
+ "equity_check": {
+  "balance_sheet_cr": 1780.6,
+  "implied_cr": 1875.7,
+  "ratio": 0.95,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": 18.3,
+ "snapshot_cr": {
+  "rev": 1196.4,
+  "ni": 175.4,
+  "ebit": 230.1,
+  "ta": 2281.5,
+  "eq": 1780.6,
+  "debt": 264.1,
+  "fcf": -112.0,
+  "ni_core": 175.4,
+  "ebit_core": 219.0,
+  "operating_income": 219.0
+ },
+ "ratios": {
+  "roe_pct": 9.8,
+  "roa_pct": 7.7,
+  "net_margin_pct": 14.7,
+  "ebit_margin_pct": 19.2,
+  "roce_pct": 11.0,
+  "fcf_margin_pct": -9.4,
+  "debt_equity": 0.15,
+  "interest_cover": 35.21,
+  "current_ratio": 3.87,
+  "asset_turnover": 0.52
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": 14.7,
+  "asset_turnover": 0.52,
+  "equity_multiplier": 1.28
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": 32.0,
+  "net_income_cagr_pct": 38.7
+ },
+ "valuation": {
+  "pe_reported": 59.61,
+  "pe_core": 59.61,
+  "pe_used": 59.61,
+  "pb": 5.87,
+  "ev_ebitda": 33.1,
+  "fcf_yield_pct": -1.1,
+  "market_cap_cr": 10454.9
+ },
+ "piotroski": {
+  "score": 7,
+  "tested": 9,
+  "tests": {
+   "roa_positive": true,
+   "cfo_positive": true,
+   "roa_improved": true,
+   "cfo_above_net_income": true,
+   "leverage_fell": false,
+   "current_ratio_improved": false,
+   "no_dilution": true,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": true
+  }
+ },
+ "altman_z2": {
+  "z": 6.91,
+  "zone": "safe"
+ }
+}

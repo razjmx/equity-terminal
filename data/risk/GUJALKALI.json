@@ -1,0 +1,73 @@
+{
+ "symbol": "GUJALKALI",
+ "as_of": "2026-11-23",
+ "rows": 1236,
+ "price": 580.1,
+ "returns_pct": {
+  "1m": 5.1,
+  "3m": -14.3,
+  "6m": -18.2,
+  "1y": 5.7,
+  "3y_cagr": -6.9,
+  "ytd": 15.0
+ },
+ "relative_strength_pp": {
+  "3m": -15.3,
+  "6m": -23.2,
+  "1y": 6.1
+ },
+ "range": {
+  "high_52w": 801.6,
+  "low_52w": 414.15,
+  "pct_from_high": -27.6,
+  "pct_above_low": 40.1,
+  "high_date": "2026-05-05",
+  "low_date": "2026-03-17"
+ },
+ "moving_averages": {
+  "dma20": 578.35,
+  "pct_vs_dma20": 0.3,
+  "dma50": 604.6,
+  "pct_vs_dma50": -4.1,
+  "dma100": 634.02,
+  "pct_vs_dma100": -8.5,
+  "dma200": 616.61,
+  "pct_vs_dma200": -5.9
+ },
+ "trend": {
+  "above_dma200": false,
+  "above_dma50": false,
+  "dma50_above_dma200": false,
+  "cross": "death cross in last 20 days"
+ },
+ "momentum": {
+  "rsi14": 46.4,
+  "macd_pct": -0.47,
+  "macd_signal_pct": -0.84,
+  "macd_hist_pct": 0.37,
+  "bollinger_pctb": 0.52,
+  "atr_pct": 3.86
+ },
+ "risk": {
+  "volatility_1y_pct": 41.9,
+  "downside_deviation_pct": 24.1,
+  "max_drawdown_1y_pct": -32.5,
+  "max_drawdown_all_pct": -59.7,
+  "var95_1d_pct": -3.23,
+  "cvar95_1d_pct": -4.3,
+  "sharpe_1y": 0.16,
+  "sortino_1y": 0.28
+ },
+ "beta": {
+  "raw": 1.06,
+  "adjusted": 1.04,
+  "weeks": 156,
+  "correlation": 0.43,
+  "r_squared": 0.19,
+  "alpha_pct": -11.6
+ },
+ "liquidity": {
+  "avg_daily_value_3m_cr": 12.38
+ },
+ "flags": []
+}

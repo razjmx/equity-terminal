@@ -1,0 +1,215 @@
+{
+ "symbol": "ASHOKA",
+ "latest_fy": "2026-03-31",
+ "status": "ok",
+ "reliability": "indicative",
+ "price": 116.58,
+ "fair_value": 257.0,
+ "fair_low": 236.1,
+ "fair_high": 281.6,
+ "upside_pct": 120.4,
+ "flags": [
+  "investments added: Rs 432 cr of non-operating investments (13% of market cap)",
+  "growth clamped: 2-year -11.9% to -5%",
+  "growth path: first-year growth below terminal growth (path rises)"
+ ],
+ "assumptions": {
+  "rf_pct": 7.2,
+  "erp_pct": 6.0,
+  "beta_raw": 1.7,
+  "beta_used": 1.47,
+  "beta_weeks": 156,
+  "cost_of_equity_pct": 16.01,
+  "wacc_pct": 12.69,
+  "terminal_growth_pct": 6.5,
+  "tax_pct": 25.0,
+  "forecast_years": 10,
+  "hold_years": 3,
+  "growth_years": 2,
+  "historic_growth_pct": -11.9,
+  "first_year_growth_pct": -5.0,
+  "ebit_margin_pct": 19.3,
+  "margin_basis": "latest",
+  "sales_to_capital": 0.94,
+  "roic_now_pct": 13.6,
+  "mid_year": true,
+  "roll_forward_years": 0.66,
+  "roll_factor": 1.103
+ },
+ "projection_cr": [
+  {
+   "year": 1,
+   "growth_pct": -5.0,
+   "revenue": 6605.0,
+   "nopat": 956.0,
+   "reinvestment": 0.0,
+   "fcff": 956.0
+  },
+  {
+   "year": 2,
+   "growth_pct": -5.0,
+   "revenue": 6275.0,
+   "nopat": 908.0,
+   "reinvestment": 0.0,
+   "fcff": 908.0
+  },
+  {
+   "year": 3,
+   "growth_pct": -5.0,
+   "revenue": 5961.0,
+   "nopat": 863.0,
+   "reinvestment": 0.0,
+   "fcff": 863.0
+  },
+  {
+   "year": 4,
+   "growth_pct": -3.4,
+   "revenue": 5761.0,
+   "nopat": 834.0,
+   "reinvestment": 0.0,
+   "fcff": 834.0
+  },
+  {
+   "year": 5,
+   "growth_pct": -1.7,
+   "revenue": 5662.0,
+   "nopat": 820.0,
+   "reinvestment": 0.0,
+   "fcff": 820.0
+  },
+  {
+   "year": 6,
+   "growth_pct": -0.1,
+   "revenue": 5658.0,
+   "nopat": 819.0,
+   "reinvestment": 0.0,
+   "fcff": 819.0
+  },
+  {
+   "year": 7,
+   "growth_pct": 1.6,
+   "revenue": 5747.0,
+   "nopat": 832.0,
+   "reinvestment": 94.0,
+   "fcff": 738.0
+  },
+  {
+   "year": 8,
+   "growth_pct": 3.2,
+   "revenue": 5932.0,
+   "nopat": 859.0,
+   "reinvestment": 196.0,
+   "fcff": 663.0
+  },
+  {
+   "year": 9,
+   "growth_pct": 4.9,
+   "revenue": 6220.0,
+   "nopat": 900.0,
+   "reinvestment": 306.0,
+   "fcff": 595.0
+  },
+  {
+   "year": 10,
+   "growth_pct": 6.5,
+   "revenue": 6624.0,
+   "nopat": 959.0,
+   "reinvestment": 429.0,
+   "fcff": 530.0
+  }
+ ],
+ "terminal": {
+  "roic_pct": 12.7,
+  "fcff_cr": 498.0,
+  "pv_share_of_ev_pct": 35.3
+ },
+ "bridge_cr": {
+  "enterprise_value": 7337.0,
+  "debt": 1835.0,
+  "cash": 603.0,
+  "investments": 432.0,
+  "minority": -3.0,
+  "equity_value": 6540.0,
+  "shares_cr": 28.072,
+  "market_cap": 3273.0
+ },
+ "sensitivity": {
+  "wacc_pct": [
+   10.69,
+   11.69,
+   12.69,
+   13.69,
+   14.69
+  ],
+  "terminal_growth_pct": [
+   5.5,
+   6.0,
+   6.5,
+   7.0,
+   7.5
+  ],
+  "fair_value": [
+   [
+    313.7,
+    319.0,
+    325.4,
+    332.6,
+    341.6
+   ],
+   [
+    277.7,
+    279.6,
+    281.6,
+    283.5,
+    285.3
+   ],
+   [
+    253.7,
+    255.3,
+    257.0,
+    258.4,
+    259.9
+   ],
+   [
+    233.5,
+    234.8,
+    236.1,
+    237.3,
+    238.4
+   ],
+   [
+    216.0,
+    217.1,
+    218.2,
+    219.1,
+    220.0
+   ]
+  ]
+ },
+ "reverse_dcf": {
+  "implied_first_year_growth_pct": null,
+  "implied_ebit_margin_pct": 10.4,
+  "implied_discount_rate_pct": null,
+  "implied_rate_note": "above 25%",
+  "note": "growth outside -10% to 60%"
+ },
+ "model": {
+  "rev": 6952.8,
+  "margin": 0.193,
+  "tax": 0.25,
+  "s2c": 0.9425351522313294,
+  "g1": -0.05,
+  "wacc": 0.1268531017248796,
+  "terminal_g": 0.065,
+  "n": 10,
+  "hold_years": 3,
+  "roic_cap": 0.2,
+  "debt": 1835.3142,
+  "cash": 602.6813,
+  "invest": 432.0454,
+  "minority": -3.1663,
+  "shares_cr": 28.0723231840796,
+  "roll": 1.1030472697200793,
+  "mid_year": true
+ }
+}

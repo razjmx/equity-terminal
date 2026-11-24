@@ -1,0 +1,83 @@
+{
+ "symbol": "SUVEN",
+ "latest_fy": "2026-03-31",
+ "type": "standard",
+ "profit_basis": "reported",
+ "dcf_eligible": false,
+ "dcf_reasons": [
+  "core EBIT missing or not positive"
+ ],
+ "flags": [
+  "equity check mismatch (ratio 1.31); figures NOT changed"
+ ],
+ "equity_check": {
+  "balance_sheet_cr": 591.4,
+  "implied_cr": 451.8,
+  "ratio": 1.31,
+  "used": "balance_sheet"
+ },
+ "core_ebit_margin_pct": -4072.2,
+ "snapshot_cr": {
+  "rev": 7.1,
+  "ni": -276.3,
+  "ebit": -276.2,
+  "ta": 624.2,
+  "eq": 591.4,
+  "debt": 16.7,
+  "fcf": -306.5,
+  "ni_core": -276.3,
+  "ebit_core": -289.7,
+  "operating_income": -289.7
+ },
+ "ratios": {
+  "roe_pct": -46.7,
+  "roa_pct": -44.3,
+  "net_margin_pct": -3884.1,
+  "ebit_margin_pct": -3881.9,
+  "roce_pct": -45.6,
+  "fcf_margin_pct": -4307.9,
+  "debt_equity": 0.03,
+  "interest_cover": -1750.23,
+  "current_ratio": 29.15,
+  "asset_turnover": 0.01
+ },
+ "ratios_reported": null,
+ "dupont": {
+  "net_margin_pct": -3884.1,
+  "asset_turnover": 0.01,
+  "equity_multiplier": 1.06
+ },
+ "growth": {
+  "years_used": 3,
+  "revenue_cagr_pct": -19.3,
+  "net_income_cagr_pct": null
+ },
+ "valuation": {
+  "pe_reported": null,
+  "pe_core": null,
+  "pe_used": null,
+  "pb": 12.74,
+  "ev_ebitda": -27.22,
+  "fcf_yield_pct": -4.1,
+  "market_cap_cr": 7537.4
+ },
+ "piotroski": {
+  "score": 3,
+  "tested": 9,
+  "tests": {
+   "roa_positive": false,
+   "cfo_positive": false,
+   "roa_improved": true,
+   "cfo_above_net_income": false,
+   "leverage_fell": false,
+   "current_ratio_improved": true,
+   "no_dilution": false,
+   "gross_margin_improved": true,
+   "asset_turnover_improved": false
+  }
+ },
+ "altman_z2": {
+  "z": 16.92,
+  "zone": "safe"
+ }
+}
