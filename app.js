@@ -392,23 +392,33 @@ function stmtTable(tb,kind,per){
   let t=`<table class="stmt"><tr><th class="l">${mn?'₹ million':'₹ crore'}</th>${tb.dates.map(d=>`<th>${dl(d)}</th>`).join('')}</tr>`;
   rows.forEach(([n,v])=>{
     t+=`<tr class="${key.has(n)?'kr':''}"><td class="l">${esc(n.replace(/([a-z])([A-Z])/g,'$1 $2'))}</td>${v.map(x=>`<td>${cr(n,x)}</td>`).join('')}</tr>`;
-    if(gk.has(n)){const lag=1;t+=`<tr class="gr"><td class="l">${per==='q'?'QoQ':'YoY'} growth</td>${v.map((x,i)=>{const p=i>=lag?v[i-lag]:null;if(x==null||p==null||p<=0)return '<td>–</td>';const g=(x/p-1)*100;return `<td class="${cls(g)}">${T.pct(g)}</td>`}).join('')}</tr>`}
+    if(gk.has(n)){
+      const half=per==='q'&&kind!=='pl';
+      const prior=i=>{if(!half)return i>=1?i-1:-1;const t=new Date(tb.dates[i]).getTime();for(let k=0;k<i;k++){const d=Math.abs(t-new Date(tb.dates[k]).getTime())/864e5;if(d>335&&d<395)return k}return -1};
+      t+=`<tr class="gr"><td class="l">${half?'YoY':per==='q'?'QoQ':'YoY'} growth</td>${v.map((x,i)=>{const k=prior(i),p=k>=0?v[k]:null;if(x==null||p==null||p<=0)return '<td>–</td>';const g=(x/p-1)*100;return `<td class="${cls(g)}">${T.pct(g)}</td>`}).join('')}</tr>`}
   });
   return `<div class="card scroll" style="padding:0"><div class="stbox">${t}</table></div></div>`;
 }
 function shareholdingHtml(st,sh){
   let h='';
   if(sh&&sh.quarters&&sh.quarters.length){
-    const q=sh.quarters,f=(k)=>q.map(x=>x[k]);
-    const rows=[['promoter','Promoters'],['fii','FII / FPI (foreign institutions)'],['dii','DII (MFs, insurers, banks, AIFs)'],['public','Public (retail & others)']];
-    h+=`<div class="card"><h3>Shareholding pattern<span class="mut" style="font-weight:400;font-size:12px">% of total shares, source: NSE shareholding filings</span></h3><div class="scroll"><table class="stmt"><tr><th class="l">Holder</th>${q.map(x=>`<th>${esc(x.label||x.date)}</th>`).join('')}</tr>${rows.filter(([k])=>q.some(x=>x[k]!=null)).map(([k,n])=>`<tr><td class="l">${n}</td>${q.map((x,i)=>{const v=x[k];const pv=i?q[i-1][k]:null;const d=v!=null&&pv!=null?v-pv:null;return `<td>${v==null?'–':T.fmt(v,2)}${d!=null&&Math.abs(d)>=.005?`<small class="${cls(d)}"> ${d>0?'+':''}${T.fmt(d,2)}</small>`:''}</td>`}).join('')}</tr>`).join('')}</table></div></div>`;
+    const q=sh.quarters,rows=[['promoter','Promoters','#2f6fdb'],['fii','FII / FPI','#2e9e6b'],['dii','DII','#e9a23b'],['public','Public (retail & others)','#9aa3b0']].filter(([k])=>q.some(x=>x[k]!=null));
+    const lab=x=>esc(x.label||x.date);
+    const bars=q.map(x=>`<div class="shc"><div class="shs">${rows.map(([k,n,c])=>x[k]!=null?`<div style="height:${Math.max(0,x[k])*1.6}px;background:${c}" title="${n} ${T.fmt(x[k],2)}%"><i>${x[k]>=6?T.fmt(x[k],1):''}</i></div>`:'').join('')}</div><span>${lab(x)}</span></div>`).join('');
+    h+=`<div class="card shcard"><h3>Shareholding pattern<span class="mut" style="font-weight:400;font-size:12px">% of total shares · source: NSE filings</span></h3>
+     <div class="shleg">${rows.map(([k,n,c])=>`<span><b style="background:${c}"></b>${n}</span>`).join('')}</div><div class="shbars">${bars}</div>
+     <div class="scroll" style="max-height:none;margin-top:14px"><table class="stmt sht"><tr><th class="l">Holding, %</th>${q.map(x=>`<th>${lab(x)}</th>`).join('')}</tr>
+      ${rows.map(([k,n])=>`<tr class="kr"><td class="l">${n}</td>${q.map(x=>`<td>${x[k]==null?'–':T.fmt(x[k],2)}</td>`).join('')}</tr>`).join('')}
+      <tr><td class="l" colspan="${q.length+1}" style="font-weight:600;color:var(--m);padding-top:14px;position:static">Change vs previous quarter, percentage points</td></tr>
+      ${rows.map(([k,n])=>`<tr><td class="l">${n}</td>${q.map((x,i)=>{const v=x[k],pv=i?q[i-1][k]:null;const d=v!=null&&pv!=null?v-pv:null;return `<td class="${d==null?'':d>0.004?'pos':d<-0.004?'neg':''}">${d==null?'–':(d>0?'+':'')+T.fmt(d,2)}</td>`}).join('')}</tr>`).join('')}</table></div></div>`;
+    return h;
   }
   const hd=st&&st.holders;
   if(hd&&(hd.insiders_pct!=null||hd.institutions_pct!=null)){
     const ins=hd.insiders_pct!=null?hd.insiders_pct*100:null,inst=hd.institutions_pct!=null?hd.institutions_pct*100:null,oth=ins!=null&&inst!=null?Math.max(0,100-ins-inst):null;
     h+=`<div class="card"><h3>Ownership snapshot<span class="mut" style="font-weight:400;font-size:12px">source: Yahoo Finance, latest</span></h3>
      <div class="own">${[['Insiders / promoters',ins,'#2f6fdb'],['Institutions (FII + DII + MF)',inst,'#2e9e6b'],['Others / public',oth,'#e9a23b']].filter(x=>x[1]!=null).map(x=>`<div style="flex:${Math.max(x[1],2)};background:${x[2]}"><b>${T.fmt(x[1],1)}%</b><span>${x[0]}</span></div>`).join('')}</div>
-     <p class="mut" style="margin:10px 0 0;font-size:12px">Yahoo does not split institutions into FII and DII, and its promoter figure is "insiders". The quarterly promoter / FII / DII / public pattern needs NSE data, which is being set up.</p></div>`;
+     <p class="mut" style="margin:10px 0 0;font-size:12px">Quarterly NSE data is not available for this stock yet, so this Yahoo snapshot is shown instead. It does not split FII and DII.</p></div>`;
   }
   return h||'<div class="card"><p class="mut">Shareholding data is not available for this stock yet.</p></div>';
 }
@@ -427,9 +437,9 @@ async function finTabs(s){
     const map={pl:['annual_income','quarterly_income'],bs:['annual_balance','quarterly_balance'],cf:['annual_cashflow','quarterly_cashflow']}[kind];
     const tb=st[map[pc==='q'?1:0]];
     const title={pl:'Profit & Loss',bs:'Balance Sheet',cf:'Cash Flow'}[kind];
-    body.innerHTML=`<div class="fbar"><div class="seg" id="fper"><button data-p="annual" class="${FS.per==='annual'?'on':''}">Annual</button><button data-p="quarterly" class="${FS.per==='quarterly'?'on':''}">Quarterly</button></div>
+    body.innerHTML=`<div class="fbar"><div class="seg" id="fper"><button data-p="annual" class="${FS.per==='annual'?'on':''}">Annual</button><button data-p="quarterly" class="${FS.per==='quarterly'?'on':''}">${kind==='pl'?'Quarterly':'Half-yearly'}</button></div>
       <div class="seg" id="funit"><button data-u="cr" class="${FS.unit==='cr'?'on':''}">₹ Crore</button><button data-u="mn" class="${FS.unit==='mn'?'on':''}">₹ Million</button></div>
-      <label class="chk"><input type="checkbox" id="fkey" ${FS.keyonly?'checked':''}> Key lines only</label><span class="mut" style="margin-left:auto;font-size:12px">${esc(title)} · ${FS.unit==='mn'?'₹ million':'₹ crore'} · Yahoo Finance · updated ${esc(st.fetched||'')}</span></div>${stmtTable(tb,kind,pc)}`;
+      <label class="chk"><input type="checkbox" id="fkey" ${FS.keyonly?'checked':''}> Key lines only</label><span class="mut" style="margin-left:auto;font-size:12px">${esc(title)} · ${FS.unit==='mn'?'₹ million':'₹ crore'} · Yahoo Finance · updated ${esc(st.fetched||'')}</span></div>${pc==='q'&&kind!=='pl'?'<p class="mut" style="max-width:1040px;margin:0 auto 10px;font-size:12px">Indian companies publish the balance sheet and cash flow twice a year (March and September), so this view is half-yearly. Only the Profit & Loss is reported every quarter. Cash flow in the September column normally covers the first six months only.</p>':''}${stmtTable(tb,kind,pc)}`;
     $('#fper').querySelectorAll('button').forEach(b=>b.onclick=()=>{FS.per=b.dataset.p;draw()});
     $('#funit').querySelectorAll('button').forEach(b=>b.onclick=()=>{FS.unit=b.dataset.u;draw()});
     $('#fkey').onchange=e=>{FS.keyonly=e.target.checked;draw()};
