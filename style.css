@@ -335,7 +335,9 @@ input.ed{width:84px;max-width:100%;text-align:right;padding:3px 6px;border:1px s
 input.ed.chg{background:rgba(42,111,219,.14);font-weight:600}
 .ed-reset{font:inherit;font-size:12px;padding:2px 8px;border:1px solid #2a6fdb;border-radius:6px;background:transparent;color:inherit;cursor:pointer}
 
-.ffax{display:flex;justify-content:space-between;font-size:11px;color:var(--m,#667085);margin:6px 0 0;padding:0 118px 0 148px}
+.ffax{display:flex;justify-content:space-between;font-size:11px;color:var(--m,#667085)}
+.ffaxr{margin:6px 0 0}
+.ffl small{display:block;font-size:10.5px}
 .ffr{display:grid;grid-template-columns:140px 1fr 70px;gap:8px;align-items:center;margin:8px 0;font-size:13px}
 .ffr.off{opacity:.45}
 .ffl{display:flex;gap:6px;align-items:center;line-height:1.2}
