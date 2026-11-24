@@ -457,3 +457,6 @@ table.sotp select.ed{padding:4px 6px}
 .hmbox{margin:18px 14px 20px}
 .hmbox:hover .hmt:hover>div{transform:scale(var(--s,1.05)) translateY(-2px)}
 .hmbox:hover .hmt>div{transform:scale(.97)}
+
+/* keep every heatmap layer (tiles, pop, tooltip) below the ticker and the pinned menu bar */
+.hmbox{isolation:isolate;z-index:1}
