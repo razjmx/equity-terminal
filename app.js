@@ -153,7 +153,7 @@ function route(){
   return market();
 }
 function research(){
-  view.innerHTML=`<div class="rs"><h2>Company research</h2><p class="mut">Search any Nifty 500 company by name or symbol</p><div class="rsbox"><input id="rs-q" placeholder="e.g. Reliance, TCS, HDFC Bank" autocomplete="off"></div></div>`;
+  view.innerHTML=`<div class="rs"><h2>Company research</h2><p class="mut">Search any of the ~750 stocks (Nifty 500 and Microcap 250) by name or symbol</p><div class="rsbox"><input id="rs-q" placeholder="e.g. Reliance, TCS, HDFC Bank" autocomplete="off"></div></div>`;
   const q=$('#rs-q');attachSuggest(q);q.focus();
 }
 
@@ -293,7 +293,7 @@ async function orderFlowPage(){
   if(!D0||!D0.stocks||!D0.stocks.length){view.innerHTML='<div class="card"><h3>Order flow</h3><p class="mut">Not built yet. Run the <b>Order flow (5-minute bars)</b> workflow in the Actions tab once; after that it updates on weekdays after the market close.</p></div>';return}
   const mem=await get('data/index_members.json','json');
   const P=await get('data/peers.json','json');const nm={};if(P&&P.stocks)P.stocks.forEach(x=>nm[x.s]=x.n);
-  const U=[['all','Nifty 500'],['nifty50','Nifty 50'],['midcap150','Midcap 150'],['smallcap250','Smallcap 250']].filter(x=>x[0]==='all'||(mem&&mem[x[0]]));
+  const U=[['all','All stocks'],['nifty50','Nifty 50'],['midcap150','Midcap 150'],['smallcap250','Smallcap 250'],['microcap250','Microcap 250']].filter(x=>x[0]==='all'||(mem&&mem[x[0]]));
   const draw=()=>{
     const set=OFP.u==='all'?null:new Set(mem[OFP.u]);
     const all=D0.stocks.filter(x=>!set||set.has(x.s));
@@ -331,7 +331,7 @@ function aboutPage(){
   view.innerHTML=`<div class="rs" style="max-width:860px;margin:0 auto;text-align:left">
    <h2 style="text-align:left">About &amp; Support</h2>
    <div class="card"><h3>About</h3>
-    <p>Equity Terminal is a research terminal for Nifty 500 cash equities. It shows the market at a glance and gives each company a page with financials, valuation models and peer comparison.${c.author?` Built by ${esc(c.author)}.`:''}</p>
+    <p>Equity Terminal is a research terminal for Indian cash equities: the Nifty 500 and the Nifty Microcap 250 (about 750 stocks). It shows the market at a glance and gives each company a page with financials, valuation models and peer comparison.${c.author?` Built by ${esc(c.author)}.`:''}</p>
     <ul class="mut" style="margin:6px 0 0 18px;line-height:1.7">
      <li><b>Market Overview:</b> indices, sector heatmap and top gainers and losers.</li>
      <li><b>Company Research:</b> overview, financials, valuation (DCF, P/B, multiples, DDM, residual income, asset based and a summary) and peers.</li>
@@ -550,12 +550,13 @@ let _rz;window.addEventListener('resize',()=>{clearTimeout(_rz);_rz=setTimeout((
 
 // ---------- top gainers and losers ----------
 const GL={ix:'nifty50',tf:'r1d'};
-const GL_IX=[['nifty50','Nifty 50'],['midcap150','Midcap 150'],['smallcap250','Smallcap 250']];
+const GL_IX=[['nifty50','Nifty 50'],['midcap150','Midcap 150'],['smallcap250','Smallcap 250'],['microcap250','Microcap 250']];
 const GL_TF=[['r1d','1D'],['r1w','1W'],['r1m','1M'],['r3m','3M']];
 async function glPanel(){
   const box=$('#glbox');if(!box)return;
   const mem=await get('data/index_members.json','json');
   if(!mem){box.innerHTML='<div class="card"><p class="mut">Index lists are not built yet. Run the Daily refresh once (step 5d).</p></div>';return}
+  const IXS=GL_IX.filter(x=>mem[x[0]]&&mem[x[0]].length);if(!IXS.some(x=>x[0]===GL.ix))GL.ix=IXS.length?IXS[0][0]:GL.ix;
   const P=await get('data/peers.json','json');
   const nm={},px={};if(P&&P.stocks)P.stocks.forEach(x=>{nm[x.s]=x.n;px[x.s]=x.px});
   const by={};(MH.data.stocks||[]).forEach(x=>by[x.s]=x);
@@ -565,10 +566,10 @@ async function glPanel(){
     const top=rows.slice(0,10),bot=rows.slice(-10).reverse();
     const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">Price ₹</th><th class="num">Return</th></tr></thead><tbody>${a.map(r=>`<tr class="row" onclick="location.hash='#/stock/${esc(r.s)}'"><td><b>${esc(r.s)}</b><div class="mut" style="font-size:11px">${esc((nm[r.s]||'').slice(0,28))} · ${capOf(r.mc).split(' ')[0]}</div></td><td class="num">${px[r.s]!=null?T.fmt(px[r.s],1):'–'}</td><td class="num ${cls(r.r)}">${r.r>=0?'+':''}${T.fmt(r.r,2)}%</td></tr>`).join('')}</tbody></table>`;
     const src=(mem.source||{})[GL.ix]==='NSE'?'official NSE constituent list':'approximated by market-cap rank (NSE list not available)';
-    box.innerHTML=`<div class="card"><div class="seg" id="gl-ix" style="margin:0 0 8px">${GL_IX.map(([k,l])=>`<button data-k="${k}" class="${GL.ix===k?'on':''}">${l}</button>`).join('')}</div>
+    box.innerHTML=`<div class="card"><div class="seg" id="gl-ix" style="margin:0 0 8px">${IXS.map(([k,l])=>`<button data-k="${k}" class="${GL.ix===k?'on':''}">${l}</button>`).join('')}</div>
       <div class="seg" id="gl-tf" style="margin:0 0 12px">${GL_TF.map(([k,l])=>`<button data-k="${k}" class="${GL.tf===k?'on':''}">${l}</button>`).join('')}</div>
       <div class="two"><div><h3 style="margin:0 0 6px">Top gainers</h3>${tb(top)}</div><div><h3 style="margin:0 0 6px">Top losers</h3>${tb(bot)}</div></div>
-      <p class="mut" style="font-size:12px;margin:10px 0 0">${rows.length} stocks in ${esc(GL_IX.find(x=>x[0]===GL.ix)[1])} with data · ${src} · returns are price returns to the last close.</p></div>`;
+      <p class="mut" style="font-size:12px;margin:10px 0 0">${rows.length} stocks in ${esc(IXS.find(x=>x[0]===GL.ix)[1])} with data · ${src} · returns are price returns to the last close.</p></div>`;
     box.querySelectorAll('#gl-ix button').forEach(b=>b.onclick=()=>{GL.ix=b.dataset.k;draw()});
     box.querySelectorAll('#gl-tf button').forEach(b=>b.onclick=()=>{GL.tf=b.dataset.k;draw()});
   };
@@ -618,7 +619,7 @@ function heatmapPanel(){
 }
 function hmDraw(){
   const box=$('#hmbox');if(!box)return;
-  const W=box.clientWidth,Hh=W<600?420:520;box.style.height=Hh+'px';
+  const W=box.clientWidth,Hh=W<600?460:600;box.style.height=Hh+'px';
   let items,drill=HM.drill,tf=HM.tf;
   const groups=hmGroups();
   if(drill){const g=groups.find(x=>x.name===drill);if(!g){HM.drill=null;drill=null}}
@@ -629,11 +630,20 @@ function hmDraw(){
     crumb.querySelector('#hm-back').onclick=()=>{HM.drill=null;hmDraw()}}
   else{items=groups.map(g=>({name:g.name,v:g.v,ret:g.ret,n:g.n,med:g.med}));crumb.innerHTML=`<span class="mut">Click a block to see its stocks</span>`}
   items=items.filter(i=>i.v>0).sort((a,b)=>b.v-a.v);
+  // in a stock view, keep the biggest names readable and fold the long tail into one block
+  const CAP=W<600?24:40;
+  if(drill&&items.length>CAP+3){const rest=items.slice(CAP),tv=rest.reduce((x,y)=>x+y.v,0);
+    items=items.slice(0,CAP).concat([{name:'Other '+rest.length+' stocks',v:tv,ret:rest.reduce((x,y)=>x+y.v*y.ret,0)/tv,other:true,n:rest.length}])}
   const rects=squarify(items,0,0,W,Hh);
-  box.innerHTML=rects.map((r,i)=>{const [bg,fg]=hmColor(r.ret,tf),big=r.w>96&&r.h>54,mid=r.w>62&&r.h>46;
-    const tip=r.stock?`${r.name}: ${T.pct(r.ret,2)} · ₹${T.fmt(r.mc,0)} cr`:`${r.name}: ${T.pct(r.ret,2)} weighted, ${T.pct(r.med,2)} median · ${r.n} stocks`;
-    return `<div class="hmt" data-i="${i}" title="${esc(tip)}" style="left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px;animation-delay:${Math.min(i*12,400)}ms"><div style="background:${bg};color:${fg}">${mid?`<b>${esc(r.name)}</b><span>${T.pct(r.ret,1)}</span>${big&&!r.stock?`<small>${r.n} stocks</small>`:''}`:''}</div></div>`}).join('');
-  box.querySelectorAll('.hmt').forEach(el=>el.onclick=()=>{const r=rects[+el.dataset.i];if(r.stock)location.hash='#/stock/'+r.stock;else{HM.drill=r.name;hmDraw()}});
+  box.innerHTML=rects.map((r,i)=>{const [bg,fg]=hmColor(r.ret,tf),big=r.w>110&&r.h>64,mid=r.w>70&&r.h>46;
+    return `<div class="hmt${r.other?' oth':''}" data-i="${i}" style="left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px;animation-delay:${Math.min(i*12,400)}ms"><div style="background:${bg};color:${fg}">${mid?`<b>${esc(r.name)}</b><span>${T.pct(r.ret,1)}</span>${big&&!r.stock&&!r.other?`<small>${r.n} stocks</small>`:''}`:''}</div></div>`}).join('')+'<div id="hmtip" class="hmtip"></div>';
+  const tip=$('#hmtip');
+  const tipTxt=r=>r.stock?`<b>${esc(r.name)}</b><br>${T.pct(r.ret,2)} · ₹${T.fmt(r.mc,0)} cr`:r.other?`<b>${esc(r.name)}</b><br>${T.pct(r.ret,2)} weighted`:`<b>${esc(r.name)}</b><br>${T.pct(r.ret,2)} weighted · ${T.pct(r.med,2)} median<br>${r.n} stocks`;
+  box.querySelectorAll('.hmt').forEach(el=>{const r=rects[+el.dataset.i];
+    el.onmouseenter=()=>{tip.innerHTML=tipTxt(r);tip.style.opacity=1};
+    el.onmousemove=e=>{const b=box.getBoundingClientRect();let x=e.clientX-b.left+14,y=e.clientY-b.top+14;if(x>W-170)x=e.clientX-b.left-170;tip.style.left=x+'px';tip.style.top=y+'px'};
+    el.onmouseleave=()=>{tip.style.opacity=0};
+    el.onclick=()=>{if(r.other)return;if(r.stock)location.hash='#/stock/'+r.stock;else{HM.drill=r.name;hmDraw()}}});
 }
 
 // ---------- peers ----------
@@ -704,7 +714,7 @@ async function sectorPage(lv,name){
     const med={};cols.forEach(c=>med[c[0]]=medOf(g.map(x=>x[c[0]])));
     const top=g.filter(x=>num(x.mc)).sort((a,b)=>b.mc-a.mc),t5=top.slice(0,5).reduce((a,x)=>a+x.mc,0);
     $('#sbody').innerHTML=`<div class="card"><h3>${esc(lvName)} snapshot <span class="mut" style="font-weight:400;font-size:12px">${g.length} stocks${others.length?' · '+others.map(([l,n])=>`${n}: <a href="#/sector/${l}/${encodeURIComponent(first[l])}">${esc(first[l])}</a>`).join(' · '):''}</span></h3>
-      <div class="mtiles">${tl('Market cap',num(gm)?'₹'+T.fmt(gm,0)+' cr':'–',num(tot)&&tot?T.fmt(gm/tot*100,1)+'% of Nifty 500':'')}${tl('Weighted P/E',f(wv('pe'),1,'x'),'Median '+f(medOf(g.map(x=>x.pe)),1,'x'))}${tl('Weighted P/B',f(wv('pb'),2,'x'),'Median '+f(medOf(g.map(x=>x.pb)),2,'x'))}${tl('Median ROE',f(medOf(g.map(x=>x.roe)),1,'%'))}${tl('Median ROCE',f(medOf(g.map(x=>x.roce)),1,'%'))}${tl('Median revenue CAGR',f(medOf(g.map(x=>x.rg)),1,'%'))}${tl('1M return',pc(wr('r1m')),'cap-weighted')}${tl('1Y return',pc(wr('r1y')),'cap-weighted')}${tl('Above 200-DMA',a200==null?'–':T.fmt(a200,0)+'%','of stocks')}${tl('Top 5 share',gm?T.fmt(t5/gm*100,0)+'%':'–','of group market cap')}</div></div>
+      <div class="mtiles">${tl('Market cap',num(gm)?'₹'+T.fmt(gm,0)+' cr':'–',num(tot)&&tot?T.fmt(gm/tot*100,1)+'% of all tracked stocks':'')}${tl('Weighted P/E',f(wv('pe'),1,'x'),'Median '+f(medOf(g.map(x=>x.pe)),1,'x'))}${tl('Weighted P/B',f(wv('pb'),2,'x'),'Median '+f(medOf(g.map(x=>x.pb)),2,'x'))}${tl('Median ROE',f(medOf(g.map(x=>x.roe)),1,'%'))}${tl('Median ROCE',f(medOf(g.map(x=>x.roce)),1,'%'))}${tl('Median revenue CAGR',f(medOf(g.map(x=>x.rg)),1,'%'))}${tl('1M return',pc(wr('r1m')),'cap-weighted')}${tl('1Y return',pc(wr('r1y')),'cap-weighted')}${tl('Above 200-DMA',a200==null?'–':T.fmt(a200,0)+'%','of stocks')}${tl('Top 5 share',gm?T.fmt(t5/gm*100,0)+'%':'–','of group market cap')}</div></div>
      <div class="card" style="overflow-x:auto"><h3>Constituents</h3><table class="peer"><thead><tr><th>Company</th>${cols.map(c=>`<th class="num sortable ${SR.sort===c[0]?'sorted':''}" data-k="${c[0]}">${c[1]}${SR.sort===c[0]?(SR.dir<0?' ▼':' ▲'):''}</th>`).join('')}</tr></thead><tbody>
       ${rows.map(r=>`<tr data-s="${esc(r.s)}"><td><b>${esc(r.s)}</b><div class="k">${esc(r.n)}</div></td>${cols.map(c=>`<td class="num ${SR.sort===c[0]?'sorted':''}">${num(r[c[0]])?T.fmt(r[c[0]],c[2]):'–'}</td>`).join('')}</tr>`).join('')}
       <tr class="medrow"><td><b>Median</b></td>${cols.map(c=>`<td class="num">${num(med[c[0]])?T.fmt(med[c[0]],c[2]):'–'}</td>`).join('')}</tr></tbody></table></div>
@@ -736,7 +746,7 @@ const SC_PRESETS=[
 let SC=null;
 async function screener(){
   view.innerHTML='<div class="skel" style="height:120px"></div><div class="skel" style="height:360px;margin-top:14px"></div>';
-  if(!SC){SC={f:{},cap:[],type:'all',ind:'all',q:'',a200:0,bias:'all',sort:{k:'mc',d:-1},n:50};
+  if(!SC){SC={f:{},cap:[],type:'all',ind:'all',q:'',a200:0,bias:'all',sort:{k:'mc',d:-1},n:50,idx:'all'};
     try{const s=JSON.parse(localStorage.getItem('tl_screener')||'null');if(s&&s.f)Object.assign(SC,s,{n:50})}catch(e){}}
   if(FILT.ind&&FILT.ind!=='all'){SC.ind=FILT.ind;FILT.ind='all';SC.q=''}
   const [P,OF,FS_]=await Promise.all([get('data/peers.json','json'),get('data/orderflow.json','json'),table('data/financials_summary.csv')]);
@@ -750,7 +760,7 @@ async function screener(){
     const mc=x.mc!=null?x.mc:null;
     return {s,n:x.n||((D.uni.find(u=>u.symbol===s)||{}).company)||s,ind:m.industry||x.ind||'',type:x.type||m.type||'',
       mc,px:price,pe:x.pe,pb:x.pb,ev:x.ev,roe:x.roe,roce:x.roce,nm:x.nm,de:x.de,rg:x.rg,ng:x.ng,r1m:x.r1m,r1y:x.r1y,
-      rsi:T.num(r.rsi14),a200:x.a200,up:fup[s]!=null?fup[s]:dcfUp,dp:o.dp!=null?o.dp:null,score:o.score!=null?o.score:null,bias:o.bias||'',cap:capOf(mc)}});
+      rsi:T.num(r.rsi14),a200:x.a200,idx:x.idx||((D.uni.find(u=>u.symbol===s)||{}).index)||'nifty500',up:fup[s]!=null?fup[s]:dcfUp,dp:o.dp!=null?o.dp:null,score:o.score!=null?o.score:null,bias:o.bias||'',cap:capOf(mc)}});
   const inds=[...new Set(rows.map(r=>r.ind).filter(Boolean))].sort();
   const save=()=>{try{localStorage.setItem('tl_screener',JSON.stringify(SC))}catch(e){}};
   const nn=v=>v!=null&&isFinite(v);
@@ -760,6 +770,7 @@ async function screener(){
     if(SC.type==='fin'&&r.type!=='financial')return false;if(SC.type==='nonfin'&&r.type==='financial')return false;
     if(SC.ind!=='all'&&r.ind!==SC.ind)return false;
     if(SC.a200&&r.a200!==1)return false;
+    if(SC.idx&&SC.idx!=='all'&&r.idx!==SC.idx)return false;
     if(SC.bias!=='all'&&r.bias!==SC.bias)return false;
     if(SC.q&&!(r.s+' '+r.n+' '+r.ind).toUpperCase().includes(SC.q.toUpperCase()))return false;
     return true};
@@ -767,11 +778,12 @@ async function screener(){
   const fv=(k,i)=>{const a=SC.f[k];return a&&a[i]!=null?a[i]:''};
   const shell=()=>{
     view.innerHTML=`<div class="scr"><h2 style="margin:0 0 4px">Stock screener</h2>
-     <p class="mut" style="margin:0 0 12px">Filter the Nifty 500 on valuation, quality, growth, momentum and order flow. Leave a box empty to ignore it. Stocks with no data for a filtered metric are left out. End-of-day data.</p>
+     <p class="mut" style="margin:0 0 12px">Filter all tracked stocks (Nifty 500 and Microcap 250) on valuation, quality, growth, momentum and order flow. Leave a box empty to ignore it. Stocks with no data for a filtered metric are left out. End-of-day data.</p>
      <div class="card"><div class="scpre"><span class="mut">Presets</span>${SC_PRESETS.map((p,i)=>`<button data-p="${i}">${esc(p[0])}</button>`).join('')}<button id="sc-clear" class="ed-reset">Clear all</button></div>
       <div class="scgrid">${groups.map(g=>`<div class="scg"><div class="k">${g}</div>${SCM.filter(x=>x[3]===g).map(([k,l])=>`<div class="scf"><span>${l}</span><input type="number" step="any" data-k="${k}" data-i="0" placeholder="min" value="${fv(k,0)}"><input type="number" step="any" data-k="${k}" data-i="1" placeholder="max" value="${fv(k,1)}"></div>`).join('')}</div>`).join('')}
        <div class="scg"><div class="k">Filters</div>
         <div class="scf"><span>Market cap class</span><span class="sccaps">${['Large cap','Mid cap','Small cap'].map(c=>`<label><input type="checkbox" data-cap="${c}" ${SC.cap.includes(c)?'checked':''}>${c.split(' ')[0]}</label>`).join('')}</span></div>
+        <div class="scf"><span>Index group</span><select id="sc-idx"><option value="all">All</option><option value="nifty500"${SC.idx==='nifty500'?' selected':''}>Nifty 500</option><option value="microcap250"${SC.idx==='microcap250'?' selected':''}>Microcap 250</option></select></div>
         <div class="scf"><span>Type</span><select id="sc-type"><option value="all">All</option><option value="nonfin"${SC.type==='nonfin'?' selected':''}>Non-financial</option><option value="fin"${SC.type==='fin'?' selected':''}>Banks &amp; financials</option></select></div>
         <div class="scf"><span>Industry</span><select id="sc-ind"><option value="all">All industries</option>${inds.map(x=>`<option${SC.ind===x?' selected':''}>${esc(x)}</option>`).join('')}</select></div>
         <div class="scf"><span>Order flow bias</span><select id="sc-bias"><option value="all">Any</option>${['bullish','bearish','neutral'].map(x=>`<option value="${x}"${SC.bias===x?' selected':''}>${x[0].toUpperCase()+x.slice(1)}</option>`).join('')}</select></div>
@@ -797,13 +809,14 @@ async function screener(){
   const bind=()=>{
     view.querySelectorAll('input[data-k]').forEach(i=>i.onchange=()=>{const k=i.dataset.k,j=+i.dataset.i,v=parseFloat(i.value);const a=SC.f[k]||[null,null];a[j]=isFinite(v)?v:null;if(a[0]==null&&a[1]==null)delete SC.f[k];else SC.f[k]=a;SC.n=50;save();draw()});
     view.querySelectorAll('input[data-cap]').forEach(i=>i.onchange=()=>{SC.cap=[...view.querySelectorAll('input[data-cap]:checked')].map(x=>x.dataset.cap);SC.n=50;save();draw()});
+    $('#sc-idx').onchange=e=>{SC.idx=e.target.value;SC.n=50;save();draw()};
     $('#sc-type').onchange=e=>{SC.type=e.target.value;SC.n=50;save();draw()};
     $('#sc-ind').onchange=e=>{SC.ind=e.target.value;SC.n=50;save();draw()};
     $('#sc-bias').onchange=e=>{SC.bias=e.target.value;SC.n=50;save();draw()};
     $('#sc-a200').onchange=e=>{SC.a200=e.target.checked?1:0;SC.n=50;save();draw()};
     $('#sc-q').oninput=e=>{SC.q=e.target.value;SC.n=50;save();draw()};
-    $('#sc-clear').onclick=()=>{SC.f={};SC.cap=[];SC.type='all';SC.ind='all';SC.q='';SC.a200=0;SC.bias='all';SC.n=50;save();shell();draw()};
-    view.querySelectorAll('.scpre button[data-p]').forEach(b=>b.onclick=()=>{const p=SC_PRESETS[+b.dataset.p][1];SC.f={};SC.cap=[];SC.type='all';SC.ind='all';SC.q='';SC.a200=0;SC.bias='all';SC.n=50;
+    $('#sc-clear').onclick=()=>{SC.f={};SC.cap=[];SC.type='all';SC.ind='all';SC.q='';SC.a200=0;SC.bias='all';SC.idx='all';SC.n=50;save();shell();draw()};
+    view.querySelectorAll('.scpre button[data-p]').forEach(b=>b.onclick=()=>{const p=SC_PRESETS[+b.dataset.p][1];SC.f={};SC.cap=[];SC.type='all';SC.ind='all';SC.q='';SC.a200=0;SC.bias='all';SC.idx='all';SC.n=50;
       for(const [k,v] of Object.entries(p)){if(k==='_a200')SC.a200=v;else if(k==='_bias')SC.bias=v;else SC.f[k]=v.slice()}save();shell();draw()});
   };
   shell();draw();
@@ -1448,7 +1461,7 @@ async function stock(s,tab){
   const dl='';
   let h=`<div class="crumb"><a href="#/market">Research</a> › ${esc(s)}</div>
    <div class="card"><div class="sh"><div class="logo">${esc(ini)}</div>
-    <div><h1>${esc(u.company||s)}</h1><div class="sub">${esc(s)}.NSE</div><span class="tag">${esc(u.industry||'')}</span>${V.market_cap_cr!=null?`<span class="tag">${capOf(V.market_cap_cr)}</span>`:''}${met?`<span class="tag">${esc(met.type)}</span>`:''}</div>
+    <div><h1>${esc(u.company||s)}</h1><div class="sub">${esc(s)}.NSE</div><span class="tag">${esc(u.industry||'')}</span>${V.market_cap_cr!=null?`<span class="tag">${capOf(V.market_cap_cr)}</span>`:''}${u.index==='microcap250'?'<span class="tag" title="In the Nifty Microcap 250, outside the Nifty 500. Data can be thinner and trading less liquid.">Microcap 250</span>':''}${met?`<span class="tag">${esc(met.type)}</span>`:''}</div>
     <div class="acts">${dl}</div></div>
     <div class="pricerow"><div><span class="bigp" data-n="${price}" data-d="2" data-pre="₹">₹${T.fmt(price,2)}</span>${chg!=null?`<span class="chg ${cls(chg)}">${chgAbs>=0?'+':''}${T.fmt(chgAbs,2)} (${chg>=0?'+':''}${T.fmt(chg,2)}%)</span>`:''}<div class="k" style="margin-top:6px">NSE · As of ${esc(asof)} (daily close)</div></div>
      <div class="stats">${stat('Market cap',V.market_cap_cr!=null?'₹'+T.fmt(V.market_cap_cr,0)+' Cr':'–')}${stat('P/E',V.pe_used!=null?T.fmt(V.pe_used,1)+'x':'–')}${stat('P/B',V.pb!=null?T.fmt(V.pb,2)+'x':'–')}${stat('EV/EBITDA',V.ev_ebitda!=null?T.fmt(V.ev_ebitda,1)+'x':'–')}${stat('ROE',R.roe_pct!=null?T.fmt(R.roe_pct,1)+'%':'–')}${stat('ROCE',R.roce_pct!=null?T.fmt(R.roce_pct,1)+'%':'–')}${stat('Debt/Equity',R.debt_equity!=null?T.fmt(R.debt_equity,2):'–')}</div></div></div>`;
