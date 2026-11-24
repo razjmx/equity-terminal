@@ -272,3 +272,16 @@ table.stmt th.l,table.stmt td.l{width:300px;min-width:240px}
 .pw label{display:flex;gap:6px;align-items:center}.pw input{width:64px}
 .pw .pwv{margin-left:auto}
 @media(max-width:800px){.scn{grid-template-columns:1fr}}
+
+/* shareholding chart */
+.shcard{max-width:1040px;margin-left:auto;margin-right:auto}
+.shleg{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--m);margin:2px 0 10px}
+.shleg b{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+.shbars{display:flex;gap:10px;align-items:flex-end;height:190px;padding:0 4px;overflow-x:auto}
+.shc{flex:1;min-width:46px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px}
+.shs{width:100%;max-width:70px;display:flex;flex-direction:column-reverse;border-radius:6px;overflow:hidden;animation:pop .5s ease both}
+.shs div{display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600;transition:filter .2s}
+.shs div:hover{filter:brightness(1.15)}.shs i{font-style:normal}
+.shc span{font-size:11.5px;color:var(--m);white-space:nowrap}
+table.sht td.pos{color:var(--g)}table.sht td.neg{color:var(--r)}
+@media(max-width:700px){table.stmt th.l,table.stmt td.l{min-width:120px;width:130px;max-width:140px;font-size:12px}table.stmt th,table.stmt td{min-width:64px;padding:8px 8px}}
