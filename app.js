@@ -777,7 +777,7 @@ async function screener(){
         <div class="scf"><span>Order flow bias</span><select id="sc-bias"><option value="all">Any</option>${['bullish','bearish','neutral'].map(x=>`<option value="${x}"${SC.bias===x?' selected':''}>${x[0].toUpperCase()+x.slice(1)}</option>`).join('')}</select></div>
         <div class="scf"><span>Above 200-day average</span><input type="checkbox" id="sc-a200" ${SC.a200?'checked':''}></div>
         <div class="scf"><span>Search</span><input id="sc-q" placeholder="symbol, name, industry" value="${esc(SC.q)}"></div></div></div></div>
-     <div class="card" style="margin-top:14px"><div class="schd"><b id="sc-cnt"></b><span class="mut" style="flex:1"> · click a column to sort · click a row to open</span><button id="sc-csv" class="ed-reset">Download CSV</button></div><div class="scroll"><table id="sc-tb" class="sctb"></table></div><p style="text-align:center;margin:10px 0 0"><button id="sc-more" class="ed-reset" style="display:none">Show 50 more</button></p>
+     <div class="card" style="margin-top:14px"><div class="schd"><b id="sc-cnt"></b><span class="mut" style="flex:1"> · click a column to sort · click a row to open</span></div><div class="scroll"><table id="sc-tb" class="sctb"></table></div><p style="text-align:center;margin:10px 0 0"><button id="sc-more" class="ed-reset" style="display:none">Show 50 more</button></p>
      <p class="mut" style="font-size:12px;margin-top:10px">Fair value upside uses the saved DCF (non-financials) or the P/B–ROE model (financials) from the nightly run, so open the stock to test it with your own assumptions. Delivery % and the order flow score come from the latest order-flow run. Returns are price returns. Ratios are from the latest annual data on Yahoo Finance, so check anything important against the company's filings.</p></div></div>`;
     bind()};
   const COLS=[['s','Symbol','l'],['n','Company','l'],['cap','Cap','l'],['mc','Mkt cap ₹cr'],['px','Price'],['pe','P/E'],['pb','P/B'],['roe','ROE %'],['roce','ROCE %'],['de','D/E'],['rg','Rev CAGR %'],['r1m','1M %'],['r1y','1Y %'],['up','Upside %'],['dp','Deliv %'],['score','OF score']];
@@ -793,12 +793,6 @@ async function screener(){
      shown.map(r=>`<tr class="row" onclick="location.hash='#/stock/${encodeURIComponent(r.s)}'">${COLS.map(c=>{const v=r[c[0]];if(c[2]==='l')return `<td class="l${c[0]==='n'?' mut':''}">${esc(String(v==null?'':v))}</td>`;return `<td class="num ${pct.has(c[0])?cls(v):''}">${nn(v)?(pct.has(c[0])&&v>0?'+':'')+T.fmt(v,dec[c[0]]):'–'}</td>`}).join('')}</tr>`).join('')||'<tr><td colspan="16" class="mut" style="padding:20px">No stock matches all the filters. Loosen one of them.</td></tr>';
     document.querySelectorAll('#sc-tb th').forEach(th=>th.onclick=()=>{const kk=th.dataset.k;SC.sort=SC.sort.k===kk?{k:kk,d:-SC.sort.d}:{k:kk,d:['s','n','cap'].includes(kk)?1:-1};save();draw()});
     const mo=$('#sc-more');mo.style.display=all.length>SC.n?'':'none';mo.onclick=()=>{SC.n+=50;draw()};
-    $('#sc-csv').onclick=()=>{
-      const hd=['Symbol','Company','Industry','Cap class','Market cap cr','Price','P/E','P/B','EV/EBITDA','ROE %','ROCE %','Net margin %','Debt/equity','Revenue CAGR %','Net income CAGR %','1M %','1Y %','RSI','Upside %','Delivery %','Order flow score','Order flow bias'];
-      const ks=['s','n','ind','cap','mc','px','pe','pb','ev','roe','roce','nm','de','rg','ng','r1m','r1y','rsi','up','dp','score','bias'];
-      const q=v=>v==null?'':'"'+String(typeof v==='number'?+v.toFixed(2):v).replace(/"/g,'""')+'"';
-      const csv=[hd.join(',')].concat(all.map(r=>ks.map(k=>q(r[k])).join(','))).join('\n');
-      const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='screener.csv';document.body.appendChild(a);a.click();a.remove()};
   };
   const bind=()=>{
     view.querySelectorAll('input[data-k]').forEach(i=>i.onchange=()=>{const k=i.dataset.k,j=+i.dataset.i,v=parseFloat(i.value);const a=SC.f[k]||[null,null];a[j]=isFinite(v)?v:null;if(a[0]==null&&a[1]==null)delete SC.f[k];else SC.f[k]=a;SC.n=50;save();draw()});
@@ -1451,7 +1445,7 @@ async function stock(s,tab){
   const words=(u.company||s).replace(/\b(ltd|limited|inc|corp)\b\.?/ig,'').trim().split(/\s+/);
   const ini=((words[0]||s)[0]+((words[1]||'')[0]||(words[0]||s)[1]||'')).toUpperCase();
   const stat=(k,val)=>`<div class="stat"><div class="k">${k}</div><div class="sv">${val}</div></div>`;
-  const dl=pcsv?`<a class="btn" href="data/prices/${esc(s)}.csv" download>Download prices (CSV)</a>`:'';
+  const dl='';
   let h=`<div class="crumb"><a href="#/market">Research</a> › ${esc(s)}</div>
    <div class="card"><div class="sh"><div class="logo">${esc(ini)}</div>
     <div><h1>${esc(u.company||s)}</h1><div class="sub">${esc(s)}.NSE</div><span class="tag">${esc(u.industry||'')}</span>${V.market_cap_cr!=null?`<span class="tag">${capOf(V.market_cap_cr)}</span>`:''}${met?`<span class="tag">${esc(met.type)}</span>`:''}</div>
