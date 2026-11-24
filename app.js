@@ -681,7 +681,7 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
   let payer=null;
   try{const st=await get(`data/statements/${s}.json`,'json');const cf=st&&st.annual_cashflow;if(cf){const row=cf.rows.find(r=>/dividend/i.test(r[0])&&/paid/i.test(r[0]))||cf.rows.find(r=>/dividend/i.test(r[0]));payer=row?row[1].slice(-3).some(v=>v!=null&&Math.abs(v)>0):false}}catch(e){}
   const live=[];if(dcf)live.push(['dcf','DCF']);if(fin)live.push(['fin','Justified P/B']);if(rl)live.push(['rl','Realty NAV']);
-  live.push(['mult','Price multiples']);if(!fnc)live.push(['ev','EV multiples']);const soon=[];if(payer)live.push(['ddm','DDM']);else soon.push('ddm');live.push(['ri','Residual income'],['asset','Asset based']);if(!fnc)soon.push('epv','sotp','graham');if(ins)soon.push('embv');soon.push('ff');
+  live.push(['mult','Price multiples']);if(!fnc)live.push(['ev','EV multiples']);const soon=[];if(payer)live.push(['ddm','DDM']);else soon.push('ddm');live.push(['ri','Residual income'],['asset','Asset based']);if(!fnc)soon.push('epv','sotp','graham');if(ins)soon.push('embv');live.push(['ff','Summary']);
   const subs=live.concat(soon.map(k=>[k,VAL_MODELS[k].label,true]));
   if(!VS.sub||!subs.some(x=>x[0]===VS.sub))VS.sub=subs[0][0];
   const ph=k=>{const m=VAL_MODELS[k];
@@ -697,6 +697,7 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
     else if(VS.sub==='fin'){b.innerHTML='<div id="finbox"></div><div id="scbox"></div>';finPanel(fin);scenarioPanel('#scbox',null,fin,price)}
     else if(VS.sub==='rl'){b.innerHTML='<div id="rlbox"></div>';realtyPanel(rl)}
     else if(VS.sub==='ddm'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';ddmPanel(s,price,dcf,fin)}
+    else if(VS.sub==='ff'){b.innerHTML='<div id="ffbox"><div class="skel" style="height:300px"></div></div>';ffPanel(s,price,dcf,fin,rl,fnc,payer)}
     else if(VS.sub==='ri'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';riPanel(s,price,dcf,fin)}
     else if(VS.sub==='asset'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';assetPanel(s,price)}
     else if(VS.sub==='ev'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';evPanel(s,price)}
@@ -710,6 +711,7 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
 function pctile(a,p){a=a.filter(v=>v!=null&&isFinite(v)).sort((x,y)=>x-y);if(!a.length)return null;const i=(a.length-1)*p,lo=Math.floor(i),hi=Math.ceil(i);return a[lo]+(a[hi]-a[lo])*(i-lo)}
 const MS={set:'all'};
 // ---------- editable model inputs ----------
+let SUMBOX=null,REGV={};
 const OV={};
 const ovs=(m,s)=>OV[m+':'+s]||(OV[m+':'+s]={});
 const ed=(o,k,val,step,dp)=>`<input class="ed${o[k]!=null?' chg':''}" data-k="${k}" type="number" step="${step||'any'}" value="${val==null||!isFinite(val)?'':(+val).toFixed(dp==null?2:dp)}">`;
@@ -717,7 +719,7 @@ const edBar=o=>`<p class="mut" style="font-size:12px;margin:8px 0 0">Values in b
 const edBind=(box,o,redo)=>{box.querySelectorAll('input.ed').forEach(i=>i.onchange=e=>{const v=parseFloat(e.target.value);if(isFinite(v))o[i.dataset.k]=v;else delete o[i.dataset.k];redo()});const r=box.querySelector('.ed-reset');if(r)r.onclick=()=>{for(const k in o)delete o[k];redo()}};
 
 async function multPanel(s,price){
-  const box=$('#multbox');if(!box)return;
+  const box=SUMBOX||$('#multbox');if(!box)return;
   const P=await get('data/peers.json','json');
   const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
   if(!me){box.innerHTML='<div class="card"><p class="mut">Peer data not built yet. Run the Daily refresh once.</p></div>';return}
@@ -741,6 +743,7 @@ async function multPanel(s,price){
   const use=rows.filter(r=>r.imp);
   const avg=i=>use.length?use.reduce((a,r)=>a+r.imp[i],0)/use.length:null;
   const bl=[avg(0),avg(1),avg(2)];
+  if(use.length)REGV.mult=bl;
   const up=v=>v!=null&&price?(v/price-1)*100:null;
   const fx=(v,d)=>v==null?'–':T.fmt(v,d);
   const card=(cl,name,v)=>`<div class="sc ${cl}"><div class="sn">${name}</div><div class="sv">${v!=null?'₹'+T.fmt(v,0):'–'}</div><div class="su ${cls(up(v))}">${up(v)!=null?(up(v)>=0?'+':'')+T.fmt(up(v),1)+'% vs price':''}</div></div>`;
@@ -759,7 +762,7 @@ async function multPanel(s,price){
 
 // ---------- EV multiples model ----------
 async function evPanel(s,price){
-  const box=$('#multbox');if(!box)return;
+  const box=SUMBOX||$('#multbox');if(!box)return;
   const P=await get('data/peers.json','json');
   const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
   if(!me){box.innerHTML='<div class="card"><p class="mut">Peer data not built yet. Run the Daily refresh once.</p></div>';return}
@@ -780,6 +783,7 @@ async function evPanel(s,price){
   const q=qa.every(v=>v!=null&&v>0)?qa:null;
   const E=o.ebitda!=null?o.ebitda:me.ebitda,N=o.nd!=null?o.nd:me.nd,shares=o.sh!=null?o.sh:me.mc/price;
   const imp=q&&shares>0?q.map(m=>(E*m-N)/shares):null;
+  if(imp&&imp[1]>0)REGV.ev=imp;
   const up=v=>v!=null&&price?(v/price-1)*100:null;
   const card=(cl,name,v)=>`<div class="sc ${cl}"><div class="sn">${name}</div><div class="sv">${v!=null&&v>0?'₹'+T.fmt(v,0):'–'}</div><div class="su ${cls(up(v))}">${v!=null&&v>0&&up(v)!=null?(up(v)>=0?'+':'')+T.fmt(up(v),1)+'% vs price':''}</div></div>`;
   const lvName=LV.find(x=>x[0]===lv)[1];
@@ -805,7 +809,7 @@ async function evPanel(s,price){
 
 // ---------- DDM (dividend discount model) ----------
 async function ddmPanel(s,price,dcf,fin){
-  const box=$('#multbox');if(!box)return;
+  const box=SUMBOX||$('#multbox');if(!box)return;
   const st=await get(`data/statements/${s}.json`,'json');
   const P=await get('data/peers.json','json');
   const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
@@ -833,6 +837,7 @@ async function ddmPanel(s,price,dcf,fin){
   const run=(g1,k,gT)=>{gT=Math.min(gT,k-0.01);let pv=0,d=dpsU;for(let t=1;t<=nU;t++){d*=1+g1;pv+=d/Math.pow(1+k,t)}const tv=d*(1+gT)/(k-gT);return pv+tv/Math.pow(1+k,nU)};
   const sc=[['sc-bear','Bear',run(Math.max(g1U-gsU,0),keU+ksU,gTU-ksU)],['sc-base','Base',run(g1U,keU,gTU)],['sc-bull','Bull',run(g1U+gsU,keU-ksU,gTU+0.005)]];
   const low=(payout!=null&&payout<35)||yld<2;
+  REGV.ddm=Object.assign(sc.map(x=>x[2]),{low});
   const up=v=>price?(v/price-1)*100:null;
   box.innerHTML=`<div class="card mph"><h3>DDM <span class="mut" style="font-weight:400;font-size:12px">two-stage dividend discount model</span></h3>
     <p class="mut" style="margin-top:0">Values the stock as the present value of its dividends: five years of growth, then a steady terminal growth rate. Cost of equity and terminal growth follow your Assumptions settings.</p>
@@ -858,7 +863,7 @@ async function ddmPanel(s,price,dcf,fin){
 
 // ---------- Residual income model ----------
 async function riPanel(s,price,dcf,fin){
-  const box=$('#multbox');if(!box)return;
+  const box=SUMBOX||$('#multbox');if(!box)return;
   const P=await get('data/peers.json','json');
   const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
   const st=await get(`data/statements/${s}.json`,'json');
@@ -886,6 +891,7 @@ async function riPanel(s,price,dcf,fin){
     return Math.max(0,bvU+pv)};
   const rTb=o.roeT!=null?o.roeT/100:null;
   const sc=[['sc-bear','Bear',run(roeU-rsU,keU+ksU,rTb!=null?rTb:keU+ksU)],['sc-base','Base',run(roeU,keU,rTb!=null?rTb:keU)],['sc-bull','Bull',run(roeU+rsU,keU-ksU,rTb!=null?rTb:keU-ksU)]];
+  REGV.ri=sc.map(x=>x[2]);
   const up=v=>price?(v/price-1)*100:null;
   box.innerHTML=`<div class="card mph"><h3>Residual income <span class="mut" style="font-weight:400;font-size:12px">book value plus the value of excess returns</span></h3>
     <p class="mut" style="margin-top:0">Value = book value per share + present value of profits earned above the cost of equity. ROE fades in a straight line from today's level to the long-term ROE over the forecast years, and book value grows by the profit that is retained.</p>
@@ -908,7 +914,7 @@ async function riPanel(s,price,dcf,fin){
 
 // ---------- Asset based (net asset value) ----------
 async function assetPanel(s,price){
-  const box=$('#multbox');if(!box)return;
+  const box=SUMBOX||$('#multbox');if(!box)return;
   const P=await get('data/peers.json','json');
   const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
   const st=await get(`data/statements/${s}.json`,'json');
@@ -927,6 +933,7 @@ async function assetPanel(s,price){
   const eqU=o.eq!=null?o.eq:eq,inU=o.int!=null?o.int:intang,rvU=o.rv!=null?o.rv:0,shU=o.sh!=null?o.sh:shares,spU=(o.sp!=null?o.sp:15)/100;
   const nav=(eqU-inU+rvU)/shU;
   const sc=[['sc-bear','Bear',nav*(1-spU)],['sc-base','Base',nav],['sc-bull','Bull',nav*(1+spU)]];
+  if(nav>0)REGV.asset=sc.map(x=>x[2]);
   const up=v=>price?(v/price-1)*100:null;
   box.innerHTML=`<div class="card mph"><h3>Asset based <span class="mut" style="font-weight:400;font-size:12px">net asset value per share</span></h3>
     <p class="mut" style="margin-top:0">Value = shareholders' equity − goodwill and intangibles + your revaluation adjustment, divided by shares. It says what the balance sheet is worth, not what the earnings are worth.</p>
@@ -942,6 +949,46 @@ async function assetPanel(s,price){
     ${edBar(o)}
     <p class="mut" style="font-size:12px;margin-top:10px">Most useful for asset-heavy companies, holding companies and as a floor value. It undervalues asset-light businesses whose worth lies in earnings and brands. The bear and bull values simply move NAV down and up by the spread, as they are not forecasts. Book values are as reported, not market values.</p></div>`;
   edBind(box,o,()=>assetPanel(s,price));
+}
+
+
+// ---------- Summary: football field ----------
+const FFX={off:{}};
+async function ffPanel(s,price,dcf,fin,rl,fnc,payer){
+  const box=$('#ffbox');if(!box)return;
+  const rows=[];
+  const sr=scenarioRows(dcf,fin,price);
+  sr.forEach(m=>{const v=m.res.map(x=>x.fair);if(v.every(x=>x!=null&&x>0))rows.push({k:m.title.startsWith('DCF')?'dcf':'fin',n:m.title.startsWith('DCF')?'DCF':'Justified P/B',v})});
+  if(rl&&rl.fair_value>0)rows.push({k:'rl',n:'Realty NAV',v:[rl.fair_value,rl.fair_value,rl.fair_value]});
+  const list=[['mult','Price multiples'],['ev','EV multiples',fnc],['ddm','DDM',!payer],['ri','Residual income'],['asset','Asset based']];
+  for(const [k,n,skip] of list){
+    if(skip)continue;
+    REGV={};const tmp=document.createElement('div');SUMBOX=tmp;
+    try{if(k==='mult')await multPanel(s,price);else if(k==='ev')await evPanel(s,price);else if(k==='ddm')await ddmPanel(s,price,dcf,fin);else if(k==='ri')await riPanel(s,price,dcf,fin);else await assetPanel(s,price)}catch(e){}
+    SUMBOX=null;
+    const v=REGV[k];if(v&&v.every(x=>x!=null&&isFinite(x)&&x>0))rows.push({k,n,v:Array.from(v),low:!!v.low});
+  }
+  REGV={};
+  const el=$('#ffbox');if(!el)return;
+  if(!rows.length||!(price>0)){el.innerHTML='<div class="card"><h3>Summary</h3><p class="mut">No model could be calculated for this stock yet.</p></div>';return}
+  const draw=()=>{
+    const mn=(r)=>Math.min(...r.v),mx=(r)=>Math.max(...r.v);
+    const LO=Math.max(0,Math.min(price,...rows.map(mn))*0.9),HI=Math.min(Math.max(price,...rows.map(mx))*1.05,price*3.2);
+    const P=v=>Math.max(0,Math.min(100,(v-LO)/(HI-LO)*100));
+    const isOn=r=>FFX.off[s+r.k]===false||(!FFX.off[s+r.k]&&!r.low);
+    const chosen=rows.filter(isOn),av=chosen.length?chosen.reduce((a,r)=>a+r.v[1],0)/chosen.length:null,au=av!=null?(av/price-1)*100:null;
+    el.innerHTML=`<div class="card"><h3>Valuation summary <span class="mut" style="font-weight:400;font-size:12px">bear to bull range for each model · line = current price ₹${T.fmt(price,1)}</span></h3>
+     <div class="ffax"><span>₹${T.fmt(LO,0)}</span><span>₹${T.fmt(HI,0)}</span></div>
+     ${rows.map(r=>`<div class="ffr${isOn(r)?'':' off'}"><label class="ffl"><input type="checkbox" data-k="${r.k}" ${isOn(r)?'checked':''}> ${esc(r.n)}${r.low?' <small class="warnc">low reliability</small>':''}</label>
+       <div class="fft"><div class="ffb" style="left:${P(mn(r))}%;width:${Math.max(.8,P(mx(r))-P(mn(r)))}%"></div><div class="ffm" style="left:${P(r.v[1])}%"></div><div class="ffp" style="left:${P(price)}%"></div></div>
+       <div class="ffv">₹${T.fmt(r.v[1],0)}</div></div>`).join('')}
+     ${av!=null?`<div class="vbig" style="margin-top:14px"><div class="tile"><div class="k">Average of ticked models (base)</div><div class="tv">₹${T.fmt(av,0)}</div></div><div class="tile"><div class="k">vs current price</div><div class="tv ${cls(au)}">${au>=0?'+':''}${T.fmt(au,1)}%</div></div></div>`:'<p class="mut">Tick at least one model.</p>'}
+     <div style="overflow-x:auto;margin-top:14px"><table class="peer kv"><thead><tr><th>Model</th><th class="num">Bear</th><th class="num">Base</th><th class="num">Bull</th><th class="num">Base vs price</th></tr></thead><tbody>
+      ${rows.map(r=>{const u=(r.v[1]/price-1)*100;return `<tr><td>${esc(r.n)}</td><td class="num">₹${T.fmt(r.v[0],0)}</td><td class="num"><b>₹${T.fmt(r.v[1],0)}</b></td><td class="num">₹${T.fmt(r.v[2],0)}</td><td class="num ${cls(u)}">${u>=0?'+':''}${T.fmt(u,1)}%</td></tr>`}).join('')}</tbody></table></div>
+     <p class="mut" style="font-size:12px;margin-top:10px">Each bar runs from the bear to the bull value, the thick mark is the base value and the orange line is today's price. The values come from the other tabs, including any inputs you have edited there. Models marked low reliability start unticked. Relative models (price and EV multiples) show what the stock would be worth at peer valuations, while the others are intrinsic. Bars are cut off at about three times the price. The average treats the ticked models equally and is a rough guide, not a target price.</p></div>`;
+    el.querySelectorAll('.ffl input').forEach(c=>c.onchange=()=>{FFX.off[s+c.dataset.k]=!c.checked?true:false;draw()});
+  };
+  draw();
 }
 
 // ---------- stock ----------
