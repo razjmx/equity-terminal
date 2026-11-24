@@ -357,3 +357,14 @@ input.ed.chg{background:rgba(42,111,219,.14);font-weight:600}
 .faq{border-top:1px solid var(--b,#e3e7ee);padding:8px 0}
 .faq summary{cursor:pointer;font-weight:600;font-size:14px}
 .faq p{margin:6px 0 0;font-size:13.5px;color:var(--m,#667085)}
+
+footer.site{margin-top:40px;padding:34px 24px 24px;border-top:1px solid var(--b,#e3e7ee);text-align:left;font-size:14px}
+footer.site .fmain{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:28px}
+footer.site .fcol h4{margin:0 0 12px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--t,#18202b)}
+footer.site .fcol a{display:block;color:var(--m,#667085);text-decoration:none;margin:0 0 9px}
+footer.site .fcol a:hover{color:var(--brand,#0f6b4a)}
+footer.site .fbrand p{color:var(--m,#667085);margin:10px 0 12px;max-width:340px;line-height:1.5}
+footer.site .fbrand .brand{display:inline-flex}
+footer.site .fmail{display:flex!important;align-items:center;gap:8px;color:var(--t,#18202b)!important}
+footer.site .fbase{display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;margin-top:22px;padding-top:14px;border-top:1px solid var(--b,#e3e7ee);font-size:12px;color:var(--m,#667085)}
+@media(max-width:760px){footer.site .fmain{grid-template-columns:1fr 1fr}footer.site .fbrand{grid-column:1/-1}}
