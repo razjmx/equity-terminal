@@ -28,7 +28,7 @@ FEDERALBNK,Bank,Banks - Regional,359.8,173.17,2.08,11.9,3-year average ROE,0.95,
 FIVESTAR,NBFC,Credit Services,429.35,267.75,1.6,16.0,3-year average ROE,1.0,13.2,6.5,1.42,379.5,-11.6,17.2,19.4,15.14,
 GICRE,Insurance,Insurance - Reinsurance,333.6,571.84,0.58,12.6,3-year average ROE,1.06,13.56,6.5,0.87,496.6,48.9,10.6,16.0,10.24,"Yahoo book value well above last statement equity (1.42x), later quarter or data gap; insurer: P/B-ROE is indicative only (embedded value / VNB not available)"
 HDBFS,NBFC,Credit Services,567.7,266.65,2.13,14.7,3-year average ROE,1.12,13.92,6.5,1.1,293.1,-48.4,22.3,21.8,13.24,
-HDFCBANK,Bank,Banks - Regional,817.8,394.84,2.07,11.8,3-year average ROE scaled by Yahoo book-value ratio (0.75); statement equity overstated,0.92,12.72,6.5,0.85,335.1,-59.0,19.4,41.0,8.12,statement equity looks overstated vs Yahoo book value (info/statement = 0.75)
+HDFCBANK,Bank,Banks - Regional,817.8,394.84,2.07,14.0,override (fin_inputs.csv),0.92,12.72,6.5,1.21,476.1,-41.8,19.4,41.0,9.65,statement equity looks overstated vs Yahoo book value (info/statement = 0.75)
 HDFCLIFE,Insurance,Insurance - Life,574.95,87.33,6.58,10.9,3-year average ROE,0.88,12.48,6.5,0.74,64.3,-88.8,45.9,11.0,7.6,insurer: P/B-ROE is indicative only (embedded value / VNB not available)
 HOMEFIRST,NBFC,Mortgage Finance,1023.8,446.25,2.29,14.0,3-year average ROE,1.18,14.28,6.5,0.96,429.6,-58.0,24.3,33.8,13.0,
 HUDCO,NBFC,Credit Services,158.16,114.66,1.38,15.4,3-year average ROE,1.69,17.34,6.5,0.82,94.1,-40.5,21.5,12.5,11.34,
