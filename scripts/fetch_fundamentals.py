@@ -6,6 +6,9 @@ from datetime import datetime, timezone
 import pandas as pd
 import yfinance as yf
 
+# ONLY_NEW=1: fetch only stocks that have no file yet (use after adding stocks to the universe)
+ONLY_NEW = os.environ.get("ONLY_NEW", "") in ("1", "true", "True")
+
 uni = pd.read_csv("data/universe.csv")
 os.makedirs("data/fundamentals", exist_ok=True)
 
@@ -49,7 +52,11 @@ def fetch(ticker, tries=3):
 
 
 status = []
+skipped = 0
 for n, r in enumerate(uni.itertuples(), 1):
+    if ONLY_NEW and os.path.exists(f"data/fundamentals/{r.symbol}.json"):
+        skipped += 1
+        continue
     data = fetch(r.yahoo)
     row = {"symbol": r.symbol, "industry": r.industry}
     if "error" in data:
@@ -75,10 +82,18 @@ for n, r in enumerate(uni.itertuples(), 1):
     time.sleep(1.0)
 
 st = pd.DataFrame(status)
-st.to_csv("data/fundamentals_status.csv", index=False)
+if ONLY_NEW and os.path.exists("data/fundamentals_status.csv") and len(st):
+    # keep earlier rows for stocks not fetched this time
+    prev = pd.read_csv("data/fundamentals_status.csv")
+    prev = prev[~prev["symbol"].isin(st["symbol"])]
+    st = pd.concat([prev, st], ignore_index=True)
+if len(st):
+    st.to_csv("data/fundamentals_status.csv", index=False)
 print()
-print("Fetched OK:", int(st["ok"].sum()), "of", len(st))
-print("Failed:", st.loc[~st["ok"], "symbol"].tolist())
-print("Annual years distribution:\n", st["annual_years"].value_counts().to_string())
-print("Missing EBIT:", int((~st["has_ebit"] & st["ok"]).sum()))
-print("Missing operating cash flow:", int((~st["has_cfo"] & st["ok"]).sum()))
+print(f"ONLY_NEW={ONLY_NEW}; skipped (already had a file): {skipped}")
+if len(st):
+    print("Fetched OK:", int(st["ok"].sum()), "of", len(st))
+    print("Failed:", st.loc[~st["ok"], "symbol"].tolist())
+    print("Annual years distribution:\n", st["annual_years"].value_counts().to_string())
+    print("Missing EBIT:", int((~st["has_ebit"] & st["ok"]).sum()))
+    print("Missing operating cash flow:", int((~st["has_cfo"] & st["ok"]).sum()))
