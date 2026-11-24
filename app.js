@@ -674,6 +674,7 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
 
 // ---------- price multiples model ----------
 function pctile(a,p){a=a.filter(v=>v!=null&&isFinite(v)).sort((x,y)=>x-y);if(!a.length)return null;const i=(a.length-1)*p,lo=Math.floor(i),hi=Math.ceil(i);return a[lo]+(a[hi]-a[lo])*(i-lo)}
+const MS={set:'all'};
 async function multPanel(s,price){
   const box=$('#multbox');if(!box)return;
   const P=await get('data/peers.json','json');
@@ -684,6 +685,8 @@ async function multPanel(s,price){
   let lv=null,peers=[];
   for(const [k] of LV){const g=P.stocks.filter(x=>x[k]&&x[k]===me[k]&&x.s!==s&&(ok(x.pe)||ok(x.pb)));if(g.filter(x=>ok(x.pe)).length>=6||g.filter(x=>ok(x.pb)).length>=6){lv=k;peers=g;break}}
   if(!lv){box.innerHTML='<div class="card"><h3>Price multiples</h3><p class="mut">Too few comparable peers (need at least 6 with positive multiples) to value this stock on multiples.</p></div>';return}
+  const allPeers=peers;
+  if(MS.set==='size'&&ok(me.mc)){peers=allPeers.filter(x=>ok(x.mc)).sort((a,b)=>Math.abs(Math.log(a.mc/me.mc))-Math.abs(Math.log(b.mc/me.mc))).slice(0,10)}
   const lvName=LV.find(x=>x[0]===lv)[1],gname=me[lv];
   const M=[['pe','P/E',1],['pb','P/B',2]];
   const rows=M.map(([k,l,d])=>{const vals=peers.map(x=>x[k]).filter(ok);
@@ -698,12 +701,14 @@ async function multPanel(s,price){
   const fx=(v,d)=>v==null?'–':T.fmt(v,d);
   const card=(cl,name,v)=>`<div class="sc ${cl}"><div class="sn">${name}</div><div class="sv">${v!=null?'₹'+T.fmt(v,0):'–'}</div><div class="su ${cls(up(v))}">${up(v)!=null?(up(v)>=0?'+':'')+T.fmt(up(v),1)+'% vs price':''}</div></div>`;
   box.innerHTML=`<div class="card mph"><h3>Price multiples <span class="mut" style="font-weight:400;font-size:12px">peers: ${esc(gname)} (${esc(lvName)}) · ${peers.length} stocks</span></h3>
+    <div class="seg" id="msset" style="margin:0 0 10px"><button data-k="all" class="${MS.set==='all'?'on':''}">All peers (${allPeers.length})</button><button data-k="size" class="${MS.set==='size'?'on':''}">Similar size (10 nearest)</button></div>
     <p class="mut" style="margin-top:0">Applies the peers' 25th percentile, median and 75th percentile multiple to this company's earnings and book value. Low = bear, median = base, high = bull.</p>
     ${use.length?`<div class="scn">${card('sc-bear','Bear (25th pct)',bl[0])}${card('sc-base','Base (median)',bl[1])}${card('sc-bull','Bull (75th pct)',bl[2])}</div>
     <p class="mut" style="font-size:12px;margin:8px 0 0">Average of ${use.map(r=>r.l).join(' and ')} values. Current price ₹${T.fmt(price,2)}.</p>`:'<p class="warn">This company has no positive P/E or P/B, so it cannot be valued on these multiples.</p>'}
     <div style="overflow-x:auto;margin-top:14px"><table class="peer"><thead><tr><th>Multiple</th><th class="num">${esc(s)}</th><th class="num">Peer 25th</th><th class="num">Peer median</th><th class="num">Peer 75th</th><th class="num">Value @ 25th</th><th class="num">@ median</th><th class="num">@ 75th</th><th class="num">Peers used</th></tr></thead><tbody>
     ${rows.map(r=>`<tr><td><b>${r.l}</b></td><td class="num">${r.own?fx(r.own,r.d)+'x':'–'}</td>${[0,1,2].map(i=>`<td class="num">${r.q?fx(r.q[i],r.d)+'x':'–'}</td>`).join('')}${[0,1,2].map(i=>`<td class="num">${r.imp?'₹'+T.fmt(r.imp[i],0):'–'}</td>`).join('')}<td class="num">${r.n}</td></tr>`).join('')}</tbody></table></div>
     <p class="mut" style="font-size:12px;margin-top:10px">This is a relative value: it says what the stock would be worth if it traded like its peers, not what it is worth in itself. If the whole group is expensive or cheap, the answer moves with it. Peers with negative or missing multiples are left out.</p></div>`;
+  box.querySelectorAll('#msset button').forEach(b=>b.onclick=()=>{MS.set=b.dataset.k;multPanel(s,price)});
 }
 
 // ---------- stock ----------
