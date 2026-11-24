@@ -401,3 +401,8 @@ footer.site .fbase{display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:spac
 .dpspark i{flex:1;background:rgba(66,110,200,.55);border-radius:2px 2px 0 0;min-width:4px}
 .dpspark i:last-child{background:#e09a1a}
 .vq.vol{background:rgba(139,148,163,.25);color:#5b6472}
+/* SOTP / embedded value inputs */
+table.sotp input.ed,table.sotp select.ed{width:100%;min-width:88px;box-sizing:border-box}
+table.sotp input.tx{min-width:130px;text-align:left}
+table.sotp select.ed{padding:4px 6px}
+.rmrow{border:0;background:transparent;color:var(--r);font-size:20px;line-height:1;cursor:pointer;padding:0 6px}
