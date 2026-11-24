@@ -353,7 +353,7 @@ let _rz;window.addEventListener('resize',()=>{clearTimeout(_rz);_rz=setTimeout((
 const HM={tf:'r1m',level:'sector',drill:null};
 const HM_TF=[['r1d','1D'],['r1w','1W'],['r1m','1M'],['r3m','3M'],['r6m','6M'],['r1y','1Y']];
 const HM_SC={r1d:3,r1w:5,r1m:10,r3m:18,r6m:28,r1y:45};
-const HM_LV=[['macro','NSE group'],['sector','Sector'],['industry','Industry'],['basic_industry','Basic industry']];
+const HM_LV=[['macro','Macro sector'],['sector','Sector'],['industry','Industry'],['basic_industry','Basic industry']];
 function squarify(items,x,y,w,h){
   const tot=items.reduce((a,b)=>a+b.v,0);if(!tot||w<=0||h<=0)return [];
   const sc=w*h/tot,it=items.map(i=>Object.assign({},i,{a:i.v*sc})),out=[];let rect={x,y,w,h},row=[],i=0;
@@ -378,11 +378,9 @@ function hmGroups(){
 function heatmapPanel(){
   const w=$('#hmwrap');if(!w)return;
   const have=D.ind&&Object.keys(D.ind).length>0;
-  const lvs=HM_LV.filter(([k])=>have&&Object.values(D.ind).some(r=>r[k]));
   if(!have&&['macro','basic_industry'].includes(HM.level))HM.level='sector';
-  if(have&&lvs.length&&!lvs.some(([k])=>k===HM.level))HM.level=lvs[0][0];
   w.innerHTML=`<div class="hmbar"><div class="seg" id="hm-tf">${HM_TF.map(([k,l])=>`<button data-k="${k}" class="${HM.tf===k?'on':''}">${l}</button>`).join('')}</div>
-   ${have?`<div class="seg" id="hm-lv">${lvs.map(([k,l])=>`<button data-k="${k}" class="${HM.level===k?'on':''}">${l}</button>`).join('')}</div>`:'<span class="mut" style="font-size:12px">Using the basic industry tag. Run <b>Fetch industry classification</b> in Actions for NSE sectors.</span>'}
+   ${have?`<div class="seg" id="hm-lv">${HM_LV.map(([k,l])=>`<button data-k="${k}" class="${HM.level===k?'on':''}">${l}</button>`).join('')}</div>`:'<span class="mut" style="font-size:12px">Using the basic industry tag. Run <b>Fetch industry classification</b> in Actions for NSE sectors.</span>'}
    <span class="hmcrumb" id="hm-crumb"></span></div>
    <div id="hmbox" class="hmbox"></div>
    <div class="hmleg"><span>−${HM_SC[HM.tf]}%</span><i></i><span>0</span><i class="g"></i><span>+${HM_SC[HM.tf]}%</span><em class="mut">Returns use the latest close vs the close ${({r1d:'one trading day',r1w:'7 days',r1m:'one month',r3m:'three months',r6m:'six months',r1y:'one year'})[HM.tf]} earlier. Group return is weighted by market cap.</em></div>`;
@@ -404,10 +402,51 @@ function hmDraw(){
   else{items=groups.map(g=>({name:g.name,v:g.v,ret:g.ret,n:g.n,med:g.med}));crumb.innerHTML=`<span class="mut">Click a block to see its stocks</span>`}
   items=items.filter(i=>i.v>0).sort((a,b)=>b.v-a.v);
   const rects=squarify(items,0,0,W,Hh);
-  box.innerHTML=rects.map((r,i)=>{const [bg,fg]=hmColor(r.ret,tf),big=r.w>96&&r.h>54,mid=r.w>62&&r.h>46;
+  box.innerHTML=rects.map((r,i)=>{const [bg,fg]=hmColor(r.ret,tf),big=r.w>96&&r.h>54,mid=r.w>58&&r.h>34;
     const tip=r.stock?`${r.name}: ${T.pct(r.ret,2)} · ₹${T.fmt(r.mc,0)} cr`:`${r.name}: ${T.pct(r.ret,2)} weighted, ${T.pct(r.med,2)} median · ${r.n} stocks`;
     return `<div class="hmt" data-i="${i}" title="${esc(tip)}" style="left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px;animation-delay:${Math.min(i*12,400)}ms"><div style="background:${bg};color:${fg}">${mid?`<b>${esc(r.name)}</b><span>${T.pct(r.ret,1)}</span>${big&&!r.stock?`<small>${r.n} stocks</small>`:''}`:''}</div></div>`}).join('');
   box.querySelectorAll('.hmt').forEach(el=>el.onclick=()=>{const r=rects[+el.dataset.i];if(r.stock)location.hash='#/stock/'+r.stock;else{HM.drill=r.name;hmDraw()}});
+}
+
+// ---------- peers ----------
+const PR={lvl:null,sort:'mc',dir:-1};
+const PCOLS=[['mc','Mkt cap ₹cr',0,'x'],['pe','P/E',1,'x'],['pb','P/B',2,'x'],['ev','EV/EBITDA',1,'x'],['roe','ROE %',1,''],['roce','ROCE %',1,''],['nm','Net margin %',1,''],['rg','Rev CAGR %',1,''],['r1y','1Y return %',1,'']];
+const PLV=[['ind','Industry'],['sec','Sector'],['macro','NSE group']];
+const medOf=a=>{a=a.filter(v=>v!=null&&isFinite(v)).sort((x,y)=>x-y);if(!a.length)return null;const m=a.length>>1;return a.length%2?a[m]:(a[m-1]+a[m])/2};
+async function peersTab(s){
+  const box=$('#peerbody');if(!box)return;
+  const P=await get('data/peers.json','json');
+  if(!P||!P.stocks){box.innerHTML='<div class="card"><p class="mut">Peer data not built yet. Run the Daily refresh once.</p></div>';return}
+  const me=P.stocks.find(x=>x.s===s);
+  if(!me){box.innerHTML='<div class="card"><p class="mut">This stock is not in the peer table.</p></div>';return}
+  const members=lv=>P.stocks.filter(x=>x[lv]&&x[lv]===me[lv]);
+  if(!PR.lvl||!members(PR.lvl).length)PR.lvl='ind';
+  if(members(PR.lvl).length<4){const alt=PLV.map(x=>x[0]).find(l=>members(l).length>=4);if(alt)PR.lvl=alt}
+  const draw=()=>{
+    const g=members(PR.lvl),name=me[PR.lvl];
+    const num=v=>v!=null&&isFinite(v);
+    const rows=g.slice().sort((a,b)=>{const x=a[PR.sort],y=b[PR.sort];if(!num(x)&&!num(y))return 0;if(!num(x))return 1;if(!num(y))return -1;return (x-y)*PR.dir});
+    const med={};PCOLS.forEach(c=>med[c[0]]=medOf(g.map(x=>x[c[0]])));
+    // cap-weighted P/E and P/B (total cap / total earnings)
+    const wv=(k)=>{let mc=0,e=0;g.forEach(x=>{if(num(x.mc)&&num(x[k])&&x[k]>0){mc+=x.mc;e+=x.mc/x[k]}});return e?mc/e:null};
+    const rank=(k,hi)=>{const v=me[k];if(!num(v))return '–';const a=g.filter(x=>num(x[k])).map(x=>x[k]).sort((p,q)=>hi?q-p:p-q);return (a.indexOf(v)+1)+' of '+a.length};
+    const prem=(k)=>{const v=me[k],m=med[k];if(!num(v)||!num(m)||!m)return '';const p=(v/m-1)*100;return `<span class="${p>0?'neg':'pos'}" style="font-size:12px">${p>=0?'+':''}${T.fmt(p,0)}% vs median</span>`};
+    const tl=(k,l,d,hi)=>`<div class="tile"><div class="k">${l}</div><div class="tv">${num(me[k])?T.fmt(me[k],d):'–'}</div><div class="k" style="margin-top:2px">Median ${num(med[k])?T.fmt(med[k],d):'–'} · rank ${rank(k,hi)}</div></div>`;
+    const cell=(r,c)=>{const v=r[c[0]];return `<td class="num ${PR.sort===c[0]?'sorted':''}">${num(v)?T.fmt(v,c[2]):'–'}</td>`};
+    box.innerHTML=`<div class="card"><h3>Peers · ${esc(name)} <span class="mut" style="font-weight:400;font-size:12px">${g.length} stocks</span>
+       <span class="seg" id="plv" style="margin-left:auto">${PLV.filter(l=>members(l[0]).length>=2).map(l=>`<button data-k="${l[0]}" class="${PR.lvl===l[0]?'on':''}">${l[1]}</button>`).join('')}</span></h3>
+      <div class="mtiles">${tl('pe','P/E',1,false)}${tl('pb','P/B',2,false)}${tl('ev','EV/EBITDA',1,false)}${tl('roe','ROE %',1,true)}${tl('roce','ROCE %',1,true)}${tl('rg','Revenue CAGR %',1,true)}</div>
+      <p class="mut" style="font-size:12.5px;margin:10px 0 0">${esc(s)} P/E ${num(me.pe)?T.fmt(me.pe,1)+'x':'–'} ${prem('pe')} · P/B ${num(me.pb)?T.fmt(me.pb,2)+'x':'–'} ${prem('pb')} · group weighted P/E ${num(wv('pe'))?T.fmt(wv('pe'),1)+'x':'–'}, weighted P/B ${num(wv('pb'))?T.fmt(wv('pb'),2)+'x':'–'}.
+      Rank 1 is the highest for ROE, ROCE and growth, and the cheapest for the multiples.</p></div>
+     <div class="card scroll"><table class="peer"><thead><tr><th>Company</th>${PCOLS.map(c=>`<th class="num sortable ${PR.sort===c[0]?'sorted':''}" data-k="${c[0]}">${c[1]}${PR.sort===c[0]?(PR.dir<0?' ▼':' ▲'):''}</th>`).join('')}</tr></thead><tbody>
+      ${rows.map(r=>`<tr class="${r.s===s?'me':''}" data-s="${esc(r.s)}"><td><b>${esc(r.s)}</b><div class="k">${esc(r.n)}</div></td>${PCOLS.map(c=>cell(r,c)).join('')}</tr>`).join('')}
+      <tr class="medrow"><td><b>Median</b></td>${PCOLS.map(c=>`<td class="num">${num(med[c[0]])?T.fmt(med[c[0]],c[2]):'–'}</td>`).join('')}</tr></tbody></table></div>
+     <p class="mut" style="font-size:12px">Groups come from Yahoo Finance industry tags (the NSE group is shown as a wider fallback). Multiples are for the latest financial year. Negative or missing values are left out of medians.</p>`;
+    box.querySelectorAll('#plv button').forEach(b=>b.onclick=()=>{PR.lvl=b.dataset.k;draw()});
+    box.querySelectorAll('th.sortable').forEach(th=>th.onclick=()=>{const k=th.dataset.k;if(PR.sort===k)PR.dir*=-1;else{PR.sort=k;PR.dir=-1}draw()});
+    box.querySelectorAll('tbody tr[data-s]').forEach(tr=>tr.onclick=()=>{location.hash='#/stock/'+tr.dataset.s+'/peers'});
+  };
+  draw();
 }
 
 // ---------- screener ----------
@@ -614,8 +653,8 @@ async function stock(s,tab){
     <div class="acts">${dl}</div></div>
     <div class="pricerow"><div><span class="bigp" data-n="${price}" data-d="2" data-pre="₹">₹${T.fmt(price,2)}</span>${chg!=null?`<span class="chg ${cls(chg)}">${chgAbs>=0?'+':''}${T.fmt(chgAbs,2)} (${chg>=0?'+':''}${T.fmt(chg,2)}%)</span>`:''}<div class="k" style="margin-top:6px">NSE · As of ${esc(asof)} (daily close)</div></div>
      <div class="stats">${stat('Market cap',V.market_cap_cr!=null?'₹'+T.fmt(V.market_cap_cr,0)+' Cr':'–')}${stat('P/E',V.pe_used!=null?T.fmt(V.pe_used,1)+'x':'–')}${stat('P/B',V.pb!=null?T.fmt(V.pb,2)+'x':'–')}${stat('EV/EBITDA',V.ev_ebitda!=null?T.fmt(V.ev_ebitda,1)+'x':'–')}${stat('ROE',R.roe_pct!=null?T.fmt(R.roe_pct,1)+'%':'–')}${stat('ROCE',R.roce_pct!=null?T.fmt(R.roce_pct,1)+'%':'–')}${stat('Debt/Equity',R.debt_equity!=null?T.fmt(R.debt_equity,2):'–')}</div></div></div>`;
-  const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['quant','Quant Analytics']];
-  h+=`<div class="tabs">${TABS.map(t=>`<a href="#/stock/${esc(s)}/${t[0]}" class="${tab===t[0]?'on':''}">${t[1]}</a>`).join('')}${['Compare','Peers','Shareholding','News & Events','Research Notes'].map(x=>`<span title="Coming later">${x}</span>`).join('')}<b class="mini">${esc(s)} <em>₹${T.fmt(price,2)}</em>${chg!=null?` <i class="${cls(chg)}">${chg>=0?'+':''}${T.fmt(chg,2)}%</i>`:''}</b></div>`;
+  const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['peers','Peers'],['quant','Quant Analytics']];
+  h+=`<div class="tabs">${TABS.map(t=>`<a href="#/stock/${esc(s)}/${t[0]}" class="${tab===t[0]?'on':''}">${t[1]}</a>`).join('')}${['Compare','Shareholding','News & Events','Research Notes'].map(x=>`<span title="Coming later">${x}</span>`).join('')}<b class="mini">${esc(s)} <em>₹${T.fmt(price,2)}</em>${chg!=null?` <i class="${cls(chg)}">${chg>=0?'+':''}${T.fmt(chg,2)}%</i>`:''}</b></div>`;
 
   // valuation summary (overview side card)
   let vs='';
@@ -646,6 +685,8 @@ async function stock(s,tab){
     h+='<div class="subtabs" id="fsub"></div><div id="fbody"></div>';
   }else if(tab==='valuation'){
     h+='<div class="subtabs" id="vsub"></div><div id="vbody"></div>';
+  }else if(tab==='peers'){
+    h+='<div id="peerbody"><div class="skel" style="height:320px"></div></div>';
   }else if(tab==='quant'){
     h+=technicals()||'<div class="card">No risk data for this stock.</div>';
   }
@@ -672,6 +713,7 @@ async function stock(s,tab){
   }
   countUps(view);
   if(tab==='financials')finTabs(s);
+  if(tab==='peers')peersTab(s);
   if(tab==='valuation')valTabs(s,dcf,fin,rl,price,met,u);
 }
 
