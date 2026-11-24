@@ -717,33 +717,102 @@ async function sectorPage(lv,name){
 }
 
 // ---------- screener ----------
-const COLS=[['symbol','Symbol','l'],['industry','Industry','l'],['price','Price'],['pe_used','P/E'],['pb','P/B'],['roe_pct','ROE %'],['roce_pct','ROCE %'],['rev_cagr_pct','Rev CAGR %'],['ret_1y','1Y %'],['rsi14','RSI'],['fair','DCF fair'],['upside','Upside %'],['rel','DCF reliability','l']];
-let SORT={k:'symbol',d:1},FILT={q:'',rel:'all',ind:'all'};
-function rowFor(s){
-  const m=D.met[s]||{},d=D.dcf[s]||{},r=D.rsk[s]||{};
-  const price=T.num(r.price)??T.num(d.price);
-  // shift saved DCF with chosen assumptions only via stock page; screener uses saved model values
-  const fair=T.num(d.fair_value);
-  return {symbol:s,industry:m.industry||(D.uni.find(u=>u.symbol===s)||{}).industry||'',price,mcap:null,pe_used:T.num(m.pe_used),pb:T.num(m.pb),roe_pct:T.num(m.roe_pct),roce_pct:T.num(m.roce_pct),rev_cagr_pct:T.num(m.rev_cagr_pct),ret_1y:T.num(r.ret_1y),rsi14:T.num(r.rsi14),fair,upside:fair!=null&&price?(fair/price-1)*100:null,rel:d.reliability||'',type:m.type}
-}
-function screener(){
-  const all=D.syms.map(rowFor);
-  const inds=[...new Set(all.map(r=>r.industry).filter(Boolean))].sort();
-  view.innerHTML=`<div class="bar"><input id="f-q" placeholder="Filter symbol / industry" value="${esc(FILT.q)}">
-   <select id="f-rel"><option value="all">All DCF reliability</option>${['usable','indicative','low confidence','not meaningful'].map(x=>`<option ${FILT.rel===x?'selected':''}>${x}</option>`).join('')}</select>
-   <select id="f-ind"><option value="all">All industries</option>${inds.map(x=>`<option ${FILT.ind===x?'selected':''}>${esc(x)}</option>`).join('')}</select>
-   <span class="mut" id="cnt"></span></div><div class="card scroll"><table id="tb"></table></div>
-   <p class="mut">DCF values here are as saved by the nightly run (ERP in compute_dcf.py). Open a stock to recompute with your own assumptions.</p>`;
+let FILT={q:'',rel:'all',ind:'all'};
+const SCM=[ // key, label, unit/decimals, group
+ ['mc','Market cap ₹ cr',0,'Size'],['px','Price ₹',1,'Size'],
+ ['pe','P/E',1,'Valuation'],['pb','P/B',2,'Valuation'],['ev','EV/EBITDA',1,'Valuation'],['up','Fair value upside %',0,'Valuation'],
+ ['roe','ROE %',1,'Quality'],['roce','ROCE %',1,'Quality'],['nm','Net margin %',1,'Quality'],['de','Debt / equity',2,'Quality'],
+ ['rg','Revenue CAGR %',1,'Growth'],['ng','Net income CAGR %',1,'Growth'],
+ ['r1m','1-month return %',1,'Momentum'],['r1y','1-year return %',1,'Momentum'],['rsi','RSI (14)',0,'Momentum'],
+ ['dp','Delivery % (last day)',0,'Order flow'],['score','Order flow score',0,'Order flow']];
+const SC_PRESETS=[
+ ['Quality compounders',{roe:[15,null],roce:[15,null],de:[null,0.6],rg:[10,null]}],
+ ['Value',{pe:[null,18],pb:[null,2.5],roe:[12,null]}],
+ ['Undervalued vs fair value',{up:[20,null]}],
+ ['Momentum',{r1m:[5,null],r1y:[15,null],_a200:1}],
+ ['Debt-free profitable',{de:[null,0.1],roe:[12,null],nm:[8,null]}],
+ ['High delivery',{dp:[60,null]}],
+ ['Bullish order flow',{_bias:'bullish'}]];
+let SC=null;
+async function screener(){
+  view.innerHTML='<div class="skel" style="height:120px"></div><div class="skel" style="height:360px;margin-top:14px"></div>';
+  if(!SC){SC={f:{},cap:[],type:'all',ind:'all',q:'',a200:0,bias:'all',sort:{k:'mc',d:-1},n:50};
+    try{const s=JSON.parse(localStorage.getItem('tl_screener')||'null');if(s&&s.f)Object.assign(SC,s,{n:50})}catch(e){}}
+  if(FILT.ind&&FILT.ind!=='all'){SC.ind=FILT.ind;FILT.ind='all';SC.q=''}
+  const [P,OF,FS_]=await Promise.all([get('data/peers.json','json'),get('data/orderflow.json','json'),table('data/financials_summary.csv')]);
+  const ps={};((P&&P.stocks)||[]).forEach(x=>ps[x.s]=x);
+  const ofm={};((OF&&OF.stocks)||[]).forEach(x=>ofm[x.s]=x);
+  const fup={};FS_.forEach(r=>{const u=T.num(r.upside_pct);if(u!=null)fup[r.symbol]=u});
+  const rows=D.syms.map(s=>{
+    const x=ps[s]||{},m=D.met[s]||{},d=D.dcf[s]||{},r=D.rsk[s]||{},o=ofm[s]||{};
+    const price=T.num(r.price)??T.num(d.price)??x.px??null;
+    const dcfUp=T.num(d.fair_value)!=null&&price?(T.num(d.fair_value)/price-1)*100:null;
+    const mc=x.mc!=null?x.mc:null;
+    return {s,n:x.n||((D.uni.find(u=>u.symbol===s)||{}).company)||s,ind:m.industry||x.ind||'',type:x.type||m.type||'',
+      mc,px:price,pe:x.pe,pb:x.pb,ev:x.ev,roe:x.roe,roce:x.roce,nm:x.nm,de:x.de,rg:x.rg,ng:x.ng,r1m:x.r1m,r1y:x.r1y,
+      rsi:T.num(r.rsi14),a200:x.a200,up:fup[s]!=null?fup[s]:dcfUp,dp:o.dp!=null?o.dp:null,score:o.score!=null?o.score:null,bias:o.bias||'',cap:capOf(mc)}});
+  const inds=[...new Set(rows.map(r=>r.ind).filter(Boolean))].sort();
+  const save=()=>{try{localStorage.setItem('tl_screener',JSON.stringify(SC))}catch(e){}};
+  const nn=v=>v!=null&&isFinite(v);
+  const pass=r=>{
+    for(const [k,[lo,hi]] of Object.entries(SC.f)){const v=r[k];if(lo==null&&hi==null)continue;if(!nn(v))return false;if(lo!=null&&v<lo)return false;if(hi!=null&&v>hi)return false}
+    if(SC.cap.length&&!SC.cap.includes(r.cap))return false;
+    if(SC.type==='fin'&&r.type!=='financial')return false;if(SC.type==='nonfin'&&r.type==='financial')return false;
+    if(SC.ind!=='all'&&r.ind!==SC.ind)return false;
+    if(SC.a200&&r.a200!==1)return false;
+    if(SC.bias!=='all'&&r.bias!==SC.bias)return false;
+    if(SC.q&&!(r.s+' '+r.n+' '+r.ind).toUpperCase().includes(SC.q.toUpperCase()))return false;
+    return true};
+  const groups=[...new Set(SCM.map(x=>x[3]))];
+  const fv=(k,i)=>{const a=SC.f[k];return a&&a[i]!=null?a[i]:''};
+  const shell=()=>{
+    view.innerHTML=`<div class="scr"><h2 style="margin:0 0 4px">Stock screener</h2>
+     <p class="mut" style="margin:0 0 12px">Filter the Nifty 500 on valuation, quality, growth, momentum and order flow. Leave a box empty to ignore it. Stocks with no data for a filtered metric are left out. End-of-day data.</p>
+     <div class="card"><div class="scpre"><span class="mut">Presets</span>${SC_PRESETS.map((p,i)=>`<button data-p="${i}">${esc(p[0])}</button>`).join('')}<button id="sc-clear" class="ed-reset">Clear all</button></div>
+      <div class="scgrid">${groups.map(g=>`<div class="scg"><div class="k">${g}</div>${SCM.filter(x=>x[3]===g).map(([k,l])=>`<div class="scf"><span>${l}</span><input type="number" step="any" data-k="${k}" data-i="0" placeholder="min" value="${fv(k,0)}"><input type="number" step="any" data-k="${k}" data-i="1" placeholder="max" value="${fv(k,1)}"></div>`).join('')}</div>`).join('')}
+       <div class="scg"><div class="k">Filters</div>
+        <div class="scf"><span>Market cap class</span><span class="sccaps">${['Large cap','Mid cap','Small cap'].map(c=>`<label><input type="checkbox" data-cap="${c}" ${SC.cap.includes(c)?'checked':''}>${c.split(' ')[0]}</label>`).join('')}</span></div>
+        <div class="scf"><span>Type</span><select id="sc-type"><option value="all">All</option><option value="nonfin"${SC.type==='nonfin'?' selected':''}>Non-financial</option><option value="fin"${SC.type==='fin'?' selected':''}>Banks &amp; financials</option></select></div>
+        <div class="scf"><span>Industry</span><select id="sc-ind"><option value="all">All industries</option>${inds.map(x=>`<option${SC.ind===x?' selected':''}>${esc(x)}</option>`).join('')}</select></div>
+        <div class="scf"><span>Order flow bias</span><select id="sc-bias"><option value="all">Any</option>${['bullish','bearish','neutral'].map(x=>`<option value="${x}"${SC.bias===x?' selected':''}>${x[0].toUpperCase()+x.slice(1)}</option>`).join('')}</select></div>
+        <div class="scf"><span>Above 200-day average</span><input type="checkbox" id="sc-a200" ${SC.a200?'checked':''}></div>
+        <div class="scf"><span>Search</span><input id="sc-q" placeholder="symbol, name, industry" value="${esc(SC.q)}"></div></div></div></div>
+     <div class="card" style="margin-top:14px"><div class="schd"><b id="sc-cnt"></b><span class="mut" style="flex:1"> · click a column to sort · click a row to open</span><button id="sc-csv" class="ed-reset">Download CSV</button></div><div class="scroll"><table id="sc-tb" class="sctb"></table></div><p style="text-align:center;margin:10px 0 0"><button id="sc-more" class="ed-reset" style="display:none">Show 50 more</button></p>
+     <p class="mut" style="font-size:12px;margin-top:10px">Fair value upside uses the saved DCF (non-financials) or the P/B–ROE model (financials) from the nightly run, so open the stock to test it with your own assumptions. Delivery % and the order flow score come from the latest order-flow run. Returns are price returns. Ratios are from the latest annual data on Yahoo Finance, so check anything important against the company's filings.</p></div></div>`;
+    bind()};
+  const COLS=[['s','Symbol','l'],['n','Company','l'],['cap','Cap','l'],['mc','Mkt cap ₹cr'],['px','Price'],['pe','P/E'],['pb','P/B'],['roe','ROE %'],['roce','ROCE %'],['de','D/E'],['rg','Rev CAGR %'],['r1m','1M %'],['r1y','1Y %'],['up','Upside %'],['dp','Deliv %'],['score','OF score']];
+  const dec={mc:0,px:1,pe:1,pb:2,roe:1,roce:1,de:2,rg:1,r1m:1,r1y:1,up:0,dp:0,score:0};
+  const pct=new Set(['r1m','r1y','up']);
   const draw=()=>{
-    let rows=all.filter(r=>(FILT.rel==='all'||r.rel===FILT.rel)&&(FILT.ind==='all'||r.industry===FILT.ind)&&(!FILT.q||(r.symbol+' '+r.industry).toUpperCase().includes(FILT.q.toUpperCase())));
-    rows.sort((a,b)=>{const x=a[SORT.k],y=b[SORT.k];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return (x>y?1:x<y?-1:0)*SORT.d});
-    $('#cnt').textContent=rows.length+' stocks';
-    $('#tb').innerHTML='<tr>'+COLS.map(c=>`<th class="${c[2]||''}" data-k="${c[0]}">${c[1]}${SORT.k===c[0]?(SORT.d>0?' ▲':' ▼'):''}</th>`).join('')+'</tr>'+
-      rows.slice(0,600).map(r=>`<tr class="row" onclick="location.hash='#/stock/${r.symbol}'"><td>${r.symbol}</td><td class="l mut">${esc(r.industry)}</td><td>${T.fmt(r.price,1)}</td><td>${T.fmt(r.pe_used,1)}</td><td>${T.fmt(r.pb,1)}</td><td>${T.fmt(r.roe_pct,1)}</td><td>${T.fmt(r.roce_pct,1)}</td><td>${T.fmt(r.rev_cagr_pct,1)}</td><td class="${cls(r.ret_1y)}">${T.fmt(r.ret_1y,1)}</td><td>${T.fmt(r.rsi14,0)}</td><td>${T.fmt(r.fair,0)}</td><td class="${cls(r.upside)}">${T.fmt(r.upside,0)}</td><td class="l mut">${esc(r.rel)}</td></tr>`).join('');
-    document.querySelectorAll('#tb th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;SORT=SORT.k===k?{k,d:-SORT.d}:{k,d:k==='symbol'||k==='industry'?1:-1};draw()});
+    const all=rows.filter(pass);
+    const {k,d}=SC.sort;
+    all.sort((a,b)=>{const x=a[k],y=b[k];if(!nn(x)&&!nn(y)&&typeof x!=='string'&&typeof y!=='string')return 0;if(x==null||x==='')return 1;if(y==null||y==='')return -1;return (x>y?1:x<y?-1:0)*d});
+    $('#sc-cnt').textContent=all.length+' of '+rows.length+' stocks';
+    const shown=all.slice(0,SC.n);
+    $('#sc-tb').innerHTML='<tr>'+COLS.map(c=>`<th class="${c[2]||''}" data-k="${c[0]}">${c[1]}${k===c[0]?(d>0?' ▲':' ▼'):''}</th>`).join('')+'</tr>'+
+     shown.map(r=>`<tr class="row" onclick="location.hash='#/stock/${encodeURIComponent(r.s)}'">${COLS.map(c=>{const v=r[c[0]];if(c[2]==='l')return `<td class="l${c[0]==='n'?' mut':''}">${esc(String(v==null?'':v))}</td>`;return `<td class="num ${pct.has(c[0])?cls(v):''}">${nn(v)?(pct.has(c[0])&&v>0?'+':'')+T.fmt(v,dec[c[0]]):'–'}</td>`}).join('')}</tr>`).join('')||'<tr><td colspan="16" class="mut" style="padding:20px">No stock matches all the filters. Loosen one of them.</td></tr>';
+    document.querySelectorAll('#sc-tb th').forEach(th=>th.onclick=()=>{const kk=th.dataset.k;SC.sort=SC.sort.k===kk?{k:kk,d:-SC.sort.d}:{k:kk,d:['s','n','cap'].includes(kk)?1:-1};save();draw()});
+    const mo=$('#sc-more');mo.style.display=all.length>SC.n?'':'none';mo.onclick=()=>{SC.n+=50;draw()};
+    $('#sc-csv').onclick=()=>{
+      const hd=['Symbol','Company','Industry','Cap class','Market cap cr','Price','P/E','P/B','EV/EBITDA','ROE %','ROCE %','Net margin %','Debt/equity','Revenue CAGR %','Net income CAGR %','1M %','1Y %','RSI','Upside %','Delivery %','Order flow score','Order flow bias'];
+      const ks=['s','n','ind','cap','mc','px','pe','pb','ev','roe','roce','nm','de','rg','ng','r1m','r1y','rsi','up','dp','score','bias'];
+      const q=v=>v==null?'':'"'+String(typeof v==='number'?+v.toFixed(2):v).replace(/"/g,'""')+'"';
+      const csv=[hd.join(',')].concat(all.map(r=>ks.map(k=>q(r[k])).join(','))).join('\n');
+      const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='screener.csv';document.body.appendChild(a);a.click();a.remove()};
   };
-  $('#f-q').oninput=e=>{FILT.q=e.target.value;draw()};$('#f-rel').onchange=e=>{FILT.rel=e.target.value;draw()};$('#f-ind').onchange=e=>{FILT.ind=e.target.value;draw()};
-  draw();
+  const bind=()=>{
+    view.querySelectorAll('input[data-k]').forEach(i=>i.onchange=()=>{const k=i.dataset.k,j=+i.dataset.i,v=parseFloat(i.value);const a=SC.f[k]||[null,null];a[j]=isFinite(v)?v:null;if(a[0]==null&&a[1]==null)delete SC.f[k];else SC.f[k]=a;SC.n=50;save();draw()});
+    view.querySelectorAll('input[data-cap]').forEach(i=>i.onchange=()=>{SC.cap=[...view.querySelectorAll('input[data-cap]:checked')].map(x=>x.dataset.cap);SC.n=50;save();draw()});
+    $('#sc-type').onchange=e=>{SC.type=e.target.value;SC.n=50;save();draw()};
+    $('#sc-ind').onchange=e=>{SC.ind=e.target.value;SC.n=50;save();draw()};
+    $('#sc-bias').onchange=e=>{SC.bias=e.target.value;SC.n=50;save();draw()};
+    $('#sc-a200').onchange=e=>{SC.a200=e.target.checked?1:0;SC.n=50;save();draw()};
+    $('#sc-q').oninput=e=>{SC.q=e.target.value;SC.n=50;save();draw()};
+    $('#sc-clear').onclick=()=>{SC.f={};SC.cap=[];SC.type='all';SC.ind='all';SC.q='';SC.a200=0;SC.bias='all';SC.n=50;save();shell();draw()};
+    view.querySelectorAll('.scpre button[data-p]').forEach(b=>b.onclick=()=>{const p=SC_PRESETS[+b.dataset.p][1];SC.f={};SC.cap=[];SC.type='all';SC.ind='all';SC.q='';SC.a200=0;SC.bias='all';SC.n=50;
+      for(const [k,v] of Object.entries(p)){if(k==='_a200')SC.a200=v;else if(k==='_bias')SC.bias=v;else SC.f[k]=v.slice()}save();shell();draw()});
+  };
+  shell();draw();
 }
 
 // ---------- statements: P&L, balance sheet, cash flow, shareholding ----------
