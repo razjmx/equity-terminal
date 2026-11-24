@@ -56,6 +56,10 @@ jobs:
         continue-on-error: true
         run: python scripts/compute_peers.py
 
+      - name: 5d Index members (Nifty 50, Midcap 150, Smallcap 250)
+        continue-on-error: true
+        run: python scripts/compute_index_members.py
+
       - name: Stamp update time
         if: always()
         run: |
