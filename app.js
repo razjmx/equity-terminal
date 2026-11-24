@@ -124,9 +124,6 @@ async function boot(){
   D.met=by(met);D.dcf=by(dcf);D.rsk=by(rsk);
   D.syms=uni.map(u=>u.symbol);
   window.attachSuggest=attachSuggest;D.uni=uni;attachSuggest($('#search'));
-  const sync=()=>{$('#a-rf').value=A.rf;$('#a-erp').value=A.erp;$('#a-g').value=A.g};sync();
-  ['rf','erp','g'].forEach(k=>$('#a-'+k).addEventListener('change',e=>{const v=parseFloat(e.target.value);if(isFinite(v)){A[k]=v;saveA();route()}}));
-  $('#a-reset').onclick=()=>{A=Object.assign({},DEF);saveA();sync();route()};
   const idx=$('#idx');if(idx&&D.mkt){const row=(n,o)=>o?`<div><span>${n}</span><b>${T.fmt(o.price??o.close,0)}</b><span class="${cls(o.ret_1m??o.returns_pct?.['1m'])}">${T.pct(o.ret_1m??o.returns_pct?.['1m'])}</span></div>`:'';idx.innerHTML='<div class="k">1-month</div>'+row('Nifty 50',D.mkt.nifty50)+row('Nifty 500',D.mkt.nifty500)}
   const th=$('#theme');const setTh=t=>{document.documentElement.dataset.theme=t;try{localStorage.setItem('tl_theme',t)}catch(e){}};
   let t0='light';try{t0=localStorage.getItem('tl_theme')||'light'}catch(e){}document.documentElement.dataset.theme=t0;
@@ -151,11 +148,45 @@ function route(){
   if(p[1]==='screener')return screener();
   if(p[1]==='financials')return financials();
   if(p[1]==='research')return research();
+  if(p[1]==='about')return aboutPage();
   return market();
 }
 function research(){
   view.innerHTML=`<div class="rs"><h2>Company research</h2><p class="mut">Search any Nifty 500 company by name or symbol</p><div class="rsbox"><input id="rs-q" placeholder="e.g. Reliance, TCS, HDFC Bank" autocomplete="off"></div></div>`;
   const q=$('#rs-q');attachSuggest(q);q.focus();
+}
+
+
+// ---------- About & Support ----------
+// Fill these in to show contact details on the About & Support page (empty ones are hidden)
+const CONTACT={author:'',email:'',linkedin:'',repo:'https://github.com/razjmx/equity-terminal'};
+function aboutPage(){
+  const c=CONTACT,lk=(u,t)=>`<a class="link" href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`;
+  const faq=(q,a)=>`<details class="faq"><summary>${q}</summary><p>${a}</p></details>`;
+  view.innerHTML=`<div class="rs" style="max-width:860px;margin:0 auto;text-align:left">
+   <h2 style="text-align:left">About &amp; Support</h2>
+   <div class="card"><h3>About</h3>
+    <p>Equity Terminal is a research terminal for Nifty 500 cash equities. It shows the market at a glance and gives each company a page with financials, valuation models and peer comparison.${c.author?` Built by ${esc(c.author)}.`:''}</p>
+    <ul class="mut" style="margin:6px 0 0 18px;line-height:1.7">
+     <li><b>Market Overview:</b> indices, sector heatmap and top gainers and losers.</li>
+     <li><b>Company Research:</b> overview, financials, valuation (DCF, P/B, multiples, DDM, residual income, asset based and a summary) and peers.</li>
+    </ul>
+    <p class="mut" style="font-size:13px;margin-top:10px">Data is end-of-day and refreshed automatically on weekdays. Prices and statements come from Yahoo Finance; the stock list, index lists and shareholding come from NSE. Size classes use market cap: large cap ₹${T.fmt(CAP_LARGE,0)} crore and above, mid cap ₹${T.fmt(CAP_MID,0)} to ₹${T.fmt(CAP_LARGE,0)} crore, small cap below ₹${T.fmt(CAP_MID,0)} crore.</p></div>
+   <div class="card" style="margin-top:14px"><h3>Contact &amp; support</h3>
+    <p>Found a wrong number, a bug, or have an idea? Tell us:</p>
+    <ul style="margin:6px 0 0 18px;line-height:1.8">
+     <li>${lk(c.repo+'/issues/new','Report an issue or suggest a feature')} (GitHub, free account needed)</li>
+     ${c.email?`<li>Email: ${lk('mailto:'+c.email,c.email)}</li>`:''}
+     ${c.linkedin?`<li>${lk(c.linkedin,'LinkedIn')}</li>`:''}
+    </ul>
+    <p class="mut" style="font-size:12.5px;margin-top:10px">When reporting a problem, please include the stock symbol, the tab you were on and a screenshot.</p></div>
+   <div class="card" style="margin-top:14px"><h3>Common questions</h3>
+    ${faq('A number looks wrong for one stock','Most figures come straight from Yahoo Finance, which can be incomplete or restated for some companies, especially banks, lenders and recently merged companies. Check the company\'s own results and report the symbol so we can look at it.')}
+    ${faq('The data looks old','Open the footer at the bottom of any page: it shows when data was last updated. Prices refresh once a day after the market closes. If a page looks stale, hard refresh your browser.')}
+    ${faq('Why does a model say "low reliability"?','Every model has limits. A dividend model, for example, undervalues companies that pay out little of their profit, so it is flagged for them. Use the Summary tab to compare all models and untick the ones that do not suit the stock.')}
+    ${faq('Can I change the assumptions?','Yes. The default risk-free rate, equity risk premium and terminal growth are at the top of the Valuation tab, and every model has editable boxes for its own inputs. Edits inside a model last until you leave the page.')}
+   </div>
+   <p class="mut" style="font-size:12px;margin-top:14px">Model values are estimates from public data. This is not investment advice.</p></div>`;
 }
 
 // ---------- daily quote ----------
@@ -704,6 +735,15 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
     else if(VS.sub==='mult'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';multPanel(s,price)}
     else b.innerHTML=ph(VS.sub);
   };
+  const assbar=()=>{const d=$('#assbar');if(!d)return;const open=d.open;
+    d.innerHTML=`<summary>Default assumptions: risk-free ${T.fmt(A.rf,1)}% · equity risk premium ${T.fmt(A.erp,1)}% · terminal growth (GDP) ${T.fmt(A.g,1)}% <span class="mut">· edit</span></summary>
+     <div class="ab"><label>Risk-free % <input id="a-rf" type="number" step="0.1" value="${A.rf}"></label><label>Equity risk premium % <input id="a-erp" type="number" step="0.1" value="${A.erp}"></label><label>Terminal growth % <input id="a-g" type="number" step="0.1" value="${A.g}"></label><button id="a-reset">Reset (${DEF.rf} / ${DEF.erp} / ${DEF.g})</button>
+     <p class="mut" style="font-size:12px;margin:8px 0 0;flex-basis:100%">These starting values apply to every stock and model and are saved in this browser. The boxes inside each model change only that model for the stock you are viewing.</p></div>`;
+    d.open=open;
+    ['rf','erp','g'].forEach(k=>$('#a-'+k).onchange=e=>{const v=parseFloat(e.target.value);if(isFinite(v)){A[k]=v;saveA();assbar();draw()}});
+    $('#a-reset').onclick=()=>{A=Object.assign({},DEF);saveA();assbar();draw()};
+  };
+  assbar();
   draw();
 }
 
@@ -1046,7 +1086,7 @@ async function stock(s,tab){
     FIN_RATIO=FIN_RATIO.replace('<div id="ratslot"></div>',ratiosHtml(rat));
     h+='<div class="subtabs" id="fsub"></div><div id="fbody"></div>';
   }else if(tab==='valuation'){
-    h+='<div class="subtabs" id="vsub"></div><div id="vbody"></div>';
+    h+='<details class="assump2" id="assbar"></details><div class="subtabs" id="vsub"></div><div id="vbody"></div>';
   }else if(tab==='peers'){
     h+='<div id="peerbody"><div class="skel" style="height:320px"></div></div>';
   }else if(tab==='quant'){
@@ -1110,7 +1150,7 @@ async function financials(){
   const reg=ols(data.filter(d=>inSub(d)&&d.roe>0&&d.pb>0&&!/overstated/.test(d.flag)).map(d=>[d.roe,d.pb]));
   data.forEach(d=>{d.peer=reg&&d.roe!=null?reg.a+reg.b*d.roe:null});
   view.innerHTML=`<div class="bar"><select id="f-sub">${['Bank + NBFC','Bank','NBFC','Insurance','Other financial','All'].map(x=>`<option ${x===FSUB?'selected':''}>${x}</option>`).join('')}</select>
-   <span class="mut">${data.length} financials · assumptions: RF ${A.rf}% · ERP ${A.erp}% · g ${A.g}% (change in Assumptions)</span></div>
+   <span class="mut">${data.length} financials · assumptions: RF ${A.rf}% · ERP ${A.erp}% · g ${A.g}% (change in the Valuation tab of any stock)</span></div>
    <div class="card"><h3>P/B vs ROE ${reg?`· peer line: P/B = ${T.fmt(reg.a,2)} + ${T.fmt(reg.b,3)} × ROE (n=${reg.n})`:''}</h3><canvas id="sc" style="height:340px"></canvas></div>
    <div class="card scroll"><table id="ft"></table></div>
    <p class="mut">Fair P/B = (ROE − g) ÷ (Ke − g), Ke = RF + beta × ERP. Peer P/B = value from the line above at the stock's ROE. Insurers and asset-light financials are indicative only.</p>`;
