@@ -1,38 +1,38 @@
 {
  "symbol": "AIIL",
- "as_of": "2026-11-20",
- "rows": 640,
- "price": 552.0,
+ "as_of": "2026-11-23",
+ "rows": 641,
+ "price": 546.35,
  "returns_pct": {
-  "1m": 5.8,
-  "3m": 0.3,
-  "6m": 8.7,
-  "1y": -3.3,
+  "1m": 5.9,
+  "3m": 2.6,
+  "6m": 3.6,
+  "1y": -1.5,
   "3y_cagr": null,
-  "ytd": -11.9
+  "ytd": -12.8
  },
  "relative_strength_pp": {
-  "3m": -0.7,
-  "6m": 3.6,
-  "1y": -2.9
+  "3m": 1.6,
+  "6m": -1.4,
+  "1y": -1.2
  },
  "range": {
   "high_52w": 667.9,
   "low_52w": 405.3,
-  "pct_from_high": -17.4,
-  "pct_above_low": 36.2,
+  "pct_from_high": -18.2,
+  "pct_above_low": 34.8,
   "high_date": "2026-01-13",
   "low_date": "2026-03-09"
  },
  "moving_averages": {
-  "dma20": 539.68,
-  "pct_vs_dma20": 2.3,
-  "dma50": 541.75,
-  "pct_vs_dma50": 1.9,
-  "dma100": 542.43,
-  "pct_vs_dma100": 1.8,
-  "dma200": 513.37,
-  "pct_vs_dma200": 7.5
+  "dma20": 542.16,
+  "pct_vs_dma20": 0.8,
+  "dma50": 542.15,
+  "pct_vs_dma50": 0.8,
+  "dma100": 542.65,
+  "pct_vs_dma100": 0.7,
+  "dma200": 513.51,
+  "pct_vs_dma200": 6.4
  },
  "trend": {
   "above_dma200": true,
@@ -41,33 +41,33 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 51.1,
-  "macd_pct": 1.4,
-  "macd_signal_pct": 1.34,
-  "macd_hist_pct": 0.06,
-  "bollinger_pctb": 0.58,
-  "atr_pct": 3.49
+  "rsi14": 49.1,
+  "macd_pct": 1.15,
+  "macd_signal_pct": 1.32,
+  "macd_hist_pct": -0.16,
+  "bollinger_pctb": 0.53,
+  "atr_pct": 3.45
  },
  "risk": {
   "volatility_1y_pct": 52.6,
-  "downside_deviation_pct": 32.1,
+  "downside_deviation_pct": 32.0,
   "max_drawdown_1y_pct": -39.3,
   "max_drawdown_all_pct": -39.3,
   "var95_1d_pct": -4.4,
   "cvar95_1d_pct": -6.28,
-  "sharpe_1y": 0.05,
-  "sortino_1y": 0.09
+  "sharpe_1y": 0.09,
+  "sortino_1y": 0.15
  },
  "beta": {
   "raw": 1.62,
   "adjusted": 1.42,
-  "weeks": 134,
+  "weeks": 135,
   "correlation": 0.45,
-  "r_squared": 0.2,
-  "alpha_pct": 52.8
+  "r_squared": 0.21,
+  "alpha_pct": 52.9
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 18.49
+  "avg_daily_value_3m_cr": 17.73
  },
  "flags": []
 }
