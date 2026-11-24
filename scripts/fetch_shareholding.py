@@ -67,7 +67,7 @@ for i, sym in enumerate(syms):
     if arr:
         json.dump({"fetched": f"{now:%Y-%m-%d}", "quarters": arr}, open(f"{OUT}/{sym}.json", "w"), separators=(",", ":"))
         ok += 1
-        if sym in ("HDFCBANK", "RELIANCE") and arr[-1].get("xbrl"):
+        if (sym in ("HDFCBANK", "RELIANCE") or len(probe) < 1) and arr[-1].get("xbrl"):
             probe.append((sym, arr[-1]["xbrl"]))
     else:
         bad += 1; log.append(f"{sym}: no quarters")
