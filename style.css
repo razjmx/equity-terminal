@@ -368,3 +368,25 @@ footer.site .fbrand .brand{display:inline-flex}
 footer.site .fmail{display:flex!important;align-items:center;gap:8px;color:var(--t,#18202b)!important}
 footer.site .fbase{display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;margin-top:22px;padding-top:14px;border-top:1px solid var(--b,#e3e7ee);font-size:12px;color:var(--m,#667085)}
 @media(max-width:760px){footer.site .fmain{grid-template-columns:1fr 1fr}footer.site .fbrand{grid-column:1/-1}}
+
+.ofhead{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:6px 0 10px}
+.ofbias{font-size:12px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:6px;border:1px solid currentColor}
+.ofscore{font-weight:700;font-size:15px;min-width:34px;text-align:center;padding:3px 8px;border-radius:999px;background:rgba(139,148,163,.18)}
+.ofwrap{position:relative}.ofwrap canvas{display:block;width:100%}
+.ofhov{font-size:12px;color:var(--m,#667085);margin:6px 0 0;min-height:16px;font-variant-numeric:tabular-nums}
+.oflg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--m,#667085);margin-top:6px}
+.oflg i{display:inline-block;width:12px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px;opacity:.7}
+.oflg i.ln{height:0;border-top:3px solid;background:none;opacity:1;vertical-align:3px}
+.oflg i.dash{height:0;border-top:2px dashed #8a63d2;background:none;opacity:1;vertical-align:3px}
+.oflg i.dot{height:0;border-top:2px dotted #667085;background:none;opacity:1;vertical-align:3px}
+.xray{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.xr{display:grid;grid-template-columns:150px 1fr 64px 62px;gap:8px;align-items:center;font-size:13px;cursor:pointer;padding:2px 4px;border-radius:6px}
+.xr:hover,.xr.on{background:rgba(139,148,163,.14)}
+.xr .xb{position:relative;height:10px;background:rgba(139,148,163,.14);border-radius:5px}
+.xr .xb i{position:absolute;top:0;bottom:0;border-radius:5px}
+.xr .xb i.g,.scbar i.g{background:#1f9d62}.xr .xb i.r,.scbar i.r{background:#d64545}
+.xr .xv{text-align:right;font-weight:600}.xr .xc{text-align:right;font-size:11px}
+.scbar{display:inline-block;width:46px;height:6px;background:rgba(139,148,163,.2);border-radius:3px;margin-right:6px;vertical-align:middle;overflow:hidden}
+.scbar i{display:block;height:100%}
+@media(max-width:560px){.xr{grid-template-columns:96px 1fr 56px 50px;font-size:12px}}
+.xr .xn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
