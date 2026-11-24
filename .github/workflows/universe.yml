@@ -1,4 +1,4 @@
-name: Fetch Nifty 500 universe
+name: Fetch stock universe (Nifty 500 + Microcap 250)
 on:
   workflow_dispatch:
 
@@ -16,9 +16,13 @@ jobs:
       - run: pip install -r requirements.txt
       - run: mkdir -p data && python scripts/fetch_universe.py
       - name: Commit universe
+        if: always()
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/universe.csv
-          git commit -m "Update Nifty 500 universe" || echo "No changes"
-          git push
+          git add data/universe.csv data/universe_log.txt
+          git commit -m "Update universe (Nifty 500 + Microcap 250)" || echo "No changes"
+          for i in 1 2 3 4 5; do
+            git pull --rebase && git push && break
+            sleep $((i*5))
+          done
