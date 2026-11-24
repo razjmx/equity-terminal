@@ -7,6 +7,13 @@ on:
       limit:
         description: "Only first N stocks (0 = all)"
         default: "0"
+      only_new:
+        description: "yes = look up only stocks not in industry.csv yet (use after the universe grows)"
+        default: "no"
+        type: choice
+        options:
+          - "no"
+          - "yes"
 
 permissions:
   contents: write
@@ -18,9 +25,10 @@ concurrency:
 jobs:
   industry:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     env:
       LIMIT: ${{ github.event.inputs.limit || '0' }}
+      ONLY_NEW: ${{ github.event.inputs.only_new == 'yes' && '1' || '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
