@@ -88,6 +88,8 @@ def verdict(y, n):
 def reconcile(hist, log, odir="data/orderflow"):
     dates = hist["dates"]
     ok = warn = pend = 0
+    kinds = {'close': 0, 'high': 0, 'low': 0, 'volume': 0}
+    worst = []
     rank_path = "data/orderflow.json"
     rank = json.load(open(rank_path)) if os.path.exists(rank_path) else None
     rmap = {r["s"]: r for r in rank["stocks"]} if rank else {}
@@ -114,6 +116,12 @@ def reconcile(hist, log, odir="data/orderflow"):
                          "dc": dif["dc"], "vr": dif["vr"],
                          "dphist": [x for x in sd["dp"][max(0, k - 19):k + 1]]})
             ok += st == "ok"; warn += st == "warn"
+            for w in why:
+                for kd in kinds:
+                    if w.startswith(kd) or (kd == 'high' and w.startswith('day high')) or (kd == 'low' and w.startswith('day low')):
+                        kinds[kd] += 1
+            if st == "warn":
+                worst.append((max(abs(dif['dc'] or 0), abs(dif['dh'] or 0), abs(dif['dl'] or 0), abs(((dif['vr'] or 1) - 1) * 100)), s, "; ".join(why)))
         else:
             info.update({"status": "pending", "why": ["NSE's file for this date is not available yet"]})
             pend += 1
@@ -125,6 +133,9 @@ def reconcile(hist, log, odir="data/orderflow"):
     if rank:
         json.dump(rank, open(rank_path, "w"), separators=(",", ":"))
     log.append(f"Reconciled with NSE: ok {ok}, differs {warn}, pending {pend}")
+    log.append(f"Why stocks differ (a stock can be counted more than once): {kinds}")
+    for sc, s, w in sorted(worst, reverse=True)[:10]:
+        log.append(f"  worst: {s}: {w}")
 
 
 def update_history(log):
@@ -138,7 +149,7 @@ def update_history(log):
         day = today - datetime.timedelta(days=back)
         if day.weekday() >= 5 or day.isoformat() in have:
             continue
-        if len(have) + len(new) >= KEEP and back > 6:
+        if len(have) >= KEEP and back > 6:
             break
         txt = download(day, log)
         time.sleep(1.2)
