@@ -739,7 +739,7 @@ async function evPanel(s,price){
     <div class="seg" id="msset" style="margin:0 0 10px"><button data-k="all" class="${MS.set==='all'?'on':''}">All peers (${allPeers.length})</button><button data-k="size" class="${MS.set==='size'?'on':''}">Similar size (10 nearest)</button></div>
     <p class="mut" style="margin-top:0">Applies the peers' EV/EBITDA (25th percentile, median, 75th percentile) to this company's EBITDA, subtracts net debt and minority interest, and divides by shares. Low = bear, median = base, high = bull.</p>
     ${imp?`<div class="scn">${card('sc-bear','Bear (25th pct)',imp[0])}${card('sc-base','Base (median)',imp[1])}${card('sc-bull','Bull (75th pct)',imp[2])}</div>`:'<p class="warn">Fewer than 6 peers in this set, so percentiles are not shown. Switch to All peers.</p>'}
-    <div style="overflow-x:auto;margin-top:14px"><table class="peer"><thead><tr><th>Item</th><th class="num">Value</th></tr></thead><tbody>
+    <div style="overflow-x:auto;margin-top:14px"><table class="peer kv"><thead><tr><th>Item</th><th class="num">Value</th></tr></thead><tbody>
      <tr><td>EBITDA (latest year, ₹ cr)</td><td class="num">${T.fmt(me.ebitda,0)}</td></tr>
      <tr><td>Net debt + minorities (₹ cr)</td><td class="num">${T.fmt(me.nd,0)}</td></tr>
      <tr><td>Market cap (₹ cr)</td><td class="num">${T.fmt(me.mc,0)}</td></tr>
