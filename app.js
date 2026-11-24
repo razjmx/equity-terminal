@@ -978,8 +978,8 @@ async function ffPanel(s,price,dcf,fin,rl,fnc,payer){
     const isOn=r=>FFX.off[s+r.k]===false||(!FFX.off[s+r.k]&&!r.low);
     const chosen=rows.filter(isOn),av=chosen.length?chosen.reduce((a,r)=>a+r.v[1],0)/chosen.length:null,au=av!=null?(av/price-1)*100:null;
     el.innerHTML=`<div class="card"><h3>Valuation summary <span class="mut" style="font-weight:400;font-size:12px">bear to bull range for each model · line = current price ₹${T.fmt(price,1)}</span></h3>
-     <div class="ffax"><span>₹${T.fmt(LO,0)}</span><span>₹${T.fmt(HI,0)}</span></div>
-     ${rows.map(r=>`<div class="ffr${isOn(r)?'':' off'}"><label class="ffl"><input type="checkbox" data-k="${r.k}" ${isOn(r)?'checked':''}> ${esc(r.n)}${r.low?' <small class="warnc">low reliability</small>':''}</label>
+     <div class="ffr ffaxr"><span></span><div class="ffax"><span>₹${T.fmt(LO,0)}</span><span>₹${T.fmt(HI,0)}</span></div><span></span></div>
+     ${rows.map(r=>`<div class="ffr${isOn(r)?'':' off'}"><label class="ffl"><input type="checkbox" data-k="${r.k}" ${isOn(r)?'checked':''}><span>${esc(r.n)}${r.low?'<small class="warnc">low reliability</small>':''}</span></label>
        <div class="fft"><div class="ffb" style="left:${P(mn(r))}%;width:${Math.max(.8,P(mx(r))-P(mn(r)))}%"></div><div class="ffm" style="left:${P(r.v[1])}%"></div><div class="ffp" style="left:${P(price)}%"></div></div>
        <div class="ffv">₹${T.fmt(r.v[1],0)}</div></div>`).join('')}
      ${av!=null?`<div class="vbig" style="margin-top:14px"><div class="tile"><div class="k">Average of ticked models (base)</div><div class="tv">₹${T.fmt(av,0)}</div></div><div class="tile"><div class="k">vs current price</div><div class="tv ${cls(au)}">${au>=0?'+':''}${T.fmt(au,1)}%</div></div></div>`:'<p class="mut">Tick at least one model.</p>'}
