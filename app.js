@@ -640,6 +640,7 @@ function hmDraw(){
   const tip=$('#hmtip');
   const tipTxt=r=>r.stock?`<b>${esc(r.name)}</b><br>${T.pct(r.ret,2)} · ₹${T.fmt(r.mc,0)} cr`:r.other?`<b>${esc(r.name)}</b><br>${T.pct(r.ret,2)} weighted`:`<b>${esc(r.name)}</b><br>${T.pct(r.ret,2)} weighted · ${T.pct(r.med,2)} median<br>${r.n} stocks`;
   const pop=document.createElement('div');pop.className='hmpop';box.appendChild(pop);
+  if(!window.__hmScroll){window.__hmScroll=1;addEventListener('scroll',()=>{const t=document.getElementById('hmtip'),q=document.querySelector('.hmpop');if(t)t.style.opacity=0;if(q)q.classList.remove('on')},{passive:true})}
   box.querySelectorAll('.hmt').forEach(el=>{const r=rects[+el.dataset.i],tiny=!(r.w>70&&r.h>46);
     el.onmouseenter=()=>{
       if(tiny){const [bg,fg]=hmColor(r.ret,tf),pw=Math.max(172,r.w),ph=Math.max(86,r.h);
