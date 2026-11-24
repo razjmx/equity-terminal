@@ -10,6 +10,7 @@ import xml.etree.ElementTree as ET
 OUT = "data/shareholding"
 os.makedirs(OUT, exist_ok=True)
 LIMIT = int(os.environ.get("LIMIT", "0") or 0)
+ONLY_NEW = os.environ.get("ONLY_NEW", "") in ("1", "true", "True")
 NQ = 6
 H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
      "Accept": "application/json,text/plain,*/*", "Accept-Language": "en-US,en;q=0.9", "Referer": "https://www.nseindia.com/"}
@@ -64,6 +65,8 @@ if LIMIT:
     syms = syms[:LIMIT]
 s = new_session(); ok = bad = xb = xbad = 0
 for i, sym in enumerate(syms):
+    if ONLY_NEW and os.path.exists(f"{OUT}/{sym}.json"):
+        continue
     if i and i % 60 == 0:
         s = new_session()
     data = None
