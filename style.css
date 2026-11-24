@@ -420,3 +420,14 @@ table.sotp select.ed{padding:4px 6px}
 .schd{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
 .sctb th{cursor:pointer;white-space:nowrap}.sctb td.l{white-space:nowrap;max-width:200px;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:600px){.scf input[type=number]{width:62px}.scgrid{grid-template-columns:1fr}}
+
+/* heatmap: roomier tiles, pop on hover */
+.hmbox{overflow:visible;background:transparent;border:0;margin:6px 4px 14px}
+.hmt{padding:3px;transition:z-index 0s .15s}
+.hmt>div{border-radius:10px;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s,filter .18s}
+.hmt:hover{z-index:10;transition:none}
+.hmt:hover>div{transform:scale(1.07) translateY(-2px);filter:brightness(1.1) saturate(1.1);box-shadow:0 12px 28px rgba(0,0,0,.32)}
+.hmt.oth{cursor:default}.hmt.oth:hover>div{transform:none;box-shadow:none}
+.hmt b{font-size:clamp(11px,1.15vw,14px)}
+.hmt span{font-size:clamp(12px,1.2vw,16px)}
+.hmtip{position:absolute;z-index:20;pointer-events:none;opacity:0;transition:opacity .12s;background:var(--p);color:var(--t);border:1px solid var(--b);border-radius:8px;padding:7px 10px;font-size:12.5px;line-height:1.45;box-shadow:0 8px 22px rgba(0,0,0,.25);min-width:130px}
