@@ -159,7 +159,7 @@ function research(){
 
 // ---------- About & Support ----------
 // Fill these in to show contact details on the About & Support page (empty ones are hidden)
-const CONTACT={author:'',email:'',linkedin:'',repo:'https://github.com/razjmx/equity-terminal'};
+const CONTACT={author:'',email:'the.analyst.cave@gmail.com',linkedin:''};
 function aboutPage(){
   const c=CONTACT,lk=(u,t)=>`<a class="link" href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`;
   const faq=(q,a)=>`<details class="faq"><summary>${q}</summary><p>${a}</p></details>`;
@@ -173,10 +173,9 @@ function aboutPage(){
     </ul>
     <p class="mut" style="font-size:13px;margin-top:10px">Data is end-of-day and refreshed automatically on weekdays. Prices and statements come from Yahoo Finance; the stock list, index lists and shareholding come from NSE. Size classes use market cap: large cap ₹${T.fmt(CAP_LARGE,0)} crore and above, mid cap ₹${T.fmt(CAP_MID,0)} to ₹${T.fmt(CAP_LARGE,0)} crore, small cap below ₹${T.fmt(CAP_MID,0)} crore.</p></div>
    <div class="card" style="margin-top:14px"><h3>Contact &amp; support</h3>
-    <p>Found a wrong number, a bug, or have an idea? Tell us:</p>
+    <p>Found a wrong number, a bug, or have an idea? Write to us:</p>
     <ul style="margin:6px 0 0 18px;line-height:1.8">
-     <li>${lk(c.repo+'/issues/new','Report an issue or suggest a feature')} (GitHub, free account needed)</li>
-     ${c.email?`<li>Email: ${lk('mailto:'+c.email,c.email)}</li>`:''}
+     ${c.email?`<li>Email: ${lk('mailto:'+c.email+'?subject='+encodeURIComponent('Equity Terminal feedback'),c.email)}</li>`:''}
      ${c.linkedin?`<li>${lk(c.linkedin,'LinkedIn')}</li>`:''}
     </ul>
     <p class="mut" style="font-size:12.5px;margin-top:10px">When reporting a problem, please include the stock symbol, the tab you were on and a screenshot.</p></div>
@@ -712,7 +711,7 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
   let payer=null;
   try{const st=await get(`data/statements/${s}.json`,'json');const cf=st&&st.annual_cashflow;if(cf){const row=cf.rows.find(r=>/dividend/i.test(r[0])&&/paid/i.test(r[0]))||cf.rows.find(r=>/dividend/i.test(r[0]));payer=row?row[1].slice(-3).some(v=>v!=null&&Math.abs(v)>0):false}}catch(e){}
   const live=[];if(dcf)live.push(['dcf','DCF']);if(fin)live.push(['fin','Justified P/B']);if(rl)live.push(['rl','Realty NAV']);
-  live.push(['mult','Price multiples']);if(!fnc)live.push(['ev','EV multiples']);const soon=[];if(payer)live.push(['ddm','DDM']);else soon.push('ddm');live.push(['ri','Residual income'],['asset','Asset based']);if(!fnc)soon.push('epv','sotp','graham');if(ins)soon.push('embv');live.push(['ff','Summary']);
+  live.push(['mult','Price multiples']);if(!fnc)live.push(['ev','EV multiples']);const soon=[];if(payer)live.push(['ddm','DDM']);else soon.push('ddm');live.push(['ri','Residual income'],['asset','Asset based']);if(!fnc)live.push(['epv','Earnings power']);live.push(['graham','Graham value']);if(!fnc)soon.push('sotp');if(ins)soon.push('embv');live.push(['ff','Summary']);
   const subs=live.concat(soon.map(k=>[k,VAL_MODELS[k].label,true]));
   if(!VS.sub||!subs.some(x=>x[0]===VS.sub))VS.sub=subs[0][0];
   const ph=k=>{const m=VAL_MODELS[k];
@@ -729,6 +728,8 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
     else if(VS.sub==='rl'){b.innerHTML='<div id="rlbox"></div>';realtyPanel(rl)}
     else if(VS.sub==='ddm'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';ddmPanel(s,price,dcf,fin)}
     else if(VS.sub==='ff'){b.innerHTML='<div id="ffbox"><div class="skel" style="height:300px"></div></div>';ffPanel(s,price,dcf,fin,rl,fnc,payer)}
+    else if(VS.sub==='epv'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';epvPanel(s,price,dcf,fin)}
+    else if(VS.sub==='graham'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';grahamPanel(s,price)}
     else if(VS.sub==='ri'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';riPanel(s,price,dcf,fin)}
     else if(VS.sub==='asset'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';assetPanel(s,price)}
     else if(VS.sub==='ev'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';evPanel(s,price)}
@@ -992,6 +993,79 @@ async function assetPanel(s,price){
 }
 
 
+// ---------- Earnings power value ----------
+async function epvPanel(s,price,dcf,fin){
+  const box=SUMBOX||$('#multbox');if(!box)return;
+  const P=await get('data/peers.json','json');
+  const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
+  const st=await get(`data/statements/${s}.json`,'json');
+  const inc=st&&st.annual_income;
+  const find=(...res)=>{if(!inc)return null;for(const re of res){const r=inc.rows.find(x=>re.test(x[0]));if(r&&r[1].some(v=>v!=null))return r}return null};
+  const rv=find(/^total revenue$/i,/^operating revenue$/i),eb=find(/^ebit$/i,/^operating income$/i,/^normalized ebit$/i);
+  if(!rv||!eb||!me||!me.mc||!price){box.innerHTML='<div class="card"><h3>Earnings power</h3><p class="mut">Revenue or operating profit is not available for this stock, so the model cannot be run.</p></div>';return}
+  const ms=[];rv[1].forEach((v,i)=>{const e=eb[1][i];if(v>0&&e!=null)ms.push(e/v*100)});
+  const lastRev=(()=>{for(let i=rv[1].length-1;i>=0;i--)if(rv[1][i]!=null)return rv[1][i]/1e7;return null})();
+  if(!ms.length||!(lastRev>0)){box.innerHTML='<div class="card"><h3>Earnings power</h3><p class="mut">Not enough history to estimate a normal margin.</p></div>';return}
+  const mAvg=ms.reduce((a,b)=>a+b,0)/ms.length;
+  let w=null;try{if(dcf){const r=T.recompute(dcf,{rf:A.rf/100,erp:A.erp/100,gT:A.g/100});w=r&&r.wacc}}catch(e){}
+  if(w==null){const rk=await get(`data/risk/${s}.json`,'json');const beta=rk&&rk.beta&&rk.beta.adjusted!=null?rk.beta.adjusted:1;w=A.rf/100+beta*A.erp/100}
+  const o=ovs('epv',s);
+  const revU=o.rev!=null?o.rev:lastRev,mU=(o.m!=null?o.m:mAvg)/100,txU=(o.tx!=null?o.tx:25)/100,wU=(o.w!=null?o.w:w*100)/100,ndU=o.nd!=null?o.nd:(me.nd!=null?me.nd:0),shU=o.sh!=null?o.sh:me.mc/price;
+  const msU=(o.ms!=null?o.ms:2)/100,wsU=(o.ws!=null?o.ws:1)/100;
+  const val=(m,wc)=>wc>0.01?(revU*m*(1-txU)/wc-ndU)/shU:null;
+  const sc=[['sc-bear','Bear',val(mU-msU,wU+wsU)],['sc-base','Base',val(mU,wU)],['sc-bull','Bull',val(mU+msU,wU-wsU)]];
+  if(sc.every(x=>x[2]!=null&&x[2]>0))REGV.epv=sc.map(x=>x[2]);
+  const up=v=>v!=null&&price?(v/price-1)*100:null;
+  const nopat=revU*mU*(1-txU);
+  box.innerHTML=`<div class="card mph"><h3>Earnings power <span class="mut" style="font-weight:400;font-size:12px">no-growth value of today's earning capacity</span></h3>
+    <p class="mut" style="margin-top:0">Value = normalised after-tax operating profit ÷ cost of capital, minus net debt, divided by shares. It assumes zero growth, so it shows what the business is worth if it simply keeps earning what it normally earns.</p>
+    <div class="scn">${sc.map(([c,n,v])=>`<div class="sc ${c}"><div class="sn">${n}</div><div class="sv">${v!=null&&v>0?'₹'+T.fmt(v,0):'–'}</div><div class="su ${cls(up(v))}">${v!=null&&v>0?(up(v)>=0?'+':'')+T.fmt(up(v),1)+'% vs price':''}</div></div>`).join('')}</div>
+    <div style="overflow-x:auto;margin-top:14px"><table class="peer kv"><thead><tr><th>Input</th><th class="num">Value</th></tr></thead><tbody>
+     <tr><td>Revenue, latest year (₹ cr)</td><td class="num">${ed(o,'rev',revU,1,0)}</td></tr>
+     <tr><td>Normal operating (EBIT) margin, % (default: average of ${ms.length} years)</td><td class="num">${ed(o,'m',mU*100,0.5,1)}</td></tr>
+     <tr><td>Tax rate, %</td><td class="num">${ed(o,'tx',txU*100,0.5,1)}</td></tr>
+     <tr><td>Normalised after-tax operating profit (₹ cr)</td><td class="num">${T.fmt(nopat,0)}</td></tr>
+     <tr><td>Cost of capital (WACC), %</td><td class="num">${ed(o,'w',wU*100,0.25,2)}</td></tr>
+     <tr><td>Net debt + minorities (₹ cr)</td><td class="num">${ed(o,'nd',ndU,1,0)}</td></tr>
+     <tr><td>Shares (crore)</td><td class="num">${ed(o,'sh',shU,0.01,2)}</td></tr>
+     <tr><td>Bear / bull margin spread, points</td><td class="num">${ed(o,'ms',msU*100,0.5,1)}</td></tr>
+     <tr><td>Bear / bull WACC spread, points</td><td class="num">${ed(o,'ws',wsU*100,0.25,2)}</td></tr></tbody></table></div>
+    ${edBar(o)}
+    <p class="mut" style="font-size:12px;margin-top:10px">Best for mature, steady businesses. It is conservative for growing companies because it gives no credit for growth, and it treats depreciation as a fair stand-in for maintenance spending. WACC comes from the DCF model when the stock has one. Use it next to the DCF: the gap between the two is the value the market or the DCF puts on growth.</p></div>`;
+  edBind(box,o,()=>epvPanel(s,price,dcf,fin));
+}
+
+// ---------- Graham value ----------
+async function grahamPanel(s,price){
+  const box=SUMBOX||$('#multbox');if(!box)return;
+  const P=await get('data/peers.json','json');
+  const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
+  if(!me||!(price>0)||!(me.pe>0)||!(me.pb>0)){box.innerHTML='<div class="card"><h3>Graham value</h3><p class="mut">Needs positive earnings and book value, which this stock does not have.</p></div>';return}
+  const eps0=price/me.pe,bv0=price/me.pb,g0=me.ng!=null?Math.min(15,Math.max(0,me.ng)):5;
+  const o=ovs('graham',s);
+  const epsU=o.eps!=null?o.eps:eps0,bvU=o.bv!=null?o.bv:bv0,gU=o.g!=null?o.g:g0,yU=o.y!=null?o.y:A.rf+1,mU=o.mult!=null?o.mult:22.5;
+  const gn=epsU>0&&bvU>0?Math.sqrt(mU*epsU*bvU):null;
+  const gf=epsU>0&&yU>0?epsU*(8.5+2*gU)*4.4/yU:null;
+  const vals=[gn,gf].filter(v=>v!=null&&v>0);
+  const sc=vals.length?[Math.min(...vals),vals.reduce((a,b)=>a+b,0)/vals.length,Math.max(...vals)]:null;
+  if(sc)REGV.graham=sc;
+  const up=v=>v!=null&&price?(v/price-1)*100:null;
+  box.innerHTML=`<div class="card mph"><h3>Graham value <span class="mut" style="font-weight:400;font-size:12px">two quick formulas from Benjamin Graham</span></h3>
+    <p class="mut" style="margin-top:0">Graham number = √(22.5 × EPS × book value per share): the most a defensive investor should pay. Growth formula = EPS × (8.5 + 2 × growth) × 4.4 ÷ bond yield. The range below runs between the two values, with the average as base.</p>
+    ${sc?`<div class="scn">${[['sc-bear','Lower of the two',sc[0]],['sc-base','Average',sc[1]],['sc-bull','Higher of the two',sc[2]]].map(([c,n,v])=>`<div class="sc ${c}"><div class="sn">${n}</div><div class="sv">₹${T.fmt(v,0)}</div><div class="su ${cls(up(v))}">${up(v)>=0?'+':''}${T.fmt(up(v),1)}% vs price</div></div>`).join('')}</div>`:'<p class="warn">Needs positive EPS and bond yield.</p>'}
+    <div style="overflow-x:auto;margin-top:14px"><table class="peer kv"><thead><tr><th>Input</th><th class="num">Value</th></tr></thead><tbody>
+     <tr><td>Earnings per share, ₹ (price ÷ P/E)</td><td class="num">${ed(o,'eps',epsU,0.5,2)}</td></tr>
+     <tr><td>Book value per share, ₹ (price ÷ P/B)</td><td class="num">${ed(o,'bv',bvU,1,1)}</td></tr>
+     <tr><td>Graham multiplier (P/E × P/B ceiling)</td><td class="num">${ed(o,'mult',mU,0.5,1)}</td></tr>
+     <tr><td>Expected growth, % a year (default: net income CAGR, kept between 0 and 15)</td><td class="num">${ed(o,'g',gU,0.5,1)}</td></tr>
+     <tr><td>Bond yield, % (default: risk-free rate + 1 point)</td><td class="num">${ed(o,'y',yU,0.1,2)}</td></tr>
+     <tr><td>Graham number, ₹</td><td class="num">${gn!=null?T.fmt(gn,0):'–'}</td></tr>
+     <tr><td>Growth formula value, ₹</td><td class="num">${gf!=null?T.fmt(gf,0):'–'}</td></tr></tbody></table></div>
+    ${edBar(o)}
+    <p class="mut" style="font-size:12px;margin-top:10px">These are screening rules of thumb from the 1930s to 1960s, not full valuations, and the constants (22.5, 8.5, 4.4) were set for US markets. They suit steady, profitable companies and are least reliable for fast growers and cyclicals. EPS and book value use the latest annual data.</p></div>`;
+  edBind(box,o,()=>grahamPanel(s,price));
+}
+
 // ---------- Summary: football field ----------
 const FFX={off:{}};
 async function ffPanel(s,price,dcf,fin,rl,fnc,payer){
@@ -1000,11 +1074,11 @@ async function ffPanel(s,price,dcf,fin,rl,fnc,payer){
   const sr=scenarioRows(dcf,fin,price);
   sr.forEach(m=>{const v=m.res.map(x=>x.fair);if(v.every(x=>x!=null&&x>0))rows.push({k:m.title.startsWith('DCF')?'dcf':'fin',n:m.title.startsWith('DCF')?'DCF':'Justified P/B',v})});
   if(rl&&rl.fair_value>0)rows.push({k:'rl',n:'Realty NAV',v:[rl.fair_value,rl.fair_value,rl.fair_value]});
-  const list=[['mult','Price multiples'],['ev','EV multiples',fnc],['ddm','DDM',!payer],['ri','Residual income'],['asset','Asset based']];
+  const list=[['mult','Price multiples'],['ev','EV multiples',fnc],['ddm','DDM',!payer],['ri','Residual income'],['asset','Asset based'],['epv','Earnings power',fnc],['graham','Graham value']];
   for(const [k,n,skip] of list){
     if(skip)continue;
     REGV={};const tmp=document.createElement('div');SUMBOX=tmp;
-    try{if(k==='mult')await multPanel(s,price);else if(k==='ev')await evPanel(s,price);else if(k==='ddm')await ddmPanel(s,price,dcf,fin);else if(k==='ri')await riPanel(s,price,dcf,fin);else await assetPanel(s,price)}catch(e){}
+    try{if(k==='mult')await multPanel(s,price);else if(k==='ev')await evPanel(s,price);else if(k==='ddm')await ddmPanel(s,price,dcf,fin);else if(k==='ri')await riPanel(s,price,dcf,fin);else if(k==='epv')await epvPanel(s,price,dcf,fin);else if(k==='graham')await grahamPanel(s,price);else await assetPanel(s,price)}catch(e){}
     SUMBOX=null;
     const v=REGV[k];if(v&&v.every(x=>x!=null&&isFinite(x)&&x>0))rows.push({k,n,v:Array.from(v),low:!!v.low});
   }
