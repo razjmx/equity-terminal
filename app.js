@@ -651,7 +651,7 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
   let payer=null;
   try{const st=await get(`data/statements/${s}.json`,'json');const cf=st&&st.annual_cashflow;if(cf){const row=cf.rows.find(r=>/dividend/i.test(r[0])&&/paid/i.test(r[0]))||cf.rows.find(r=>/dividend/i.test(r[0]));payer=row?row[1].slice(-3).some(v=>v!=null&&Math.abs(v)>0):false}}catch(e){}
   const live=[];if(dcf)live.push(['dcf','DCF']);if(fin)live.push(['fin','Justified P/B']);if(rl)live.push(['rl','Realty NAV']);
-  live.push(['mult','Price multiples']);const soon=[];if(!fnc)soon.push('ev');soon.push('ddm','asset','ri');if(!fnc)soon.push('epv','sotp','graham');if(ins)soon.push('embv');soon.push('ff');
+  live.push(['mult','Price multiples']);if(!fnc)live.push(['ev','EV multiples']);const soon=[];soon.push('ddm','asset','ri');if(!fnc)soon.push('epv','sotp','graham');if(ins)soon.push('embv');soon.push('ff');
   const subs=live.concat(soon.map(k=>[k,VAL_MODELS[k].label,true]));
   if(!VS.sub||!subs.some(x=>x[0]===VS.sub))VS.sub=subs[0][0];
   const ph=k=>{const m=VAL_MODELS[k];
@@ -666,6 +666,7 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
     if(VS.sub==='dcf'){b.innerHTML='<div id="dcfbox"></div><div id="scbox"></div>';dcfPanel(dcf,price);scenarioPanel('#scbox',dcf,null,price)}
     else if(VS.sub==='fin'){b.innerHTML='<div id="finbox"></div><div id="scbox"></div>';finPanel(fin);scenarioPanel('#scbox',null,fin,price)}
     else if(VS.sub==='rl'){b.innerHTML='<div id="rlbox"></div>';realtyPanel(rl)}
+    else if(VS.sub==='ev'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';evPanel(s,price)}
     else if(VS.sub==='mult'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';multPanel(s,price)}
     else b.innerHTML=ph(VS.sub);
   };
@@ -709,6 +710,44 @@ async function multPanel(s,price){
     ${rows.map(r=>`<tr><td><b>${r.l}</b></td><td class="num">${r.own?fx(r.own,r.d)+'x':'–'}</td>${[0,1,2].map(i=>`<td class="num">${r.q?fx(r.q[i],r.d)+'x':'–'}</td>`).join('')}${[0,1,2].map(i=>`<td class="num">${r.imp?'₹'+T.fmt(r.imp[i],0):'–'}</td>`).join('')}<td class="num">${r.n}</td></tr>`).join('')}</tbody></table></div>
     <p class="mut" style="font-size:12px;margin-top:10px">This is a relative value: it says what the stock would be worth if it traded like its peers, not what it is worth in itself. If the whole group is expensive or cheap, the answer moves with it. Peers with negative or missing multiples are left out.</p></div>`;
   box.querySelectorAll('#msset button').forEach(b=>b.onclick=()=>{MS.set=b.dataset.k;multPanel(s,price)});
+}
+
+// ---------- EV multiples model ----------
+async function evPanel(s,price){
+  const box=$('#multbox');if(!box)return;
+  const P=await get('data/peers.json','json');
+  const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
+  if(!me){box.innerHTML='<div class="card"><p class="mut">Peer data not built yet. Run the Daily refresh once.</p></div>';return}
+  const pos=v=>v!=null&&isFinite(v)&&v>0;
+  const evm=x=>pos(x.mc)&&pos(x.ebitda)&&x.nd!=null?(x.mc+x.nd)/x.ebitda:null;
+  const mine=evm(me);
+  if(!pos(me.ebitda)||me.nd==null||!pos(me.mc)||!pos(price)){box.innerHTML='<div class="card"><h3>EV multiples</h3><p class="mut">This company has no positive EBITDA or no balance sheet data, so an EV/EBITDA value cannot be calculated.</p></div>';return}
+  const LV=[['ind','Industry'],['sec','Sector'],['macro','NSE group']];
+  let lv=null,peers=[];
+  for(const [k] of LV){const g=P.stocks.filter(x=>x[k]&&x[k]===me[k]&&x.s!==s&&x.type!=='financial'&&pos(evm(x)));if(g.length>=6){lv=k;peers=g;break}}
+  if(!lv){box.innerHTML='<div class="card"><h3>EV multiples</h3><p class="mut">Too few comparable peers (need at least 6 with positive EBITDA) to value this stock on EV/EBITDA.</p></div>';return}
+  const allPeers=peers;
+  if(MS.set==='size')peers=allPeers.slice().sort((a,b)=>Math.abs(Math.log(a.mc/me.mc))-Math.abs(Math.log(b.mc/me.mc))).slice(0,10);
+  const vals=peers.map(evm).filter(pos);
+  const q=vals.length>=6?[pctile(vals,.25),pctile(vals,.5),pctile(vals,.75)]:null;
+  const shares=me.mc/price;
+  const imp=q?q.map(m=>(me.ebitda*m-me.nd)/shares):null;
+  const up=v=>v!=null&&price?(v/price-1)*100:null;
+  const card=(cl,name,v)=>`<div class="sc ${cl}"><div class="sn">${name}</div><div class="sv">${v!=null&&v>0?'₹'+T.fmt(v,0):'–'}</div><div class="su ${cls(up(v))}">${v!=null&&v>0&&up(v)!=null?(up(v)>=0?'+':'')+T.fmt(up(v),1)+'% vs price':''}</div></div>`;
+  const lvName=LV.find(x=>x[0]===lv)[1];
+  box.innerHTML=`<div class="card mph"><h3>EV multiples <span class="mut" style="font-weight:400;font-size:12px">peers: ${esc(me[lv])} (${esc(lvName)}) · ${peers.length} stocks</span></h3>
+    <div class="seg" id="msset" style="margin:0 0 10px"><button data-k="all" class="${MS.set==='all'?'on':''}">All peers (${allPeers.length})</button><button data-k="size" class="${MS.set==='size'?'on':''}">Similar size (10 nearest)</button></div>
+    <p class="mut" style="margin-top:0">Applies the peers' EV/EBITDA (25th percentile, median, 75th percentile) to this company's EBITDA, subtracts net debt and minority interest, and divides by shares. Low = bear, median = base, high = bull.</p>
+    ${imp?`<div class="scn">${card('sc-bear','Bear (25th pct)',imp[0])}${card('sc-base','Base (median)',imp[1])}${card('sc-bull','Bull (75th pct)',imp[2])}</div>`:'<p class="warn">Fewer than 6 peers in this set, so percentiles are not shown. Switch to All peers.</p>'}
+    <div style="overflow-x:auto;margin-top:14px"><table class="peer"><thead><tr><th>Item</th><th class="num">Value</th></tr></thead><tbody>
+     <tr><td>EBITDA (latest year, ₹ cr)</td><td class="num">${T.fmt(me.ebitda,0)}</td></tr>
+     <tr><td>Net debt + minorities (₹ cr)</td><td class="num">${T.fmt(me.nd,0)}</td></tr>
+     <tr><td>Market cap (₹ cr)</td><td class="num">${T.fmt(me.mc,0)}</td></tr>
+     <tr><td>${esc(s)} EV/EBITDA</td><td class="num">${mine!=null?T.fmt(mine,1)+'x':'–'}</td></tr>
+     <tr><td>Peer EV/EBITDA 25th / median / 75th</td><td class="num">${q?q.map(v=>T.fmt(v,1)+'x').join(' / '):'–'}</td></tr>
+     <tr><td>Peers used</td><td class="num">${vals.length}</td></tr></tbody></table></div>
+    <p class="mut" style="font-size:12px;margin-top:10px">EV = market cap + total debt − cash and short-term investments + minority interest, using the latest annual balance sheet. EBITDA is the latest financial year from Yahoo Finance. Banks and financial companies are excluded. This is a relative value, so it moves with how the peer group is priced.</p></div>`;
+  box.querySelectorAll('#msset button').forEach(b=>b.onclick=()=>{MS.set=b.dataset.k;evPanel(s,price)});
 }
 
 // ---------- stock ----------
