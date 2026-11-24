@@ -642,9 +642,9 @@ function hmDraw(){
   const pop=document.createElement('div');pop.className='hmpop';box.appendChild(pop);
   box.querySelectorAll('.hmt').forEach(el=>{const r=rects[+el.dataset.i],tiny=!(r.w>70&&r.h>46);
     el.onmouseenter=()=>{
-      if(tiny){const [bg,fg]=hmColor(r.ret,tf),pw=Math.max(132,r.w),ph=Math.max(58,r.h);
+      if(tiny){const [bg,fg]=hmColor(r.ret,tf),pw=Math.max(172,r.w),ph=Math.max(86,r.h);
         let px=r.x+r.w/2-pw/2,py=r.y+r.h/2-ph/2;px=Math.max(0,Math.min(W-pw,px));py=Math.max(0,Math.min(Hh-ph,py));
-        pop.style.cssText=`left:${px}px;top:${py}px;width:${pw}px;height:${ph}px;background:${bg};color:${fg}`;
+        pop.style.cssText=`left:${px}px;top:${py}px;width:${pw}px;height:${ph}px;background:linear-gradient(${bg},${bg}),var(--p);color:${fg}`;
         pop.innerHTML=`<b>${esc(r.name)}</b><span>${T.pct(r.ret,1)}</span><small>${r.stock?'₹'+T.fmt(r.mc,0)+' cr':(r.n||'')+' stocks'}</small>`;
         pop.classList.add('on');tip.style.opacity=0}
       else{pop.classList.remove('on');tip.innerHTML=tipTxt(r);tip.style.opacity=1}};
