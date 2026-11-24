@@ -651,7 +651,7 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
   let payer=null;
   try{const st=await get(`data/statements/${s}.json`,'json');const cf=st&&st.annual_cashflow;if(cf){const row=cf.rows.find(r=>/dividend/i.test(r[0])&&/paid/i.test(r[0]))||cf.rows.find(r=>/dividend/i.test(r[0]));payer=row?row[1].slice(-3).some(v=>v!=null&&Math.abs(v)>0):false}}catch(e){}
   const live=[];if(dcf)live.push(['dcf','DCF']);if(fin)live.push(['fin','Justified P/B']);if(rl)live.push(['rl','Realty NAV']);
-  live.push(['mult','Price multiples']);if(!fnc)live.push(['ev','EV multiples']);const soon=[];soon.push('ddm','asset','ri');if(!fnc)soon.push('epv','sotp','graham');if(ins)soon.push('embv');soon.push('ff');
+  live.push(['mult','Price multiples']);if(!fnc)live.push(['ev','EV multiples']);const soon=[];if(payer)live.push(['ddm','DDM']);else soon.push('ddm');soon.push('asset','ri');if(!fnc)soon.push('epv','sotp','graham');if(ins)soon.push('embv');soon.push('ff');
   const subs=live.concat(soon.map(k=>[k,VAL_MODELS[k].label,true]));
   if(!VS.sub||!subs.some(x=>x[0]===VS.sub))VS.sub=subs[0][0];
   const ph=k=>{const m=VAL_MODELS[k];
@@ -666,6 +666,7 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
     if(VS.sub==='dcf'){b.innerHTML='<div id="dcfbox"></div><div id="scbox"></div>';dcfPanel(dcf,price);scenarioPanel('#scbox',dcf,null,price)}
     else if(VS.sub==='fin'){b.innerHTML='<div id="finbox"></div><div id="scbox"></div>';finPanel(fin);scenarioPanel('#scbox',null,fin,price)}
     else if(VS.sub==='rl'){b.innerHTML='<div id="rlbox"></div>';realtyPanel(rl)}
+    else if(VS.sub==='ddm'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';ddmPanel(s,price,dcf,fin)}
     else if(VS.sub==='ev'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';evPanel(s,price)}
     else if(VS.sub==='mult'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';multPanel(s,price)}
     else b.innerHTML=ph(VS.sub);
@@ -748,6 +749,48 @@ async function evPanel(s,price){
      <tr><td>Peers used</td><td class="num">${vals.length}</td></tr></tbody></table></div>
     <p class="mut" style="font-size:12px;margin-top:10px">EV = market cap + total debt − cash and short-term investments + minority interest, using the latest annual balance sheet. EBITDA is the latest financial year from Yahoo Finance. Banks and financial companies are excluded. This is a relative value, so it moves with how the peer group is priced.</p></div>`;
   box.querySelectorAll('#msset button').forEach(b=>b.onclick=()=>{MS.set=b.dataset.k;evPanel(s,price)});
+}
+
+// ---------- DDM (dividend discount model) ----------
+async function ddmPanel(s,price,dcf,fin){
+  const box=$('#multbox');if(!box)return;
+  const st=await get(`data/statements/${s}.json`,'json');
+  const P=await get('data/peers.json','json');
+  const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
+  const cf=st&&st.annual_cashflow,inc=st&&st.annual_income;
+  const row=cf&&(cf.rows.find(r=>/dividend/i.test(r[0])&&/paid/i.test(r[0]))||cf.rows.find(r=>/dividend/i.test(r[0])));
+  if(!row||!me||!me.mc||!price){box.innerHTML='<div class="card"><h3>DDM</h3><p class="mut">No dividend history found, so a dividend model cannot be run.</p></div>';return}
+  const dates=cf.dates,shares=me.mc/price;  // crore shares
+  const hist=row[1].map((v,i)=>({d:dates[i],div:v==null?null:Math.abs(v)/1e7})).filter(x=>x.div!=null).slice(-5);
+  const last=hist[hist.length-1];
+  if(!last||!(last.div>0)){box.innerHTML='<div class="card"><h3>DDM</h3><p class="mut">No dividend was paid in the latest year, so a dividend model is not meaningful for this stock.</p></div>';return}
+  const dps=last.div/shares,yld=dps/price*100;
+  const pos=hist.filter(x=>x.div>0);
+  let cagr=null;if(pos.length>=3){const n=pos.length-1;cagr=Math.pow(pos[n].div/pos[0].div,1/n)-1}
+  const niRow=inc&&(inc.rows.find(r=>/^net income common stockholders$/i.test(r[0]))||inc.rows.find(r=>/^net income$/i.test(r[0])));
+  let ni=null;if(niRow){for(let i=niRow[1].length-1;i>=0;i--){if(niRow[1][i]!=null){ni=niRow[1][i]/1e7;break}}}
+  const payout=ni&&ni>0?last.div/ni*100:null;
+  // cost of equity from the model already used on this stock, else CAPM with the adjusted beta
+  let ke=null;
+  try{if(dcf){const r=T.recompute(dcf,{rf:A.rf/100,erp:A.erp/100,gT:A.g/100});ke=r&&r.ke}else if(fin){const r=T.finModel(fin,{rf:A.rf/100,erp:A.erp/100,g:A.g/100});ke=r&&r.ke}}catch(e){}
+  if(ke==null){const rk=await get(`data/risk/${s}.json`,'json');const beta=rk&&rk.beta&&rk.beta.adjusted!=null?rk.beta.adjusted:1;ke=A.rf/100+beta*A.erp/100}
+  const gT0=A.g/100,g10=cagr==null?gT0:Math.min(Math.max(cagr,0),0.12);
+  const run=(g1,k,gT)=>{gT=Math.min(gT,k-0.01);let pv=0,d=dps;for(let t=1;t<=5;t++){d*=1+g1;pv+=d/Math.pow(1+k,t)}const tv=d*(1+gT)/(k-gT);return pv+tv/Math.pow(1+k,5)};
+  const sc=[['sc-bear','Bear',run(Math.max(g10-0.03,0),ke+0.01,gT0-0.01)],['sc-base','Base',run(g10,ke,gT0)],['sc-bull','Bull',run(g10+0.03,ke-0.01,gT0+0.005)]];
+  const up=v=>price?(v/price-1)*100:null;
+  box.innerHTML=`<div class="card mph"><h3>DDM <span class="mut" style="font-weight:400;font-size:12px">two-stage dividend discount model</span></h3>
+    <p class="mut" style="margin-top:0">Values the stock as the present value of its dividends: five years of growth, then a steady terminal growth rate. Cost of equity and terminal growth follow your Assumptions settings.</p>
+    <div class="scn">${sc.map(([c,n,v])=>`<div class="sc ${c}"><div class="sn">${n}</div><div class="sv">₹${T.fmt(v,0)}</div><div class="su ${cls(up(v))}">${up(v)>=0?'+':''}${T.fmt(up(v),1)}% vs price</div></div>`).join('')}</div>
+    <div style="overflow-x:auto;margin-top:14px"><table class="peer kv"><thead><tr><th>Input</th><th class="num">Value</th></tr></thead><tbody>
+     <tr><td>Dividends paid, ${esc(last.d.slice(0,4))} (₹ cr)</td><td class="num">${T.fmt(last.div,0)}</td></tr>
+     <tr><td>Dividend per share (approx.)</td><td class="num">₹${T.fmt(dps,2)}</td></tr>
+     <tr><td>Dividend yield</td><td class="num">${T.fmt(yld,2)}%</td></tr>
+     <tr><td>Payout ratio (of net income)</td><td class="num">${payout!=null?T.fmt(payout,0)+'%':'–'}</td></tr>
+     <tr><td>Dividend growth, ${pos.length>=3?(pos.length-1)+'-year CAGR':'not enough history'}</td><td class="num">${cagr!=null?T.fmt(cagr*100,1)+'%':'–'}</td></tr>
+     <tr><td>Stage 1 growth used (5 years, base)</td><td class="num">${T.fmt(g10*100,1)}%</td></tr>
+     <tr><td>Terminal growth</td><td class="num">${T.fmt(gT0*100,1)}%</td></tr>
+     <tr><td>Cost of equity</td><td class="num">${T.fmt(ke*100,2)}%</td></tr></tbody></table></div>
+    <p class="mut" style="font-size:12px;margin-top:10px">Dividend per share is total dividends paid divided by today's share count, so it is approximate. One-off or special dividends raise it and can overstate the value. Stage 1 growth is the past dividend growth, kept between 0% and 12%. Bear uses 3 points lower growth, 1 point higher cost of equity and 1 point lower terminal growth; Bull uses the reverse.</p></div>`;
 }
 
 // ---------- stock ----------
