@@ -390,3 +390,13 @@ footer.site .fbase{display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:spac
 .scbar i{display:block;height:100%}
 @media(max-width:560px){.xr{grid-template-columns:96px 1fr 56px 50px;font-size:12px}}
 .xr .xn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.ofq{font-size:13px;border-radius:8px;padding:8px 12px;margin:0 0 10px;line-height:1.45}
+.ofq.ok{background:rgba(31,157,98,.12);color:#157347}
+.ofq.warn{background:rgba(224,154,26,.16);color:#9a5b00}
+.ofq.pend{background:rgba(139,148,163,.14);color:var(--m,#667085)}
+.vq{display:inline-block;font-size:10px;font-weight:700;width:15px;height:15px;line-height:15px;text-align:center;border-radius:50%;vertical-align:1px}
+.vq.ok{background:rgba(31,157,98,.18);color:#157347}.vq.warn{background:rgba(224,154,26,.25);color:#9a5b00}
+.dpspark{display:flex;align-items:flex-end;gap:3px;height:46px}
+.dpspark i{flex:1;background:rgba(66,110,200,.55);border-radius:2px 2px 0 0;min-width:4px}
+.dpspark i:last-child{background:#e09a1a}
