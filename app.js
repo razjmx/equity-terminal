@@ -831,8 +831,8 @@ function scenarioRows(dcf,fin,price){
   }
   if(fin){
     const sc=[['Bear',{droe:-.02,dg:-.01,derp:.01}],['Base',{droe:0,dg:0,derp:0}],['Bull',{droe:.02,dg:.005,derp:-.005}]];
-    const base=T.finModel(fin,{rf,erp,g});
-    if(base){const res=sc.map(([n,s])=>{const r=T.finModel(fin,{rf,erp:erp+s.derp,g:g+s.dg,roe:base.roe+s.droe});return {n,fair:r?r.fair:null,
+    const base=T.finModel(fin,fx(fin,{rf,erp,g}));
+    if(base){const res=sc.map(([n,s])=>{const r=T.finModel(fin,fx(fin,{rf,erp:erp+s.derp,g:g+s.dg,roe:base.roe+s.droe}));return {n,fair:r?r.fair:null,
       a:[['Sustainable ROE',T.fmt((base.roe+s.droe)*100,1)+'%'],['Cost of equity',r?T.fmt(r.ke*100,2)+'%':'–'],['Long-term growth',r?T.fmt(r.g*100,1)+'%':'–'],['Fair P/B',r&&r.fairPB!=null?T.fmt(r.fairPB,2)+'x':'–']]}});
       out.push({title:'Justified P/B (ROE model)',res})}
   }
@@ -1398,7 +1398,7 @@ async function stock(s,tab){
   const vbig=(fair,label)=>{const up=fair!=null&&price?(fair/price-1)*100:null;return `<div class="vbig"><div class="tile"><div class="k">${label}</div><div class="tv">${fair!=null?'₹'+T.fmt(fair,0):'–'}</div></div><div class="tile"><div class="k">Upside</div><div class="tv ${cls(up)}">${up!=null?(up>=0?'+':'')+T.fmt(up,1)+'%':'–'}</div></div></div>`};
   if(dcf){const r=T.recompute(dcf,{rf:A.rf/100,erp:A.erp/100,gT:A.g/100});
     vs=`<div class="card"><h3>DCF valuation <span class="tag">${esc(dcf.reliability||'')}</span></h3>${vbig(r?r.perShare:null,'DCF fair value')}${vrow('WACC',r?T.fmt(r.wacc*100,2)+'%':'–')}${vrow('Terminal growth',T.fmt(A.g,1)+'%')}${vrow('Cost of equity',r&&r.ke!=null?T.fmt(r.ke*100,2)+'%':'–')}${vrow('Beta used',T.fmt(dcf.assumptions.beta_used,2))}<div style="margin-top:8px"><a class="link" href="#/stock/${esc(s)}/valuation">View DCF model →</a></div></div>`}
-  else if(fin){const r=T.finModel(fin,{rf:A.rf/100,erp:A.erp/100,g:A.g/100});
+  else if(fin){const r=T.finModel(fin,fx(fin,{rf:A.rf/100,erp:A.erp/100,g:A.g/100}));
     vs=`<div class="card"><h3>Financials model <span class="tag">${esc(fin.subtype||'')}</span></h3>${vbig(r?r.fair:null,'Fair value (P/B–ROE)')}${vrow('Fair P/B',r&&r.fairPB!=null?T.fmt(r.fairPB,2)+'x':'–')}${vrow('Current P/B',r&&r.pb!=null?T.fmt(r.pb,2)+'x':'–')}${vrow('Cost of equity',r?T.fmt(r.ke*100,2)+'%':'–')}${vrow('Implied ROE at price',r&&r.impliedROE!=null?T.fmt(r.impliedROE*100,1)+'%':'–')}<div style="margin-top:8px"><a class="link" href="#/stock/${esc(s)}/valuation">View model →</a></div></div>`}
   else if(rl){const rit=rl.type==='reit';
     vs=`<div class="card"><h3>${rit?'REIT model':'Realty NAV model'} <span class="tag">${esc(rl.type)}</span></h3>${vbig(rl.fair_value,rit?'Fair value':'NAV / share')}${vrow('P/B',T.fmt(rl.pb,2)+'x')}${vrow('Net debt',T.fmt(rl.net_debt_cr,0)+' Cr')}${rl.fair_value==null?'<p class="warn">Inputs not filled yet (data/realty_inputs.csv or reit_inputs.csv).</p>':''}<div style="margin-top:8px"><a class="link" href="#/stock/${esc(s)}/valuation">View model →</a></div></div>`}
@@ -1517,25 +1517,31 @@ function drawScatter(cv,pts,reg){
   cv.onmousemove=e=>{const r=cv.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;let b=-1,bd=225;pts.forEach((p,i)=>{const d=(X(p.roe)-mx)**2+(Y(p.pb)-my)**2;if(d<bd){bd=d;b=i}});if(b!==hov){hov=b;draw()}};
   cv.onclick=()=>{if(hov>=0)location.hash='#/stock/'+pts[hov].sym};
 }
+const FINTW={};
+const fx=(f,inp)=>Object.assign(inp,FINTW[f&&f.symbol]||{});
 function finPanel(f){
-  const box=$('#finbox'),m=f.model;const st={rf:A.rf,erp:A.erp,g:A.g,roe:null};
+  const box=$('#finbox'),m=f.model;const tw=FINTW[f.symbol]||{};const st={rf:A.rf,erp:A.erp,g:A.g,roe:null,n:tw.nHi||0,gh:tw.gHi!=null?tw.gHi*100:null};
   const kv=(k,v,c='')=>`<div><div class="k">${k}</div><div class="v ${c}" style="font-size:16px">${v}</div></div>`;
   function render(){
-    const inp={rf:st.rf/100,erp:st.erp/100,g:st.g/100,roe:st.roe!=null?st.roe/100:null};
+    const inp={rf:st.rf/100,erp:st.erp/100,g:st.g/100,roe:st.roe!=null?st.roe/100:null,nHi:st.n,gHi:st.gh!=null?st.gh/100:null};
+    if(st.n>0)FINTW[f.symbol]={nHi:st.n,gHi:inp.gHi};else delete FINTW[f.symbol];
     const r=T.finModel(f,inp),up=r&&r.fair!=null&&f.price?(r.fair/f.price-1)*100:null,sens=r?T.finSens(f,inp):null;
     box.innerHTML=`<div class="card"><h3>Financials model: justified P/B <span class="tag">${esc(f.subtype)}</span></h3>
      <div class="bar"><label>RF % <input id="x-rf" type="number" step="0.1" value="${st.rf}" style="width:70px"></label>
       <label>ERP % <input id="x-erp" type="number" step="0.1" value="${st.erp}" style="width:70px"></label>
       <label>Growth g % <input id="x-g" type="number" step="0.1" value="${st.g}" style="width:70px"></label>
       <label>ROE % <input id="x-roe" type="number" step="0.5" value="${st.roe!=null?st.roe:T.fmt(m.roe_pct,1).replace(',','')}" style="width:70px"></label><button id="x-reset">Reset</button></div>
+     <div class="bar"><label>Years of faster growth <input id="x-n" type="number" step="1" min="0" max="20" value="${st.n}" style="width:70px"></label>
+      <label>Growth in those years % <input id="x-gh" type="number" step="0.5" value="${r&&r.gHi!=null?T.fmt(r.gHi*100,1).replace(',',''):(st.gh!=null?st.gh:'')}" style="width:70px" ${st.n>0?'':'disabled'}></label>
+      <span class="mut" style="font-size:12px">0 years = classic steady-state P/B. After the faster years, growth falls to g (GDP).</span></div>
      ${r&&r.fair!=null?`<div class="grid">${kv('Fair value ₹',T.fmt(r.fair,0))}${kv('Price ₹',T.fmt(f.price,1))}${kv('Upside',T.pct(up,0),cls(up))}${kv('Fair P/B',T.fmt(r.fairPB,2))}${kv('Current P/B',T.fmt(r.pb,2))}${kv('Implied ROE at price %',T.fmt(r.impliedROE!=null?r.impliedROE*100:null,1))}${kv('Cost of equity %',T.fmt(r.ke*100,2))}${kv('g used %',T.fmt(r.g*100,2))}${kv('Book value / share ₹',T.fmt(m.bvps,1))}${kv('Beta used',T.fmt(m.beta,2))}</div>`:'<p class="warn">Model not meaningful with these inputs (needs positive ROE and Ke above g).</p>'}
      <p class="mut" style="font-size:12px">ROE basis: ${esc(f.roe_basis)}. TTM ROE ${T.pct(f.roe_ttm_pct,1)} · 3-yr avg ROE ${T.pct(f.roe_avg3_pct,1)} · book value CAGR ${T.pct(f.bv_cagr_pct,1)} · payout ${T.pct(f.payout_pct,0)}${m.g_cap_pct!=null?' · g capped at sustainable growth '+T.pct(m.g_cap_pct,1):''}</p>
      ${(f.flags||[]).length?`<p class="warn">${f.flags.map(esc).join(' · ')}</p>`:''}</div>
      <div class="two"><div class="card"><h3>ROE history</h3><table><tr><th class="l">FY</th>${(f.fy||[]).map(x=>`<th>${esc(x.year)}</th>`).join('')}</tr><tr><td class="l">ROE %</td>${(f.fy||[]).map(x=>`<td>${T.fmt(x.roe,1)}</td>`).join('')}</tr><tr><td class="l">ROA %</td>${(f.fy||[]).map(x=>`<td>${T.fmt(x.roa,2)}</td>`).join('')}</tr></table></div>
      <div class="card"><h3>Sensitivity: fair value ₹ (ROE down, Ke across)</h3>${sens?`<table><tr><th></th>${sens.kes.map(k=>`<th>${T.fmt(k*100,1)}%</th>`).join('')}</tr>${sens.grid.map((row,i)=>`<tr><td>${T.fmt(sens.roes[i]*100,1)}%</td>${row.map((v,j)=>`<td class="${i===2&&j===2?'hl':''}">${T.fmt(v,0)}</td>`).join('')}</tr>`).join('')}</table>`:''}</div></div>`;
-    const bind=(id,key)=>{$(id).onchange=e=>{const v=parseFloat(e.target.value);st[key]=isFinite(v)?v:null;render()}};
-    bind('#x-rf','rf');bind('#x-erp','erp');bind('#x-g','g');bind('#x-roe','roe');
-    $('#x-reset').onclick=()=>{st.rf=A.rf;st.erp=A.erp;st.g=A.g;st.roe=null;render()};
+    const bind=(id,key)=>{$(id).onchange=e=>{const v=parseFloat(e.target.value);st[key]=isFinite(v)?v:(key==="n"?0:null);render()}};
+    bind('#x-rf','rf');bind('#x-erp','erp');bind('#x-g','g');bind('#x-roe','roe');bind('#x-n','n');bind('#x-gh','gh');
+    $('#x-reset').onclick=()=>{st.rf=A.rf;st.erp=A.erp;st.g=A.g;st.roe=null;st.n=0;st.gh=null;render()};
   }
   render();
 }
