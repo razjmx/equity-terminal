@@ -401,7 +401,7 @@ function shareholdingHtml(st,sh){
   if(sh&&sh.quarters&&sh.quarters.length){
     const q=sh.quarters,f=(k)=>q.map(x=>x[k]);
     const rows=[['promoter','Promoters'],['fii','FII / FPI'],['dii','DII'],['public','Public']];
-    h+=`<div class="card"><h3>Shareholding pattern<span class="mut" style="font-weight:400;font-size:12px">% of total shares, source: NSE</span></h3><div class="scroll"><table class="stmt"><tr><th class="l">Holder</th>${q.map(x=>`<th>${esc(x.label||x.date)}</th>`).join('')}</tr>${rows.map(([k,n])=>`<tr><td class="l">${n}</td>${q.map((x,i)=>{const v=x[k];const pv=i?q[i-1][k]:null;const d=v!=null&&pv!=null?v-pv:null;return `<td>${v==null?'–':T.fmt(v,2)}${d!=null&&Math.abs(d)>=.005?`<small class="${cls(d)}"> ${d>0?'+':''}${T.fmt(d,2)}</small>`:''}</td>`}).join('')}</tr>`).join('')}</table></div></div>`;
+    h+=`<div class="card"><h3>Shareholding pattern<span class="mut" style="font-weight:400;font-size:12px">% of total shares, source: NSE filings (public includes FII, DII and retail until the detailed split is added)</span></h3><div class="scroll"><table class="stmt"><tr><th class="l">Holder</th>${q.map(x=>`<th>${esc(x.label||x.date)}</th>`).join('')}</tr>${rows.filter(([k])=>q.some(x=>x[k]!=null)).map(([k,n])=>`<tr><td class="l">${n}</td>${q.map((x,i)=>{const v=x[k];const pv=i?q[i-1][k]:null;const d=v!=null&&pv!=null?v-pv:null;return `<td>${v==null?'–':T.fmt(v,2)}${d!=null&&Math.abs(d)>=.005?`<small class="${cls(d)}"> ${d>0?'+':''}${T.fmt(d,2)}</small>`:''}</td>`}).join('')}</tr>`).join('')}</table></div></div>`;
   }
   const hd=st&&st.holders;
   if(hd&&(hd.insiders_pct!=null||hd.institutions_pct!=null)){
