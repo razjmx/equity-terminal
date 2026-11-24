@@ -298,6 +298,7 @@ function mcard(id,title,o={}){
 async function market(){
   const data=await get('data/market_health.json','json');
   if(!data){const lg=await marketLegacy();view.insertAdjacentHTML('afterbegin','<div class="card"><h3>Market Health</h3><span class="mut">Run the Daily refresh once (it now includes compute_market_health.py) to unlock the grouped market dashboard.</span></div>');return lg}
+  try{const ic=await get('data/industry.csv');D.ind={};if(ic)T.parseCSV(ic).forEach(r=>{if(r.symbol)D.ind[r.symbol]=r})}catch(e){D.ind={}}
   MH.data=data;renderMarket(true);
 }
 function renderMarket(anim){
@@ -325,8 +326,8 @@ function renderMarket(anim){
       specs.push({id:'ix'+i,x:X,layers:[{y:a,type:'area'}],auto:true,dec:ix.real?0:1})});h+='</div>'}
 
   // sector heatmap
-  {h+=sec('ind','Sector heatmap','one-month return by industry, click a block to open it in the screener');
-   h+=heat()}
+  {h+=sec('ind','Sector heatmap','block size = market cap, colour = market-cap-weighted return over the chosen period');
+   h+='<div id="hmwrap"></div>'}
 
   // 8 size and style
   if(d.ratios&&d.ratios.length){h+=sec('sz','Size and style','ratio of two groups, rebased to 100 at the start of the data; rising = first group outperforming')+'<div class="mh-grid">';
@@ -342,9 +343,70 @@ function renderMarket(anim){
   document.querySelectorAll('.mh-bar .chips a').forEach(a=>a.onclick=()=>{const el=document.getElementById(a.dataset.s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})});
   document.querySelectorAll('tr.ind').forEach(tr=>tr.onclick=()=>{FILT.ind=tr.dataset.ind;FILT.q='';FILT.rel='all';location.hash='#/screener'});
   MH.charts=specs;specs.forEach(sp=>{const cv=document.getElementById(sp.id);if(cv)mchart(cv,sp,anim)});
+  try{heatmapPanel()}catch(e){const w=$('#hmwrap');if(w)w.innerHTML='<div class="card"><p class="mut">Heatmap needs the latest market data. Run the Daily refresh once.</p></div>'}
   countUps(view);
 }
-let _rz;window.addEventListener('resize',()=>{clearTimeout(_rz);_rz=setTimeout(()=>{if(MH.data&&(location.hash===''||location.hash==='#/market'))MH.charts.forEach(sp=>{const cv=document.getElementById(sp.id);if(cv)mchart(cv,sp,false)})},150)});
+let _rz;window.addEventListener('resize',()=>{clearTimeout(_rz);_rz=setTimeout(()=>{if(document.getElementById('hmbox'))try{hmDraw()}catch(e){}
+    if(MH.data&&(location.hash===''||location.hash==='#/market'))MH.charts.forEach(sp=>{const cv=document.getElementById(sp.id);if(cv)mchart(cv,sp,false)})},150)});
+
+// ---------- treemap heatmap ----------
+const HM={tf:'r1m',level:'sector',drill:null};
+const HM_TF=[['r1d','1D'],['r1w','1W'],['r1m','1M'],['r3m','3M'],['r6m','6M'],['r1y','1Y']];
+const HM_SC={r1d:3,r1w:5,r1m:10,r3m:18,r6m:28,r1y:45};
+const HM_LV=[['macro','Macro sector'],['sector','Sector'],['industry','Industry'],['basic_industry','Basic industry']];
+function squarify(items,x,y,w,h){
+  const tot=items.reduce((a,b)=>a+b.v,0);if(!tot||w<=0||h<=0)return [];
+  const sc=w*h/tot,it=items.map(i=>Object.assign({},i,{a:i.v*sc})),out=[];let rect={x,y,w,h},row=[],i=0;
+  const worst=(r,s)=>{const t=r.reduce((a,b)=>a+b.a,0);let mx=0,mn=1e18;r.forEach(q=>{mx=Math.max(mx,q.a);mn=Math.min(mn,q.a)});return Math.max(s*s*mx/(t*t),t*t/(s*s*mn))};
+  const lay=(r,rc)=>{const t=r.reduce((a,b)=>a+b.a,0);
+    if(rc.w>=rc.h){const cw=t/rc.h;let yy=rc.y;r.forEach(q=>{const hh=q.a/cw;out.push(Object.assign({},q,{x:rc.x,y:yy,w:cw,h:hh}));yy+=hh});return {x:rc.x+cw,y:rc.y,w:rc.w-cw,h:rc.h}}
+    const ch=t/rc.w;let xx=rc.x;r.forEach(q=>{const ww=q.a/ch;out.push(Object.assign({},q,{x:xx,y:rc.y,w:ww,h:ch}));xx+=ww});return {x:rc.x,y:rc.y+ch,w:rc.w,h:rc.h-ch}};
+  while(i<it.length){const side=Math.min(rect.w,rect.h),n=row.concat([it[i]]);if(!row.length||worst(row,side)>=worst(n,side)){row=n;i++}else{rect=lay(row,rect);row=[]}}
+  if(row.length)lay(row,rect);return out;
+}
+function hmColor(r,tf){if(r==null)return ['var(--bg)','var(--m)'];const a=Math.min(1,Math.abs(r)/HM_SC[tf]),al=.18+.72*a;
+  return [r>=0?`rgba(31,157,98,${al})`:`rgba(214,69,65,${al})`,a>.55?'#fff':'var(--t)']}
+function hmGroups(){
+  const d=MH.data,lv=HM.level,ind=D.ind||{},have=Object.keys(ind).length>0;
+  const g={};
+  (d.stocks||[]).forEach(s=>{const r=s.r[HM.tf];if(r==null)return;
+    let name;if(have&&ind[s.s]&&ind[s.s][lv])name=ind[s.s][lv];else if(!have||lv==='industry'||lv==='sector')name=((D.uni.find(u=>u.symbol===s.s)||{}).industry)||'Other';else return;
+    if(!name)name='Other';(g[name]=g[name]||[]).push(Object.assign({},s,{ret:r}))});
+  return Object.entries(g).map(([name,a])=>{const mc=a.reduce((x,y)=>x+y.mc,0),w=a.reduce((x,y)=>x+y.mc*y.ret,0)/mc,sr=a.map(x=>x.ret).sort((x,y)=>x-y),m=sr.length>>1;
+    return {name,v:mc,ret:w,med:sr.length%2?sr[m]:(sr[m-1]+sr[m])/2,n:a.length,stocks:a}}).sort((a,b)=>b.v-a.v);
+}
+function heatmapPanel(){
+  const w=$('#hmwrap');if(!w)return;
+  const have=D.ind&&Object.keys(D.ind).length>0;
+  if(!have&&['macro','basic_industry'].includes(HM.level))HM.level='sector';
+  w.innerHTML=`<div class="hmbar"><div class="seg" id="hm-tf">${HM_TF.map(([k,l])=>`<button data-k="${k}" class="${HM.tf===k?'on':''}">${l}</button>`).join('')}</div>
+   ${have?`<div class="seg" id="hm-lv">${HM_LV.map(([k,l])=>`<button data-k="${k}" class="${HM.level===k?'on':''}">${l}</button>`).join('')}</div>`:'<span class="mut" style="font-size:12px">Using the basic industry tag. Run <b>Fetch industry classification</b> in Actions for NSE sectors.</span>'}
+   <span class="hmcrumb" id="hm-crumb"></span></div>
+   <div id="hmbox" class="hmbox"></div>
+   <div class="hmleg"><span>−${HM_SC[HM.tf]}%</span><i></i><span>0</span><i class="g"></i><span>+${HM_SC[HM.tf]}%</span><em class="mut">Returns use the latest close vs the close ${({r1d:'one trading day',r1w:'7 days',r1m:'one month',r3m:'three months',r6m:'six months',r1y:'one year'})[HM.tf]} earlier. Group return is weighted by market cap.</em></div>`;
+  $('#hm-tf').querySelectorAll('button').forEach(b=>b.onclick=()=>{HM.tf=b.dataset.k;heatmapPanel()});
+  const lv=$('#hm-lv');if(lv)lv.querySelectorAll('button').forEach(b=>b.onclick=()=>{HM.level=b.dataset.k;HM.drill=null;heatmapPanel()});
+  hmDraw();
+}
+function hmDraw(){
+  const box=$('#hmbox');if(!box)return;
+  const W=box.clientWidth,Hh=W<600?420:520;box.style.height=Hh+'px';
+  let items,drill=HM.drill,tf=HM.tf;
+  const groups=hmGroups();
+  if(drill){const g=groups.find(x=>x.name===drill);if(!g){HM.drill=null;drill=null}}
+  const crumb=$('#hm-crumb');
+  if(drill){const g=groups.find(x=>x.name===drill);
+    items=g.stocks.map(s=>({name:s.s,v:s.mc,ret:s.ret,stock:s.s,mc:s.mc}));
+    crumb.innerHTML=`<a id="hm-back">← All</a> <b>${esc(drill)}</b> <span class="mut">${g.n} stocks · ${T.pct(g.ret,1)} weighted · ${T.pct(g.med,1)} median</span>`;
+    crumb.querySelector('#hm-back').onclick=()=>{HM.drill=null;hmDraw()}}
+  else{items=groups.map(g=>({name:g.name,v:g.v,ret:g.ret,n:g.n,med:g.med}));crumb.innerHTML=`<span class="mut">Click a block to see its stocks</span>`}
+  items=items.filter(i=>i.v>0).sort((a,b)=>b.v-a.v);
+  const rects=squarify(items,0,0,W,Hh);
+  box.innerHTML=rects.map((r,i)=>{const [bg,fg]=hmColor(r.ret,tf),big=r.w>96&&r.h>54,mid=r.w>58&&r.h>34;
+    const tip=r.stock?`${r.name}: ${T.pct(r.ret,2)} · ₹${T.fmt(r.mc,0)} cr`:`${r.name}: ${T.pct(r.ret,2)} weighted, ${T.pct(r.med,2)} median · ${r.n} stocks`;
+    return `<div class="hmt" data-i="${i}" title="${esc(tip)}" style="left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px;animation-delay:${Math.min(i*12,400)}ms"><div style="background:${bg};color:${fg}">${mid?`<b>${esc(r.name)}</b><span>${T.pct(r.ret,1)}</span>${big&&!r.stock?`<small>${r.n} stocks</small>`:''}`:''}</div></div>`}).join('');
+  box.querySelectorAll('.hmt').forEach(el=>el.onclick=()=>{const r=rects[+el.dataset.i];if(r.stock)location.hash='#/stock/'+r.stock;else{HM.drill=r.name;hmDraw()}});
+}
 
 // ---------- screener ----------
 const COLS=[['symbol','Symbol','l'],['industry','Industry','l'],['price','Price'],['pe_used','P/E'],['pb','P/B'],['roe_pct','ROE %'],['roce_pct','ROCE %'],['rev_cagr_pct','Rev CAGR %'],['ret_1y','1Y %'],['rsi14','RSI'],['fair','DCF fair'],['upside','Upside %'],['rel','DCF reliability','l']];
