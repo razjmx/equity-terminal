@@ -1,18 +1,23 @@
-"""NSE shareholding pattern -> data/shareholding/SYM.json (promoter % and public % per quarter, last 8).
-Also saves one detailed NSE filing (XBRL) for two stocks to data/xbrl_probe.txt so the FII / DII split can be parsed next.
-Env: LIMIT=N for a test run. Polite pauses; refreshes the NSE session cookie regularly."""
+"""NSE shareholding pattern -> data/shareholding/SYM.json (last 6 quarters).
+Step 1: NSE summary API gives promoter % and total public %.
+Step 2: each quarter's detailed NSE filing (XBRL) gives foreign institutions (FII/FPI) and domestic institutions (DII).
+        Public (retail and others) = total public - FII - DII.
+Quarters already parsed in an earlier run are reused, so later runs only download new quarters.
+Env: LIMIT=N for a test run. Writes data/shareholding_log.txt."""
 import csv, json, os, time, datetime, requests
 import xml.etree.ElementTree as ET
 
 OUT = "data/shareholding"
 os.makedirs(OUT, exist_ok=True)
 LIMIT = int(os.environ.get("LIMIT", "0") or 0)
+NQ = 6
 H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
      "Accept": "application/json,text/plain,*/*", "Accept-Language": "en-US,en;q=0.9", "Referer": "https://www.nseindia.com/"}
 HOME = "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern"
 API = "https://www.nseindia.com/api/corporate-share-holdings-master"
 now = datetime.datetime.utcnow()
 log = [f"Run (UTC): {now:%Y-%m-%d %H:%M}"]
+PCT = "ShareholdingAsAPercentageOfTotalNumberOfShares"
 
 def new_session():
     s = requests.Session(); s.headers.update(H)
@@ -34,12 +39,32 @@ def iso(d):
     except Exception:
         return None
 
+def parse_xbrl(content):
+    """-> {"promoter":%, "fii":%, "dii":%} from a detailed filing, or None"""
+    root = ET.fromstring(content)
+    ctx = {}
+    for c in root.iter():
+        if c.tag.endswith("}context"):
+            dims = [m for m in c.iter() if m.tag.endswith("explicitMember")]
+            if len(dims) == 1 and dims[0].get("dimension", "").endswith("CategoryOfShareholdersAxis"):
+                ctx[c.get("id")] = (dims[0].text or "").strip().split(":")[-1]
+    want = {"ShareholdingOfPromoterAndPromoterGroupMember": "promoter", "InstitutionsForeignMember": "fii", "InstitutionsDomesticMember": "dii"}
+    got = {}
+    for f in root.iter():
+        if f.tag.split("}")[-1] == PCT:
+            m = ctx.get(f.get("contextRef"))
+            if m in want and want[m] not in got:
+                v = num((f.text or "").strip())
+                if v is not None:
+                    got[want[m]] = round(v * 100, 2)
+    return got or None
+
 syms = [r["symbol"] for r in csv.DictReader(open("data/universe.csv", newline=""))]
 if LIMIT:
     syms = syms[:LIMIT]
-s = new_session(); ok = bad = 0; probe = []
+s = new_session(); ok = bad = xb = xbad = 0
 for i, sym in enumerate(syms):
-    if i and i % 80 == 0:
+    if i and i % 60 == 0:
         s = new_session()
     data = None
     for attempt in range(3):
@@ -49,10 +74,17 @@ for i, sym in enumerate(syms):
                 data = r.json(); break
             if r.status_code in (401, 403):
                 time.sleep(2); s = new_session()
-        except Exception as e:
+        except Exception:
             time.sleep(1.5)
     if not isinstance(data, list) or not data:
         bad += 1; log.append(f"{sym}: no data"); time.sleep(0.5); continue
+    old = {}
+    try:
+        for q in json.load(open(f"{OUT}/{sym}.json")).get("quarters", []):
+            if q.get("fii") is not None:
+                old[q["date"]] = q
+    except Exception:
+        pass
     qs = {}
     for q in data:
         d = iso(q.get("date") or "")
@@ -62,42 +94,44 @@ for i, sym in enumerate(syms):
         if pr is None and pu is None:
             continue
         qs[d] = {"date": d, "label": datetime.datetime.strptime(d, "%Y-%m-%d").strftime("%b %y"), "promoter": pr, "public": pu,
-                 "emp": num(q.get("employeeTrusts")), "fii": None, "dii": None, "xbrl": q.get("xbrl")}
-    arr = [qs[k] for k in sorted(qs)][-8:]
+                 "public_total": pu, "fii": None, "dii": None, "xbrl": q.get("xbrl")}
+    arr = [qs[k] for k in sorted(qs)][-NQ:]
+    for q in arr:
+        if q["date"] in old:
+            q.update({k: old[q["date"]].get(k) for k in ("promoter", "fii", "dii", "public")})
+            continue
+        if not q.get("xbrl"):
+            continue
+        try:
+            r = s.get(q["xbrl"], timeout=40, headers={"Accept": "*/*"})
+            if r.status_code == 403 or r.status_code == 401:
+                s = new_session(); r = s.get(q["xbrl"], timeout=40, headers={"Accept": "*/*"})
+            if r.status_code == 200:
+                g = parse_xbrl(r.content)
+                if g and g.get("fii") is not None and g.get("dii") is not None:
+                    pr = g.get("promoter", q["promoter"] if q["promoter"] is not None else 0)
+                    tot = (pr or 0) + g["fii"] + g["dii"]
+                    if tot <= 100.6:
+                        q["promoter"] = pr; q["fii"] = g["fii"]; q["dii"] = g["dii"]
+                        q["public"] = round(max(0, 100 - tot), 2)
+                        xb += 1
+                    else:
+                        xbad += 1; log.append(f"{sym} {q['date']}: parts sum {tot:.1f}%, ignored")
+                else:
+                    xbad += 1; log.append(f"{sym} {q['date']}: no FII/DII in filing")
+            else:
+                xbad += 1; log.append(f"{sym} {q['date']}: filing HTTP {r.status_code}")
+        except Exception as e:
+            xbad += 1; log.append(f"{sym} {q['date']}: {e!r}")
+        time.sleep(0.4)
     if arr:
         json.dump({"fetched": f"{now:%Y-%m-%d}", "quarters": arr}, open(f"{OUT}/{sym}.json", "w"), separators=(",", ":"))
         ok += 1
-        if (sym in ("HDFCBANK", "RELIANCE") or len(probe) < 1) and arr[-1].get("xbrl"):
-            probe.append((sym, arr[-1]["xbrl"]))
     else:
         bad += 1; log.append(f"{sym}: no quarters")
-    time.sleep(0.5)
-log.append(f"Saved {ok}, failed {bad}, of {len(syms)}")
-open("data/shareholding_log.txt", "w").write("\n".join(log) + "\n")
-
-# ---- XBRL probe: what does a detailed filing contain? ----
-lines = []
-for sym, url in probe:
-    lines.append(f"=== {sym} {url}")
-    try:
-        r = s.get(url, timeout=40, headers={"Accept": "*/*"})
-        lines.append(f"HTTP {r.status_code}, {len(r.content)} bytes")
-        if r.status_code == 200:
-            root = ET.fromstring(r.content)
-            ctx = {}
-            for c in root.iter():
-                if c.tag.endswith("}context"):
-                    mem = [(m.get("dimension", "").split(":")[-1], (m.text or "").strip()) for m in c.iter() if m.tag.endswith("explicitMember") or m.tag.endswith("typedMember")]
-                    ctx[c.get("id")] = ";".join(f"{a}={b}" for a, b in mem) or "(no dimension)"
-            lines.append(f"contexts: {len(ctx)}")
-            n = 0
-            for f in root.iter():
-                t = f.tag.split("}")[-1]
-                ref = f.get("contextRef")
-                v = (f.text or "").strip()
-                if ref and v and ("Percentage" in t or "ShareholdingAs" in t or "NumberOfShares" in t) and n < 140:
-                    lines.append(f"{ctx.get(ref, ref)[:90]} | {t} | {v[:20]}"); n += 1
-    except Exception as e:
-        lines.append(f"failed {e!r}")
-open("data/xbrl_probe.txt", "w").write("\n".join(lines)[:20000] + "\n")
-print("\n".join(log[-3:]))
+    time.sleep(0.4)
+    if (i + 1) % 25 == 0:
+        print(f"{i+1}/{len(syms)} stocks, {xb} filings parsed", flush=True)
+log.append(f"Stocks saved {ok}, failed {bad}, of {len(syms)}. Filings parsed {xb}, problems {xbad}")
+open("data/shareholding_log.txt", "w").write("\n".join(log[:400]) + "\n")
+print("\n".join(log[-4:]))
