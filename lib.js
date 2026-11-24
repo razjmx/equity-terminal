@@ -87,16 +87,32 @@
     let g = inp.g; if (m.g_cap_pct != null && m.g_cap_pct > 0) g = Math.min(g, m.g_cap_pct / 100);
     if (inp.gForce != null) g = inp.gForce;
     if (ke <= g + 0.005 || roe <= 0) return { ke, g, roe, fairPB: null, fair: null };
-    const fairPB = Math.max(0, (roe - g) / (ke - g));
+    const nHi = Math.max(0, Math.min(20, Math.round(inp.nHi || 0)));
+    let gHi = null;
+    if (nHi > 0) {
+      const dflt = f.bv_cagr_pct != null ? f.bv_cagr_pct / 100 : 0.12;
+      gHi = inp.gHi != null ? inp.gHi : Math.min(0.18, Math.max(g, dflt));
+      gHi = Math.min(gHi, roe);
+    }
+    const fairPB = pbTwo(roe, ke, g, nHi, gHi);
     const pb = f.price && m.bvps ? f.price / m.bvps : null;
-    return { ke, g, roe, fairPB, fair: fairPB * m.bvps, pb, impliedROE: pb != null ? g + pb * (ke - g) : null };
+    return { ke, g, roe, fairPB, fair: fairPB * m.bvps, pb, nHi, gHi, impliedROE: pb != null ? g + pb * (ke - g) : null };
+  }
+  // Justified P/B. n=0: (ROE-g)/(ke-g). n>0: n years of growth gh, then g forever.
+  // Free cash flow to equity per year = book value x (ROE - growth).
+  function pbTwo(roe, ke, g, n, gh) {
+    if (!(n > 0)) return Math.max(0, (roe - g) / (ke - g));
+    let pv = 0, b = 1;
+    for (let t = 1; t <= n; t++) { pv += b * (roe - gh) / Math.pow(1 + ke, t); b *= 1 + gh; }
+    pv += b * (roe - g) / (ke - g) / Math.pow(1 + ke, n);
+    return Math.max(0, pv);
   }
   function finSens(f, inp) {
     const base = finModel(f, inp); if (!base) return null;
     const roes = [-0.04, -0.02, 0, 0.02, 0.04].map(x => base.roe + x);
     const kes = [-0.02, -0.01, 0, 0.01, 0.02].map(x => base.ke + x);
     const bv = f.model.bvps;
-    return { roes, kes, grid: roes.map(r => kes.map(k => (k > base.g + 0.005 && r > 0) ? Math.max(0, (r - base.g) / (k - base.g)) * bv : null)) };
+    return { roes, kes, grid: roes.map(r => kes.map(k => (k > base.g + 0.005 && r > 0) ? pbTwo(r, k, base.g, base.nHi, base.gHi != null ? Math.min(base.gHi, r) : null) * bv : null)) };
   }
   root.TL = { finModel, finSens, parseCSV, num, fmt, pct, value, recompute, sensitivity, waccFrom, growthPath };
   if (typeof module !== 'undefined') module.exports = root.TL;
