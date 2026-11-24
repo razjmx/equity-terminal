@@ -311,3 +311,6 @@ table.sht td.pos{color:var(--g)}table.sht td.neg{color:var(--r)}
 .hmleg i{display:inline-block;width:70px;height:8px;border-radius:4px;background:linear-gradient(90deg,rgba(214,69,65,.9),rgba(214,69,65,.18))}
 .hmleg i.g{background:linear-gradient(90deg,rgba(31,157,98,.18),rgba(31,157,98,.9))}
 .hmleg em{font-style:normal;margin-left:auto;max-width:560px}
+
+.hmt b{overflow-wrap:anywhere;hyphens:auto;font-size:clamp(10px,1.1vw,12px)}
+.hmt>div{min-width:0}
