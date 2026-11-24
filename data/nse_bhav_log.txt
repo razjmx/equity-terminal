@@ -1,47 +1,15 @@
-Run (UTC): 2026-11-24 09:49
-2026-11-24: HTTP 403 (nsearchives.nseindia.com)
-2026-11-24: HTTP 403 (archives.nseindia.com)
-2026-11-10: HTTP 403 (nsearchives.nseindia.com)
-2026-11-10: HTTP 403 (archives.nseindia.com)
-2026-10-30: HTTP 403 (nsearchives.nseindia.com)
-2026-10-30: HTTP 403 (archives.nseindia.com)
-2026-10-29: HTTP 403 (nsearchives.nseindia.com)
-2026-10-29: HTTP 403 (archives.nseindia.com)
-2026-10-28: HTTP 403 (nsearchives.nseindia.com)
-2026-10-28: HTTP 403 (archives.nseindia.com)
-2026-10-27: HTTP 403 (nsearchives.nseindia.com)
-2026-10-27: HTTP 403 (archives.nseindia.com)
-2026-10-26: HTTP 403 (nsearchives.nseindia.com)
-2026-10-26: HTTP 403 (archives.nseindia.com)
-2026-10-23: HTTP 403 (nsearchives.nseindia.com)
-2026-10-23: HTTP 403 (archives.nseindia.com)
-2026-10-22: HTTP 403 (nsearchives.nseindia.com)
-2026-10-22: HTTP 403 (archives.nseindia.com)
-2026-10-21: HTTP 403 (nsearchives.nseindia.com)
-2026-10-21: HTTP 403 (archives.nseindia.com)
-2026-10-20: HTTP 403 (nsearchives.nseindia.com)
-2026-10-20: HTTP 403 (archives.nseindia.com)
-2026-10-19: HTTP 403 (nsearchives.nseindia.com)
-2026-10-19: HTTP 403 (archives.nseindia.com)
-2026-10-16: HTTP 403 (nsearchives.nseindia.com)
-2026-10-16: HTTP 403 (archives.nseindia.com)
-2026-10-15: HTTP 403 (nsearchives.nseindia.com)
-2026-10-15: HTTP 403 (archives.nseindia.com)
-2026-10-14: HTTP 403 (nsearchives.nseindia.com)
-2026-10-14: HTTP 403 (archives.nseindia.com)
-2026-10-13: HTTP 403 (nsearchives.nseindia.com)
-2026-10-13: HTTP 403 (archives.nseindia.com)
-2026-10-12: HTTP 403 (nsearchives.nseindia.com)
-2026-10-12: HTTP 403 (archives.nseindia.com)
-NSE bhavcopy: 0 new day(s) []; history 15 days, 497 stocks; days not available: 17
-Reconciled with NSE: ok 425, differs 72, pending 0
-Why stocks differ (a stock can be counted more than once): {'close': 34, 'high': 16, 'low': 10, 'volume': 20}
-  worst: GROWW: day high differs by -0.70%; volume is 48% of NSE's
+Run (UTC): 2026-11-24 09:56
+2026-11-24: HTTP 404 (nsearchives.nseindia.com)
+2026-11-24: HTTP 404 (archives.nseindia.com)
+NSE bhavcopy: 8 new day(s) ['2026-10-23', '2026-10-26', '2026-10-27', '2026-10-28', '2026-10-29', '2026-10-30', '2026-11-09', '2026-11-23']; history 21 days, 497 stocks; days not available: 1
+Reconciled with NSE: ok 391, prices match but volume off 16, price differs 90, pending 0
+Why stocks differ (a stock can be counted more than once): {'price': 69, 'high': 16, 'low': 10, 'volume': 20}
+  worst: GROWW: last price differs by 0.31%; day high differs by -0.70%; volume is 48% of NSE's
   worst: HFCL: volume is 58% of NSE's
   worst: IKS: day high differs by -0.54%; volume is 60% of NSE's
   worst: STLTECH: volume is 70% of NSE's
   worst: MMTC: volume is 75% of NSE's
-  worst: RAILTEL: close differs by 0.47%; volume is 78% of NSE's
+  worst: RAILTEL: volume is 78% of NSE's
   worst: FRACTAL: day low differs by +0.69%; volume is 79% of NSE's
   worst: KIRLOSBROS: volume is 82% of NSE's
   worst: SCI: volume is 82% of NSE's
