@@ -149,6 +149,7 @@ function route(){
   if(p[1]==='financials')return financials();
   if(p[1]==='research')return research();
   if(p[1]==='about')return aboutPage();
+  if(p[1]==='orderflow')return orderFlowPage();
   return market();
 }
 function research(){
@@ -156,6 +157,157 @@ function research(){
   const q=$('#rs-q');attachSuggest(q);q.focus();
 }
 
+
+// ---------- Order flow ----------
+const OFS={k:3};
+const ofCache={};
+function ofProfileJS(bars){
+  let lo=Infinity,hi=-Infinity;bars.forEach(b=>{lo=Math.min(lo,b[4]);hi=Math.max(hi,b[3])});
+  const N=40,step=(hi-lo)/N||1,vol=new Array(N).fill(0);
+  bars.forEach(b=>{const a=Math.max(0,Math.min(N-1,Math.floor((b[4]-lo)/step))),z=Math.max(0,Math.min(N-1,Math.floor((b[3]-lo)/step)));for(let q=a;q<=z;q++)vol[q]+=b[6]/(z-a+1)});
+  const tot=vol.reduce((x,y)=>x+y,0);let p=0;vol.forEach((v,i)=>{if(v>vol[p])p=i});
+  let a=p,z=p,acc=vol[p];
+  while(acc<.7*tot&&(a>0||z<N-1)){const up=z<N-1?vol[z+1]:-1,dn=a>0?vol[a-1]:-1;if(up>=dn){z++;acc+=vol[z]}else{a--;acc+=vol[a]}}
+  return {lo,hi,step,vol,N,poc:lo+(p+.5)*step,vah:lo+(z+1)*step,val:lo+a*step,pi:p,a,z};
+}
+async function ofStock(s){
+  const box=$('#ofbody');if(!box)return;
+  let d=ofCache[s];
+  if(!d){d=await get(`data/orderflow/${s}.json`,'json');if(d)ofCache[s]=d}
+  if(!d){box.innerHTML='<div class="card"><h3>Order flow</h3><p class="mut">No order-flow data for this stock yet. It is built by the <b>Order flow (5-minute bars)</b> workflow in Actions, which runs after the market close on weekdays.</p></div>';return}
+  const draw=()=>{
+    const maxd=d.days.length-1,k=Math.min(OFS.k,d.days.length),minDay=maxd-k+1;
+    const first=d.bars.findIndex(b=>b[0]>=minDay),bars=d.bars.slice(first);
+    const up=d.chg>=0;
+    const tile=(a,b,c='')=>`<div class="tile"><div class="k">${a}</div><div class="tv ${c}" style="font-size:16px">${b}</div></div>`;
+    const f=(v,x=2)=>v==null?'–':T.fmt(v,x);
+    const near=(arr,above)=>{const a=arr.filter(x=>above?x.p>d.px:x.p<d.px).sort((p,q)=>above?p.p-q.p:q.p-p.p)[0];return a?`₹${f(a.p)}${a.n>1?' ('+a.n+' equal)':''}`:'–'};
+    const bcls=d.bias==='bullish'?'pos':d.bias==='bearish'?'neg':'';
+    box.innerHTML=`<div class="card"><h3>Order flow <span class="mut" style="font-weight:400;font-size:12px">5-minute bars · session of ${esc(d.d)} · estimated from price and volume</span></h3>
+      <div class="ofhead"><span class="ofbias ${bcls}">${d.bias.toUpperCase()}</span><span class="ofscore" title="Strength of the signal, 0 to 99">${d.score}</span><span class="bigp" style="font-size:22px">₹${f(d.px)}</span><span class="chg ${cls(d.chg)}">${d.chg>=0?'+':''}${f(d.chg)}%</span>
+       <span class="seg" id="ofk" style="margin-left:auto">${[1,3,5].map(x=>`<button data-k="${x}" class="${k===x?'on':''}">${x} day${x>1?'s':''}</button>`).join('')}</span></div>
+      <div class="ofwrap"><canvas id="ofc"></canvas><div class="ofhov" id="ofhov"></div></div>
+      <div class="oflg"><span><i style="background:#1f9d62"></i>Bullish order block</span><span><i style="background:#d64545"></i>Bearish order block</span><span><i class="ln" style="border-color:#8a63d2"></i>VWAP</span><span><i class="ln" style="border-color:#e09a1a"></i>POC</span><span><i class="dash"></i>Liquidity</span><span><i class="dot"></i>Support / resistance</span></div>
+      <div class="mtiles" style="margin-top:12px">
+       ${tile('Zone to watch',d.zone?`₹${f(d.zone[0])}–${f(d.zone[1])}`:'none nearby')}
+       ${tile('Reward : risk',d.rr!=null?`1 : ${f(d.rr,1)}`:'–')}
+       ${tile('Risk to zone stop',d.risk!=null?f(d.risk,2)+'%':'–')}
+       ${tile('Price vs VWAP',`${(d.px/d.vwap-1)*100>=0?'+':''}${f((d.px/d.vwap-1)*100)}%`,cls(d.px-d.vwap))}
+       ${tile('Buy/sell delta (est.)',`${d.dr>=0?'+':''}${f(d.dr,1)}%`,cls(d.dr))}
+       ${tile('Volume vs prior days',`${f(d.rv,1)}x`)}
+       ${tile('POC / value area',`₹${f(d.poc,1)} · ${f(d.val,1)}–${f(d.vah,1)}`)}
+       ${tile('Support',d.sup.length?d.sup.map(x=>'₹'+f(x)).join(' · '):'–','pos')}
+       ${tile('Resistance',d.res.length?d.res.map(x=>'₹'+f(x)).join(' · '):'–','neg')}
+       ${tile('Liquidity above / below',`${near(d.lqh,true)} / ${near(d.lql,false)}`)}
+      </div>
+      <p class="mut" style="font-size:12px;margin-top:12px">This is <b>not exchange order-book data</b>. It is derived from Yahoo Finance 5-minute price and volume bars. Volume profile spreads each bar's volume over its price range; buy/sell delta splits each bar's volume by where it closed in its range; an order block is the last opposite candle before a sharp move that price has not yet closed through; liquidity marks swing highs and lows (and equal highs or lows) that price has not yet traded through, where stop orders often sit. Zones are areas of interest, not guarantees. The score combines price vs VWAP, close position in the day's range, estimated delta, day change, price vs POC and the 5-day trend, scaled by relative volume. Educational use only, not investment advice.</p></div>`;
+    document.querySelectorAll('#ofk button').forEach(b=>b.onclick=()=>{OFS.k=+b.dataset.k;draw()});
+    ofChart($('#ofc'),d,bars,first);
+  };
+  draw();
+  if(!ofStock._r){ofStock._r=1;window.addEventListener('resize',()=>{clearTimeout(ofStock._t);ofStock._t=setTimeout(()=>{const c=$('#ofc');if(c&&c._redraw)c._redraw()},150)})}
+}
+function ofChart(cv,d,bars,off){
+  if(!cv)return;
+  const draw=(hov)=>{
+    const dpr=window.devicePixelRatio||1,W=cv.parentElement.clientWidth,H=W<560?380:460;
+    cv.style.width=W+'px';cv.style.height=H+'px';cv.width=W*dpr;cv.height=H*dpr;
+    const x=cv.getContext('2d');x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,W,H);
+    const cs=getComputedStyle(document.documentElement),col=n=>cs.getPropertyValue(n).trim();
+    const mut=col('--m')||'#667085',txt=col('--t')||'#18202b',G='#1f9d62',R='#d64545';
+    const L=6,Rr=54,Tp=10,B=22,pw=W-L-Rr,ph=H-Tp-B,profW=Math.min(120,pw*.2),cw=pw-profW;
+    const n=bars.length;
+    let lo=Math.min(...bars.map(b=>b[4])),hi=Math.max(...bars.map(b=>b[3]));
+    const padv=(hi-lo)*.06;lo-=padv;hi+=padv;
+    const Y=v=>Tp+ph*(1-(v-lo)/(hi-lo)),X=i=>L+cw*(i+.5)/n;
+    x.font='11px system-ui,sans-serif';x.textBaseline='middle';
+    // grid + axis
+    x.strokeStyle='rgba(139,148,163,.18)';x.fillStyle=mut;x.lineWidth=1;
+    for(let k=0;k<=5;k++){const v=lo+(hi-lo)*k/5,y=Math.round(Y(v))+.5;x.beginPath();x.moveTo(L,y);x.lineTo(W-Rr,y);x.stroke();x.textAlign='left';x.fillText(T.fmt(v,v>1000?0:1),W-Rr+4,y)}
+    // session boundaries and time labels
+    let prevDay=-1;x.textAlign='center';
+    bars.forEach((b,i)=>{if(b[0]!==prevDay){if(prevDay!==-1){x.strokeStyle='rgba(139,148,163,.35)';x.setLineDash([3,3]);x.beginPath();x.moveTo(X(i)-cw/n/2,Tp);x.lineTo(X(i)-cw/n/2,Tp+ph);x.stroke();x.setLineDash([])}
+      x.fillStyle=mut;x.fillText(d.days[b[0]].slice(5),Math.min(W-Rr-20,Math.max(L+16,X(i)+16)),H-8);prevDay=b[0]}});
+    // volume profile (right)
+    const P=ofProfileJS(bars),mx=Math.max(...P.vol);
+    for(let q=0;q<P.N;q++){const y1=Y(P.lo+(q+1)*P.step),y0=Y(P.lo+q*P.step),w=P.vol[q]/mx*(profW-6);
+      x.fillStyle=(q>=P.a&&q<=P.z)?'rgba(66,110,200,.38)':'rgba(139,148,163,.28)';if(q===P.pi)x.fillStyle='rgba(224,154,26,.75)';
+      x.fillRect(W-Rr-w,y1+.5,w,Math.max(1,y0-y1-1))}
+    // order blocks
+    const near3=(arr,key)=>arr.slice().sort((p,q)=>Math.abs(key(p)-d.px)-Math.abs(key(q)-d.px)).slice(0,3);
+    [...near3(d.blocks.filter(z=>z.t==='b'),z=>(z.lo+z.hi)/2),...near3(d.blocks.filter(z=>z.t==='s'),z=>(z.lo+z.hi)/2)].forEach(z=>{const xi=Math.max(0,z.i-off);if(z.i-off>=n||z.hi<lo||z.lo>hi)return;
+      const y1=Y(Math.min(z.hi,hi)),y0=Y(Math.max(z.lo,lo)),x0=Math.max(L,X(xi)-cw/n/2);
+      x.fillStyle=z.t==='b'?'rgba(31,157,98,.22)':'rgba(214,69,69,.22)';x.fillRect(x0,y1,L+cw-x0,Math.max(2,y0-y1));
+      x.strokeStyle=z.t==='b'?'rgba(31,157,98,.7)':'rgba(214,69,69,.7)';x.strokeRect(x0+.5,y1+.5,L+cw-x0,Math.max(2,y0-y1));
+      x.fillStyle=z.t==='b'?G:R;x.textAlign='left';x.fillText(z.t==='b'?'OB demand':'OB supply',x0+4,y1+8)});
+    // liquidity
+    x.setLineDash([2,4]);x.lineWidth=1;
+    [[near3(d.lqh,q=>q.p),'BSL'],[near3(d.lql,q=>q.p),'SSL']].forEach(([arr,lab])=>arr.forEach(q=>{if(q.p<lo||q.p>hi||q.i<off)return;const y=Math.round(Y(q.p))+.5,x0=X(q.i-off);
+      x.strokeStyle='rgba(138,99,210,.8)';x.beginPath();x.moveTo(x0,y);x.lineTo(L+cw,y);x.stroke();x.fillStyle='#8a63d2';x.textAlign='right';x.fillText(lab+(q.n>1?' ×'+q.n:''),L+cw-3,y-6)}));
+    x.setLineDash([]);
+    // support / resistance
+    x.setLineDash([1,3]);x.lineWidth=1.3;
+    [[d.sup,G],[d.res,R]].forEach(([arr,c])=>arr.forEach(p=>{if(p<lo||p>hi)return;const y=Math.round(Y(p))+.5;x.strokeStyle=c;x.beginPath();x.moveTo(L,y);x.lineTo(L+cw,y);x.stroke();x.fillStyle=c;x.textAlign='left';x.fillText(T.fmt(p,1),W-Rr+4,y)}));
+    x.setLineDash([]);x.lineWidth=1;
+    // POC line
+    x.strokeStyle='rgba(224,154,26,.9)';x.beginPath();x.moveTo(L,Math.round(Y(P.poc))+.5);x.lineTo(L+cw,Math.round(Y(P.poc))+.5);x.stroke();
+    // candles
+    const bw=Math.max(1,cw/n*.7);
+    bars.forEach((b,i)=>{const up=b[5]>=b[2],c=up?G:R,xx=X(i);x.strokeStyle=c;x.fillStyle=c;x.beginPath();x.moveTo(xx,Y(b[3]));x.lineTo(xx,Y(b[4]));x.stroke();
+      const y1=Y(Math.max(b[2],b[5])),y0=Y(Math.min(b[2],b[5]));x.fillRect(xx-bw/2,y1,bw,Math.max(1,y0-y1))});
+    // VWAP per session
+    x.strokeStyle='#8a63d2';x.lineWidth=1.6;
+    for(let ds=Math.min(...bars.map(b=>b[0]));ds<=Math.max(...bars.map(b=>b[0]));ds++){let pv=0,vv=0,st=false;x.beginPath();bars.forEach((b,i)=>{if(b[0]!==ds)return;const tp=(b[3]+b[4]+b[5])/3;pv+=tp*b[6];vv+=b[6];if(!vv)return;const y=Y(pv/vv);st?x.lineTo(X(i),y):x.moveTo(X(i),y);st=true});x.stroke()}
+    x.lineWidth=1;
+    // last price tag
+    const lp=bars[n-1][5],yl=Y(lp);x.fillStyle=lp>=bars[n-1][2]?G:R;x.fillRect(W-Rr,yl-9,Rr-2,18);x.fillStyle='#fff';x.textAlign='left';x.fillText(T.fmt(lp,1),W-Rr+4,yl);
+    // hover
+    const hv=$('#ofhov');
+    if(hov!=null&&hov>=0&&hov<n){const b=bars[hov],xx=X(hov);x.strokeStyle=mut;x.setLineDash([3,3]);x.beginPath();x.moveTo(xx,Tp);x.lineTo(xx,Tp+ph);x.stroke();x.setLineDash([]);
+      const t=String(b[1]).padStart(4,'0');if(hv)hv.textContent=`${d.days[b[0]]} ${t.slice(0,2)}:${t.slice(2)}  O ${b[2]}  H ${b[3]}  L ${b[4]}  C ${b[5]}  Vol ${T.fmt(b[6],0)}`}
+    else if(hv)hv.textContent='Touch or hover over the chart for 5-minute bar details';
+    cv._geo={L,cw,n};
+  };
+  cv._redraw=()=>draw(cv._h);
+  const mv=e=>{const r=cv.getBoundingClientRect(),t=e.touches?e.touches[0]:e,g=cv._geo;if(!g)return;const i=Math.floor((t.clientX-r.left-g.L)/g.cw*g.n);cv._h=i>=0&&i<g.n?i:null;draw(cv._h)};
+  cv.onmousemove=mv;cv.ontouchmove=mv;cv.ontouchstart=mv;cv.onmouseleave=()=>{cv._h=null;draw(null)};
+  draw(null);
+}
+
+// ---------- Order flow page ----------
+const OFP={u:'all',sec:null};
+async function orderFlowPage(){
+  view.innerHTML='<div class="skel" style="height:300px"></div>';
+  const D0=await get('data/orderflow.json','json');
+  if(!D0||!D0.stocks||!D0.stocks.length){view.innerHTML='<div class="card"><h3>Order flow</h3><p class="mut">Not built yet. Run the <b>Order flow (5-minute bars)</b> workflow in the Actions tab once; after that it updates on weekdays after the market close.</p></div>';return}
+  const mem=await get('data/index_members.json','json');
+  const P=await get('data/peers.json','json');const nm={};if(P&&P.stocks)P.stocks.forEach(x=>nm[x.s]=x.n);
+  const U=[['all','Nifty 500'],['nifty50','Nifty 50'],['midcap150','Midcap 150'],['smallcap250','Smallcap 250']].filter(x=>x[0]==='all'||(mem&&mem[x[0]]));
+  const draw=()=>{
+    const set=OFP.u==='all'?null:new Set(mem[OFP.u]);
+    const all=D0.stocks.filter(x=>!set||set.has(x.s));
+    const sec={};all.forEach(x=>{const k=x.m||'Other';(sec[k]=sec[k]||{k,n:0,sum:0,b:0,r:0});const o=sec[k];o.n++;o.sum+=x.chg||0;if(x.bias==='bullish')o.b++;if(x.bias==='bearish')o.r++});
+    const secs=Object.values(sec).filter(o=>o.n>=2).map(o=>({...o,avg:o.sum/o.n})).sort((a,b)=>b.avg-a.avg);
+    const mx=Math.max(1,...secs.map(o=>Math.abs(o.avg)));
+    const nb=all.filter(x=>x.bias==='bullish').length,nr=all.filter(x=>x.bias==='bearish').length;
+    const pool=OFP.sec?all.filter(x=>(x.m||'Other')===OFP.sec):all;
+    const top=b=>pool.filter(x=>x.bias===b).sort((p,q)=>q.score-p.score).slice(0,15);
+    const row=x=>`<tr class="row" onclick="location.hash='#/stock/${esc(x.s)}/orderflow'"><td><b>${esc(x.s)}</b><div class="mut" style="font-size:11px">${esc((nm[x.s]||'').slice(0,26))}</div></td><td class="num ${cls(x.chg)}">${x.chg>=0?'+':''}${T.fmt(x.chg,2)}%</td><td class="num"><div class="scbar"><i class="${x.bias==='bullish'?'g':'r'}" style="width:${x.score}%"></i></div>${x.score}</td><td class="num">${x.rr!=null?'1:'+T.fmt(x.rr,1):'–'}</td></tr>`;
+    const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">Day</th><th class="num">Score</th><th class="num">R:R</th></tr></thead><tbody>${a.length?a.map(row).join(''):'<tr><td colspan="4" class="mut">None in this selection</td></tr>'}</tbody></table>`;
+    view.innerHTML=`<h1 style="margin:0 0 4px;font-size:24px">Order flow</h1>
+     <p class="mut" style="margin:0 0 12px">Session of ${esc(D0.last_date)} · ${all.length} stocks · <span class="pos">${nb} bullish</span> · <span class="neg">${nr} bearish</span> · estimated from 5-minute price and volume</p>
+     <div class="seg" id="ofu" style="margin-bottom:12px">${U.map(([k,l])=>`<button data-k="${k}" class="${OFP.u===k?'on':''}">${l}</button>`).join('')}</div>
+     <div class="card"><h3>Market X-ray <span class="mut" style="font-weight:400;font-size:12px">average day change by NSE group · click a group to filter the lists</span></h3>
+      <div class="xray">${secs.map(o=>`<div class="xr${OFP.sec===o.k?' on':''}" data-k="${esc(o.k)}"><span class="xn">${esc(o.k)}</span><span class="xb"><i class="${o.avg>=0?'g':'r'}" style="width:${Math.abs(o.avg)/mx*50}%;${o.avg>=0?'left':'right'}:50%"></i></span><span class="xv ${cls(o.avg)}">${o.avg>=0?'+':''}${T.fmt(o.avg,2)}%</span><span class="xc mut">${o.b}↑ ${o.r}↓</span></div>`).join('')}</div>
+      ${OFP.sec?`<p class="mut" style="font-size:12.5px;margin:8px 0 0">Showing ${esc(OFP.sec)} only · <a class="link" href="javascript:void(0)" id="xclr">clear filter</a></p>`:''}</div>
+     <div class="two" style="margin-top:14px"><div class="card"><h3>Strongest bullish</h3>${tb(top('bullish'))}</div><div class="card"><h3>Strongest bearish</h3>${tb(top('bearish'))}</div></div>
+     <p class="mut" style="font-size:12px;margin-top:12px">Not exchange order-book data: bias and score are derived from price and volume (price vs VWAP, close position in the day's range, estimated buy/sell delta, day change, price vs point of control and the 5-day trend, scaled by relative volume). R:R is the distance from the nearest order-block zone to the next support or resistance against a stop just beyond the zone. Click a stock for its chart. Educational use only, not investment advice.</p>`;
+    document.querySelectorAll('#ofu button').forEach(b=>b.onclick=()=>{OFP.u=b.dataset.k;OFP.sec=null;draw()});
+    document.querySelectorAll('.xr').forEach(e=>e.onclick=()=>{OFP.sec=OFP.sec===e.dataset.k?null:e.dataset.k;draw()});
+    const c=$('#xclr');if(c)c.onclick=()=>{OFP.sec=null;draw()};
+  };
+  draw();
+}
 
 // ---------- About & Support ----------
 // Fill these in to show contact details on the About & Support page (empty ones are hidden)
@@ -1129,7 +1281,7 @@ async function stock(s,tab){
     <div class="acts">${dl}</div></div>
     <div class="pricerow"><div><span class="bigp" data-n="${price}" data-d="2" data-pre="₹">₹${T.fmt(price,2)}</span>${chg!=null?`<span class="chg ${cls(chg)}">${chgAbs>=0?'+':''}${T.fmt(chgAbs,2)} (${chg>=0?'+':''}${T.fmt(chg,2)}%)</span>`:''}<div class="k" style="margin-top:6px">NSE · As of ${esc(asof)} (daily close)</div></div>
      <div class="stats">${stat('Market cap',V.market_cap_cr!=null?'₹'+T.fmt(V.market_cap_cr,0)+' Cr':'–')}${stat('P/E',V.pe_used!=null?T.fmt(V.pe_used,1)+'x':'–')}${stat('P/B',V.pb!=null?T.fmt(V.pb,2)+'x':'–')}${stat('EV/EBITDA',V.ev_ebitda!=null?T.fmt(V.ev_ebitda,1)+'x':'–')}${stat('ROE',R.roe_pct!=null?T.fmt(R.roe_pct,1)+'%':'–')}${stat('ROCE',R.roce_pct!=null?T.fmt(R.roce_pct,1)+'%':'–')}${stat('Debt/Equity',R.debt_equity!=null?T.fmt(R.debt_equity,2):'–')}</div></div></div>`;
-  const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['peers','Peers'],['quant','Quant Analytics']];
+  const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['peers','Peers'],['orderflow','Order Flow'],['quant','Quant Analytics']];
   h+=`<div class="tabs">${TABS.map(t=>`<a href="#/stock/${esc(s)}/${t[0]}" class="${tab===t[0]?'on':''}">${t[1]}</a>`).join('')}${['Compare','Shareholding','News & Events','Research Notes'].map(x=>`<span title="Coming later">${x}</span>`).join('')}<b class="mini">${esc(s)} <em>₹${T.fmt(price,2)}</em>${chg!=null?` <i class="${cls(chg)}">${chg>=0?'+':''}${T.fmt(chg,2)}%</i>`:''}</b></div>`;
 
   // valuation summary (overview side card)
@@ -1163,6 +1315,8 @@ async function stock(s,tab){
     h+='<details class="assump2" id="assbar"></details><div class="subtabs" id="vsub"></div><div id="vbody"></div>';
   }else if(tab==='peers'){
     h+='<div id="peerbody"><div class="skel" style="height:320px"></div></div>';
+  }else if(tab==='orderflow'){
+    h+='<div id="ofbody"><div class="skel" style="height:440px"></div></div>';
   }else if(tab==='quant'){
     h+=technicals()||'<div class="card">No risk data for this stock.</div>';
   }
@@ -1190,6 +1344,7 @@ async function stock(s,tab){
   countUps(view);
   if(tab==='financials')finTabs(s);
   if(tab==='peers')peersTab(s);
+  if(tab==='orderflow')ofStock(s);
   if(tab==='valuation')valTabs(s,dcf,fin,rl,price,met,u);
 }
 
