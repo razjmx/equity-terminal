@@ -431,3 +431,13 @@ table.sotp select.ed{padding:4px 6px}
 .hmt b{font-size:clamp(11px,1.15vw,14px)}
 .hmt span{font-size:clamp(12px,1.2vw,16px)}
 .hmtip{position:absolute;z-index:20;pointer-events:none;opacity:0;transition:opacity .12s;background:var(--p);color:var(--t);border:1px solid var(--b);border-radius:8px;padding:7px 10px;font-size:12.5px;line-height:1.45;box-shadow:0 8px 22px rgba(0,0,0,.25);min-width:130px}
+
+/* heatmap: whole map reacts to the cursor */
+.hmt>div{transition:transform .28s cubic-bezier(.2,.8,.2,1),opacity .28s,box-shadow .28s,filter .28s}
+.hmbox:hover .hmt>div{transform:scale(.94);opacity:.82}
+.hmbox:hover .hmt:hover>div{transform:scale(1.09) translateY(-3px);opacity:1}
+.hmbox:hover .hmt.oth:hover>div{transform:scale(.94);opacity:.82}
+.hmpop{position:absolute;z-index:40;pointer-events:none;border-radius:12px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6px 8px;opacity:0;transform:scale(.6);transition:opacity .15s,transform .22s cubic-bezier(.2,.9,.3,1.3);box-shadow:0 14px 34px rgba(0,0,0,.4);border:2px solid var(--p)}
+.hmpop.on{opacity:1;transform:scale(1)}
+.hmpop b{font-size:13px;line-height:1.2}.hmpop span{font-size:16px;font-weight:800}.hmpop small{font-size:11px;opacity:.85}
+@media (prefers-reduced-motion:reduce){.hmbox:hover .hmt>div,.hmbox:hover .hmt:hover>div{transform:none}}
