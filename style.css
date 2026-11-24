@@ -348,3 +348,12 @@ input.ed.chg{background:rgba(42,111,219,.14);font-weight:600}
 .ffv{text-align:right;font-weight:600}
 .warnc{color:#b45309}
 @media(max-width:560px){.ffr{grid-template-columns:96px 1fr 58px;font-size:12px}.ffax{padding:0 66px 0 104px}}
+
+.assump2{margin:0 0 12px;border:1px solid var(--b,#e3e7ee);border-radius:10px;padding:8px 12px;background:var(--p,#fff)}
+.assump2>summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--brand,#0f6b4a)}
+.assump2 .ab{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:10px}
+.assump2 .ab label{font-size:13px;display:flex;gap:6px;align-items:center}
+.assump2 .ab input{width:74px}
+.faq{border-top:1px solid var(--b,#e3e7ee);padding:8px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:14px}
+.faq p{margin:6px 0 0;font-size:13.5px;color:var(--m,#667085)}
