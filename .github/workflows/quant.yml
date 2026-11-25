@@ -31,6 +31,10 @@ jobs:
       - name: Quant models (volatility, trend, factors, PCA)
         run: python scripts/compute_quant.py
 
+      - name: Barra-style factor risk model
+        continue-on-error: true
+        run: python scripts/compute_barra.py
+
       - name: Intraday volume profile (VWAP / TWAP)
         continue-on-error: true
         run: python scripts/fetch_intraday.py
