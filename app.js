@@ -426,7 +426,7 @@ async function ofStock(s){
   const draw=()=>{
     const long=!!OF_LONG[OFS.tf];let d=d0,first=0,bars;
     const seg=`<span class="seg" id="ofk" style="margin-left:auto">${OF_TFS.map(x=>`<button data-k="${x[0]}" class="${OFS.tf===x[0]?'on':''}">${x[1]}</button>`).join('')}</span>`;
-    const wire=()=>document.querySelectorAll('#ofk button').forEach(b=>b.onclick=async()=>{OFS.tf=b.dataset.k;if(OF_LONG[OFS.tf]&&ofTf[s]===undefined)await loadTf(s);draw()});
+    const wire=()=>document.querySelectorAll('#ofk button').forEach(b=>b.onclick=async()=>{OFS.tf=b.dataset.k;OFP.tf=b.dataset.k;if(OF_LONG[OFS.tf]&&ofTf[s]===undefined)await loadTf(s);draw()});
     if(long){const tt=ofTf[s]&&ofTf[s]!=='none'?ofTf[s][OFS.tf]:null;
       if(!tt){box.innerHTML=`<div class="card"><h3>Order flow ${seg}</h3><p class="mut">No ${OFS.tf.toUpperCase()} order-flow data for this stock yet. It is built by the <b>Order flow</b> workflow after the market close; stocks with a short price history or no 1-hour data are left out.</p></div>`;wire();return}
       d=tt;bars=d.bars}
@@ -543,7 +543,7 @@ function ofChart(cv,d,bars,off){
 }
 
 // ---------- Order flow page ----------
-const OFP={u:'all',sec:null};
+const OFP={u:'all',sec:null,tf:'1d'};
 async function orderFlowPage(){
   view.innerHTML='<div class="skel" style="height:300px"></div>';
   const D0=await get('data/orderflow.json','json');
@@ -551,9 +551,13 @@ async function orderFlowPage(){
   const mem=await get('data/index_members.json','json');
   const P=await get('data/peers.json','json');const nm={};if(P&&P.stocks)P.stocks.forEach(x=>nm[x.s]=x.n);
   const U=[['all','All stocks'],['nifty50','Nifty 50'],['midcap150','Midcap 150'],['smallcap250','Smallcap 250'],['microcap250','Microcap 250']].filter(x=>x[0]==='all'||(mem&&mem[x[0]]));
+  let TFD=null;if(OFP.tf!=='1d')TFD=await get('data/orderflow_tf.json','json');
+  const TFN={'1d':['1D','today','5-minute'],'1w':['1W','1 week','5-minute'],'1m':['1M','1 month','1-hour'],'3m':['3M','3 months','daily'],'6m':['6M','6 months','daily']};
   const draw=()=>{
     const set=OFP.u==='all'?null:new Set(mem[OFP.u]);
-    const all=D0.stocks.filter(x=>!set||set.has(x.s));
+    const tf=OFP.tf,tn=TFN[tf],srcRows=tf==='1d'?D0.stocks:(TFD&&TFD[tf])||[];
+    const lastD=tf==='1d'?D0.last_date:(TFD&&TFD.last&&TFD.last[tf])||'';
+    const all=srcRows.filter(x=>!set||set.has(x.s));
     const sec={};all.forEach(x=>{const k=x.m||'Other';(sec[k]=sec[k]||{k,n:0,sum:0,b:0,r:0});const o=sec[k];o.n++;o.sum+=x.chg||0;if(x.bias==='bullish')o.b++;if(x.bias==='bearish')o.r++});
     const secs=Object.values(sec).filter(o=>o.n>=2).map(o=>({...o,avg:o.sum/o.n})).sort((a,b)=>b.avg-a.avg);
     const mx=Math.max(1,...secs.map(o=>Math.abs(o.avg)));
@@ -561,17 +565,19 @@ async function orderFlowPage(){
     const qv=all.filter(x=>x.q==='ok').length,qw=all.filter(x=>x.q==='warn').length,qo=all.filter(x=>x.q==='vol').length,qp=all.length-qv-qw-qo;
     const pool=OFP.sec?all.filter(x=>(x.m||'Other')===OFP.sec):all;
     const top=b=>pool.filter(x=>x.bias===b).sort((p,q)=>q.score-p.score).slice(0,15);
-    const row=x=>`<tr class="row" onclick="location.hash='#/stock/${esc(x.s)}/orderflow'"><td><b>${esc(x.s)}</b>${x.q==='ok'?' <span class="vq ok" title="Matches NSE official figures">✓</span>':x.q==='vol'?' <span class="vq vol" title="Prices match NSE; volume is lower than NSE\'s">~</span>':x.q==='warn'?' <span class="vq warn" title="A price differs from NSE official figures">!</span>':''}<div class="mut" style="font-size:11px">${esc((nm[x.s]||'').slice(0,26))}</div></td><td class="num ${cls(x.chg)}">${x.chg>=0?'+':''}${T.fmt(x.chg,2)}%</td><td class="num"><div class="scbar"><i class="${x.bias==='bullish'?'g':'r'}" style="width:${x.score}%"></i></div>${x.score}</td><td class="num">${x.rr!=null?'1:'+T.fmt(x.rr,1):'–'}</td><td class="num">${x.dp!=null?T.fmt(x.dp,0)+'%':'–'}</td></tr>`;
-    const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">Day</th><th class="num">Score</th><th class="num">R:R</th><th class="num" title="Delivery % from NSE">Del %</th></tr></thead><tbody>${a.length?a.map(row).join(''):'<tr><td colspan="5" class="mut">None in this selection</td></tr>'}</tbody></table>`;
+    const row=x=>`<tr class="row" onclick="location.hash='#/stock/${esc(x.s)}/orderflow'"><td><b>${esc(x.s)}</b>${x.q==='ok'?' <span class="vq ok" title="Matches NSE official figures">✓</span>':x.q==='vol'?' <span class="vq vol" title="Prices match NSE; volume is lower than NSE\'s">~</span>':x.q==='warn'?' <span class="vq warn" title="A price differs from NSE official figures">!</span>':''}<div class="mut" style="font-size:11px">${esc((nm[x.s]||'').slice(0,26))}</div></td><td class="num ${cls(x.chg)}">${x.chg>=0?'+':''}${T.fmt(x.chg,2)}%</td><td class="num"><div class="scbar"><i class="${x.bias==='bullish'?'g':'r'}" style="width:${x.score}%"></i></div>${x.score}</td><td class="num">${x.rr!=null?'1:'+T.fmt(x.rr,1):'–'}</td>${tf==='1d'?`<td class="num">${x.dp!=null?T.fmt(x.dp,0)+'%':'–'}</td>`:''}</tr>`;
+    const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">${tf==='1d'?'Day':tn[0]+' chg'}</th><th class="num">Score</th><th class="num">R:R</th>${tf==='1d'?'<th class="num" title="Delivery % from NSE">Del %</th>':''}</tr></thead><tbody>${a.length?a.map(row).join(''):`<tr><td colspan="5" class="mut">${srcRows.length?'None in this selection':'No data for this timeframe yet. Run the Order flow workflow.'}</td></tr>`}</tbody></table>`;
     view.innerHTML=`<h1 style="margin:0 0 4px;font-size:24px">Order flow</h1>
-     <p class="mut" style="margin:0 0 12px">Session of ${esc(D0.last_date)} · ${all.length} stocks · <span class="pos">${nb} bullish</span> · <span class="neg">${nr} bearish</span> · estimated from 5-minute price and volume</p>
-     <p class="mut" style="margin:0 0 12px;font-size:12.5px">Data check against NSE's official end-of-day figures: <span class="pos">✓ ${qv} match</span> · <span class="warnc">~ ${qo} prices match, volume lower</span> · <span class="neg">! ${qw} price differs</span> · ${qp} pending or not checked. Delivery % is NSE's own figure.</p>
+     <p class="mut" style="margin:0 0 12px">${tf==='1d'?'Session of '+esc(lastD):tn[1]+' view, to '+esc(lastD)} · ${all.length} stocks · <span class="pos">${nb} bullish</span> · <span class="neg">${nr} bearish</span> · estimated from ${tn[2]} price and volume</p>
+     <div class="seg" id="oft" style="margin-bottom:12px">${Object.entries(TFN).map(([k,v])=>`<button data-k="${k}" class="${tf===k?'on':''}">${v[0]}</button>`).join('')}</div>
+     ${tf==='1d'?`<p class="mut" style="margin:0 0 12px;font-size:12.5px">Data check against NSE's official end-of-day figures: <span class="pos">✓ ${qv} match</span> · <span class="warnc">~ ${qo} prices match, volume lower</span> · <span class="neg">! ${qw} price differs</span> · ${qp} pending or not checked. Delivery % is NSE's own figure.</p>`:`<p class="mut" style="margin:0 0 12px;font-size:12.5px">Longer views measure the whole window: change is the move over the period, VWAP, delta and value area cover all of it, and the score thresholds are widened. NSE verification and delivery % apply to a single session, so they are shown on 1D only.</p>`}
      <div class="seg" id="ofu" style="margin-bottom:12px">${U.map(([k,l])=>`<button data-k="${k}" class="${OFP.u===k?'on':''}">${l}</button>`).join('')}</div>
-     <div class="card"><h3>Market X-ray <span class="mut" style="font-weight:400;font-size:12px">average day change by NSE group · click a group to filter the lists</span></h3>
+     <div class="card"><h3>Market X-ray <span class="mut" style="font-weight:400;font-size:12px">average ${tf==='1d'?'day':tn[1]} change by NSE group · click a group to filter the lists</span></h3>
       <div class="xray">${secs.map(o=>`<div class="xr${OFP.sec===o.k?' on':''}" data-k="${esc(o.k)}"><span class="xn">${esc(o.k)}</span><span class="xb"><i class="${o.avg>=0?'g':'r'}" style="width:${Math.abs(o.avg)/mx*50}%;${o.avg>=0?'left':'right'}:50%"></i></span><span class="xv ${cls(o.avg)}">${o.avg>=0?'+':''}${T.fmt(o.avg,2)}%</span><span class="xc mut">${o.b}↑ ${o.r}↓</span></div>`).join('')}</div>
       ${OFP.sec?`<p class="mut" style="font-size:12.5px;margin:8px 0 0">Showing ${esc(OFP.sec)} only · <a class="link" href="javascript:void(0)" id="xclr">clear filter</a></p>`:''}</div>
      <div class="two" style="margin-top:14px"><div class="card"><h3>Strongest bullish</h3>${tb(top('bullish'))}</div><div class="card"><h3>Strongest bearish</h3>${tb(top('bearish'))}</div></div>
      <p class="mut" style="font-size:12px;margin-top:12px">Not exchange order-book data: bias and score are derived from price and volume (price vs VWAP, close position in the day's range, estimated buy/sell delta, day change, price vs point of control and the 5-day trend, scaled by relative volume). ✓ means that stock's day high, low, last price and volume match NSE's official end-of-day file; ~ means prices match but our volume is lower than NSE's; ! means a price differs. R:R is the distance from the nearest order-block zone to the next support or resistance against a stop just beyond the zone. Click a stock for its chart. Educational use only, not investment advice.</p>`;
+    document.querySelectorAll('#oft button').forEach(b=>b.onclick=async()=>{OFP.tf=b.dataset.k;OFS.tf=b.dataset.k;OFP.sec=null;if(OFP.tf!=='1d'&&!TFD)TFD=await get('data/orderflow_tf.json','json');draw()});
     document.querySelectorAll('#ofu button').forEach(b=>b.onclick=()=>{OFP.u=b.dataset.k;OFP.sec=null;draw()});
     document.querySelectorAll('.xr').forEach(e=>e.onclick=()=>{OFP.sec=OFP.sec===e.dataset.k?null:e.dataset.k;draw()});
     const c=$('#xclr');if(c)c.onclick=()=>{OFP.sec=null;draw()};
