@@ -469,6 +469,7 @@ async function ofStock(s){
       <p class="mut" style="font-size:12px;margin-top:12px">This is <b>not exchange order-book data</b>. It is derived from Yahoo Finance 5-minute price and volume bars. Volume profile spreads each bar's volume over its price range; buy/sell delta splits each bar's volume by where it closed in its range; an order block is the last opposite candle before a sharp move that price has not yet closed through; liquidity marks swing highs and lows (and equal highs or lows) that price has not yet traded through, where stop orders often sit. Zones are areas of interest, not guarantees. The score combines price vs VWAP, close position in the day's range, estimated delta, day change, price vs POC and the 5-day trend, scaled by relative volume. Educational use only, not investment advice.</p></div>`;
     wire();
     ofChart($('#ofc'),d,bars,first);
+    ofExtra(s,box);
   };
   draw();
   if(!ofStock._r){ofStock._r=1;window.addEventListener('resize',()=>{clearTimeout(ofStock._t);ofStock._t=setTimeout(()=>{const c=$('#ofc');if(c&&c._redraw)c._redraw()},150)})}
@@ -543,6 +544,25 @@ function ofChart(cv,d,bars,off){
 }
 
 // ---------- Order flow page ----------
+const ofX={};
+async function ofExtra(s,box){
+  if(ofX.fii===undefined)ofX.fii=(await get('data/fii_flow.json','json'))||null;
+  if(ofX['d'+s]===undefined)ofX['d'+s]=(await get(`data/delivery/${s}.json`,'json'))||null;
+  if(!box.isConnected||!box.querySelector('#ofc'))return;
+  const old=box.querySelector('#ofx');if(old)old.remove();
+  const dl=ofX['d'+s],fi=ofX.fii&&ofX.fii.stocks.find(x=>x.s===s);let h='';
+  if(fi)h+=`<div class="mtiles" style="margin-bottom:12px">${qtile('FII / FPI holding',T.fmt(fi.fii,2)+'%',esc(fi.lab||'latest quarter'))}${qtile('Change vs '+esc(fi.plab||'previous quarter'),(fi.d>0?'+':'')+T.fmt(fi.d,2)+' pp','percentage points of the company',fi.d>0.05?'pos':fi.d<-0.05?'neg':'')}${fi.cr!=null?qtile('Estimated value',(fi.cr>0?'+':'')+'₹'+T.fmt(Math.abs(fi.cr),0)+' cr',fi.cr>0?'added (approx.)':'removed (approx.)',fi.cr>0?'pos':'neg'):''}</div>`;
+  if(dl&&dl.dp&&dl.dp.length>=30){
+    const dp=dl.dp,n=dp.length,last=dp[n-1],a20=dp.slice(-20).reduce((a,b)=>a+(b||0),0)/Math.min(20,n),a1y=dp.slice(-250).reduce((a,b)=>a+(b||0),0)/Math.min(250,n);
+    const pr=dp.filter(v=>v!=null&&v<=last).length/n*100;
+    h+=`<div class="mtiles" style="margin-bottom:8px">${qtile('Delivery % latest',T.fmt(last,1)+'%',esc(dl.d[n-1]))}${qtile('20-session average',T.fmt(a20,1)+'%')}${qtile('1-year average',T.fmt(a1y,1)+'%')}${qtile('Latest vs own history','percentile '+T.fmt(pr,0),'of '+n+' sessions')}</div><canvas id="ofdc" style="height:190px"></canvas>${qleg([['Delivery %','#8b94a3'],['20-session average','#0f6b4a']])}`;
+  }
+  if(!h)return;
+  box.insertAdjacentHTML('beforeend',`<div class="card" id="ofx"><h3>Delivery and foreign holding <span class="mut" style="font-weight:400;font-size:12px">NSE official figures</span></h3>${h}<p class="mut" style="font-size:12px;margin:8px 0 0">Delivery % is the share of traded shares actually taken into demat accounts rather than squared off in the day. A rise against the stock's own history means more investing and less day trading, but it does not say whether buyers or sellers were behind it. FII / FPI holding is quarterly, from the shareholding filings: it shows the change in the share of the company foreigners hold, not daily buying or selling.</p></div>`);
+  const cv=box.querySelector('#ofdc');
+  if(cv){const dp=dl.dp.slice(-250),x=dl.d.slice(-250).map(z=>z.slice(2)),ma=dp.map((_,i)=>{const w=dp.slice(Math.max(0,i-19),i+1).filter(v=>v!=null);return w.length>=10?w.reduce((a,b)=>a+b,0)/w.length:null});
+    lineChart(cv,[{name:'Delivery %',x,y:dp,color:'#8b94a3'},{name:'20d',x,y:ma,color:'#0f6b4a'}],{dec:0})}
+}
 const OFP={u:'all',sec:null,tf:'1d'};
 async function orderFlowPage(){
   view.innerHTML='<div class="skel" style="height:300px"></div>';
@@ -552,6 +572,8 @@ async function orderFlowPage(){
   const P=await get('data/peers.json','json');const nm={};if(P&&P.stocks)P.stocks.forEach(x=>nm[x.s]=x.n);
   const U=[['all','All stocks'],['nifty50','Nifty 50'],['midcap150','Midcap 150'],['smallcap250','Smallcap 250'],['microcap250','Microcap 250']].filter(x=>x[0]==='all'||(mem&&mem[x[0]]));
   let TFD=null;if(OFP.tf!=='1d')TFD=await get('data/orderflow_tf.json','json');
+  const FII=await get('data/fii_flow.json','json'),BT=await get('data/orderflow_backtest.json','json');
+  const fmap={};if(FII)FII.stocks.forEach(x=>fmap[x.s]=x.d);
   const TFN={'1d':['1D','today','5-minute'],'1w':['1W','1 week','5-minute'],'1m':['1M','1 month','1-hour'],'3m':['3M','3 months','daily'],'6m':['6M','6 months','daily']};
   const draw=()=>{
     const set=OFP.u==='all'?null:new Set(mem[OFP.u]);
@@ -565,18 +587,19 @@ async function orderFlowPage(){
     const qv=all.filter(x=>x.q==='ok').length,qw=all.filter(x=>x.q==='warn').length,qo=all.filter(x=>x.q==='vol').length,qp=all.length-qv-qw-qo;
     const pool=OFP.sec?all.filter(x=>(x.m||'Other')===OFP.sec):all;
     const top=b=>pool.filter(x=>x.bias===b).sort((p,q)=>q.score-p.score).slice(0,15);
-    const row=x=>`<tr class="row" onclick="location.hash='#/stock/${esc(x.s)}/orderflow'"><td><b>${esc(x.s)}</b>${x.q==='ok'?' <span class="vq ok" title="Matches NSE official figures">✓</span>':x.q==='vol'?' <span class="vq vol" title="Prices match NSE; volume is lower than NSE\'s">~</span>':x.q==='warn'?' <span class="vq warn" title="A price differs from NSE official figures">!</span>':''}<div class="mut" style="font-size:11px">${esc((nm[x.s]||'').slice(0,26))}</div></td><td class="num ${cls(x.chg)}">${x.chg>=0?'+':''}${T.fmt(x.chg,2)}%</td><td class="num"><div class="scbar"><i class="${x.bias==='bullish'?'g':'r'}" style="width:${x.score}%"></i></div>${x.score}</td><td class="num">${x.rr!=null?'1:'+T.fmt(x.rr,1):'–'}</td>${tf==='1d'?`<td class="num">${x.dp!=null?T.fmt(x.dp,0)+'%':'–'}</td>`:''}</tr>`;
-    const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">${tf==='1d'?'Day':tn[0]+' chg'}</th><th class="num">Score</th><th class="num">R:R</th>${tf==='1d'?'<th class="num" title="Delivery % from NSE">Del %</th>':''}</tr></thead><tbody>${a.length?a.map(row).join(''):`<tr><td colspan="5" class="mut">${srcRows.length?'None in this selection':'No data for this timeframe yet. Run the Order flow workflow.'}</td></tr>`}</tbody></table>`;
+    const row=x=>`<tr class="row" onclick="location.hash='#/stock/${esc(x.s)}/orderflow'"><td><b>${esc(x.s)}</b>${x.q==='ok'?' <span class="vq ok" title="Matches NSE official figures">✓</span>':x.q==='vol'?' <span class="vq vol" title="Prices match NSE; volume is lower than NSE\'s">~</span>':x.q==='warn'?' <span class="vq warn" title="A price differs from NSE official figures">!</span>':''}<div class="mut" style="font-size:11px">${esc((nm[x.s]||'').slice(0,26))}</div></td><td class="num ${cls(x.chg)}">${x.chg>=0?'+':''}${T.fmt(x.chg,2)}%</td><td class="num"><div class="scbar"><i class="${x.bias==='bullish'?'g':'r'}" style="width:${x.score}%"></i></div>${x.score}</td><td class="num">${x.rr!=null?'1:'+T.fmt(x.rr,1):'–'}</td><td class="num">${x.dp!=null?T.fmt(x.dp,0)+'%':'–'}</td>${FII?`<td class="num ${fmap[x.s]>0.05?'pos':fmap[x.s]<-0.05?'neg':''}">${fmap[x.s]!=null?(fmap[x.s]>0?'+':'')+T.fmt(fmap[x.s],2):'–'}</td>`:''}</tr>`;
+    const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">${tf==='1d'?'Day':tn[0]+' chg'}</th><th class="num">Score</th><th class="num">R:R</th><th class="num" title="${tf==='1d'?'NSE delivery % for the session':'Average NSE delivery % over the window'}">Del %</th>${FII?'<th class="num" title="Change in FII/FPI holding, latest quarter vs previous, percentage points">FII Δ</th>':''}</tr></thead><tbody>${a.length?a.map(row).join(''):`<tr><td colspan="6" class="mut">${srcRows.length?'None in this selection':'No data for this timeframe yet. Run the Order flow workflow.'}</td></tr>`}</tbody></table>`;
     view.innerHTML=`<h1 style="margin:0 0 4px;font-size:24px">Order flow</h1>
      <p class="mut" style="margin:0 0 12px">${tf==='1d'?'Session of '+esc(lastD):tn[1]+' view, to '+esc(lastD)} · ${all.length} stocks · <span class="pos">${nb} bullish</span> · <span class="neg">${nr} bearish</span> · estimated from ${tn[2]} price and volume</p>
      <div class="seg" id="oft" style="margin-bottom:12px">${Object.entries(TFN).map(([k,v])=>`<button data-k="${k}" class="${tf===k?'on':''}">${v[0]}</button>`).join('')}</div>
-     ${tf==='1d'?`<p class="mut" style="margin:0 0 12px;font-size:12.5px">Data check against NSE's official end-of-day figures: <span class="pos">✓ ${qv} match</span> · <span class="warnc">~ ${qo} prices match, volume lower</span> · <span class="neg">! ${qw} price differs</span> · ${qp} pending or not checked. Delivery % is NSE's own figure.</p>`:`<p class="mut" style="margin:0 0 12px;font-size:12.5px">Longer views measure the whole window: change is the move over the period, VWAP, delta and value area cover all of it, and the score thresholds are widened. NSE verification and delivery % apply to a single session, so they are shown on 1D only.</p>`}
+     ${tf==='1d'?`<p class="mut" style="margin:0 0 12px;font-size:12.5px">Data check against NSE's official end-of-day figures: <span class="pos">✓ ${qv} match</span> · <span class="warnc">~ ${qo} prices match, volume lower</span> · <span class="neg">! ${qw} price differs</span> · ${qp} pending or not checked. Delivery % is NSE's own figure.</p>`:`<p class="mut" style="margin:0 0 12px;font-size:12.5px">Longer views measure the whole window: change is the move over the period, VWAP, delta and value area cover all of it, and the score thresholds are widened. NSE verification applies to a single session, so it is shown on 1D only; Del % here is the average over the window.</p>`}
      <div class="seg" id="ofu" style="margin-bottom:12px">${U.map(([k,l])=>`<button data-k="${k}" class="${OFP.u===k?'on':''}">${l}</button>`).join('')}</div>
      <div class="card"><h3>Market X-ray <span class="mut" style="font-weight:400;font-size:12px">average ${tf==='1d'?'day':tn[1]} change by NSE group · click a group to filter the lists</span></h3>
       <div class="xray">${secs.map(o=>`<div class="xr${OFP.sec===o.k?' on':''}" data-k="${esc(o.k)}"><span class="xn">${esc(o.k)}</span><span class="xb"><i class="${o.avg>=0?'g':'r'}" style="width:${Math.abs(o.avg)/mx*50}%;${o.avg>=0?'left':'right'}:50%"></i></span><span class="xv ${cls(o.avg)}">${o.avg>=0?'+':''}${T.fmt(o.avg,2)}%</span><span class="xc mut">${o.b}↑ ${o.r}↓</span></div>`).join('')}</div>
       ${OFP.sec?`<p class="mut" style="font-size:12.5px;margin:8px 0 0">Showing ${esc(OFP.sec)} only · <a class="link" href="javascript:void(0)" id="xclr">clear filter</a></p>`:''}</div>
+     ${fiiCard(FII,set)}
      <div class="two" style="margin-top:14px"><div class="card"><h3>Strongest bullish</h3>${tb(top('bullish'))}</div><div class="card"><h3>Strongest bearish</h3>${tb(top('bearish'))}</div></div>
-     <p class="mut" style="font-size:12px;margin-top:12px">Not exchange order-book data: bias and score are derived from price and volume (price vs VWAP, close position in the day's range, estimated buy/sell delta, day change, price vs point of control and the 5-day trend, scaled by relative volume). ✓ means that stock's day high, low, last price and volume match NSE's official end-of-day file; ~ means prices match but our volume is lower than NSE's; ! means a price differs. R:R is the distance from the nearest order-block zone to the next support or resistance against a stop just beyond the zone. Click a stock for its chart. Educational use only, not investment advice.</p>`;
+     <p class="mut" style="font-size:12px;margin-top:12px">Not exchange order-book data: bias and score are derived from price and volume (price vs VWAP, close position in the day's range, estimated buy/sell delta, day change, price vs point of control and the 5-day trend, scaled by relative volume). ✓ means that stock's day high, low, last price and volume match NSE's official end-of-day file; ~ means prices match but our volume is lower than NSE's; ! means a price differs. R:R is the distance from the nearest order-block zone to the next support or resistance against a stop just beyond the zone. Click a stock for its chart. Educational use only, not investment advice.</p>${btCard(BT)}`;
     document.querySelectorAll('#oft button').forEach(b=>b.onclick=async()=>{OFP.tf=b.dataset.k;OFS.tf=b.dataset.k;OFP.sec=null;if(OFP.tf!=='1d'&&!TFD)TFD=await get('data/orderflow_tf.json','json');draw()});
     document.querySelectorAll('#ofu button').forEach(b=>b.onclick=()=>{OFP.u=b.dataset.k;OFP.sec=null;draw()});
     document.querySelectorAll('.xr').forEach(e=>e.onclick=()=>{OFP.sec=OFP.sec===e.dataset.k?null:e.dataset.k;draw()});
@@ -585,6 +608,31 @@ async function orderFlowPage(){
   draw();
 }
 
+function fiiCard(F,set){
+  if(!F)return '';
+  const st=F.stocks.filter(x=>!set||set.has(x.s)),g={};
+  st.forEach(x=>{const k=x.m||'Other',o=g[k]=g[k]||{k,n:0,cr:0,w:0,dw:0,fw:0,up:0,dn:0};o.n++;if(x.cr!=null){o.cr+=x.cr;o.w+=x.mc;o.dw+=x.d*x.mc;o.fw+=x.fii*x.mc}if(x.d>0.05)o.up++;if(x.d<-0.05)o.dn++});
+  const secs=Object.values(g).filter(o=>o.n>=2).sort((a,b)=>b.cr-a.cr);
+  const withCr=st.filter(x=>x.cr!=null),adds=[...withCr].sort((a,b)=>b.cr-a.cr).slice(0,10),cuts=[...withCr].sort((a,b)=>a.cr-b.cr).slice(0,10);
+  const money=v=>(v>0?'+':v<0?'−':'')+'₹'+T.fmt(Math.abs(v),0);
+  const lst=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">FII %</th><th class="num">Δ pp</th><th class="num">Est. ₹ cr</th></tr></thead><tbody>${a.map(x=>`<tr class="row" onclick="location.hash='#/stock/${esc(x.s)}/orderflow'"><td><b>${esc(x.s)}</b></td><td class="num">${T.fmt(x.fii,1)}</td><td class="num ${cls(x.d)}">${x.d>0?'+':''}${T.fmt(x.d,2)}</td><td class="num ${cls(x.cr)}">${money(x.cr)}</td></tr>`).join('')}</tbody></table>`;
+  return `<div class="card" style="margin-top:14px"><h3>FII / FPI holding change <span class="mut" style="font-weight:400;font-size:12px">${esc(F.label)} vs ${esc(F.prev_label)} · ${st.length} stocks · quarterly</span></h3>
+   <div class="scroll"><table class="peer"><thead><tr><th>NSE group</th><th class="num">FII holding</th><th class="num">Change (pp)</th><th class="num">Est. value ₹ cr</th><th class="num">Stocks ↑ / ↓</th></tr></thead><tbody>${secs.map(o=>{const d=o.w?o.dw/o.w:null;return `<tr><td>${esc(o.k)}</td><td class="num">${o.w?T.fmt(o.fw/o.w,1)+'%':'–'}</td><td class="num ${cls(d)}">${d==null?'–':(d>0?'+':'')+T.fmt(d,2)}</td><td class="num ${cls(o.cr)}"><b>${money(o.cr)}</b></td><td class="num">${o.up} ↑ ${o.dn} ↓</td></tr>`}).join('')}</tbody></table></div>
+   <div class="two" style="margin-top:12px"><div><h4 style="margin:0 0 6px">Foreign holding added most</h4>${lst(adds)}</div><div><h4 style="margin:0 0 6px">Foreign holding cut most</h4>${lst(cuts)}</div></div>
+   <p class="mut" style="font-size:12px;margin-top:10px"><b>How to read this.</b> Daily FII buying and selling by stock is not published. The only official stock-level view is the quarterly shareholding filing, so this compares the share of each company held by foreign investors in the latest quarter with the one before. The ₹ figure is that change × today's market cap: it is an estimate of value moved, and does not separate buying from price moves, new share issues or changes in other holders' stakes. The latest quarter can lag by up to 3 weeks after quarter end.</p></div>`;
+}
+function btCard(B){
+  if(!B)return `<div class="card" style="margin-top:14px"><h3>How reliable is the score?</h3><p class="mut">The back-test has not been run yet. Run the <b>Order flow</b> workflow.</p></div>`;
+  const rows=[];
+  for(const w of ['21','63','126'])for(const h of ['21','5']){const x=B.win[w]&&B.win[w].h[h];if(x)rows.push([w,h,x])}
+  const sig=x=>x.ic_t>=2?['pos','Predicts']:x.ic_t<=-2?['neg','Predicts the opposite']:['mut','No reliable edge'];
+  const any=rows.some(r=>r[2].ic_t>=2);
+  return `<div class="card" style="margin-top:14px"><h3>How reliable is the score? <span class="mut" style="font-weight:400;font-size:12px">back-test, ${esc(B.from)} to ${esc(B.to)} · ${B.stocks} liquid stocks · monthly</span></h3>
+   <p style="margin:0 0 8px">${any?'<b class="pos">Some evidence</b> that the score ranks stocks by later returns; see the rows marked "Predicts".':'<b>No reliable edge found.</b> Stocks with a high score did not do reliably better than stocks with a low score.'} <span class="mut">The 5-minute version cannot be tested because only 5 sessions of 5-minute bars exist, so this tests the same method on daily bars.</span></p>
+   <div class="scroll"><table class="peer"><thead><tr><th>Window</th><th>Looks ahead</th><th class="num">Rank IC</th><th class="num">t-stat</th><th class="num">Plain trailing return IC</th><th class="num">Lowest fifth</th><th class="num">Highest fifth</th><th>Verdict</th></tr></thead><tbody>${rows.map(([w,h,x])=>{const v=sig(x);return `<tr><td>${w} days</td><td>${h} days</td><td class="num">${T.fmt(x.ic,3)}</td><td class="num">${T.fmt(x.ic_t,2)}</td><td class="num">${T.fmt(x.ic_baseline,3)} <span class="mut">(t ${T.fmt(x.ic_baseline_t,1)})</span></td><td class="num ${cls(x.q[0])}">${T.fmt(x.q[0],2)}%</td><td class="num ${cls(x.q[4])}">${T.fmt(x.q[4],2)}%</td><td class="${v[0]}">${v[1]}</td></tr>`}).join('')}</tbody></table></div>
+   ${B.delivery?`<p style="margin:10px 0 0">Delivery % signal (last 21 sessions vs the stock's own earlier average): rank IC <b>${T.fmt(B.delivery.ic,3)}</b>, t-stat ${T.fmt(B.delivery.ic_t,2)} → ${B.delivery.ic_t>=2?'<b class="pos">predicts next-month return</b>':B.delivery.ic_t<=-2?'<b class="neg">predicts the opposite</b>':'no reliable edge'}.</p>`:''}
+   <p class="mut" style="font-size:12px;margin-top:10px">Method: on each month-end the score is computed from data up to that day only, then compared with the return over the next 5 or 21 trading days across stocks. Rank IC is the correlation between score rank and later return rank (0.02 to 0.05 is typical for a real signal; t-stat of 2 or more means unlikely to be chance). "Lowest/highest fifth" are the average later returns of the fifth of stocks with the lowest and highest scores. The plain trailing-return column asks whether simply "it went up over the same window" does as well as the score. Today's index constituents are used, so survivorship bias flatters results, and no trading costs are deducted.</p></div>`;
+}
 // ---------- About & Support ----------
 // Fill these in to show contact details on the About & Support page (empty ones are hidden)
 const CONTACT={author:'',email:'the.analyst.cave@gmail.com',linkedin:''};
