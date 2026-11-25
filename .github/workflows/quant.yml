@@ -35,6 +35,10 @@ jobs:
         continue-on-error: true
         run: python scripts/compute_barra.py
 
+      - name: Pairs (stat-arb) scan
+        continue-on-error: true
+        run: python scripts/compute_statarb.py
+
       - name: Intraday volume profile (VWAP / TWAP)
         continue-on-error: true
         run: python scripts/fetch_intraday.py
