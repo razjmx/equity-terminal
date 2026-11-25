@@ -70,9 +70,20 @@ def main():
     table = {"1w": [], "1m": [], "3m": [], "6m": []}
     last = {}
 
-    def row(s, r):
+    WIN = {"1w": 5, "1m": 21, "3m": 63, "6m": 126}
+
+    def avg_dp(s, key):
+        """average NSE delivery % over the window's sessions, from data/delivery/SYM.json"""
+        try:
+            j = json.load(open(f"data/delivery/{s}.json"))
+            x = [v for v in j["dp"][-WIN[key]:] if v is not None]
+            return round(sum(x) / len(x), 1) if len(x) >= max(3, WIN[key] // 2) else None
+        except Exception:
+            return None
+
+    def row(s, r, key=None):
         i = ind.get(s, {})
-        return {"s": s, "px": r["px"], "chg": r["chg"], "score": r["score"], "bias": r["bias"], "net": r["net"], "zone": r["zone"],
+        return {"dp": avg_dp(s, key) if key else None, "s": s, "px": r["px"], "chg": r["chg"], "score": r["score"], "bias": r["bias"], "net": r["net"], "zone": r["zone"],
                 "rr": r["rr"], "vwap": r["vwap"], "dr": r["dr"], "rv": r["rv"], "m": i.get("macro", ""), "sec": i.get("sector", "")}
 
     for s in syms:
@@ -86,11 +97,11 @@ def main():
                 f5 = pd.DataFrame([[b[2], b[3], b[4], b[5], b[6]] for b in b5["bars"]], index=idx, columns=["Open", "High", "Low", "Close", "Volume"])
                 r = FO.analyse(f5, sessions=5, agg=True, k=1.5, tol=0.002)
                 if r:
-                    table["1w"].append(row(s, r)); last["1w"] = max(last.get("1w", ""), r["d"])
+                    table["1w"].append(row(s, r, "1w")); r["dp"] = avg_dp(s, "1w"); last["1w"] = max(last.get("1w", ""), r["d"])
             if s in hourly:
                 r = FO.analyse(hourly[s], agg=True, **CFG["1m"])
                 if r:
-                    res["1m"] = r; table["1m"].append(row(s, r)); last["1m"] = max(last.get("1m", ""), r["d"])
+                    r["dp"] = avg_dp(s, "1m"); res["1m"] = r; table["1m"].append(row(s, r, "1m")); last["1m"] = max(last.get("1m", ""), r["d"])
             dd = daily(s)
             if dd is not None:
                 dd = dd[dd["Close"].notna() & (dd["Close"] > 0)].copy()
@@ -99,7 +110,7 @@ def main():
                 for key in ("3m", "6m"):
                     r = FO.analyse(dd.tail(CFG[key]["sessions"] + 1), agg=True, **CFG[key])
                     if r:
-                        res[key] = r; table[key].append(row(s, r)); last[key] = max(last.get(key, ""), r["d"])
+                        r["dp"] = avg_dp(s, key); res[key] = r; table[key].append(row(s, r, key)); last[key] = max(last.get(key, ""), r["d"])
         except Exception as e:
             bad.append(f"{s}: {e!r}"[:80])
         if res:
