@@ -404,7 +404,9 @@ function showWf(p,M,wf,dates){
 }
 
 // ---------- Order flow ----------
-const OFS={k:3};
+const OFS={tf:'1w'};const ofTf={};
+const OF_TFS=[['1d','1D'],['1w','1W'],['1m','1M'],['3m','3M'],['6m','6M']],OF_LONG={'1m':['1-hour bars','last 21 sessions'],'3m':['daily bars','last 63 sessions'],'6m':['daily bars','last 126 sessions']};
+async function loadTf(s){ofTf[s]=(await get(`data/orderflow/${s}.tf.json`,'json'))||'none'}
 const ofCache={};
 function ofProfileJS(bars){
   let lo=Infinity,hi=-Infinity;bars.forEach(b=>{lo=Math.min(lo,b[4]);hi=Math.max(hi,b[3])});
@@ -417,20 +419,28 @@ function ofProfileJS(bars){
 }
 async function ofStock(s){
   const box=$('#ofbody');if(!box)return;
-  let d=ofCache[s];
-  if(!d){d=await get(`data/orderflow/${s}.json`,'json');if(d)ofCache[s]=d}
-  if(!d){box.innerHTML='<div class="card"><h3>Order flow</h3><p class="mut">No order-flow data for this stock yet. It is built by the <b>Order flow (5-minute bars)</b> workflow in Actions, which runs after the market close on weekdays.</p></div>';return}
+  let d0=ofCache[s];
+  if(!d0){d0=await get(`data/orderflow/${s}.json`,'json');if(d0)ofCache[s]=d0}
+  if(!d0){box.innerHTML='<div class="card"><h3>Order flow</h3><p class="mut">No order-flow data for this stock yet. It is built by the <b>Order flow (5-minute bars)</b> workflow in Actions, which runs after the market close on weekdays.</p></div>';return}
+  if(OF_LONG[OFS.tf]&&ofTf[s]===undefined)await loadTf(s);
   const draw=()=>{
-    const maxd=d.days.length-1,k=Math.min(OFS.k,d.days.length),minDay=maxd-k+1;
-    const first=d.bars.findIndex(b=>b[0]>=minDay),bars=d.bars.slice(first);
+    const long=!!OF_LONG[OFS.tf];let d=d0,first=0,bars;
+    const seg=`<span class="seg" id="ofk" style="margin-left:auto">${OF_TFS.map(x=>`<button data-k="${x[0]}" class="${OFS.tf===x[0]?'on':''}">${x[1]}</button>`).join('')}</span>`;
+    const wire=()=>document.querySelectorAll('#ofk button').forEach(b=>b.onclick=async()=>{OFS.tf=b.dataset.k;if(OF_LONG[OFS.tf]&&ofTf[s]===undefined)await loadTf(s);draw()});
+    if(long){const tt=ofTf[s]&&ofTf[s]!=='none'?ofTf[s][OFS.tf]:null;
+      if(!tt){box.innerHTML=`<div class="card"><h3>Order flow ${seg}</h3><p class="mut">No ${OFS.tf.toUpperCase()} order-flow data for this stock yet. It is built by the <b>Order flow</b> workflow after the market close; stocks with a short price history or no 1-hour data are left out.</p></div>`;wire();return}
+      d=tt;bars=d.bars}
+    else{const maxd=d0.days.length-1,k=Math.min(OFS.tf==='1d'?1:5,d0.days.length),minDay=maxd-k+1;
+      first=d0.bars.findIndex(b=>b[0]>=minDay);bars=d0.bars.slice(first)}
+    const A=!!d.agg;
     const up=d.chg>=0;
     const tile=(a,b,c='')=>`<div class="tile"><div class="k">${a}</div><div class="tv ${c}" style="font-size:16px">${b}</div></div>`;
     const f=(v,x=2)=>v==null?'–':T.fmt(v,x);
     const near=(arr,above)=>{const a=arr.filter(x=>above?x.p>d.px:x.p<d.px).sort((p,q)=>above?p.p-q.p:q.p-p.p)[0];return a?`₹${f(a.p)}${a.n>1?' ('+a.n+' equal)':''}`:'–'};
     const bcls=d.bias==='bullish'?'pos':d.bias==='bearish'?'neg':'';
-    box.innerHTML=`<div class="card"><h3>Order flow <span class="mut" style="font-weight:400;font-size:12px">5-minute bars · session of ${esc(d.d)} · estimated from price and volume</span></h3>
-      <div class="ofhead"><span class="ofbias ${bcls}">${d.bias.toUpperCase()}</span><span class="ofscore" title="Strength of the signal, 0 to 99">${d.score}</span><span class="bigp" style="font-size:22px">₹${f(d.px)}</span><span class="chg ${cls(d.chg)}">${d.chg>=0?'+':''}${f(d.chg)}%</span>
-       <span class="seg" id="ofk" style="margin-left:auto">${[1,3,5].map(x=>`<button data-k="${x}" class="${k===x?'on':''}">${x} day${x>1?'s':''}</button>`).join('')}</span></div>
+    box.innerHTML=`<div class="card"><h3>Order flow <span class="mut" style="font-weight:400;font-size:12px">${long?OF_LONG[OFS.tf][0]+' · '+OF_LONG[OFS.tf][1]+' to '+esc(d.d):'5-minute bars · session of '+esc(d.d)} · estimated from price and volume</span></h3>
+      <div class="ofhead"><span class="ofbias ${bcls}">${d.bias.toUpperCase()}</span><span class="ofscore" title="Strength of the signal, 0 to 99">${d.score}</span><span class="bigp" style="font-size:22px">₹${f(d.px)}</span><span class="chg ${cls(d.chg)}">${d.chg>=0?'+':''}${f(d.chg)}%</span>${A?`<span class="mut" style="font-size:12px">over ${OFS.tf.toUpperCase()}</span>`:''}
+       ${seg}</div>
       ${(()=>{const q=d.nse;if(!q)return '';const n=q.nse;
         if(q.status==='ok')return `<div class="ofq ok"><b>✓ Verified with NSE.</b> This session's high, low, close and volume match NSE's official end-of-day figures (our volume is ${f(q.vr*100,0)}% of NSE's).</div>`;
         if(q.status==='vol')return `<div class="ofq warn"><b>~ Prices match NSE, but volume is lower.</b> ${q.why.map(esc).join('; ')}. The price chart, zones and levels are reliable; the volume profile, VWAP and estimated delta are understated for this stock.</div>`;
@@ -442,10 +452,10 @@ async function ofStock(s){
        ${tile('Zone to watch',d.zone?`₹${f(d.zone[0])}–${f(d.zone[1])}`:'none nearby')}
        ${tile('Reward : risk',d.rr!=null?`1 : ${f(d.rr,1)}`:'–')}
        ${tile('Risk to zone stop',d.risk!=null?f(d.risk,2)+'%':'–')}
-       ${tile('Price vs VWAP',`${(d.px/d.vwap-1)*100>=0?'+':''}${f((d.px/d.vwap-1)*100)}%`,cls(d.px-d.vwap))}
+       ${tile(A?'Price vs window VWAP':'Price vs VWAP',`${(d.px/d.vwap-1)*100>=0?'+':''}${f((d.px/d.vwap-1)*100)}%`,cls(d.px-d.vwap))}
        ${tile('Buy/sell delta (est.)',`${d.dr>=0?'+':''}${f(d.dr,1)}%`,cls(d.dr))}
-       ${tile('Volume vs prior days',`${f(d.rv,1)}x`)}
-       ${tile('POC / value area',`₹${f(d.poc,1)} · ${f(d.val,1)}–${f(d.vah,1)}`)}
+       ${tile(A?'Last 5 sessions volume vs window average':'Volume vs prior days',`${f(d.rv,1)}x`)}
+       ${tile(A?'POC / value area (whole window)':'POC / value area',`₹${f(d.poc,1)} · ${f(d.val,1)}–${f(d.vah,1)}`)}
        ${tile('Support',d.sup.length?d.sup.map(x=>'₹'+f(x)).join(' · '):'–','pos')}
        ${tile('Resistance',d.res.length?d.res.map(x=>'₹'+f(x)).join(' · '):'–','neg')}
        ${tile('Liquidity above / below',`${near(d.lqh,true)} / ${near(d.lql,false)}`)}
@@ -457,7 +467,7 @@ async function ofStock(s){
         ${q.dphist&&q.dphist.length>2?`<div class="mut" style="font-size:12px;margin:10px 0 4px">Delivery % over the last ${q.dphist.length} sessions (NSE)</div><div class="dpspark">${q.dphist.map(v=>`<i title="${v==null?'':f(v,1)+'%'}" style="height:${v==null?0:Math.max(3,v/mx*100)}%"></i>`).join('')}</div>`:''}
         <p class="mut" style="font-size:12px;margin-top:8px">NSE's official close is the average price of the last 30 minutes, so it can differ from the last traded price, which is what our chart ends on. Delivery % is the share of the day's traded quantity that was taken into delivery instead of being squared off the same day. A reading well above its 20-day average points to investors holding positions, not just day trading. These are official NSE figures, published after the close.</p>`})()}
       <p class="mut" style="font-size:12px;margin-top:12px">This is <b>not exchange order-book data</b>. It is derived from Yahoo Finance 5-minute price and volume bars. Volume profile spreads each bar's volume over its price range; buy/sell delta splits each bar's volume by where it closed in its range; an order block is the last opposite candle before a sharp move that price has not yet closed through; liquidity marks swing highs and lows (and equal highs or lows) that price has not yet traded through, where stop orders often sit. Zones are areas of interest, not guarantees. The score combines price vs VWAP, close position in the day's range, estimated delta, day change, price vs POC and the 5-day trend, scaled by relative volume. Educational use only, not investment advice.</p></div>`;
-    document.querySelectorAll('#ofk button').forEach(b=>b.onclick=()=>{OFS.k=+b.dataset.k;draw()});
+    wire();
     ofChart($('#ofc'),d,bars,first);
   };
   draw();
@@ -482,7 +492,8 @@ function ofChart(cv,d,bars,off){
     for(let k=0;k<=5;k++){const v=lo+(hi-lo)*k/5,y=Math.round(Y(v))+.5;x.beginPath();x.moveTo(L,y);x.lineTo(W-Rr,y);x.stroke();x.textAlign='left';x.fillText(T.fmt(v,v>1000?0:1),W-Rr+4,y)}
     // session boundaries and time labels
     let prevDay=-1;x.textAlign='center';
-    bars.forEach((b,i)=>{if(b[0]!==prevDay){if(prevDay!==-1){x.strokeStyle='rgba(139,148,163,.35)';x.setLineDash([3,3]);x.beginPath();x.moveTo(X(i)-cw/n/2,Tp);x.lineTo(X(i)-cw/n/2,Tp+ph);x.stroke();x.setLineDash([])}
+    if(d.agg){x.fillStyle=mut;const nl=Math.min(6,n);for(let q=0;q<nl;q++){const i=Math.round((n-1)*q/Math.max(1,nl-1));x.fillText(d.days[bars[i][0]].slice(2),Math.min(W-Rr-26,Math.max(L+26,X(i))),H-8)}}
+    else bars.forEach((b,i)=>{if(b[0]!==prevDay){if(prevDay!==-1){x.strokeStyle='rgba(139,148,163,.35)';x.setLineDash([3,3]);x.beginPath();x.moveTo(X(i)-cw/n/2,Tp);x.lineTo(X(i)-cw/n/2,Tp+ph);x.stroke();x.setLineDash([])}
       x.fillStyle=mut;x.fillText(d.days[b[0]].slice(5),Math.min(W-Rr-20,Math.max(L+16,X(i)+16)),H-8);prevDay=b[0]}});
     // volume profile (right)
     const P=ofProfileJS(bars),mx=Math.max(...P.vol);
@@ -513,15 +524,16 @@ function ofChart(cv,d,bars,off){
       const y1=Y(Math.max(b[2],b[5])),y0=Y(Math.min(b[2],b[5]));x.fillRect(xx-bw/2,y1,bw,Math.max(1,y0-y1))});
     // VWAP per session
     x.strokeStyle='#8a63d2';x.lineWidth=1.6;
-    for(let ds=Math.min(...bars.map(b=>b[0]));ds<=Math.max(...bars.map(b=>b[0]));ds++){let pv=0,vv=0,st=false;x.beginPath();bars.forEach((b,i)=>{if(b[0]!==ds)return;const tp=(b[3]+b[4]+b[5])/3;pv+=tp*b[6];vv+=b[6];if(!vv)return;const y=Y(pv/vv);st?x.lineTo(X(i),y):x.moveTo(X(i),y);st=true});x.stroke()}
+    if(d.agg){let pv=0,vv=0,st=false;x.beginPath();bars.forEach((b,i)=>{pv+=(b[3]+b[4]+b[5])/3*b[6];vv+=b[6];if(!vv)return;const y=Y(pv/vv);st?x.lineTo(X(i),y):x.moveTo(X(i),y);st=true});x.stroke()}
+    else for(let ds=Math.min(...bars.map(b=>b[0]));ds<=Math.max(...bars.map(b=>b[0]));ds++){let pv=0,vv=0,st=false;x.beginPath();bars.forEach((b,i)=>{if(b[0]!==ds)return;const tp=(b[3]+b[4]+b[5])/3;pv+=tp*b[6];vv+=b[6];if(!vv)return;const y=Y(pv/vv);st?x.lineTo(X(i),y):x.moveTo(X(i),y);st=true});x.stroke()}
     x.lineWidth=1;
     // last price tag
     const lp=bars[n-1][5],yl=Y(lp);x.fillStyle=lp>=bars[n-1][2]?G:R;x.fillRect(W-Rr,yl-9,Rr-2,18);x.fillStyle='#fff';x.textAlign='left';x.fillText(T.fmt(lp,1),W-Rr+4,yl);
     // hover
     const hv=$('#ofhov');
     if(hov!=null&&hov>=0&&hov<n){const b=bars[hov],xx=X(hov);x.strokeStyle=mut;x.setLineDash([3,3]);x.beginPath();x.moveTo(xx,Tp);x.lineTo(xx,Tp+ph);x.stroke();x.setLineDash([]);
-      const t=String(b[1]).padStart(4,'0');if(hv)hv.textContent=`${d.days[b[0]]} ${t.slice(0,2)}:${t.slice(2)}  O ${b[2]}  H ${b[3]}  L ${b[4]}  C ${b[5]}  Vol ${T.fmt(b[6],0)}`}
-    else if(hv)hv.textContent='Touch or hover over the chart for 5-minute bar details';
+      const t=String(b[1]).padStart(4,'0');if(hv)hv.textContent=`${d.days[b[0]]}${t==='0000'?'':' '+t.slice(0,2)+':'+t.slice(2)}  O ${b[2]}  H ${b[3]}  L ${b[4]}  C ${b[5]}  Vol ${T.fmt(b[6],0)}`}
+    else if(hv)hv.textContent='Touch or hover over the chart for bar details';
     cv._geo={L,cw,n};
   };
   cv._redraw=()=>draw(cv._h);
