@@ -133,12 +133,15 @@ async function boot(){
   const th=$('#theme');const setTh=t=>{document.documentElement.dataset.theme=t;try{localStorage.setItem('tl_theme',t)}catch(e){}};
   let t0='light';try{t0=localStorage.getItem('tl_theme')||'light'}catch(e){}document.documentElement.dataset.theme=t0;
   th.onclick=()=>{setTh(document.documentElement.dataset.theme==='dark'?'light':'dark');route()};
-  try{const tp=document.createElement('div');tp.className='tape';const rs=Object.values(D.rsk).filter(r=>T.num(r.ret_1m)!=null).sort((a,b)=>(T.num(b.traded_cr)||0)-(T.num(a.traded_cr)||0)).slice(0,30);
-    let mhd=null;try{mhd=await get('data/market_health.json','json')}catch(e){}
-    const ixs=((mhd&&mhd.indices)||[]).filter(x=>x.real).map(x=>{const y=x.y.filter(v=>v!=null),l=y[y.length-1],p=y[y.length-23];return [x.name,{price:l,ret:p?(l/p-1)*100:null}]});
-    const items=ixs.map(([n,o])=>`<span class="ti"><b>${esc(n)}</b> ${T.fmt(o.price,0)} <em class="${cls(o.ret)}">${T.pct(o.ret,1)}</em></span>`).join('')+''
-    ;const items2=items+rs.map(r=>`<a class="ti" href="#/stock/${esc(r.symbol)}"><b>${esc(r.symbol)}</b> ${T.fmt(T.num(r.price),1)} <em class="${cls(T.num(r.ret_1m))}">${T.pct(T.num(r.ret_1m),1)}</em></a>`).join('');
-    tp.innerHTML=`<div class="tt"><div class="tr">${items2}${items2}</div></div><span class="tl">1M</span>`;document.querySelector('.top').after(tp)}catch(e){}
+  try{const tp=document.createElement('div');tp.className='tape';
+    // one-day change: stocks from the order-flow file (today's close against the previous close), indices from their last two closes
+    let OFt=null,mhd=null;try{OFt=await get('data/orderflow.json','json')}catch(e){}try{mhd=await get('data/market_health.json','json')}catch(e){}
+    const ofm={};((OFt&&OFt.stocks)||[]).forEach(x=>{if(T.num(x.chg)!=null)ofm[x.s]=x});
+    const rs=Object.values(D.rsk).filter(r=>ofm[r.symbol]).sort((a,b)=>(T.num(b.traded_cr)||0)-(T.num(a.traded_cr)||0)).slice(0,30);
+    const ixs=((mhd&&mhd.indices)||[]).filter(x=>x.real).map(x=>{const y=x.y.filter(v=>v!=null),l=y[y.length-1],p=y[y.length-2];return [x.name,{price:l,ret:p?(l/p-1)*100:null}]});
+    const items=ixs.map(([n,o])=>`<span class="ti"><b>${esc(n)}</b> ${T.fmt(o.price,0)} <em class="${cls(o.ret)}">${T.pct(o.ret,2)}</em></span>`).join('');
+    const items2=items+rs.map(r=>{const o=ofm[r.symbol];return `<a class="ti" href="#/stock/${esc(r.symbol)}"><b>${esc(r.symbol)}</b> ${T.fmt(T.num(o.px)??T.num(r.price),1)} <em class="${cls(T.num(o.chg))}">${T.pct(T.num(o.chg),2)}</em></a>`}).join('');
+    tp.innerHTML=`<div class="tt"><div class="tr">${items2}${items2}</div></div><span class="tl" title="Change from the previous close to the latest close (end-of-day data)">1D</span>`;document.querySelector('.top').after(tp)}catch(e){}
   window.addEventListener('hashchange',route);route();
 }
 
