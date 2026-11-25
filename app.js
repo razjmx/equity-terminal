@@ -386,20 +386,45 @@ async function quantTabs(s,tech){
   draw();
 }
 // ----- Quant Lab -----
-const QLS={tab:'rank',idx:'all',ind:'',liq:1,dir:'top',bt:'momentum',pf:{syms:'',method:'hrp',cap:25,look:252,res:null}};
+const QLS={tab:'rank',idx:'all',ind:'',liq:1,dir:'top',bt:'momentum',sp:0,pf:{syms:'',method:'hrp',cap:25,look:252,res:null}};
 async function quantLab(){
   view.innerHTML=`<h2 style="margin:4px 0 2px">Quant Lab</h2><p class="mut" style="margin:0 0 14px">Factor rankings, factor back-tests, statistical risk factors and a portfolio builder, all computed from end-of-day data in this repository.</p><div class="subtabs" id="qlsub"></div><div id="qlbody"><div class="skel" style="height:360px"></div></div>`;
-  const [F,PCA]=await Promise.all([get('data/quant/factors.json','json'),get('data/quant/pca.json','json')]);
-  const tabs=[['rank','Factor rankings'],['bt','Factor back-test'],['pca','Market structure'],['port','Portfolio builder']];
+  const [F,PCA,SA]=await Promise.all([get('data/quant/factors.json','json'),get('data/quant/pca.json','json'),get('data/quant/statarb.json','json')]);
+  const tabs=[['rank','Factor rankings'],['bt','Factor back-test'],['pca','Market structure'],['pairs','Pairs (stat-arb)'],['port','Portfolio builder']];
   const nm={};try{(await table('data/universe.csv')).forEach(r=>{nm[r.symbol]=r.company})}catch(e){}
   const draw=()=>{
     $('#qlsub').innerHTML=tabs.map(t=>`<button data-k="${t[0]}" class="${t[0]===QLS.tab?'on':''}">${t[1]}</button>`).join('');
     $('#qlsub').querySelectorAll('button').forEach(b=>b.onclick=()=>{QLS.tab=b.dataset.k;draw()});
     const b=$('#qlbody');
-    if(!F&&QLS.tab!=='port'){b.innerHTML=qnone(NOQ);return}
-    ({rank:()=>labRank(b,F,nm,draw),bt:()=>labBt(b,F),pca:()=>labPca(b,PCA,nm),port:()=>labPort(b,F,nm,PCA)})[QLS.tab]();
+    if(!F&&QLS.tab!=='port'&&QLS.tab!=='pairs'){b.innerHTML=qnone(NOQ);return}
+    ({rank:()=>labRank(b,F,nm,draw),bt:()=>labBt(b,F),pca:()=>labPca(b,PCA,nm),pairs:()=>labPairs(b,SA),port:()=>labPort(b,F,nm,PCA)})[QLS.tab]();
   };
   draw();
+}
+function labPairs(b,SA){
+  if(!SA||!SA.pairs){b.innerHTML=qnone('Pairs data is not available yet. Run the Quant models workflow once.');return}
+  const H=SA.holdout,S=H.selected,R=H.random,P=SA.pairs;
+  if(QLS.sp==null||QLS.sp>=P.length)QLS.sp=0;
+  const rd=z=>Math.abs(z)>=2?'Stretched':Math.abs(z)>=1.5?'Getting stretched':'Near fair';
+  const lg=(p)=>p.z>0?`<b class="neg">${esc(p.a)}</b> rich · <b class="pos">${esc(p.b)}</b> cheap`:`<b class="pos">${esc(p.a)}</b> cheap · <b class="neg">${esc(p.b)}</b> rich`;
+  const bps=v=>v==null?'–':(v>0?'+':'')+T.fmt(v,0)+' bps';
+  const tl=x=>x.mean_bps==null?'too few trades':`${x.trades} trades, ${bps(x.mean_bps)} per trade after costs, ${T.fmt(x.win,0)}% winners (t ${T.fmt(x.t,1)})`;
+  const added=(S.mean_bps!=null&&R.mean_bps!=null)?(S.mean_bps-R.mean_bps):null;
+  b.innerHTML=`<div class="card" style="border-left:3px solid #c98a00"><p style="margin:0"><b>Read this first:</b> this is a research view, not a trade list. A pair trade needs a short leg, which cash equity does not allow (only stocks with futures can be shorted), prices are end-of-day, and with ${T.fmt(SA.pairs_tested,0)} pairs tested about ${T.fmt(SA.expected_false,0)} would look cointegrated by luck alone. The hold-out below shows how the method did on data it did not choose from.</p></div>
+  <div class="card"><h3>Pairs that look cointegrated now <span class="tag">${SA.live_passing} pass · data to ${esc(SA.asof)}</span></h3>
+  <div class="stats" style="margin:0 0 10px"><div class="stat"><div class="k">Stocks scanned</div><div class="sv">${SA.n_stocks}</div></div><div class="stat"><div class="k">Pairs tested</div><div class="sv">${T.fmt(SA.pairs_tested,0)}</div></div><div class="stat"><div class="k">Same industry only</div><div class="sv">${SA.n_industries} industries</div></div><div class="stat"><div class="k">Window</div><div class="sv">${SA.days} days</div></div></div>
+  <div class="scroll"><table class="stmt"><tr><th class="l">Pair (A vs B)</th><th class="l">Industry</th><th>Hedge ratio</th><th>ADF stat</th><th>Half-life</th><th>Return corr.</th><th>Spread z</th><th class="l">Reading</th></tr>${P.map((p,i)=>`<tr class="row${i===QLS.sp?' on':''}" data-p="${i}" style="cursor:pointer"><td class="l"><b>${esc(p.a)}</b> / <b>${esc(p.b)}</b></td><td class="l">${esc(p.ind)}</td><td>${T.fmt(p.beta,2)}</td><td>${T.fmt(p.adf,2)}</td><td>${T.fmt(p.hl,0)} d</td><td>${T.fmt(p.corr,2)}</td><td class="${Math.abs(p.z)>=2?(p.z>0?'neg':'pos'):''}"><b>${p.z>0?'+':''}${T.fmt(p.z,2)}</b></td><td class="l">${Math.abs(p.z)>=1.5?lg(p):'<span class="mut">Near fair</span>'}</td></tr>`).join('')}</table></div>
+  <p class="mut" style="font-size:12px;margin-top:10px">Click a row to chart its spread. Only same-industry pairs are tested. The spread is log A minus hedge ratio times log B; ADF below ${T.fmt(SA.cv5,2)} is the 5% Engle-Granger bar for a stationary spread, and the half-life must be ${SA.hl_range[0]} to ${SA.hl_range[1]} days. Spread z compares today's spread with its own last 60 days. Positive z means A is expensive against B.</p></div>
+  <div class="card"><h3 id="spt"></h3><div style="position:relative;height:250px"><canvas id="spc" style="width:100%;height:100%"></canvas></div><p class="mut" style="font-size:12px;margin:14px 0 0">Spread z-score for the last 120 days. The rule below enters when it passes ±${SA.z_in} and exits at 0.</p></div>
+  <div class="card"><h3>Did it work on data it did not pick from? <span class="tag">hold-out test</span></h3>
+  <p style="margin:0 0 8px">Pairs and hedge ratios were chosen on the first ${SA.form_days} days. The rule was then run on the next ${SA.test_days} days: enter at |z| above ${SA.z_in} on the next close, exit at 0, stop at ${SA.z_stop}, limit ${SA.max_days} days, ${T.fmt(SA.cost_bps_leg,0)} bps cost per leg per side.</p>
+  <table class="stmt"><tr><th class="l">Pairs</th><th class="l">Result on the hold-out</th></tr><tr><td class="l"><b>Chosen by cointegration</b> (${H.n_selected} pairs)</td><td class="l">${tl(S)}</td></tr><tr><td class="l"><b>Random same-industry pairs</b> (${H.n_random} pairs)</td><td class="l">${tl(R)}</td></tr></table>
+  <p style="margin:10px 0 0">${added==null?'Too few trades to compare.':Math.abs(S.t||0)<2&&Math.abs(R.t||0)<2?'<b>Reading:</b> neither group shows a result that clearly beats luck, and the gap between them is '+bps(added)+' per trade. Treat the list above as a screen to study, not an edge.':(added>0?'<b>Reading:</b> pairs chosen by cointegration did '+bps(added)+' per trade better than random pairs on data they were not chosen from.':'<b>Reading:</b> choosing by cointegration did not beat random pairs on the hold-out ('+bps(added)+' per trade).')}</p>
+  <p class="mut" style="font-size:12px;margin:8px 0 0">${H.n_selected} of ${T.fmt(SA.pairs_tested,0)} pairs passed on the formation window. Trades overlap in time and share stocks, so the t-statistics are generous. No short-selling cost, borrow or margin is included.</p></div>`;
+  const paint=()=>{const p=P[QLS.sp];$('#spt').textContent=`Spread of ${p.a} vs ${p.b}  (z ${p.z>0?'+':''}${T.fmt(p.z,2)})`;const zs=p.zs.map(v=>v==null?0:v),x=zs.map((_,i)=>String(i-zs.length+1));
+    lineChart($('#spc'),[{name:'z',x,y:zs,color:'#0f6b4a'},{name:'+2',x,y:zs.map(()=>2),color:'#c62828'},{name:'-2',x,y:zs.map(()=>-2),color:'#c62828'}],{dec:1,zero:true})};
+  b.querySelectorAll('tr[data-p]').forEach(r=>r.onclick=()=>{QLS.sp=+r.dataset.p;b.querySelectorAll('tr[data-p]').forEach(q=>q.classList.toggle('on',q===r));paint()});
+  paint();
 }
 function labRank(b,F,nm,redraw){
   const comp=qComposite(F,QW),inds=[...new Set(Object.values(F.stocks).map(x=>x.i).filter(Boolean))].sort();
