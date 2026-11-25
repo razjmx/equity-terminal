@@ -476,3 +476,15 @@ tr.row{cursor:pointer}tr.row:hover td{background:var(--bg)}
 /* nav has 6 items now: keep clear of the search box */
 @media(min-width:861px){.navrow{padding-right:calc(min(250px,21vw) + 30px)}.navrow .searchbox{width:min(250px,21vw)}.topnav a{padding:7px 12px}}
 #qsub,#qlsub,#qlbody .subtabs{max-width:none;margin-left:0;margin-right:0}
+/* ---- account ---- */
+button.icon.on{color:var(--brand);border-color:var(--brand)}
+#acpanel{position:fixed;top:62px;right:14px;width:min(320px,calc(100vw - 28px));background:var(--p);border:1px solid var(--b);border-radius:12px;box-shadow:0 12px 34px rgba(0,0,0,.18);z-index:60;padding:14px 16px}
+#acpanel[hidden]{display:none}
+#acpanel .achead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+#acpanel .acx{width:28px;height:28px;padding:0;font-size:18px;line-height:1}
+#acpanel label{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--m);margin-bottom:10px}
+#acpanel input{width:100%;box-sizing:border-box}
+#acpanel .acm{font-size:12px;color:var(--m);margin:6px 0}
+#acpanel .acem{font-weight:600;margin:0 0 6px;word-break:break-all}
+#acpanel .acerr{color:var(--r);font-size:12px;min-height:16px;margin:0 0 8px}
+#acpanel .acrow{display:flex;gap:8px;margin-top:8px}
