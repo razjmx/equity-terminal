@@ -471,6 +471,38 @@ async function runPort(p,M,nm){
   p.res.wf=wf;st.textContent='';if(p.res===p.res&&$('#pfwf'))showWf(p,M,wf,dates);
 }
 
+
+// ----- Barra-style risk breakdown (inside the portfolio builder) -----
+let BARRA;
+async function riskCard(p,nm,r){
+  const el=$('#pfrisk');if(!el)return;
+  if(BARRA===undefined)BARRA=await get('data/quant/barra.json','json');
+  const B=BARRA,el2=$('#pfrisk');if(!el2)return;
+  if(!B){el2.innerHTML='<h3>Where the risk comes from</h3><p class="mut">The factor risk model has not been built yet. Run the <b>Quant models</b> workflow (Actions → Quant models → Run workflow).</p>';return}
+  const K=B.inds.length+3,nI=B.inds.length,names=B.inds.concat(B.styles);
+  const use=[];r.syms.forEach((s,i)=>{if(B.stocks[s]&&r.w[i]>1e-9)use.push({s,w:r.w[i],b:B.stocks[s]})});
+  const miss=r.syms.filter((s,i)=>r.w[i]>1e-9&&!B.stocks[s]);
+  if(use.length<2){el2.innerHTML='<h3>Where the risk comes from</h3><p class="mut">Fewer than two of these stocks are in the factor model, so no breakdown can be shown.</p>';return}
+  const tw=use.reduce((a,x)=>a+x.w,0);use.forEach(x=>x.w/=tw);
+  const x=new Array(K).fill(0);use.forEach(u=>{x[u.b.i]+=u.w;u.b.x.forEach((v,k)=>{x[nI+k]+=u.w*v})});
+  const Fx=B.F.map(row=>row.reduce((a,v,j)=>a+v*x[j],0)),fv=x.reduce((a,v,k)=>a+v*Fx[k],0);
+  const sp=use.map(u=>u.w*u.w*u.b.sv),sv=sp.reduce((a,v)=>a+v,0),tv=fv+sv,vol=Math.sqrt(tv);
+  const cs=x.map((v,k)=>v*Fx[k]/tv);                       // each factor's share of total variance (they sum to the factor share)
+  const indShare=cs.slice(0,nI).reduce((a,v)=>a+v,0),styleShare=cs.slice(nI).reduce((a,v)=>a+v,0),specShare=sv/tv;
+  const indRows=B.inds.map((n,k)=>({n,w:x[k],c:cs[k]})).filter(o=>o.w>1e-6).sort((a,b)=>b.w-a.w);
+  const stRows=B.styles.map((n,k)=>({n,e:x[nI+k],c:cs[nI+k]}));
+  const top=use.map((u,i)=>({s:u.s,c:sp[i]/tv})).sort((a,b)=>b.c-a.c).slice(0,5);
+  const d=B.diag||{},bar=(v,mx)=>`<div class="qpb"><i class="${v>=0?'g':'r'}" style="width:${mx>0?Math.min(100,Math.abs(v)/mx*100):0}%"></i></div>`;
+  const mxI=Math.max(...indRows.map(o=>Math.abs(o.c)),.01),mxS=Math.max(...stRows.map(o=>Math.abs(o.c)),.01);
+  const cov=r.stt[p.method]?r.stt[p.method].vol:null;
+  el2.innerHTML=`<h3>Where the risk comes from <span class="tag">factor risk model · ${esc(B.asof)}</span></h3>
+   <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">${qtile('Volatility (factor model)',T.fmt(vol*100,1)+'%','annualised'+(cov!=null?' · covariance method above: '+T.fmt(cov*100,1)+'%':''))}${qtile('From industries',T.fmt(indShare*100,0)+'%','of total variance')}${qtile('From style factors',T.fmt(styleShare*100,0)+'%','momentum, volatility, size')}${qtile('Stock-specific',T.fmt(specShare*100,0)+'%','not shared with other stocks',specShare>.5?'pos':'')}</div>
+   ${miss.length?`<p class="warn" style="font-size:13px;margin:8px 0">${miss.length} stock${miss.length>1?'s are':' is'} not in the factor model (${esc(miss.slice(0,6).join(', '))}${miss.length>6?'…':''}) and ${miss.length>1?'are':'is'} left out; the rest are rescaled to 100%.</p>`:''}
+   <div class="two" style="margin-top:10px"><div class="card scroll"><h4 style="margin:0 0 6px">Style exposures</h4><table class="stmt"><tr><th class="l">Factor</th><th>Exposure (z)</th><th style="width:30%">Share of variance</th><th>%</th></tr>${stRows.map(o=>`<tr><td class="l">${esc(o.n)}</td><td class="${o.e>.05?'pos':o.e<-.05?'neg':''}">${o.e>=0?'+':''}${T.fmt(o.e,2)}</td><td>${bar(o.c,mxS)}</td><td>${T.fmt(o.c*100,1)}</td></tr>`).join('')}</table><p class="mut" style="font-size:12px;margin:6px 0 0">Exposure is in standard deviations versus the average stock: +1 means the portfolio sits one standard deviation above the market on that trait.</p></div>
+   <div class="card scroll"><h4 style="margin:0 0 6px">Industry exposure</h4><table class="stmt"><tr><th class="l">Industry</th><th>Weight %</th><th style="width:30%">Share of variance</th><th>%</th></tr>${indRows.map(o=>`<tr><td class="l">${esc(o.n)}</td><td>${T.fmt(o.w*100,1)}</td><td>${bar(o.c,mxI)}</td><td>${T.fmt(o.c*100,1)}</td></tr>`).join('')}</table></div></div>
+   <p class="mut" style="font-size:12.5px;margin:8px 0 0">Largest stock-specific risks: ${top.map(t=>`<b>${esc(t.s)}</b> ${T.fmt(t.c*100,1)}%`).join(', ')}. A negative share means that factor offsets risk elsewhere in the portfolio.</p>
+   <p class="mut" style="font-size:12px;margin-top:8px">${d.portfolios?`Out-of-sample check: the model was fitted on the first ${B.n_days-(d.test_days||0)} days and used to predict ${d.portfolios} random ${d.stocks_each}-stock portfolios over the next ${d.test_days} days. Realised volatility averaged <b>${T.fmt(d.ratio_mean,2)}×</b> the prediction (1.00 is perfect), and predicted and realised moved together with correlation ${T.fmt(d.corr,2)}. `:''}${esc(B.note)} Daily fit explains ${T.fmt(B.r2,0)}% of cross-sectional variance on average. Factor risk numbers come from the last ${B.n_days} days with a ${B.halflife}-day half-life, so they react to recent markets.</p>`;
+}
 // ----- Black-Litterman (inside the portfolio builder) -----
 function blCard(p,nm,r){
   const el=$('#pfbl');if(!el||!window.PF)return;
@@ -525,10 +557,11 @@ function showPort(p,M,nm,r){
   <p class="mut" style="font-size:12px">Share of risk shows how much of the portfolio's volatility each stock accounts for; equal-risk methods aim to even it out. Weights come from the last ${p.look} days only and the estimates are noisy, so treat the output as a starting point and look at the walk-forward test below before trusting a method.</p></div>
   <div class="card"><h3>All methods side by side</h3><table class="stmt"><tr><th class="l">Method</th><th>Expected volatility</th><th>Largest weight</th><th>Effective stocks</th><th>Sharpe (shrunk, rf 0)</th></tr>${Object.keys(M).map(k=>{const q=r.stt[k],w=r.W[k];return `<tr class="${k===p.method?'sel':''}"><td class="l">${M[k]}</td><td>${T.fmt(q.vol*100,1)}%</td><td>${T.fmt(Math.max(...w)*100,1)}%</td><td>${T.fmt(1/w.reduce((a,x)=>a+x*x,0),1)}</td><td>${T.fmt(q.sharpe,2)}</td></tr>`}).join('')}</table></div>
   ${r.fr?`<div class="card"><h3>Efficient frontier <span class="tag">position limit ${p.cap}%</span></h3><canvas id="pffc" style="height:280px"></canvas>${qleg([['Frontier','#2f6fdb'],['Chosen method (big dot)','#0f6b4a'],['Other methods','#8b94a3']])}<p class="mut" style="font-size:12px">Highest expected return for each level of risk, using the shrunk return estimates. Expected returns are the weakest input in portfolio theory, so a portfolio far up the frontier mostly reflects past winners.</p></div>`:''}
+  <div class="card" id="pfrisk"><h3>Where the risk comes from</h3><div class="skel" style="height:120px"></div></div>
   <div class="card" id="pfbl"></div>
   <div class="card" id="pfwf"><h3>Walk-forward test <span class="tag">re-estimated every 21 days</span></h3><div class="skel" style="height:120px"></div></div>`;
   if(r.fr){const pts=r.fr.map(f=>({x:f.vol*100,y:f.ret*100,line:true}));Object.keys(M).forEach(k=>{const q=r.stt[k];pts.push({x:q.vol*100,y:q.ret*100,c:k===p.method?'#0f6b4a':'#8b94a3',r:k===p.method?6:4,l:k===p.method?'':({equal:'Equal',minvar:'Min var',maxsharpe:'Max Sharpe',rp:'Risk parity',hrp:'HRP'})[k]})});scatterChart($('#pffc'),pts,{xl:'volatility (annualised) →'})}
-  blCard(p,nm,r);
+  riskCard(p,nm,r);blCard(p,nm,r);
   if(r.wf)showWf(p,M,r.wf,null);
 }
 function showWf(p,M,wf,dates){
