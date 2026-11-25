@@ -198,8 +198,8 @@ function scatterChart(cv,pts,opt={}){   // pts: [{x,y,c,r,l}]
   let x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);const px=(x1-x0)*.08||1,py=(y1-y0)*.1||1;x0-=px;x1+=px;y0-=py;y1+=py;
   const X=v=>L+(w-L-R)*(v-x0)/(x1-x0),Y=v=>Tp+(h-Tp-B)*(1-(v-y0)/(y1-y0));
   ctx.font='11px system-ui';ctx.fillStyle='#8b94a3';ctx.strokeStyle='rgba(139,148,163,.25)';
-  for(let k=0;k<=4;k++){const v=y0+(y1-y0)*k/4,y=Y(v);ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(w-R,y);ctx.stroke();ctx.fillText(T.fmt(v,1)+'%',2,y+4)}
-  for(let k=0;k<=4;k++){const v=x0+(x1-x0)*k/4;ctx.fillText(T.fmt(v,1)+'%',X(v)-14,h-14)}
+  for(let k=0;k<=4;k++){const v=y0+(y1-y0)*k/4,y=Y(v);ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(w-R,y);ctx.stroke();ctx.fillText(T.fmt(v,opt.dec??1)+(opt.unit??'%'),2,y+4)}
+  for(let k=0;k<=4;k++){const v=x0+(x1-x0)*k/4;ctx.fillText(T.fmt(v,opt.dec??1)+(opt.unit??'%'),X(v)-14,h-14)}
   ctx.fillText(opt.xl||'',L,h-2);
   const line=pts.filter(p=>p.line);ctx.strokeStyle=opt.lc||'#2f6fdb';ctx.lineWidth=1.6;ctx.beginPath();line.forEach((p,i)=>i?ctx.lineTo(X(p.x),Y(p.y)):ctx.moveTo(X(p.x),Y(p.y)));ctx.stroke();
   pts.filter(p=>!p.line).forEach(p=>{ctx.fillStyle=p.c||'#0f6b4a';ctx.beginPath();ctx.arc(X(p.x),Y(p.y),p.r||4,0,7);ctx.fill();if(p.l){ctx.fillStyle='#8b94a3';ctx.fillText(p.l,X(p.x)+6,Y(p.y)-5)}});
@@ -297,14 +297,47 @@ async function quantTabs(s,tech){
     <div class="card"><h3>VWAP / TWAP schedule calculator</h3>
       <div class="qform"><label>Order quantity (shares)<input id="qq" type="number" min="1" value="${Math.max(1,Math.round(IN.adv*0.01/100)*100)}"></label><label>Typical daily volume<input value="${T.fmt(IN.adv,0)}" disabled></label><span id="qpart"></span></div>
       <div id="qsch"></div>
-      ${tk?`<h4 style="margin:16px 0 6px">How well did the schedule track? <span class="tag">walk-forward, ${tk.days} test days</span></h4><table class="stmt"><tr><th class="l">Schedule</th><th>Typical gap to day's actual VWAP</th><th>Average bias</th></tr><tr><td class="l">VWAP schedule (volume-weighted by the estimate above)</td><td class="${tk.vwap_rmse<tk.twap_rmse?'pos':''}">${T.fmt(tk.vwap_rmse,1)} bps</td><td>${T.fmt(tk.vwap_bias,1)} bps</td></tr><tr><td class="l">TWAP schedule (equal slices)</td><td class="${tk.twap_rmse<tk.vwap_rmse?'pos':''}">${T.fmt(tk.twap_rmse,1)} bps</td><td>–</td></tr></table><p class="mut" style="font-size:12px">For each test day the profile was estimated only from earlier days. The gap is root-mean-square, measured on 15-minute average prices, so it is a floor: it excludes your own market impact, spread and fees. This tool schedules slices; it does not estimate impact cost.</p>`:'<p class="mut">Not enough sessions for a walk-forward test of the schedule.</p>'}</div>`;
+      ${tk?`<h4 style="margin:16px 0 6px">How well did the schedule track? <span class="tag">walk-forward, ${tk.days} test days</span></h4><table class="stmt"><tr><th class="l">Schedule</th><th>Typical gap to day's actual VWAP</th><th>Average bias</th></tr><tr><td class="l">VWAP schedule (volume-weighted by the estimate above)</td><td class="${tk.vwap_rmse<tk.twap_rmse?'pos':''}">${T.fmt(tk.vwap_rmse,1)} bps</td><td>${T.fmt(tk.vwap_bias,1)} bps</td></tr><tr><td class="l">TWAP schedule (equal slices)</td><td class="${tk.twap_rmse<tk.vwap_rmse?'pos':''}">${T.fmt(tk.twap_rmse,1)} bps</td><td>–</td></tr></table><p class="mut" style="font-size:12px">For each test day the profile was estimated only from earlier days. The gap is root-mean-square, measured on 15-minute average prices, so it is a floor: it excludes your own market impact, spread and fees. This tool schedules slices; it does not estimate impact cost.</p>`:'<p class="mut">Not enough sessions for a walk-forward test of the schedule.</p>'}</div>
+    <div class="card"><h3>Impact cost and optimal execution <span class="tag">Almgren-Chriss model</span></h3>
+      <p class="mut" style="margin:0 0 10px;font-size:13px">What does it cost to trade this order, and how fast should you trade? Trading quickly pays more impact; trading slowly leaves you exposed to the price moving. Cost is measured against the price when you start (implementation shortfall).</p>
+      <div class="qform"><label>Order quantity (shares)<input id="acq" type="number" min="1" value="${Math.max(1,Math.round(IN.adv*0.05/100)*100)}"></label>
+        <label>Time to trade<select id="act"><option value="1">1 day</option><option value="2">2 days</option><option value="3">3 days</option><option value="5">5 days</option><option value="10">10 days</option></select></label>
+        <label>Urgency <span id="acuv" class="mut"></span><input id="acu" type="range" min="0" max="8" step="0.1" value="1.5"></label>
+        <label>Half-spread (bps)<input id="acs" type="number" min="0" step="0.5" value="${(()=>{const v=(Qd&&Qd.px||0)*IN.adv/1e7;return v>500?2:v>100?4:v>20?8:v>5?15:30})()}"></label>
+        <label>Impact multiplier<input id="acm" type="number" min="0.1" step="0.1" value="1"></label></div>
+      <div id="acout"></div></div>`;
   }
   after.exe=()=>{if(!IN||!$('#qq'))return;
     const upd=()=>{const q=Math.max(0,Math.floor(parseFloat($('#qq').value)||0)),part=q/IN.adv*100;
       $('#qpart').innerHTML=`<b>${T.fmt(part,1)}%</b> of a typical day's volume ${part>10?'<span class="warn">High. Orders above roughly 10% of daily volume usually move the price; consider spreading over several days.</span>':part>5?'<span class="warn">Meaningful. Expect some impact.</span>':'<span class="mut">Comfortably small.</span>'}`;
       let cumV=0,cumT=0;const eq=q/IN.labels.length;
       $('#qsch').innerHTML=`<table class="stmt"><tr><th class="l">Window</th><th>VWAP shares</th><th>VWAP cumulative</th><th>TWAP shares</th><th>TWAP cumulative</th></tr>${IN.labels.map((l,i)=>{const a=q*IN.profile[i];cumV+=a;cumT+=eq;return `<tr><td class="l">${l}</td><td>${T.fmt(a,0)}</td><td>${T.fmt(cumV/q*100||0,0)}%</td><td>${T.fmt(eq,0)}</td><td>${T.fmt(cumT/q*100||0,0)}%</td></tr>`}).join('')}</table><p class="mut" style="font-size:12px">Slices are fractional; round to your lot size. The window label is the start of each 15 minutes.</p>`};
-    $('#qq').oninput=upd;upd()};
+    $('#qq').oninput=upd;upd();acInit()};
+  function acInit(){
+    if(!window.AC||!$('#acq'))return;
+    const volA=Qd&&Qd.vol&&Qd.vol.now?(Qd.vol.now.garch||Qd.vol.now.ewma||Qd.vol.now.real63):null,S=Qd&&Qd.px;
+    if(!volA||!S){$('#acout').innerHTML='<p class="mut">This needs the stock volatility and price from the Quant models run, which are not available for this stock.</p>';return}
+    const per=IN.labels.length;
+    const upd=()=>{
+      const X=Math.max(1,Math.floor(parseFloat($('#acq').value)||0)),Td=parseInt($('#act').value)||1,u=parseFloat($('#acu').value)||0,sp=Math.max(0,parseFloat($('#acs').value)||0),mu=Math.max(.1,parseFloat($('#acm').value)||1);
+      $('#acuv').textContent=u<.05?'0 (equal slices, TWAP)':u<2?T.fmt(u,1)+' (gentle front-load)':u<4?T.fmt(u,1)+' (moderate)':T.fmt(u,1)+' (aggressive)';
+      const N=Td*per,base={X,S,volAnn:volA,V:IN.adv,T:Td,N,spreadBps:sp,mult:mu},R=AC.run({...base,u}),R0=AC.run({...base,u:0}),part=X/IN.adv*100;
+      const rs=v=>'₹'+T.fmt(v/1e5,2)+' lakh',val=X*S;
+      const fr=AC.frontier(base,8,32);
+      const row=(nm,u2)=>{const r=AC.run({...base,u:u2});return `<tr><td class="l">${nm}</td><td>${T.fmt(r.exp,1)}</td><td>${T.fmt(r.risk,0)}</td><td>${T.fmt(r.worst,0)}</td><td>${T.fmt(r.first,1)}%</td></tr>`};
+      const lab=[];for(let k=0;k<=N;k++){const d=Math.floor(k/per),i=k%per;lab.push(k===N?'end':(Td>1?'D'+(d+1)+' ':'')+IN.labels[i])}
+      $('#acout').innerHTML=`<div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">${qtile('Order size',T.fmt(part,1)+'% of daily volume','₹'+T.fmt(val/1e7,2)+' crore')}${qtile('Expected cost',T.fmt(R.exp,1)+' bps',rs(R.exp/1e4*val)+' on this order',R.exp>25?'neg':'')}${qtile('Price-move risk (1 sd)',T.fmt(R.risk,0)+' bps','how far the result can drift from the expected cost')}${qtile('Bad case (about 1 in 20)',T.fmt(R.worst,0)+' bps',rs(R.worst/1e4*val))}</div>
+      <p class="mut" style="font-size:12.5px;margin:8px 0">Expected cost splits into spread <b>${T.fmt(R.spr,1)}</b> bps, temporary impact <b>${T.fmt(R.temp,1)}</b> bps and permanent impact <b>${T.fmt(R.perm,1)}</b> bps. ${part>10?'<span class="warn">The order is large against daily volume, so the linear model understates the real cost. Use the numbers as a floor.</span>':''}</p>
+      <h4 style="margin:12px 0 4px">Shares still to trade <span class="tag">% of the order, over time</span></h4><canvas id="acsc" style="height:220px"></canvas>${qleg([['Equal slices (TWAP)','#8b94a3'],['Your urgency','#0f6b4a']])}
+      <h4 style="margin:12px 0 4px">Cost against risk <span class="tag">efficient frontier</span></h4><canvas id="acfr" style="height:240px;margin-top:10px"></canvas>
+      <table class="stmt" style="margin-top:10px"><tr><th class="l">Style</th><th>Expected cost (bps)</th><th>Risk, 1 sd (bps)</th><th>Bad case (bps)</th><th>First 15 min</th></tr>${row('Equal slices, urgency 0',0)}${row('Your urgency '+T.fmt(u,1),u)}${row('Moderate, urgency 3',3)}${row('Aggressive, urgency 6',6)}</table>
+      <p class="mut" style="font-size:12px;margin-top:8px">The curve above is the efficient frontier: each point is the lowest expected cost for that level of risk, and urgency moves you along it. Urgency 0 is the cheapest but riskiest; a risk-averse trader (or one with a view that the price will move) front-loads. Method: Almgren and Chriss (2000) with linear impact, calibrated to Almgren, Thum, Hauptmann and Li (2005): permanent impact 0.314 σ per unit of daily volume, temporary 0.142 σ. Those constants come from US stocks and are an assumption here; use the multiplier to scale them. The half-spread is a rough default from the stock's traded value, not a measured number. Volatility is the model forecast (${T.fmt(volA,1)}% annual) and volume is the typical daily volume above. It ignores fees, taxes and the intraday volume pattern, and treats time in equal 15-minute steps.</p>`;
+      const cv=$('#acsc'),cf=$('#acfr');
+      if(cv)lineChart(cv,[{name:'TWAP',x:lab,y:R0.x.map(v=>v*100),color:'#8b94a3'},{name:'Urgency '+T.fmt(u,1),x:lab,y:R.x.map(v=>v*100),color:'#0f6b4a'}],{dec:0});
+      if(cf)scatterChart(cf,fr.map(f=>({x:f.risk,y:f.exp,line:true})).concat([{x:R.risk,y:R.exp,c:'#0f6b4a',r:6,l:'you'},{x:R0.risk,y:R0.exp,c:'#8b94a3',r:4,l:'TWAP'}]),{unit:'',dec:0,xl:'Across: risk, 1 sd (bps)   Up: expected cost (bps)'});
+    };
+    ['acq','act','acu','acs','acm'].forEach(id=>{const e=$('#'+id);if(e)e.oninput=upd});upd();
+  }
   draw();
 }
 // ----- Quant Lab -----
