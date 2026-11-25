@@ -150,6 +150,7 @@ function route(){
   if(p[1]==='research')return research();
   if(p[1]==='about')return aboutPage();
   if(p[1]==='orderflow')return orderFlowPage();
+  if(p[1]==='quant')return quantLab();
   return market();
 }
 function research(){
@@ -157,6 +158,250 @@ function research(){
   const q=$('#rs-q');attachSuggest(q);q.focus();
 }
 
+
+// ---------- Quant (stock tab + Quant Lab) ----------
+const FN={value:'Value',quality:'Quality',momentum:'Momentum',lowvol:'Low volatility',growth:'Growth',size:'Size'};
+const FCOMP=['value','quality','momentum','lowvol','growth'];
+const FHELP={value:'Earnings, book value, EV/EBITDA and free-cash-flow yields. Higher = cheaper.',quality:'ROE, ROCE, net margin, low debt, Piotroski score.',momentum:'12-month and 6-month price change, skipping the latest month.',lowvol:'Low 1-year volatility and low beta.',growth:'Revenue and net-income CAGR.',size:'Log market cap (information only, not in the composite).'};
+let QW={value:25,quality:25,momentum:25,lowvol:25,growth:0};
+try{const s=JSON.parse(localStorage.getItem('tl_qw')||'null');if(s&&typeof s.value==='number')QW=s}catch(e){}
+const saveQW=()=>{try{localStorage.setItem('tl_qw',JSON.stringify(QW))}catch(e){}};
+const qnone=(m)=>`<div class="card"><p class="mut">${m}</p></div>`;
+const NOQ='Quant data is not available yet. Run the <b>Quant models</b> workflow in GitHub Actions (Actions → Quant models → Run workflow).';
+const qtile=(k,v,sub,c)=>`<div class="tile"><div class="k">${k}</div><div class="tv ${c||''}">${v}</div>${sub?`<div class="mut" style="font-size:11px">${sub}</div>`:''}</div>`;
+const qleg=a=>`<div class="qleg">${a.map(x=>`<span><i style="background:${x[1]}"></i>${x[0]}</span>`).join('')}</div>`;
+const pfx=v=>v==null?'–':(v>0?'+':'')+T.fmt(v,1)+'%';
+function qComposite(F,w){
+  const keys=FCOMP.filter(k=>(w[k]||0)>0),out={};
+  for(const [s,x] of Object.entries(F.stocks)){let a=0,b=0;keys.forEach(k=>{const z=x.z[k];if(z!=null){a+=w[k]*z;b+=w[k]}});if(b>0&&keys.some(k=>x.z[k]!=null))out[s]=a/b}
+  const v=Object.entries(out).sort((p,q)=>p[1]-q[1]),n=v.length,res={};
+  v.forEach((e,i)=>{res[e[0]]={z:e[1],p:(i+.5)/n*100,rank:n-i,n}});
+  return res;
+}
+function scatterChart(cv,pts,opt={}){   // pts: [{x,y,c,r,l}]
+  const dpr=window.devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;cv.width=w*dpr;cv.height=h*dpr;
+  const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+  const L=52,R=14,Tp=10,B=30,xs=pts.map(p=>p.x),ys=pts.map(p=>p.y);
+  let x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);const px=(x1-x0)*.08||1,py=(y1-y0)*.1||1;x0-=px;x1+=px;y0-=py;y1+=py;
+  const X=v=>L+(w-L-R)*(v-x0)/(x1-x0),Y=v=>Tp+(h-Tp-B)*(1-(v-y0)/(y1-y0));
+  ctx.font='11px system-ui';ctx.fillStyle='#8b94a3';ctx.strokeStyle='rgba(139,148,163,.25)';
+  for(let k=0;k<=4;k++){const v=y0+(y1-y0)*k/4,y=Y(v);ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(w-R,y);ctx.stroke();ctx.fillText(T.fmt(v,1)+'%',2,y+4)}
+  for(let k=0;k<=4;k++){const v=x0+(x1-x0)*k/4;ctx.fillText(T.fmt(v,1)+'%',X(v)-14,h-14)}
+  ctx.fillText(opt.xl||'',L,h-2);
+  const line=pts.filter(p=>p.line);ctx.strokeStyle=opt.lc||'#2f6fdb';ctx.lineWidth=1.6;ctx.beginPath();line.forEach((p,i)=>i?ctx.lineTo(X(p.x),Y(p.y)):ctx.moveTo(X(p.x),Y(p.y)));ctx.stroke();
+  pts.filter(p=>!p.line).forEach(p=>{ctx.fillStyle=p.c||'#0f6b4a';ctx.beginPath();ctx.arc(X(p.x),Y(p.y),p.r||4,0,7);ctx.fill();if(p.l){ctx.fillStyle='#8b94a3';ctx.fillText(p.l,X(p.x)+6,Y(p.y)-5)}});
+}
+// ----- stock page: Quant tab -----
+async function quantTabs(s,tech){
+  const box=$('#qbody');if(!box)return;
+  const [Qd,F,Cal,PCA,IN]=await Promise.all([get(`data/quant/${s}.json`,'json'),get('data/quant/factors.json','json'),get('data/quant/cal.json','json'),get('data/quant/pca.json','json'),get(`data/quant/intraday/${s}.json`,'json')]);
+  const tabs=[['vol','Volatility & VaR'],['trend','Trend'],['fac','Factors'],['pca','Market structure'],['exe','Execution'],['stat','Price statistics']];
+  let cur='vol';try{cur=localStorage.getItem('tl_qtab')||'vol'}catch(e){}if(!tabs.some(t=>t[0]===cur))cur='vol';
+  const sub=$('#qsub');
+  const dates=Cal?Cal.d:[];
+  const draw=()=>{
+    sub.innerHTML=tabs.map(t=>`<button data-k="${t[0]}" class="${t[0]===cur?'on':''}">${t[1]}</button>`).join('');
+    sub.querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=b.dataset.k;try{localStorage.setItem('tl_qtab',cur)}catch(e){}draw()});
+    const fns={vol:qVol,trend:qTrend,fac:qFac,pca:qPca,exe:qExe,stat:()=>tech||qnone('No risk data for this stock.')};
+    box.innerHTML=(cur==='stat'||Qd||cur==='exe'||cur==='fac')?fns[cur]():qnone(NOQ);
+    if(cur==='stat')countUps(box);
+    after[cur]&&after[cur]();
+  };
+  const after={};
+  function qVol(){
+    const v=Qd&&Qd.vol;if(!v)return qnone('Not enough price history to fit volatility models for this stock (needs about 120 daily returns).');
+    const n=v.now||{},m=v.model,ser=v.ser||{};
+    let h=`<div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">${m?qtile('GARCH volatility',T.fmt(n.garch,1)+'%','annualised, model estimate for today'):''}${qtile('EWMA volatility',T.fmt(n.ewma,1)+'%','RiskMetrics, decay 0.94')}${qtile('Realised 21 days',T.fmt(n.real21,1)+'%')}${qtile('Realised 1 year',T.fmt(n.real252,1)+'%')}${n.pct_rank!=null?qtile('Percentile vs own history',T.fmt(n.pct_rank,0),'of the last '+T.fmt(v.n/252,1)+' years of GARCH volatility'):''}${n.parkinson21!=null?qtile('Parkinson 21 days',T.fmt(n.parkinson21,1)+'%','from daily high-low range'):''}</div>`;
+    h+=`<div class="card"><h3>Volatility over the last ${dates.length} sessions <span class="tag">annualised %</span></h3><canvas id="qvc" style="height:240px"></canvas>${qleg([['GARCH','#0f6b4a'],['EWMA','#2f6fdb'],['Realised 21d','#e08a00']])}</div>`;
+    if(!m){h+=qnone(v.note||'GARCH was not fitted.');return h}
+    h+=`<div class="card"><h3>Fitted model <span class="tag">${esc(m.name)}</span></h3><p class="mut" style="margin-top:0">Daily returns are modelled as volatility that reacts to yesterday's shock (α ${T.fmt(m.alpha,3)}${m.gamma?`, extra α for down days ${T.fmt(m.gamma,3)}`:''}) and decays slowly (β ${T.fmt(m.beta,3)}), with fat-tailed Student-t errors (${T.fmt(m.nu,1)} degrees of freedom; smaller = fatter tails). Persistence ${T.fmt(m.persistence,3)}: a volatility shock fades by half in about <b>${m.half_life!=null?T.fmt(m.half_life,0)+' days':'n/a'}</b>; the long-run level the model pulls toward is <b>${T.fmt(m.long_run_vol,1)}%</b>. ${m.converged?'':'<span class="warn">The optimiser did not report full convergence, treat with care.</span>'} The model picks plain or asymmetric (GJR) form by BIC: ${Object.entries(m.bic).map(([k,b])=>`${esc(k)} ${b==null?'–':T.fmt(b,0)}`).join(' vs ')} (lower is better).</p>
+      <table class="stmt"><tr><th class="l">Forecast horizon</th>${v.fc.h.map(x=>`<th>${x} day${x>1?'s':''}</th>`).join('')}</tr><tr><td class="l">Expected volatility (annualised)</td>${v.fc.vol.map(x=>`<td>${T.fmt(x,1)}%</td>`).join('')}</tr></table></div>`;
+    h+=`<div class="card"><h3>Value at Risk and Expected Shortfall <span class="tag">tomorrow and 10 days</span></h3>
+      <div style="margin-bottom:8px">Position size ₹ <input id="qpos" type="number" value="10" min="0" step="1" style="width:90px"> lakh</div>
+      <table class="stmt" id="qvar"></table>
+      <p class="mut" style="font-size:12px">VaR 95% is the loss that should be exceeded on only 1 day in 20; Expected Shortfall is the average loss on those bad days. "Student-t" uses the fitted distribution; "Historical-shock" re-uses this stock's own past standardised shocks (filtered historical simulation), so it does not assume a distribution. 10-day figures come from 20,000 simulated paths of the fitted model. Losses are in simple-return terms.</p></div>`;
+    const bt=v.bt;
+    if(bt){const row=(k,lab)=>{const b=bt[k];if(!b)return '';const bad=(b.kupiec_p!=null&&b.kupiec_p<.05)||(b.indep_p!=null&&b.indep_p<.05);return `<tr><td class="l">${lab}</td><td>${T.fmt(b.expected,1)}</td><td>${b.actual}</td><td>${b.kupiec_p==null?'–':T.fmt(b.kupiec_p,3)}</td><td>${b.indep_p==null?'–':T.fmt(b.indep_p,3)}</td><td class="${bad?'neg':'pos'}">${bad?'Rejected':'Passed'}</td></tr>`};
+      h+=`<div class="card"><h3>Out-of-sample VaR back-test <span class="tag">last ${bt.test_days} sessions</span></h3><table class="stmt"><tr><th class="l">Level</th><th>Expected breaches</th><th>Actual breaches</th><th>Kupiec p</th><th>Independence p</th><th>Verdict</th></tr>${row('95','VaR 95%')}${row('99','VaR 99%')}</table><p class="mut" style="font-size:12px">The model is fitted only on data before the test window, then used to set each day's VaR. Kupiec tests whether the number of breaches matches the target; the independence test checks that breaches are not clustered. A p-value under 0.05 means the model failed that test. Failing is information, not a bug: it says do not trust this VaR number blindly for this stock.</p></div>`}
+    else h+=qnone('Back-test needs about 900 daily returns; this stock has fewer.');
+    return h;
+  }
+  after.vol=()=>{
+    const v=Qd&&Qd.vol;if(!v)return;const ser=v.ser||{},x=dates.map(d=>d.slice(2));
+    const S=[];if(ser.garch)S.push({name:'GARCH',x,y:ser.garch,color:'#0f6b4a'});S.push({name:'EWMA',x,y:ser.ewma,color:'#2f6fdb'});S.push({name:'21d',x,y:ser.real21,color:'#e08a00'});
+    const cv=$('#qvc');if(cv)lineChart(cv,S,{dec:0});
+    const t=$('#qvar');if(!t||!v.var)return;
+    const upd=()=>{const pos=parseFloat($('#qpos').value)||0;
+      const c=(p)=>p==null?'–':`${T.fmt(p,2)}%<div class="mut" style="font-size:11px">₹${T.fmt(pos*1e5*p/100,0)}</div>`;
+      let r=`<tr><th class="l"></th><th colspan="2">1 day</th><th colspan="2">10 days</th></tr><tr><th class="l">Measure</th><th>Student-t</th><th>Historical-shock</th><th>Student-t</th><th>Historical-shock</th></tr>`;
+      for(const [k,lab] of [['95','95%'],['99','99%']]){const d=v.var[k];if(!d)continue;
+        r+=`<tr><td class="l">VaR ${lab}</td><td>${c(d['1d'].t)}</td><td>${c(d['1d'].fhs)}</td><td>${c(d['10d'].t)}</td><td>${c(d['10d'].fhs)}</td></tr><tr><td class="l">Expected Shortfall ${lab}</td><td>${c(d['1d'].es_t)}</td><td>${c(d['1d'].es_fhs)}</td><td>${c(d['10d'].es_t)}</td><td>${c(d['10d'].es_fhs)}</td></tr>`}
+      t.innerHTML=r};
+    $('#qpos').oninput=upd;upd();
+  };
+  function qTrend(){
+    const t=Qd&&Qd.trend;if(!t)return qnone('Not enough price history for trend models (needs about 260 sessions).');
+    const k6=t.kal60,k12=t.kal120;
+    const sig=x=>x!=null&&Math.abs(x)>=2;
+    const dr=Object.entries(t.drift||{}).map(([k,d])=>`<tr><td class="l">${k==='3m'?'3 months':k==='6m'?'6 months':'12 months'}</td><td class="${cls(d.mu)}">${pfx(d.mu)}</td><td>${T.fmt(d.t,2)}</td><td class="${sig(d.t)?(d.t>0?'pos':'neg'):'mut'}">${sig(d.t)?'Statistically significant':'Not distinguishable from zero'}</td></tr>`).join('');
+    const vr=Object.entries(t.vr||{}).map(([q,d])=>`<tr><td class="l">${q} days</td><td>${T.fmt(d.vr,3)}</td><td>${T.fmt(d.z,2)}</td></tr>`).join('');
+    const vc={trending:['Trending','pos','Multi-day returns have been moving in the same direction more than chance would explain.'],'mean-reverting':['Mean-reverting','neg','Multi-day moves have tended to partly reverse.'],'random-walk':['Random walk','mut','No statistically reliable pattern: past direction does not help predict the next move.']}[t.vr_class]||['–','mut',''];
+    return `<div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">${qtile('Trend slope (60-day filter)',pfx(k6.slope),'annualised, smoothed',cls(k6.slope))}${qtile('Trend slope (120-day filter)',pfx(k12.slope),'annualised, smoothed',cls(k12.slope))}${qtile('Price vs 60-day trend',pfx(k6.gap),'above (+) or below (−) the filtered level',cls(k6.gap))}${qtile('Price behaviour',vc[0],'variance-ratio test',vc[1])}</div>
+    <div class="card"><h3>Price and filtered trend <span class="tag">last ${dates.length} sessions</span></h3><canvas id="qtc" style="height:260px"></canvas>${qleg([['Price','#8b94a3'],['Trend 60d','#0f6b4a'],['Trend 120d','#9b59d0']])}
+      <p class="mut" style="font-size:12px">The trend line is a Kalman filter on log price with a fixed smoothness (equivalent to a Hodrick-Prescott filter with a 60-day or 120-day cut-off). It separates a slowly moving level and slope from day-to-day noise, using only data up to each day. The smoothness is fixed rather than fitted because stock prices are close to a random walk and a fitted filter just chases every move. The slope is a description of recent direction, not a forecast.</p></div>
+    <div class="card"><h3>Is the drift real? <span class="tag">Newey-West t-statistic</span></h3><table class="stmt"><tr><th class="l">Window</th><th>Annualised log return</th><th>t-stat</th><th>Reading</th></tr>${dr}</table><p class="mut" style="font-size:12px">Daily returns are noisy, so even a +30% year can have a t-statistic below 2. |t| of 2 or more is the usual bar for "not just luck", and the test is adjusted for volatility clustering and autocorrelation.</p></div>
+    <div class="card"><h3>Trending or mean-reverting? <span class="tag">Lo-MacKinlay variance ratio</span></h3><table class="stmt"><tr><th class="l">Holding period</th><th>Variance ratio</th><th>z*</th></tr>${vr}</table>
+      <p style="margin:8px 0 2px"><b class="${vc[1]}">${vc[0]}</b> over the last ${T.fmt(t.vr_n/252,1)} years. <span class="mut">${vc[2]}</span></p>
+      <p class="mut" style="font-size:12px">A ratio above 1 means multi-day moves are larger than daily volatility would imply (momentum); below 1 means they partly reverse. The label needs a z* beyond ±2.4 (a stricter bar because three horizons are tested together). Even so, about 1 stock in 20 is flagged by chance, so treat a single flag as a prompt to look, not a signal.</p></div>`;
+  }
+  after.trend=()=>{const t=Qd&&Qd.trend;if(!t||!$('#qtc'))return;const x=dates.map(d=>d.slice(2)),s=t.ser;
+    lineChart($('#qtc'),[{name:'Price',x,y:s.px,color:'#8b94a3'},{name:'60d',x,y:s.k60,color:'#0f6b4a'},{name:'120d',x,y:s.k120,color:'#9b59d0'}],{dec:0})};
+  function qFac(){
+    if(!F)return qnone(NOQ);const f=F.stocks[s];if(!f)return qnone('No factor data for this stock (no fundamentals or too little price history).');
+    const comp=qComposite(F,QW)[s],r=f.raw;
+    const bar=k=>{const p=f.p[k];return `<tr><td class="l"><b>${FN[k]}</b><div class="mut" style="font-size:11px;white-space:normal">${FHELP[k]}</div></td><td style="width:46%"><div class="qpb"><i class="${p==null?'':p>=60?'g':p<=40?'r':'n'}" style="width:${p==null?0:p}%"></i><b style="left:50%"></b></div></td><td>${p==null?'–':T.fmt(p,0)}</td><td>${f.z[k]==null?'–':T.fmt(f.z[k],2)}</td></tr>`};
+    const raw=[['Earnings yield',r.ep!=null?T.fmt(r.ep,1)+'%':'–'],['Book-to-price',r.bp!=null?T.fmt(r.bp,2):'–'],['EBITDA yield',r.eve!=null?T.fmt(r.eve,1)+'%':'–'],['FCF yield',r.fcfy!=null?T.fmt(r.fcfy,1)+'%':'–'],['ROE',r.roe!=null?T.fmt(r.roe,1)+'%':'–'],['ROCE',r.roce!=null?T.fmt(r.roce,1)+'%':'–'],['Net margin',r.margin!=null?T.fmt(r.margin,1)+'%':'–'],['Debt/equity',r.de!=null?T.fmt(r.de,2):'–'],['Piotroski',r.pio!=null?T.fmt(r.pio,0)+'/9':'–'],['12-1m return',pfx(r.mom12)],['6-1m return',pfx(r.mom6)],['1y volatility',r.vol!=null?T.fmt(r.vol,1)+'%':'–'],['Beta (2y)',r.beta!=null?T.fmt(r.beta,2):'–'],['Revenue CAGR',r.revg!=null?T.fmt(r.revg,1)+'%':'–'],['Net-income CAGR',r.nig!=null?T.fmt(r.nig,1)+'%':'–']];
+    return `<div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">${comp?qtile('Composite rank',`#${comp.rank} <span class="mut" style="font-size:12px">of ${comp.n}</span>`,`percentile ${T.fmt(comp.p,0)} with weights: ${FCOMP.filter(k=>QW[k]>0).map(k=>FN[k]+' '+QW[k]).join(', ')}`):''}${qtile('Industry group',esc(f.i||'–'),'factors are compared within this group where it has 8+ stocks')}${qtile('Median daily traded value','₹'+T.fmt(f.liq,1)+' cr','1 year')}</div>
+    <div class="card"><h3>Factor profile <span class="tag">percentile in the ${F.n}-stock universe</span></h3><table class="stmt"><tr><th class="l">Factor</th><th></th><th>Percentile</th><th>z-score</th></tr>${FCOMP.concat(['size']).map(bar).join('')}</table>
+    <p class="mut" style="font-size:12px">Each raw measure is clipped at the 2.5th/97.5th percentile, then converted to a z-score <b>within the stock's industry group</b>, so a bank is judged against banks. Above the centre line = better on that factor. Change the composite weights in <a href="#/quant">Quant Lab</a>.</p></div>
+    <div class="card"><h3>Underlying measures</h3><div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">${raw.map(x=>qtile(x[0],x[1])).join('')}</div></div>`;
+  }
+  function qPca(){
+    const p=Qd&&Qd.pca;if(!p)return qnone('This stock is not in the market-structure model (it needs a full 3-year price history and at least ₹1 crore median daily traded value).');
+    const cl=PCA&&PCA.clusters.find(c=>c.id===p.cl),mem=PCA?Object.entries(PCA.stocks).filter(e=>e[1].cl===p.cl&&e[0]!==s).map(e=>e[0]):[];
+    return `<div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">${qtile('Explained by the market factor',T.fmt(p.r2_mkt*100,0)+'%','share of return variance')}${qtile('Explained by all '+p.K+' common factors',T.fmt(p.r2*100,0)+'%','market plus sector/style factors')}${qtile('Stock-specific',T.fmt((1-p.r2)*100,0)+'%','not shared with other stocks',(1-p.r2)>.6?'pos':'')}</div>
+    <div class="card"><h3>Loadings on the main statistical factors</h3><table class="stmt"><tr><th class="l">Factor</th>${p.load.map((_,i)=>`<th>PC${i+1}</th>`).join('')}</tr><tr><td class="l">Loading (correlation with factor)</td>${p.load.map(x=>`<td class="${cls(x)}">${T.fmt(x,2)}</td>`).join('')}</tr></table>
+      <p class="mut" style="font-size:12px">PC1 is the market-wide move. The next factors are found from the data and usually line up with sectors or styles; see what each one is in <a href="#/quant">Quant Lab → Market structure</a>. The "${p.K} common factors" are the ones that rise above what random data would produce (Marchenko-Pastur test).</p></div>
+    <div class="card"><h3>Behaves like <span class="tag">${cl?esc(cl.label):'cluster '+p.cl}</span></h3>${mem.length?`<p class="mut" style="margin-top:0">${mem.length} other stocks move in a similar way (same cluster of the non-market factors). The first few:</p><p>${mem.slice(0,24).map(x=>`<a class="tag" href="#/stock/${esc(x)}/quant">${esc(x)}</a>`).join('')}</p>`:'<p class="mut">No cluster peers found.</p>'}</div>`;
+  }
+  function qExe(){
+    if(!IN)return qnone('Intraday volume profile is not available for this stock yet. It is built by the Quant models workflow from Yahoo 5-minute bars (about 60 days).');
+    const lab=IN.labels,mx=Math.max(...IN.profile,...IN.own);
+    const bars=lab.map((l,i)=>`<div class="qcol" title="${l}  stock ${T.fmt(IN.own[i]*100,1)}%  estimate ${T.fmt(IN.profile[i]*100,1)}%"><i class="o" style="height:${IN.own[i]/mx*100}%"></i><i class="e" style="height:${IN.profile[i]/mx*100}%"></i><span>${i%3===0?l:''}</span></div>`).join('');
+    const tk=IN.trk;
+    return `<div class="card"><h3>Intraday volume profile <span class="tag">${IN.n} sessions, ${esc(IN.from)} to ${esc(IN.to)}</span></h3><div class="qprof">${bars}</div>${qleg([['This stock, raw average','#8b94a3'],['Estimate used (shrunk to the universe profile)','#0f6b4a']])}
+      <p class="mut" style="font-size:12px">Share of each day's volume traded in each 15-minute window (09:15 to 15:30). The estimate blends the stock's own average with the universe average, giving the stock's own history weight n/(n+5), so a short or noisy history does not dominate.</p></div>
+    <div class="card"><h3>VWAP / TWAP schedule calculator</h3>
+      <div class="qform"><label>Order quantity (shares)<input id="qq" type="number" min="1" value="${Math.max(1,Math.round(IN.adv*0.01/100)*100)}"></label><label>Typical daily volume<input value="${T.fmt(IN.adv,0)}" disabled></label><span id="qpart"></span></div>
+      <div id="qsch"></div>
+      ${tk?`<h4 style="margin:16px 0 6px">How well did the schedule track? <span class="tag">walk-forward, ${tk.days} test days</span></h4><table class="stmt"><tr><th class="l">Schedule</th><th>Typical gap to day's actual VWAP</th><th>Average bias</th></tr><tr><td class="l">VWAP schedule (volume-weighted by the estimate above)</td><td class="${tk.vwap_rmse<tk.twap_rmse?'pos':''}">${T.fmt(tk.vwap_rmse,1)} bps</td><td>${T.fmt(tk.vwap_bias,1)} bps</td></tr><tr><td class="l">TWAP schedule (equal slices)</td><td class="${tk.twap_rmse<tk.vwap_rmse?'pos':''}">${T.fmt(tk.twap_rmse,1)} bps</td><td>–</td></tr></table><p class="mut" style="font-size:12px">For each test day the profile was estimated only from earlier days. The gap is root-mean-square, measured on 15-minute average prices, so it is a floor: it excludes your own market impact, spread and fees. This tool schedules slices; it does not estimate impact cost.</p>`:'<p class="mut">Not enough sessions for a walk-forward test of the schedule.</p>'}</div>`;
+  }
+  after.exe=()=>{if(!IN||!$('#qq'))return;
+    const upd=()=>{const q=Math.max(0,Math.floor(parseFloat($('#qq').value)||0)),part=q/IN.adv*100;
+      $('#qpart').innerHTML=`<b>${T.fmt(part,1)}%</b> of a typical day's volume ${part>10?'<span class="warn">High. Orders above roughly 10% of daily volume usually move the price; consider spreading over several days.</span>':part>5?'<span class="warn">Meaningful. Expect some impact.</span>':'<span class="mut">Comfortably small.</span>'}`;
+      let cumV=0,cumT=0;const eq=q/IN.labels.length;
+      $('#qsch').innerHTML=`<table class="stmt"><tr><th class="l">Window</th><th>VWAP shares</th><th>VWAP cumulative</th><th>TWAP shares</th><th>TWAP cumulative</th></tr>${IN.labels.map((l,i)=>{const a=q*IN.profile[i];cumV+=a;cumT+=eq;return `<tr><td class="l">${l}</td><td>${T.fmt(a,0)}</td><td>${T.fmt(cumV/q*100||0,0)}%</td><td>${T.fmt(eq,0)}</td><td>${T.fmt(cumT/q*100||0,0)}%</td></tr>`}).join('')}</table><p class="mut" style="font-size:12px">Slices are fractional; round to your lot size. The window label is the start of each 15 minutes.</p>`};
+    $('#qq').oninput=upd;upd()};
+  draw();
+}
+// ----- Quant Lab -----
+const QLS={tab:'rank',idx:'all',ind:'',liq:1,dir:'top',bt:'momentum',pf:{syms:'',method:'hrp',cap:25,look:252,res:null}};
+async function quantLab(){
+  view.innerHTML=`<h2 style="margin:4px 0 2px">Quant Lab</h2><p class="mut" style="margin:0 0 14px">Factor rankings, factor back-tests, statistical risk factors and a portfolio builder, all computed from end-of-day data in this repository.</p><div class="subtabs" id="qlsub"></div><div id="qlbody"><div class="skel" style="height:360px"></div></div>`;
+  const [F,PCA]=await Promise.all([get('data/quant/factors.json','json'),get('data/quant/pca.json','json')]);
+  const tabs=[['rank','Factor rankings'],['bt','Factor back-test'],['pca','Market structure'],['port','Portfolio builder']];
+  const nm={};try{(await table('data/universe.csv')).forEach(r=>{nm[r.symbol]=r.company})}catch(e){}
+  const draw=()=>{
+    $('#qlsub').innerHTML=tabs.map(t=>`<button data-k="${t[0]}" class="${t[0]===QLS.tab?'on':''}">${t[1]}</button>`).join('');
+    $('#qlsub').querySelectorAll('button').forEach(b=>b.onclick=()=>{QLS.tab=b.dataset.k;draw()});
+    const b=$('#qlbody');
+    if(!F&&QLS.tab!=='port'){b.innerHTML=qnone(NOQ);return}
+    ({rank:()=>labRank(b,F,nm,draw),bt:()=>labBt(b,F),pca:()=>labPca(b,PCA,nm),port:()=>labPort(b,F,nm)})[QLS.tab]();
+  };
+  draw();
+}
+function labRank(b,F,nm,redraw){
+  const comp=qComposite(F,QW),inds=[...new Set(Object.values(F.stocks).map(x=>x.i).filter(Boolean))].sort();
+  let rows=Object.entries(comp).filter(([s])=>{const x=F.stocks[s];return(QLS.idx==='all'||x.x===QLS.idx)&&(!QLS.ind||x.i===QLS.ind)&&(x.liq||0)>=QLS.liq});
+  rows.sort((p,q)=>QLS.dir==='top'?q[1].z-p[1].z:p[1].z-q[1].z);const total=rows.length;rows=rows.slice(0,30);
+  const cell=(x,k)=>{const p=x.p[k];return `<td class="${p==null?'':p>=70?'pos':p<=30?'neg':''}">${p==null?'–':T.fmt(p,0)}</td>`};
+  b.innerHTML=`<div class="card"><h3>Composite weights <span class="tag">saved in this browser</span></h3><div class="qform">${FCOMP.map(k=>`<label title="${FHELP[k]}">${FN[k]} %<input type="number" min="0" max="100" step="5" data-w="${k}" value="${QW[k]}"></label>`).join('')}<button id="qwreset">Reset</button></div>
+    <div class="qform" style="margin-top:8px"><label>Show<select id="qdir"><option value="top"${QLS.dir==='top'?' selected':''}>Highest</option><option value="bot"${QLS.dir==='bot'?' selected':''}>Lowest</option></select></label><label>Index<select id="qidx"><option value="all">All</option><option value="nifty500"${QLS.idx==='nifty500'?' selected':''}>Nifty 500</option><option value="microcap250"${QLS.idx==='microcap250'?' selected':''}>Microcap 250</option></select></label><label>Industry<select id="qind"><option value="">All</option>${inds.map(i=>`<option${QLS.ind===i?' selected':''}>${esc(i)}</option>`).join('')}</select></label><label>Min traded value ₹ cr/day<input id="qliq" type="number" min="0" step="0.5" value="${QLS.liq}"></label></div></div>
+    <div class="card scroll"><h3>${QLS.dir==='top'?'Highest':'Lowest'} composite scores <span class="tag">${total} stocks match</span></h3><table class="stmt"><tr><th class="l">Stock</th><th>Rank</th><th>Composite z</th>${FCOMP.map(k=>`<th>${FN[k]}</th>`).join('')}<th>Traded ₹cr/day</th></tr>${rows.map(([s,c])=>{const x=F.stocks[s];return `<tr class="row" onclick="location.hash='#/stock/${esc(s)}/quant'"><td class="l"><b>${esc(s)}</b><div class="mut" style="font-size:11px">${esc((nm[s]||'').slice(0,30))} · ${esc(x.i||'')}</div></td><td>${c.rank}</td><td>${T.fmt(c.z,2)}</td>${FCOMP.map(k=>cell(x,k)).join('')}<td>${T.fmt(x.liq,1)}</td></tr>`}).join('')}</table>
+    <p class="mut" style="font-size:12px">Factor columns are percentiles (100 = best). The composite is the weighted average of group-neutral z-scores, re-ranked across the universe. Fundamentals are the latest annual statements, so this is a current snapshot, not something we can back-test; the next tab tests the price-based factors. This is a screening aid, not a recommendation.</p></div>`;
+  b.querySelectorAll('[data-w]').forEach(i=>i.onchange=()=>{QW[i.dataset.w]=Math.max(0,parseFloat(i.value)||0);if(!FCOMP.some(k=>QW[k]>0))QW.value=25;saveQW();redraw()});
+  $('#qwreset').onclick=()=>{QW={value:25,quality:25,momentum:25,lowvol:25,growth:0};saveQW();redraw()};
+  $('#qdir').onchange=e=>{QLS.dir=e.target.value;redraw()};$('#qidx').onchange=e=>{QLS.idx=e.target.value;redraw()};$('#qind').onchange=e=>{QLS.ind=e.target.value;redraw()};$('#qliq').onchange=e=>{QLS.liq=parseFloat(e.target.value)||0;redraw()};
+}
+function labBt(b,F){
+  const B=F.bt||{},keys=Object.keys(B);if(!keys.length){b.innerHTML=qnone('Back-test results are not available yet.');return}
+  if(!B[QLS.bt])QLS.bt=keys[0];const x=B[QLS.bt];
+  b.innerHTML=`<div class="subtabs">${keys.map(k=>`<button data-b="${k}" class="${k===QLS.bt?'on':''}">${esc(B[k].label)}</button>`).join('')}</div>
+  <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">${qtile('Long-short, annualised',pfx(x.ls_ann),'top fifth minus bottom fifth',cls(x.ls_ann))}${qtile('t-statistic',T.fmt(x.ls_t,2),Math.abs(x.ls_t)>=2?'statistically significant':'not significant',Math.abs(x.ls_t)>=2?(x.ls_t>0?'pos':'neg'):'')}${qtile('Months with a gain',T.fmt(x.ls_hit,0)+'%',x.periods+' monthly periods')}${qtile('Average rank IC',T.fmt(x.ic,3),'t = '+T.fmt(x.ic_t,2))}${qtile('Long-short volatility',T.fmt(x.ls_vol,1)+'%','annualised')}</div>
+  <div class="card"><h3>Growth of ₹1 <span class="tag">${esc(x.from)} to ${esc(x.to)} · ${F.bt_universe} liquid stocks · monthly rebalance</span></h3><canvas id="qbc" style="height:280px"></canvas>${qleg([['Top fifth (Q5)','#0f6b4a'],['Bottom fifth (Q1)','#c62828'],['Long-short','#2f6fdb']])}</div>
+  <div class="card"><h3>Return by factor quintile <span class="tag">annualised, equal-weighted</span></h3><table class="stmt"><tr><th class="l"></th>${x.q_ann.map((_,i)=>`<th>Q${i+1}${i===0?' (lowest)':i===4?' (highest)':''}</th>`).join('')}</tr><tr><td class="l">Annualised return</td>${x.q_ann.map(v=>`<td class="${cls(v)}">${pfx(v)}</td>`).join('')}</tr></table>
+  <p class="mut" style="font-size:12px"><b>Read this with care.</b> Stocks are sorted into fifths by the factor on each month-end using only data up to that day; the next month's equal-weighted returns are recorded. The universe is today's constituents with at least 3 years of history, so stocks that were delisted or fell out of the indices are missing (survivorship bias flatters long-only results). No transaction costs or impact are deducted, and microcaps are costly to trade. The t-statistic is Newey-West adjusted. A rank IC around 0.02 to 0.05 is typical for a real factor; a t-statistic below 2 means the result could be noise. Only price-based factors are tested; value, quality and growth need point-in-time fundamentals which this repository does not hold.</p></div>`;
+  b.querySelectorAll('[data-b]').forEach(e=>e.onclick=()=>{QLS.bt=e.dataset.b;labBt(b,F)});
+  const c=x.cum,xs=c.d.map(d=>d.slice(2));lineChart($('#qbc'),[{name:'Q5',x:xs,y:c.q5,color:'#0f6b4a'},{name:'Q1',x:xs,y:c.q1,color:'#c62828'},{name:'L-S',x:xs,y:c.ls,color:'#2f6fdb'}],{dec:2});
+}
+function labPca(b,P,nm){
+  if(!P){b.innerHTML=qnone(NOQ);return}
+  const mx=Math.max(...P.eig);
+  b.innerHTML=`<div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">${qtile('Stocks in the model',P.n_assets,P.n_obs+' daily returns each')}${qtile('Real common factors',P.n_signif,'eigenvalues above the random-noise edge '+T.fmt(P.mp_edge,2))}${qtile('Variance they explain',T.fmt(P.explained_top,0)+'%','of total return variance')}</div>
+  <div class="card"><h3>Eigenvalues <span class="tag">scree</span></h3><div class="qscree">${P.eig.map((e,i)=>`<div class="qcol" title="PC${i+1}: ${T.fmt(e,2)}"><i class="${e>P.mp_edge?'e':'o'}" style="height:${Math.min(100,e/mx*100)}%"></i><span>${i+1}</span></div>`).join('')}</div><p class="mut" style="font-size:12px">Green bars sit above what a market of unrelated stocks would produce by chance (Marchenko-Pastur edge ${T.fmt(P.mp_edge,2)}), so they are treated as real shared drivers. Grey bars are noise. ${esc(P.note)}</p></div>
+  <div class="card scroll"><h3>What each factor is</h3><table class="stmt"><tr><th class="l">Factor</th><th>Variance</th><th class="l">Highest loadings</th><th class="l">Lowest loadings</th><th class="l">Industry tilt (up / down)</th></tr>${P.pcs.map(p=>`<tr><td class="l"><b>PC${p.k}</b>${p.k===1?' <span class="mut">market</span>':''}</td><td>${T.fmt(p.var_pct,1)}%</td><td class="l" style="white-space:normal">${p.pos.slice(0,5).map(x=>esc(x[0])).join(', ')}</td><td class="l" style="white-space:normal">${p.neg.slice(0,5).map(x=>esc(x[0])).join(', ')}</td><td class="l" style="white-space:normal">${p.ind_pos.map(x=>esc(x[0])).join(', ')||'–'} <span class="mut">/</span> ${p.ind_neg.map(x=>esc(x[0])).join(', ')||'–'}</td></tr>`).join('')}</table><p class="mut" style="font-size:12px">PC1 loads on nearly every stock with the same sign. For PC2 onward the sign is arbitrary: read the two ends as opposite sides of one theme (for example banks against IT).</p></div>
+  <div class="card scroll"><h3>Clusters of stocks that move together</h3><table class="stmt"><tr><th class="l">Cluster</th><th>Stocks</th><th class="l">Industry mix</th></tr>${P.clusters.map(c=>`<tr><td class="l"><b>${esc(c.label)}</b></td><td>${c.n}</td><td class="l" style="white-space:normal">${c.mix.map(m=>esc(m[0])+' '+m[1]).join(' · ')}</td></tr>`).join('')}</table><p class="mut" style="font-size:12px">Ward clustering on each stock's loadings on factors 2 to 6, so the market factor does not swamp the grouping. Open a stock's Quant tab → Market structure to see its cluster mates.</p></div>`;
+}
+function labPort(b,F,nm){
+  const p=QLS.pf,M={equal:'Equal weight',minvar:'Minimum variance',maxsharpe:'Maximum Sharpe',rp:'Risk parity',hrp:'Hierarchical risk parity'};
+  b.innerHTML=`<div class="card"><h3>Portfolio builder</h3><div class="qform" style="align-items:flex-start"><label style="flex:1;min-width:260px">Stocks (symbols, 2 to 40, separated by space or comma)<textarea id="pfs" rows="3" style="width:100%">${esc(p.syms)}</textarea></label>
+    <div style="display:flex;flex-direction:column;gap:8px"><label>Method<select id="pfm">${Object.entries(M).map(([k,v])=>`<option value="${k}"${p.method===k?' selected':''}>${v}</option>`).join('')}</select></label><label>Max weight per stock %<input id="pfc" type="number" min="3" max="100" step="1" value="${p.cap}"></label><label>Estimation window (days)<input id="pfl" type="number" min="120" max="1000" step="21" value="${p.look}"></label></div></div>
+    <div class="qform" style="margin-top:8px"><button id="pftop">Fill with top 15 by composite</button><button id="pfrun" class="primary">Build portfolio</button><span id="pfst" class="mut"></span></div></div><div id="pfout"></div>`;
+  $('#pftop').onclick=()=>{if(!F)return;const c=Object.entries(qComposite(F,QW)).filter(([s])=>(F.stocks[s].liq||0)>=2).sort((a,b)=>b[1].z-a[1].z).slice(0,15).map(e=>e[0]);$('#pfs').value=c.join(', ')};
+  $('#pfrun').onclick=()=>{p.syms=$('#pfs').value;p.method=$('#pfm').value;p.cap=parseFloat($('#pfc').value)||100;p.look=Math.max(120,parseInt($('#pfl').value)||252);runPort(p,M,nm)};
+  if(p.res)showPort(p,M,nm,p.res);
+}
+async function runPort(p,M,nm){
+  const st=$('#pfst'),out=$('#pfout');
+  const syms=[...new Set(p.syms.toUpperCase().split(/[\s,;]+/).filter(Boolean))];
+  if(syms.length<2||syms.length>40){st.textContent='Enter between 2 and 40 symbols.';return}
+  if(p.cap/100*syms.length<1){st.innerHTML=`<span class="neg">With ${syms.length} stocks the maximum weight must be at least ${T.fmt(100/syms.length,1)}%.</span>`;return}
+  st.textContent='Loading prices…';out.innerHTML='';
+  const px=await Promise.all(syms.map(async s=>{const r=await table(`data/prices/${s}.csv`);const m=new Map();r.forEach(x=>{const c=T.num(x.Close??x.close);if(c!=null&&c>0)m.set(x.Date??x.date,c)});return m}));
+  const bad=syms.filter((s,i)=>px[i].size<300);if(bad.length){st.innerHTML=`<span class="neg">No usable price history for: ${esc(bad.join(', '))}. Remove them and try again.</span>`;return}
+  let dates=[...px[0].keys()].filter(d=>px.every(m=>m.has(d))).sort();
+  if(dates.length<p.look+60){st.innerHTML=`<span class="neg">Only ${dates.length} common trading days across these stocks; need at least ${p.look+60}. Try a shorter window or drop the newest listing.</span>`;return}
+  dates=dates.slice(-1260);
+  const R=[];for(let t=1;t<dates.length;t++)R.push(px.map(m=>m.get(dates[t])/m.get(dates[t-1])-1));
+  const bigjump=R.some(r=>r.some(x=>Math.abs(x)>.35));
+  const PF=window.PF,cap=p.cap/100;
+  const train=R.slice(-p.look);
+  st.textContent='Optimising…';await new Promise(r=>setTimeout(r,20));
+  const lw=PF.ledoitWolf(train),C=PF.annualise(lw.cov),m0=PF.mean(train).map(x=>x*PF.TD),g=m0.reduce((a,c)=>a+c,0)/m0.length,mu=m0.map(x=>.5*x+.5*g);
+  const W={};for(const k of Object.keys(M))W[k]=PF.weights(k,train,{cap});
+  const w=W[p.method],stt=k=>PF.stats(W[k],C,mu);
+  let fr=null;if(syms.length>=3){const F0=PF.frontier(C,mu,cap,0,30);fr=F0}
+  p.res={syms,w,W,C,mu,stt:Object.fromEntries(Object.keys(M).map(k=>[k,stt(k)])),fr,lwShrink:lw.shrink,n:dates.length,from:dates[0],to:dates[dates.length-1],bigjump,rc:PF.riskContrib(w,C),wf:null,wfN:Math.max(0,R.length-p.look)};
+  showPort(p,M,nm,p.res);
+  // walk-forward in the background
+  const methods=['equal','minvar','hrp','rp','maxsharpe'];
+  if(R.length<p.look+63){st.textContent='';$('#pfwf').innerHTML='<p class="mut">History is too short for a walk-forward test with this window.</p>';return}
+  const wf=await PF.walkForwardAsync(R,methods,{look:p.look,hold:21,cap,costBps:10,rf:.065},f=>{st.textContent=`Walk-forward test ${Math.round(f*100)}%…`});
+  p.res.wf=wf;st.textContent='';if(p.res===p.res&&$('#pfwf'))showWf(p,M,wf,dates);
+}
+function showPort(p,M,nm,r){
+  const o=$('#pfout');if(!o)return;
+  const rows=r.syms.map((s,i)=>({s,w:r.w[i],rc:r.rc[i]})).sort((a,b)=>b.w-a.w),mxw=Math.max(...r.w);
+  const st=r.stt[p.method];
+  o.innerHTML=`${r.bigjump?'<div class="card"><p class="warn">Some daily moves above 35% were found in the price history (likely an unadjusted split or bonus). Results for those stocks can be distorted.</p></div>':''}
+  <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">${qtile('Method',M[p.method])}${qtile('Expected volatility',T.fmt(st.vol*100,1)+'%','annualised, shrunk covariance')}${qtile('Historical return (shrunk)',pfx(st.ret*100),'past mean, 50% pulled to the group average')}${qtile('Covariance shrinkage',T.fmt(r.lwShrink*100,1)+'%','Ledoit-Wolf, '+p.look+' days')}${qtile('Effective number of stocks',T.fmt(1/r.w.reduce((a,x)=>a+x*x,0),1),'1 ÷ Σ weight²')}</div>
+  <div class="card scroll"><h3>Weights and risk contribution <span class="tag">${r.syms.length} stocks · ${esc(r.from)} to ${esc(r.to)}</span></h3><table class="stmt"><tr><th class="l">Stock</th><th style="width:40%">Weight</th><th>Weight %</th><th>Share of risk %</th></tr>${rows.map(x=>`<tr class="row" onclick="location.hash='#/stock/${esc(x.s)}/quant'"><td class="l"><b>${esc(x.s)}</b><div class="mut" style="font-size:11px">${esc((nm[x.s]||'').slice(0,28))}</div></td><td><div class="qpb"><i class="g" style="width:${mxw>0?x.w/mxw*100:0}%"></i></div></td><td>${T.fmt(x.w*100,1)}</td><td>${T.fmt(x.rc*100,1)}</td></tr>`).join('')}</table>
+  <p class="mut" style="font-size:12px">Share of risk shows how much of the portfolio's volatility each stock accounts for; equal-risk methods aim to even it out. Weights come from the last ${p.look} days only and the estimates are noisy, so treat the output as a starting point and look at the walk-forward test below before trusting a method.</p></div>
+  <div class="card"><h3>All methods side by side</h3><table class="stmt"><tr><th class="l">Method</th><th>Expected volatility</th><th>Largest weight</th><th>Effective stocks</th><th>Sharpe (shrunk, rf 0)</th></tr>${Object.keys(M).map(k=>{const q=r.stt[k],w=r.W[k];return `<tr class="${k===p.method?'sel':''}"><td class="l">${M[k]}</td><td>${T.fmt(q.vol*100,1)}%</td><td>${T.fmt(Math.max(...w)*100,1)}%</td><td>${T.fmt(1/w.reduce((a,x)=>a+x*x,0),1)}</td><td>${T.fmt(q.sharpe,2)}</td></tr>`}).join('')}</table></div>
+  ${r.fr?`<div class="card"><h3>Efficient frontier <span class="tag">position limit ${p.cap}%</span></h3><canvas id="pffc" style="height:280px"></canvas>${qleg([['Frontier','#2f6fdb'],['Chosen method (big dot)','#0f6b4a'],['Other methods','#8b94a3']])}<p class="mut" style="font-size:12px">Highest expected return for each level of risk, using the shrunk return estimates. Expected returns are the weakest input in portfolio theory, so a portfolio far up the frontier mostly reflects past winners.</p></div>`:''}
+  <div class="card" id="pfwf"><h3>Walk-forward test <span class="tag">re-estimated every 21 days</span></h3><div class="skel" style="height:120px"></div></div>`;
+  if(r.fr){const pts=r.fr.map(f=>({x:f.vol*100,y:f.ret*100,line:true}));Object.keys(M).forEach(k=>{const q=r.stt[k];pts.push({x:q.vol*100,y:q.ret*100,c:k===p.method?'#0f6b4a':'#8b94a3',r:k===p.method?6:4,l:k===p.method?'':({equal:'Equal',minvar:'Min var',maxsharpe:'Max Sharpe',rp:'Risk parity',hrp:'HRP'})[k]})});scatterChart($('#pffc'),pts,{xl:'volatility (annualised) →'})}
+  if(r.wf)showWf(p,M,r.wf,null);
+}
+function showWf(p,M,wf,dates){
+  const el=$('#pfwf');if(!el)return;const ks=['equal','minvar','hrp','rp','maxsharpe'].filter(k=>wf[k]);
+  const col={equal:'#8b94a3',minvar:'#2f6fdb',hrp:'#0f6b4a',rp:'#9b59d0',maxsharpe:'#e08a00'};
+  const n=wf[ks[0]].n;
+  el.innerHTML=`<h3>Walk-forward test <span class="tag">${T.fmt(n/252,1)} years out of sample · 10 bps cost per unit of turnover</span></h3><canvas id="pfwc" style="height:260px"></canvas>${qleg(ks.map(k=>[M[k],col[k]]))}
+  <table class="stmt"><tr><th class="l">Method</th><th>Return p.a.</th><th>Volatility</th><th>Sharpe (rf 6.5%)</th><th>Max drawdown</th><th>Turnover / rebalance</th></tr>${ks.map(k=>{const q=wf[k];return `<tr class="${k===p.method?'sel':''}"><td class="l">${M[k]}</td><td class="${cls(q.ann)}">${pfx(q.ann*100)}</td><td>${T.fmt(q.vol*100,1)}%</td><td>${T.fmt(q.sharpe,2)}</td><td class="neg">${T.fmt(q.maxdd*100,1)}%</td><td>${T.fmt(q.turnover*100,0)}%</td></tr>`}).join('')}</table>
+  <p class="mut" style="font-size:12px">At each rebalance the method sees only the previous ${p.look} days, then the weights are held for 21 days before being re-estimated. Equal weight is the benchmark to beat; model-based methods often win on risk and lose on return. The stocks are the ones you picked today, so winners are over-represented: absolute returns are flattered, but the comparison between methods is still fair. Results use today's price data and do not include taxes or impact.</p>`;
+  const x=[...Array(n).keys()].map(i=>String(i+1));lineChart($('#pfwc'),ks.map(k=>({name:M[k],x,y:wf[k].curve,color:col[k]})),{dec:2});
+}
 
 // ---------- Order flow ----------
 const OFS={k:3};
@@ -1467,7 +1712,7 @@ async function stock(s,tab){
   const ini=((words[0]||s)[0]+((words[1]||'')[0]||(words[0]||s)[1]||'')).toUpperCase();
   const stat=(k,val)=>`<div class="stat"><div class="k">${k}</div><div class="sv">${val}</div></div>`;
   const dl='';
-  const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['peers','Peers'],['orderflow','Order Flow'],['quant','Quant Analytics']];
+  const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['peers','Peers'],['orderflow','Order Flow'],['quant','Quant']];
   const tabsH=`<div class="tabs">${TABS.map(t=>`<a href="#/stock/${esc(s)}/${t[0]}" class="${tab===t[0]?'on':''}">${t[1]}</a>`).join('')}${['Compare','Shareholding','News & Events','Research Notes'].map(x=>`<span title="Coming later">${x}</span>`).join('')}<b class="mini">${esc(s)} <em>₹${T.fmt(price,2)}</em>${chg!=null?` <i class="${cls(chg)}">${chg>=0?'+':''}${T.fmt(chg,2)}%</i>`:''}</b></div>`;
   let h=tabsH+`<div class="crumb"><a href="#/market">Research</a> › ${esc(s)}</div>
    <div class="card"><div class="sh"><div class="logo">${esc(ini)}</div>
@@ -1511,7 +1756,7 @@ async function stock(s,tab){
   }else if(tab==='orderflow'){
     h+='<div id="ofbody"><div class="skel" style="height:440px"></div></div>';
   }else if(tab==='quant'){
-    h+=technicals()||'<div class="card">No risk data for this stock.</div>';
+    h+='<div class="subtabs" id="qsub"></div><div id="qbody"><div class="skel" style="height:300px"></div></div>';
   }
   view.innerHTML=h;
   if(tab==='overview'&&prices.length){
@@ -1538,6 +1783,7 @@ async function stock(s,tab){
   if(tab==='financials')finTabs(s);
   if(tab==='peers')peersTab(s);
   if(tab==='orderflow')ofStock(s);
+  if(tab==='quant')quantTabs(s,technicals());
   if(tab==='valuation')valTabs(s,dcf,fin,rl,price,met,u);
 }
 
