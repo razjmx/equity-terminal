@@ -208,15 +208,15 @@ function scatterChart(cv,pts,opt={}){   // pts: [{x,y,c,r,l}]
 async function quantTabs(s,tech){
   const box=$('#qbody');if(!box)return;
   const [Qd,F,Cal,PCA,IN]=await Promise.all([get(`data/quant/${s}.json`,'json'),get('data/quant/factors.json','json'),get('data/quant/cal.json','json'),get('data/quant/pca.json','json'),get(`data/quant/intraday/${s}.json`,'json')]);
-  const tabs=[['vol','Volatility & VaR'],['trend','Trend'],['fac','Factors'],['pca','Market structure'],['exe','Execution'],['stat','Price statistics']];
+  const tabs=[['vol','Volatility & VaR'],['trend','Trend'],['fac','Factors'],['pca','Market structure'],['exe','Execution'],['opt','Options (binomial)'],['stat','Price statistics']];
   let cur='vol';try{cur=localStorage.getItem('tl_qtab')||'vol'}catch(e){}if(!tabs.some(t=>t[0]===cur))cur='vol';
   const sub=$('#qsub');
   const dates=Cal?Cal.d:[];
   const draw=()=>{
     sub.innerHTML=tabs.map(t=>`<button data-k="${t[0]}" class="${t[0]===cur?'on':''}">${t[1]}</button>`).join('');
     sub.querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=b.dataset.k;try{localStorage.setItem('tl_qtab',cur)}catch(e){}draw()});
-    const fns={vol:qVol,trend:qTrend,fac:qFac,pca:qPca,exe:qExe,stat:()=>tech||qnone('No risk data for this stock.')};
-    box.innerHTML=(cur==='stat'||Qd||cur==='exe'||cur==='fac')?fns[cur]():qnone(NOQ);
+    const fns={vol:qVol,trend:qTrend,fac:qFac,pca:qPca,exe:qExe,opt:qOpt,stat:()=>tech||qnone('No risk data for this stock.')};
+    box.innerHTML=(cur==='stat'||Qd||cur==='exe'||cur==='fac'||cur==='opt')?fns[cur]():qnone(NOQ);
     if(cur==='stat')countUps(box);
     after[cur]&&after[cur]();
   };
@@ -307,6 +307,51 @@ async function quantTabs(s,tech){
         <label>Impact multiplier<input id="acm" type="number" min="0.1" step="0.1" value="1"></label></div>
       <div id="acout"></div></div>`;
   }
+  function qOpt(){
+    const S=Qd&&Qd.px,vv=Qd&&Qd.vol&&Qd.vol.now?(Qd.vol.now.garch||Qd.vol.now.ewma||Qd.vol.now.real63):null;
+    if(!S)return qnone('This calculator needs the stock price from the Quant models run.');
+    const step=S<50?1:S<200?5:S<1000?10:S<5000?50:100,K0=Math.round(S/step)*step;
+    return `<div class="card"><h3>Option pricer <span class="tag">binomial tree (Cox-Ross-Rubinstein)</span></h3>
+     <p class="mut" style="margin:0 0 10px;font-size:13px">Prices a call or put on this stock with a tree of up and down moves, and shows the Greeks, the chance of finishing in the money, and how the price changes with the stock. No option data is stored here: you enter the contract and compare with the market price yourself.</p>
+     <div class="qform"><label>Type<select id="opty"><option value="call">Call</option><option value="put">Put</option></select></label>
+      <label>Style<select id="opst"><option value="european">European</option><option value="american">American</option></select></label>
+      <label>Strike ₹<input id="opk" type="number" min="0.01" step="any" value="${K0}"></label>
+      <label>Days to expiry<input id="opd" type="number" min="1" max="1500" value="30"></label>
+      <label>Volatility % <span class="mut" style="font-size:11px">model forecast</span><input id="opv" type="number" min="1" max="300" step="0.1" value="${vv!=null?T.fmt(vv,1):'30'}"></label>
+      <label>Interest rate %<input id="opr" type="number" min="0" max="30" step="0.05" value="6.5"></label>
+      <label>Dividend yield %<input id="opq" type="number" min="0" max="20" step="0.1" value="0"></label>
+      <label>Tree steps<input id="opn" type="number" min="10" max="1000" step="10" value="200"></label>
+      <label>Market premium ₹ <span class="mut" style="font-size:11px">optional</span><input id="opm" type="number" min="0" step="any" placeholder="to get implied vol"></label></div>
+     <div id="opout"></div></div>`;
+  }
+  after.opt=()=>{
+    const S=Qd&&Qd.px;if(!S||!window.BT||!$('#opk'))return;
+    const g=id=>parseFloat($('#'+id).value),upd=()=>{
+      const out=$('#opout');
+      const P={S,K:g('opk'),T:Math.max(1,g('opd')||30)/365,r:(g('opr')||0)/100,q:(g('opq')||0)/100,vol:(g('opv')||0)/100,type:$('#opty').value,style:$('#opst').value,N:Math.min(1000,Math.max(10,Math.round(g('opn')||200)))};
+      if(!(P.K>0)||!(P.vol>0)){out.innerHTML='<p class="mut">Enter a strike and a volatility.</p>';return}
+      let R;try{R=BT.price(P)}catch(e){out.innerHTML=`<p class="neg">${esc(e.message)}</p>`;return}
+      const call=P.type==='call',itm=call?S>P.K:S<P.K,intr=Math.max(call?S-P.K:P.K-S,0),be=call?P.K+R.price:P.K-R.price;
+      const mkt=g('opm'),iv=mkt>0?BT.impliedVol(P,mkt):null;
+      const tile=(k,v,sub,c)=>qtile(k,v,sub,c),fx=(v,d)=>T.fmt(v,d);
+      const spots=[],pv=[],po=[];for(let i=0;i<=30;i++){const s=S*(0.7+0.6*i/30);spots.push('₹'+fx(s,0));try{pv.push(BT.tree({...P,S:s,N:100}).price)}catch(e){pv.push(null)}po.push(Math.max(call?s-P.K:P.K-s,0))}
+      const conv=[10,25,50,100,250,500].map(n=>{try{return [n,BT.tree({...P,N:n}).price]}catch(e){return [n,null]}});
+      const sm=BT.small({...P,N:4},4);
+      const nodeCell=x=>x?`<td><b>${fx(x.s,1)}</b><div class="mut" style="font-size:11px">${x.ex?'exercise: ':'option '}${fx(x.v,2)}</div></td>`:'<td></td>';
+      const treeTbl=`<table class="stmt"><tr><th class="l">Step</th>${[0,1,2,3,4].map(i=>`<th>${i}</th>`).join('')}</tr>${[4,3,2,1,0].map(j=>`<tr><td class="l">${j} up</td>${[0,1,2,3,4].map(i=>j<=i?nodeCell(sm.rows[i][j]):'<td></td>').join('')}</tr>`).join('')}</table>`;
+      out.innerHTML=`<div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">${tile('Option value','₹'+fx(R.price,2),fx(R.price/S*100,2)+'% of the stock price')}${tile('Moneyness',itm?'In the money':'Out of the money','intrinsic ₹'+fx(intr,2)+' · time value ₹'+fx(Math.max(0,R.price-intr),2))}${tile('Break-even at expiry','₹'+fx(be,1),fx((be/S-1)*100,1)+'% from today',call?'':'')}${tile('Chance of finishing in the money',fx(R.probITM*100,0)+'%','under risk-neutral pricing, not a forecast')}</div>
+       <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin-top:8px">${tile('Delta',fx(R.delta,3),'₹ change per ₹1 in the stock')}${tile('Gamma',fx(R.gamma,4),'change in delta per ₹1')}${tile('Theta per day','₹'+fx(R.thetaDay,2),'time decay')}${tile('Vega','₹'+fx(R.vega,2),'per 1 point of volatility')}${tile('Rho','₹'+fx(R.rho,2),'per 1 point of interest rate')}</div>
+       ${P.style==='american'?`<p class="mut" style="font-size:13px;margin:8px 0">Early exercise adds <b>₹${fx(R.earlyPremium,2)}</b> over the same European option (₹${fx(R.european,2)}). ${R.earlyPremium<0.005?'Here it is worth almost nothing: with no dividends a call is never better exercised early.':''}</p>`:`<p class="mut" style="font-size:13px;margin:8px 0">Black-Scholes gives ₹${fx(R.bs,2)} for this European option; the tree is within ₹${fx(Math.abs(R.price-R.bs),2)}.</p>`}
+       ${mkt>0?(iv!=null?`<p style="margin:8px 0"><b>Implied volatility: ${fx(iv*100,1)}%</b> for a market premium of ₹${fx(mkt,2)}, against ${fx(P.vol*100,1)}% used above. ${iv>P.vol*1.15?'The market is pricing more movement than the model forecast.':iv<P.vol*0.85?'The market is pricing less movement than the model forecast.':'Close to the model forecast.'}</p>`:`<p class="warn" style="margin:8px 0">No volatility between 1% and 300% gives a premium of ₹${fx(mkt,2)} for these inputs. Check the strike, expiry and type.</p>`):''}
+       <h4 style="margin:14px 0 4px">Value against the stock price <span class="tag">today and at expiry</span></h4><canvas id="opc" style="height:230px"></canvas>${qleg([['Value today (tree)','#0f6b4a'],['Payoff at expiry','#8b94a3']])}
+       <h4 style="margin:14px 0 4px">Does the tree converge? <span class="tag">price by number of steps</span></h4>
+       <table class="stmt"><tr><th class="l">Steps</th>${conv.map(c=>`<th>${c[0]}</th>`).join('')}${P.style==='european'?'<th>Black-Scholes</th>':''}</tr><tr><td class="l">Option value ₹</td>${conv.map(c=>`<td>${c[1]!=null?fx(c[1],3):'–'}</td>`).join('')}${P.style==='european'?`<td>${fx(R.bs,3)}</td>`:''}</tr></table>
+       <details style="margin-top:12px"><summary style="cursor:pointer"><b>How the tree works</b> (a 4-step example for this contract)</summary>${treeTbl}<p class="mut" style="font-size:12px">Each step the stock goes up by a factor u = ${fx(sm.u,4)} or down by d = ${fx(sm.d,4)} (here with 4 steps). The option value is worked out backwards from expiry: at the end it is the payoff, and at each earlier node it is the discounted average of the two nodes ahead, weighted by the risk-neutral probability of an up move (${fx(sm.pu*100,1)}%). For an American option each node also takes the larger of that value and exercising now.</p></details>
+       <p class="mut" style="font-size:12px;margin-top:10px">Volatility starts at the model forecast (GARCH), which is not the market's implied volatility; change it to match a quoted price, or enter a market premium above to solve for it. Options on NSE stocks are European-style as far as I know, so use European for those; American is here for comparison. The dividend yield is a continuous rate, and discrete dividends, taxes, lot sizes and transaction costs are not modelled. This is a calculator for learning and for sanity-checking quotes, not trading advice.</p>`;
+      const cv=$('#opc');if(cv)lineChart(cv,[{name:'Value today',x:spots,y:pv,color:'#0f6b4a'},{name:'At expiry',x:spots,y:po,color:'#8b94a3'}],{dec:1,zero:true});
+    };
+    ['opty','opst','opk','opd','opv','opr','opq','opn','opm'].forEach(id=>{const e=$('#'+id);if(e)e.oninput=upd});upd();
+  };
   after.exe=()=>{if(!IN||!$('#qq'))return;
     const upd=()=>{const q=Math.max(0,Math.floor(parseFloat($('#qq').value)||0)),part=q/IN.adv*100;
       $('#qpart').innerHTML=`<b>${T.fmt(part,1)}%</b> of a typical day's volume ${part>10?'<span class="warn">High. Orders above roughly 10% of daily volume usually move the price; consider spreading over several days.</span>':part>5?'<span class="warn">Meaningful. Expect some impact.</span>':'<span class="mut">Comfortably small.</span>'}`;
