@@ -6,7 +6,8 @@
   const btn = document.getElementById('acct');
   if (!C.url || !C.key) { window.TL_AUTH = { gate: false, in: () => true }; if (btn) btn.style.display = 'none'; return; }
   // gate: while signed out, the quant / order-flow / valuation pages are locked (app.js reads this)
-  window.TL_AUTH = { gate: true, in: () => !!sess };
+  const GATE = C.gate === true; // set gate: true in config.js to lock the quant / order-flow / valuation pages for signed-out visitors
+  window.TL_AUTH = { gate: GATE, in: () => !!sess };
   const URL_ = C.url.replace(/\/+$/, ''), SK = 'tl_session', MK = 'tl_sync_meta';
   const skip = k => !k || k.indexOf('tl_') !== 0 || k === SK || k === MK;
   const ls = { get: k => { try { return localStorage.getItem(k) } catch (e) { return null } }, set: (k, v) => { try { Storage.prototype._set.call(localStorage, k, v) } catch (e) { } }, del: k => { try { localStorage.removeItem(k) } catch (e) { } } };
@@ -71,7 +72,7 @@
   let wasIn = null;
   function paint() {
     const nowIn = !!sess;
-    document.body.classList.toggle('tl-out', !nowIn);
+    document.body.classList.toggle('tl-out', GATE && !nowIn);
     if (wasIn !== null && wasIn !== nowIn) { try { window.dispatchEvent(new Event('tl-auth')); } catch (e) { } }
     wasIn = nowIn;
     if (btn) { btn.classList.toggle('on', !!sess); btn.title = sess ? 'Signed in as ' + sess.user.email : 'Sign in'; }
