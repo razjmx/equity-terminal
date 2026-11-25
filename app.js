@@ -1045,10 +1045,10 @@ function renderMarket(anim){
   {h+=sec('gl','Top gainers and losers','by index and time frame · from daily closes')+'<div id="glbox"></div>'}
 
   // sector heatmap (third)
-  {h+=sec('ind','Sector heatmap','block size = market cap, colour = market-cap-weighted return over the chosen period');
+  {h+=sec('ind','Index heatmap','NSE index closing levels · pick a menu on the left and a time frame next to it');
    h+='<div id="hmwrap"></div>'}
 
-  const chips=[['idx','Indices'],['gl','Gainers & losers'],['ind','Sector heatmap']];
+  const chips=[['idx','Indices'],['gl','Gainers & losers'],['ind','Heatmap']];
   const bar=`<div class="mh-bar"><div class="chips">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</div>
    <div class="seg" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div></div>
    <div class="mut" style="font-size:12px;margin:-4px 0 6px">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</div>`;
@@ -1059,7 +1059,7 @@ function renderMarket(anim){
   document.querySelectorAll('tr.ind').forEach(tr=>tr.onclick=()=>{FILT.ind=tr.dataset.ind;FILT.q='';FILT.rel='all';location.hash='#/screener'});
   MH.charts=specs;specs.forEach(sp=>{const cv=document.getElementById(sp.id);if(cv)mchart(cv,sp,anim)});
   try{glPanel()}catch(e){}
-  try{heatmapPanel()}catch(e){const w=$('#hmwrap');if(w)w.innerHTML='<div class="card"><p class="mut">Heatmap needs the latest market data. Run the Daily refresh once.</p></div>'}
+  try{idxHeatPanel()}catch(e){const w=$('#hmwrap');if(w)w.innerHTML='<div class="card"><p class="mut">Heatmap needs the latest market data. Run the Daily refresh once.</p></div>'}
   countUps(view);
 }
 let _rz;window.addEventListener('resize',()=>{clearTimeout(_rz);_rz=setTimeout(()=>{if(document.getElementById('hmbox'))try{hmDraw()}catch(e){}
@@ -1119,8 +1119,31 @@ function hmGroups(){
   return Object.entries(g).map(([name,a])=>{const mc=a.reduce((x,y)=>x+y.mc,0),w=a.reduce((x,y)=>x+y.mc*y.ret,0)/mc,sr=a.map(x=>x.ret).sort((x,y)=>x-y),m=sr.length>>1;
     return {name,v:mc,ret:w,med:sr.length%2?sr[m]:(sr[m-1]+sr[m])/2,n:a.length,stocks:a}}).sort((a,b)=>b.v-a.v);
 }
-function heatmapPanel(){
+// ---------- index heatmap (NSE style: menu | time frame | tiles) ----------
+const IXH={g:'broad',tf:'r1d'};
+const IXH_G=[['broad','Broad Market Indices'],['sectoral','Sectoral Indices'],['thematic','Thematic Indices'],['strategy','Strategy Indices'],['stocks','Stocks by industry']];
+const IXH_TF=[['r1d','1D',5,'1 day'],['r1w','1W',8,'1 week'],['r1m','1M',15,'1 month'],['r3m','3M',25,'3 months'],['r6m','6M',35,'6 months'],['r1y','1Y',50,'1 year']];
+let IXH_DATA;
+async function idxHeatPanel(){
   const w=$('#hmwrap');if(!w)return;
+  if(IXH_DATA===undefined){try{IXH_DATA=await get('data/index_heat.json','json')}catch(e){IXH_DATA=null}}
+  const D0=IXH_DATA,tfo=IXH_TF.find(x=>x[0]===IXH.tf)||IXH_TF[0],sc=tfo[2],stocks=IXH.g==='stocks';
+  const col=v=>{if(v==null)return '#8b94a3';if(Math.abs(v)<0.005)return '#9aa3b2';const t=Math.min(1,Math.abs(v)/sc),a=.5+.5*t;return v>0?`rgba(22,150,76,${a})`:`rgba(205,40,40,${a})`};
+  const f=v=>v==null?'n/a':(v>0?'+':'')+T.fmt(v,2)+'%';
+  w.innerHTML=`<div class="ixh${stocks?' nob':''}"><div class="ixa">${IXH_G.map(([k,l])=>`<button data-g="${k}" class="${IXH.g===k?'on':''}">${l}</button>`).join('')}</div>${stocks?'':`<div class="ixb" title="Time frame">${IXH_TF.map(([k,l])=>`<button data-t="${k}" class="${IXH.tf===k?'on':''}">${l}</button>`).join('')}</div>`}<div class="ixc" id="ixc"></div></div>`;
+  w.querySelectorAll('.ixa button').forEach(b=>b.onclick=()=>{IXH.g=b.dataset.g;idxHeatPanel()});
+  w.querySelectorAll('.ixb button').forEach(b=>b.onclick=()=>{IXH.tf=b.dataset.t;idxHeatPanel()});
+  const box=$('#ixc');
+  if(stocks){heatmapPanel(box);return}
+  if(!D0||!D0.groups){box.innerHTML='<div class="card"><p class="mut">The index data is not built yet. In the Actions tab, run <b>NSE index levels</b> once; it then updates on weekdays after the close.</p></div>';return}
+  const L=D0.groups[IXH.g]||[],miss=L.filter(r=>r[IXH.tf]==null).length;
+  const leg=[-1,-.6,-.2,0,.2,.6,1].map(m=>{const v=m*sc;return `<span style="background:${col(v)}">${m===0?'0%':(v>0?'+':'')+T.fmt(v,0)+'%'}</span>`}).join('');
+  box.innerHTML=`<div class="ixhead"><b>${IXH_G.find(x=>x[0]===IXH.g)[1]}</b> <span class="mut">(${L.length}) · ${tfo[3]} change · as on ${esc(D0.asof)}</span><div class="ixleg" title="Colour scale for this time frame">${leg}</div></div>
+   <div class="ixg">${L.map(r=>`<div class="ixt" title="${esc(r.n)}" style="background:${col(r[IXH.tf])}"><b>${esc(r.n.toUpperCase())}</b><span class="ixv"><i>${T.fmt(r.c,2)}</i><em>${f(r[IXH.tf])}</em></span></div>`).join('')}</div>
+   <p class="mut" style="font-size:12px;margin:10px 0 0">NSE end-of-day index closes. Colour is the change over the chosen time frame, stronger colour means a bigger move; the scale is shown above and changes with the time frame.${miss?` <b>${miss} of ${L.length}</b> indices do not yet have enough history for ${tfo[3]} and show n/a; the history grows by one day each weekday (${D0.history_days} days stored).`:''}</p>`;
+}
+function heatmapPanel(target){
+  const w=target||$('#hmwrap');if(!w)return;
   const have=D.ind&&Object.keys(D.ind).length>0;
   const lvs=HM_LV.filter(([k])=>have&&Object.values(D.ind).some(r=>r[k]));
   if(!have&&['macro','basic_industry'].includes(HM.level))HM.level='sector';
@@ -1130,8 +1153,8 @@ function heatmapPanel(){
    <span class="hmcrumb" id="hm-crumb"></span></div>
    <div id="hmbox" class="hmbox"></div>
    <div class="hmleg"><span>−${HM_SC[HM.tf]}%</span><i></i><span>0</span><i class="g"></i><span>+${HM_SC[HM.tf]}%</span><em class="mut">Returns use the latest close vs the close ${({r1d:'one trading day',r1w:'7 days',r1m:'one month',r3m:'three months',r6m:'six months',r1y:'one year'})[HM.tf]} earlier. Group return is weighted by market cap.</em></div>`;
-  $('#hm-tf').querySelectorAll('button').forEach(b=>b.onclick=()=>{HM.tf=b.dataset.k;heatmapPanel()});
-  const lv=$('#hm-lv');if(lv)lv.querySelectorAll('button').forEach(b=>b.onclick=()=>{HM.level=b.dataset.k;HM.drill=null;heatmapPanel()});
+  $('#hm-tf').querySelectorAll('button').forEach(b=>b.onclick=()=>{HM.tf=b.dataset.k;heatmapPanel(w)});
+  const lv=$('#hm-lv');if(lv)lv.querySelectorAll('button').forEach(b=>b.onclick=()=>{HM.level=b.dataset.k;HM.drill=null;heatmapPanel(w)});
   hmDraw();
 }
 function hmDraw(){
