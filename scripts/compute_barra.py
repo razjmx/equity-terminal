@@ -1,10 +1,11 @@
 """Barra-style multi-factor risk model for the stock universe.
 
-Each day, stock returns are regressed (cap-weighted least squares) on industry dummies plus three style exposures
+Each day, stock returns are regressed (cap-weighted least squares) on industry dummies plus four style exposures
 that can be computed from prices without look-ahead:
     Momentum  = return from 12 months ago to 1 month ago
     Volatility = realised volatility over the previous 60 days
     Size       = log market cap (current, so it is a static exposure)
+    Beta       = 252-day sensitivity to the cap-weighted market return, so defensive stocks are not treated like the rest of their industry
 The daily regression gives factor returns and stock-specific (residual) returns. The factor covariance matrix is an
 exponentially weighted estimate of the factor returns; specific variances come from the residuals, shrunk 20% to the
 cross-sectional median. A portfolio's variance is then x'Fx + sum(w^2 * specific variance), with x its factor exposures.
@@ -27,6 +28,7 @@ import numpy as np
 import pandas as pd
 
 OUT = "data/quant"
+NS = 4                 # number of style factors
 T_WIN = 750            # trading days of factor returns used
 HL = 120               # half-life, days, of the exponential weights
 MIN_IND = 8            # industries with fewer stocks are merged into "Other"
@@ -59,11 +61,12 @@ def zscore(x, w):
     return np.clip(z, -3, 3)
 
 
-def exposures(R, t, logmc, w):
-    """Style exposures for day t using returns before t. R: (days x stocks) log returns."""
+def exposures(R, t, logmc, w, mkt):
+    """Style exposures for day t using returns before t. R: (days x stocks) log returns, mkt: market return per day."""
     n = R.shape[1]
     mom = np.full(n, np.nan)
     vol = np.full(n, np.nan)
+    beta = np.full(n, np.nan)
     if t >= 252:
         seg = R[t - 252:t - 21]
         cnt = np.isfinite(seg).sum(axis=0)
@@ -72,7 +75,16 @@ def exposures(R, t, logmc, w):
         seg = R[t - 60:t]
         cnt = np.isfinite(seg).sum(axis=0)
         vol = np.where(cnt >= 40, np.nanstd(seg, axis=0) * math.sqrt(252), np.nan)
-    return np.vstack([zscore(mom, w), zscore(vol, w), zscore(logmc, w)])
+    if t >= 252:
+        seg = R[t - 252:t]
+        m = mkt[t - 252:t]
+        m = m - m.mean()
+        ok = np.isfinite(seg)
+        sx = np.where(ok, seg, 0.0)
+        mu = sx.sum(axis=0) / np.maximum(ok.sum(axis=0), 1)
+        cov = ((sx - mu) * np.where(ok, m[:, None], 0.0)).sum(axis=0) / np.maximum(ok.sum(axis=0), 1)
+        beta = np.where(ok.sum(axis=0) >= 150, cov / max(float(np.var(m)), 1e-12), np.nan)
+    return np.vstack([zscore(mom, w), zscore(vol, w), zscore(logmc, w), zscore(beta, w)])
 
 
 def fit_day(r, Xs, ind, w, nind):
@@ -80,7 +92,7 @@ def fit_day(r, Xs, ind, w, nind):
     ok = np.isfinite(r) & np.isfinite(Xs).all(axis=0) & (ind >= 0)
     if ok.sum() < nind + 20:
         return None
-    X = np.zeros((ok.sum(), nind + 3))
+    X = np.zeros((ok.sum(), nind + NS))
     X[np.arange(ok.sum()), ind[ok]] = 1.0
     X[:, nind:] = Xs[:, ok].T
     sw = np.sqrt(w[ok])
@@ -167,6 +179,8 @@ def main():
     mcap[~np.isfinite(mcap)] = np.nanmedian(mcap)
     w = np.sqrt(mcap)
     logmc = np.log(mcap)
+    wn = w / w.sum()
+    mkt = np.nansum(np.nan_to_num(R) * wn[None, :], axis=1)      # cap-weighted market return of the universe
     # industries
     cnt = {}
     for i in inds:
@@ -182,10 +196,10 @@ def main():
     days = list(range(t_start, D))
     f_list, u_list, r2 = [], [], []
     for t in days:
-        Xs = exposures(R, t, logmc, w)
+        Xs = exposures(R, t, logmc, w, mkt)
         out = fit_day(R[t], Xs, ind, w, nind)
         if out is None:
-            f_list.append(np.full(nind + 3, np.nan))
+            f_list.append(np.full(nind + NS, np.nan))
             u_list.append(np.full(R.shape[1], np.nan))
             continue
         f_list.append(out[0])
@@ -198,14 +212,14 @@ def main():
     n = Fr.shape[0]
     # ---- model on the full window, exposures as of today
     F, sv = build(Fr, U)
-    Xnow = exposures(R, D, logmc, w)
+    Xnow = exposures(R, D, logmc, w, mkt)
     # ---- out-of-sample check: fit on the early part, test random portfolios on the last HOLD days
     diag = {"portfolios": 0}
     if n > HOLD + 250:
         n1 = n - HOLD
         F1, sv1 = build(Fr[:n1], U[:n1])
         t_split = days[np.where(good)[0][n1 - 1]] + 1
-        X1 = exposures(R, t_split, logmc, w)
+        X1 = exposures(R, t_split, logmc, w, mkt)
         ok = np.isfinite(X1).all(axis=0) & np.isfinite(Xnow).all(axis=0)
         okidx = np.where(ok)[0]
         rng = np.random.default_rng(SEED)
@@ -215,16 +229,31 @@ def main():
         for p in range(npf):
             pick = rng.choice(okidx, size=k, replace=False)
             W[p, pick] = 1.0 / k
-        Xl = np.zeros((R.shape[1], nind + 3))
+        Xl = np.zeros((R.shape[1], nind + NS))
         Xl[np.arange(R.shape[1]), np.where(ind >= 0, ind, 0)] = 1.0
         Xl[:, nind:] = np.nan_to_num(X1.T)
-        pred = np.sqrt(pvar(W, Xl, F1, sv1))
         Rt = R[days[np.where(good)[0][n1]]:days[np.where(good)[0][-1]] + 1]
-        real = np.nanstd(np.nan_to_num(Rt) @ W.T, axis=0) * math.sqrt(252)
+
+        def check(pool, k_, seed):
+            rg = np.random.default_rng(seed)
+            Wp = np.zeros((npf, R.shape[1]))
+            for p in range(npf):
+                Wp[p, rg.choice(pool, size=min(k_, len(pool)), replace=False)] = 1.0 / min(k_, len(pool))
+            pr = np.sqrt(pvar(Wp, Xl, F1, sv1))
+            rl = np.nanstd(np.nan_to_num(Rt) @ Wp.T, axis=0) * math.sqrt(252)
+            return pr, rl
+
+        pred, real = check(okidx, k, SEED)
         ratio = real / pred
+        beta1 = X1[3]
+        qs = np.nanpercentile(beta1[okidx], [25, 75])
+        lo_pool, hi_pool = okidx[beta1[okidx] <= qs[0]], okidx[beta1[okidx] >= qs[1]]
+        pl, rl_ = check(lo_pool, k, SEED + 1) if len(lo_pool) >= k else (pred, real)
+        ph, rh_ = check(hi_pool, k, SEED + 2) if len(hi_pool) >= k else (pred, real)
         diag = {"portfolios": int(npf), "stocks_each": int(k), "test_days": int(Rt.shape[0]),
                 "ratio_mean": round(float(np.mean(ratio)), 3), "ratio_median": round(float(np.median(ratio)), 3),
                 "corr": round(float(np.corrcoef(pred, real)[0, 1]), 3),
+                "ratio_lowbeta": round(float(np.mean(rl_ / pl)), 3), "ratio_highbeta": round(float(np.mean(rh_ / ph)), 3),
                 "pred_mean": round(float(pred.mean()) * 100, 1), "real_mean": round(float(real.mean()) * 100, 1)}
     stocks = {}
     for j, s in enumerate(syms):
@@ -233,9 +262,9 @@ def main():
             continue
         stocks[s] = {"i": int(ind[j]), "x": [round(float(v), 3) for v in x], "sv": round(float(sv[j]), 5)}
     out = {"asof": str(mk.index[-1].date()), "n_stocks": len(stocks), "n_days": int(n), "halflife": HL,
-           "inds": names, "styles": ["Momentum", "Volatility", "Size"],
+           "inds": names, "styles": ["Momentum", "Volatility", "Size", "Beta"],
            "F": [[round(float(v), 6) for v in row] for row in F],
-           "fvol": [round(float(math.sqrt(max(F[k, k], 0))) * 100, 2) for k in range(nind + 3)],
+           "fvol": [round(float(math.sqrt(max(F[k, k], 0))) * 100, 2) for k in range(nind + NS)],
            "r2": round(float(np.mean(r2)) * 100, 1) if r2 else None, "diag": diag,
            "stocks": stocks,
            "note": "Cap-weighted daily regressions on industry dummies and three price-based style factors; EWMA factor covariance, "
