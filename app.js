@@ -137,12 +137,25 @@ async function boot(){
   window.addEventListener('hashchange',route);route();
 }
 
+const LOCKED_TABS=['valuation','orderflow','quant'];
+const isLocked=()=>!!(window.TL_AUTH&&window.TL_AUTH.gate&&!window.TL_AUTH.in());
+function lockPage(name){
+  view.innerHTML=`<div class="card lockc"><div class="lockic">&#128274;</div><h2>${esc(name)}</h2><p>Quant models, Order Flow and the valuation models are for signed-in users.<br>Market overview, company search, the screener and basic stock pages are open to everyone.</p><button class="primary" id="lk-in">Sign in</button></div>`;
+  const b=document.getElementById('lk-in');if(b)b.onclick=()=>{const a=document.getElementById('acct');if(a)a.click()};
+}
+window.addEventListener('tl-auth',()=>{route.last=null;route()});
 function route(){
   const h=location.hash||'#/market';const p=h.split('/');
   const key=p[1]==='stock'?'research':(p[1]==='sector'?'market':(p[1]||'market'));
   document.querySelectorAll('#topnav a').forEach(a=>a.classList.toggle('on',a.dataset.k===key));
   try{const on=document.querySelector('#topnav a.on'),pl=document.getElementById('pill');if(on&&pl){pl.style.left=on.offsetLeft+'px';pl.style.width=on.offsetWidth+'px';pl.style.opacity=1}else if(pl)pl.style.opacity=0}catch(e){}
   if(route.last!==h){window.scrollTo(0,0);route.last=h}
+  if(isLocked()){
+    if(p[1]==='orderflow')return lockPage('Order Flow');
+    if(p[1]==='quant')return lockPage('Quant Lab');
+    if(p[1]==='financials')return lockPage('Financial models');
+    if(p[1]==='stock'&&p[2]&&LOCKED_TABS.includes(p[3]))return lockPage({valuation:'Valuation models',orderflow:'Order Flow',quant:'Quant models'}[p[3]]+' · '+decodeURIComponent(p[2]));
+  }
   if(p[1]==='stock'&&p[2])return stock(decodeURIComponent(p[2]),p[3]);
   if(p[1]==='sector'&&p[2]&&p[3])return sectorPage(p[2],decodeURIComponent(p[3]));
   if(p[1]==='screener')return screener();
@@ -1779,7 +1792,7 @@ async function stock(s,tab){
   const stat=(k,val)=>`<div class="stat"><div class="k">${k}</div><div class="sv">${val}</div></div>`;
   const dl='';
   const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['peers','Peers'],['orderflow','Order Flow'],['quant','Quant']];
-  const tabsH=`<div class="tabs">${TABS.map(t=>`<a href="#/stock/${esc(s)}/${t[0]}" class="${tab===t[0]?'on':''}">${t[1]}</a>`).join('')}${['Compare','Shareholding','News & Events','Research Notes'].map(x=>`<span title="Coming later">${x}</span>`).join('')}<b class="mini">${esc(s)} <em>₹${T.fmt(price,2)}</em>${chg!=null?` <i class="${cls(chg)}">${chg>=0?'+':''}${T.fmt(chg,2)}%</i>`:''}</b></div>`;
+  const tabsH=`<div class="tabs">${TABS.map(t=>`<a href="#/stock/${esc(s)}/${t[0]}" class="${tab===t[0]?'on':''}${LOCKED_TABS.includes(t[0])?' lk':''}">${t[1]}</a>`).join('')}${['Compare','Shareholding','News & Events','Research Notes'].map(x=>`<span title="Coming later">${x}</span>`).join('')}<b class="mini">${esc(s)} <em>₹${T.fmt(price,2)}</em>${chg!=null?` <i class="${cls(chg)}">${chg>=0?'+':''}${T.fmt(chg,2)}%</i>`:''}</b></div>`;
   let h=tabsH+`<div class="crumb"><a href="#/market">Research</a> › ${esc(s)}</div>
    <div class="card"><div class="sh"><div class="logo">${esc(ini)}</div>
     <div><h1>${esc(u.company||s)}</h1><div class="sub">${esc(s)}.NSE</div><span class="tag">${esc(u.industry||'')}</span>${V.market_cap_cr!=null?`<span class="tag">${capOf(V.market_cap_cr)}</span>`:''}${u.index==='microcap250'?'<span class="tag" title="In the Nifty Microcap 250, outside the Nifty 500. Data can be thinner and trading less liquid.">Microcap 250</span>':''}${met?`<span class="tag">${esc(met.type)}</span>`:''}</div>
@@ -1808,7 +1821,7 @@ async function stock(s,tab){
 
   if(tab==='overview'){
     h+=`<div class="ov"><div><div class="card"><h3 style="align-items:flex-start">Price<span class="pctl"><span class="ctr"><span class="range" id="mode">${[['area','Area'],['line','Line'],['candle','Candle']].map(x=>`<button data-m="${x[0]}">${x[1]}</button>`).join('')}</span><span class="range" id="rng">${['3M','6M','1Y','3Y','All'].map(x=>`<button data-r="${x}">${x}</button>`).join('')}</span></span><div class="retline" id="retline"></div></span></h3><canvas id="pc" style="height:380px;touch-action:pan-y"></canvas><div class="k" style="margin-top:4px"><span style="color:#2f6fdb">▬</span> 50-day &nbsp; <span style="color:#9b59d0">▬</span> 200-day &nbsp; · hover or tap the chart for details</div></div></div>
-     <div>${keyRatios}${vs}</div></div>`;
+     <div>${keyRatios}${isLocked()?'<div class="card lockc mini"><div class="lockic">&#128274;</div><h3>Valuation models</h3><p class="mut">Fair value and model inputs are for signed-in users.</p></div>':vs}</div></div>`;
     h+=technicals();
   }else if(tab==='financials'){
     const tl=(k,v)=>`<div class="tile"><div class="k">${k}</div><div class="tv">${v}</div></div>`;
