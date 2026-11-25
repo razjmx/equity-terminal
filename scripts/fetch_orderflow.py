@@ -108,13 +108,16 @@ def liquidity(h, l, sh, sl, tol=0.0015):
     return cluster(hi), cluster(lo)
 
 
-def analyse(df):
-    """df: index datetimes (exchange tz), columns Open High Low Close Volume. Returns dict or None."""
+def analyse(df, sessions=SESSIONS, agg=False, k=1.0, tol=0.0015):
+    """df: index datetimes (exchange tz), columns Open High Low Close Volume. Returns dict or None.
+    agg=False: session metrics (VWAP, POC, delta, change) are for the LAST session, as before.
+    agg=True : every metric is computed over the whole window (1M / 3M / 6M views); k widens the score thresholds
+               (a 6-month move of 10% is ordinary, a 1-day move of 10% is not)."""
     df = df.dropna(subset=["Open", "High", "Low", "Close"]).copy()
     df["Volume"] = df["Volume"].fillna(0)
     if df.empty:
         return None
-    days = sorted(set(df.index.date))[-SESSIONS:]
+    days = sorted(set(df.index.date))[-sessions:]
     df = df[[d in days for d in df.index.date]]
     if len(df) < 30:
         return None
@@ -122,9 +125,12 @@ def analyse(df):
     di = np.array([days.index(d) for d in df.index.date])
     hm = np.array([t.hour * 100 + t.minute for t in df.index])
     a = atr_series(h, l, c)
-    last = di == di.max()
+    last = np.ones(len(di), bool) if agg else di == di.max()
     px = float(c[-1])
-    prev_close = float(c[di == di.max() - 1][-1]) if di.max() > 0 else float(o[last][0])
+    if agg:
+        prev_close = float(o[0])
+    else:
+        prev_close = float(c[di == di.max() - 1][-1]) if di.max() > 0 else float(o[last][0])
     chg = (px / prev_close - 1) * 100
     ho, lo_, vv = h[last], l[last], v[last]
     tp = (h[last] + l[last] + c[last]) / 3
@@ -136,20 +142,24 @@ def analyse(df):
     dr = delta / vol_s if vol_s > 0 else 0.0
     prof, step = profile(ho, lo_, vv, lo_.min(), ho.max())
     poc, vah, val = poc_value_area(prof, lo_.min(), step) if vol_s > 0 else (px, px, px)
-    prev_vols = [float(v[di == k].sum()) for k in range(di.max())]
-    rv = vol_s / (np.mean(prev_vols)) if prev_vols and np.mean(prev_vols) > 0 else 1.0
+    if agg:
+        per = [float(v[di == q].sum()) for q in range(di.max() + 1)]
+        rv = float(np.mean(per[-5:]) / np.mean(per)) if np.mean(per) > 0 else 1.0     # last 5 sessions vs window average
+    else:
+        prev_vols = [float(v[di == q].sum()) for q in range(di.max())]
+        rv = vol_s / (np.mean(prev_vols)) if prev_vols and np.mean(prev_vols) > 0 else 1.0
     blocks = order_blocks(o, h, l, c, v, a)
     sh, sl = swings(h, l)
-    lq_hi, lq_lo = liquidity(h, l, sh, sl)
+    lq_hi, lq_lo = liquidity(h, l, sh, sl, tol)
     # structure: last close vs first close of the window
     trend = px / float(c[0]) - 1
     comps = [
-        (.20, math.tanh((px - vwap) / vwap / .004)),
+        (.20, math.tanh((px - vwap) / vwap / (.004 * k))),
         (.15, (px - lo_.min()) / max(ho.max() - lo_.min(), 1e-9) * 2 - 1),
         (.20, max(-1, min(1, dr * 2))),
-        (.20, math.tanh(chg / 1.5)),
-        (.10, math.tanh((px - poc) / poc / .005)),
-        (.15, math.tanh(trend / .03)),
+        (.20, math.tanh(chg / (1.5 * k))),
+        (.10, math.tanh((px - poc) / poc / (.005 * k))),
+        (.15, math.tanh(trend / (.03 * k))),
     ]
     net = sum(w * x for w, x in comps) * min(1.15, .85 + .15 * rv)
     bias = "bullish" if net > .15 else "bearish" if net < -.15 else "neutral"
@@ -186,7 +196,7 @@ def analyse(df):
     return {"d": str(days[-1]), "days": [str(d) for d in days], "px": r2(px), "chg": r2(chg), "o": r2(o[last][0]), "h": r2(ho.max()),
             "l": r2(lo_.min()), "vwap": r2(vwap), "poc": r2(poc), "vah": r2(vah), "val": r2(val), "delta": int(delta), "dr": r2(dr * 100),
             "rv": r2(rv), "score": score, "net": r2(net), "bias": bias, "zone": zone, "sup": sup, "res": res, "rr": r2(rr), "risk": r2(risk),
-            "blocks": blocks, "lqh": lq_hi, "lql": lq_lo, "atr": r2(a[-1]), "bars": bars}
+            "blocks": blocks, "lqh": lq_hi, "lql": lq_lo, "atr": r2(a[-1]), "bars": bars, "agg": bool(agg)}
 
 
 def main():
