@@ -63,13 +63,34 @@ def main():
                 pass
         time.sleep(2)
     n_ok = 0
+    ind = {}
+    if os.path.exists("data/industry.csv"):
+        for r in csv.DictReader(open("data/industry.csv", newline="")):
+            ind[r["symbol"]] = r
+    table = {"1w": [], "1m": [], "3m": [], "6m": []}
+    last = {}
+
+    def row(s, r):
+        i = ind.get(s, {})
+        return {"s": s, "px": r["px"], "chg": r["chg"], "score": r["score"], "bias": r["bias"], "net": r["net"], "zone": r["zone"],
+                "rr": r["rr"], "vwap": r["vwap"], "dr": r["dr"], "rv": r["rv"], "m": i.get("macro", ""), "sec": i.get("sector", "")}
+
     for s in syms:
         res = {}
         try:
+            # 1 week: rebuild the 5-minute frame from the saved bars and analyse the whole 5 sessions as one window
+            fp = f"{OUT}/{s}.json"
+            if os.path.exists(fp):
+                b5 = json.load(open(fp))
+                idx = [pd.Timestamp(f"{b5['days'][b[0]]} {b[1] // 100:02d}:{b[1] % 100:02d}") for b in b5["bars"]]
+                f5 = pd.DataFrame([[b[2], b[3], b[4], b[5], b[6]] for b in b5["bars"]], index=idx, columns=["Open", "High", "Low", "Close", "Volume"])
+                r = FO.analyse(f5, sessions=5, agg=True, k=1.5, tol=0.002)
+                if r:
+                    table["1w"].append(row(s, r)); last["1w"] = max(last.get("1w", ""), r["d"])
             if s in hourly:
                 r = FO.analyse(hourly[s], agg=True, **CFG["1m"])
                 if r:
-                    res["1m"] = r
+                    res["1m"] = r; table["1m"].append(row(s, r)); last["1m"] = max(last.get("1m", ""), r["d"])
             dd = daily(s)
             if dd is not None:
                 dd = dd[dd["Close"].notna() & (dd["Close"] > 0)].copy()
@@ -78,7 +99,7 @@ def main():
                 for key in ("3m", "6m"):
                     r = FO.analyse(dd.tail(CFG[key]["sessions"] + 1), agg=True, **CFG[key])
                     if r:
-                        res[key] = r
+                        res[key] = r; table[key].append(row(s, r)); last[key] = max(last.get(key, ""), r["d"])
         except Exception as e:
             bad.append(f"{s}: {e!r}"[:80])
         if res:
@@ -86,6 +107,8 @@ def main():
             n_ok += 1
         else:
             bad.append(s)
+    json.dump({"generated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M"), "last": last,
+               **{k: v for k, v in table.items()}}, open("data/orderflow_tf.json", "w"), separators=(",", ":"))
     open("data/orderflow_tf_log.txt", "w").write(
         f"Run (UTC): {datetime.datetime.now(datetime.timezone.utc):%Y-%m-%d %H:%M}\nstocks with long-timeframe data {n_ok} of {len(syms)}\n"
         f"1-hour data for {len(hourly)} stocks\nfailed {len(bad)} {bad[:20]}\n")
