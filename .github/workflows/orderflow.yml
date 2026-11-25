@@ -31,6 +31,10 @@ jobs:
       - name: Order flow analysis
         run: python scripts/fetch_orderflow.py
 
+      - name: NSE delivery % history
+        continue-on-error: true
+        run: python scripts/fetch_delivery_history.py
+
       - name: Order flow, longer time frames (1M, 3M, 6M)
         continue-on-error: true
         run: python scripts/fetch_orderflow_tf.py
