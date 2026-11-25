@@ -99,7 +99,7 @@ def reconcile(hist, log, odir="data/orderflow"):
     rmap = {r["s"]: r for r in rank["stocks"]} if rank else {}
     for fn in os.listdir(odir) if os.path.isdir(odir) else []:
         try:
-            if not fn.endswith(".json"):
+            if not fn.endswith(".json") or fn.endswith(".tf.json"):      # the longer time-frame files are not daily sessions
                 continue
             p = os.path.join(odir, fn)
             d = json.load(open(p))
