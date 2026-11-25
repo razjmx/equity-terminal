@@ -389,7 +389,7 @@ function labPca(b,P,nm){
   <div class="card scroll"><h3>Clusters of stocks that move together</h3><table class="stmt"><tr><th class="l">Cluster</th><th>Stocks</th><th class="l">Industry mix</th></tr>${P.clusters.map(c=>`<tr><td class="l"><b>${esc(c.label)}</b></td><td>${c.n}</td><td class="l" style="white-space:normal">${c.mix.map(m=>esc(m[0])+' '+m[1]).join(' · ')}</td></tr>`).join('')}</table><p class="mut" style="font-size:12px">Ward clustering on each stock's loadings on factors 2 to 6, so the market factor does not swamp the grouping. Open a stock's Quant tab → Market structure to see its cluster mates.</p></div>`;
 }
 function labPort(b,F,nm){
-  const p=QLS.pf,M={equal:'Equal weight',minvar:'Minimum variance',maxsharpe:'Maximum Sharpe',rp:'Risk parity',hrp:'Hierarchical risk parity'};
+  const p=QLS.pf;p.F=F;const M={equal:'Equal weight',minvar:'Minimum variance',maxsharpe:'Maximum Sharpe',rp:'Risk parity',hrp:'Hierarchical risk parity'};
   b.innerHTML=`<div class="card"><h3>Portfolio builder</h3><div class="qform" style="align-items:flex-start"><label style="flex:1;min-width:260px">Stocks (symbols, 2 to 40, separated by space or comma)<textarea id="pfs" rows="3" style="width:100%">${esc(p.syms)}</textarea></label>
     <div style="display:flex;flex-direction:column;gap:8px"><label>Method<select id="pfm">${Object.entries(M).map(([k,v])=>`<option value="${k}"${p.method===k?' selected':''}>${v}</option>`).join('')}</select></label><label>Max weight per stock %<input id="pfc" type="number" min="3" max="100" step="1" value="${p.cap}"></label><label>Estimation window (days)<input id="pfl" type="number" min="120" max="1000" step="21" value="${p.look}"></label></div></div>
     <div class="qform" style="margin-top:8px"><button id="pftop">Fill with top 15 by composite</button><button id="pfrun" class="primary">Build portfolio</button><span id="pfst" class="mut"></span></div></div><div id="pfout"></div>`;
@@ -425,6 +425,51 @@ async function runPort(p,M,nm){
   const wf=await PF.walkForwardAsync(R,methods,{look:p.look,hold:21,cap,costBps:10,rf:.065},f=>{st.textContent=`Walk-forward test ${Math.round(f*100)}%…`});
   p.res.wf=wf;st.textContent='';if(p.res===p.res&&$('#pfwf'))showWf(p,M,wf,dates);
 }
+
+// ----- Black-Litterman (inside the portfolio builder) -----
+function blCard(p,nm,r){
+  const el=$('#pfbl');if(!el||!window.PF)return;
+  p.bl=p.bl||{txt:'',delta:2.5};
+  const ex=r.syms.slice(0,2),eg=ex.length>1?`${ex[0]} 15\n${ex[1]} > ${ex[0]} 3 high`:'';
+  el.innerHTML=`<h3>Black-Litterman: blend your views with the market <span class="tag">optional</span></h3>
+   <p class="mut" style="margin:0 0 8px;font-size:13px">Starts from the returns the market is already pricing in (market-cap weights and the covariance above), then moves them toward your views in proportion to how confident you are. Stocks you have no view on stay close to the market.</p>
+   <div class="qform" style="align-items:flex-start"><label style="flex:1;min-width:260px">Your views, one per line<textarea id="blv" rows="4" style="width:100%" placeholder="${esc(eg)}">${esc(p.bl.txt)}</textarea></label>
+    <div style="display:flex;flex-direction:column;gap:8px"><label>Risk aversion<input id="bld" type="number" min="0.5" max="10" step="0.1" value="${p.bl.delta}"></label><button id="blgo" class="primary">Blend views</button></div></div>
+   <p class="mut" style="font-size:12px;margin:6px 0">Write <b>SYMBOL return%</b> for a view on one stock (expected annual return), or <b>A &gt; B gap%</b> for "A beats B by this much a year". Add <b>low</b>, <b>medium</b> or <b>high</b> at the end for confidence (default medium).</p>
+   <div id="blout"></div>`;
+  $('#blgo').onclick=()=>{p.bl.txt=$('#blv').value;p.bl.delta=Math.max(.5,parseFloat($('#bld').value)||2.5);blRun(p,nm,r)};
+  if(p.bl.res&&p.bl.res.key===r.from+r.to+r.syms.join())blShow(p,nm,r,p.bl.res);
+}
+function blRun(p,nm,r){
+  const out=$('#blout'),syms=r.syms,n=syms.length,PF=window.PF,cap=p.cap/100,errs=[],views=[];
+  const CF={low:.25,med:.5,medium:.5,high:.75},tau=.05;
+  p.bl.txt.split(/\n/).map(l=>l.trim()).filter(Boolean).forEach(line=>{
+    const m=line.match(/^([A-Za-z0-9&\-]+)\s*(?:>\s*([A-Za-z0-9&\-]+))?\s+(-?\d+(?:\.\d+)?)\s*%?\s*(low|medium|med|high|\d+\s*%?)?$/i);
+    if(!m){errs.push(`Could not read: "${line}"`);return}
+    const a=m[1].toUpperCase(),b=m[2]?m[2].toUpperCase():null,val=parseFloat(m[3])/100;let cf=.5;
+    if(m[4]){const t=m[4].toLowerCase();cf=CF[t]!=null?CF[t]:Math.min(.95,Math.max(.05,parseFloat(t)/100))}
+    const ia=syms.indexOf(a),ib=b?syms.indexOf(b):-1;
+    if(ia<0||(b&&ib<0)){errs.push(`${esc(ia<0?a:b)} is not in the portfolio above: "${esc(line)}"`);return}
+    if(b&&ia===ib){errs.push(`Same stock on both sides: "${esc(line)}"`);return}
+    const row=new Array(n).fill(0);row[ia]=1;if(b)row[ib]=-1;
+    views.push({p:row,q:val,conf:cf,label:b?`${a} beats ${b} by ${T.fmt(val*100,1)}% a year`:`${a} returns ${T.fmt(val*100,1)}% a year`,confTxt:cf<=.3?'low':cf<=.6?'medium':'high'});
+  });
+  if(errs.length){out.innerHTML=`<p class="neg" style="font-size:13px">${errs.join('<br>')}</p>`;return}
+  const F=p.F,mc=r.syms.map(s=>F&&F.stocks[s]&&F.stocks[s].raw?F.stocks[s].raw.mcap:null),haveMc=mc.every(x=>x!=null&&x>0),tot=haveMc?mc.reduce((a,x)=>a+x,0):n,wref=mc.map(x=>haveMc?x/tot:1/n);
+  let bl;try{bl=PF.blackLitterman(r.C,wref,p.bl.delta,tau,views)}catch(e){out.innerHTML='<p class="neg">These views conflict or repeat each other. Remove a duplicate and try again.</p>';return}
+  const w0=PF.blWeights(r.C,bl.pi,p.bl.delta,cap),w1=PF.blWeights(r.C,bl.mu,p.bl.delta,cap);
+  const res={key:r.from+r.to+r.syms.join(),views,wref,haveMc,pi:bl.pi,mu:bl.mu,w0,w1,delta:p.bl.delta,tau};p.bl.res=res;blShow(p,nm,r,res);
+}
+function blShow(p,nm,r,B){
+  const out=$('#blout');if(!out)return;const PF=window.PF,n=r.syms.length;
+  const s0=PF.stats(B.w0,r.C,B.mu),s1=PF.stats(B.w1,r.C,B.mu);
+  const vIdx=new Set();B.views.forEach(v=>v.p.forEach((x,i)=>{if(x)vIdx.add(i)}));
+  const rows=r.syms.map((s,i)=>({s,i,wref:B.wref[i],pi:B.pi[i],mu:B.mu[i],w0:B.w0[i],w1:B.w1[i]})).sort((a,b)=>b.w1-a.w1),mx=Math.max(...B.w1,...B.w0);
+  const capHit=!B.haveMc?'':Math.max(...B.wref)>p.cap/100+1e-9?` The largest market-cap weight (${T.fmt(Math.max(...B.wref)*100,0)}%) is above your ${p.cap}% limit, so even the "no views" column is capped.`:'';
+  out.innerHTML=`<div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">${qtile('Views used',String(B.views.length),B.views.map(v=>v.confTxt).join(', '))}${qtile('Volatility, no views',T.fmt(s0.vol*100,1)+'%','capped market-implied weights')}${qtile('Volatility, with views',T.fmt(s1.vol*100,1)+'%','Black-Litterman weights')}${qtile('Biggest change',(()=>{const d=rows.map(x=>({s:x.s,d:x.w1-x.w0})).sort((a,b)=>Math.abs(b.d)-Math.abs(a.d))[0];return (d.d>=0?'+':'')+T.fmt(d.d*100,1)+' pts'})(),(()=>{const d=rows.map(x=>({s:x.s,d:x.w1-x.w0})).sort((a,b)=>Math.abs(b.d)-Math.abs(a.d))[0];return d.s})())}</div>
+   <div class="card scroll" style="margin-top:8px"><table class="stmt"><tr><th class="l">Stock</th><th>Market weight %</th><th>Market-implied return %</th><th>Blended return %</th><th>Weight, no views %</th><th style="width:22%">Weight with views</th><th>Weight with views %</th><th>Change (pts)</th></tr>${rows.map(x=>`<tr class="${vIdx.has(x.i)?'sel':''}"><td class="l"><b>${esc(x.s)}</b><div class="mut" style="font-size:11px">${esc((nm[x.s]||'').slice(0,26))}</div></td><td>${T.fmt(x.wref*100,1)}</td><td>${T.fmt(x.pi*100,1)}</td><td class="${x.mu>x.pi+1e-6?'pos':x.mu<x.pi-1e-6?'neg':''}">${T.fmt(x.mu*100,1)}</td><td>${T.fmt(x.w0*100,1)}</td><td><div class="qpb"><i class="g" style="width:${mx>0?x.w1/mx*100:0}%"></i></div></td><td>${T.fmt(x.w1*100,1)}</td><td class="${x.w1-x.w0>.0005?'pos':x.w1-x.w0<-.0005?'neg':''}">${x.w1-x.w0>=0?'+':''}${T.fmt((x.w1-x.w0)*100,1)}</td></tr>`).join('')}</table>
+   <p class="mut" style="font-size:12px;margin-top:8px">Highlighted rows have a view. Your views: ${B.views.map(v=>`${esc(v.label)} (${v.confTxt})`).join('; ')||'none'}. Weights maximise return minus ${T.fmt(B.delta,1)}/2 × variance, long-only, within your ${p.cap}% limit, fully invested.${B.haveMc?'':' Market-cap data was missing for some stocks, so equal weights stand in for the market.'}${capHit} The prior uncertainty is τ = ${B.tau}. A view moves a stock's return a lot only when you are confident and the stock has few close substitutes; stocks that move with it get pulled along. Treat the output as a way to see what your views imply, not a forecast.</p></div>`;
+}
 function showPort(p,M,nm,r){
   const o=$('#pfout');if(!o)return;
   const rows=r.syms.map((s,i)=>({s,w:r.w[i],rc:r.rc[i]})).sort((a,b)=>b.w-a.w),mxw=Math.max(...r.w);
@@ -435,8 +480,10 @@ function showPort(p,M,nm,r){
   <p class="mut" style="font-size:12px">Share of risk shows how much of the portfolio's volatility each stock accounts for; equal-risk methods aim to even it out. Weights come from the last ${p.look} days only and the estimates are noisy, so treat the output as a starting point and look at the walk-forward test below before trusting a method.</p></div>
   <div class="card"><h3>All methods side by side</h3><table class="stmt"><tr><th class="l">Method</th><th>Expected volatility</th><th>Largest weight</th><th>Effective stocks</th><th>Sharpe (shrunk, rf 0)</th></tr>${Object.keys(M).map(k=>{const q=r.stt[k],w=r.W[k];return `<tr class="${k===p.method?'sel':''}"><td class="l">${M[k]}</td><td>${T.fmt(q.vol*100,1)}%</td><td>${T.fmt(Math.max(...w)*100,1)}%</td><td>${T.fmt(1/w.reduce((a,x)=>a+x*x,0),1)}</td><td>${T.fmt(q.sharpe,2)}</td></tr>`}).join('')}</table></div>
   ${r.fr?`<div class="card"><h3>Efficient frontier <span class="tag">position limit ${p.cap}%</span></h3><canvas id="pffc" style="height:280px"></canvas>${qleg([['Frontier','#2f6fdb'],['Chosen method (big dot)','#0f6b4a'],['Other methods','#8b94a3']])}<p class="mut" style="font-size:12px">Highest expected return for each level of risk, using the shrunk return estimates. Expected returns are the weakest input in portfolio theory, so a portfolio far up the frontier mostly reflects past winners.</p></div>`:''}
+  <div class="card" id="pfbl"></div>
   <div class="card" id="pfwf"><h3>Walk-forward test <span class="tag">re-estimated every 21 days</span></h3><div class="skel" style="height:120px"></div></div>`;
   if(r.fr){const pts=r.fr.map(f=>({x:f.vol*100,y:f.ret*100,line:true}));Object.keys(M).forEach(k=>{const q=r.stt[k];pts.push({x:q.vol*100,y:q.ret*100,c:k===p.method?'#0f6b4a':'#8b94a3',r:k===p.method?6:4,l:k===p.method?'':({equal:'Equal',minvar:'Min var',maxsharpe:'Max Sharpe',rp:'Risk parity',hrp:'HRP'})[k]})});scatterChart($('#pffc'),pts,{xl:'volatility (annualised) →'})}
+  blCard(p,nm,r);
   if(r.wf)showWf(p,M,r.wf,null);
 }
 function showWf(p,M,wf,dates){
