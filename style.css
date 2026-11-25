@@ -460,3 +460,19 @@ table.sotp select.ed{padding:4px 6px}
 
 /* keep every heatmap layer (tiles, pop, tooltip) below the ticker and the pinned menu bar */
 .hmbox{isolation:isolate;z-index:1}
+/* ---- quant ---- */
+.qleg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--m);margin:6px 0 0}.qleg i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.qform{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}.qform label{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--m)}.qform input,.qform select,.qform textarea{color:var(--t)}.qform input[type=number]{width:110px}
+textarea{background:var(--p);color:var(--t);border:1px solid var(--b);border-radius:7px;padding:8px 10px;font:inherit;resize:vertical}
+button.primary{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:600;padding:7px 16px}
+.qpb{position:relative;height:10px;background:var(--bg);border-radius:6px;overflow:hidden;min-width:90px}.qpb i{display:block;height:100%;border-radius:6px;background:var(--m);transition:width .5s}.qpb i.g{background:var(--g)}.qpb i.r{background:var(--r)}.qpb i.n{background:#8b94a3}.qpb b{position:absolute;top:0;bottom:0;width:1px;background:var(--t);opacity:.35}
+.qprof,.qscree{display:flex;align-items:flex-end;gap:3px;height:170px;padding-top:6px;border-bottom:1px solid var(--b)}
+.qscree{height:130px}
+.qcol{position:relative;flex:1;height:100%;display:flex;align-items:flex-end;justify-content:center;gap:1px}.qcol i{display:block;flex:1;max-width:14px;border-radius:2px 2px 0 0;min-height:1px}.qcol i.o{background:#8b94a3;opacity:.7}.qcol i.e{background:var(--brand)}
+.qcol span{position:absolute;bottom:-18px;font-size:10px;color:var(--m);white-space:nowrap}
+.qprof,.qscree{margin-bottom:22px}
+tr.sel td{background:var(--brand2)}
+tr.row{cursor:pointer}tr.row:hover td{background:var(--bg)}
+/* nav has 6 items now: keep clear of the search box */
+@media(min-width:861px){.navrow{padding-right:calc(min(250px,21vw) + 30px)}.navrow .searchbox{width:min(250px,21vw)}.topnav a{padding:7px 12px}}
+#qsub,#qlsub,#qlbody .subtabs{max-width:none;margin-left:0;margin-right:0}
