@@ -1041,14 +1041,14 @@ function renderMarket(anim){
       h+=mcard('ix'+i,ix.name,{big:l==null?'–':T.fmt(l,ix.real?0:1),delta:ch==null?'':sgn(ch,1,'%'),dcls:cls(ch)});
       specs.push({id:'ix'+i,x:X,layers:[{y:a,type:'area'}],auto:true,dec:ix.real?0:1})});h+='</div>'}
 
-  // sector heatmap
+  // top gainers and losers (second)
+  {h+=sec('gl','Top gainers and losers','by index and time frame · from daily closes')+'<div id="glbox"></div>'}
+
+  // sector heatmap (third)
   {h+=sec('ind','Sector heatmap','block size = market cap, colour = market-cap-weighted return over the chosen period');
    h+='<div id="hmwrap"></div>'}
 
-  // top gainers and losers
-  {h+=sec('gl','Top gainers and losers','by index and time frame · from daily closes')+'<div id="glbox"></div>'}
-
-  const chips=[['idx','Indices'],['ind','Sector heatmap'],['gl','Gainers & losers']];
+  const chips=[['idx','Indices'],['gl','Gainers & losers'],['ind','Sector heatmap']];
   const bar=`<div class="mh-bar"><div class="chips">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</div>
    <div class="seg" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div></div>
    <div class="mut" style="font-size:12px;margin:-4px 0 6px">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</div>`;
