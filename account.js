@@ -4,7 +4,9 @@
 (function () {
   const C = window.ACCOUNT_CFG || {};
   const btn = document.getElementById('acct');
-  if (!C.url || !C.key) { if (btn) btn.style.display = 'none'; return; }
+  if (!C.url || !C.key) { window.TL_AUTH = { gate: false, in: () => true }; if (btn) btn.style.display = 'none'; return; }
+  // gate: while signed out, the quant / order-flow / valuation pages are locked (app.js reads this)
+  window.TL_AUTH = { gate: true, in: () => !!sess };
   const URL_ = C.url.replace(/\/+$/, ''), SK = 'tl_session', MK = 'tl_sync_meta';
   const skip = k => !k || k.indexOf('tl_') !== 0 || k === SK || k === MK;
   const ls = { get: k => { try { return localStorage.getItem(k) } catch (e) { return null } }, set: (k, v) => { try { Storage.prototype._set.call(localStorage, k, v) } catch (e) { } }, del: k => { try { localStorage.removeItem(k) } catch (e) { } } };
@@ -66,7 +68,12 @@
   function schedule() { if (!sess) return; clearTimeout(timer); timer = setTimeout(() => sync(false), 2500); }
   // ---- UI ----
   let box = null;
+  let wasIn = null;
   function paint() {
+    const nowIn = !!sess;
+    document.body.classList.toggle('tl-out', !nowIn);
+    if (wasIn !== null && wasIn !== nowIn) { try { window.dispatchEvent(new Event('tl-auth')); } catch (e) { } }
+    wasIn = nowIn;
     if (btn) { btn.classList.toggle('on', !!sess); btn.title = sess ? 'Signed in as ' + sess.user.email : 'Sign in'; }
     if (!box) return;
     const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -75,7 +82,7 @@
       : `<form id="acform"><label>Email<input id="acem" type="email" autocomplete="username" required></label><label>Password<input id="acpw" type="password" autocomplete="current-password" required></label><p class="acerr" id="acerr">${esc(note)}</p><button class="primary" type="submit">Sign in</button></form><p class="acm">Personal login: your settings are saved to your account and follow you between devices. Accounts are created by the site owner only.</p>`;
     const f = box.querySelector('#acform');
     if (f) f.onsubmit = async e => { e.preventDefault(); note = ''; const er = box.querySelector('#acerr'); er.textContent = 'Signing in…';
-      try { keep(await auth('token?grant_type=password', { email: box.querySelector('#acem').value.trim(), password: box.querySelector('#acpw').value })); note = ''; await sync(true); paint(); }
+      try { keep(await auth('token?grant_type=password', { email: box.querySelector('#acem').value.trim(), password: box.querySelector('#acpw').value })); note = ''; await sync(true); paint(); box.hidden = true; }
       catch (x) { er.textContent = x.message; } };
     const s = box.querySelector('#acsync'); if (s) s.onclick = () => { note = 'Syncing…'; paint(); sync(true); };
     const o = box.querySelector('#acout'); if (o) o.onclick = () => { sess = null; ls.del(SK); note = ''; paint(); };
