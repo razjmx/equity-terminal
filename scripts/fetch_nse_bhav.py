@@ -93,46 +93,52 @@ def reconcile(hist, log, odir="data/orderflow"):
     ok = warn = pend = volo = 0
     kinds = {'price': 0, 'high': 0, 'low': 0, 'volume': 0}
     worst = []
+    errs = []
     rank_path = "data/orderflow.json"
     rank = json.load(open(rank_path)) if os.path.exists(rank_path) else None
     rmap = {r["s"]: r for r in rank["stocks"]} if rank else {}
     for fn in os.listdir(odir) if os.path.isdir(odir) else []:
-        if not fn.endswith(".json"):
-            continue
-        p = os.path.join(odir, fn)
-        d = json.load(open(p))
-        s = d.get("s") or fn[:-5]
-        sd = hist["stocks"].get(s)
-        last = d["d"]
-        di = len(d["days"]) - 1
-        day_bars = [b for b in d["bars"] if b[0] == di]
-        y = {"h": max(b[3] for b in day_bars), "l": min(b[4] for b in day_bars), "c": day_bars[-1][5], "v": sum(b[6] for b in day_bars)}
-        info = {"date": last}
-        if sd and last in sd["d"]:
-            k = sd["d"].index(last)
-            n = {"o": sd["o"][k], "h": sd["h"][k], "l": sd["l"][k], "c": sd["c"][k], "lp": sd["lp"][k], "v": sd["v"][k], "t": sd["t"][k], "dq": sd["dq"][k], "dp": sd["dp"][k]}
-            st, why, dif = verdict(y, n)
-            dps = [x for x in sd["dp"][:k] if x is not None][-20:]
-            avg = sum(dps) / len(dps) if len(dps) >= 5 else None
-            info.update({"status": st, "why": why, "nse": n, "avgdp": avg,
-                         "spike": (n["dp"] / avg) if (avg and n["dp"] is not None) else None,
-                         "dc": dif["dc"], "vr": dif["vr"],
-                         "dphist": [x for x in sd["dp"][max(0, k - 19):k + 1]]})
-            ok += st == "ok"; warn += st == "warn"; volo += st == "vol"
-            for w in why:
-                kinds['price' if w.startswith('last price') else 'high' if w.startswith('day high') else 'low' if w.startswith('day low') else 'volume'] += 1
-            if st in ("warn", "vol"):
-                worst.append((max(abs(dif['dc'] or 0), abs(dif['dh'] or 0), abs(dif['dl'] or 0), abs(((dif['vr'] or 1) - 1) * 100)), s, "; ".join(why)))
-        else:
-            info.update({"status": "pending", "why": ["NSE's file for this date is not available yet"]})
-            pend += 1
-        d["nse"] = info
-        json.dump(d, open(p, "w"), separators=(",", ":"))
-        if s in rmap:
-            rmap[s]["q"] = info["status"]
-            rmap[s]["dp"] = (info.get("nse") or {}).get("dp")
+        try:
+            if not fn.endswith(".json"):
+                continue
+            p = os.path.join(odir, fn)
+            d = json.load(open(p))
+            s = d.get("s") or fn[:-5]
+            sd = hist["stocks"].get(s)
+            last = d["d"]
+            di = len(d["days"]) - 1
+            day_bars = [b for b in d["bars"] if b[0] == di]
+            y = {"h": max(b[3] for b in day_bars), "l": min(b[4] for b in day_bars), "c": day_bars[-1][5], "v": sum(b[6] for b in day_bars)}
+            info = {"date": last}
+            if sd and last in sd["d"]:
+                k = sd["d"].index(last)
+                n = {"o": sd["o"][k], "h": sd["h"][k], "l": sd["l"][k], "c": sd["c"][k], "lp": sd["lp"][k], "v": sd["v"][k], "t": sd["t"][k], "dq": sd["dq"][k], "dp": sd["dp"][k]}
+                st, why, dif = verdict(y, n)
+                dps = [x for x in sd["dp"][:k] if x is not None][-20:]
+                avg = sum(dps) / len(dps) if len(dps) >= 5 else None
+                info.update({"status": st, "why": why, "nse": n, "avgdp": avg,
+                             "spike": (n["dp"] / avg) if (avg and n["dp"] is not None) else None,
+                             "dc": dif["dc"], "vr": dif["vr"],
+                             "dphist": [x for x in sd["dp"][max(0, k - 19):k + 1]]})
+                ok += st == "ok"; warn += st == "warn"; volo += st == "vol"
+                for w in why:
+                    kinds['price' if w.startswith('last price') else 'high' if w.startswith('day high') else 'low' if w.startswith('day low') else 'volume'] += 1
+                if st in ("warn", "vol"):
+                    worst.append((max(abs(dif['dc'] or 0), abs(dif['dh'] or 0), abs(dif['dl'] or 0), abs(((dif['vr'] or 1) - 1) * 100)), s, "; ".join(why)))
+            else:
+                info.update({"status": "pending", "why": ["NSE's file for this date is not available yet"]})
+                pend += 1
+            d["nse"] = info
+            json.dump(d, open(p, "w"), separators=(",", ":"))
+            if s in rmap:
+                rmap[s]["q"] = info["status"]
+                rmap[s]["dp"] = (info.get("nse") or {}).get("dp")
+        except Exception as e:      # one bad stock file must not stop the whole check
+            errs.append(f"{fn}: {e!r}"[:140])
     if rank:
         json.dump(rank, open(rank_path, "w"), separators=(",", ":"))
+    if errs:
+        log.append(f"{len(errs)} stock file(s) skipped because of errors, e.g. {errs[:3]}")
     log.append(f"Reconciled with NSE: ok {ok}, prices match but volume off {volo}, price differs {warn}, pending {pend}")
     log.append(f"Why stocks differ (a stock can be counted more than once): {kinds}")
     for sc, s, w in sorted(worst, reverse=True)[:10]:
@@ -212,8 +218,16 @@ def update_history(log):
 
 
 if __name__ == "__main__":
-    log = [f"Run (UTC): {datetime.datetime.utcnow():%Y-%m-%d %H:%M}"]
-    hist = update_history(log)
-    reconcile(hist, log)
+    import traceback
+    log = [f"Run (UTC): {datetime.datetime.now(datetime.timezone.utc):%Y-%m-%d %H:%M}"]
+    failed = False
+    try:
+        hist = update_history(log)
+        reconcile(hist, log)
+    except Exception:
+        failed = True
+        log.append("FAILED: " + traceback.format_exc()[-900:])
     open("data/nse_bhav_log.txt", "w").write("\n".join(log) + "\n")
     print("\n".join(log))
+    if failed:
+        sys.exit(1)
