@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "usable",
- "price": 416.55,
- "fair_value": 400.5,
+ "price": 413.65,
+ "fair_value": 400.6,
  "fair_low": 363.9,
- "fair_high": 448.3,
- "upside_pct": -3.9,
+ "fair_high": 448.4,
+ "upside_pct": -3.2,
  "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
@@ -120,14 +120,14 @@
   "pv_share_of_ev_pct": 50.3
  },
  "bridge_cr": {
-  "enterprise_value": 4110.0,
+  "enterprise_value": 4111.0,
   "debt": 39.0,
   "cash": 1114.0,
   "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 5185.0,
+  "equity_value": 5186.0,
   "shares_cr": 14.116,
-  "market_cap": 5880.0
+  "market_cap": 5839.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -146,45 +146,45 @@
   ],
   "fair_value": [
    [
-    478.8,
-    494.8,
-    513.4,
-    535.4,
-    561.9
+    478.9,
+    494.9,
+    513.6,
+    535.6,
+    562.1
    ],
    [
-    425.7,
-    436.3,
-    448.3,
-    462.0,
-    478.0
+    425.8,
+    436.4,
+    448.4,
+    462.1,
+    478.1
    ],
    [
-    385.1,
-    392.4,
-    400.5,
-    409.5,
-    419.7
+    385.2,
+    392.5,
+    400.6,
+    409.6,
+    419.8
    ],
    [
     353.1,
-    358.2,
+    358.3,
     363.9,
     370.1,
     376.9
    ],
    [
-    327.1,
+    327.2,
     330.9,
-    334.9,
+    335.0,
     339.3,
     344.0
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 13.8,
-  "implied_ebit_margin_pct": 25.1,
+  "implied_first_year_growth_pct": 13.6,
+  "implied_ebit_margin_pct": 24.9,
   "implied_discount_rate_pct": 13.6,
   "implied_rate_note": "",
   "note": ""
@@ -195,7 +195,7 @@
   "tax": 0.25,
   "s2c": 2.241963130358109,
   "g1": 0.12506253925632493,
-  "wacc": 0.13951036291170232,
+  "wacc": 0.139492456290592,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -204,8 +204,8 @@
   "cash": 1114.4639,
   "invest": 0.0,
   "minority": 0.0,
-  "shares_cr": 14.115950430151976,
-  "roll": 1.090362398786175,
+  "shares_cr": 14.115950430151974,
+  "roll": 1.0903531479670305,
   "mid_year": true
  }
 }

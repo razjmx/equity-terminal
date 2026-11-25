@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "low confidence",
- "price": 467.0,
+ "price": 468.95,
  "fair_value": 27.4,
  "fair_low": 24.3,
  "fair_high": 31.0,
- "upside_pct": -94.1,
+ "upside_pct": -94.2,
  "flags": [
   "low return: ROIC 11.7% below WACC 15.5%",
   "far from price: model value is 6% of the market price"
@@ -15,7 +15,7 @@
  "assumptions": {
   "rf_pct": 7.2,
   "erp_pct": 6.0,
-  "beta_raw": 1.58,
+  "beta_raw": 1.59,
   "beta_used": 1.39,
   "beta_weeks": 156,
   "cost_of_equity_pct": 15.55,
@@ -130,7 +130,7 @@
   "minority": 0.0,
   "equity_value": 329.0,
   "shares_cr": 13.233,
-  "market_cap": 6180.0
+  "market_cap": 6206.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -198,7 +198,7 @@
   "tax": 0.25,
   "s2c": 1.0951638670952804,
   "g1": 0.16551673072785,
-  "wacc": 0.15537601160733402,
+  "wacc": 0.15539674378159185,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -208,7 +208,7 @@
   "invest": 0.0,
   "minority": 0.0,
   "shares_cr": 13.233076642603168,
-  "roll": 1.1001349925373218,
+  "roll": 1.1001477135888358,
   "mid_year": true
  }
 }

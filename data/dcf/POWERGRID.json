@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 267.15,
- "fair_value": 186.0,
- "fair_low": 121.8,
- "fair_high": 294.4,
- "upside_pct": -30.4,
+ "price": 266.75,
+ "fair_value": 186.1,
+ "fair_low": 121.9,
+ "fair_high": 294.6,
+ "upside_pct": -30.3,
  "flags": [
   "margin: very high EBIT margin (57%)",
   "growth path: first-year growth below terminal growth (path rises)",
@@ -124,14 +124,14 @@
   "pv_share_of_ev_pct": 61.6
  },
  "bridge_cr": {
-  "enterprise_value": 304535.0,
+  "enterprise_value": 304616.0,
   "debt": 151558.0,
   "cash": 4933.0,
   "investments": 2061.0,
   "minority": 0.0,
-  "equity_value": 159972.0,
+  "equity_value": 160052.0,
   "shares_cr": 930.06,
-  "market_cap": 248466.0
+  "market_cap": 248094.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -150,38 +150,38 @@
   ],
   "fair_value": [
    [
-    339.0,
-    410.0,
+    339.2,
+    410.2,
     null,
     null,
     null
    ],
    [
-    217.8,
-    250.5,
-    294.4,
-    356.8,
+    217.9,
+    250.6,
+    294.6,
+    357.1,
     null
    ],
    [
-    146.2,
+    146.3,
     163.9,
-    186.0,
-    214.5,
-    252.8
+    186.1,
+    214.6,
+    253.0
    ],
    [
     98.8,
     109.3,
-    121.8,
-    137.1,
-    156.2
+    121.9,
+    137.2,
+    156.3
    ],
    [
     65.0,
     71.6,
-    79.2,
-    88.2,
+    79.3,
+    88.3,
     99.0
    ]
   ]
@@ -189,7 +189,7 @@
  "reverse_dcf": {
   "implied_first_year_growth_pct": 6.0,
   "implied_ebit_margin_pct": null,
-  "implied_discount_rate_pct": 9.5,
+  "implied_discount_rate_pct": 9.6,
   "implied_rate_note": "",
   "note": "; margin outside 0% to 60%"
  },
@@ -199,7 +199,7 @@
   "tax": 0.25,
   "s2c": 0.5,
   "g1": 0.006344635175626001,
-  "wacc": 0.10349753990122279,
+  "wacc": 0.10348588220368253,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -209,7 +209,7 @@
   "invest": 2060.95,
   "minority": 0.0,
   "shares_cr": 930.060390825217,
-  "roll": 1.0811617615639109,
+  "roll": 1.081170734751771,
   "mid_year": true
  }
 }

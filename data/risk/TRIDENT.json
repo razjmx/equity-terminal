@@ -2,37 +2,37 @@
  "symbol": "TRIDENT",
  "as_of": "2026-11-25",
  "rows": 1238,
- "price": 23.18,
+ "price": 22.9,
  "returns_pct": {
-  "1m": 13.1,
-  "3m": -5.0,
-  "6m": -5.0,
-  "1y": -18.5,
-  "3y_cagr": -12.8,
-  "ytd": -13.3
+  "1m": 11.8,
+  "3m": -6.1,
+  "6m": -6.1,
+  "1y": -19.5,
+  "3y_cagr": -13.1,
+  "ytd": -14.3
  },
  "relative_strength_pp": {
-  "3m": -7.4,
-  "6m": -11.5,
-  "1y": -19.8
+  "3m": -8.2,
+  "6m": -12.2,
+  "1y": -20.4
  },
  "range": {
   "high_52w": 29.27,
   "low_52w": 20.49,
-  "pct_from_high": -20.8,
-  "pct_above_low": 13.1,
+  "pct_from_high": -21.8,
+  "pct_above_low": 11.8,
   "high_date": "2026-02-04",
   "low_date": "2026-10-23"
  },
  "moving_averages": {
-  "dma20": 23.03,
-  "pct_vs_dma20": 0.7,
+  "dma20": 23.02,
+  "pct_vs_dma20": -0.5,
   "dma50": 22.65,
-  "pct_vs_dma50": 2.3,
+  "pct_vs_dma50": 1.1,
   "dma100": 23.76,
-  "pct_vs_dma100": -2.5,
+  "pct_vs_dma100": -3.6,
   "dma200": 24.49,
-  "pct_vs_dma200": -5.4
+  "pct_vs_dma200": -6.5
  },
  "trend": {
   "above_dma200": false,
@@ -41,22 +41,22 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 52.9,
-  "macd_pct": 1.09,
-  "macd_signal_pct": 1.13,
-  "macd_hist_pct": -0.04,
-  "bollinger_pctb": 0.54,
-  "atr_pct": 2.63
+  "rsi14": 49.1,
+  "macd_pct": 1.0,
+  "macd_signal_pct": 1.12,
+  "macd_hist_pct": -0.12,
+  "bollinger_pctb": 0.47,
+  "atr_pct": 2.76
  },
  "risk": {
-  "volatility_1y_pct": 31.2,
+  "volatility_1y_pct": 31.3,
   "downside_deviation_pct": 18.9,
   "max_drawdown_1y_pct": -30.0,
   "max_drawdown_all_pct": -69.9,
   "var95_1d_pct": -2.73,
   "cvar95_1d_pct": -3.51,
-  "sharpe_1y": -0.73,
-  "sortino_1y": -1.21
+  "sharpe_1y": -0.77,
+  "sortino_1y": -1.28
  },
  "beta": {
   "raw": 1.26,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.59,
   "r_squared": 0.35,
-  "alpha_pct": -21.7
+  "alpha_pct": -21.9
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 18.59
+  "avg_daily_value_3m_cr": 18.65
  },
  "flags": []
 }

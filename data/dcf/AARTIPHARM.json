@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "low confidence",
- "price": 997.2,
- "fair_value": 140.8,
- "fair_low": 124.1,
- "fair_high": 160.8,
- "upside_pct": -85.9,
+ "price": 1025.45,
+ "fair_value": 140.7,
+ "fair_low": 124.0,
+ "fair_high": 160.7,
+ "upside_pct": -86.3,
  "flags": [
   "growth path: first-year growth below terminal growth (path rises)",
   "low return: ROIC 7.9% below WACC 12.4%",
@@ -19,7 +19,7 @@
   "beta_raw": 0.91,
   "beta_used": 0.94,
   "beta_weeks": 156,
-  "cost_of_equity_pct": 12.83,
+  "cost_of_equity_pct": 12.82,
   "wacc_pct": 12.36,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
@@ -124,14 +124,14 @@
   "pv_share_of_ev_pct": 42.6
  },
  "bridge_cr": {
-  "enterprise_value": 1746.0,
+  "enterprise_value": 1745.0,
   "debt": 769.0,
   "cash": 9.0,
   "investments": 193.0,
   "minority": 0.0,
-  "equity_value": 1179.0,
+  "equity_value": 1178.0,
   "shares_cr": 9.068,
-  "market_cap": 9043.0
+  "market_cap": 9299.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -150,38 +150,38 @@
   ],
   "fair_value": [
    [
+    184.7,
     184.8,
-    184.9,
+    185.0,
     185.1,
-    185.2,
-    185.4
+    185.3
    ],
    [
-    161.1,
+    161.0,
     160.9,
-    160.8,
+    160.7,
     160.6,
-    160.5
+    160.4
    ],
    [
-    141.6,
-    141.2,
-    140.8,
-    140.4,
+    141.5,
+    141.1,
+    140.7,
+    140.3,
     140.0
    ],
    [
-    125.2,
+    125.1,
     124.6,
-    124.1,
+    124.0,
     123.5,
-    123.0
+    122.9
    ],
    [
-    111.3,
+    111.2,
     110.6,
-    110.0,
-    109.3,
+    109.9,
+    109.2,
     108.6
    ]
   ]
@@ -199,7 +199,7 @@
   "tax": 0.25,
   "s2c": 0.6642176535513836,
   "g1": -0.007668488662962103,
-  "wacc": 0.12356604855318125,
+  "wacc": 0.12360028254489931,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -209,7 +209,7 @@
   "invest": 193.4785,
   "minority": 0.0,
   "shares_cr": 9.067981760642727,
-  "roll": 1.08298840172558,
+  "roll": 1.082928609344388,
   "mid_year": true
  }
 }

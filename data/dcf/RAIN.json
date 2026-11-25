@@ -3,11 +3,11 @@
  "latest_fy": "2025-12-31",
  "status": "ok",
  "reliability": "low confidence",
- "price": 161.18,
- "fair_value": 5.0,
- "fair_low": -24.2,
- "fair_high": 41.6,
- "upside_pct": -96.9,
+ "price": 160.69,
+ "fair_value": 5.1,
+ "fair_low": -24.1,
+ "fair_high": 41.9,
+ "upside_pct": -96.8,
  "flags": [
   "margin swing: latest core EBIT margin 7.3% vs 3-year average 5.1% (possible peak or trough)",
   "growth path: first-year growth below terminal growth (path rises)",
@@ -121,18 +121,18 @@
  ],
  "terminal": {
   "roic_pct": 9.6,
-  "fcff_cr": 331.0,
-  "pv_share_of_ev_pct": 50.8
+  "fcff_cr": 330.0,
+  "pv_share_of_ev_pct": 50.9
  },
  "bridge_cr": {
-  "enterprise_value": 8707.0,
+  "enterprise_value": 8712.0,
   "debt": 9824.0,
   "cash": 1489.0,
   "investments": 18.0,
   "minority": 242.0,
-  "equity_value": 148.0,
+  "equity_value": 153.0,
   "shares_cr": 33.635,
-  "market_cap": 5421.0
+  "market_cap": 5405.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -151,39 +151,39 @@
   ],
   "fair_value": [
    [
-    87.1,
+    87.3,
     null,
     null,
     null,
     null
    ],
    [
-    41.3,
     41.5,
-    41.6,
+    41.7,
+    41.9,
     null,
     null
    ],
    [
-    5.6,
-    5.3,
-    5.0,
-    4.7,
-    4.4
+    5.8,
+    5.4,
+    5.1,
+    4.8,
+    4.5
    ],
    [
-    -23.0,
-    -23.6,
-    -24.2,
-    -24.9,
-    -25.5
+    -22.8,
+    -23.5,
+    -24.1,
+    -24.8,
+    -25.4
    ],
    [
-    -46.3,
-    -47.1,
-    -48.0,
-    -48.9,
-    -49.8
+    -46.2,
+    -47.0,
+    -47.9,
+    -48.8,
+    -49.7
    ]
   ]
  },
@@ -200,7 +200,7 @@
   "tax": 0.25,
   "s2c": 1.0489159486061106,
   "g1": -0.03555014222408437,
-  "wacc": 0.09621846697960923,
+  "wacc": 0.09616804740502931,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -210,7 +210,7 @@
   "invest": 17.993,
   "minority": 241.632,
   "shares_cr": 33.63456550932568,
-  "roll": 1.133568128009925,
+  "roll": 1.1335830146927024,
   "mid_year": true
  }
 }

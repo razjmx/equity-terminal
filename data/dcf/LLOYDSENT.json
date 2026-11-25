@@ -3,13 +3,13 @@
  "latest_fy": "2026-03-31",
  "status": "not meaningful",
  "reliability": "not meaningful",
- "price": 61.03,
+ "price": 60.77,
  "fair_value": null,
  "fair_low": null,
  "fair_high": null,
  "upside_pct": null,
  "flags": [
-  "investments large: Rs 2,835 cr is 30% of market cap, verify",
+  "investments large: Rs 2,835 cr is 31% of market cap, verify",
   "growth clamped: 2-year 33.8% to 30%",
   "growth gap: 2-year growth differs from 3-year CAGR (64.4%) by over 10 points",
   "low return: ROIC 2.9% below WACC 15.4%",
@@ -133,7 +133,7 @@
   "minority": 1290.0,
   "equity_value": -2882.0,
   "shares_cr": 152.669,
-  "market_cap": 9317.0
+  "market_cap": 9278.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -190,7 +190,7 @@
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 36.1,
+  "implied_ebit_margin_pct": 36.0,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "not meaningful",
   "note": "growth outside -10% to 60%"
@@ -201,7 +201,7 @@
   "tax": 0.25,
   "s2c": 0.6899627947131494,
   "g1": 0.3,
-  "wacc": 0.15438883622566552,
+  "wacc": 0.15436754061338726,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -211,7 +211,7 @@
   "invest": 2834.58,
   "minority": 1290.14,
   "shares_cr": 152.6691284237894,
-  "roll": 1.1041111625662883,
+  "roll": 1.1041166360634251,
   "mid_year": true
  }
 }

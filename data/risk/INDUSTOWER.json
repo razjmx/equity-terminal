@@ -2,51 +2,51 @@
  "symbol": "INDUSTOWER",
  "as_of": "2026-11-25",
  "rows": 1238,
- "price": 382.45,
+ "price": 381.8,
  "returns_pct": {
-  "1m": 0.6,
-  "3m": 1.8,
-  "6m": -11.5,
-  "1y": -6.8,
-  "3y_cagr": 30.4,
-  "ytd": -8.7
+  "1m": 0.5,
+  "3m": 1.6,
+  "6m": -11.6,
+  "1y": -6.9,
+  "3y_cagr": 30.3,
+  "ytd": -8.8
  },
  "relative_strength_pp": {
-  "3m": -0.7,
-  "6m": -17.9,
-  "1y": -8.0
+  "3m": -0.5,
+  "6m": -17.7,
+  "1y": -7.8
  },
  "range": {
   "high_52w": 477.75,
   "low_52w": 360.0,
-  "pct_from_high": -19.9,
-  "pct_above_low": 6.2,
+  "pct_from_high": -20.1,
+  "pct_above_low": 6.1,
   "high_date": "2026-02-18",
   "low_date": "2026-09-28"
  },
  "moving_averages": {
-  "dma20": 386.43,
-  "pct_vs_dma20": -1.0,
-  "dma50": 381.86,
-  "pct_vs_dma50": 0.2,
-  "dma100": 383.94,
-  "pct_vs_dma100": -0.4,
-  "dma200": 406.67,
-  "pct_vs_dma200": -6.0
+  "dma20": 386.4,
+  "pct_vs_dma20": -1.2,
+  "dma50": 381.85,
+  "pct_vs_dma50": -0.0,
+  "dma100": 383.93,
+  "pct_vs_dma100": -0.6,
+  "dma200": 406.66,
+  "pct_vs_dma200": -6.1
  },
  "trend": {
   "above_dma200": false,
-  "above_dma50": true,
+  "above_dma50": false,
   "dma50_above_dma200": false,
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 47.5,
-  "macd_pct": 0.33,
+  "rsi14": 47.0,
+  "macd_pct": 0.31,
   "macd_signal_pct": 0.6,
-  "macd_hist_pct": -0.28,
-  "bollinger_pctb": 0.34,
-  "atr_pct": 2.43
+  "macd_hist_pct": -0.29,
+  "bollinger_pctb": 0.32,
+  "atr_pct": 2.5
  },
  "risk": {
   "volatility_1y_pct": 26.0,
@@ -56,7 +56,7 @@
   "var95_1d_pct": -2.9,
   "cvar95_1d_pct": -3.64,
   "sharpe_1y": -0.42,
-  "sortino_1y": -0.58
+  "sortino_1y": -0.59
  },
  "beta": {
   "raw": 0.85,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.38,
   "r_squared": 0.14,
-  "alpha_pct": 19.0
+  "alpha_pct": 19.1
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 171.71
+  "avg_daily_value_3m_cr": 173.19
  },
  "flags": []
 }

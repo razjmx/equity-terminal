@@ -2,51 +2,51 @@
  "symbol": "SHRIRAMFIN",
  "as_of": "2026-11-25",
  "rows": 1238,
- "price": 1011.3,
+ "price": 989.95,
  "returns_pct": {
-  "1m": 16.9,
-  "3m": -10.5,
-  "6m": 7.5,
-  "1y": 23.6,
-  "3y_cagr": 39.1,
-  "ytd": 1.5
+  "1m": 14.4,
+  "3m": -12.4,
+  "6m": 5.2,
+  "1y": 21.0,
+  "3y_cagr": 38.1,
+  "ytd": -0.6
  },
  "relative_strength_pp": {
-  "3m": -13.0,
-  "6m": 1.0,
-  "1y": 22.4
+  "3m": -14.5,
+  "6m": -0.9,
+  "1y": 20.2
  },
  "range": {
   "high_52w": 1141.0,
   "low_52w": 818.05,
-  "pct_from_high": -11.4,
-  "pct_above_low": 23.6,
+  "pct_from_high": -13.2,
+  "pct_above_low": 21.0,
   "high_date": "2026-08-06",
   "low_date": "2025-11-19"
  },
  "moving_averages": {
-  "dma20": 934.71,
-  "pct_vs_dma20": 8.2,
-  "dma50": 950.57,
-  "pct_vs_dma50": 6.4,
-  "dma100": 1011.66,
-  "pct_vs_dma100": -0.0,
-  "dma200": 1000.09,
-  "pct_vs_dma200": 1.1
+  "dma20": 933.64,
+  "pct_vs_dma20": 6.0,
+  "dma50": 950.14,
+  "pct_vs_dma50": 4.2,
+  "dma100": 1011.45,
+  "pct_vs_dma100": -2.1,
+  "dma200": 999.98,
+  "pct_vs_dma200": -1.0
  },
  "trend": {
-  "above_dma200": true,
+  "above_dma200": false,
   "above_dma50": true,
   "dma50_above_dma200": false,
   "cross": "death cross in last 20 days"
  },
  "momentum": {
-  "rsi14": 63.2,
-  "macd_pct": 1.67,
-  "macd_signal_pct": 0.77,
-  "macd_hist_pct": 0.9,
-  "bollinger_pctb": 0.8,
-  "atr_pct": 3.01
+  "rsi14": 58.9,
+  "macd_pct": 1.53,
+  "macd_signal_pct": 0.75,
+  "macd_hist_pct": 0.79,
+  "bollinger_pctb": 0.72,
+  "atr_pct": 3.16
  },
  "risk": {
   "volatility_1y_pct": 37.5,
@@ -55,8 +55,8 @@
   "max_drawdown_all_pct": -35.7,
   "var95_1d_pct": -3.72,
   "cvar95_1d_pct": -4.91,
-  "sharpe_1y": 0.56,
-  "sortino_1y": 0.85
+  "sharpe_1y": 0.5,
+  "sortino_1y": 0.76
  },
  "beta": {
   "raw": 1.59,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.7,
   "r_squared": 0.49,
-  "alpha_pct": 23.8
+  "alpha_pct": 23.3
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 492.76
+  "avg_daily_value_3m_cr": 497.88
  },
  "flags": []
 }

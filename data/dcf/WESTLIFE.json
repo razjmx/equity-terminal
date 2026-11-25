@@ -3,7 +3,7 @@
  "latest_fy": "2026-03-31",
  "status": "not meaningful",
  "reliability": "not meaningful",
- "price": 651.35,
+ "price": 649.55,
  "fair_value": null,
  "fair_low": null,
  "fair_high": null,
@@ -124,14 +124,14 @@
   "pv_share_of_ev_pct": 179.0
  },
  "bridge_cr": {
-  "enterprise_value": 250.0,
+  "enterprise_value": 251.0,
   "debt": 1805.0,
   "cash": 118.0,
   "investments": 28.0,
   "minority": 0.0,
   "equity_value": -1408.0,
   "shares_cr": 15.522,
-  "market_cap": 10110.0
+  "market_cap": 10082.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -188,7 +188,7 @@
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 41.1,
+  "implied_ebit_margin_pct": 41.0,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "not meaningful",
   "note": "growth outside -10% to 60%"
@@ -199,7 +199,7 @@
   "tax": 0.25,
   "s2c": 1.14189107595701,
   "g1": 0.04786475127313161,
-  "wacc": 0.12178852449315108,
+  "wacc": 0.12178055635952474,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -208,8 +208,8 @@
   "cash": 118.182,
   "invest": 28.418,
   "minority": 0.0,
-  "shares_cr": 15.521575810019915,
-  "roll": 1.08497966751619,
+  "shares_cr": 15.521575810019918,
+  "roll": 1.0849907230911697,
   "mid_year": true
  }
 }

@@ -2,37 +2,37 @@
  "symbol": "FINPIPE",
  "as_of": "2026-11-25",
  "rows": 1237,
- "price": 145.35,
+ "price": 143.44,
  "returns_pct": {
-  "1m": 2.1,
-  "3m": -9.4,
-  "6m": -16.0,
-  "1y": -22.7,
-  "3y_cagr": -8.9,
-  "ytd": -16.5
+  "1m": 0.7,
+  "3m": -10.6,
+  "6m": -17.1,
+  "1y": -23.7,
+  "3y_cagr": -9.3,
+  "ytd": -17.6
  },
  "relative_strength_pp": {
-  "3m": -11.9,
-  "6m": -22.5,
-  "1y": -24.0
+  "3m": -12.7,
+  "6m": -23.2,
+  "1y": -24.6
  },
  "range": {
   "high_52w": 191.93,
   "low_52w": 137.16,
-  "pct_from_high": -24.3,
-  "pct_above_low": 6.0,
+  "pct_from_high": -25.3,
+  "pct_above_low": 4.6,
   "high_date": "2026-05-27",
   "low_date": "2026-10-30"
  },
  "moving_averages": {
-  "dma20": 144.06,
-  "pct_vs_dma20": 0.9,
-  "dma50": 148.57,
-  "pct_vs_dma50": -2.2,
-  "dma100": 156.01,
-  "pct_vs_dma100": -6.8,
-  "dma200": 165.69,
-  "pct_vs_dma200": -12.3
+  "dma20": 143.96,
+  "pct_vs_dma20": -0.4,
+  "dma50": 148.54,
+  "pct_vs_dma50": -3.4,
+  "dma100": 155.99,
+  "pct_vs_dma100": -8.0,
+  "dma200": 165.68,
+  "pct_vs_dma200": -13.4
  },
  "trend": {
   "above_dma200": false,
@@ -41,22 +41,22 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 48.6,
-  "macd_pct": -0.7,
-  "macd_signal_pct": -0.82,
-  "macd_hist_pct": 0.12,
-  "bollinger_pctb": 0.59,
-  "atr_pct": 2.89
+  "rsi14": 45.1,
+  "macd_pct": -0.82,
+  "macd_signal_pct": -0.85,
+  "macd_hist_pct": 0.03,
+  "bollinger_pctb": 0.46,
+  "atr_pct": 3.0
  },
  "risk": {
-  "volatility_1y_pct": 28.4,
+  "volatility_1y_pct": 28.3,
   "downside_deviation_pct": 20.2,
   "max_drawdown_1y_pct": -28.5,
   "max_drawdown_all_pct": -60.8,
   "var95_1d_pct": -2.87,
   "cvar95_1d_pct": -3.79,
-  "sharpe_1y": -1.02,
-  "sortino_1y": -1.43
+  "sharpe_1y": -1.07,
+  "sortino_1y": -1.5
  },
  "beta": {
   "raw": 1.14,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.49,
   "r_squared": 0.24,
-  "alpha_pct": -16.9
+  "alpha_pct": -17.3
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 6.87
+  "avg_daily_value_3m_cr": 6.95
  },
  "flags": []
 }
