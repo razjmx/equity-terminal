@@ -108,7 +108,7 @@ def liquidity(h, l, sh, sl, tol=0.0015):
     return cluster(hi), cluster(lo)
 
 
-def analyse(df, sessions=SESSIONS, agg=False, k=1.0, tol=0.0015):
+def analyse(df, sessions=SESSIONS, agg=False, k=1.0, tol=0.0015, min_bars=30):
     """df: index datetimes (exchange tz), columns Open High Low Close Volume. Returns dict or None.
     agg=False: session metrics (VWAP, POC, delta, change) are for the LAST session, as before.
     agg=True : every metric is computed over the whole window (1M / 3M / 6M views); k widens the score thresholds
@@ -119,7 +119,7 @@ def analyse(df, sessions=SESSIONS, agg=False, k=1.0, tol=0.0015):
         return None
     days = sorted(set(df.index.date))[-sessions:]
     df = df[[d in days for d in df.index.date]]
-    if len(df) < 30:
+    if len(df) < min_bars:
         return None
     o, h, l, c, v = (df[k].to_numpy(float) for k in ["Open", "High", "Low", "Close", "Volume"])
     di = np.array([days.index(d) for d in df.index.date])
