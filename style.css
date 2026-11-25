@@ -506,3 +506,10 @@ main{margin-left:auto;margin-right:auto}
 .ibox b{font-weight:700}
 .hdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#8b94a3;margin-right:6px;vertical-align:middle}
 .hdot.ok{background:#1a9d5c}.hdot.warn{background:#e0a100}.hdot.bad{background:#d23b3b}
+/* testing notice beside the login icon */
+.acchip{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px;margin-right:8px;border-radius:999px;border:1px solid var(--b);background:var(--p);color:var(--m);font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer}
+.acchip i{width:7px;height:7px;border-radius:50%;background:#1a9d5c;display:inline-block}
+.acchip:hover{border-color:var(--brand);color:var(--t)}
+.acchip[hidden]{display:none}
+.acopen{margin:0 0 12px;padding:9px 11px;border-radius:9px;background:var(--bg);border-left:3px solid #1a9d5c;font-size:12.5px;line-height:1.5}
+@media(max-width:760px){.acchip{display:none}}
