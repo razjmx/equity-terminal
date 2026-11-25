@@ -217,7 +217,38 @@
     const g = wfGen(R, methods, o); let x;
     for (;;) { x = g.next(); if (x.done) return x.value; if (onProgress) onProgress(x.value); await new Promise(r => setTimeout(r, 0)); }
   }
+  // ---- Black-Litterman ----
+  function inv(A) {   // Gauss-Jordan with partial pivoting
+    const n = A.length, M = A.map((r, i) => r.concat(Array.from({ length: n }, (_, j) => i === j ? 1 : 0)));
+    for (let c = 0; c < n; c++) {
+      let p = c; for (let r = c + 1; r < n; r++) if (Math.abs(M[r][c]) > Math.abs(M[p][c])) p = r;
+      if (Math.abs(M[p][c]) < 1e-14) throw new Error('singular matrix');
+      [M[c], M[p]] = [M[p], M[c]];
+      const d = M[c][c]; for (let j = 0; j < 2 * n; j++) M[c][j] /= d;
+      for (let r = 0; r < n; r++) if (r !== c) { const f = M[r][c]; if (f) for (let j = 0; j < 2 * n; j++) M[r][j] -= f * M[c][j]; }
+    }
+    return M.map(r => r.slice(n));
+  }
+  // C: annual covariance (N x N). wref: reference (market-cap) weights. delta: risk aversion. tau: uncertainty of the prior.
+  // views: [{p: N-vector (row of P), q: annual return of that view as a decimal, conf: 0..1}]
+  // Prior (equilibrium) returns pi = delta C wref. Omega_k = (1/conf_k - 1) * p_k (tau C) p_k' (He and Litterman scaling),
+  // so conf 0.5 gives the view the same weight as the prior. Posterior: mu = pi + tau C P' (P tau C P' + Omega)^-1 (q - P pi).
+  function blackLitterman(C, wref, delta, tau, views) {
+    const n = C.length, pi = matVec(C, wref).map(x => delta * x);
+    if (!views || !views.length) return { pi, mu: pi.slice(), omega: [] };
+    const K = views.length, tC = C.map(r => r.map(v => v * tau));
+    const P = views.map(v => v.p), q = views.map(v => v.q);
+    const PtC = P.map(p => { const o = zeros(n); for (let j = 0; j < n; j++) { let s = 0; for (let i = 0; i < n; i++) s += p[i] * tC[i][j]; o[j] = s; } return o; });   // K x N  (P tauC)
+    const Mk = P.map((_, a) => P.map((p2, b) => dot(PtC[a], p2)));                                                                                     // P tauC P'
+    const omega = views.map((v, k) => { const c = Math.min(0.99, Math.max(0.01, v.conf)); return (1 / c - 1) * Mk[k][k]; });
+    const A = Mk.map((r, a) => r.map((v, b) => v + (a === b ? omega[a] : 0))), Ai = inv(A);
+    const diff = q.map((x, k) => x - dot(P[k], pi)), z = matVec(Ai, diff);
+    const mu = pi.slice(); for (let i = 0; i < n; i++) { let s = 0; for (let k = 0; k < K; k++) s += PtC[k][i] * z[k]; mu[i] += s; }   // (tauC P')_i,k = PtC[k][i] since tauC is symmetric
+    return { pi, mu, omega };
+  }
+  // long-only, capped, fully invested weights that maximise mu'w - delta/2 w'Cw
+  const blWeights = (C, mu, delta, cap) => qp(C, mu, 1 / delta, cap);
   root.PF = { sampleCov, ledoitWolf, annualise, projectCapped, qp, minVariance, frontier, maxSharpe, riskParity, riskContrib,
-    hrp, singleLinkage, leafOrder, weights, walkForward, walkForwardAsync, stats, mean, TD };
+    hrp, singleLinkage, leafOrder, weights, walkForward, walkForwardAsync, stats, mean, inv, blackLitterman, blWeights, TD };
   if (typeof module !== 'undefined') module.exports = root.PF;
 })(typeof window !== 'undefined' ? window : globalThis);
