@@ -76,11 +76,17 @@
     if (wasIn !== null && wasIn !== nowIn) { try { window.dispatchEvent(new Event('tl-auth')); } catch (e) { } }
     wasIn = nowIn;
     if (btn) { btn.classList.toggle('on', !!sess); btn.title = sess ? 'Signed in as ' + sess.user.email : 'Sign in'; }
+    // while the site is open to everyone, tell visitors that no login is needed
+    if (btn) {
+      let chip = document.getElementById('acchip');
+      if (!chip && !GATE) { chip = document.createElement('button'); chip.id = 'acchip'; chip.type = 'button'; chip.className = 'acchip'; chip.innerHTML = '<i></i>Testing · no login needed'; chip.title = 'The site is open to everyone while it is being tested. The sign-in is only for the owner\'s synced settings.'; chip.onclick = () => btn.click(); btn.parentNode.insertBefore(chip, btn); }
+      if (chip) chip.hidden = !!sess || GATE;
+    }
     if (!box) return;
     const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     box.querySelector('.acbody').innerHTML = sess
       ? `<p class="acm">Signed in as</p><p class="acem">${esc(sess.user.email)}</p><p class="acm">${esc(note || 'Your settings sync automatically.')}</p><div class="acrow"><button id="acsync">Sync now</button><button id="acout">Sign out</button></div><p class="acm" style="margin-top:12px">Synced: DCF assumptions, quant weights, screener filters, theme and last-used tabs.</p>`
-      : `<form id="acform"><label>Email<input id="acem" type="email" autocomplete="username" required></label><label>Password<input id="acpw" type="password" autocomplete="current-password" required></label><p class="acerr" id="acerr">${esc(note)}</p><button class="primary" type="submit">Sign in</button></form><p class="acm">Personal login: your settings are saved to your account and follow you between devices. Accounts are created by the site owner only.</p>`;
+      : `${GATE ? '' : '<p class="acopen"><b>Open for testing.</b> No login needed: every page is open to you. This sign-in is only for the site owner\'s synced settings. Suggestions are welcome through <a href="mailto:the.analyst.cave@gmail.com?subject=Equity%20Terminal%20feedback">Contact us</a>.</p>'}<form id="acform"><label>Email<input id="acem" type="email" autocomplete="username" required></label><label>Password<input id="acpw" type="password" autocomplete="current-password" required></label><p class="acerr" id="acerr">${esc(note)}</p><button class="primary" type="submit">Sign in</button></form><p class="acm">Personal login: your settings are saved to your account and follow you between devices. Accounts are created by the site owner only.</p>`;
     const f = box.querySelector('#acform');
     if (f) f.onsubmit = async e => { e.preventDefault(); note = ''; const er = box.querySelector('#acerr'); er.textContent = 'Signing in…';
       try { keep(await auth('token?grant_type=password', { email: box.querySelector('#acem').value.trim(), password: box.querySelector('#acpw').value })); note = ''; await sync(true); paint(); box.hidden = true; }
