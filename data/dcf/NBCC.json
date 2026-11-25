@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 77.65,
+ "price": 77.28,
  "fair_value": 26.7,
  "fair_low": 26.0,
  "fair_high": 27.5,
- "upside_pct": -65.6,
+ "upside_pct": -65.5,
  "flags": [
   "invested capital: not positive, sales-to-capital set to 1.5"
  ],
@@ -129,7 +129,7 @@
   "minority": 198.0,
   "equity_value": 6459.0,
   "shares_cr": 270.0,
-  "market_cap": 20965.0
+  "market_cap": 20866.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -186,7 +186,7 @@
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 18.2,
+  "implied_ebit_margin_pct": 18.1,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
@@ -197,7 +197,7 @@
   "tax": 0.25,
   "s2c": 1.5,
   "g1": 0.10486311898087308,
-  "wacc": 0.1799986161363468,
+  "wacc": 0.1799986095107875,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

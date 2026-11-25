@@ -1,38 +1,38 @@
 {
  "symbol": "TBOTEK",
- "as_of": "2026-11-23",
- "rows": 626,
- "price": 1545.0,
+ "as_of": "2026-11-25",
+ "rows": 627,
+ "price": 1546.0,
  "returns_pct": {
-  "1m": -0.0,
-  "3m": -9.3,
-  "6m": 28.7,
-  "1y": -1.7,
+  "1m": 1.5,
+  "3m": -8.9,
+  "6m": 29.4,
+  "1y": -4.4,
   "3y_cagr": null,
-  "ytd": -7.1
+  "ytd": -7.0
  },
  "relative_strength_pp": {
-  "3m": -10.3,
-  "6m": 23.7,
-  "1y": -1.4
+  "3m": -11.3,
+  "6m": 23.0,
+  "1y": -5.6
  },
  "range": {
   "high_52w": 1745.1,
   "low_52w": 1018.0,
-  "pct_from_high": -11.5,
-  "pct_above_low": 51.8,
+  "pct_from_high": -11.4,
+  "pct_above_low": 51.9,
   "high_date": "2026-08-31",
   "low_date": "2026-03-23"
  },
  "moving_averages": {
-  "dma20": 1565.94,
-  "pct_vs_dma20": -1.3,
-  "dma50": 1621.58,
-  "pct_vs_dma50": -4.7,
-  "dma100": 1604.59,
+  "dma20": 1567.5,
+  "pct_vs_dma20": -1.4,
+  "dma50": 1618.08,
+  "pct_vs_dma50": -4.5,
+  "dma100": 1604.93,
   "pct_vs_dma100": -3.7,
-  "dma200": 1436.69,
-  "pct_vs_dma200": 7.5
+  "dma200": 1437.46,
+  "pct_vs_dma200": 7.6
  },
  "trend": {
   "above_dma200": true,
@@ -41,33 +41,33 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 43.0,
-  "macd_pct": -0.89,
+  "rsi14": 43.2,
+  "macd_pct": -0.95,
   "macd_signal_pct": -0.95,
-  "macd_hist_pct": 0.06,
-  "bollinger_pctb": 0.31,
-  "atr_pct": 3.56
+  "macd_hist_pct": 0.0,
+  "bollinger_pctb": 0.29,
+  "atr_pct": 3.42
  },
  "risk": {
-  "volatility_1y_pct": 35.5,
+  "volatility_1y_pct": 35.4,
   "downside_deviation_pct": 23.4,
   "max_drawdown_1y_pct": -41.2,
   "max_drawdown_all_pct": -47.4,
   "var95_1d_pct": -3.52,
   "cvar95_1d_pct": -4.27,
-  "sharpe_1y": -0.08,
-  "sortino_1y": -0.12
+  "sharpe_1y": -0.16,
+  "sortino_1y": -0.24
  },
  "beta": {
-  "raw": 1.18,
-  "adjusted": 1.12,
+  "raw": 1.19,
+  "adjusted": 1.13,
   "weeks": 132,
   "correlation": 0.43,
   "r_squared": 0.18,
-  "alpha_pct": 5.3
+  "alpha_pct": 4.6
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 27.17
+  "avg_daily_value_3m_cr": 26.78
  },
  "flags": []
 }

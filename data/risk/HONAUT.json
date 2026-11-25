@@ -1,38 +1,38 @@
 {
  "symbol": "HONAUT",
- "as_of": "2026-11-23",
- "rows": 1236,
- "price": 29715.0,
+ "as_of": "2026-11-25",
+ "rows": 1237,
+ "price": 29380.0,
  "returns_pct": {
-  "1m": -4.9,
-  "3m": -19.1,
-  "6m": -15.0,
-  "1y": -16.3,
-  "3y_cagr": -6.4,
-  "ytd": -9.4
+  "1m": -6.6,
+  "3m": -19.9,
+  "6m": -17.0,
+  "1y": -17.3,
+  "3y_cagr": -6.6,
+  "ytd": -10.4
  },
  "relative_strength_pp": {
-  "3m": -20.1,
-  "6m": -20.1,
-  "1y": -16.0
+  "3m": -22.4,
+  "6m": -23.5,
+  "1y": -18.6
  },
  "range": {
   "high_52w": 40105.0,
   "low_52w": 26325.0,
-  "pct_from_high": -25.9,
-  "pct_above_low": 12.9,
+  "pct_from_high": -26.7,
+  "pct_above_low": 11.6,
   "high_date": "2026-07-29",
   "low_date": "2026-03-30"
  },
  "moving_averages": {
-  "dma20": 30219.5,
-  "pct_vs_dma20": -1.7,
-  "dma50": 32060.8,
-  "pct_vs_dma50": -7.3,
-  "dma100": 34821.4,
-  "pct_vs_dma100": -14.7,
-  "dma200": 33378.7,
-  "pct_vs_dma200": -11.0
+  "dma20": 30126.0,
+  "pct_vs_dma20": -2.5,
+  "dma50": 31964.8,
+  "pct_vs_dma50": -8.1,
+  "dma100": 34718.65,
+  "pct_vs_dma100": -15.4,
+  "dma200": 33358.72,
+  "pct_vs_dma200": -11.9
  },
  "trend": {
   "above_dma200": false,
@@ -41,12 +41,12 @@
   "cross": "death cross in last 20 days"
  },
  "momentum": {
-  "rsi14": 38.6,
-  "macd_pct": -1.95,
-  "macd_signal_pct": -2.34,
-  "macd_hist_pct": 0.39,
-  "bollinger_pctb": 0.29,
-  "atr_pct": 2.71
+  "rsi14": 36.1,
+  "macd_pct": -2.05,
+  "macd_signal_pct": -2.3,
+  "macd_hist_pct": 0.25,
+  "bollinger_pctb": 0.18,
+  "atr_pct": 2.68
  },
  "risk": {
   "volatility_1y_pct": 31.4,
@@ -55,8 +55,8 @@
   "max_drawdown_all_pct": -55.1,
   "var95_1d_pct": -2.78,
   "cvar95_1d_pct": -3.34,
-  "sharpe_1y": -0.64,
-  "sortino_1y": -1.08
+  "sharpe_1y": -0.68,
+  "sortino_1y": -1.14
  },
  "beta": {
   "raw": 0.83,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.4,
   "r_squared": 0.16,
-  "alpha_pct": -12.3
+  "alpha_pct": -13.0
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 13.12
+  "avg_daily_value_3m_cr": 13.06
  },
  "flags": []
 }

@@ -1,38 +1,38 @@
 {
  "symbol": "ICICIAMC",
- "as_of": "2026-11-23",
- "rows": 228,
- "price": 2933.0,
+ "as_of": "2026-11-25",
+ "rows": 229,
+ "price": 2962.3,
  "returns_pct": {
-  "1m": 7.8,
-  "3m": -9.2,
+  "1m": 11.7,
+  "3m": -9.4,
   "6m": -8.3,
   "1y": null,
   "3y_cagr": null,
-  "ytd": 10.2
+  "ytd": 11.3
  },
  "relative_strength_pp": {
-  "3m": -10.2,
-  "6m": -13.4,
+  "3m": -11.9,
+  "6m": -14.7,
   "1y": null
  },
  "range": {
   "high_52w": 3538.5,
   "low_52w": 2585.9,
-  "pct_from_high": -17.1,
-  "pct_above_low": 13.4,
+  "pct_from_high": -16.3,
+  "pct_above_low": 14.6,
   "high_date": "2026-05-29",
   "low_date": "2025-12-19"
  },
  "moving_averages": {
-  "dma20": 2916.25,
-  "pct_vs_dma20": 0.6,
-  "dma50": 2980.93,
-  "pct_vs_dma50": -1.6,
-  "dma100": 3059.61,
-  "pct_vs_dma100": -4.1,
-  "dma200": 3108.24,
-  "pct_vs_dma200": -5.6
+  "dma20": 2926.65,
+  "pct_vs_dma20": 1.2,
+  "dma50": 2980.11,
+  "pct_vs_dma50": -0.6,
+  "dma100": 3055.17,
+  "pct_vs_dma100": -3.0,
+  "dma200": 3108.19,
+  "pct_vs_dma200": -4.7
  },
  "trend": {
   "above_dma200": false,
@@ -41,26 +41,26 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 48.5,
-  "macd_pct": 0.43,
-  "macd_signal_pct": 0.25,
-  "macd_hist_pct": 0.19,
-  "bollinger_pctb": 0.53,
-  "atr_pct": 2.63
+  "rsi14": 51.2,
+  "macd_pct": 0.4,
+  "macd_signal_pct": 0.28,
+  "macd_hist_pct": 0.13,
+  "bollinger_pctb": 0.58,
+  "atr_pct": 2.51
  },
  "risk": {
-  "volatility_1y_pct": 32.6,
-  "downside_deviation_pct": 20.7,
+  "volatility_1y_pct": 32.5,
+  "downside_deviation_pct": 20.6,
   "max_drawdown_1y_pct": -25.1,
   "max_drawdown_all_pct": -25.1,
   "var95_1d_pct": -2.7,
   "cvar95_1d_pct": -3.8,
-  "sharpe_1y": 0.37,
-  "sortino_1y": 0.58
+  "sharpe_1y": 0.4,
+  "sortino_1y": 0.63
  },
  "beta": null,
  "liquidity": {
-  "avg_daily_value_3m_cr": 139.58
+  "avg_daily_value_3m_cr": 139.19
  },
  "flags": [
   "short history: risk and trend figures use fewer than 250 days"

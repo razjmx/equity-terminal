@@ -1,38 +1,38 @@
 {
  "symbol": "ECLERX",
- "as_of": "2026-11-23",
- "rows": 1237,
- "price": 1511.4,
+ "as_of": "2026-11-25",
+ "rows": 1238,
+ "price": 1502.0,
  "returns_pct": {
-  "1m": -21.7,
-  "3m": -16.3,
-  "6m": -1.7,
-  "1y": -31.3,
-  "3y_cagr": 15.2,
-  "ytd": -35.6
+  "1m": -20.6,
+  "3m": -17.3,
+  "6m": -4.8,
+  "1y": -34.2,
+  "3y_cagr": 15.3,
+  "ytd": -36.0
  },
  "relative_strength_pp": {
-  "3m": -17.3,
-  "6m": -6.7,
-  "1y": -30.9
+  "3m": -19.8,
+  "6m": -11.3,
+  "1y": -35.4
  },
  "range": {
   "high_52w": 2473.5,
   "low_52w": 1324.9,
-  "pct_from_high": -38.9,
-  "pct_above_low": 14.1,
+  "pct_from_high": -39.3,
+  "pct_above_low": 13.4,
   "high_date": "2026-02-03",
   "low_date": "2026-06-30"
  },
  "moving_averages": {
-  "dma20": 1600.28,
-  "pct_vs_dma20": -5.6,
-  "dma50": 1781.04,
-  "pct_vs_dma50": -15.1,
-  "dma100": 1795.24,
-  "pct_vs_dma100": -15.8,
-  "dma200": 1690.04,
-  "pct_vs_dma200": -10.6
+  "dma20": 1581.56,
+  "pct_vs_dma20": -5.0,
+  "dma50": 1772.63,
+  "pct_vs_dma50": -15.3,
+  "dma100": 1796.93,
+  "pct_vs_dma100": -16.4,
+  "dma200": 1685.92,
+  "pct_vs_dma200": -10.9
  },
  "trend": {
   "above_dma200": false,
@@ -41,33 +41,33 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 35.5,
-  "macd_pct": -6.0,
-  "macd_signal_pct": -5.8,
-  "macd_hist_pct": -0.2,
-  "bollinger_pctb": 0.33,
-  "atr_pct": 4.53
+  "rsi14": 34.8,
+  "macd_pct": -5.82,
+  "macd_signal_pct": -5.83,
+  "macd_hist_pct": 0.01,
+  "bollinger_pctb": 0.32,
+  "atr_pct": 4.56
  },
  "risk": {
-  "volatility_1y_pct": 46.8,
+  "volatility_1y_pct": 46.6,
   "downside_deviation_pct": 33.1,
   "max_drawdown_1y_pct": -46.4,
   "max_drawdown_all_pct": -46.4,
   "var95_1d_pct": -4.41,
   "cvar95_1d_pct": -6.08,
-  "sharpe_1y": -0.72,
-  "sortino_1y": -1.02
+  "sharpe_1y": -0.82,
+  "sortino_1y": -1.15
  },
  "beta": {
-  "raw": 1.1,
-  "adjusted": 1.07,
+  "raw": 1.11,
+  "adjusted": 1.08,
   "weeks": 156,
   "correlation": 0.36,
   "r_squared": 0.13,
-  "alpha_pct": 3.9
+  "alpha_pct": 3.0
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 42.32
+  "avg_daily_value_3m_cr": 42.4
  },
  "flags": []
 }

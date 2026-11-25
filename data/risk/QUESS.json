@@ -1,38 +1,38 @@
 {
  "symbol": "QUESS",
- "as_of": "2026-11-23",
- "rows": 1237,
- "price": 331.5,
+ "as_of": "2026-11-25",
+ "rows": 1238,
+ "price": 328.3,
  "returns_pct": {
-  "1m": 5.1,
-  "3m": -2.0,
-  "6m": 64.6,
-  "1y": 56.5,
-  "3y_cagr": -7.6,
-  "ytd": 61.2
+  "1m": 6.2,
+  "3m": -2.2,
+  "6m": 61.9,
+  "1y": 50.8,
+  "3y_cagr": -8.1,
+  "ytd": 59.7
  },
  "relative_strength_pp": {
-  "3m": -3.0,
-  "6m": 59.5,
-  "1y": 56.9
+  "3m": -4.7,
+  "6m": 55.5,
+  "1y": 49.6
  },
  "range": {
   "high_52w": 381.75,
   "low_52w": 169.72,
-  "pct_from_high": -13.2,
-  "pct_above_low": 95.3,
+  "pct_from_high": -14.0,
+  "pct_above_low": 93.4,
   "high_date": "2026-08-31",
   "low_date": "2026-03-30"
  },
  "moving_averages": {
-  "dma20": 330.95,
-  "pct_vs_dma20": 0.2,
-  "dma50": 335.72,
-  "pct_vs_dma50": -1.3,
-  "dma100": 328.78,
-  "pct_vs_dma100": 0.8,
-  "dma200": 267.76,
-  "pct_vs_dma200": 23.8
+  "dma20": 331.2,
+  "pct_vs_dma20": -0.9,
+  "dma50": 335.19,
+  "pct_vs_dma50": -2.1,
+  "dma100": 329.33,
+  "pct_vs_dma100": -0.3,
+  "dma200": 268.36,
+  "pct_vs_dma200": 22.3
  },
  "trend": {
   "above_dma200": true,
@@ -41,22 +41,22 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 49.0,
-  "macd_pct": 0.53,
+  "rsi14": 47.5,
+  "macd_pct": 0.33,
   "macd_signal_pct": 0.33,
-  "macd_hist_pct": 0.2,
-  "bollinger_pctb": 0.51,
-  "atr_pct": 4.71
+  "macd_hist_pct": -0.01,
+  "bollinger_pctb": 0.44,
+  "atr_pct": 4.89
  },
  "risk": {
   "volatility_1y_pct": 39.5,
-  "downside_deviation_pct": 23.8,
+  "downside_deviation_pct": 23.9,
   "max_drawdown_1y_pct": -23.9,
   "max_drawdown_all_pct": -81.1,
   "var95_1d_pct": -3.33,
   "cvar95_1d_pct": -4.3,
-  "sharpe_1y": 1.15,
-  "sortino_1y": 1.9
+  "sharpe_1y": 1.05,
+  "sortino_1y": 1.74
  },
  "beta": {
   "raw": 0.97,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.31,
   "r_squared": 0.09,
-  "alpha_pct": -11.2
+  "alpha_pct": -12.0
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 17.44
+  "avg_daily_value_3m_cr": 17.32
  },
  "flags": [
   "large one-day move (51% on 2025-04-15): check for split, bonus or demerger"

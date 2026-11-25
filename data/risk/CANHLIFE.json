@@ -1,38 +1,38 @@
 {
  "symbol": "CANHLIFE",
- "as_of": "2026-11-23",
- "rows": 271,
- "price": 124.52,
+ "as_of": "2026-11-25",
+ "rows": 272,
+ "price": 130.1,
  "returns_pct": {
-  "1m": -1.0,
-  "3m": -17.9,
-  "6m": -10.6,
-  "1y": 3.5,
+  "1m": 4.3,
+  "3m": -16.2,
+  "6m": -6.4,
+  "1y": 8.0,
   "3y_cagr": null,
-  "ytd": -16.0
+  "ytd": -12.2
  },
  "relative_strength_pp": {
-  "3m": -18.9,
-  "6m": -15.6,
-  "1y": 3.9
+  "3m": -18.7,
+  "6m": -12.9,
+  "1y": 6.8
  },
  "range": {
   "high_52w": 157.23,
   "low_52w": 118.84,
-  "pct_from_high": -20.8,
-  "pct_above_low": 4.8,
+  "pct_from_high": -17.3,
+  "pct_above_low": 9.5,
   "high_date": "2026-09-04",
   "low_date": "2025-12-11"
  },
  "moving_averages": {
-  "dma20": 125.24,
-  "pct_vs_dma20": -0.6,
-  "dma50": 136.39,
-  "pct_vs_dma50": -8.7,
-  "dma100": 142.98,
-  "pct_vs_dma100": -12.9,
-  "dma200": 143.06,
-  "pct_vs_dma200": -13.0
+  "dma20": 125.65,
+  "pct_vs_dma20": 3.5,
+  "dma50": 136.0,
+  "pct_vs_dma50": -4.3,
+  "dma100": 142.88,
+  "pct_vs_dma100": -8.9,
+  "dma200": 142.97,
+  "pct_vs_dma200": -9.0
  },
  "trend": {
   "above_dma200": false,
@@ -41,26 +41,26 @@
   "cross": "death cross in last 20 days"
  },
  "momentum": {
-  "rsi14": 41.8,
-  "macd_pct": -1.47,
-  "macd_signal_pct": -2.21,
-  "macd_hist_pct": 0.74,
-  "bollinger_pctb": 0.46,
-  "atr_pct": 3.96
+  "rsi14": 51.2,
+  "macd_pct": -1.13,
+  "macd_signal_pct": -1.92,
+  "macd_hist_pct": 0.79,
+  "bollinger_pctb": 0.74,
+  "atr_pct": 3.91
  },
  "risk": {
-  "volatility_1y_pct": 30.4,
+  "volatility_1y_pct": 30.7,
   "downside_deviation_pct": 19.3,
   "max_drawdown_1y_pct": -23.9,
   "max_drawdown_all_pct": -23.9,
   "var95_1d_pct": -2.77,
   "cvar95_1d_pct": -3.51,
-  "sharpe_1y": 0.03,
-  "sortino_1y": 0.04
+  "sharpe_1y": 0.17,
+  "sortino_1y": 0.27
  },
  "beta": null,
  "liquidity": {
-  "avg_daily_value_3m_cr": 14.85
+  "avg_daily_value_3m_cr": 14.77
  },
  "flags": []
 }

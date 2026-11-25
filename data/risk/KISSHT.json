@@ -1,36 +1,36 @@
 {
  "symbol": "KISSHT",
- "as_of": "2026-11-23",
- "rows": 136,
- "price": 326.3,
+ "as_of": "2026-11-25",
+ "rows": 137,
+ "price": 324.2,
  "returns_pct": {
-  "1m": 0.2,
-  "3m": 7.8,
-  "6m": 33.4,
+  "1m": 4.9,
+  "3m": 4.3,
+  "6m": 39.9,
   "1y": null,
   "3y_cagr": null,
   "ytd": null
  },
  "relative_strength_pp": {
-  "3m": 6.8,
-  "6m": 28.4,
+  "3m": 1.8,
+  "6m": 33.4,
   "1y": null
  },
  "range": {
   "high_52w": 383.1,
   "low_52w": 196.07,
-  "pct_from_high": -14.8,
-  "pct_above_low": 66.4,
+  "pct_from_high": -15.4,
+  "pct_above_low": 65.3,
   "high_date": "2026-10-06",
   "low_date": "2026-05-15"
  },
  "moving_averages": {
-  "dma20": 331.92,
-  "pct_vs_dma20": -1.7,
-  "dma50": 344.64,
-  "pct_vs_dma50": -5.3,
-  "dma100": 329.03,
-  "pct_vs_dma100": -0.8,
+  "dma20": 332.87,
+  "pct_vs_dma20": -2.6,
+  "dma50": 344.67,
+  "pct_vs_dma50": -5.9,
+  "dma100": 329.48,
+  "pct_vs_dma100": -1.6,
   "dma200": null,
   "pct_vs_dma200": null
  },
@@ -41,26 +41,26 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 43.8,
-  "macd_pct": 0.02,
-  "macd_signal_pct": 0.11,
-  "macd_hist_pct": -0.09,
-  "bollinger_pctb": 0.43,
-  "atr_pct": 5.45
+  "rsi14": 42.9,
+  "macd_pct": -0.34,
+  "macd_signal_pct": 0.02,
+  "macd_hist_pct": -0.36,
+  "bollinger_pctb": 0.38,
+  "atr_pct": 5.35
  },
  "risk": {
-  "volatility_1y_pct": 52.7,
-  "downside_deviation_pct": 29.6,
+  "volatility_1y_pct": 52.5,
+  "downside_deviation_pct": 29.5,
   "max_drawdown_1y_pct": -20.7,
   "max_drawdown_all_pct": -20.7,
-  "var95_1d_pct": -4.12,
+  "var95_1d_pct": -4.09,
   "cvar95_1d_pct": -5.36,
-  "sharpe_1y": 1.71,
-  "sortino_1y": 3.04
+  "sharpe_1y": 1.68,
+  "sortino_1y": 2.98
  },
  "beta": null,
  "liquidity": {
-  "avg_daily_value_3m_cr": 47.55
+  "avg_daily_value_3m_cr": 47.09
  },
  "flags": [
   "short history: risk and trend figures use fewer than 250 days"

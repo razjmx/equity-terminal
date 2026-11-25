@@ -3,14 +3,14 @@
  "latest_fy": "2026-03-31",
  "status": "not meaningful",
  "reliability": "not meaningful",
- "price": 136.66,
+ "price": 138.75,
  "fair_value": null,
  "fair_low": null,
  "fair_high": null,
  "upside_pct": null,
  "flags": [
   "margin swing: latest core EBIT margin 25.4% vs 3-year average 19.8% (possible peak or trough)",
-  "investments added: Rs 493 cr of non-operating investments (10% of market cap)",
+  "investments added: Rs 493 cr of non-operating investments (9% of market cap)",
   "wacc clamped: 8.5% to 9.0%",
   "low return: ROIC 2.8% below WACC 9.0%",
   "not meaningful: negative equity value"
@@ -18,10 +18,10 @@
  "assumptions": {
   "rf_pct": 7.2,
   "erp_pct": 6.0,
-  "beta_raw": 0.97,
-  "beta_used": 0.98,
+  "beta_raw": 0.96,
+  "beta_used": 0.97,
   "beta_weeks": 156,
-  "cost_of_equity_pct": 13.06,
+  "cost_of_equity_pct": 13.04,
   "wacc_pct": 9.0,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
@@ -133,7 +133,7 @@
   "minority": 0.0,
   "equity_value": -4154.0,
   "shares_cr": 37.523,
-  "market_cap": 5128.0
+  "market_cap": 5206.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -173,24 +173,24 @@
     null
    ],
    [
-    -196.0,
+    -195.9,
     -194.7,
     -193.4,
     -192.1,
     -190.7
    ],
    [
-    -226.2,
+    -226.1,
     -225.4,
-    -224.7,
-    -223.9,
+    -224.6,
+    -223.8,
     -223.0
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 47.5,
-  "implied_ebit_margin_pct": 31.8,
+  "implied_first_year_growth_pct": 47.7,
+  "implied_ebit_margin_pct": 31.9,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "not meaningful",
   "note": ""
@@ -210,8 +210,8 @@
   "cash": 1397.56,
   "invest": 493.37,
   "minority": 0.0,
-  "shares_cr": 37.52266893019172,
-  "roll": 1.084430737863489,
+  "shares_cr": 37.52266893019171,
+  "roll": 1.0842958672443863,
   "mid_year": true
  }
 }

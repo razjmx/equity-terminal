@@ -1,66 +1,66 @@
 {
  "symbol": "PIRAMALFIN",
- "as_of": "2026-11-23",
- "rows": 258,
- "price": 1970.2,
+ "as_of": "2026-11-25",
+ "rows": 259,
+ "price": 1989.4,
  "returns_pct": {
-  "1m": 0.9,
-  "3m": -7.4,
-  "6m": 2.4,
-  "1y": 32.2,
+  "1m": 6.1,
+  "3m": -8.8,
+  "6m": 1.5,
+  "1y": 27.1,
   "3y_cagr": null,
-  "ytd": 19.9
+  "ytd": 21.1
  },
  "relative_strength_pp": {
-  "3m": -8.4,
-  "6m": -2.7,
-  "1y": 32.6
+  "3m": -11.3,
+  "6m": -4.9,
+  "1y": 25.9
  },
  "range": {
   "high_52w": 2310.5,
   "low_52w": 1473.6,
-  "pct_from_high": -14.7,
-  "pct_above_low": 33.7,
+  "pct_from_high": -13.9,
+  "pct_above_low": 35.0,
   "high_date": "2026-09-09",
   "low_date": "2025-12-08"
  },
  "moving_averages": {
-  "dma20": 2001.08,
-  "pct_vs_dma20": -1.5,
-  "dma50": 2054.75,
-  "pct_vs_dma50": -4.1,
-  "dma100": 2098.68,
-  "pct_vs_dma100": -6.1,
-  "dma200": 1979.4,
-  "pct_vs_dma200": -0.5
+  "dma20": 2005.63,
+  "pct_vs_dma20": -0.8,
+  "dma50": 2048.32,
+  "pct_vs_dma50": -2.9,
+  "dma100": 2096.6,
+  "pct_vs_dma100": -5.1,
+  "dma200": 1980.63,
+  "pct_vs_dma200": 0.4
  },
  "trend": {
-  "above_dma200": false,
+  "above_dma200": true,
   "above_dma50": false,
   "dma50_above_dma200": true,
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 44.5,
-  "macd_pct": 0.41,
-  "macd_signal_pct": 0.48,
-  "macd_hist_pct": -0.08,
-  "bollinger_pctb": 0.43,
-  "atr_pct": 3.99
+  "rsi14": 46.4,
+  "macd_pct": 0.18,
+  "macd_signal_pct": 0.42,
+  "macd_hist_pct": -0.24,
+  "bollinger_pctb": 0.46,
+  "atr_pct": 3.93
  },
  "risk": {
-  "volatility_1y_pct": 34.5,
+  "volatility_1y_pct": 34.2,
   "downside_deviation_pct": 21.0,
   "max_drawdown_1y_pct": -21.9,
   "max_drawdown_all_pct": -21.9,
   "var95_1d_pct": -3.0,
   "cvar95_1d_pct": -4.05,
-  "sharpe_1y": 0.77,
-  "sortino_1y": 1.26
+  "sharpe_1y": 0.66,
+  "sortino_1y": 1.07
  },
  "beta": null,
  "liquidity": {
-  "avg_daily_value_3m_cr": 86.48
+  "avg_daily_value_3m_cr": 85.36
  },
  "flags": []
 }

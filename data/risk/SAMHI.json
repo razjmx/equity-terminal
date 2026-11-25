@@ -1,38 +1,38 @@
 {
  "symbol": "SAMHI",
- "as_of": "2026-11-23",
- "rows": 781,
- "price": 156.35,
+ "as_of": "2026-11-25",
+ "rows": 782,
+ "price": 158.8,
  "returns_pct": {
   "1m": 3.9,
-  "3m": -2.5,
-  "6m": 6.6,
-  "1y": -14.0,
-  "3y_cagr": 1.4,
-  "ytd": -14.5
+  "3m": -0.5,
+  "6m": 5.8,
+  "1y": -14.7,
+  "3y_cagr": 2.2,
+  "ytd": -13.2
  },
  "relative_strength_pp": {
-  "3m": -3.5,
-  "6m": 1.6,
-  "1y": -13.6
+  "3m": -3.0,
+  "6m": -0.6,
+  "1y": -16.0
  },
  "range": {
   "high_52w": 200.55,
   "low_52w": 128.15,
-  "pct_from_high": -22.0,
-  "pct_above_low": 22.0,
+  "pct_from_high": -20.8,
+  "pct_above_low": 23.9,
   "high_date": "2026-01-08",
   "low_date": "2026-03-30"
  },
  "moving_averages": {
-  "dma20": 158.49,
-  "pct_vs_dma20": -1.4,
-  "dma50": 154.65,
-  "pct_vs_dma50": 1.1,
-  "dma100": 160.99,
-  "pct_vs_dma100": -2.9,
-  "dma200": 160.09,
-  "pct_vs_dma200": -2.3
+  "dma20": 158.74,
+  "pct_vs_dma20": 0.0,
+  "dma50": 154.78,
+  "pct_vs_dma50": 2.6,
+  "dma100": 160.84,
+  "pct_vs_dma100": -1.3,
+  "dma200": 160.04,
+  "pct_vs_dma200": -0.8
  },
  "trend": {
   "above_dma200": false,
@@ -41,22 +41,22 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 48.6,
-  "macd_pct": 1.0,
-  "macd_signal_pct": 1.43,
-  "macd_hist_pct": -0.43,
-  "bollinger_pctb": 0.4,
-  "atr_pct": 3.76
+  "rsi14": 51.9,
+  "macd_pct": 0.9,
+  "macd_signal_pct": 1.31,
+  "macd_hist_pct": -0.41,
+  "bollinger_pctb": 0.5,
+  "atr_pct": 3.61
  },
  "risk": {
-  "volatility_1y_pct": 38.0,
+  "volatility_1y_pct": 37.9,
   "downside_deviation_pct": 26.0,
   "max_drawdown_1y_pct": -36.1,
   "max_drawdown_all_pct": -48.5,
   "var95_1d_pct": -3.68,
   "cvar95_1d_pct": -4.71,
-  "sharpe_1y": -0.4,
-  "sortino_1y": -0.58
+  "sharpe_1y": -0.42,
+  "sortino_1y": -0.62
  },
  "beta": {
   "raw": 1.13,
@@ -67,7 +67,7 @@
   "alpha_pct": -8.3
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 17.46
+  "avg_daily_value_3m_cr": 17.4
  },
  "flags": []
 }

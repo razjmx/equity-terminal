@@ -1,38 +1,38 @@
 {
  "symbol": "VEDL",
- "as_of": "2026-11-23",
- "rows": 1237,
- "price": 235.53,
+ "as_of": "2026-11-25",
+ "rows": 1238,
+ "price": 235.24,
  "returns_pct": {
-  "1m": 0.3,
-  "3m": -12.1,
-  "6m": -28.6,
-  "1y": -55.2,
-  "3y_cagr": 2.9,
-  "ytd": -61.0
+  "1m": 3.9,
+  "3m": -15.7,
+  "6m": -28.7,
+  "1y": -54.8,
+  "3y_cagr": 2.8,
+  "ytd": -61.1
  },
  "relative_strength_pp": {
-  "3m": -13.1,
-  "6m": -33.6,
-  "1y": -54.8
+  "3m": -18.2,
+  "6m": -35.2,
+  "1y": -56.1
  },
  "range": {
   "high_52w": 787.5,
   "low_52w": 225.6,
   "pct_from_high": -70.1,
-  "pct_above_low": 4.4,
+  "pct_above_low": 4.3,
   "high_date": "2026-04-17",
   "low_date": "2026-10-27"
  },
  "moving_averages": {
-  "dma20": 247.55,
-  "pct_vs_dma20": -4.9,
-  "dma50": 253.13,
-  "pct_vs_dma50": -7.0,
-  "dma100": 262.06,
+  "dma20": 247.94,
+  "pct_vs_dma20": -5.1,
+  "dma50": 252.38,
+  "pct_vs_dma50": -6.8,
+  "dma100": 261.65,
   "pct_vs_dma100": -10.1,
-  "dma200": 403.04,
-  "pct_vs_dma200": -41.6
+  "dma200": 400.8,
+  "pct_vs_dma200": -41.3
  },
  "trend": {
   "above_dma200": false,
@@ -41,12 +41,12 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 36.9,
-  "macd_pct": -0.89,
-  "macd_signal_pct": -0.22,
-  "macd_hist_pct": -0.67,
-  "bollinger_pctb": 0.26,
-  "atr_pct": 3.21
+  "rsi14": 36.7,
+  "macd_pct": -1.24,
+  "macd_signal_pct": -0.42,
+  "macd_hist_pct": -0.81,
+  "bollinger_pctb": 0.24,
+  "atr_pct": 3.13
  },
  "risk": {
   "volatility_1y_pct": 75.0,
@@ -55,19 +55,19 @@
   "max_drawdown_all_pct": -71.4,
   "var95_1d_pct": -3.43,
   "cvar95_1d_pct": -9.48,
-  "sharpe_1y": -0.54,
-  "sortino_1y": -0.58
+  "sharpe_1y": -0.53,
+  "sortino_1y": -0.57
  },
  "beta": {
-  "raw": 1.28,
+  "raw": 1.29,
   "adjusted": 1.19,
   "weeks": 156,
   "correlation": 0.36,
   "r_squared": 0.13,
-  "alpha_pct": 7.1
+  "alpha_pct": 6.4
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 272.1
+  "avg_daily_value_3m_cr": 264.02
  },
  "flags": [
   "large one-day move (65% on 2026-04-30): check for split, bonus or demerger"

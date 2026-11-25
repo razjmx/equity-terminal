@@ -1,38 +1,38 @@
 {
  "symbol": "APLAPOLLO",
- "as_of": "2026-11-23",
- "rows": 1237,
- "price": 1670.0,
+ "as_of": "2026-11-25",
+ "rows": 1238,
+ "price": 1473.5,
  "returns_pct": {
-  "1m": -18.6,
-  "3m": -22.0,
-  "6m": -10.2,
-  "1y": -5.3,
-  "3y_cagr": 1.4,
-  "ytd": -12.7
+  "1m": -27.5,
+  "3m": -31.1,
+  "6m": -21.6,
+  "1y": -17.1,
+  "3y_cagr": -2.0,
+  "ytd": -23.0
  },
  "relative_strength_pp": {
-  "3m": -23.0,
-  "6m": -15.3,
-  "1y": -4.9
+  "3m": -33.6,
+  "6m": -28.1,
+  "1y": -18.4
  },
  "range": {
   "high_52w": 2280.8,
-  "low_52w": 1670.0,
-  "pct_from_high": -26.8,
+  "low_52w": 1473.5,
+  "pct_from_high": -35.4,
   "pct_above_low": 0.0,
   "high_date": "2026-02-11",
-  "low_date": "2026-11-23"
+  "low_date": "2026-11-25"
  },
  "moving_averages": {
-  "dma20": 2155.45,
-  "pct_vs_dma20": -22.5,
-  "dma50": 2151.55,
-  "pct_vs_dma50": -22.4,
-  "dma100": 2062.9,
-  "pct_vs_dma100": -19.0,
-  "dma200": 2025.59,
-  "pct_vs_dma200": -17.6
+  "dma20": 2125.23,
+  "pct_vs_dma20": -30.7,
+  "dma50": 2137.66,
+  "pct_vs_dma50": -31.1,
+  "dma100": 2059.79,
+  "pct_vs_dma100": -28.5,
+  "dma200": 2022.72,
+  "pct_vs_dma200": -27.2
  },
  "trend": {
   "above_dma200": false,
@@ -41,33 +41,33 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 19.4,
-  "macd_pct": -2.06,
-  "macd_signal_pct": 0.24,
-  "macd_hist_pct": -2.3,
-  "bollinger_pctb": -0.5,
-  "atr_pct": 5.43
+  "rsi14": 15.4,
+  "macd_pct": -5.54,
+  "macd_signal_pct": -0.89,
+  "macd_hist_pct": -4.66,
+  "bollinger_pctb": -0.34,
+  "atr_pct": 7.3
  },
  "risk": {
-  "volatility_1y_pct": 36.8,
-  "downside_deviation_pct": 28.8,
-  "max_drawdown_1y_pct": -26.8,
-  "max_drawdown_all_pct": -28.2,
-  "var95_1d_pct": -3.45,
-  "cvar95_1d_pct": -5.39,
-  "sharpe_1y": -0.15,
-  "sortino_1y": -0.19
+  "volatility_1y_pct": 38.6,
+  "downside_deviation_pct": 31.2,
+  "max_drawdown_1y_pct": -35.4,
+  "max_drawdown_all_pct": -35.4,
+  "var95_1d_pct": -3.57,
+  "cvar95_1d_pct": -6.02,
+  "sharpe_1y": -0.47,
+  "sortino_1y": -0.58
  },
  "beta": {
-  "raw": 1.08,
-  "adjusted": 1.05,
+  "raw": 1.03,
+  "adjusted": 1.02,
   "weeks": 156,
-  "correlation": 0.48,
-  "r_squared": 0.23,
-  "alpha_pct": -4.4
+  "correlation": 0.43,
+  "r_squared": 0.19,
+  "alpha_pct": -7.9
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 221.01
+  "avg_daily_value_3m_cr": 285.59
  },
  "flags": []
 }

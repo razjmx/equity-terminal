@@ -1,38 +1,38 @@
 {
  "symbol": "ZYDUSWELL",
- "as_of": "2026-11-23",
- "rows": 1237,
- "price": 465.85,
+ "as_of": "2026-11-25",
+ "rows": 1238,
+ "price": 466.4,
  "returns_pct": {
-  "1m": -2.0,
-  "3m": -7.1,
-  "6m": -5.6,
-  "1y": 2.5,
-  "3y_cagr": 14.8,
-  "ytd": 2.5
+  "1m": 0.7,
+  "3m": -5.0,
+  "6m": -4.9,
+  "1y": 2.3,
+  "3y_cagr": 15.1,
+  "ytd": 2.6
  },
  "relative_strength_pp": {
-  "3m": -8.1,
-  "6m": -10.7,
-  "1y": 2.9
+  "3m": -7.4,
+  "6m": -11.3,
+  "1y": 1.0
  },
  "range": {
   "high_52w": 602.5,
   "low_52w": 373.5,
-  "pct_from_high": -22.7,
-  "pct_above_low": 24.7,
+  "pct_from_high": -22.6,
+  "pct_above_low": 24.9,
   "high_date": "2026-07-20",
   "low_date": "2026-03-09"
  },
  "moving_averages": {
-  "dma20": 469.53,
-  "pct_vs_dma20": -0.8,
-  "dma50": 497.0,
-  "pct_vs_dma50": -6.3,
-  "dma100": 522.87,
-  "pct_vs_dma100": -10.9,
-  "dma200": 493.92,
-  "pct_vs_dma200": -5.7
+  "dma20": 469.15,
+  "pct_vs_dma20": -0.6,
+  "dma50": 495.24,
+  "pct_vs_dma50": -5.8,
+  "dma100": 521.84,
+  "pct_vs_dma100": -10.6,
+  "dma200": 494.02,
+  "pct_vs_dma200": -5.6
  },
  "trend": {
   "above_dma200": false,
@@ -41,12 +41,12 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 45.2,
-  "macd_pct": -2.27,
-  "macd_signal_pct": -2.27,
-  "macd_hist_pct": 0.0,
-  "bollinger_pctb": 0.42,
-  "atr_pct": 3.8
+  "rsi14": 45.5,
+  "macd_pct": -2.07,
+  "macd_signal_pct": -2.23,
+  "macd_hist_pct": 0.16,
+  "bollinger_pctb": 0.44,
+  "atr_pct": 3.77
  },
  "risk": {
   "volatility_1y_pct": 39.1,
@@ -55,19 +55,19 @@
   "max_drawdown_all_pct": -36.0,
   "var95_1d_pct": -3.46,
   "cvar95_1d_pct": -3.89,
-  "sharpe_1y": 0.07,
-  "sortino_1y": 0.12
+  "sharpe_1y": 0.06,
+  "sortino_1y": 0.11
  },
  "beta": {
-  "raw": 0.91,
-  "adjusted": 0.94,
+  "raw": 0.92,
+  "adjusted": 0.95,
   "weeks": 156,
   "correlation": 0.4,
   "r_squared": 0.16,
-  "alpha_pct": 9.3
+  "alpha_pct": 8.8
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 18.17
+  "avg_daily_value_3m_cr": 18.21
  },
  "flags": []
 }

@@ -3,7 +3,7 @@
  "latest_fy": "2026-03-31",
  "status": "not meaningful",
  "reliability": "not meaningful",
- "price": 24425.0,
+ "price": 24545.0,
  "fair_value": null,
  "fair_low": null,
  "fair_high": null,
@@ -11,7 +11,7 @@
  "flags": [
   "growth clamped: 2-year 54.3% to 30%",
   "growth gap: 2-year growth differs from 3-year CAGR (40.7%) by over 10 points",
-  "low return: ROIC 4.7% below WACC 13.3%",
+  "low return: ROIC 4.7% below WACC 13.4%",
   "not meaningful: negative equity value"
  ],
  "assumptions": {
@@ -20,8 +20,8 @@
   "beta_raw": 1.05,
   "beta_used": 1.03,
   "beta_weeks": 156,
-  "cost_of_equity_pct": 13.39,
-  "wacc_pct": 13.34,
+  "cost_of_equity_pct": 13.4,
+  "wacc_pct": 13.36,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
   "forecast_years": 10,
@@ -35,7 +35,7 @@
   "roic_now_pct": 4.7,
   "mid_year": true,
   "roll_forward_years": 0.66,
-  "roll_factor": 1.086
+  "roll_factor": 1.087
  },
  "projection_cr": [
   {
@@ -120,27 +120,27 @@
   }
  ],
  "terminal": {
-  "roic_pct": 13.3,
+  "roic_pct": 13.4,
   "fcff_cr": 257.0,
-  "pv_share_of_ev_pct": -114.8
+  "pv_share_of_ev_pct": -114.2
  },
  "bridge_cr": {
-  "enterprise_value": -996.0,
+  "enterprise_value": -998.0,
   "debt": 261.0,
   "cash": 204.0,
   "investments": 0.0,
   "minority": 0.0,
-  "equity_value": -1054.0,
+  "equity_value": -1056.0,
   "shares_cr": 1.585,
-  "market_cap": 38722.0
+  "market_cap": 38913.0
  },
  "sensitivity": {
   "wacc_pct": [
-   11.34,
-   12.34,
-   13.34,
-   14.34,
-   15.34
+   11.36,
+   12.36,
+   13.36,
+   14.36,
+   15.36
   ],
   "terminal_growth_pct": [
    5.5,
@@ -151,39 +151,39 @@
   ],
   "fair_value": [
    [
-    -499.7,
-    -509.0,
-    -518.4,
-    -527.8,
-    -537.2
+    -502.0,
+    -511.5,
+    -520.9,
+    -530.3,
+    -539.7
    ],
    [
-    -613.1,
-    -624.0,
-    -634.9,
-    -645.9,
-    -657.0
+    -614.9,
+    -625.8,
+    -636.8,
+    -647.8,
+    -658.9
    ],
    [
-    -698.2,
-    -710.1,
-    -722.1,
-    -734.1,
-    -746.2
+    -699.5,
+    -711.5,
+    -723.5,
+    -735.5,
+    -747.7
    ],
    [
-    -761.8,
-    -774.3,
-    -786.9,
-    -799.7,
-    -812.5
+    -762.8,
+    -775.4,
+    -788.0,
+    -800.7,
+    -813.5
    ],
    [
-    -809.0,
-    -821.8,
-    -834.8,
-    -847.9,
-    -861.0
+    -809.8,
+    -822.7,
+    -835.6,
+    -848.7,
+    -861.8
    ]
   ]
  },
@@ -200,7 +200,7 @@
   "tax": 0.25,
   "s2c": 0.5,
   "g1": 0.3,
-  "wacc": 0.13340545931894263,
+  "wacc": 0.1335841079737858,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -209,8 +209,8 @@
   "cash": 203.6876,
   "invest": 0.0,
   "minority": 0.0,
-  "shares_cr": 1.5853615405828476,
-  "roll": 1.0864799394036093,
+  "shares_cr": 1.5853615405828474,
+  "roll": 1.0865923486742974,
   "mid_year": true
  }
 }

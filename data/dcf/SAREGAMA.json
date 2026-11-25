@@ -2,15 +2,13 @@
  "symbol": "SAREGAMA",
  "latest_fy": "2026-03-31",
  "status": "ok",
- "reliability": "low confidence",
- "price": 657.6,
+ "reliability": "indicative",
+ "price": 624.05,
  "fair_value": 157.5,
- "fair_low": 136.7,
- "fair_high": 186.5,
- "upside_pct": -76.1,
- "flags": [
-  "far from price: model value is 24% of the market price"
- ],
+ "fair_low": 136.8,
+ "fair_high": 186.6,
+ "upside_pct": -74.8,
+ "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
   "erp_pct": 6.0,
@@ -122,14 +120,14 @@
   "pv_share_of_ev_pct": 67.5
  },
  "bridge_cr": {
-  "enterprise_value": 2359.0,
+  "enterprise_value": 2360.0,
   "debt": 73.0,
   "cash": 199.0,
   "investments": 311.0,
   "minority": 3.0,
   "equity_value": 2794.0,
   "shares_cr": 19.196,
-  "market_cap": 12623.0
+  "market_cap": 11979.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -148,39 +146,39 @@
   ],
   "fair_value": [
    [
-    209.0,
-    218.3,
-    229.6,
-    244.0,
-    262.6
+    209.1,
+    218.4,
+    229.8,
+    244.1,
+    262.8
    ],
    [
-    175.4,
-    180.5,
-    186.5,
-    193.6,
-    202.4
+    175.5,
+    180.6,
+    186.6,
+    193.7,
+    202.5
    ],
    [
-    151.4,
+    151.5,
     154.3,
     157.5,
-    161.2,
+    161.3,
     165.6
    ],
    [
-    133.4,
+    133.5,
     135.0,
-    136.7,
-    138.6,
+    136.8,
+    138.7,
     140.8
    ],
    [
     119.5,
     120.3,
-    121.1,
+    121.2,
     122.1,
-    123.0
+    123.1
    ]
   ]
  },
@@ -197,7 +195,7 @@
   "tax": 0.25,
   "s2c": 0.7586584096402547,
   "g1": 0.12222532946738185,
-  "wacc": 0.1267750525619803,
+  "wacc": 0.1267541764394952,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -207,7 +205,7 @@
   "invest": 310.7427,
   "minority": 2.5305,
   "shares_cr": 19.195947600973234,
-  "roll": 1.0822148492606791,
+  "roll": 1.082213150151325,
   "mid_year": true
  }
 }

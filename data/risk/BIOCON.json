@@ -1,52 +1,52 @@
 {
  "symbol": "BIOCON",
- "as_of": "2026-11-23",
- "rows": 1237,
- "price": 356.7,
+ "as_of": "2026-11-25",
+ "rows": 1238,
+ "price": 365.8,
  "returns_pct": {
-  "1m": 8.0,
-  "3m": -13.5,
-  "6m": -17.2,
-  "1y": -13.2,
-  "3y_cagr": 17.1,
-  "ytd": -9.4
+  "1m": 13.1,
+  "3m": -12.0,
+  "6m": -15.0,
+  "1y": -13.1,
+  "3y_cagr": 18.5,
+  "ytd": -7.1
  },
  "relative_strength_pp": {
   "3m": -14.5,
-  "6m": -22.3,
-  "1y": -12.9
+  "6m": -21.4,
+  "1y": -14.4
  },
  "range": {
   "high_52w": 440.7,
   "low_52w": 323.5,
-  "pct_from_high": -19.1,
-  "pct_above_low": 10.3,
+  "pct_from_high": -17.0,
+  "pct_above_low": 13.1,
   "high_date": "2026-07-16",
   "low_date": "2026-10-23"
  },
  "moving_averages": {
-  "dma20": 356.24,
-  "pct_vs_dma20": 0.1,
-  "dma50": 362.84,
-  "pct_vs_dma50": -1.7,
-  "dma100": 391.46,
-  "pct_vs_dma100": -8.9,
-  "dma200": 389.88,
-  "pct_vs_dma200": -8.5
+  "dma20": 358.09,
+  "pct_vs_dma20": 2.2,
+  "dma50": 362.25,
+  "pct_vs_dma50": 1.0,
+  "dma100": 390.93,
+  "pct_vs_dma100": -6.4,
+  "dma200": 389.87,
+  "pct_vs_dma200": -6.2
  },
  "trend": {
   "above_dma200": false,
-  "above_dma50": false,
+  "above_dma50": true,
   "dma50_above_dma200": false,
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 47.5,
-  "macd_pct": 0.27,
-  "macd_signal_pct": -0.05,
-  "macd_hist_pct": 0.32,
-  "bollinger_pctb": 0.51,
-  "atr_pct": 2.51
+  "rsi14": 54.7,
+  "macd_pct": 0.36,
+  "macd_signal_pct": 0.04,
+  "macd_hist_pct": 0.33,
+  "bollinger_pctb": 0.7,
+  "atr_pct": 2.45
  },
  "risk": {
   "volatility_1y_pct": 25.9,
@@ -55,19 +55,19 @@
   "max_drawdown_all_pct": -51.2,
   "var95_1d_pct": -2.5,
   "cvar95_1d_pct": -3.43,
-  "sharpe_1y": -0.7,
-  "sortino_1y": -0.98
+  "sharpe_1y": -0.69,
+  "sortino_1y": -0.97
  },
  "beta": {
   "raw": 1.07,
-  "adjusted": 1.05,
+  "adjusted": 1.04,
   "weeks": 156,
   "correlation": 0.46,
   "r_squared": 0.21,
-  "alpha_pct": 8.4
+  "alpha_pct": 8.7
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 113.13
+  "avg_daily_value_3m_cr": 112.4
  },
  "flags": []
 }

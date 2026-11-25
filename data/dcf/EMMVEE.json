@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 260.73,
- "fair_value": 517.3,
- "fair_low": 433.8,
- "fair_high": 631.9,
- "upside_pct": 98.4,
+ "price": 255.93,
+ "fair_value": 517.6,
+ "fair_low": 434.0,
+ "fair_high": 632.3,
+ "upside_pct": 102.2,
  "flags": [
   "margin swing: latest core EBIT margin 29.2% vs 3-year average 22.1% (possible peak or trough)",
   "growth clamped: 2-year 131.2% to 30%",
@@ -125,14 +125,14 @@
   "pv_share_of_ev_pct": 72.0
  },
  "bridge_cr": {
-  "enterprise_value": 33090.0,
+  "enterprise_value": 33104.0,
   "debt": 360.0,
   "cash": 273.0,
   "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 33002.0,
+  "equity_value": 33017.0,
   "shares_cr": 69.234,
-  "market_cap": 18052.0
+  "market_cap": 17719.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -151,46 +151,46 @@
   ],
   "fair_value": [
    [
-    699.6,
-    744.3,
-    798.2,
-    864.5,
-    948.6
+    700.0,
+    744.7,
+    798.6,
+    865.1,
+    949.3
    ],
    [
-    571.4,
-    599.4,
-    631.9,
-    670.4,
-    716.6
+    571.7,
+    599.7,
+    632.3,
+    670.7,
+    717.0
    ],
    [
-    478.1,
-    496.5,
-    517.3,
-    541.2,
-    568.9
+    478.3,
+    496.7,
+    517.6,
+    541.4,
+    569.2
    ],
    [
-    407.5,
-    420.0,
-    433.8,
-    449.4,
-    466.9
+    407.6,
+    420.1,
+    434.0,
+    449.5,
+    467.1
    ],
    [
-    352.3,
-    361.0,
-    370.5,
-    381.0,
-    392.5
+    352.4,
+    361.1,
+    370.7,
+    381.1,
+    392.7
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 11.9,
-  "implied_ebit_margin_pct": 18.7,
-  "implied_discount_rate_pct": 17.7,
+  "implied_first_year_growth_pct": 11.4,
+  "implied_ebit_margin_pct": 18.6,
+  "implied_discount_rate_pct": 17.8,
   "implied_rate_note": "",
   "note": ""
  },
@@ -200,7 +200,7 @@
   "tax": 0.25,
   "s2c": 1.330901178122109,
   "g1": 0.3,
-  "wacc": 0.1307386267290182,
+  "wacc": 0.13071544066025131,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

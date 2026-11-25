@@ -1,38 +1,38 @@
 {
  "symbol": "NIVABUPA",
- "as_of": "2026-11-23",
- "rows": 500,
- "price": 74.86,
+ "as_of": "2026-11-25",
+ "rows": 501,
+ "price": 74.51,
  "returns_pct": {
-  "1m": 4.1,
-  "3m": -9.7,
-  "6m": -10.5,
-  "1y": -2.2,
+  "1m": 3.6,
+  "3m": -9.8,
+  "6m": -13.4,
+  "1y": -4.4,
   "3y_cagr": null,
-  "ytd": -0.7
+  "ytd": -1.2
  },
  "relative_strength_pp": {
-  "3m": -10.7,
-  "6m": -15.5,
-  "1y": -1.9
+  "3m": -12.3,
+  "6m": -19.8,
+  "1y": -5.7
  },
  "range": {
   "high_52w": 88.36,
   "low_52w": 68.4,
-  "pct_from_high": -15.3,
-  "pct_above_low": 9.4,
+  "pct_from_high": -15.7,
+  "pct_above_low": 8.9,
   "high_date": "2026-07-15",
   "low_date": "2026-03-23"
  },
  "moving_averages": {
-  "dma20": 74.89,
-  "pct_vs_dma20": -0.0,
-  "dma50": 76.33,
-  "pct_vs_dma50": -1.9,
-  "dma100": 80.51,
-  "pct_vs_dma100": -7.0,
-  "dma200": 79.38,
-  "pct_vs_dma200": -5.7
+  "dma20": 75.07,
+  "pct_vs_dma20": -0.7,
+  "dma50": 76.22,
+  "pct_vs_dma50": -2.2,
+  "dma100": 80.41,
+  "pct_vs_dma100": -7.3,
+  "dma200": 79.35,
+  "pct_vs_dma200": -6.1
  },
  "trend": {
   "above_dma200": false,
@@ -41,33 +41,33 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 47.1,
-  "macd_pct": -0.37,
-  "macd_signal_pct": -0.32,
-  "macd_hist_pct": -0.05,
-  "bollinger_pctb": 0.5,
-  "atr_pct": 3.03
+  "rsi14": 45.9,
+  "macd_pct": -0.43,
+  "macd_signal_pct": -0.34,
+  "macd_hist_pct": -0.09,
+  "bollinger_pctb": 0.43,
+  "atr_pct": 2.96
  },
  "risk": {
-  "volatility_1y_pct": 24.5,
+  "volatility_1y_pct": 24.4,
   "downside_deviation_pct": 16.8,
   "max_drawdown_1y_pct": -19.8,
   "max_drawdown_all_pct": -31.6,
   "var95_1d_pct": -2.37,
   "cvar95_1d_pct": -3.08,
-  "sharpe_1y": -0.27,
-  "sortino_1y": -0.39
+  "sharpe_1y": -0.36,
+  "sortino_1y": -0.52
  },
  "beta": {
   "raw": 0.86,
-  "adjusted": 0.9,
+  "adjusted": 0.91,
   "weeks": 106,
   "correlation": 0.4,
   "r_squared": 0.16,
-  "alpha_pct": 0.4
+  "alpha_pct": -0.4
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 10.82
+  "avg_daily_value_3m_cr": 10.58
  },
  "flags": []
 }

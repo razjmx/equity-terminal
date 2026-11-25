@@ -1,38 +1,38 @@
 {
  "symbol": "DEEPAKFERT",
- "as_of": "2026-11-23",
- "rows": 1237,
- "price": 1416.5,
+ "as_of": "2026-11-25",
+ "rows": 1238,
+ "price": 1382.3,
  "returns_pct": {
-  "1m": 20.2,
-  "3m": -3.3,
-  "6m": 2.4,
-  "1y": 0.3,
-  "3y_cagr": 30.6,
-  "ytd": 10.1
+  "1m": 21.6,
+  "3m": -4.6,
+  "6m": -6.2,
+  "1y": -4.2,
+  "3y_cagr": 29.1,
+  "ytd": 7.4
  },
  "relative_strength_pp": {
-  "3m": -4.3,
-  "6m": -2.7,
-  "1y": 0.7
+  "3m": -7.1,
+  "6m": -12.7,
+  "1y": -5.5
  },
  "range": {
   "high_52w": 1664.3,
   "low_52w": 872.1,
-  "pct_from_high": -14.9,
-  "pct_above_low": 62.4,
+  "pct_from_high": -16.9,
+  "pct_above_low": 58.5,
   "high_date": "2026-07-02",
   "low_date": "2026-03-23"
  },
  "moving_averages": {
-  "dma20": 1251.86,
-  "pct_vs_dma20": 13.2,
-  "dma50": 1297.93,
-  "pct_vs_dma50": 9.1,
-  "dma100": 1409.8,
-  "pct_vs_dma100": 0.5,
-  "dma200": 1303.09,
-  "pct_vs_dma200": 8.7
+  "dma20": 1263.86,
+  "pct_vs_dma20": 9.4,
+  "dma50": 1298.42,
+  "pct_vs_dma50": 6.5,
+  "dma100": 1407.58,
+  "pct_vs_dma100": -1.8,
+  "dma200": 1304.72,
+  "pct_vs_dma200": 5.9
  },
  "trend": {
   "above_dma200": true,
@@ -41,22 +41,22 @@
   "cross": "death cross in last 20 days"
  },
  "momentum": {
-  "rsi14": 62.6,
-  "macd_pct": 3.11,
-  "macd_signal_pct": 0.73,
-  "macd_hist_pct": 2.38,
-  "bollinger_pctb": 0.82,
-  "atr_pct": 3.94
+  "rsi14": 58.1,
+  "macd_pct": 3.14,
+  "macd_signal_pct": 1.23,
+  "macd_hist_pct": 1.91,
+  "bollinger_pctb": 0.73,
+  "atr_pct": 4.01
  },
  "risk": {
   "volatility_1y_pct": 44.7,
-  "downside_deviation_pct": 28.6,
+  "downside_deviation_pct": 28.7,
   "max_drawdown_1y_pct": -39.8,
   "max_drawdown_all_pct": -55.7,
   "var95_1d_pct": -4.15,
   "cvar95_1d_pct": -5.34,
-  "sharpe_1y": 0.07,
-  "sortino_1y": 0.1
+  "sharpe_1y": -0.04,
+  "sortino_1y": -0.06
  },
  "beta": {
   "raw": 1.22,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.41,
   "r_squared": 0.17,
-  "alpha_pct": 25.7
+  "alpha_pct": 24.3
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 50.73
+  "avg_daily_value_3m_cr": 50.41
  },
  "flags": []
 }

@@ -1,38 +1,38 @@
 {
  "symbol": "BAJFINANCE",
- "as_of": "2026-11-23",
- "rows": 1237,
- "price": 1095.5,
+ "as_of": "2026-11-25",
+ "rows": 1238,
+ "price": 1144.45,
  "returns_pct": {
-  "1m": 16.3,
-  "3m": 0.0,
-  "6m": 20.7,
-  "1y": 7.6,
-  "3y_cagr": 13.4,
-  "ytd": 11.0
+  "1m": 23.2,
+  "3m": 4.5,
+  "6m": 24.9,
+  "1y": 11.5,
+  "3y_cagr": 15.2,
+  "ytd": 16.0
  },
  "relative_strength_pp": {
-  "3m": -1.0,
-  "6m": 15.6,
-  "1y": 7.9
+  "3m": 2.0,
+  "6m": 18.4,
+  "1y": 10.2
  },
  "range": {
   "high_52w": 1158.8,
   "low_52w": 801.55,
-  "pct_from_high": -5.5,
-  "pct_above_low": 36.7,
+  "pct_from_high": -1.2,
+  "pct_above_low": 42.8,
   "high_date": "2026-08-05",
   "low_date": "2026-03-30"
  },
  "moving_averages": {
-  "dma20": 1035.9,
-  "pct_vs_dma20": 5.8,
-  "dma50": 1004.73,
-  "pct_vs_dma50": 9.0,
-  "dma100": 1035.51,
-  "pct_vs_dma100": 5.8,
-  "dma200": 982.22,
-  "pct_vs_dma200": 11.5
+  "dma20": 1047.19,
+  "pct_vs_dma20": 9.3,
+  "dma50": 1006.83,
+  "pct_vs_dma50": 13.7,
+  "dma100": 1036.81,
+  "pct_vs_dma100": 10.4,
+  "dma200": 983.29,
+  "pct_vs_dma200": 16.4
  },
  "trend": {
   "above_dma200": true,
@@ -41,22 +41,22 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 60.7,
-  "macd_pct": 3.31,
-  "macd_signal_pct": 2.73,
-  "macd_hist_pct": 0.57,
-  "bollinger_pctb": 0.68,
+  "rsi14": 67.4,
+  "macd_pct": 3.37,
+  "macd_signal_pct": 2.77,
+  "macd_hist_pct": 0.6,
+  "bollinger_pctb": 0.81,
   "atr_pct": 2.81
  },
  "risk": {
-  "volatility_1y_pct": 31.5,
+  "volatility_1y_pct": 31.8,
   "downside_deviation_pct": 20.9,
   "max_drawdown_1y_pct": -23.5,
   "max_drawdown_all_pct": -32.7,
   "var95_1d_pct": -2.79,
   "cvar95_1d_pct": -4.2,
-  "sharpe_1y": 0.16,
-  "sortino_1y": 0.24
+  "sharpe_1y": 0.27,
+  "sortino_1y": 0.41
  },
  "beta": {
   "raw": 1.1,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.6,
   "r_squared": 0.36,
-  "alpha_pct": 6.9
+  "alpha_pct": 7.8
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 787.07
+  "avg_daily_value_3m_cr": 791.94
  },
  "flags": []
 }

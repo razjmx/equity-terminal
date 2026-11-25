@@ -1,38 +1,38 @@
 {
  "symbol": "BHARATCOAL",
- "as_of": "2026-11-23",
- "rows": 208,
- "price": 30.02,
+ "as_of": "2026-11-25",
+ "rows": 209,
+ "price": 30.03,
  "returns_pct": {
-  "1m": -0.6,
-  "3m": -9.8,
-  "6m": -17.6,
+  "1m": 0.9,
+  "3m": -13.7,
+  "6m": -16.9,
   "1y": null,
   "3y_cagr": null,
   "ytd": null
  },
  "relative_strength_pp": {
-  "3m": -10.8,
-  "6m": -22.6,
+  "3m": -16.2,
+  "6m": -23.4,
   "1y": null
  },
  "range": {
   "high_52w": 42.55,
   "low_52w": 29.71,
   "pct_from_high": -29.4,
-  "pct_above_low": 1.0,
+  "pct_above_low": 1.1,
   "high_date": "2026-06-18",
   "low_date": "2026-10-30"
  },
  "moving_averages": {
-  "dma20": 30.87,
-  "pct_vs_dma20": -2.8,
-  "dma50": 31.55,
-  "pct_vs_dma50": -4.8,
-  "dma100": 33.35,
-  "pct_vs_dma100": -10.0,
-  "dma200": 34.5,
-  "pct_vs_dma200": -13.0
+  "dma20": 30.82,
+  "pct_vs_dma20": -2.6,
+  "dma50": 31.47,
+  "pct_vs_dma50": -4.6,
+  "dma100": 33.26,
+  "pct_vs_dma100": -9.7,
+  "dma200": 34.45,
+  "pct_vs_dma200": -12.8
  },
  "trend": {
   "above_dma200": false,
@@ -41,16 +41,16 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 37.8,
-  "macd_pct": -0.86,
-  "macd_signal_pct": -0.69,
-  "macd_hist_pct": -0.16,
-  "bollinger_pctb": 0.16,
-  "atr_pct": 2.36
+  "rsi14": 37.9,
+  "macd_pct": -1.0,
+  "macd_signal_pct": -0.76,
+  "macd_hist_pct": -0.25,
+  "bollinger_pctb": 0.2,
+  "atr_pct": 2.26
  },
  "risk": {
-  "volatility_1y_pct": 39.7,
-  "downside_deviation_pct": 27.5,
+  "volatility_1y_pct": 39.6,
+  "downside_deviation_pct": 27.4,
   "max_drawdown_1y_pct": -30.2,
   "max_drawdown_all_pct": -30.2,
   "var95_1d_pct": -3.79,
@@ -60,7 +60,7 @@
  },
  "beta": null,
  "liquidity": {
-  "avg_daily_value_3m_cr": 19.0
+  "avg_daily_value_3m_cr": 17.7
  },
  "flags": [
   "short history: risk and trend figures use fewer than 250 days"
