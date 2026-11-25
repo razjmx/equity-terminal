@@ -352,7 +352,7 @@ async function quantLab(){
     $('#qlsub').querySelectorAll('button').forEach(b=>b.onclick=()=>{QLS.tab=b.dataset.k;draw()});
     const b=$('#qlbody');
     if(!F&&QLS.tab!=='port'){b.innerHTML=qnone(NOQ);return}
-    ({rank:()=>labRank(b,F,nm,draw),bt:()=>labBt(b,F),pca:()=>labPca(b,PCA,nm),port:()=>labPort(b,F,nm)})[QLS.tab]();
+    ({rank:()=>labRank(b,F,nm,draw),bt:()=>labBt(b,F),pca:()=>labPca(b,PCA,nm),port:()=>labPort(b,F,nm,PCA)})[QLS.tab]();
   };
   draw();
 }
@@ -388,12 +388,12 @@ function labPca(b,P,nm){
   <div class="card scroll"><h3>What each factor is</h3><table class="stmt"><tr><th class="l">Factor</th><th>Variance</th><th class="l">Highest loadings</th><th class="l">Lowest loadings</th><th class="l">Industry tilt (up / down)</th></tr>${P.pcs.map(p=>`<tr><td class="l"><b>PC${p.k}</b>${p.k===1?' <span class="mut">market</span>':''}</td><td>${T.fmt(p.var_pct,1)}%</td><td class="l" style="white-space:normal">${p.pos.slice(0,5).map(x=>esc(x[0])).join(', ')}</td><td class="l" style="white-space:normal">${p.neg.slice(0,5).map(x=>esc(x[0])).join(', ')}</td><td class="l" style="white-space:normal">${p.ind_pos.map(x=>esc(x[0])).join(', ')||'–'} <span class="mut">/</span> ${p.ind_neg.map(x=>esc(x[0])).join(', ')||'–'}</td></tr>`).join('')}</table><p class="mut" style="font-size:12px">PC1 loads on nearly every stock with the same sign. For PC2 onward the sign is arbitrary: read the two ends as opposite sides of one theme (for example banks against IT).</p></div>
   <div class="card scroll"><h3>Clusters of stocks that move together</h3><table class="stmt"><tr><th class="l">Cluster</th><th>Stocks</th><th class="l">Industry mix</th></tr>${P.clusters.map(c=>`<tr><td class="l"><b>${esc(c.label)}</b></td><td>${c.n}</td><td class="l" style="white-space:normal">${c.mix.map(m=>esc(m[0])+' '+m[1]).join(' · ')}</td></tr>`).join('')}</table><p class="mut" style="font-size:12px">Ward clustering on each stock's loadings on factors 2 to 6, so the market factor does not swamp the grouping. Open a stock's Quant tab → Market structure to see its cluster mates.</p></div>`;
 }
-function labPort(b,F,nm){
+function labPort(b,F,nm,PCA){
   const p=QLS.pf;p.F=F;const M={equal:'Equal weight',minvar:'Minimum variance',maxsharpe:'Maximum Sharpe',rp:'Risk parity',hrp:'Hierarchical risk parity'};
   b.innerHTML=`<div class="card"><h3>Portfolio builder</h3><div class="qform" style="align-items:flex-start"><label style="flex:1;min-width:260px">Stocks (symbols, 2 to 40, separated by space or comma)<textarea id="pfs" rows="3" style="width:100%">${esc(p.syms)}</textarea></label>
     <div style="display:flex;flex-direction:column;gap:8px"><label>Method<select id="pfm">${Object.entries(M).map(([k,v])=>`<option value="${k}"${p.method===k?' selected':''}>${v}</option>`).join('')}</select></label><label>Max weight per stock %<input id="pfc" type="number" min="3" max="100" step="1" value="${p.cap}"></label><label>Estimation window (days)<input id="pfl" type="number" min="120" max="1000" step="21" value="${p.look}"></label></div></div>
-    <div class="qform" style="margin-top:8px"><button id="pftop">Fill with top 15 by composite</button><button id="pfrun" class="primary">Build portfolio</button><span id="pfst" class="mut"></span></div></div><div id="pfout"></div>`;
-  $('#pftop').onclick=()=>{if(!F)return;const c=Object.entries(qComposite(F,QW)).filter(([s])=>(F.stocks[s].liq||0)>=2).sort((a,b)=>b[1].z-a[1].z).slice(0,15).map(e=>e[0]);$('#pfs').value=c.join(', ')};
+    <div class="qform" style="margin-top:8px"><button id="pftop" title="Skips stocks with less than about 3 years of price history">Fill with top 15 by composite</button><button id="pfrun" class="primary">Build portfolio</button><span id="pfst" class="mut"></span></div></div><div id="pfout"></div>`;
+  $('#pftop').onclick=()=>{if(!F)return;const ok=PCA&&PCA.stocks?(s=>!!PCA.stocks[s]):(()=>true);const c=Object.entries(qComposite(F,QW)).filter(([s])=>(F.stocks[s].liq||0)>=2&&ok(s)).sort((a,b)=>b[1].z-a[1].z).slice(0,15).map(e=>e[0]);$('#pfs').value=c.join(', ')};
   $('#pfrun').onclick=()=>{p.syms=$('#pfs').value;p.method=$('#pfm').value;p.cap=parseFloat($('#pfc').value)||100;p.look=Math.max(120,parseInt($('#pfl').value)||252);runPort(p,M,nm)};
   if(p.res)showPort(p,M,nm,p.res);
 }
