@@ -167,6 +167,7 @@ function route(){
   if(p[1]==='financials')return financials();
   if(p[1]==='research')return research();
   if(p[1]==='about')return aboutPage();
+  if(p[1]==='health')return window.HEALTH?HEALTH.page(view):(view.innerHTML='<div class="card"><p class="mut">Data health page is not installed.</p></div>');
   if(p[1]==='orderflow')return orderFlowPage();
   if(p[1]==='quant')return quantLab();
   return market();
