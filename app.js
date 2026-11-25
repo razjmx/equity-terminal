@@ -17,6 +17,11 @@ async function get(path,type){
 }
 async function table(p){const t=await get(p);return t?T.parseCSV(t):[]}
 const cls=v=>v==null?'':v>0?'pos':v<0?'neg':'';
+// mail links: phones open the mail app; computers often have no mail app set up, so open Gmail in a new tab instead
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="mailto:"]');if(!a)return;
+  if(/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent))return;
+  e.preventDefault();const u=new URL(a.getAttribute('href'));const to=decodeURIComponent(u.pathname),su=u.searchParams.get('subject')||'';
+  window.open('https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(to)+(su?'&su='+encodeURIComponent(su):''),'_blank','noopener')});
 const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
 // ---------- charts ----------
