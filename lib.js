@@ -81,7 +81,7 @@
   }
   function finModel(f, inp) {
     // f: data/fin/SYM.json ; inp: {rf, erp, g, roe?} decimals (roe in decimal)
-    const m = f.model; if (!m || m.roe_pct == null || !m.bvps) return null;
+    const m = f.model; if (!m || m.roe_pct == null || !m.bvps || m.bvps <= 0) return null;   // no usable book value: show n/a, not a zero fair value
     const roe = inp.roe != null ? inp.roe : m.roe_pct / 100;
     const ke = Math.min(0.20, Math.max(0.09, inp.rf + m.beta * inp.erp));
     let g = inp.g; if (m.g_cap_pct != null && m.g_cap_pct > 0) g = Math.min(g, m.g_cap_pct / 100);
@@ -96,7 +96,8 @@
     }
     const fairPB = pbTwo(roe, ke, g, nHi, gHi);
     const pb = f.price && m.bvps ? f.price / m.bvps : null;
-    return { ke, g, roe, fairPB, fair: fairPB * m.bvps, pb, nHi, gHi, impliedROE: pb != null ? g + pb * (ke - g) : null };
+    const fairV = fairPB * m.bvps;
+    return { ke, g, roe, fairPB, fair: (isFinite(fairV) && fairV > 0) ? fairV : null, pb, nHi, gHi, impliedROE: pb != null ? g + pb * (ke - g) : null };
   }
   // Justified P/B. n=0: (ROE-g)/(ke-g). n>0: n years of growth gh, then g forever.
   // Free cash flow to equity per year = book value x (ROE - growth).
