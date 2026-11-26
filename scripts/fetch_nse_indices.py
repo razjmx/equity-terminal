@@ -32,17 +32,17 @@ HIST = "data/nse_indices_hist.json"
 OUT = "data/index_heat.json"
 EXPECT = {"broad": 21, "sectoral": 23, "thematic": 39, "strategy": 36}      # what NSE's page showed
 
-BROAD_RE = [r"^nifty (50|next 50|100|200|500|total market|fpi 150|mid select|microcap 250|largemidcap 250|midsmallcap 400)$",
-            r"^nifty (midcap|smallcap) (50|100|150|250)$", r"^nifty500 multicap 502525$", r"lms|largemidsmall"]
+BROAD_RE = [r"^nifty (50|next 50|next 100|100|200|500|total market|fpi 150|mid select|microcap 250|largemidcap 250|midsmallcap 400)$",
+            r"^nifty (midcap|smallcap) (50|100|150|250)$", r"^nifty500 multicap 50:?25:?25$", r"lms|largemidsmall", r"^nifty (midcap select|mid select|1000|smallcap 500)$", r"^nifty (india )?fpi 150$"]
 BROAD_ORDER = ["nifty 50", "nifty next 50", "nifty midcap 50", "nifty midcap 100", "nifty midcap 150", "nifty smallcap 50", "nifty smallcap 100",
                "nifty smallcap 250", "nifty midsmallcap 400", "nifty 100", "nifty 200", "nifty500 multicap 502525", "nifty largemidcap 250",
-               "nifty mid select", "nifty total market", "nifty microcap 250", "nifty 500", "nifty fpi 150"]
+               "nifty mid select", "nifty midcap select", "nifty total market", "nifty microcap 250", "nifty 500", "nifty fpi 150", "nifty india fpi 150", "nifty 1000", "nifty smallcap 500"]
 SECTORAL = ["nifty auto", "nifty bank", "nifty financial services", "nifty financial services 2550", "nifty financial services 25 50", "nifty fmcg",
             "nifty it", "nifty media", "nifty metal", "nifty pharma", "nifty psu bank", "nifty realty", "nifty private bank", "nifty healthcare index",
             "nifty healthcare", "nifty consumer durables", "nifty oil and gas", "nifty midsmall healthcare", "nifty chemicals", "nifty500 healthcare",
             "nifty financial services exbank", "nifty midsmall financial services", "nifty midsmall it and telecom", "nifty cement", "nifty reits and invits"]
 STRATEGY_RE = r"alpha|quality|qlty|low ?vol|momentum|\bvalue\b|equal ?weight|eql ?w|dividend|high ?beta|top (10|15|20)|multi ?factor|growth sectors|aql|tmmq|500 ew"
-SKIP_RE = r"vix|usd|g ?sec|gsec|\btri\b|total return|\b(4|8|10|11|15) ?(to|yr|year)|composite|treasury|liquid fund|bond|duration|\bsdl\b|aaa|money market|corporate"
+SKIP_RE = r"arbitrage|futures|inverse|leverage|1d rate|sme emerge|dividend points|vix|usd|g ?sec|gsec|\btri\b|total return|\b(4|8|10|11|15) ?(to|yr|year)|composite|treasury|liquid fund|bond|duration|\bsdl\b|aaa|money market|corporate"
 
 
 def norm(s):
@@ -112,11 +112,17 @@ def parse(text):
 def update_history(log):
     hist = json.load(open(HIST)) if os.path.exists(HIST) else {"dates": [], "idx": {}}
     have = set(hist["dates"])
+    nofile = set(hist.get("nofile", []))                     # weekdays NSE had no file for (holidays), not asked again
     today = datetime.date.today()
     new, misses, refused = [], 0, 0
     for back in range(0, 420):
         day = today - datetime.timedelta(days=back)
-        if day.weekday() >= 5 or day.isoformat() in have:
+        if day.weekday() >= 5:
+            continue
+        if day.isoformat() in have:
+            refused = 0                                       # a trading day we already hold: earlier misses were holidays
+            continue
+        if day.isoformat() in nofile:
             continue
         if len(have) >= KEEP and back > 6:
             break
@@ -127,8 +133,10 @@ def update_history(log):
         if not txt:
             misses += 1
             refused += 1
+            if back > 5:
+                nofile.add(day.isoformat())
             if refused >= 6:
-                log.append("NSE gave no file for 6 weekdays in a row; stopping for this run (holidays or a block; it continues tomorrow)")
+                log.append("NSE gave no file for 6 weekdays in a row; stopping for this run (a block or a long holiday spell; it continues next run)")
                 break
             continue
         refused = 0
@@ -150,7 +158,8 @@ def update_history(log):
             idx.setdefault(nm, [None] * len(dates))[pos[d]] = c
     dates_k = dates[-KEEP:]
     cut = len(dates) - len(dates_k)
-    hist = {"dates": dates_k, "idx": {nm: a[cut:] for nm, a in idx.items() if any(v is not None for v in a[cut:])}}
+    hist = {"dates": dates_k, "idx": {nm: a[cut:] for nm, a in idx.items() if any(v is not None for v in a[cut:])},
+            "nofile": sorted(d for d in nofile if dates_k and d >= dates_k[0])}
     json.dump(hist, open(HIST, "w"), separators=(",", ":"))
     log.append(f"NSE index files: {len(new)} new day(s); history {len(dates_k)} days, {len(hist['idx'])} indices; weekdays without a file: {misses}")
     return hist
