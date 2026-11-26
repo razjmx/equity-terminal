@@ -903,6 +903,15 @@ function showWf(p,M,wf,dates){
 const OFS={tf:'1w'};const ofTf={};
 const OF_TFS=[['1d','1D'],['1w','1W'],['1m','1M'],['3m','3M'],['6m','6M']],OF_LONG={'1m':['1-hour bars','last 21 sessions'],'3m':['daily bars','last 63 sessions'],'6m':['daily bars','last 126 sessions']};
 async function loadTf(s){ofTf[s]=(await get(`data/orderflow/${s}.tf.json`,'json'))||'none'}
+async function ofLive(){
+  const u=window.OFLIVE_URL;if(!u)return null;
+  if(ofLive._c&&Date.now()-ofLive._c.t<60000)return ofLive._c.v;
+  let v=null;
+  try{const r=await fetch(u+'/of.json?t='+Math.floor(Date.now()/60000),{cache:'no-store'});if(r.ok){const j=await r.json();
+    const g=Date.parse((j.gen||'')+':00Z');if(g&&Date.now()-g<25*60000&&j.stocks&&j.stocks.length){j.gt=g;v=j}}}catch(e){}
+  ofLive._c={t:Date.now(),v};return v;
+}
+const ofHM=g=>new Date(g).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Kolkata'});
 const ofCache={};
 function ofProfileJS(bars){
   let lo=Infinity,hi=-Infinity;bars.forEach(b=>{lo=Math.min(lo,b[4]);hi=Math.max(hi,b[3])});
@@ -917,6 +926,10 @@ async function ofStock(s){
   const box=$('#ofbody');if(!box)return;
   let d0=ofCache[s];
   if(!d0){d0=await get(`data/orderflow/${s}.json`,'json');if(d0)ofCache[s]=d0}
+  let lvTxt='';
+  try{const L=await ofLive();
+    if(L&&L.stocks.some(x=>x.s===s)){const r=await fetch(window.OFLIVE_URL+'/of/'+encodeURIComponent(s)+'.json?t='+Math.floor(Date.now()/60000),{cache:'no-store'});
+      if(r.ok){const dl=await r.json();if(dl&&dl.bars&&(!d0||dl.d>=d0.d)){d0=dl;lvTxt=`<span class="pos" style="font-weight:600">● Live</span> · updated ${ofHM(L.gt)} IST · refreshed about every 15 minutes while the market is open`}}}}catch(e){}
   if(!d0){box.innerHTML='<div class="card"><h3>Order flow</h3><p class="mut">No order-flow data for this stock yet. It is built by the <b>Order flow (5-minute bars)</b> workflow in Actions, which runs after the market close on weekdays.</p></div>';return}
   if(OF_LONG[OFS.tf]&&ofTf[s]===undefined)await loadTf(s);
   const draw=()=>{
@@ -935,6 +948,7 @@ async function ofStock(s){
     const near=(arr,above)=>{const a=arr.filter(x=>above?x.p>d.px:x.p<d.px).sort((p,q)=>above?p.p-q.p:q.p-p.p)[0];return a?`₹${f(a.p)}${a.n>1?' ('+a.n+' equal)':''}`:'–'};
     const bcls=d.bias==='bullish'?'pos':d.bias==='bearish'?'neg':'';
     box.innerHTML=`<div class="card"><h3>Order flow <span class="mut" style="font-weight:400;font-size:12px">${long?OF_LONG[OFS.tf][0]+' · '+OF_LONG[OFS.tf][1]+' to '+esc(d.d):'5-minute bars · session of '+esc(d.d)} · estimated from price and volume</span></h3>
+      ${lvTxt&&!long?`<p class="mut" style="margin:-4px 0 8px;font-size:12.5px">${lvTxt}</p>`:''}
       <div class="ofhead"><span class="ofbias ${bcls}">${d.bias.toUpperCase()}</span><span class="ofscore" title="Strength of the signal, 0 to 99">${d.score}</span><span class="bigp" style="font-size:22px">₹${f(d.px)}</span><span class="chg ${cls(d.chg)}">${d.chg>=0?'+':''}${f(d.chg)}%</span>${A?`<span class="mut" style="font-size:12px">over ${OFS.tf.toUpperCase()}</span>`:''}
        ${seg}</div>
       ${(()=>{const q=d.nse;if(!q)return '';const n=q.nse;
@@ -1068,13 +1082,15 @@ async function orderFlowPage(){
   const P=await get('data/peers.json','json');const nm={};if(P&&P.stocks)P.stocks.forEach(x=>nm[x.s]=x.n);
   const U=[['all','All stocks'],['nifty50','Nifty 50'],['midcap150','Midcap 150'],['smallcap250','Smallcap 250'],['microcap250','Microcap 250']].filter(x=>x[0]==='all'||(mem&&mem[x[0]]));
   let TFD=null;if(OFP.tf!=='1d')TFD=await get('data/orderflow_tf.json','json');
+  const LVO=await ofLive();let lvMap=null;
+  if(LVO){lvMap={};LVO.stocks.forEach(x=>lvMap[x.s]=x)}
   const FII=await get('data/fii_flow.json','json'),BT=await get('data/orderflow_backtest.json','json');
   const fmap={};if(FII)FII.stocks.forEach(x=>fmap[x.s]=x.d);
   const TFN={'1d':['1D','today','5-minute'],'1w':['1W','1 week','5-minute'],'1m':['1M','1 month','1-hour'],'3m':['3M','3 months','daily'],'6m':['6M','6 months','daily']};
   const draw=()=>{
     const set=OFP.u==='all'?null:new Set(mem[OFP.u]);
-    const tf=OFP.tf,tn=TFN[tf],srcRows=tf==='1d'?D0.stocks:(TFD&&TFD[tf])||[];
-    const lastD=tf==='1d'?D0.last_date:(TFD&&TFD.last&&TFD.last[tf])||'';
+    const tf=OFP.tf,tn=TFN[tf],srcRows=tf==='1d'?(lvMap?D0.stocks.map(x=>lvMap[x.s]?{...x,...lvMap[x.s],q:undefined}:x):D0.stocks):(TFD&&TFD[tf])||[];
+    const lastD=tf==='1d'?(LVO&&LVO.last_date>D0.last_date?LVO.last_date:D0.last_date):(TFD&&TFD.last&&TFD.last[tf])||'';
     const all=srcRows.filter(x=>!set||set.has(x.s));
     const sec={};all.forEach(x=>{const k=x.m||'Other';(sec[k]=sec[k]||{k,n:0,sum:0,b:0,r:0});const o=sec[k];o.n++;o.sum+=x.chg||0;if(x.bias==='bullish')o.b++;if(x.bias==='bearish')o.r++});
     const secs=Object.values(sec).filter(o=>o.n>=2).map(o=>({...o,avg:o.sum/o.n})).sort((a,b)=>b.avg-a.avg);
@@ -1086,7 +1102,7 @@ async function orderFlowPage(){
     const row=x=>`<tr class="row" onclick="location.hash='#/stock/${esc(x.s)}/orderflow'"><td><b>${esc(x.s)}</b>${x.q==='ok'?' <span class="vq ok" title="Matches NSE official figures">✓</span>':x.q==='vol'?' <span class="vq vol" title="Prices match NSE; volume is lower than NSE\'s">~</span>':x.q==='warn'?' <span class="vq warn" title="A price differs from NSE official figures">!</span>':''}<div class="mut" style="font-size:11px">${esc((nm[x.s]||'').slice(0,26))}</div></td><td class="num ${cls(x.chg)}">${x.chg>=0?'+':''}${T.fmt(x.chg,2)}%</td><td class="num"><div class="scbar"><i class="${x.bias==='bullish'?'g':'r'}" style="width:${x.score}%"></i></div>${x.score}</td><td class="num">${x.rr!=null?'1:'+T.fmt(x.rr,1):'–'}</td><td class="num">${x.dp!=null?T.fmt(x.dp,0)+'%':'–'}</td>${FII?`<td class="num ${fmap[x.s]>0.05?'pos':fmap[x.s]<-0.05?'neg':''}">${fmap[x.s]!=null?(fmap[x.s]>0?'+':'')+T.fmt(fmap[x.s],2):'–'}</td>`:''}</tr>`;
     const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">${tf==='1d'?'Day':tn[0]+' chg'}</th><th class="num">Score</th><th class="num">R:R</th><th class="num" title="${tf==='1d'?'NSE delivery % for the session':'Average NSE delivery % over the window'}">Del %</th>${FII?'<th class="num" title="Change in FII/FPI holding, latest quarter vs previous, percentage points">FII Δ</th>':''}</tr></thead><tbody>${a.length?a.map(row).join(''):`<tr><td colspan="6" class="mut">${srcRows.length?'None in this selection':'No data for this timeframe yet. Run the Order flow workflow.'}</td></tr>`}</tbody></table>`;
     view.innerHTML=`<h1 style="margin:0 0 4px;font-size:24px">Order flow</h1>
-     <p class="mut" style="margin:0 0 12px">${tf==='1d'?'Session of '+esc(lastD):tn[1]+' view, to '+esc(lastD)} · ${all.length} stocks · <span class="pos">${nb} bullish</span> · <span class="neg">${nr} bearish</span> · estimated from ${tn[2]} price and volume${tf==='1d'||tf==='1w'?' · <span title="The back-test covers the 3M and 6M scores only. See the bottom of this page.">intraday view, not back-tested</span>':''}</p>
+     <p class="mut" style="margin:0 0 12px">${tf==='1d'&&LVO?'<span class="pos" style="font-weight:600">● Live</span> · session of '+esc(lastD)+' · '+LVO.stocks.length+' most traded stocks updated '+ofHM(LVO.gt)+' IST (about every 15 min), the rest as of the last close':tf==='1d'?'Session of '+esc(lastD):tn[1]+' view, to '+esc(lastD)} · ${all.length} stocks · <span class="pos">${nb} bullish</span> · <span class="neg">${nr} bearish</span> · estimated from ${tn[2]} price and volume${tf==='1d'||tf==='1w'?' · <span title="The back-test covers the 3M and 6M scores only. See the bottom of this page.">intraday view, not back-tested</span>':''}</p>
      <div class="seg" id="oft" style="margin-bottom:12px">${Object.entries(TFN).map(([k,v])=>`<button data-k="${k}" class="${tf===k?'on':''}">${v[0]}</button>`).join('')}</div>
      ${tf==='1d'?`<p class="mut" style="margin:0 0 12px;font-size:12.5px">Data check against NSE's official end-of-day figures: <span class="pos">✓ ${qv} match</span> · <span class="warnc">~ ${qo} prices match, volume lower</span> · <span class="neg">! ${qw} price differs</span> · ${qp} pending or not checked. Delivery % is NSE's own figure.</p>`:`<p class="mut" style="margin:0 0 12px;font-size:12.5px">Longer views measure the whole window: change is the move over the period, VWAP, delta and value area cover all of it, and the score thresholds are widened. NSE verification applies to a single session, so it is shown on 1D only; Del % here is the average over the window.</p>`}
      <div class="seg" id="ofu" style="margin-bottom:12px">${U.map(([k,l])=>`<button data-k="${k}" class="${OFP.u===k?'on':''}">${l}</button>`).join('')}</div>
@@ -1102,6 +1118,8 @@ async function orderFlowPage(){
     const c=$('#xclr');if(c)c.onclick=()=>{OFP.sec=null;draw()};
   };
   draw();
+  clearTimeout(orderFlowPage._t);
+  if(LVO)orderFlowPage._t=setTimeout(()=>{if(location.hash==='#/orderflow'){const y=scrollY;ofLive._c=null;orderFlowPage().then(()=>scrollTo(0,y))}},300000);
 }
 
 function fiiCard(F,set){
