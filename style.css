@@ -635,3 +635,9 @@ html:not([data-tape="1"]) .tape{display:none}
 .fiig table.peer th,.fiig table.peer td{padding:8px 7px}
 .fiig table.peer th:first-child,.fiig table.peer td:first-child{white-space:normal;min-width:110px}
 .fiig table.peer th{font-size:11px}
+/* clearer outlines where white sits on white */
+:root{--edge:#b9c1cd}
+:root[data-theme=dark]{--edge:#3a4452}
+.topnav,.navrow .topnav,.searchbox,.searchbox input,.qbtn,#acct{border-color:var(--edge)!important}
+.vseg button.on,.mk-side a.on{border-top:1px solid var(--edge);border-right:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+.card{border-color:var(--edge)}
