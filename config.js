@@ -4,3 +4,6 @@ window.ACCOUNT_CFG = { url: "https://ushyxpoetfvwilwskhqw.supabase.co", key: "sb
 
 // Near-live prices file written every 5 minutes in market hours by the "Live prices" workflow. Clear this to switch live prices off.
 window.LIVE_URL = "https://raw.githubusercontent.com/razjmx/equity-terminal/live/live.json";
+
+// Live order flow (top stocks, every ~15 minutes in market hours) from the "Order flow live" workflow. Clear to switch off.
+window.OFLIVE_URL = "https://raw.githubusercontent.com/razjmx/equity-terminal/of-live";
