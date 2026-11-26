@@ -538,3 +538,5 @@ main{margin-left:auto;margin-right:auto}
 .ixback{cursor:pointer;color:var(--brand);font-weight:700;font-size:13px;margin-right:6px;white-space:nowrap}
 .ixback:hover{text-decoration:underline}
 @media(prefers-reduced-motion:reduce){.ixt,.ixt.ck:hover{animation:none;transition:none;transform:none}}
+
+.news{list-style:none;margin:0;padding:0}.news li{padding:9px 0;border-bottom:1px solid var(--b)}.news li:last-child{border-bottom:0}.news a{color:var(--t);font-weight:600;text-decoration:none;line-height:1.35}.news a:hover{text-decoration:underline}.news .mut{font-size:12px;margin-top:2px}.ngrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}@media(max-width:600px){.ngrid{grid-template-columns:1fr}}
