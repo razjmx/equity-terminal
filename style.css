@@ -560,3 +560,9 @@ main{margin-left:auto;margin-right:auto}
 
 /* whole top block stays put on desktop: header, ticker, menu */
 @media(min-width:861px){.top{position:sticky;top:0;z-index:60}.tape{position:sticky;top:var(--h1,56px);z-index:55}.navrow{position:sticky;top:var(--h2,90px);z-index:50}}
+
+html:not([data-tape="1"]) .tape{display:none}
+#acpanel .acset{margin-top:14px;padding-top:12px;border-top:1px solid var(--b)}
+#acpanel .acset label{display:flex;gap:9px;align-items:center;font-size:13.5px;cursor:pointer}
+#acpanel .acset input{width:auto;margin:0}
+#acpanel .acset .acm{margin:6px 0 0}
