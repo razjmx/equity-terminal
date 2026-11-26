@@ -71,21 +71,26 @@ def nse_feed(log, known=()):
         sess.get(NSE, timeout=20); time.sleep(1)
     except Exception as e:
         log.append("NSE: could not open the site (" + type(e).__name__ + ")"); return out
-    f = (today).strftime("%d-%m-%Y"); t = (today + datetime.timedelta(days=90)).strftime("%d-%m-%Y")
-    for name, url, mode in (
-        ("corporate actions", f"{NSE}/api/corporates-corporateActions?index=equities&from_date={f}&to_date={t}", "act"),
-        ("board meetings", f"{NSE}/api/corporate-board-meetings?index=equities&from_date={f}&to_date={t}", "bm")):
-        try:
-            r = sess.get(url, timeout=30)
-            if r.status_code != 200:
-                log.append(f"NSE {name}: HTTP {r.status_code}"); continue
-            data = r.json(); data = data if isinstance(data, list) else data.get("data", [])
-        except Exception as e:
-            log.append(f"NSE {name}: failed ({type(e).__name__})"); continue
+    wins = [((today + datetime.timedelta(days=i)).strftime("%d-%m-%Y"), (today + datetime.timedelta(days=min(i + 13, 90))).strftime("%d-%m-%Y")) for i in range(0, 91, 14)]
+    for name, base, mode in (
+        ("corporate actions", f"{NSE}/api/corporates-corporateActions?index=equities", "act"),
+        ("board meetings", f"{NSE}/api/corporate-board-meetings?index=equities", "bm")):
+        data, errs = [], 0   # asked in 14-day windows: a single 90-day request returned only a handful of rows
+        for f, t in wins:
+            try:
+                r = sess.get(f"{base}&from_date={f}&to_date={t}", timeout=30)
+                if r.status_code != 200:
+                    errs += 1; continue
+                d = r.json(); data += d if isinstance(d, list) else d.get("data", [])
+            except Exception:
+                errs += 1
+            time.sleep(0.7)
+        if errs: log.append(f"NSE {name}: {errs} of {len(wins)} requests failed")
+        if not data: continue
         n = 0; sk = {"no type": 0, "no date": 0, "past": 0, "not in universe": 0}; kinds = {}
         if data: log.append(f"NSE {name} sample: " + json.dumps(data[0], default=str)[:420])
         for x in data:
-            sym = (x.get("symbol") or "").strip().upper()
+            sym = (x.get("symbol") or x.get("bm_symbol") or "").strip().upper()
             if not sym: continue
             if mode == "act":
                 subj = x.get("subject") or x.get("purpose") or ""; k = kind(subj); d = nse_date(x.get("exDate") or x.get("recDate"))
