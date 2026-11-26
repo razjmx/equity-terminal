@@ -1120,27 +1120,82 @@ function hmGroups(){
     return {name,v:mc,ret:w,med:sr.length%2?sr[m]:(sr[m-1]+sr[m])/2,n:a.length,stocks:a}}).sort((a,b)=>b.v-a.v);
 }
 // ---------- index heatmap (NSE style: menu | time frame | tiles) ----------
-const IXH={g:'broad',tf:'r1d'};
+const IXH={g:'broad',tf:'r1d',sel:null};
 const IXH_G=[['broad','Broad Market Indices'],['sectoral','Sectoral Indices'],['thematic','Thematic Indices'],['strategy','Strategy Indices'],['stocks','Stocks by industry']];
 const IXH_TF=[['r1d','1D',5,'1 day'],['r1w','1W',8,'1 week'],['r1m','1M',15,'1 month'],['r3m','3M',25,'3 months'],['r6m','6M',35,'6 months'],['r1y','1Y',50,'1 year']];
-let IXH_DATA;
+let IXH_DATA,IXC,IXM,IXN;
+const ixcol=(v,sc)=>{if(v==null)return '#8b94a3';if(Math.abs(v)<0.005)return '#9aa3b2';const t=Math.min(1,Math.abs(v)/sc),a=.5+.5*t;return v>0?`rgba(22,150,76,${a})`:`rgba(205,40,40,${a})`};
+const ixf=v=>v==null?'n/a':(v>0?'+':'')+T.fmt(v,2)+'%';
+const ixleg=sc=>`<div class="ixleg" title="Colour scale for this time frame">${[-1,-.6,-.2,0,.2,.6,1].map(m=>{const v=m*sc;return `<span style="background:${ixcol(v,sc)}">${m===0?'0%':(v>0?'+':'')+T.fmt(v,sc<10?1:0)+'%'}</span>`}).join('')}</div>`;
+const ixtiles=(arr,sc)=>`<div class="ixg">${arr.map((r,i)=>`<div class="ixt${r.click?' ck':''}" ${r.click?`data-k="${esc(r.click)}"`:''} title="${esc(r.tip||r.n)}" style="background:${ixcol(r.v,sc)};animation-delay:${Math.min(i*14,420)}ms"><b>${esc(r.n)}</b><span class="ixv"><i>${r.l}</i><em>${ixf(r.v)}</em></span></div>`).join('')}</div>`;
+async function ixMembers(name){
+  if(IXC===undefined){try{IXC=await get('data/index_constituents.json','json')}catch(e){IXC=null}}
+  const key=String(name).toLowerCase(),find=o=>{if(!o)return null;const k=Object.keys(o).find(x=>x.toLowerCase()===key);return k?o[k]:null};
+  let m=find(IXC&&IXC.members);if(m&&m.length)return m;
+  if(IXM===undefined){try{IXM=await get('data/index_members.json','json')}catch(e){IXM=null}}
+  const al={'nifty 50':'nifty50','nifty midcap 150':'midcap150','nifty smallcap 250':'smallcap250','nifty microcap 250':'microcap250'};
+  return (IXM&&al[key]&&IXM[al[key]])||null;
+}
 async function idxHeatPanel(){
   const w=$('#hmwrap');if(!w)return;
   if(IXH_DATA===undefined){try{IXH_DATA=await get('data/index_heat.json','json')}catch(e){IXH_DATA=null}}
   const D0=IXH_DATA,tfo=IXH_TF.find(x=>x[0]===IXH.tf)||IXH_TF[0],sc=tfo[2],stocks=IXH.g==='stocks';
-  const col=v=>{if(v==null)return '#8b94a3';if(Math.abs(v)<0.005)return '#9aa3b2';const t=Math.min(1,Math.abs(v)/sc),a=.5+.5*t;return v>0?`rgba(22,150,76,${a})`:`rgba(205,40,40,${a})`};
-  const f=v=>v==null?'n/a':(v>0?'+':'')+T.fmt(v,2)+'%';
-  w.innerHTML=`<div class="ixh${stocks?' nob':''}"><div class="ixa">${IXH_G.map(([k,l])=>`<button data-g="${k}" class="${IXH.g===k?'on':''}">${l}</button>`).join('')}</div>${stocks?'':`<div class="ixb" title="Time frame">${IXH_TF.map(([k,l])=>`<button data-t="${k}" class="${IXH.tf===k?'on':''}">${l}</button>`).join('')}</div>`}<div class="ixc" id="ixc"></div></div>`;
-  w.querySelectorAll('.ixa button').forEach(b=>b.onclick=()=>{IXH.g=b.dataset.g;idxHeatPanel()});
-  w.querySelectorAll('.ixb button').forEach(b=>b.onclick=()=>{IXH.tf=b.dataset.t;idxHeatPanel()});
+  w.innerHTML=`<div class="ixh"><div class="ixa">${IXH_G.map(([k,l])=>`<button data-g="${k}" class="${IXH.g===k?'on':''}">${l}</button>`).join('')}</div><div class="ixb" title="Time frame">${IXH_TF.map(([k,l])=>`<button data-t="${k}" class="${IXH.tf===k?'on':''}">${l}</button>`).join('')}</div><div class="ixc" id="ixc"></div></div>`;
+  w.querySelectorAll('.ixa button').forEach(b=>b.onclick=()=>{IXH.g=b.dataset.g;IXH.sel=null;HM.drill=null;idxHeatPanel()});
+  w.querySelectorAll('.ixb button').forEach(b=>b.onclick=()=>{IXH.tf=b.dataset.t;HM.tf=b.dataset.t;idxHeatPanel()});
+  HM.tf=IXH.tf;
   const box=$('#ixc');
-  if(stocks){heatmapPanel(box);return}
+  if(stocks){stocksHeat(box);return}
   if(!D0||!D0.groups){box.innerHTML='<div class="card"><p class="mut">The index data is not built yet. In the Actions tab, run <b>NSE index levels</b> once; it then updates on weekdays after the close.</p></div>';return}
-  const L=D0.groups[IXH.g]||[],miss=L.filter(r=>r[IXH.tf]==null).length;
-  const leg=[-1,-.6,-.2,0,.2,.6,1].map(m=>{const v=m*sc;return `<span style="background:${col(v)}">${m===0?'0%':(v>0?'+':'')+T.fmt(v,0)+'%'}</span>`}).join('');
-  box.innerHTML=`<div class="ixhead"><b>${IXH_G.find(x=>x[0]===IXH.g)[1]}</b> <span class="mut">(${L.length}) · ${tfo[3]} change · as on ${esc(D0.asof)}</span><div class="ixleg" title="Colour scale for this time frame">${leg}</div></div>
-   <div class="ixg">${L.map(r=>`<div class="ixt" title="${esc(r.n)}" style="background:${col(r[IXH.tf])}"><b>${esc(r.n.toUpperCase())}</b><span class="ixv"><i>${T.fmt(r.c,2)}</i><em>${f(r[IXH.tf])}</em></span></div>`).join('')}</div>
-   <p class="mut" style="font-size:12px;margin:10px 0 0">NSE end-of-day index closes. Colour is the change over the chosen time frame, stronger colour means a bigger move; the scale is shown above and changes with the time frame.${miss?` <b>${miss} of ${L.length}</b> indices do not yet have enough history for ${tfo[3]} and show n/a; the history grows by one day each weekday (${D0.history_days} days stored).`:''}</p>`;
+  const L=D0.groups[IXH.g]||[],gname=IXH_G.find(x=>x[0]===IXH.g)[1];
+  if(IXH.sel){const ix=L.find(r=>r.n===IXH.sel);if(!ix)IXH.sel=null;else{await ixDrill(box,ix,gname,sc,tfo);return}}
+  const miss=L.filter(r=>r[IXH.tf]==null).length;
+  box.innerHTML=`<div class="ixhead"><b>${gname}</b> <span class="mut">(${L.length}) · ${tfo[3]} change · as on ${esc(D0.asof)}</span>${ixleg(sc)}</div>${ixtiles(L.map(r=>({n:r.n.toUpperCase(),tip:r.n+' · click to see its stocks',v:r[IXH.tf],l:T.fmt(r.c,2),click:r.n})),sc)}
+   <p class="mut" style="font-size:12px;margin:10px 0 0">NSE end-of-day index closes. Click an index to see its stocks. Colour is the change over the chosen time frame, stronger colour means a bigger move; the scale is shown above and changes with the time frame.${miss?` <b>${miss} of ${L.length}</b> indices do not yet have enough history for ${tfo[3]} and show n/a; the history grows by one day each weekday (${D0.history_days} days stored).`:''}</p>`;
+  box.querySelectorAll('.ixt.ck').forEach(t=>t.onclick=()=>{IXH.sel=t.dataset.k;idxHeatPanel()});
+}
+function ixStockRows(syms){
+  if(!IXN){IXN={};(D.uni||[]).forEach(u=>IXN[u.symbol]=u.company)}
+  const by={};((MH.data&&MH.data.stocks)||[]).forEach(s=>by[s.s]=s);
+  return syms.map(x=>by[x]).filter(Boolean);
+}
+async function ixDrill(box,ix,gname,sc,tfo){
+  const back=`<a class="ixback" id="ixback">← ${gname}</a>`;
+  box.innerHTML=`<div class="ixhead">${back}<b>${esc(ix.n.toUpperCase())}</b><span class="mut">${T.fmt(ix.c,2)} · index ${ixf(ix[IXH.tf])} over ${tfo[3]}</span></div><div class="skel" style="height:160px"></div>`;
+  $('#ixback').onclick=()=>{IXH.sel=null;idxHeatPanel()};
+  const mem=await ixMembers(ix.n);
+  if(!mem||!mem.length){box.querySelector('.skel').outerHTML=`<div class="card"><p class="mut">The stock list for this index is not available yet. NSE's list file for it was not found by the update job, so only the index level is shown. Run <b>NSE index levels</b> again, or tell me which indices you need first.</p></div>`;return}
+  const rows=ixStockRows(mem).filter(s=>s.r&&s.r[IXH.tf]!=null).sort((a,b)=>b.mc-a.mc);
+  const mc=rows.reduce((a,b)=>a+b.mc,0),wr=mc?rows.reduce((a,b)=>a+b.mc*b.r[IXH.tf],0)/mc:null,ssc=sc*1.6;
+  box.innerHTML=`<div class="ixhead">${back}<b>${esc(ix.n.toUpperCase())}</b><span class="mut">${rows.length} of ${mem.length} stocks with data · ${ixf(wr)} market-cap weighted · index ${ixf(ix[IXH.tf])} · ${tfo[3]}</span>${ixleg(ssc)}</div>
+   ${ixtiles(rows.map(s=>({n:s.s,tip:(IXN&&IXN[s.s]||s.s)+' · ₹'+T.fmt(s.mc,0)+' cr',v:s.r[IXH.tf],l:'₹'+T.fmt(s.mc,0)+' cr',click:s.s})),ssc)}
+   <p class="mut" style="font-size:12px;margin:10px 0 0">Stocks are listed by market cap. Click a stock to open it. The weighted figure uses market caps, not NSE's index weights, so it can differ a little from the index move.</p>`;
+  $('#ixback').onclick=()=>{IXH.sel=null;idxHeatPanel()};
+  box.querySelectorAll('.ixt.ck').forEach(t=>t.onclick=()=>{location.hash='#/stock/'+t.dataset.k});
+}
+function stocksHeat(box){
+  const d=MH&&MH.data;
+  if(!d||!d.stocks){box.innerHTML='<div class="card"><p class="mut">Stock data is not available. Run the Daily refresh once.</p></div>';return}
+  const tf=IXH.tf,tfo=IXH_TF.find(x=>x[0]===tf),sc=HM_SC[tf],have=D.ind&&Object.keys(D.ind).length>0;
+  const lvs=HM_LV.filter(([k])=>have&&Object.values(D.ind).some(r=>r[k]));
+  if(have&&lvs.length&&!lvs.some(([k])=>k===HM.level))HM.level=lvs[0][0];
+  if(!have&&!['sector','industry'].includes(HM.level))HM.level='sector';
+  const groups=hmGroups();
+  const seg=`<div class="seg" id="ix-lv">${(have?lvs:[['sector','Sector'],['industry','Industry']]).map(([k,l])=>`<button data-k="${k}" class="${HM.level===k?'on':''}">${l}</button>`).join('')}</div>`;
+  if(HM.drill&&!groups.find(g=>g.name===HM.drill))HM.drill=null;
+  if(!HM.drill){
+    box.innerHTML=`<div class="ixhead"><b>Stocks by industry</b><span class="mut">(${groups.length}) · ${tfo[3]} change, market-cap weighted · ${d.n_stocks} stocks</span>${seg}${ixleg(sc)}</div>${ixtiles(groups.map(g=>({n:g.name.toUpperCase(),tip:g.name+' · '+T.pct(g.ret,2)+' weighted · '+T.pct(g.med,2)+' median · click to see its stocks',v:g.ret,l:g.n+' stocks',click:g.name})),sc)}
+     <p class="mut" style="font-size:12px;margin:10px 0 0">Our own grouping of the ~750 stocks (not NSE indices). Click a tile to see its stocks. Colour is the market-cap weighted change over the time frame.</p>`;
+    box.querySelectorAll('.ixt.ck').forEach(t=>t.onclick=()=>{HM.drill=t.dataset.k;idxHeatPanel()});
+  }else{
+    const g=groups.find(x=>x.name===HM.drill),rows=g.stocks.slice().sort((a,b)=>b.mc-a.mc).slice(0,160),ssc=sc*1.6;
+    box.innerHTML=`<div class="ixhead"><a class="ixback" id="ixback">← All</a><b>${esc(g.name.toUpperCase())}</b><span class="mut">${g.n} stocks · ${ixf(g.ret)} weighted · ${ixf(g.med)} median · ${tfo[3]}</span><a href="#/sector/${HM.level}/${encodeURIComponent(g.name)}" class="ixback">Open page →</a>${ixleg(ssc)}</div>
+     ${ixtiles(rows.map(s=>({n:s.s,tip:((D.uni.find(u=>u.symbol===s.s)||{}).company||s.s)+' · ₹'+T.fmt(s.mc,0)+' cr',v:s.ret,l:'₹'+T.fmt(s.mc,0)+' cr',click:s.s})),ssc)}
+     <p class="mut" style="font-size:12px;margin:10px 0 0">Listed by market cap${g.n>rows.length?` (largest ${rows.length} of ${g.n})`:''}. Click a stock to open it.</p>`;
+    $('#ixback').onclick=()=>{HM.drill=null;idxHeatPanel()};
+    box.querySelectorAll('.ixt.ck').forEach(t=>t.onclick=()=>{location.hash='#/stock/'+t.dataset.k});
+  }
+  const sg=$('#ix-lv');if(sg)sg.querySelectorAll('button').forEach(b=>b.onclick=()=>{HM.level=b.dataset.k;HM.drill=null;idxHeatPanel()});
 }
 function heatmapPanel(target){
   const w=target||$('#hmwrap');if(!w)return;
