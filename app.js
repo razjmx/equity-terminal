@@ -398,11 +398,11 @@ async function macroNews(){   // Company research page: world news, split into G
     sub.innerHTML=G.map(g=>`<button data-k="${g[0]}" class="${g[0]===cur?'on':''}">${g[1]}</button>`).join('');
     sub.querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=b.dataset.k;topic='';try{localStorage.setItem('tl_mtab',cur)}catch(e){}draw()});
     const ts=((Md&&Md.topics)||[]).filter(t=>t.g===cur&&t.items.length);
-    if(topic&&!ts.some(t=>t.n===topic))topic='';
-    if(nav){nav.innerHTML=ts.length>1?[['','All sections']].concat(ts.map(t=>[t.n,t.n])).map(([k,l])=>`<button data-k="${esc(k)}" class="${k===topic?'on':''}">${esc(l)}</button>`).join(''):'';
+    if(!ts.some(t=>t.n===topic))topic=ts.length?ts[0].n:'';
+    if(nav){nav.innerHTML=ts.length>1?ts.map(t=>[t.n,t.n]).map(([k,l])=>`<button data-k="${esc(k)}" class="${k===topic?'on':''}">${esc(l)}</button>`).join(''):'';
       nav.querySelectorAll('button').forEach(b=>b.onclick=()=>{topic=b.dataset.k;draw()})}
     const shownT=topic?ts.filter(t=>t.n===topic):ts;
-    box.innerHTML=ts.length?`<div class="ngrid">${shownT.map(t=>`<div class="card"><h3>${esc(t.n)}</h3>${newsList(t.items.slice(0,topic?12:6))}</div>`).join('')}</div><p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News. Each link opens the publisher's own page. ${Md&&Md.updated?'Last collected '+esc(Md.updated)+' UTC. ':''}Not investment advice.</p>`:`<div class="card"><p class="mut">${Md?'No headlines in this group yet.':'Macro news has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.'}</p></div>`;
+    box.innerHTML=ts.length?`<div class="ngrid one">${shownT.map(t=>`<div class="card"><h3>${esc(t.n)}</h3>${newsList(t.items.slice(0,12))}</div>`).join('')}</div><p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News. Each link opens the publisher's own page. ${Md&&Md.updated?'Last collected '+esc(Md.updated)+' UTC. ':''}Not investment advice.</p>`:`<div class="card"><p class="mut">${Md?'No headlines in this group yet.':'Macro news has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.'}</p></div>`;
   };
   draw();
 }
