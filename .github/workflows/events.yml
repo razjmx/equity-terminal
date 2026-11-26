@@ -1,0 +1,42 @@
+name: Events
+on:
+  schedule:
+    - cron: "10 2 * * 1-5"   # 07:40 IST on weekdays
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Only first N stocks (0 = all)"
+        default: "0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: events
+  cancel-in-progress: false
+
+jobs:
+  events:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      LIMIT: ${{ github.event.inputs.limit || '0' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install yfinance pandas requests
+      - name: Fetch company dates
+        run: python scripts/fetch_events.py
+      - name: Commit data
+        if: always()
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data
+          git commit -m "Events $(date -u +%F)" || echo "No changes"
+          for i in 1 2 3 4 5; do
+            git pull --rebase && git push && break
+            sleep $((i*5))
+          done
