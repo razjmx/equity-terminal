@@ -143,6 +143,7 @@ async function boot(){
     const items2=items+rs.map(r=>{const o=ofm[r.symbol];return `<a class="ti" href="#/stock/${esc(r.symbol)}"><b>${esc(r.symbol)}</b> ${T.fmt(T.num(o.px)??T.num(r.price),1)} <em class="${cls(T.num(o.chg))}">${T.pct(T.num(o.chg),2)}</em></a>`}).join('');
     tp.innerHTML=`<div class="tt"><div class="tr">${items2}${items2}</div></div><span class="tl" title="Change from the previous close to the latest close (end-of-day data)">1D</span>`;document.querySelector('.top').after(tp)}catch(e){}
   window.addEventListener('hashchange',route);route();
+  {const sc=()=>document.body.classList.toggle('scrolled',window.scrollY>90);window.addEventListener('scroll',sc,{passive:true});sc()}
 }
 
 const LOCKED_TABS=['valuation','orderflow','quant'];
