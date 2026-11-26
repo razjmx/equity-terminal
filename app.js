@@ -114,7 +114,7 @@ function countUps(root){
   const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduce)return;
   (root||document).querySelectorAll('[data-n]').forEach(el=>{
     const to=parseFloat(el.dataset.n),d=parseInt(el.dataset.d||'0',10),pre=el.dataset.pre||'',suf=el.dataset.suf||'';if(!isFinite(to))return;
-    const t0=performance.now(),D=800;(function f(t){const p=Math.min(1,(t-t0)/D),e=1-Math.pow(1-p,3);el.textContent=pre+T.fmt(to*e,d)+suf;if(p<1&&el.isConnected)requestAnimationFrame(f)})(t0)});
+    const t0=performance.now(),D=800;(function f(t){const p=Math.min(1,(t-t0)/D),e=1-Math.pow(1-p,3);if(el.dataset.live)return;el.textContent=pre+T.fmt(to*e,d)+suf;if(p<1&&el.isConnected)requestAnimationFrame(f)})(t0)});
 }
 const SKEL='<div class="skel" style="height:140px"></div><div class="skel" style="height:44px;margin-top:14px"></div><div class="skel" style="height:360px;margin-top:14px"></div>';
 function decs(str){const m=String(str).replace(/,/g,'').match(/\.(\d+)/);return m?m[1].length:0}
@@ -233,7 +233,7 @@ function liveApply(s,eod){
     if(row&&row[0]!=null&&(row[4]||eod)){
       const p=row[0],base=row[4]||eod,d=p-base,pc=d/base*100,bp=view.querySelector('.pricerow .bigp'),ch=view.querySelector('.pricerow .chg'),k=view.querySelector('.pricerow .k');
       const tm=new Date(LV.t).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Kolkata'});
-      if(bp){bp.removeAttribute('data-n');bp.textContent='₹'+T.fmt(p,2)}
+      if(bp){bp.dataset.live='1';bp.removeAttribute('data-n');bp.textContent='₹'+T.fmt(p,2)}
       if(ch){ch.className='chg '+cls(pc);ch.textContent=`${d>=0?'+':''}${T.fmt(d,2)} (${pc>=0?'+':''}${T.fmt(pc,2)}%)`}
       else if(bp)bp.insertAdjacentHTML('afterend',`<span class="chg ${cls(pc)}">${d>=0?'+':''}${T.fmt(d,2)} (${pc>=0?'+':''}${T.fmt(pc,2)}%)</span>`);
       if(k)k.innerHTML=`NSE · <b class="pos">Live</b> as of ${tm} IST · about 5 to 10 minutes delayed · change is from the last close`;
