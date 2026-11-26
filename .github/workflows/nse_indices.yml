@@ -14,7 +14,7 @@ concurrency:
 jobs:
   indices:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -24,6 +24,10 @@ jobs:
 
       - name: NSE index levels for the heatmap
         run: python scripts/fetch_nse_indices.py
+
+      - name: Stock lists of each index
+        continue-on-error: true
+        run: python scripts/fetch_index_constituents.py
 
       - name: Commit data
         if: always()
