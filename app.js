@@ -216,6 +216,35 @@ function scatterChart(cv,pts,opt={}){   // pts: [{x,y,c,r,l}]
   const line=pts.filter(p=>p.line);ctx.strokeStyle=opt.lc||'#2f6fdb';ctx.lineWidth=1.6;ctx.beginPath();line.forEach((p,i)=>i?ctx.lineTo(X(p.x),Y(p.y)):ctx.moveTo(X(p.x),Y(p.y)));ctx.stroke();
   pts.filter(p=>!p.line).forEach(p=>{ctx.fillStyle=p.c||'#0f6b4a';ctx.beginPath();ctx.arc(X(p.x),Y(p.y),p.r||4,0,7);ctx.fill();if(p.l){ctx.fillStyle='#8b94a3';ctx.fillText(p.l,X(p.x)+6,Y(p.y)-5)}});
 }
+// ----- near-live prices (Groww, via the Live prices workflow; delayed by 5 to 10 minutes) -----
+let LV=null;
+async function liveLoad(){
+  const u=window.LIVE_URL||'';if(!u)return null;
+  try{const r=await fetch(u+'?t='+Math.floor(Date.now()/60000),{cache:'no-store'});if(!r.ok){LV=null;return null}
+    const j=await r.json(),age=(Date.now()-Date.parse(j.t))/60000;LV=isFinite(age)&&age<=25?j:null}catch(e){LV=null}
+  return LV;
+}
+function liveApply(s,eod){
+  clearTimeout(window._lvT);
+  const tick=async()=>{
+    if(!/^#\/stock\//.test(location.hash)||decodeURIComponent(location.hash.split('/')[2]||'')!==s)return;
+    await liveLoad();
+    const row=LV&&LV.s&&LV.s[s];
+    if(row&&row[0]!=null&&eod){
+      const p=row[0],d=p-eod,pc=d/eod*100,bp=view.querySelector('.pricerow .bigp'),ch=view.querySelector('.pricerow .chg'),k=view.querySelector('.pricerow .k');
+      const tm=new Date(LV.t).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Kolkata'});
+      if(bp){bp.removeAttribute('data-n');bp.textContent='₹'+T.fmt(p,2)}
+      if(ch){ch.className='chg '+cls(pc);ch.textContent=`${d>=0?'+':''}${T.fmt(d,2)} (${pc>=0?'+':''}${T.fmt(pc,2)}%)`}
+      else if(bp)bp.insertAdjacentHTML('afterend',`<span class="chg ${cls(pc)}">${d>=0?'+':''}${T.fmt(d,2)} (${pc>=0?'+':''}${T.fmt(pc,2)}%)</span>`);
+      if(k)k.innerHTML=`NSE · <b class="pos">Live</b> as of ${tm} IST · about 5 to 10 minutes delayed · change is from the last close`;
+      const mi=view.querySelector('.tabs .mini em'),mc=view.querySelector('.tabs .mini i');if(mi)mi.textContent='₹'+T.fmt(p,2);if(mc){mc.className=cls(pc);mc.textContent=`${pc>=0?'+':''}${T.fmt(pc,2)}%`}
+    }
+    window._lvT=setTimeout(tick,60000);
+  };
+  tick();
+}
+
+window.liveApply=liveApply;
 // ----- upcoming dates: market calendar (data/events_macro.csv, editable) + company dates (Yahoo, via the Events workflow) -----
 const EVT={Policy:'Policy',Holiday:'Holiday',Expiry:'F&O expiry',Budget:'Budget',Results:'Results'};
 function evWhen(iso){const d=new Date(iso+'T00:00:00'),t=new Date();t.setHours(0,0,0,0);const n=Math.round((d-t)/864e5);
@@ -2378,6 +2407,7 @@ async function stock(s,tab){
     drawP();
   }
   countUps(view);
+  liveApply(s,price);
   if(tab==='financials')finTabs(s);
   if(tab==='peers')peersTab(s);
   if(tab==='orderflow')ofStock(s);
