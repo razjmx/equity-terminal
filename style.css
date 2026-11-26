@@ -626,3 +626,9 @@ html:not([data-tape="1"]) .tape{display:none}
 .vseg{border:1px solid var(--b);border-radius:12px;background:var(--p)}
 .vseg button{border:0;border-radius:8px;padding:8px 12px;background:transparent;color:var(--m);cursor:pointer}
 .vseg button.on{background:var(--brand2);color:var(--brand);font-weight:700}
+/* Order flow side menus: same look as the Market overview menu */
+.vseg{border:0;background:transparent;border-radius:0;padding:6px 0 0;gap:4px}
+.vseg button{display:block;width:100%;padding:8px 12px;border:0;border-left:3px solid transparent;border-radius:9px;background:transparent;color:var(--m);font-size:13.5px;font-weight:600;text-align:left;cursor:pointer;white-space:nowrap}
+.vseg button:hover{color:var(--t);background:var(--p)}
+.vseg button.on{color:var(--brand);background:var(--p);border-left-color:var(--brand);box-shadow:var(--sh);font-weight:600}
+@media(max-width:860px){.vseg{padding:0}.vseg button{border-left:0;width:auto}}
