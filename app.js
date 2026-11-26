@@ -215,6 +215,80 @@ function scatterChart(cv,pts,opt={}){   // pts: [{x,y,c,r,l}]
   const line=pts.filter(p=>p.line);ctx.strokeStyle=opt.lc||'#2f6fdb';ctx.lineWidth=1.6;ctx.beginPath();line.forEach((p,i)=>i?ctx.lineTo(X(p.x),Y(p.y)):ctx.moveTo(X(p.x),Y(p.y)));ctx.stroke();
   pts.filter(p=>!p.line).forEach(p=>{ctx.fillStyle=p.c||'#0f6b4a';ctx.beginPath();ctx.arc(X(p.x),Y(p.y),p.r||4,0,7);ctx.fill();if(p.l){ctx.fillStyle='#8b94a3';ctx.fillText(p.l,X(p.x)+6,Y(p.y)-5)}});
 }
+// ----- stock page: Overview summary (one compact card per model; details are in the other tabs) -----
+async function ovSummary(s,c){
+  const box=$('#ovsum');if(!box)return;
+  const locked=isLocked(),L=(s[0]||'_').toUpperCase(),sh=/[A-Z]/.test(L)?L:'_';
+  const g=p=>Promise.resolve(get(p,'json')).catch(()=>null);
+  const none=Promise.resolve(null);
+  const [Qd,F,PCA,MR,P,OFl,OFs,Nd]=await Promise.all([locked?none:g(`data/quant/${s}.json`),locked?none:g('data/quant/factors.json'),locked?none:g('data/quant/pca.json'),locked?none:g('data/quant/meanrev.json'),g('data/peers.json'),locked?none:g('data/orderflow.json'),locked?none:g(`data/orderflow/${s}.json`),g(`data/news/s_${sh}.json`)]);
+  if(!$('#ovsum'))return;
+  const num=v=>v!=null&&isFinite(v),f=(v,d=1)=>num(v)?T.fmt(v,d):'–';
+  const kv=(k,v,cl='')=>`<div><div class="k">${k}</div><div class="v ${cl}" style="font-size:16px">${v}</div></div>`;
+  const grp=(title,link,tag,inner)=>`<div class="card ovg"><h3>${title}${tag?` <span class="tag">${tag}</span>`:''}${link?`<a class="link" href="#/stock/${esc(s)}/${link}">Details</a>`:''}</h3>${inner}</div>`;
+  const cards=[];
+  const V=(c.met&&c.met.valuation)||{},R=(c.met&&c.met.ratios)||{},G=(c.met&&c.met.growth)||{},M=c.met||{};
+  // ---- valuation models
+  const up=(fair)=>num(fair)&&c.price?(fair/c.price-1)*100:null;
+  const vrow=(name,fair,tag)=>{const u=up(fair);return kv(name+(tag?` <span class="mut" style="font-size:11px">${esc(tag)}</span>`:''),num(fair)?`₹${f(fair,0)} <span class="${cls(u)}" style="font-size:12px">${u>=0?'+':''}${f(u,0)}%</span>`:'–')};
+  let vr='';
+  if(!locked){
+    if(c.dcf){const r=T.recompute(c.dcf,{rf:A.rf/100,erp:A.erp/100,gT:A.g/100});vr+=vrow('DCF fair value',r?r.perShare:null,c.dcf.reliability)}
+    if(c.fin){const r=T.finModel(c.fin,fx(c.fin,{rf:A.rf/100,erp:A.erp/100,g:A.g/100}));vr+=vrow('P/B–ROE fair value',r?r.fair:null,c.fin.subtype)}
+    if(c.rl)vr+=vrow(c.rl.type==='reit'?'REIT fair value':'Realty NAV / share',c.rl.fair_value,c.rl.type);
+  }
+  const me=P&&P.stocks&&P.stocks.find(x=>x.s===s);
+  let grpS=[],medp={};
+  if(me){const lv=['ind','sub','sec'].find(l=>me[l]&&P.stocks.filter(x=>x[l]===me[l]).length>=4)||'ind';grpS=P.stocks.filter(x=>me[lv]&&x[lv]===me[lv]);['pe','pb','ev','roe','roce','rg'].forEach(k=>medp[k]=medOf(grpS.map(x=>x[k])))}
+  const prem=k=>{const v=me&&me[k],m=medp[k];if(!num(v)||!num(m)||!m)return '';const p=(v/m-1)*100;return ` <span class="${p>0?'neg':'pos'}" style="font-size:12px">${p>=0?'+':''}${f(p,0)}% vs peers</span>`};
+  const mult=kv('P/E',(num(V.pe_used)?f(V.pe_used)+'x':'–')+prem('pe'))+kv('P/B',(num(V.pb)?f(V.pb,2)+'x':'–')+prem('pb'))+kv('EV/EBITDA',(num(V.ev_ebitda)?f(V.ev_ebitda)+'x':'–')+prem('ev'))+kv('FCF yield',num(V.fcf_yield_pct)?f(V.fcf_yield_pct)+'%':'–');
+  cards.push(grp('Valuation','valuation',c.dcf?'DCF':c.fin?'Financials model':c.rl?'Realty / REIT':'',`<div class="grid">${locked?kv('Fair value models','<span class="mut" style="font-size:13px">Sign in to see</span>'):(vr||kv('Fair value','<span class="mut" style="font-size:13px">No model for this stock</span>'))}${mult}</div>`));
+  // ---- financial health
+  const pz=M.piotroski&&M.piotroski.score!=null?M.piotroski.score:null,az=M.altman_z2&&M.altman_z2.z!=null?M.altman_z2:null;
+  cards.push(grp('Financial health','financials',M.latest_fy?'FY '+esc(M.latest_fy):'',`<div class="grid">${kv('ROE',num(R.roe_pct)?f(R.roe_pct)+'%':'–')}${kv('ROCE',num(R.roce_pct)?f(R.roce_pct)+'%':'–')}${kv('Net margin',num(R.net_margin_pct)?f(R.net_margin_pct)+'%':'–')}${kv('Debt/equity',num(R.debt_equity)?f(R.debt_equity,2):'–')}${kv('Revenue CAGR',num(G.revenue_cagr_pct)?f(G.revenue_cagr_pct)+'%':'–',cls(G.revenue_cagr_pct))}${kv('Net income CAGR',num(G.net_income_cagr_pct)?f(G.net_income_cagr_pct)+'%':'–',cls(G.net_income_cagr_pct))}${kv('Piotroski F-score',pz!=null?pz+' / 9':'–',pz!=null?(pz>=7?'pos':pz<=3?'neg':''):'')}${kv('Altman Z″',az?f(az.z,2)+' ('+esc(az.zone||'')+')':(M.type==='financial'?'n/a for financials':'–'))}</div>`));
+  // ---- peers
+  if(me&&grpS.length>=2){
+    const rk=(k,hi)=>{const v=me[k];if(!num(v))return '–';const a=grpS.filter(x=>num(x[k])).map(x=>x[k]).sort((p,q)=>hi?q-p:p-q);return (a.indexOf(v)+1)+' of '+a.length};
+    cards.push(grp('Versus peers','peers',esc(String(me.ind||me.sub||me.sec||'')).slice(0,34),`<div class="grid">${kv('P/E rank (cheapest = 1)',rk('pe',false))}${kv('P/B rank (cheapest = 1)',rk('pb',false))}${kv('ROE rank (best = 1)',rk('roe',true))}${kv('ROCE rank (best = 1)',rk('roce',true))}${kv('Revenue growth rank',rk('rg',true))}${kv('Peer group size',grpS.length)}</div>`));
+  }
+  if(locked){
+    cards.push(`<div class="card lockc mini"><div class="lockic">&#128274;</div><h3>Quant models and order flow</h3><p class="mut">Risk, trend, factor, market-structure, mean-reversion, Kelly and order-flow summaries are for signed-in users.</p></div>`);
+  }else{
+    // ---- risk (volatility, VaR)
+    const v=Qd&&Qd.vol;
+    if(v){const n=v.now||{},va=v.var&&v.var['95']&&v.var['95']['1d'];
+      cards.push(grp('Volatility and VaR','quant',v.model?esc(v.model.name):'',`<div class="grid">${v.model?kv('GARCH volatility',f(n.garch)+'%'):''}${kv('EWMA volatility',f(n.ewma)+'%')}${kv('Realised 1 year',f(n.real252)+'%')}${n.pct_rank!=null?kv('Percentile vs own history',f(n.pct_rank,0)):''}${va?kv('VaR 95%, 1 day',f(va.t,2)+'%','neg')+kv('Expected shortfall 95%',f(va.es_t,2)+'%','neg'):''}</div>`))}
+    // ---- trend
+    const t=Qd&&Qd.trend;
+    if(t){const d12=t.drift&&t.drift['12m'],vc={trending:'Trending','mean-reverting':'Mean-reverting','random-walk':'Random walk'}[t.vr_class]||'–';
+      cards.push(grp('Trend','quant',vc,`<div class="grid">${kv('Trend slope (60-day)',pfx(t.kal60.slope),cls(t.kal60.slope))}${kv('Trend slope (120-day)',pfx(t.kal120.slope),cls(t.kal120.slope))}${kv('Price vs 60-day trend',pfx(t.kal60.gap),cls(t.kal60.gap))}${d12?kv('12-month drift',pfx(d12.mu)+' <span class="mut" style="font-size:12px">t '+f(d12.t,1)+'</span>',cls(d12.mu)):''}${kv('Price behaviour',vc)}</div>`))}
+    // ---- factors
+    const fs=F&&F.stocks&&F.stocks[s];
+    if(fs){const comp=qComposite(F,QW)[s];
+      cards.push(grp('Factor profile','quant',comp?'Rank #'+comp.rank+' of '+comp.n:'',`<div class="grid">${FCOMP.map(k=>{const p=fs.p[k];return kv(FN[k]+' percentile',p==null?'–':f(p,0),p==null?'':p>=60?'pos':p<=40?'neg':'')}).join('')}</div>`))}
+    // ---- market structure
+    const pc=Qd&&Qd.pca;
+    if(pc){const cl=PCA&&PCA.clusters&&PCA.clusters.find(x=>x.id===pc.cl);
+      cards.push(grp('Market structure','quant',cl?esc(cl.label):'',`<div class="grid">${kv('Explained by the market',f(pc.r2_mkt*100,0)+'%')}${kv('Explained by common factors',f(pc.r2*100,0)+'%')}${kv('Stock-specific',f((1-pc.r2)*100,0)+'%',(1-pc.r2)>.6?'pos':'')}</div>`))}
+    // ---- mean reversion
+    if(MR&&MR.full){
+      const o=(MR.oversold||[]).find(x=>x.s===s),h=(MR.overbought||[]).find(x=>x.s===s),j=(MR.jumps||[]).find(x=>x.s===s),r=o||h;
+      cards.push(grp('Mean reversion','quant',j?'Left out':r?(o?'Oversold':'Overbought'):'Normal range',j?`<p class="mut" style="margin:0">Left out of the scan: a one-day move of ${f(j.pct,0)}% on ${esc(j.date)} may be a split or other corporate action.</p>`:r?`<div class="grid">${kv('z-score vs 60-day average',(r.z>0?'+':'')+f(r.z,2),r.z<0?'neg':'pos')}${kv('Deviation from average',num(r.dev)?(r.dev>0?'+':'')+f(r.dev,1)+'%':'–')}${kv('Half-life',num(r.hl)?f(r.hl,0)+' days':'–')}${kv('Passes reversion test',r.rev?'Yes':'No',r.rev?'pos':'')}</div>`:`<p class="mut" style="margin:0">Not stretched: z-score is between −1.5 and +1.5, or the stock is not in the scan.</p>`))}
+    // ---- Kelly (continuous)
+    if(t&&t.drift&&t.drift['12m']&&v&&v.now&&num(v.now.real252)&&v.now.real252>0){
+      const mu=t.drift['12m'].mu/100,sg=v.now.real252/100,kf=(mu-A.rf/100)/(sg*sg);
+      cards.push(grp('Position sizing (Kelly)','quant','continuous',`<div class="grid">${kv('Full Kelly',f(kf*100,0)+'%',kf>0?'':'neg')}${kv('Half Kelly',f(kf*50,0)+'%')}${kv('Drift used (12-month)',pfx(mu*100))}${kv('Volatility used',f(sg*100)+'%')}</div><p class="mut" style="font-size:12px;margin:8px 0 0">A stock's past drift is a noisy guide to its future, so treat this as an upper bound, not a sizing rule. Negative means no position on this reading.</p>`))}
+    // ---- order flow
+    const od=OFs,ol=OFl&&OFl.stocks&&OFl.stocks.find(x=>x.s===s);
+    if(od){const bc=od.bias==='bullish'?'pos':od.bias==='bearish'?'neg':'';
+      cards.push(grp('Order flow','orderflow',esc(od.d||''),`<div class="grid">${kv('Bias','<b class="'+bc+'">'+esc(String(od.bias).toUpperCase())+'</b>')}${kv('Signal strength',od.score+' / 99')}${kv('Session change',(od.chg>=0?'+':'')+f(od.chg,2)+'%',cls(od.chg))}${kv('Price vs VWAP',num(od.vwap)?(od.px>=od.vwap?'Above':'Below')+' (₹'+f(od.vwap,2)+')':'–',num(od.vwap)?(od.px>=od.vwap?'pos':'neg'):'')}${num(od.rr)?kv('Reward : risk','1:'+f(od.rr,1)):''}${ol&&num(ol.dp)?kv('Delivery %',f(ol.dp,0)+'%'):''}${od.nse&&od.nse.status?kv('NSE check',od.nse.status==='ok'?'Verified':od.nse.status==='pend'?'Pending':'See details',od.nse.status==='ok'?'pos':''):''}</div>`))}
+  }
+  // ---- news
+  const nit=(Nd&&Nd.stocks&&Nd.stocks[s])||[];
+  cards.push(grp('Latest news','news',nit.length?nit.length+' headlines':'',nit.length?newsList(nit.slice(0,3)):'<p class="mut" style="margin:0">No recent headlines collected for this company.</p>'));
+  box.innerHTML=`<h3 class="ovh">Summary of all models <span class="mut" style="font-weight:400;font-size:12px">one card per model · open Details for the full output</span></h3><div class="ovgrid">${cards.join('')}</div>`;
+}
+
 // ----- stock page: News tab (Micro = this company, Macro = India and world) -----
 function ago(iso){const t=Date.parse(iso);if(!isFinite(t))return '';const m=Math.max(0,(Date.now()-t)/60000);
   if(m<60)return Math.max(1,Math.round(m))+' min ago';if(m<1440)return Math.round(m/60)+' h ago';const d=Math.round(m/1440);return d<=1?'yesterday':d+' days ago'}
@@ -2239,6 +2313,7 @@ async function stock(s,tab){
     h+=`<div class="ov"><div><div class="card"><h3 style="align-items:flex-start">Price<span class="pctl"><span class="ctr"><span class="range" id="mode">${[['area','Area'],['line','Line'],['candle','Candle']].map(x=>`<button data-m="${x[0]}">${x[1]}</button>`).join('')}</span><span class="range" id="rng">${['3M','6M','1Y','3Y','All'].map(x=>`<button data-r="${x}">${x}</button>`).join('')}</span></span><div class="retline" id="retline"></div></span></h3><canvas id="pc" style="height:380px;touch-action:pan-y"></canvas><div class="k" style="margin-top:4px"><span style="color:#2f6fdb">▬</span> 50-day &nbsp; <span style="color:#9b59d0">▬</span> 200-day &nbsp; · hover or tap the chart for details</div></div></div>
      <div>${keyRatios}${isLocked()?'<div class="card lockc mini"><div class="lockic">&#128274;</div><h3>Valuation models</h3><p class="mut">Fair value and model inputs are for signed-in users.</p></div>':vs}</div></div>`;
     h+=technicals();
+    h+='<div id="ovsum"></div>';
   }else if(tab==='financials'){
     const tl=(k,v)=>`<div class="tile"><div class="k">${k}</div><div class="tv">${v}</div></div>`;
     FIN_RATIO=`<div class="fcard card"><h3>Key metrics<span class="mut" style="font-weight:400;font-size:12px">FY ${esc(met?met.latest_fy:'')}</span></h3><div class="mtiles">${tl('P/E (used)',T.fmt(V.pe_used))}${tl('P/B',T.fmt(V.pb))}${tl('EV/EBITDA',T.fmt(V.ev_ebitda))}${tl('FCF yield %',T.fmt(V.fcf_yield_pct))}${tl('Market cap ₹cr',T.fmt(V.market_cap_cr,0))}${tl('ROE %',T.fmt(R.roe_pct))}${tl('ROCE %',T.fmt(R.roce_pct))}${tl('Debt/Equity',T.fmt(R.debt_equity,2))}${tl('Piotroski',met&&met.piotroski&&met.piotroski.score!=null?met.piotroski.score:'–')}${tl('Altman Z″',met&&met.altman_z2&&met.altman_z2.z!=null?T.fmt(met.altman_z2.z,2)+' ('+esc(met.altman_z2.zone||'')+')':(met&&met.type==='financial'?'n/a for financials':'–'))}${tl('Revenue CAGR %',T.fmt(G.revenue_cagr_pct))}${tl('Net income CAGR %',T.fmt(G.net_income_cagr_pct))}${tl('Years used',G.years_used??'–')}</div>${met&&(met.flags||[]).length?`<p class="warn">${met.flags.map(esc).join(' · ')}</p>`:''}<div id="ratslot"></div></div>`;
@@ -2282,6 +2357,7 @@ async function stock(s,tab){
   if(tab==='orderflow')ofStock(s);
   if(tab==='quant')quantTabs(s,technicals());
   if(tab==='news')newsTab(s,u);
+  if(tab==='overview')ovSummary(s,{met,rsk,dcf,fin,rl,price,u});
   if(tab==='valuation')valTabs(s,dcf,fin,rl,price,met,u);
 }
 
