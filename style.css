@@ -659,3 +659,4 @@ html:not([data-tape="1"]) .tape{display:none}
 .ofgrid .card>h3{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline}
 .ofgrid .card>h3 .mut{flex:1 1 auto;min-width:0}
 @media(max-width:860px){.ofl3{grid-template-columns:1fr}}
+.mk>.mk-side,.mk>.mk-tf,.ofl3>.ofl-l,.ofl3>.ofl-r{margin-top:var(--sdt,0)}
