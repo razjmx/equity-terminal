@@ -22,8 +22,9 @@ A research terminal for Nifty 500 cash equities. It runs entirely on GitHub: sch
   - **Market structure**: PCA of stock returns and clusters of stocks that move together.
   - **Mean reversion**: single stocks stretched against their own 60-day average, with an honest test against random entries and against the index.
   - **Pairs (stat-arb)**: same-industry pairs tested for cointegration, with a hold-out test.
+  - **Position sizing (Kelly)**: the growth-optimal stake for a bet with an edge, with simulated runs of full, half and double Kelly.
   - **Portfolio builder**: HRP, minimum variance and other methods, efficient frontier, Black-Litterman views, and a Barra-style factor risk model.
-- **Tools**: option pricer (Black-Scholes and binomial) and an impact-cost / execution estimator.
+- **Stock Quant tab**: volatility and VaR, trend, factors, execution (impact cost, VWAP / TWAP), an option pricer (binomial tree and Black-Scholes), and a **Simulation** tab with price paths (geometric Brownian motion), Monte Carlo option pricing checked against Black-Scholes, and a Kelly weight for the stock.
 - **Data health**: whether each data file is fresh, whether the automatic updates ran, and whether the models pass their own checks (for example predicted against realised risk, and whether pair selection beat random pairs).
 - **Info buttons**: a small "i" next to each model explains what it is and how to read it.
 
