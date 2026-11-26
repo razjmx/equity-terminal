@@ -1,5 +1,7 @@
-Run (UTC): 2026-11-26 07:40
+Run (UTC): 2026-11-26 07:44
 stocks checked: 750; with an upcoming results date (Yahoo): 272; with an upcoming ex-dividend date (Yahoo): 0; with NSE filings (buyback, split, bonus, dividend, results): 0; no data or error: 0
-NSE corporate actions: 7 rows, 4 upcoming items kept
-NSE board meetings: 51 rows, 0 upcoming items kept
+NSE corporate actions sample: {"bcEndDate": "-", "bcStartDate": "-", "caBroadcastDate": null, "comp": "GOVERNMENT OF INDIA", "exDate": "27-Nov-2026", "faceVal": "100", "ind": "-", "isin": "IN0020160092", "ndEndDate": "-", "ndStartDate": "-", "recDate": "27-Nov-2026", "series": "GS", "subject": "Interest Payment", "symbol": "662GS2051"}
+NSE corporate actions: 7 rows, 0 upcoming items kept {}; skipped {'no type': 3, 'no date': 0, 'past': 0, 'not in universe': 4}
+NSE board meetings sample: {"bm_symbol": "LATTEYS", "bm_date": "05-Dec-2026", "bm_purpose": "Financial Results", "bm_desc": "To consider and approve the financial results for the period ended September 30, 2026", "sm_indusrty": "-", "bm_timestamp": "29-Oct-2026 16:10:39", "sm_name": "Latteys Industries Limited", "sm_isin": "INE262Z01015", "diff": "00:00:00", "sysTime": "29-Oct-2026 16:10:39", "attFileSize": "530.90 KB", "attachment": "https://
+NSE board meetings: 51 rows, 0 upcoming items kept {}; skipped {'no type': 0, 'no date': 0, 'past': 0, 'not in universe': 0}
 Results dates from Yahoo are often estimates; NSE items come from the exchange's corporate-action and board-meeting lists.
