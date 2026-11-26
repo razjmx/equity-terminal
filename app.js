@@ -179,8 +179,8 @@ function route(){
 function research(){
   view.innerHTML=`<div class="rs"><h2>Company research</h2><p class="mut">Search any of the ~750 stocks (Nifty 500 and Microcap 250) by name or symbol</p><div class="rsbox"><input id="rs-q" placeholder="e.g. Reliance, TCS, HDFC Bank" autocomplete="off"></div></div>`;
   const q=$('#rs-q');attachSuggest(q);q.focus();
-  view.insertAdjacentHTML('beforeend','<div class="rsgrid"><div class="rsnews"><h3 style="margin:26px 0 4px">Macro news</h3><p class="mut" style="margin:0 0 10px">Market-moving news in India and around the world. For news on one company, open the company and use its News tab.</p><div class="subtabs" id="msub"></div><div id="mbody"><div class="skel" style="height:240px"></div></div></div><div class="rsnews" id="evbox"></div></div>');
-  upEvents($('#evbox'));
+  view.insertAdjacentHTML('beforeend','<div class="rsgrid"><div class="rscell lh"><h3 style="margin:26px 0 4px">Macro news</h3><p class="mut" style="margin:0 0 10px">Market-moving news in India and around the world. For news on one company, open the company and use its News tab.</p><div class="subtabs" id="msub"></div><div class="chips" id="mnav"></div></div><div class="rscell lb" id="mbody"><div class="skel" style="height:240px"></div></div><div class="rscell rh" id="evh"></div><div class="rscell rb" id="evbox"></div></div>');
+  upEvents($('#evbox'),$('#evh'));
   macroNews();
 }
 
@@ -275,10 +275,12 @@ async function loadEvents(){
   const mac=(cs?T.parseCSV(cs):[]).filter(r=>r.date&&r.date>=iso0).sort((a,b)=>a.date<b.date?-1:1);
   return {mac,st};
 }
-async function upEvents(box){   // market-wide dates only; company dates live on each company's page
+async function upEvents(box,head){   // market-wide dates only; company dates live on each company's page
   const {mac}=await loadEvents();if(!box)return;
   const row=r=>{const w=evWhen(r.date);return `<li><div><b>${esc(r.title)}</b><div class="mut">${w.txt}${w.rel?' · '+w.rel:''}</div></div><span class="tag">${esc(EVT[r.type]||r.type)}${r.status==='expected'?' · expected':''}</span></li>`};
-  box.innerHTML=`<h3 style="margin:26px 0 4px">Upcoming dates</h3><p class="mut" style="margin:0 0 10px">Market-wide events. Results, dividend, buyback, split and bonus dates are on each company's Overview.</p><div class="card"><ul class="news evl">${mac.length?mac.slice(0,12).map(row).join(''):'<li class="mut">No dates loaded. Add rows to data/events_macro.csv.</li>'}</ul><p class="mut" style="font-size:12px;margin:10px 0 0">Policy dates are from the RBI and the US Federal Reserve. "Expected" dates (holidays, expiry, Budget) follow the usual pattern and can move, so check the exchange notice. You can add or fix rows in data/events_macro.csv.</p></div>`;
+  const hd=`<h3 style="margin:26px 0 4px">Upcoming dates</h3><p class="mut" style="margin:0 0 10px">Market-wide events. Results, dividend, buyback, split and bonus dates are on each company's Overview.</p>`;
+  if(head)head.innerHTML=hd;
+  box.innerHTML=(head?'':hd)+`<div class="card"><ul class="news evl">${mac.length?mac.slice(0,12).map(row).join(''):'<li class="mut">No dates loaded. Add rows to data/events_macro.csv.</li>'}</ul><p class="mut" style="font-size:12px;margin:10px 0 0">Policy dates are from the RBI and the US Federal Reserve. "Expected" dates (holidays, expiry, Budget) follow the usual pattern and can move, so check the exchange notice. You can add or fix rows in data/events_macro.csv.</p></div>`;
 }
 
 // ----- stock page: Overview summary (one compact card per model; details are in the other tabs) -----
@@ -387,15 +389,20 @@ async function newsTab(s,u){   // company page: this company's headlines only
   box.innerHTML=`<div class="card"><h3>News on ${esc((u&&u.company)||s)} <span class="tag">${it.length} headlines</span></h3>${it.length?newsList(it):'<p class="mut">'+(Sd?'No recent headlines found for this company.':'News has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.')+'</p>'}<p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News (India edition). Each link opens the publisher's own page. ${Sd&&Sd.updated?'Last collected '+esc(Sd.updated)+' UTC. ':''}This is not investment advice, and a headline can be wrong or out of date.</p></div>`;
 }
 async function macroNews(){   // Company research page: world news, split into Global and Domestic
-  const sub=$('#msub'),box=$('#mbody');if(!sub||!box)return;
+  const sub=$('#msub'),box=$('#mbody'),nav=$('#mnav');if(!sub||!box)return;
+  let topic='';
   const Md=await get('data/news/macro.json','json');
   const G=[['World','Global'],['India','Domestic (India)']];
   let cur='India';try{cur=localStorage.getItem('tl_mtab')||'India'}catch(e){}if(cur!=='World'&&cur!=='India')cur='India';
   const draw=()=>{
     sub.innerHTML=G.map(g=>`<button data-k="${g[0]}" class="${g[0]===cur?'on':''}">${g[1]}</button>`).join('');
-    sub.querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=b.dataset.k;try{localStorage.setItem('tl_mtab',cur)}catch(e){}draw()});
+    sub.querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=b.dataset.k;topic='';try{localStorage.setItem('tl_mtab',cur)}catch(e){}draw()});
     const ts=((Md&&Md.topics)||[]).filter(t=>t.g===cur&&t.items.length);
-    box.innerHTML=ts.length?`<div class="ngrid">${ts.map(t=>`<div class="card"><h3>${esc(t.n)}</h3>${newsList(t.items.slice(0,6))}</div>`).join('')}</div><p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News. Each link opens the publisher's own page. ${Md&&Md.updated?'Last collected '+esc(Md.updated)+' UTC. ':''}Not investment advice.</p>`:`<div class="card"><p class="mut">${Md?'No headlines in this group yet.':'Macro news has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.'}</p></div>`;
+    if(topic&&!ts.some(t=>t.n===topic))topic='';
+    if(nav){nav.innerHTML=ts.length>1?[['','All sections']].concat(ts.map(t=>[t.n,t.n])).map(([k,l])=>`<button data-k="${esc(k)}" class="${k===topic?'on':''}">${esc(l)}</button>`).join(''):'';
+      nav.querySelectorAll('button').forEach(b=>b.onclick=()=>{topic=b.dataset.k;draw()})}
+    const shownT=topic?ts.filter(t=>t.n===topic):ts;
+    box.innerHTML=ts.length?`<div class="ngrid">${shownT.map(t=>`<div class="card"><h3>${esc(t.n)}</h3>${newsList(t.items.slice(0,topic?12:6))}</div>`).join('')}</div><p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News. Each link opens the publisher's own page. ${Md&&Md.updated?'Last collected '+esc(Md.updated)+' UTC. ':''}Not investment advice.</p>`:`<div class="card"><p class="mut">${Md?'No headlines in this group yet.':'Macro news has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.'}</p></div>`;
   };
   draw();
 }
