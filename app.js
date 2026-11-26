@@ -1346,7 +1346,7 @@ async function marketLegacy(){
 
 // ---------- market health (home) ----------
 const MH={data:null,range:'1D',idx:null,mode:'count',sort:{k:'r1m',d:-1},charts:[]};
-const RANGES={'1D':2,'1M':22,'3M':64,'6M':127,'1Y':253,'5Y':1261,'MAX':1e9};
+const RANGES={'1D':2,'1W':6,'1M':22,'3M':64,'6M':127,'1Y':253,'5Y':1261,'MAX':1e9};
 const fMon=d=>new Date(d+'T00:00:00').toLocaleDateString('en-GB',{month:'short',year:'2-digit'});
 const fDay=d=>new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
 function mcol(){const c=getComputedStyle(document.documentElement),g=n=>c.getPropertyValue(n).trim();return {g:g('--g')||'#127a45',r:g('--r')||'#c62828',m:g('--m')||'#667085',p:g('--p')||'#fff',t:g('--t')||'#18202b',b:g('--brand')||'#0f6b4a'}}
@@ -1408,6 +1408,7 @@ async function market(){
   renderMarket(true);
 }
 function renderMarket(anim){
+  {const t=TFM[MH.range]||'r1d';GL.tf=t;IXH.tf=t;HM.tf=t}
   const d=MH.data,S=d.series,N=RANGES[MH.range],pm=false,C=mcol();
   const W=a=>a.slice(Math.max(0,a.length-N)),X=W(d.dates);
   const last=a=>{for(let i=a.length-1;i>=0;i--)if(a[i]!=null)return a[i];return null},first=a=>{for(const v of a)if(v!=null)return v;return null};
@@ -1438,15 +1439,15 @@ function renderMarket(anim){
     if(MH.range==='1D')h+=`<p class="mut ixnote">${MH.idx&&MH.idx.idx?'Index charts are intraday, session of '+esc(MH.idx.d)+', updated '+esc(MH.idx.gen.slice(11))+' UTC (refreshed about every 15 minutes in market hours).':'1D index charts show the last two closes (the intraday file is not available).'}</p>`}
 
   // top gainers and losers (second)
-  {h+=sec('gl','Top gainers and losers','by index and time frame · from daily closes')+'<div id="glbox"></div>'}
+  {h+=sec('gl','Top gainers and losers','by index · uses the time frame on the right'+(/^(5Y|MAX)$/.test(MH.range)?' (shows 1Y)':''))+'<div id="glbox"></div>'}
 
   // sector heatmap (third)
-  {h+=sec('ind','Index heatmap','NSE index closing levels · pick a menu on the left and a time frame next to it');
+  {h+=sec('ind','Index heatmap','NSE index closing levels · uses the time frame on the right'+(/^(5Y|MAX)$/.test(MH.range)?' (shows 1Y)':''));
    h+='<div id="hmwrap"></div>'}
 
   const chips=[['idx','Indices'],['gl','Gainers & losers'],['ind','Heatmap']];
-  const bar=`<div class="mh-bar"><div class="seg" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div></div>`;
-  view.innerHTML=`<div class="mk"><aside class="mk-side">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</aside><div class="mk-main">${bar}<div id="lvm"></div>${h}<p class="mut mk-foot">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</p></div></div>`;liveMovers();
+  const bar=`<div class="vseg mk-tf" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div>`;
+  view.innerHTML=`<div class="mk"><aside class="mk-side">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</aside><div class="mk-main"><div id="lvm"></div>${h}<p class="mut mk-foot">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</p></div>${bar}</div>`;liveMovers();
   // wire
   document.querySelectorAll('#mh-range button').forEach(b=>b.onclick=()=>{MH.range=b.dataset.r;renderMarket(true)});
   document.querySelectorAll('.mk-side a').forEach(a=>a.onclick=()=>{const el=document.getElementById(a.dataset.s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})});
@@ -1463,6 +1464,7 @@ let _rz;window.addEventListener('resize',()=>{clearTimeout(_rz);_rz=setTimeout((
 
 // ---------- top gainers and losers ----------
 const GL={ix:'nifty50',tf:'r1d'};
+const TFM={'1D':'r1d','1W':'r1w','1M':'r1m','3M':'r3m','6M':'r6m','1Y':'r1y','5Y':'r1y','MAX':'r1y'};
 const GL_IX=[['nifty50','Nifty 50'],['midcap150','Midcap 150'],['smallcap250','Smallcap 250'],['microcap250','Microcap 250']];
 const GL_TF=[['r1d','1D'],['r1w','1W'],['r1m','1M'],['r3m','3M']];
 async function glPanel(){
@@ -1480,7 +1482,6 @@ async function glPanel(){
     const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">Price ₹</th><th class="num">Return</th></tr></thead><tbody>${a.map(r=>`<tr class="row" onclick="location.hash='#/stock/${esc(r.s)}'"><td><b>${esc(r.s)}</b><div class="mut" style="font-size:11px">${esc((nm[r.s]||'').slice(0,28))} · ${capOf(r.mc).split(' ')[0]}</div></td><td class="num">${px[r.s]!=null?T.fmt(px[r.s],1):'–'}</td><td class="num ${cls(r.r)}">${r.r>=0?'+':''}${T.fmt(r.r,2)}%</td></tr>`).join('')}</tbody></table>`;
     const src=(mem.source||{})[GL.ix]==='NSE'?'official NSE constituent list':'approximated by market-cap rank (NSE list not available)';
     box.innerHTML=`<div class="card"><div class="seg" id="gl-ix" style="margin:0 0 8px">${IXS.map(([k,l])=>`<button data-k="${k}" class="${GL.ix===k?'on':''}">${l}</button>`).join('')}</div>
-      <div class="seg" id="gl-tf" style="margin:0 0 12px">${GL_TF.map(([k,l])=>`<button data-k="${k}" class="${GL.tf===k?'on':''}">${l}</button>`).join('')}</div>
       <div class="two"><div><h3 style="margin:0 0 6px">Top gainers</h3>${tb(top)}</div><div><h3 style="margin:0 0 6px">Top losers</h3>${tb(bot)}</div></div>
       <p class="mut" style="font-size:12px;margin:10px 0 0">${rows.length} stocks in ${esc(IXS.find(x=>x[0]===GL.ix)[1])} with data · ${src} · returns are price returns to the last close.</p></div>`;
     box.querySelectorAll('#gl-ix button').forEach(b=>b.onclick=()=>{GL.ix=b.dataset.k;draw()});
@@ -1536,7 +1537,7 @@ async function idxHeatPanel(){
   const w=$('#hmwrap');if(!w)return;
   if(IXH_DATA===undefined){try{IXH_DATA=await get('data/index_heat.json','json')}catch(e){IXH_DATA=null}}
   const D0=IXH_DATA,tfo=IXH_TF.find(x=>x[0]===IXH.tf)||IXH_TF[0],sc=tfo[2],stocks=IXH.g==='stocks';
-  w.innerHTML=`<div class="ixh"><div class="ixa">${IXH_G.map(([k,l])=>`<button data-g="${k}" class="${IXH.g===k?'on':''}">${l}</button>`).join('')}</div><div class="ixb" title="Time frame">${IXH_TF.map(([k,l])=>`<button data-t="${k}" class="${IXH.tf===k?'on':''}">${l}</button>`).join('')}</div><div class="ixc" id="ixc"></div></div>`;
+  w.innerHTML=`<div class="ixh"><div class="ixa">${IXH_G.map(([k,l])=>`<button data-g="${k}" class="${IXH.g===k?'on':''}">${l}</button>`).join('')}</div><div class="ixc" id="ixc"></div></div>`;
   w.querySelectorAll('.ixa button').forEach(b=>b.onclick=()=>{IXH.g=b.dataset.g;IXH.sel=null;HM.drill=null;idxHeatPanel()});
   w.querySelectorAll('.ixb button').forEach(b=>b.onclick=()=>{IXH.tf=b.dataset.t;HM.tf=b.dataset.t;idxHeatPanel()});
   HM.tf=IXH.tf;
