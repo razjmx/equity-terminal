@@ -6,7 +6,7 @@ on:
     inputs:
       top_n:
         description: "How many most-traded stocks (750 = all)"
-        default: "300"
+        default: "750"
 
 permissions:
   contents: write
@@ -31,7 +31,7 @@ jobs:
         env:
           LIVE_FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
           OUT: /tmp/of_out
-          TOP_N: ${{ github.event.inputs.top_n || '300' }}
+          TOP_N: ${{ github.event.inputs.top_n || '750' }}
         run: python scripts/fetch_orderflow_live.py
       - name: Publish to the of-live branch
         run: |
