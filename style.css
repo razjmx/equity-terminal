@@ -641,3 +641,9 @@ html:not([data-tape="1"]) .tape{display:none}
 .topnav,.navrow .topnav,.searchbox,.searchbox input,.qbtn,#acct{border-color:var(--edge)!important}
 .vseg button.on,.mk-side a.on{border-top:1px solid var(--edge);border-right:1px solid var(--edge);border-bottom:1px solid var(--edge)}
 .card{border-color:var(--edge)}
+/* Market overview: common time frame in a fixed right column */
+.mk{grid-template-columns:150px minmax(0,1fr) 74px}
+.mk-tf{position:sticky;top:calc(var(--h2,70px) + 18px)}
+@media(max-width:860px){.mk{grid-template-columns:1fr}.mk-tf{order:-1;position:static;flex-direction:row;overflow-x:auto}.mk-side{order:-2}}
+.ixh{grid-template-columns:190px minmax(0,1fr)}
+@media(max-width:700px){.ixh{grid-template-columns:1fr}}
