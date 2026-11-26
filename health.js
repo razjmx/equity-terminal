@@ -19,6 +19,7 @@
     ['data/quant/pca.json', 'Quant: market structure', 8],
     ['data/quant/barra.json', 'Quant: factor risk model', 8],
     ['data/quant/statarb.json', 'Quant: pairs scan', 8],
+    ['data/quant/meanrev.json', 'Quant: mean reversion', 8],
     ['data/index_members.json', 'Index constituents', 45],
     ['data/peers.json', 'Peer groups', 45]
   ];
@@ -117,7 +118,11 @@
 
   function modelChecks(J) {
     const rows = [];
-    const B = J.barra && J.barra.o, S = J.statarb && J.statarb.o;
+    const B = J.barra && J.barra.o, S = J.statarb && J.statarb.o, M = J.meanrev && J.meanrev.o;
+    if (M && M.full && M.full.long && M.full.long.gap_bps != null) {
+      const L = M.full.long, ok = L.gap_bps >= 15 && L.gap_t >= 2 && L.vs_index.mean_bps >= 15 && L.vs_index.t >= 2;
+      rows.push(['Mean reversion: buy-stretched rule minus random entries, per trade', (L.gap_bps > 0 ? '+' : '') + L.gap_bps.toFixed(0) + ' bps', 'Needs 15 bps or more over random entries and over the index, each with t of 2 or more, for the rule to count as an edge', ok ? 'ok' : 'warn']);
+    }
     if (B && B.diag) {
       const d = B.diag, ok = d.ratio_mean >= 0.85 && d.ratio_mean <= 1.15;
       rows.push(['Factor risk model: realised ÷ predicted risk', d.ratio_mean == null ? '–' : d.ratio_mean.toFixed(2), 'Healthy range 0.85 to 1.15', d.ratio_mean == null ? 'na' : ok ? 'ok' : 'warn']);
@@ -137,8 +142,8 @@
 
   async function page(view) {
     view.innerHTML = `<h2 style="margin:4px 0 2px">Data health</h2><p class="mut" style="margin:0 0 14px">Is the data fresh, did the automatic updates run, and do the models pass their own checks. Checked live when you open this page.</p><div id="hl-sum"></div><div class="skel" style="height:300px"></div>`;
-    const [rows, jb, js, rn] = await Promise.all([fileRows(), getJson('data/quant/barra.json'), getJson('data/quant/statarb.json'), runs().then(v => ({ v }), e => ({ e }))]);
-    const checks = modelChecks({ barra: jb, statarb: js });
+    const [rows, jb, js, jm, rn] = await Promise.all([fileRows(), getJson('data/quant/barra.json'), getJson('data/quant/statarb.json'), getJson('data/quant/meanrev.json'), runs().then(v => ({ v }), e => ({ e }))]);
+    const checks = modelChecks({ barra: jb, statarb: js, meanrev: jm });
     const cnt = g => rows.filter(r => r.g === g).length;
     let wf = '', wfBad = 0, wfN = 0;
     if (rn.e) {
