@@ -1,15 +1,14 @@
-Run (UTC): 2026-11-25 17:45
-NSE bhavcopy: 1 new day(s) ['2026-11-23']; history 30 days, 747 stocks; days not available: 0
-749 stock file(s) skipped because of errors, e.g. ["TCS.tf.json: KeyError('d')", "MOIL.tf.json: KeyError('d')", "GODREJCP.tf.json: KeyError('d')"]
-Reconciled with NSE: ok 531, prices match but volume off 25, price differs 191, pending 0
-Why stocks differ (a stock can be counted more than once): {'price': 133, 'high': 42, 'low': 27, 'volume': 35}
-  worst: SGMART: day high differs by -3.28%; volume is 29% of NSE's
-  worst: HFCL: volume is 67% of NSE's
-  worst: LALPATHLAB: volume is 67% of NSE's
-  worst: PDSL: last price differs by 0.46%; day high differs by -0.64%; volume is 68% of NSE's
-  worst: E2E: volume is 75% of NSE's
-  worst: AEROFLEX: last price differs by 0.63%; volume is 75% of NSE's
-  worst: ACC: last price differs by 0.63%; volume is 75% of NSE's
-  worst: LINDEINDIA: last price differs by 0.32%; volume is 77% of NSE's
-  worst: PTCIL: volume is 78% of NSE's
-  worst: HONASA: volume is 80% of NSE's
+Run (UTC): 2026-11-26 14:51
+NSE bhavcopy: 2 new day(s) ['2026-11-23', '2026-11-26']; history 30 days, 747 stocks; days not available: 0
+Reconciled with NSE: ok 593, prices match but volume off 12, price differs 142, pending 0
+Why stocks differ (a stock can be counted more than once): {'price': 96, 'high': 23, 'low': 35, 'volume': 14}
+  worst: CARBORUNIV: volume is 5% of NSE's
+  worst: ASHOKA: volume is 76% of NSE's
+  worst: CANFINHOME: volume is 80% of NSE's
+  worst: FSL: volume is 81% of NSE's
+  worst: AXISBANK: volume is 81% of NSE's
+  worst: SIEMENS: volume is 82% of NSE's
+  worst: MRPL: volume is 82% of NSE's
+  worst: MTARTECH: volume is 83% of NSE's
+  worst: BBOX: volume is 83% of NSE's
+  worst: ENRIN: day high differs by -0.91%; volume is 83% of NSE's
