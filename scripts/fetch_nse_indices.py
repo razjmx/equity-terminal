@@ -53,8 +53,8 @@ def norm(s):
 
 def classify(name, overrides):
     n = norm(name)
-    if name in overrides:
-        return overrides[name]
+    if norm(name) in overrides:                                  # data/index_groups.csv, matched ignoring case and punctuation
+        return overrides[norm(name)]
     if re.search(SKIP_RE, n):
         return "skip"
     if n in SECTORAL:
@@ -190,7 +190,7 @@ def build(hist, log):
     if os.path.exists("data/index_groups.csv"):
         for r in csv.reader(open("data/index_groups.csv", newline="")):
             if len(r) >= 2 and r[1].strip().lower() in ("broad", "sectoral", "thematic", "strategy", "skip"):
-                over[r[0].strip()] = r[1].strip().lower()
+                over[norm(r[0])] = r[1].strip().lower()
     tf = {"r1w": 7, "r1m": 30, "r3m": 91, "r6m": 182, "r1y": 365}
     groups = {"broad": [], "sectoral": [], "thematic": [], "strategy": []}
     for nm, arr in idx.items():
