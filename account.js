@@ -95,7 +95,7 @@
     const o = box.querySelector('#acout'); if (o) o.onclick = () => { sess = null; ls.del(SK); note = ''; paint(); };
   }
   function open() {
-    if (!box) { box = document.createElement('div'); box.id = 'acpanel'; box.innerHTML = '<div class="achead"><b>Account</b><button class="acx" aria-label="Close">×</button></div><div class="acbody"></div>'; document.body.appendChild(box); box.querySelector('.acx').onclick = () => { box.hidden = true; }; document.addEventListener('keydown', e => { if (e.key === 'Escape') box.hidden = true; }); }
+    if (!box) { box = document.createElement('div'); box.id = 'acpanel'; box.innerHTML = '<div class="achead"><b>Account</b><button class="acx" aria-label="Close">×</button></div><div class="acbody"></div>'; document.body.appendChild(box); box.querySelector('.acx').onclick = () => { box.hidden = true; }; document.addEventListener('keydown', e => { if (e.key === 'Escape') box.hidden = true; }); document.addEventListener('pointerdown', e => { if (box && !box.hidden && !box.contains(e.target) && !(btn && btn.contains(e.target))) box.hidden = true; }); }
     box.hidden = false; paint();
   }
   if (btn) btn.onclick = () => { if (box && !box.hidden) box.hidden = true; else open(); };
