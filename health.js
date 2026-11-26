@@ -12,6 +12,7 @@
     ['data/orderflow.json', 'Order flow (daily)', 4],
     ['data/orderflow_tf.json', 'Order flow (longer windows)', 4],
     ['data/index_heat.json', 'Index heatmap (NSE index levels)', 4],
+    ['data/index_constituents.json', 'Index stock lists', 10],
     ['data/orderflow_backtest.json', 'Order flow back-test', 40],
     ['data/fii_flow.json', 'FII / FPI flow', 7],
     ['data/quant/factors.json', 'Quant: factors and rankings', 5],
