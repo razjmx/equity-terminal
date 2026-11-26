@@ -8,6 +8,38 @@ from fetch_orderflow import analyse
 IST = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
 OUT = os.environ.get("OUT", "/tmp/of_out")
 
+INDICES = {"Nifty 50": "^NSEI", "Bank Nifty": "^NSEBANK", "Sensex": "^BSESN", "Nifty Midcap 150": "NIFTYMIDCAP150.NS",
+           "Nifty Smallcap 250": "NIFTYSMLCAP250.NS", "Nifty 500": "^CRSLDX"}
+
+
+def fetch_indices(yf, now, log):
+    """Intraday 5-minute closes of today's session for the index cards on Market Overview -> idx.json (price-free log)."""
+    out, ok, bad = {}, [], []
+    session = ""
+    for name, tk in INDICES.items():
+        try:
+            d = yf.download(tk, period="5d", interval="5m", progress=False, auto_adjust=False, threads=False)
+            if hasattr(d.columns, "levels"):
+                d.columns = d.columns.get_level_values(0)
+            d = d.dropna(subset=["Close"])
+            if d.index.tz is not None:
+                d.index = d.index.tz_convert("Asia/Kolkata")
+            if d.empty:
+                bad.append(name); continue
+            days = sorted(set(d.index.date))
+            last = days[-1]
+            cur = d[[x == last for x in d.index.date]]
+            pc = float(d[[x == days[-2] for x in d.index.date]]["Close"].iloc[-1]) if len(days) > 1 else None
+            if pc is None or len(cur) < 3:
+                bad.append(name); continue
+            out[name] = {"pc": round(pc, 2), "t": [t.strftime("%H:%M") for t in cur.index], "y": [round(float(v), 2) for v in cur["Close"]]}
+            session = str(last); ok.append(name)
+        except Exception as e:
+            bad.append(f"{name} ({type(e).__name__})")
+    if out:
+        json.dump({"gen": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M"), "d": session, "idx": out}, open(OUT + "/idx.json", "w"), separators=(",", ":"))
+    log.append(f"Index charts: {len(ok)} of {len(INDICES)} ok; missing: {bad}")
+
 
 def main():
     import yfinance as yf
@@ -29,6 +61,10 @@ def main():
         for r in csv.DictReader(open("data/industry.csv", newline="", encoding="utf-8-sig")):
             ind[r["symbol"]] = r
     log = [f"Run (UTC): {datetime.datetime.utcnow():%Y-%m-%d %H:%M}", f"Stocks asked: {len(top)}"]
+    try:
+        fetch_indices(yf, now, log)
+    except Exception as e:
+        log.append(f"Index charts failed: {e!r}"[:200])
     rank, bad, delays = [], [], []
     for k in range(0, len(top), 50):
         part = top[k:k + 50]
