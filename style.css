@@ -542,3 +542,5 @@ main{margin-left:auto;margin-right:auto}
 .news{list-style:none;margin:0;padding:0}.news li{padding:9px 0;border-bottom:1px solid var(--b)}.news li:last-child{border-bottom:0}.news a{color:var(--t);font-weight:600;text-decoration:none;line-height:1.35}.news a:hover{text-decoration:underline}.news .mut{font-size:12px;margin-top:2px}.ngrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}@media(max-width:600px){.ngrid{grid-template-columns:1fr}}
 
 .ovh{margin:22px 0 10px}.ovgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}.ovg h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.ovg h3 .link{margin-left:auto;font-size:12.5px}.ovg .grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}@media(max-width:600px){.ovgrid{grid-template-columns:1fr}}
+
+.evl li{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.evl .tag{white-space:nowrap}.evl b{font-weight:600}
