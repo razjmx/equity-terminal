@@ -132,7 +132,7 @@ async function boot(){
   const idx=$('#idx');if(idx&&D.mkt){const row=(n,o)=>o?`<div><span>${n}</span><b>${T.fmt(o.price??o.close,0)}</b><span class="${cls(o.ret_1m??o.returns_pct?.['1m'])}">${T.pct(o.ret_1m??o.returns_pct?.['1m'])}</span></div>`:'';idx.innerHTML='<div class="k">1-month</div>'+row('Nifty 50',D.mkt.nifty50)+row('Nifty 500',D.mkt.nifty500)}
   const th=$('#theme');const setTh=t=>{document.documentElement.dataset.theme=t;try{localStorage.setItem('tl_theme',t)}catch(e){}};
   let t0='light';try{t0=localStorage.getItem('tl_theme')||'light'}catch(e){}document.documentElement.dataset.theme=t0;
-  th.onclick=()=>{setTh(document.documentElement.dataset.theme==='dark'?'light':'dark');route()};
+  window.TL_setTheme=t=>{setTh(t);route()};if(th)th.onclick=()=>{setTh(document.documentElement.dataset.theme==='dark'?'light':'dark');route()};
   try{const tp=document.createElement('div');tp.className='tape';
     // one-day change: stocks from the order-flow file (today's close against the previous close), indices from their last two closes
     let OFt=null,mhd=null;try{OFt=await get('data/orderflow.json','json')}catch(e){}try{mhd=await get('data/market_health.json','json')}catch(e){}
