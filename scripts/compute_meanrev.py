@@ -13,6 +13,9 @@ snap back. The script
      days) are compared with the others on the last 150 days, which were not used to choose them.
 About 5% of stocks pass a 5% test by luck alone; the expected count is reported.
 
+A one-day move of more than 20% can be a corporate action (split, bonus, demerger) that the price data did not adjust for, which would look like a huge fall.
+Such a day is treated as suspect: the stock gets no signal for the next 60 days, no trade is allowed to run across it, and the stock is listed separately on the page.
+
 Runs from the repo root, after compute_quant.py. Needs numpy and pandas (already in requirements.txt)."""
 import csv
 import datetime
@@ -36,6 +39,7 @@ DF5 = -2.86        # Dickey-Fuller 5% critical value with a constant
 HL_MIN, HL_MAX = 3.0, 60.0
 KEEP_LONG, KEEP_SHORT = 60, 40
 SEED = 7
+JUMP = 0.20       # a one-day move beyond this may be a split, bonus or demerger the prices were not adjusted for: such stocks are kept out
 
 
 def load(sym):
@@ -175,11 +179,28 @@ def main():
         sys.exit(1)
     L = np.vstack(cols).T
     zm, _ = rolling_z(Lm)
+    R1 = np.expm1(np.diff(L, axis=0))                       # simple 1-day returns, row k = move into day k+1
+    JD = np.abs(R1) > JUMP
+    cumJ = np.vstack([np.zeros((1, L.shape[1]), int), np.cumsum(JD, axis=0)])   # cumJ[k] = suspect days up to and including day k
+    jumps = []
+    for j, s in enumerate(syms):
+        idx = np.where(JD[:, j])[0]
+        if len(idx) == 0:
+            continue
+        d = int(idx[-1]) + 1
+        if d >= n - ZWIN - 1:                                # recent: it still distorts today's 60-day window
+            jumps.append({"s": s, "na": names[s], "pct": round(float(R1[d - 1, j] * 100), 1), "date": str(cal[d].date())})
 
     rng = np.random.default_rng(SEED)
     Z, MU = {}, {}
+    Zraw = {}
     for j, s in enumerate(syms):
         Z[s], MU[s] = rolling_z(L[:, j])
+        Zraw[s] = Z[s].copy()
+        for d in np.where(JD[:, j])[0] + 1:                  # no signal while a suspect day sits in the 60-day window
+            Z[s][d:d + ZWIN + 1] = np.nan
+
+    skipped = [0]
 
     def run(selector, t_start, sides=(1, -1)):
         """Trade every stock in selector from t_start. Returns {side: dict(raw, excess, ctl, per-stock)}."""
@@ -190,6 +211,9 @@ def main():
                 if s not in selector:
                     continue
                 for ent, ex in trades(Z[s], n, t_start, sd):
+                    if cumJ[ex, j] - cumJ[ent, j] > 0:
+                        skipped[0] += 1                      # the trade runs across a suspect day
+                        continue
                     rs = math.exp(L[ex, j] - L[ent, j]) - 1
                     rm = math.exp(Lm[ex] - Lm[ent]) - 1
                     r = sd * rs - 2 * COST
@@ -254,13 +278,15 @@ def main():
     asof = str(cal[-1].date())
     out = {"asof": asof, "days": n, "form_days": FORM, "test_days": n - FORM, "z_in": Z_IN, "z_out": Z_OUT, "z_stop": Z_STOP,
            "max_days": MAXD, "cost_bps_side": COST * 1e4, "zwin": ZWIN, "n_stocks": len(syms), "mkt_z": None if not np.isfinite(zm[-1]) else round(float(zm[-1]), 2),
-           "n_oversold": n_over, "n_overbought": n_high, "n_reverting": n_reverting, "expected_by_luck": round(0.05 * len(rows), 0),
+           "jumps": jumps, "jump_cut": JUMP * 100, "trades_skipped": skipped[0], "n_oversold": n_over, "n_overbought": n_high, "n_reverting": n_reverting, "expected_by_luck": round(0.05 * len(rows), 0),
            "full": out_full, "holdout": hold, "oversold": over[:KEEP_LONG], "overbought": high[:KEEP_SHORT],
            "generated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}
     os.makedirs(OUT, exist_ok=True)
     json.dump(out, open(f"{OUT}/meanrev.json", "w"), separators=(",", ":"))
     lf, sf = out_full["long"], out_full["short"]
     lines = [f"Run (UTC): {out['generated']}",
+             f"suspect one-day moves over {int(JUMP*100)}% still in the window: {len(jumps)} stock(s): " + "; ".join(f"{x['s']} {x['pct']}% on {x['date']}" for x in jumps[:15]),
+             f"trades skipped for running across a suspect day: {skipped[0]}",
              f"stocks {len(syms)}, days {n}; stocks now below -{Z_IN}: {n_over}, above +{Z_IN}: {n_high}; index z {out['mkt_z']}",
              f"whole window, buy rule:   {lf['rule']} | random entries {lf['random_entry']} | vs index {lf['vs_index']} | gap {lf['gap_bps']} bps (t {lf['gap_t']})",
              f"whole window, short rule: {sf['rule']} | random entries {sf['random_entry']} | vs index {sf['vs_index']} | gap {sf['gap_bps']} bps (t {sf['gap_t']})",
