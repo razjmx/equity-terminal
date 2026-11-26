@@ -230,8 +230,8 @@ function liveApply(s,eod){
     if(!/^#\/stock\//.test(location.hash)||decodeURIComponent(location.hash.split('/')[2]||'')!==s)return;
     await liveLoad();
     const row=LV&&LV.s&&LV.s[s];
-    if(row&&row[0]!=null&&eod){
-      const p=row[0],d=p-eod,pc=d/eod*100,bp=view.querySelector('.pricerow .bigp'),ch=view.querySelector('.pricerow .chg'),k=view.querySelector('.pricerow .k');
+    if(row&&row[0]!=null&&(row[4]||eod)){
+      const p=row[0],base=row[4]||eod,d=p-base,pc=d/base*100,bp=view.querySelector('.pricerow .bigp'),ch=view.querySelector('.pricerow .chg'),k=view.querySelector('.pricerow .k');
       const tm=new Date(LV.t).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Kolkata'});
       if(bp){bp.removeAttribute('data-n');bp.textContent='₹'+T.fmt(p,2)}
       if(ch){ch.className='chg '+cls(pc);ch.textContent=`${d>=0?'+':''}${T.fmt(d,2)} (${pc>=0?'+':''}${T.fmt(pc,2)}%)`}
@@ -245,6 +245,25 @@ function liveApply(s,eod){
 }
 
 window.liveApply=liveApply;
+// share of a normal day's volume expected to be done by a given time (own 15-minute profile when available, else flat across the session)
+function dayFrac(tIso,prof){
+  const t=new Date(new Date(tIso).toLocaleString('en-US',{timeZone:'Asia/Kolkata'})),m=t.getHours()*60+t.getMinutes()-(9*60+15),n=25;
+  if(m<=0)return 0;if(m>=375)return 1;
+  const p=(prof&&prof.length===n)?prof:Array(n).fill(1/n),k=Math.floor(m/15),part=(m%15)/15;
+  let c=0;for(let i=0;i<k;i++)c+=p[i];return Math.min(1,c+p[k]*part);
+}
+// live movers on the market page
+async function liveMovers(){
+  const box=$('#lvm');if(!box)return;await liveLoad();if(!LV||!LV.s)return;
+  const liq={};Object.values(D.rsk||{}).forEach(r=>{liq[r.symbol]=T.num(r.traded_cr)||0});
+  const nm={};(D.uni||[]).forEach(u=>nm[u.symbol]=u.company);
+  const rows=Object.entries(LV.s).filter(([k,v])=>v[0]!=null&&v[4]&&(liq[k]||0)>=10).map(([k,v])=>({s:k,p:v[0],c:(v[0]/v[4]-1)*100}));
+  if(rows.length<20)return;rows.sort((a,b)=>b.c-a.c);
+  const tm=new Date(LV.t).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Kolkata'});
+  const li=a=>a.map(r=>`<li><div><a href="#/stock/${esc(r.s)}"><b>${esc(r.s)}</b></a><div class="mut">${esc((nm[r.s]||'').slice(0,28))}</div></div><span class="${cls(r.c)}"><b>${r.c>=0?'+':''}${T.fmt(r.c,2)}%</b><div class="mut">₹${T.fmt(r.p,1)}</div></span></li>`).join('');
+  box.innerHTML=`<div class="card"><h3>Live movers <span class="tag">${tm} IST · about 5 to 10 min delayed</span></h3><div class="ngrid"><div><h4 style="margin:0 0 4px">Top gainers</h4><ul class="news evl">${li(rows.slice(0,6))}</ul></div><div><h4 style="margin:0 0 4px">Top losers</h4><ul class="news evl">${li(rows.slice(-6).reverse())}</ul></div></div><p class="mut" style="font-size:12px;margin:8px 0 0">Change from the previous close, among stocks trading at least ₹10 crore a day.</p></div>`;
+}
+
 // ----- upcoming dates: market calendar (data/events_macro.csv, editable) + company dates (Yahoo, via the Events workflow) -----
 const EVT={Policy:'Policy',Holiday:'Holiday',Expiry:'F&O expiry',Budget:'Budget',Results:'Results'};
 function evWhen(iso){const d=new Date(iso+'T00:00:00'),t=new Date();t.setHours(0,0,0,0);const n=Math.round((d-t)/864e5);
@@ -325,6 +344,17 @@ async function ovSummary(s,c){
     if(t&&t.drift&&t.drift['12m']&&v&&v.now&&num(v.now.real252)&&v.now.real252>0){
       const mu=t.drift['12m'].mu/100,sg=v.now.real252/100,kf=(mu-A.rf/100)/(sg*sg);
       cards.push(grp('Position sizing (Kelly)','quant','continuous',`<div class="grid">${kv('Full Kelly',f(kf*100,0)+'%',kf>0?'':'neg')}${kv('Half Kelly',f(kf*50,0)+'%')}${kv('Drift used (12-month)',pfx(mu*100))}${kv('Volatility used',f(sg*100)+'%')}</div><p class="mut" style="font-size:12px;margin:8px 0 0">A stock's past drift is a noisy guide to its future, so treat this as an upper bound, not a sizing rule. Negative means no position on this reading.</p>`))}
+    // ---- live order flow (snapshot every 5 minutes: volume pace and buy/sell pressure)
+    {await liveLoad();const row=LV&&LV.s&&LV.s[s],q=LV&&LV.q&&LV.q[s];
+      if(row&&q){
+        const IN=await g(`data/quant/intraday/${s}.json`),vols=(c.prices||[]).map(r=>T.num(r.Volume??r.volume)).filter(v=>v!=null&&v>0).slice(-20),avg=vols.length>=10?vols.reduce((a,b)=>a+b,0)/vols.length:null;
+        const fr=dayFrac(LV.t,IN&&IN.profile),pace=avg&&fr>0.03?q[0]/(avg*fr):null,pct=avg?q[0]/avg*100:null;
+        const imb=(a,b)=>a+b>0?(a-b)/(a+b)*100:null,tb=imb(q[1],q[2]),dp=imb(q[3],q[4]);
+        const tag=x=>x==null?'–':(x>=0?'+':'')+f(x,0)+'%';
+        const pos=row[2]!=null&&row[3]!=null&&row[2]>row[3]?(row[0]-row[3])/(row[2]-row[3])*100:null;
+        const tm=new Date(LV.t).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Kolkata'});
+        cards.push(grp('Live order flow','orderflow',tm+' IST',`<div class="grid">${kv('Volume so far',T.fmt(q[0],0))}${pct!=null?kv('Share of a normal day',f(pct,0)+'%'):''}${pace!=null?kv('Volume pace vs normal',f(pace,1)+'x',pace>=1.5?'pos':pace<=0.6?'neg':''):''}${kv('Buy vs sell orders waiting',tag(tb),tb>5?'pos':tb<-5?'neg':'')}${kv('Top-5 depth imbalance',tag(dp),dp>5?'pos':dp<-5?'neg':'')}${pos!=null?kv('Position in day range',f(pos,0)+'%'):''}</div><p class="mut" style="font-size:12px;margin:8px 0 0">A snapshot taken every 5 minutes. Waiting orders can be cancelled at any time, so they hint at pressure but do not show completed trades. Pace compares volume so far with the 20-day average volume, spread across the day.</p>`))}
+      else if(LV&&LV.q&&Object.keys(LV.q).length)cards.push(grp('Live order flow','orderflow','',`<p class="mut" style="margin:0">Detailed live order data covers the ${Object.keys(LV.q).length} most traded stocks.</p>`))}
     // ---- order flow
     const od=OFs,ol=OFl&&OFl.stocks&&OFl.stocks.find(x=>x.s===s);
     if(od){const bc=od.bias==='bullish'?'pos':od.bias==='bearish'?'neg':'';
@@ -1326,7 +1356,7 @@ function renderMarket(anim){
   const bar=`<div class="mh-bar"><div class="chips">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</div>
    <div class="seg" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div></div>
    <div class="mut" style="font-size:12px;margin:-4px 0 6px">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</div>`;
-  view.innerHTML=bar+h;
+  view.innerHTML=bar+'<div id="lvm"></div>'+h;liveMovers();
   // wire
   document.querySelectorAll('#mh-range button').forEach(b=>b.onclick=()=>{MH.range=b.dataset.r;renderMarket(true)});
   document.querySelectorAll('.mh-bar .chips a').forEach(a=>a.onclick=()=>{const el=document.getElementById(a.dataset.s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})});
@@ -2413,7 +2443,7 @@ async function stock(s,tab){
   if(tab==='orderflow')ofStock(s);
   if(tab==='quant')quantTabs(s,technicals());
   if(tab==='news')newsTab(s,u);
-  if(tab==='overview')ovSummary(s,{met,rsk,dcf,fin,rl,price,u});
+  if(tab==='overview')ovSummary(s,{met,rsk,dcf,fin,rl,price,u,prices});
   if(tab==='valuation')valTabs(s,dcf,fin,rl,price,met,u);
 }
 
