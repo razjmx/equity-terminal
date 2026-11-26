@@ -1,7 +1,8 @@
-Run (UTC): 2026-11-26 04:38 UTC
-stocks 631, industries 19, days 500 (formation 350, hold-out 150), pairs tested 16280
-passed on formation window: 595 (about 814 would pass by luck alone at 5%)
-hold-out selected: {'trades': 1832, 'mean_bps': 25.9, 'win': 57.9, 't': 1.64}
-hold-out random:   {'trades': 5279, 'mean_bps': 20.1, 'win': 56.0, 't': 2.05}
-live pairs passing now: 503, written 60
+Run (UTC): 2026-11-26 16:32 UTC
+stocks 607, industries 19, days 500 (formation 350, hold-out 150), pairs tested 15015
+passed on formation window: 555 (about 750 would pass by luck alone at 5%)
+hold-out selected: {'trades': 1720, 'mean_bps': 33.9, 'win': 57.4, 't': 2.15}
+hold-out random:   {'trades': 4982, 'mean_bps': 14.5, 'win': 56.1, 't': 1.55}
+live pairs passing now: 467, written 60
+left out for a one-day move over 20% (possible split or demerger): 24
 time 5s
