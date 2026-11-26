@@ -178,6 +178,8 @@ function route(){
 function research(){
   view.innerHTML=`<div class="rs"><h2>Company research</h2><p class="mut">Search any of the ~750 stocks (Nifty 500 and Microcap 250) by name or symbol</p><div class="rsbox"><input id="rs-q" placeholder="e.g. Reliance, TCS, HDFC Bank" autocomplete="off"></div></div>`;
   const q=$('#rs-q');attachSuggest(q);q.focus();
+  view.insertAdjacentHTML('beforeend','<div class="rsnews"><h3 style="margin:26px 0 4px">Macro news</h3><p class="mut" style="margin:0 0 10px">Market-moving news in India and around the world. For news on one company, open the company and use its News tab.</p><div class="subtabs" id="msub"></div><div id="mbody"><div class="skel" style="height:240px"></div></div></div>');
+  macroNews();
 }
 
 
@@ -217,23 +219,23 @@ function scatterChart(cv,pts,opt={}){   // pts: [{x,y,c,r,l}]
 function ago(iso){const t=Date.parse(iso);if(!isFinite(t))return '';const m=Math.max(0,(Date.now()-t)/60000);
   if(m<60)return Math.max(1,Math.round(m))+' min ago';if(m<1440)return Math.round(m/60)+' h ago';const d=Math.round(m/1440);return d<=1?'yesterday':d+' days ago'}
 function newsList(items){return `<ul class="news">${items.map(x=>`<li><a href="${esc(x.u)}" target="_blank" rel="noopener noreferrer">${esc(x.t)}</a><div class="mut">${esc(x.s||'')}${x.s?' · ':''}${ago(x.d)}</div></li>`).join('')}</ul>`}
-async function newsTab(s,u){
-  const sub=$('#nsub'),box=$('#nbody');if(!sub||!box)return;
+async function newsTab(s,u){   // company page: this company's headlines only
+  const box=$('#nbody');if(!box)return;
   const L=(s[0]||'_').toUpperCase(),sh=/[A-Z]/.test(L)?L:'_';
-  const [Sd,Md]=await Promise.all([get(`data/news/s_${sh}.json`,'json'),get('data/news/macro.json','json')]);
-  let cur='micro';try{cur=localStorage.getItem('tl_ntab')||'micro'}catch(e){}if(cur!=='micro'&&cur!=='macro')cur='micro';
-  const foot=up=>`<p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News (India edition). Each link opens the publisher's own page. ${up?'Last collected '+esc(up)+' UTC. ':''}This is not investment advice, and a headline can be wrong or out of date.</p>`;
+  const Sd=await get(`data/news/s_${sh}.json`,'json');
+  const it=(Sd&&Sd.stocks&&Sd.stocks[s])||[];
+  box.innerHTML=`<div class="card"><h3>News on ${esc((u&&u.company)||s)} <span class="tag">${it.length} headlines</span></h3>${it.length?newsList(it):'<p class="mut">'+(Sd?'No recent headlines found for this company.':'News has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.')+'</p>'}<p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News (India edition). Each link opens the publisher's own page. ${Sd&&Sd.updated?'Last collected '+esc(Sd.updated)+' UTC. ':''}This is not investment advice, and a headline can be wrong or out of date.</p></div>`;
+}
+async function macroNews(){   // Company research page: world news, split into Global and Domestic
+  const sub=$('#msub'),box=$('#mbody');if(!sub||!box)return;
+  const Md=await get('data/news/macro.json','json');
+  const G=[['World','Global'],['India','Domestic (India)']];
+  let cur='India';try{cur=localStorage.getItem('tl_mtab')||'India'}catch(e){}if(cur!=='World'&&cur!=='India')cur='India';
   const draw=()=>{
-    sub.innerHTML=[['micro','Micro · '+esc(s)],['macro','Macro · India &amp; world']].map(t=>`<button data-k="${t[0]}" class="${t[0]===cur?'on':''}">${t[1]}</button>`).join('');
-    sub.querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=b.dataset.k;try{localStorage.setItem('tl_ntab',cur)}catch(e){}draw()});
-    if(cur==='micro'){
-      const it=(Sd&&Sd.stocks&&Sd.stocks[s])||[];
-      box.innerHTML=`<div class="card"><h3>News on ${esc((u&&u.company)||s)} <span class="tag">${it.length} headlines</span></h3>${it.length?newsList(it):'<p class="mut">'+(Sd?'No recent headlines found for this company.':'News has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.')+'</p>'}${foot(Sd&&Sd.updated)}</div>`;
-    }else{
-      const T0=(Md&&Md.topics)||[];
-      if(!T0.length){box.innerHTML='<div class="card"><p class="mut">Macro news has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.</p></div>';return}
-      box.innerHTML=['India','World'].map(g=>{const ts=T0.filter(t=>t.g===g&&t.items.length);return ts.length?`<h3 style="margin:16px 0 8px">${g==='India'?'India':'World'}</h3><div class="ngrid">${ts.map(t=>`<div class="card"><h3>${esc(t.n)}</h3>${newsList(t.items.slice(0,6))}</div>`).join('')}</div>`:''}).join('')+foot(Md.updated);
-    }
+    sub.innerHTML=G.map(g=>`<button data-k="${g[0]}" class="${g[0]===cur?'on':''}">${g[1]}</button>`).join('');
+    sub.querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=b.dataset.k;try{localStorage.setItem('tl_mtab',cur)}catch(e){}draw()});
+    const ts=((Md&&Md.topics)||[]).filter(t=>t.g===cur&&t.items.length);
+    box.innerHTML=ts.length?`<div class="ngrid">${ts.map(t=>`<div class="card"><h3>${esc(t.n)}</h3>${newsList(t.items.slice(0,6))}</div>`).join('')}</div><p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News. Each link opens the publisher's own page. ${Md&&Md.updated?'Last collected '+esc(Md.updated)+' UTC. ':''}Not investment advice.</p>`:`<div class="card"><p class="mut">${Md?'No headlines in this group yet.':'Macro news has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.'}</p></div>`;
   };
   draw();
 }
@@ -2244,7 +2246,7 @@ async function stock(s,tab){
   }else if(tab==='orderflow'){
     h+='<div id="ofbody"><div class="skel" style="height:440px"></div></div>';
   }else if(tab==='news'){
-    h+='<div class="subtabs" id="nsub"></div><div id="nbody"><div class="skel" style="height:300px"></div></div>';
+    h+='<div id="nbody"><div class="skel" style="height:300px"></div></div>';
   }else if(tab==='quant'){
     h+='<div class="subtabs" id="qsub"></div><div id="qbody"><div class="skel" style="height:300px"></div></div>';
   }
