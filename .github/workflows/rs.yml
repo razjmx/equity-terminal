@@ -1,0 +1,36 @@
+name: Relative strength
+on:
+  schedule:
+    - cron: "40 13 * * 1-5"   # 19:10 IST, after the daily refresh has updated prices
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rs
+  cancel-in-progress: false
+
+jobs:
+  rs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Compute relative strength
+        run: python scripts/compute_rs.py
+      - name: Commit data
+        if: always()
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data
+          git commit -m "Relative strength $(date -u +%F)" || echo "No changes"
+          for i in 1 2 3 4 5; do
+            git pull --rebase && git push && break
+            sleep $((i*5))
+          done
