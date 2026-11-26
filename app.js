@@ -1272,7 +1272,15 @@ function dailyQuote(){
   const el=document.getElementById('quote');if(!el)return;
   const d=new Date(),day=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-Date.UTC(d.getFullYear(),0,0))/864e5);
   const [t,a]=QUOTES[(day+d.getFullYear())%QUOTES.length];
-  el.innerHTML=`<span class="qt">“${esc(t)}”</span><span class="qa">${esc(a)}</span>`;
+  el.innerHTML=`<button type="button" class="qbtn" aria-expanded="false" title="Thought of the day"><span class="qi">✦</span><span class="ql">Thought of the day</span></button><div class="qpop" hidden><p>“${esc(t)}”</p><b>${esc(a)}</b></div>`;
+  const bt=el.querySelector('.qbtn'),pp=el.querySelector('.qpop');
+  const shut=()=>{pp.hidden=true;bt.setAttribute('aria-expanded','false')};
+  bt.onclick=e=>{e.stopPropagation();if(!pp.hidden){shut();return}
+    pp.hidden=false;bt.setAttribute('aria-expanded','true');
+    const r=bt.getBoundingClientRect(),w=Math.min(340,window.innerWidth-24);
+    pp.style.cssText=`position:fixed;width:${w}px;left:${Math.max(12,Math.min(r.left,window.innerWidth-w-12))}px;top:${r.bottom+8}px`};
+  document.addEventListener('pointerdown',e=>{if(!pp.hidden&&!el.contains(e.target))shut()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')shut()});
 }
 dailyQuote();
 
