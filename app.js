@@ -1125,6 +1125,16 @@ async function relStrength(){
   };
   draw();
 }
+// line the side menus up with the first card of the page
+function alignSides(root,target){
+  const r=document.querySelector(root);if(!r)return;
+  const fix=()=>{const t=r.querySelector(target);if(!t)return;const mob=window.innerWidth<=860;
+    const off=mob?0:Math.max(0,Math.round(t.getBoundingClientRect().top-r.getBoundingClientRect().top));
+    r.style.setProperty('--sdt',off+'px')};
+  fix();
+  if(window.ResizeObserver){if(r._ro)r._ro.disconnect();r._ro=new ResizeObserver(fix);r._ro.observe(r);const m=r.querySelector('.mk-main,.ofl-m');if(m)r._ro.observe(m)}
+  window.addEventListener('resize',fix)}
+
 async function orderFlowPage(){
   view.innerHTML='<div class="skel" style="height:300px"></div>';
   const D0=await get('data/orderflow.json','json');
@@ -1168,6 +1178,7 @@ async function orderFlowPage(){
     document.querySelectorAll('#ofu button').forEach(b=>b.onclick=()=>{OFP.u=b.dataset.k;OFP.sec=null;draw()});
     document.querySelectorAll('.fiitab button').forEach(b=>b.onclick=()=>{OFP.ft=b.dataset.k;draw()});
     document.querySelectorAll('.bttog button').forEach(b=>b.onclick=()=>{OFP.bt=b.dataset.k;draw()});
+    alignSides('.ofl3','.ofgrid');
     document.querySelectorAll('.xr').forEach(e=>e.onclick=()=>{OFP.sec=OFP.sec===e.dataset.k?null:e.dataset.k;draw()});
     const c=$('#xclr');if(c)c.onclick=()=>{OFP.sec=null;draw()};
   };
@@ -1449,6 +1460,7 @@ function renderMarket(anim){
   const bar=`<div class="vseg mk-tf" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div>`;
   view.innerHTML=`<div class="mk"><aside class="mk-side">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</aside><div class="mk-main"><div id="lvm"></div>${h}<p class="mut mk-foot">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</p></div>${bar}</div>`;liveMovers();
   // wire
+  alignSides('.mk','.mh-grid');
   document.querySelectorAll('#mh-range button').forEach(b=>b.onclick=()=>{MH.range=b.dataset.r;renderMarket(true)});
   document.querySelectorAll('.mk-side a').forEach(a=>a.onclick=()=>{const el=document.getElementById(a.dataset.s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})});
   if(!renderMarket._spy){renderMarket._spy=1;let tk=0;window.addEventListener('scroll',()=>{if(tk)return;tk=setTimeout(()=>{tk=0;const L=[...document.querySelectorAll('.mk-side a')];if(!L.length)return;const off=(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--h2'))||70)+40;let cur=L[0];L.forEach(a=>{const el=document.getElementById(a.dataset.s);if(el&&el.getBoundingClientRect().top<=off)cur=a});L.forEach(a=>a.classList.toggle('on',a===cur))},80)},{passive:true})}
