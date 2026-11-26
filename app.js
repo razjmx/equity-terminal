@@ -395,20 +395,53 @@ async function quantTabs(s,tech){
   draw();
 }
 // ----- Quant Lab -----
-const QLS={tab:'rank',idx:'all',ind:'',liq:1,dir:'top',bt:'momentum',sp:0,pf:{syms:'',method:'hrp',cap:25,look:252,res:null}};
+const QLS={tab:'rank',idx:'all',ind:'',liq:1,dir:'top',bt:'momentum',sp:0,mr:0,mrs:'over',pf:{syms:'',method:'hrp',cap:25,look:252,res:null}};
 async function quantLab(){
   view.innerHTML=`<h2 style="margin:4px 0 2px">Quant Lab</h2><p class="mut" style="margin:0 0 14px">Factor rankings, factor back-tests, statistical risk factors and a portfolio builder, all computed from end-of-day data in this repository.</p><div class="subtabs" id="qlsub"></div><div id="qlbody"><div class="skel" style="height:360px"></div></div>`;
-  const [F,PCA,SA]=await Promise.all([get('data/quant/factors.json','json'),get('data/quant/pca.json','json'),get('data/quant/statarb.json','json')]);
-  const tabs=[['rank','Factor rankings'],['bt','Factor back-test'],['pca','Market structure'],['pairs','Pairs (stat-arb)'],['port','Portfolio builder']];
+  const [F,PCA,SA,MR]=await Promise.all([get('data/quant/factors.json','json'),get('data/quant/pca.json','json'),get('data/quant/statarb.json','json'),get('data/quant/meanrev.json','json')]);
+  const tabs=[['rank','Factor rankings'],['bt','Factor back-test'],['pca','Market structure'],['mr','Mean reversion'],['pairs','Pairs (stat-arb)'],['port','Portfolio builder']];
   const nm={};try{(await table('data/universe.csv')).forEach(r=>{nm[r.symbol]=r.company})}catch(e){}
   const draw=()=>{
     $('#qlsub').innerHTML=tabs.map(t=>`<button data-k="${t[0]}" class="${t[0]===QLS.tab?'on':''}">${t[1]}</button>`).join('');
     $('#qlsub').querySelectorAll('button').forEach(b=>b.onclick=()=>{QLS.tab=b.dataset.k;draw()});
     const b=$('#qlbody');
-    if(!F&&QLS.tab!=='port'&&QLS.tab!=='pairs'){b.innerHTML=qnone(NOQ);return}
-    ({rank:()=>labRank(b,F,nm,draw),bt:()=>labBt(b,F),pca:()=>labPca(b,PCA,nm),pairs:()=>labPairs(b,SA),port:()=>labPort(b,F,nm,PCA)})[QLS.tab]();
+    if(!F&&QLS.tab!=='port'&&QLS.tab!=='pairs'&&QLS.tab!=='mr'){b.innerHTML=qnone(NOQ);return}
+    ({rank:()=>labRank(b,F,nm,draw),bt:()=>labBt(b,F),pca:()=>labPca(b,PCA,nm),mr:()=>labMr(b,MR,draw),pairs:()=>labPairs(b,SA),port:()=>labPort(b,F,nm,PCA)})[QLS.tab]();
   };
   draw();
+}
+function labMr(b,MR,redraw){
+  if(!MR||!MR.full){b.innerHTML=qnone('Mean-reversion data is not available yet. Run the Quant models workflow once.');return}
+  const L=MR.full.long,Sh=MR.full.short,H=MR.holdout;
+  const bps=v=>v==null?'–':(v>0?'+':'')+T.fmt(v,0)+' bps';
+  const tl=x=>x==null||x.mean_bps==null?'too few trades':`${x.trades} trades, ${bps(x.mean_bps)} per trade after costs, ${T.fmt(x.win,0)}% winners (t ${T.fmt(x.t,1)})`;
+  const over=QLS.mrs==='over',P=over?MR.oversold:MR.overbought;
+  if(QLS.mr>=P.length)QLS.mr=0;
+  const good=L.gap_bps!=null&&L.gap_bps>=15&&L.gap_t!=null&&L.gap_t>=2&&L.vs_index.mean_bps!=null&&L.vs_index.mean_bps>=15&&L.vs_index.t>=2;
+  const bad=L.gap_bps!=null&&L.gap_bps<=-15;
+  const read=L.gap_bps==null?'Too few trades to compare.':good?`<b>Reading:</b> buying stocks that were 2 or more deviations below their 60-day average did ${bps(L.gap_bps)} per trade better than holding the same stocks for the same number of days from random dates, and ${bps(L.vs_index.mean_bps)} better than the index over the same days.`:bad?`<b>Reading:</b> buying stretched stocks did worse than random entries (${bps(L.gap_bps)} per trade), so there is no sign of a bounce edge here.`:`<b>Reading:</b> the stretched-stock rule shows no clear edge: the gap to random entries is ${bps(L.gap_bps)} per trade${L.vs_index.mean_bps!=null?` and ${bps(L.vs_index.mean_bps)} against the index`:''}, not both large and statistically reliable. Treat the list below as a screen to study, not a signal.`;
+  const dd=H.chosen.mean_bps!=null&&H.others.mean_bps!=null?H.chosen.mean_bps-H.others.mean_bps:null;
+  const row=(p,i)=>`<tr class="row${i===QLS.mr?' on':''}" data-m="${i}" style="cursor:pointer"><td class="l"><b>${esc(p.s)}</b><div class="mut" style="font-size:11px">${esc((p.na||'').slice(0,28))} · ${esc(p.ind)}</div></td><td class="${over?'neg':'pos'}"><b>${p.z>0?'+':''}${T.fmt(p.z,2)}</b></td><td>${p.dev>0?'+':''}${T.fmt(p.dev,1)}%</td><td>${p.zr==null?'–':(p.zr>0?'+':'')+T.fmt(p.zr,2)}</td><td class="${p.d1>=0?'pos':'neg'}">${p.d1>0?'+':''}${T.fmt(p.d1,2)}%</td><td>${p.hl==null?'–':T.fmt(p.hl,0)+' d'}</td><td>${p.df==null?'–':T.fmt(p.df,2)}</td><td>${p.rev?'<b class="pos">Yes</b>':'<span class="mut">No</span>'}</td><td>${p.tr?p.tr+(p.tr_bps!=null?' · '+bps(p.tr_bps):''):'–'}</td><td>${p.liq==null?'–':T.fmt(p.liq,1)}</td></tr>`;
+  b.innerHTML=`<div class="card" style="border-left:3px solid #c98a00"><p style="margin:0"><b>Read this first:</b> this is a research screen, not a buy list. A stock that has fallen a lot can keep falling, and one with bad news is cheap for a reason. Prices are end-of-day. Only the buy side can be traded in cash equity; the overbought side needs a short, which is possible only for stocks with futures. The index itself is at z ${MR.mkt_z==null?'–':(MR.mkt_z>0?'+':'')+T.fmt(MR.mkt_z,2)} against its own 60-day average, so when many stocks look stretched together, that is the market and not the stock.</p></div>
+  <div class="card"><h3>Stocks stretched against their own average <span class="tag">${MR.n_oversold} below -${MR.z_in} · ${MR.n_overbought} above +${MR.z_in} · data to ${esc(MR.asof)}</span></h3>
+  <div class="subtabs" style="margin:0 0 10px"><button data-s="over" class="${over?'on':''}">Oversold (${MR.n_oversold})</button><button data-s="high" class="${over?'':'on'}">Overbought (${MR.n_overbought})</button></div>
+  <div class="scroll"><table class="stmt"><tr><th class="l">Stock</th><th>z vs 60-day avg</th><th>Price vs avg</th><th>z vs index</th><th>1 day</th><th>Half-life</th><th>DF stat</th><th>Reverts?</th><th>Past trades · avg</th><th>₹cr/day</th></tr>${P.map(row).join('')||'<tr><td class="l" colspan="10"><span class="mut">None right now.</span></td></tr>'}</table></div>
+  <p class="mut" style="font-size:12px;margin-top:10px">z compares today's log price with the mean and spread of the previous ${MR.zwin} days. z vs index does the same for the stock's price divided by the index, so it shows how stretched the stock is on its own after the market's move. Half-life and DF stat come from the last 250 days: a DF stat below -2.86 and a half-life of 3 to 60 days is "Reverts?". ${MR.n_reverting} stocks pass that test now, and about ${T.fmt(MR.expected_by_luck,0)} would by luck alone. Past trades shows how often this rule traded that stock in the window and its average result after costs: a handful of trades means very little. Click a row to chart its z-score.</p></div>
+  ${P.length?`<div class="card"><h3 id="mrt"></h3><div style="position:relative;height:250px"><canvas id="mrc" style="width:100%;height:100%"></canvas></div><p class="mut" style="font-size:12px;margin:14px 0 0">z-score for the last 120 days. The rule buys when it falls below -${MR.z_in} and exits when it is back at ${MR.z_out}.</p></div>`:''}
+  <div class="card"><h3>Does the rule work? <span class="tag">all ${MR.n_stocks} stocks, ${MR.days} days</span></h3>
+  <p style="margin:0 0 8px">Rule: buy at the next close after z falls below -${MR.z_in}, exit when z is back at ${MR.z_out}, stop below -${MR.z_stop}, limit ${MR.max_days} days, ${T.fmt(MR.cost_bps_side,0)} bps cost each side. The control holds the same stocks for the same number of days from random start dates.</p>
+  <table class="stmt"><tr><th class="l">Test</th><th class="l">Result</th></tr><tr><td class="l"><b>Buy stretched stocks</b></td><td class="l">${tl(L.rule)}</td></tr><tr><td class="l"><b>Random entries, same stocks and holding days</b></td><td class="l">${tl(L.random_entry)}</td></tr><tr><td class="l"><b>Buy rule minus the index, same days</b></td><td class="l">${tl(L.vs_index)}</td></tr><tr><td class="l"><b>Short overbought stocks</b> <span class="mut">(futures only)</span></td><td class="l">${tl(Sh.rule)}; random entries ${bps(Sh.random_entry.mean_bps)}</td></tr></table>
+  <p style="margin:10px 0 0">${read}</p></div>
+  <div class="card"><h3>Did stocks that looked mean-reverting do better on data not used to choose them? <span class="tag">hold-out test</span></h3>
+  <p style="margin:0 0 8px">Stocks were tested for mean reversion on the first ${MR.form_days} days (DF stat below -2.86 and half-life 3 to 60 days). The buy rule was then run on the next ${MR.test_days} days.</p>
+  <table class="stmt"><tr><th class="l">Stocks</th><th class="l">Result on the hold-out</th></tr><tr><td class="l"><b>Looked mean-reverting</b> (${H.n_chosen})</td><td class="l">${tl(H.chosen)}</td></tr><tr><td class="l"><b>All others</b> (${H.n_others})</td><td class="l">${tl(H.others)}</td></tr></table>
+  <p style="margin:10px 0 0">${dd==null?'<b>Reading:</b> too few trades in the chosen group to compare.':Math.abs(dd)<30?'<b>Reading:</b> stocks that passed the reversion test did not behave differently from the rest ('+bps(dd)+' per trade, inside the noise), so passing it is not a reason to prefer a stock.':dd>0?'<b>Reading:</b> the chosen stocks did '+bps(dd)+' per trade better, but with '+H.chosen.trades+' trades this is weak evidence.':'<b>Reading:</b> the chosen stocks did '+bps(dd)+' per trade worse than the rest.'}</p>
+  <p class="mut" style="font-size:12px;margin:8px 0 0">Trades overlap in time and many start together in market-wide sell-offs, so the t-statistics are generous. Survivorship bias applies: only today's constituents are tested, so stocks that kept falling and were removed are missing, which flatters a buy-the-dip rule. Illiquid stocks may not be tradable at the close price.</p></div>`;
+  b.querySelectorAll('[data-s]').forEach(e=>e.onclick=()=>{QLS.mrs=e.dataset.s;QLS.mr=0;redraw()});
+  const paint=()=>{const p=P[QLS.mr];if(!p)return;$('#mrt').textContent=`${p.s}: z ${p.z>0?'+':''}${T.fmt(p.z,2)} against its 60-day average`;const zs=p.zs.map(v=>v==null?0:v),x=zs.map((_,i)=>String(i-zs.length+1));
+    lineChart($('#mrc'),[{name:'z',x,y:zs,color:'#0f6b4a'},{name:'+2',x,y:zs.map(()=>2),color:'#c62828'},{name:'-2',x,y:zs.map(()=>-2),color:'#c62828'}],{dec:1,zero:true})};
+  b.querySelectorAll('tr[data-m]').forEach(r=>r.onclick=()=>{QLS.mr=+r.dataset.m;b.querySelectorAll('tr[data-m]').forEach(q=>q.classList.toggle('on',q===r));paint()});
+  paint();
 }
 function labPairs(b,SA){
   if(!SA||!SA.pairs){b.innerHTML=qnone('Pairs data is not available yet. Run the Quant models workflow once.');return}
