@@ -1,0 +1,42 @@
+name: Order flow live
+on:
+  schedule:
+    - cron: "*/15 4-10 * * 1-5"   # every 15 minutes; the script itself only works 09:25-15:45 IST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: orderflow-live
+  cancel-in-progress: true
+
+jobs:
+  of-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt requests
+      - name: Live order flow
+        env:
+          LIVE_FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
+          OUT: /tmp/of_out
+        run: python scripts/fetch_orderflow_live.py
+      - name: Publish to the of-live branch
+        run: |
+          [ -f /tmp/of_out/of.json ] || exit 0
+          cp -r /tmp/of_out /tmp/pub
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git checkout --orphan oflive-tmp
+          git rm -rf . -q
+          cp -r /tmp/pub/* .
+          git add -A
+          git commit -q -m "of live $(date -u +%H:%M)"
+          git push -f origin HEAD:of-live
