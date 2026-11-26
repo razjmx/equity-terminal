@@ -20,6 +20,7 @@
     ['data/quant/barra.json', 'Quant: factor risk model', 8],
     ['data/quant/statarb.json', 'Quant: pairs scan', 8],
     ['data/quant/meanrev.json', 'Quant: mean reversion', 8],
+    ['data/news/macro.json', 'News: macro', 3],
     ['data/index_members.json', 'Index constituents', 45],
     ['data/peers.json', 'Peer groups', 45]
   ];
