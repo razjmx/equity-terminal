@@ -59,9 +59,36 @@ def main():
             if eod and c: tot += 1; same += abs(c / eod - 1) < 0.002
         except Exception: pass
     if tot: log.append(f"OHLC close equals our last end-of-day close for {same} of {tot} checked stocks")
+    # detailed quote (volume, buy/sell quantity, 5-level depth) for the TOP_N most traded stocks: one call each
+    TOP_N = int(os.environ.get("TOP_N", "100"))
+    liq = []
+    for s in syms:
+        try: liq.append((json.load(open(f"data/risk/{s}.json"))["liquidity"]["avg_daily_value_3m_cr"] or 0, s))
+        except Exception: pass
+    liq.sort(reverse=True)
+    top = [s for _, s in liq[:TOP_N] if s in stocks]
+    def qty(x):
+        try: return float(x.get("quantity", x.get("qty", 0))) if isinstance(x, dict) else float(x[1])
+        except Exception: return 0.0
+    qd, qerr = {}, 0
+    for s in top:
+        try:
+            q = g.get_quote(exchange="NSE", segment=g.SEGMENT_CASH, trading_symbol=s)
+            d = q.get("depth") or {}
+            qd[s] = [int(q.get("volume") or 0), int(q.get("total_buy_quantity") or 0), int(q.get("total_sell_quantity") or 0),
+                     int(sum(qty(x) for x in (d.get("buy") or []))), int(sum(qty(x) for x in (d.get("sell") or [])))]
+        except Exception as e:
+            qerr += 1
+            if qerr <= 2: log.append(f"quote failed for {s}: {type(e).__name__}: {str(e)[:100]}")
+        time.sleep(0.15)
+    out["q"] = qd
+    log.append(f"detailed quotes: {len(qd)} of {len(top)} stocks; failed {qerr}")
     if os.environ.get("PROBE") == "1":
         for tag, call in (("quote", lambda: g.get_quote(exchange="NSE", segment=g.SEGMENT_CASH, trading_symbol="RELIANCE")),):
-            try: log.append(f"{tag} reply fields: " + shape(call()))
+            try:
+                r_ = call(); log.append(f"{tag} reply fields: " + shape(r_))
+                dd = (r_.get("depth") or {}).get("buy") or []
+                if dd: log.append("depth level looks like: " + shape(dd[0]))
             except Exception as e: log.append(f"{tag} FAILED: {type(e).__name__}: {str(e)[:160]}")
     done(log, out if stocks else None)
 
