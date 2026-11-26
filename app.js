@@ -1346,7 +1346,7 @@ async function marketLegacy(){
 
 // ---------- market health (home) ----------
 const MH={data:null,range:'1D',idx:null,mode:'count',sort:{k:'r1m',d:-1},charts:[]};
-const RANGES={'1D':2,'1W':6,'1M':22,'3M':64,'6M':127,'1Y':253,'5Y':1261,'MAX':1e9};
+const RANGES={'1D':2,'1W':6,'1M':22,'3M':64,'6M':127,'1Y':253};
 const fMon=d=>new Date(d+'T00:00:00').toLocaleDateString('en-GB',{month:'short',year:'2-digit'});
 const fDay=d=>new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
 function mcol(){const c=getComputedStyle(document.documentElement),g=n=>c.getPropertyValue(n).trim();return {g:g('--g')||'#127a45',r:g('--r')||'#c62828',m:g('--m')||'#667085',p:g('--p')||'#fff',t:g('--t')||'#18202b',b:g('--brand')||'#0f6b4a'}}
@@ -1439,10 +1439,10 @@ function renderMarket(anim){
     if(MH.range==='1D')h+=`<p class="mut ixnote">${MH.idx&&MH.idx.idx?'Index charts are intraday, session of '+esc(MH.idx.d)+', updated '+esc(MH.idx.gen.slice(11))+' UTC (refreshed about every 15 minutes in market hours).':'1D index charts show the last two closes (the intraday file is not available).'}</p>`}
 
   // top gainers and losers (second)
-  {h+=sec('gl','Top gainers and losers','by index · uses the time frame on the right'+(/^(5Y|MAX)$/.test(MH.range)?' (shows 1Y)':''))+'<div id="glbox"></div>'}
+  {h+=sec('gl','Top gainers and losers','by index · uses the time frame on the right')+'<div id="glbox"></div>'}
 
   // sector heatmap (third)
-  {h+=sec('ind','Index heatmap','NSE index closing levels · uses the time frame on the right'+(/^(5Y|MAX)$/.test(MH.range)?' (shows 1Y)':''));
+  {h+=sec('ind','Index heatmap','NSE index closing levels · uses the time frame on the right');
    h+='<div id="hmwrap"></div>'}
 
   const chips=[['idx','Indices'],['gl','Gainers & losers'],['ind','Heatmap']];
