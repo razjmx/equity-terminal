@@ -7,7 +7,8 @@ import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
 import requests
 
-KEEP_DAYS, PER_STOCK, PER_TOPIC = 14, 12, 12
+KEEP_DAYS, PER_STOCK, PER_TOPIC = 7, 40, 80   # company news kept 7 days (40 items), macro news kept 4 days (80 items per topic)
+MACRO_DAYS = 4
 LIMIT = int(os.environ.get("LIMIT", "0") or 0)
 UA = {"User-Agent": "Mozilla/5.0 (compatible; EquityTerminal/1.0)"}
 IN = "hl=en-IN&gl=IN&ceid=IN:en"
@@ -65,9 +66,9 @@ def parse(b):
             out.append({"t": t[:220], "u": link, "s": src[:40], "d": d.astimezone(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%MZ")})
     return out
 
-def merge(old, new, cap):
+def merge(old, new, cap, days=None):
     seen, res = set(), []
-    cut = (now - datetime.timedelta(days=KEEP_DAYS)).strftime("%Y-%m-%dT%H:%MZ")
+    cut = (now - datetime.timedelta(days=days or KEEP_DAYS)).strftime("%Y-%m-%dT%H:%MZ")
     for x in sorted((new or []) + (old or []), key=lambda x: x["d"], reverse=True):
         k = re.sub(r"\W+", "", x["t"].lower())[:70]
         if k in seen or x["d"] < cut:
@@ -93,7 +94,7 @@ def main():
         new = fetch(q, ed)
         if new is not None:
             ok += 1
-        topics.append({"g": g, "n": n, "items": merge(oldt.get((g, n)), new, PER_TOPIC)})
+        topics.append({"g": g, "n": n, "items": merge(oldt.get((g, n)), new, PER_TOPIC, MACRO_DAYS)})
         time.sleep(0.5)
     json.dump({"updated": stamp, "topics": topics}, open("data/news/macro.json", "w", encoding="utf-8"), separators=(",", ":"))
     log.append(f"macro: {ok}/{len(MACRO)} topics fetched")
