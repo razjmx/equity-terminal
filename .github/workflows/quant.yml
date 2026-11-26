@@ -39,6 +39,10 @@ jobs:
         continue-on-error: true
         run: python scripts/compute_statarb.py
 
+      - name: Mean reversion (single stock) scan
+        continue-on-error: true
+        run: python scripts/compute_meanrev.py
+
       - name: Intraday volume profile (VWAP / TWAP)
         continue-on-error: true
         run: python scripts/fetch_intraday.py
