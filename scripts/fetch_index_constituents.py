@@ -9,6 +9,7 @@ indices were found and which were not, so a missing one can be fixed by adding i
 Env: BUDGET=1200 (seconds of work per run). Runs from the repo root, after fetch_nse_indices.py."""
 import csv
 import datetime
+import glob
 import io
 import json
 import os
@@ -78,6 +79,25 @@ def candidates(name):
     return out[:48]
 
 
+def nkey(s):
+    return re.sub(r"[^a-z0-9]", "", (s or "").lower().replace("&", "and"))
+
+
+def read_mw_files():
+    """Stock lists downloaded by hand from NSE (Market Watch -> an index -> Download CSV) and uploaded to data/ as MW-*.csv.
+    The first data row of such a file is the index itself, the rows after it are its stocks. -> {normalised index name: [SYMBOL..]}"""
+    out = {}
+    for f in sorted(glob.glob("data/MW-*.csv")):
+        try:
+            rows = [r for r in csv.reader(open(f, encoding="utf-8-sig", newline="")) if r and r[0].strip()]
+            if len(rows) < 3 or rows[0][0].strip().upper() != "SYMBOL":
+                continue
+            out[nkey(rows[1][0])] = [r[0].strip().upper() for r in rows[2:] if r[0].strip()]
+        except Exception:
+            pass
+    return out
+
+
 def get_list(fn):
     for h in HOSTS:
         if BAD.get(h, 0) >= 6:
@@ -109,7 +129,7 @@ def main():
                 manual[r[0].strip()] = r[1].strip()
     today = datetime.date.today()
     log, found, missing, skipped = [f"Run (UTC): {datetime.datetime.now(datetime.timezone.utc):%Y-%m-%d %H:%M}"], 0, [], 0
-    bylaw = []
+    bylaw, got = [], set()
     for nm in names:
         if re.search(NOLIST, re.sub(r"[^a-z0-9 ]", "", nm.lower())) and nm not in manual:
             bylaw.append(nm)
@@ -136,12 +156,21 @@ def main():
             members[nm] = [s for s in syms if s in uni]
             failed.pop(nm, None)
             found += 1
+            got.add(nm)
         else:
             failed[nm] = today.isoformat()
             missing.append(nm)
+    mw, from_mw = read_mw_files(), []
+    for nm in names:                                            # lists downloaded by hand fill in what the archive did not give
+        if nm not in got and nkey(nm) in mw and nm not in bylaw:
+            members[nm] = [s for s in mw[nkey(nm)] if s in uni]
+            failed.pop(nm, None)
+            from_mw.append(nm)
     out = {"asof": heat.get("asof"), "ver": VER, "members": members, "files": files, "failed": failed}
     json.dump(out, open(OUT, "w"), separators=(",", ":"))
     log.append(f"indices: {len(names)}; lists found this run: {found}; with a list stored: {len([n for n in names if n in members])}; waiting for retry: {skipped}")
+    if mw:
+        log.append(f"downloaded MW files read: {len(mw)}; used for {len(from_mw)} index(es)" + (": " + "; ".join(from_mw) if from_mw else ""))
     dropped = [h.split("/")[2] for h, c in BAD.items() if c >= 6]
     if dropped:
         log.append("host(s) not reachable, skipped for this run: " + ", ".join(dropped))
