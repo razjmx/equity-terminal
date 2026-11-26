@@ -20,7 +20,11 @@ import requests
 
 H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
      "Referer": "https://www.nseindia.com/"}
-HOSTS = ("https://nsearchives.nseindia.com/content/indices/", "https://archives.nseindia.com/content/indices/")
+HOSTS = ("https://nsearchives.nseindia.com/content/indices/", "https://www.niftyindices.com/IndexConstituent/",
+         "https://archives.nseindia.com/content/indices/")
+VER = 2                      # bump to retry every index that failed under an older version of the file-name guesses
+NOLIST = r"arbitrage|futures|inverse|leverage|1d rate|sme emerge|dividend points|\btr\b|\bpr\b"
+BAD = {}                     # host -> consecutive errors this run (a host that keeps failing is dropped for the run)
 BUDGET = int(os.environ.get("BUDGET", "1200") or 1200)
 OUT = "data/index_constituents.json"
 RETRY_DAYS = 7
@@ -43,18 +47,30 @@ def candidates(name):
         for pat in (f"ind_nifty{core}list.csv", f"ind_nifty{core}_list.csv", f"ind_nifty_{core}list.csv", f"ind_nifty_{core}_list.csv"):
             if pat not in out:
                 out.append(pat)
-    return out[:16]
+    words = re.sub(r"[^a-z0-9 ]", " ", name.lower().replace("&", " and ")).split()
+    if words and words[0] == "nifty":
+        words = words[1:]
+    if words:
+        camel = "".join(w.capitalize() for w in words)
+        under = "_".join(w.capitalize() for w in words)
+        for pat in (f"ind_Nifty{camel}_list.csv", f"ind_Nifty{camel}list.csv", f"ind_Nifty_{under}_list.csv", f"ind_nifty_{'_'.join(words)}_list.csv"):
+            if pat not in out:
+                out.append(pat)
+    return out[:22]
 
 
 def get_list(fn):
     for h in HOSTS:
+        if BAD.get(h, 0) >= 6:
+            continue
         try:
-            r = requests.get(h + fn, headers=H, timeout=25)
+            r = requests.get(h + fn, headers=H, timeout=12)
+            BAD[h] = 0
             if r.status_code == 200 and "symbol" in r.text[:500].lower():
                 syms = [(x.get("Symbol") or x.get("symbol") or "").strip() for x in csv.DictReader(io.StringIO(r.text))]
                 return [s for s in syms if s]
         except Exception:
-            pass
+            BAD[h] = BAD.get(h, 0) + 1
     return None
 
 
@@ -65,6 +81,8 @@ def main():
     uni = {r["symbol"] for r in csv.DictReader(open("data/universe.csv", newline=""))}
     old = json.load(open(OUT)) if os.path.exists(OUT) else {}
     members, files, failed = old.get("members", {}), old.get("files", {}), old.get("failed", {})
+    if old.get("ver") != VER:
+        failed = {}
     manual = {}
     if os.path.exists("data/index_files.csv"):
         for r in csv.reader(open("data/index_files.csv", newline="")):
@@ -72,7 +90,11 @@ def main():
                 manual[r[0].strip()] = r[1].strip()
     today = datetime.date.today()
     log, found, missing, skipped = [f"Run (UTC): {datetime.datetime.now(datetime.timezone.utc):%Y-%m-%d %H:%M}"], 0, [], 0
+    bylaw = []
     for nm in names:
+        if re.search(NOLIST, re.sub(r"[^a-z0-9 ]", "", nm.lower())) and nm not in manual:
+            bylaw.append(nm)
+            continue
         if time.time() - t0 > BUDGET:
             log.append("time budget used; the rest continues next run")
             break
@@ -87,7 +109,7 @@ def main():
         syms = None
         for fn in fns:
             syms = get_list(fn)
-            time.sleep(0.35)
+            time.sleep(0.15)
             if syms:
                 files[nm] = fn
                 break
@@ -98,11 +120,18 @@ def main():
         else:
             failed[nm] = today.isoformat()
             missing.append(nm)
-    out = {"asof": heat.get("asof"), "members": members, "files": files, "failed": failed}
+    out = {"asof": heat.get("asof"), "ver": VER, "members": members, "files": files, "failed": failed}
     json.dump(out, open(OUT, "w"), separators=(",", ":"))
     log.append(f"indices: {len(names)}; lists found this run: {found}; with a list stored: {len([n for n in names if n in members])}; waiting for retry: {skipped}")
-    if missing:
-        log.append("no list file found for: " + "; ".join(missing))
+    dropped = [h.split("/")[2] for h, c in BAD.items() if c >= 6]
+    if dropped:
+        log.append("host(s) not reachable, skipped for this run: " + ", ".join(dropped))
+    if bylaw:
+        log.append("no stock list by design (derivative / leveraged / rate): " + "; ".join(bylaw))
+    still = [n for n in names if n not in members and n not in bylaw]
+    if still:
+        log.append(f"still without a list ({len(still)}): " + "; ".join(still))
+    log.append("hosts tried: " + ", ".join(h.split("/")[2] for h in HOSTS))
     log.append("tip: add 'index name,file name' rows to data/index_files.csv for any that are missing")
     open("data/index_constituents_log.txt", "w").write("\n".join(log) + "\n")
     print("\n".join(log))
