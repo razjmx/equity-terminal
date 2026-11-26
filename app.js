@@ -178,6 +178,7 @@ function route(){
 function research(){
   view.innerHTML=`<div class="rs"><h2>Company research</h2><p class="mut">Search any of the ~750 stocks (Nifty 500 and Microcap 250) by name or symbol</p><div class="rsbox"><input id="rs-q" placeholder="e.g. Reliance, TCS, HDFC Bank" autocomplete="off"></div></div>`;
   const q=$('#rs-q');attachSuggest(q);q.focus();
+  view.insertAdjacentHTML('beforeend','<div class="rsnews" id="evbox"></div>');upEvents($('#evbox'));
   view.insertAdjacentHTML('beforeend','<div class="rsnews"><h3 style="margin:26px 0 4px">Macro news</h3><p class="mut" style="margin:0 0 10px">Market-moving news in India and around the world. For news on one company, open the company and use its News tab.</p><div class="subtabs" id="msub"></div><div id="mbody"><div class="skel" style="height:240px"></div></div></div>');
   macroNews();
 }
@@ -215,12 +216,33 @@ function scatterChart(cv,pts,opt={}){   // pts: [{x,y,c,r,l}]
   const line=pts.filter(p=>p.line);ctx.strokeStyle=opt.lc||'#2f6fdb';ctx.lineWidth=1.6;ctx.beginPath();line.forEach((p,i)=>i?ctx.lineTo(X(p.x),Y(p.y)):ctx.moveTo(X(p.x),Y(p.y)));ctx.stroke();
   pts.filter(p=>!p.line).forEach(p=>{ctx.fillStyle=p.c||'#0f6b4a';ctx.beginPath();ctx.arc(X(p.x),Y(p.y),p.r||4,0,7);ctx.fill();if(p.l){ctx.fillStyle='#8b94a3';ctx.fillText(p.l,X(p.x)+6,Y(p.y)-5)}});
 }
+// ----- upcoming dates: market calendar (data/events_macro.csv, editable) + company dates (Yahoo, via the Events workflow) -----
+const EVT={Policy:'Policy',Holiday:'Holiday',Expiry:'F&O expiry',Budget:'Budget',Results:'Results'};
+function evWhen(iso){const d=new Date(iso+'T00:00:00'),t=new Date();t.setHours(0,0,0,0);const n=Math.round((d-t)/864e5);
+  return {txt:d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'}),n,rel:n===0?'today':n===1?'tomorrow':n>1?'in '+n+' days':''}}
+async function loadEvents(){
+  const [cs,st]=await Promise.all([Promise.resolve(get('data/events_macro.csv')).catch(()=>null),Promise.resolve(get('data/events/stocks.json','json')).catch(()=>null)]);
+  const today=new Date();today.setHours(0,0,0,0);const iso0=new Date(today.getTime()-today.getTimezoneOffset()*6e4).toISOString().slice(0,10);
+  const mac=(cs?T.parseCSV(cs):[]).filter(r=>r.date&&r.date>=iso0).sort((a,b)=>a.date<b.date?-1:1);
+  return {mac,st};
+}
+async function upEvents(box){
+  const {mac,st}=await loadEvents();if(!box)return;
+  const iso0=new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+  const lim=new Date(Date.now()+14*864e5-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+  const res=[];if(st&&st.stocks)Object.entries(st.stocks).forEach(([k,v])=>{const d=(v.e||[]).find(x=>x>=iso0&&x<=lim);if(d)res.push([k,d])});res.sort((a,b)=>a[1]<b[1]?-1:a[1]>b[1]?1:a[0].localeCompare(b[0]));
+  const row=r=>{const w=evWhen(r.date);return `<li><div><b>${esc(r.title)}</b><div class="mut">${w.txt}${w.rel?' · '+w.rel:''}</div></div><span class="tag">${esc(EVT[r.type]||r.type)}${r.status==='expected'?' · expected':''}</span></li>`};
+  box.innerHTML=`<h3 style="margin:26px 0 4px">Upcoming dates</h3><p class="mut" style="margin:0 0 10px">Market-wide events, and companies expected to report results in the next 14 days.</p><div class="ngrid"><div class="card"><h3>Market calendar</h3>${mac.length?`<ul class="news evl">${mac.slice(0,10).map(row).join('')}</ul>`:'<p class="mut">No dates loaded. Add rows to data/events_macro.csv.</p>'}<p class="mut" style="font-size:12px;margin:10px 0 0">Policy dates are from the RBI and the US Federal Reserve. "Expected" dates (holidays, expiry, Budget) follow the usual pattern and can move, so check the exchange notice. You can add or fix rows in data/events_macro.csv.</p></div>
+  <div class="card"><h3>Results expected soon <span class="tag">${res.length} companies</span></h3>${res.length?`<ul class="news evl">${res.slice(0,15).map(([k,d])=>{const w=evWhen(d);return `<li><div><a href="#/stock/${esc(k)}">${esc(k)}</a><div class="mut">${w.txt}${w.rel?' · '+w.rel:''}</div></div></li>`}).join('')}</ul>${res.length>15?`<p class="mut" style="font-size:12px;margin:6px 0 0">and ${res.length-15} more; open a company to see its date.</p>`:''}`:`<p class="mut">${st?'No company has a results date in the next 14 days on Yahoo.':'Company dates have not been collected yet. Run the <b>Events</b> workflow once from the Actions tab.'}</p>`}<p class="mut" style="font-size:12px;margin:10px 0 0">Dates come from Yahoo Finance and are often estimates. Confirm with the company's exchange filing.${st&&st.updated?' Last collected '+esc(st.updated)+' UTC.':''}</p></div></div>`;
+}
+
 // ----- stock page: Overview summary (one compact card per model; details are in the other tabs) -----
 async function ovSummary(s,c){
   const box=$('#ovsum');if(!box)return;
   const locked=isLocked(),L=(s[0]||'_').toUpperCase(),sh=/[A-Z]/.test(L)?L:'_';
   const g=p=>Promise.resolve(get(p,'json')).catch(()=>null);
   const none=Promise.resolve(null);
+  const EV=loadEvents();
   const [Qd,F,PCA,MR,P,OFl,OFs,Nd]=await Promise.all([locked?none:g(`data/quant/${s}.json`),locked?none:g('data/quant/factors.json'),locked?none:g('data/quant/pca.json'),locked?none:g('data/quant/meanrev.json'),g('data/peers.json'),locked?none:g('data/orderflow.json'),locked?none:g(`data/orderflow/${s}.json`),g(`data/news/s_${sh}.json`)]);
   if(!$('#ovsum'))return;
   const num=v=>v!=null&&isFinite(v),f=(v,d=1)=>num(v)?T.fmt(v,d):'–';
@@ -283,6 +305,12 @@ async function ovSummary(s,c){
     if(od){const bc=od.bias==='bullish'?'pos':od.bias==='bearish'?'neg':'';
       cards.push(grp('Order flow','orderflow',esc(od.d||''),`<div class="grid">${kv('Bias','<b class="'+bc+'">'+esc(String(od.bias).toUpperCase())+'</b>')}${kv('Signal strength',od.score+' / 99')}${kv('Session change',(od.chg>=0?'+':'')+f(od.chg,2)+'%',cls(od.chg))}${kv('Price vs VWAP',num(od.vwap)?(od.px>=od.vwap?'Above':'Below')+' (₹'+f(od.vwap,2)+')':'–',num(od.vwap)?(od.px>=od.vwap?'pos':'neg'):'')}${num(od.rr)?kv('Reward : risk','1:'+f(od.rr,1)):''}${ol&&num(ol.dp)?kv('Delivery %',f(ol.dp,0)+'%'):''}${od.nse&&od.nse.status?kv('NSE check',od.nse.status==='ok'?'Verified':od.nse.status==='pend'?'Pending':'See details',od.nse.status==='ok'?'pos':''):''}</div>`))}
   }
+  // ---- upcoming events
+  {const ev=await EV,mine=ev.st&&ev.st.stocks&&ev.st.stocks[s]||{},lines=[];
+    if(mine.e&&mine.e.length){const w=evWhen(mine.e[0]);lines.push(kv('Results (Yahoo estimate)',`${w.txt}${w.rel?' <span class="mut" style="font-size:12px">'+w.rel+'</span>':''}`))}
+    if(mine.x){const w=evWhen(mine.x);lines.push(kv('Ex-dividend date',`${w.txt}${w.rel?' <span class="mut" style="font-size:12px">'+w.rel+'</span>':''}`))}
+    ev.mac.slice(0,3).forEach(r=>{const w=evWhen(r.date);lines.push(kv(esc(EVT[r.type]||r.type)+' · '+w.txt.replace(/, \d{4}$/,''),`<span style="font-size:13px;font-weight:500">${esc(r.title.replace(/ \(.*\)$/,''))}</span>`))});
+    cards.push(grp('Upcoming dates','',mine.e||mine.x?'':'market only',`<div class="grid" style="grid-template-columns:1fr">${lines.join('')||'<span class="mut">No upcoming dates loaded.</span>'}</div>${mine.e||mine.x?'':'<p class="mut" style="font-size:12px;margin:8px 0 0">No company dates for this stock on Yahoo.</p>'}`))}
   // ---- news
   const nit=(Nd&&Nd.stocks&&Nd.stocks[s])||[];
   cards.push(grp('Latest news','news',nit.length?nit.length+' headlines':'',nit.length?newsList(nit.slice(0,3)):'<p class="mut" style="margin:0">No recent headlines collected for this company.</p>'));
