@@ -632,3 +632,6 @@ html:not([data-tape="1"]) .tape{display:none}
 .vseg button:hover{color:var(--t);background:var(--p)}
 .vseg button.on{color:var(--brand);background:var(--p);border-left-color:var(--brand);box-shadow:var(--sh);font-weight:600}
 @media(max-width:860px){.vseg{padding:0}.vseg button{border-left:0;width:auto}}
+.fiig table.peer th,.fiig table.peer td{padding:8px 7px}
+.fiig table.peer th:first-child,.fiig table.peer td:first-child{white-space:normal;min-width:110px}
+.fiig table.peer th{font-size:11px}
