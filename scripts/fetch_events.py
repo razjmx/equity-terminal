@@ -101,16 +101,15 @@ def nse_feed(log, known=()):
                 item = {"t": k, "d": d, "s": re.sub(r"\s+", " ", subj)[:90], "k": "exdate"}
             else:
                 purp = (x.get("bm_purpose") or x.get("purpose") or "") + " " + (x.get("bm_desc") or x.get("description") or "")
-                k = kind(purp); d = nse_date(x.get("bm_date") or x.get("meetingDate") or x.get("date"))
+                k = "Results" if re.search(r"financial results|results", purp.lower()) else kind(purp); d = nse_date(x.get("bm_date") or x.get("meetingDate") or x.get("date"))
                 if not k: sk["no type"] += 1; continue
                 if not d: sk["no date"] += 1; continue
                 if d < today.isoformat(): sk["past"] += 1; continue
                 item = {"t": k, "d": d, "s": re.sub(r"\s+", " ", (x.get("bm_desc") or x.get("purpose") or ""))[:90], "k": "board"}
             if known and sym not in known: sk["not in universe"] += 1; continue
-            kinds[item["t"]] = kinds.get(item["t"], 0) + 1
             lst = out.setdefault(sym, [])
             if not any(y["t"] == item["t"] and y["d"] == item["d"] and y["k"] == item["k"] for y in lst):
-                lst.append(item); n += 1
+                lst.append(item); n += 1; kinds[item["t"]] = kinds.get(item["t"], 0) + 1
         log.append(f"NSE {name}: {len(data)} rows, {n} upcoming items kept {kinds}; skipped {sk}")
     return out
 
