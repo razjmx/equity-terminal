@@ -1,38 +1,38 @@
 {
  "symbol": "KSCL",
- "as_of": "2026-11-25",
- "rows": 1238,
- "price": 690.15,
+ "as_of": "2026-11-26",
+ "rows": 1239,
+ "price": 691.0,
  "returns_pct": {
-  "1m": -5.5,
-  "3m": -9.2,
-  "6m": -24.8,
-  "1y": -35.4,
-  "3y_cagr": 3.7,
-  "ytd": -30.0
+  "1m": -0.7,
+  "3m": -10.1,
+  "6m": -25.2,
+  "1y": -35.0,
+  "3y_cagr": 4.4,
+  "ytd": -29.9
  },
  "relative_strength_pp": {
-  "3m": -11.3,
-  "6m": -30.9,
-  "1y": -36.3
+  "3m": -12.5,
+  "6m": -30.2,
+  "1y": -36.0
  },
  "range": {
-  "high_52w": 1062.4,
+  "high_52w": 1020.3,
   "low_52w": 659.1,
-  "pct_from_high": -35.0,
-  "pct_above_low": 4.7,
-  "high_date": "2025-11-18",
+  "pct_from_high": -32.3,
+  "pct_above_low": 4.8,
+  "high_date": "2025-11-21",
   "low_date": "2026-10-30"
  },
  "moving_averages": {
-  "dma20": 696.69,
+  "dma20": 697.18,
   "pct_vs_dma20": -0.9,
-  "dma50": 710.51,
-  "pct_vs_dma50": -2.9,
-  "dma100": 757.73,
-  "pct_vs_dma100": -8.9,
-  "dma200": 816.77,
-  "pct_vs_dma200": -15.5
+  "dma50": 709.97,
+  "pct_vs_dma50": -2.7,
+  "dma100": 755.49,
+  "pct_vs_dma100": -8.5,
+  "dma200": 815.69,
+  "pct_vs_dma200": -15.3
  },
  "trend": {
   "above_dma200": false,
@@ -41,22 +41,22 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 44.6,
-  "macd_pct": -0.06,
+  "rsi14": 44.9,
+  "macd_pct": -0.24,
   "macd_signal_pct": -0.23,
-  "macd_hist_pct": 0.16,
+  "macd_hist_pct": -0.01,
   "bollinger_pctb": 0.43,
-  "atr_pct": 3.69
+  "atr_pct": 3.6
  },
  "risk": {
   "volatility_1y_pct": 37.5,
   "downside_deviation_pct": 25.1,
-  "max_drawdown_1y_pct": -38.0,
+  "max_drawdown_1y_pct": -35.4,
   "max_drawdown_all_pct": -58.0,
   "var95_1d_pct": -3.53,
   "cvar95_1d_pct": -4.48,
-  "sharpe_1y": -1.17,
-  "sortino_1y": -1.75
+  "sharpe_1y": -1.15,
+  "sortino_1y": -1.73
  },
  "beta": {
   "raw": 0.94,
@@ -67,7 +67,7 @@
   "alpha_pct": 2.3
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 45.04
+  "avg_daily_value_3m_cr": 44.84
  },
  "flags": []
 }

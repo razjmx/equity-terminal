@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "low confidence",
- "price": 1375.0,
- "fair_value": 138.0,
+ "price": 1390.0,
+ "fair_value": 137.9,
  "fair_low": 115.4,
- "fair_high": 164.8,
- "upside_pct": -90.0,
+ "fair_high": 164.7,
+ "upside_pct": -90.1,
  "flags": [
   "low return: ROIC 13.4% below WACC 14.9%",
   "far from price: model value is 10% of the market price"
@@ -123,14 +123,14 @@
   "pv_share_of_ev_pct": 84.7
  },
  "bridge_cr": {
-  "enterprise_value": 9135.0,
+  "enterprise_value": 9133.0,
   "debt": 2740.0,
   "cash": 368.0,
   "investments": 924.0,
   "minority": 431.0,
-  "equity_value": 7255.0,
+  "equity_value": 7253.0,
   "shares_cr": 57.746,
-  "market_cap": 79400.0
+  "market_cap": 80267.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -149,23 +149,23 @@
   ],
   "fair_value": [
    [
-    197.8,
-    200.4,
-    203.3,
-    206.4,
-    209.8
+    197.7,
+    200.3,
+    203.2,
+    206.3,
+    209.7
    ],
    [
     162.1,
     163.4,
-    164.8,
+    164.7,
     166.1,
     167.5
    ],
    [
     136.1,
     137.0,
-    138.0,
+    137.9,
     138.9,
     139.9
    ],
@@ -173,21 +173,21 @@
     114.2,
     114.8,
     115.4,
-    116.1,
-    116.8
+    116.0,
+    116.7
    ],
    [
     95.6,
     96.0,
-    96.4,
-    96.8,
+    96.3,
+    96.7,
     97.2
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 31.0,
+  "implied_ebit_margin_pct": 31.3,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
@@ -198,7 +198,7 @@
   "tax": 0.25,
   "s2c": 2.225733079663678,
   "g1": 0.1804941244517615,
-  "wacc": 0.14937954000248807,
+  "wacc": 0.14939548065513272,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -207,8 +207,8 @@
   "cash": 367.57,
   "invest": 923.53,
   "minority": 430.9,
-  "shares_cr": 57.745683568193485,
-  "roll": 1.0980612113246453,
+  "shares_cr": 57.74568356819348,
+  "roll": 1.0980523967551983,
   "mid_year": true
  }
 }

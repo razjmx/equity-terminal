@@ -1,38 +1,38 @@
 {
  "symbol": "SHILCTECH",
- "as_of": "2026-11-25",
- "rows": 248,
- "price": 3125.1,
+ "as_of": "2026-11-26",
+ "rows": 249,
+ "price": 3060.5,
  "returns_pct": {
-  "1m": -11.5,
-  "3m": -19.5,
-  "6m": -23.3,
+  "1m": -17.0,
+  "3m": -21.9,
+  "6m": -25.0,
   "1y": null,
   "3y_cagr": null,
-  "ytd": -18.3
+  "ytd": -20.0
  },
  "relative_strength_pp": {
-  "3m": -21.6,
-  "6m": -29.3,
+  "3m": -24.4,
+  "6m": -30.1,
   "1y": null
  },
  "range": {
   "high_52w": 5311.6,
   "low_52w": 2923.4,
-  "pct_from_high": -41.2,
-  "pct_above_low": 6.9,
+  "pct_from_high": -42.4,
+  "pct_above_low": 4.7,
   "high_date": "2026-04-27",
   "low_date": "2026-01-27"
  },
  "moving_averages": {
-  "dma20": 3498.98,
-  "pct_vs_dma20": -10.7,
-  "dma50": 3775.71,
-  "pct_vs_dma50": -17.2,
-  "dma100": 4016.96,
-  "pct_vs_dma100": -22.2,
-  "dma200": 4101.36,
-  "pct_vs_dma200": -23.8
+  "dma20": 3455.78,
+  "pct_vs_dma20": -11.4,
+  "dma50": 3753.75,
+  "pct_vs_dma50": -18.5,
+  "dma100": 4002.58,
+  "pct_vs_dma100": -23.5,
+  "dma200": 4098.92,
+  "pct_vs_dma200": -25.3
  },
  "trend": {
   "above_dma200": false,
@@ -41,26 +41,26 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 28.2,
-  "macd_pct": -5.6,
-  "macd_signal_pct": -4.42,
-  "macd_hist_pct": -1.18,
-  "bollinger_pctb": 0.07,
-  "atr_pct": 4.22
+  "rsi14": 26.3,
+  "macd_pct": -6.03,
+  "macd_signal_pct": -4.82,
+  "macd_hist_pct": -1.21,
+  "bollinger_pctb": 0.04,
+  "atr_pct": 4.51
  },
  "risk": {
-  "volatility_1y_pct": 52.4,
-  "downside_deviation_pct": 36.4,
+  "volatility_1y_pct": 52.3,
+  "downside_deviation_pct": 36.3,
   "max_drawdown_1y_pct": -42.4,
   "max_drawdown_all_pct": -42.4,
-  "var95_1d_pct": -4.6,
+  "var95_1d_pct": -4.58,
   "cvar95_1d_pct": -7.21,
-  "sharpe_1y": -0.44,
-  "sortino_1y": -0.64
+  "sharpe_1y": -0.48,
+  "sortino_1y": -0.7
  },
  "beta": null,
  "liquidity": {
-  "avg_daily_value_3m_cr": 6.85
+  "avg_daily_value_3m_cr": 6.87
  },
  "flags": [
   "short history: risk and trend figures use fewer than 250 days"

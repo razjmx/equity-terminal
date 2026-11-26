@@ -1,20 +1,20 @@
 {
  "symbol": "QUESS",
- "as_of": "2026-11-25",
- "rows": 1238,
- "price": 326.3,
+ "as_of": "2026-11-26",
+ "rows": 1239,
+ "price": 326.35,
  "returns_pct": {
-  "1m": 5.5,
-  "3m": -2.8,
-  "6m": 60.9,
-  "1y": 49.9,
-  "3y_cagr": -8.3,
+  "1m": 1.0,
+  "3m": -3.6,
+  "6m": 58.3,
+  "1y": 54.9,
+  "3y_cagr": -8.1,
   "ytd": 58.7
  },
  "relative_strength_pp": {
-  "3m": -4.9,
-  "6m": 54.9,
-  "1y": 49.0
+  "3m": -6.1,
+  "6m": 53.2,
+  "1y": 53.8
  },
  "range": {
   "high_52w": 381.75,
@@ -25,14 +25,14 @@
   "low_date": "2026-03-30"
  },
  "moving_averages": {
-  "dma20": 331.1,
-  "pct_vs_dma20": -1.4,
-  "dma50": 335.15,
-  "pct_vs_dma50": -2.6,
-  "dma100": 329.31,
-  "pct_vs_dma100": -0.9,
-  "dma200": 268.35,
-  "pct_vs_dma200": 21.6
+  "dma20": 331.25,
+  "pct_vs_dma20": -1.5,
+  "dma50": 334.57,
+  "pct_vs_dma50": -2.5,
+  "dma100": 329.74,
+  "pct_vs_dma100": -1.0,
+  "dma200": 268.94,
+  "pct_vs_dma200": 21.3
  },
  "trend": {
   "above_dma200": true,
@@ -42,21 +42,21 @@
  },
  "momentum": {
   "rsi14": 46.7,
-  "macd_pct": 0.28,
-  "macd_signal_pct": 0.33,
-  "macd_hist_pct": -0.05,
-  "bollinger_pctb": 0.4,
-  "atr_pct": 4.92
+  "macd_pct": 0.08,
+  "macd_signal_pct": 0.28,
+  "macd_hist_pct": -0.2,
+  "bollinger_pctb": 0.39,
+  "atr_pct": 4.9
  },
  "risk": {
-  "volatility_1y_pct": 39.5,
-  "downside_deviation_pct": 23.9,
+  "volatility_1y_pct": 39.3,
+  "downside_deviation_pct": 23.7,
   "max_drawdown_1y_pct": -23.9,
   "max_drawdown_all_pct": -81.1,
   "var95_1d_pct": -3.33,
   "cvar95_1d_pct": -4.3,
-  "sharpe_1y": 1.04,
-  "sortino_1y": 1.72
+  "sharpe_1y": 1.12,
+  "sortino_1y": 1.87
  },
  "beta": {
   "raw": 0.97,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.31,
   "r_squared": 0.09,
-  "alpha_pct": -12.1
+  "alpha_pct": -12.2
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 17.35
+  "avg_daily_value_3m_cr": 17.23
  },
  "flags": [
   "large one-day move (51% on 2025-04-15): check for split, bonus or demerger"

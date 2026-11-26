@@ -1,52 +1,52 @@
 {
  "symbol": "POLICYBZR",
- "as_of": "2026-11-25",
- "rows": 1237,
- "price": 1123.8,
+ "as_of": "2026-11-26",
+ "rows": 1238,
+ "price": 1170.0,
  "returns_pct": {
-  "1m": 10.7,
-  "3m": -37.4,
-  "6m": -37.3,
-  "1y": -35.4,
-  "3y_cagr": 16.7,
-  "ytd": -38.4
+  "1m": 14.4,
+  "3m": -34.5,
+  "6m": -34.7,
+  "1y": -35.6,
+  "3y_cagr": 18.6,
+  "ytd": -35.9
  },
  "relative_strength_pp": {
-  "3m": -39.5,
-  "6m": -43.4,
-  "1y": -36.2
+  "3m": -36.9,
+  "6m": -39.7,
+  "1y": -36.6
  },
  "range": {
   "high_52w": 1957.3,
   "low_52w": 928.0,
-  "pct_from_high": -42.6,
-  "pct_above_low": 21.1,
+  "pct_from_high": -40.2,
+  "pct_above_low": 26.1,
   "high_date": "2025-12-09",
   "low_date": "2026-11-03"
  },
  "moving_averages": {
-  "dma20": 1014.09,
-  "pct_vs_dma20": 10.8,
-  "dma50": 1171.71,
-  "pct_vs_dma50": -4.1,
-  "dma100": 1426.14,
-  "pct_vs_dma100": -21.2,
-  "dma200": 1498.64,
-  "pct_vs_dma200": -25.0
+  "dma20": 1022.17,
+  "pct_vs_dma20": 14.5,
+  "dma50": 1159.11,
+  "pct_vs_dma50": 0.9,
+  "dma100": 1421.02,
+  "pct_vs_dma100": -17.7,
+  "dma200": 1496.67,
+  "pct_vs_dma200": -21.8
  },
  "trend": {
   "above_dma200": false,
-  "above_dma50": false,
+  "above_dma50": true,
   "dma50_above_dma200": false,
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 56.7,
-  "macd_pct": -1.47,
-  "macd_signal_pct": -3.72,
-  "macd_hist_pct": 2.25,
-  "bollinger_pctb": 0.99,
-  "atr_pct": 5.11
+  "rsi14": 61.0,
+  "macd_pct": -0.48,
+  "macd_signal_pct": -2.95,
+  "macd_hist_pct": 2.47,
+  "bollinger_pctb": 1.06,
+  "atr_pct": 4.93
  },
  "risk": {
   "volatility_1y_pct": 52.5,
@@ -56,18 +56,18 @@
   "var95_1d_pct": -3.57,
   "cvar95_1d_pct": -7.74,
   "sharpe_1y": -0.67,
-  "sortino_1y": -0.78
+  "sortino_1y": -0.79
  },
  "beta": {
   "raw": 1.18,
   "adjusted": 1.12,
   "weeks": 156,
-  "correlation": 0.39,
+  "correlation": 0.38,
   "r_squared": 0.15,
-  "alpha_pct": 8.2
+  "alpha_pct": 9.6
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 537.27
+  "avg_daily_value_3m_cr": 543.92
  },
  "flags": [
   "large one-day move (36% on 2026-09-24): check for split, bonus or demerger"

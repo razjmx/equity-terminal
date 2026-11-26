@@ -1,38 +1,38 @@
 {
  "symbol": "AMAGI",
- "as_of": "2026-11-25",
- "rows": 207,
- "price": 571.05,
+ "as_of": "2026-11-26",
+ "rows": 208,
+ "price": 582.8,
  "returns_pct": {
-  "1m": 4.9,
-  "3m": -4.8,
-  "6m": 45.1,
+  "1m": 11.3,
+  "3m": -0.5,
+  "6m": 44.2,
   "1y": null,
   "3y_cagr": null,
   "ytd": null
  },
  "relative_strength_pp": {
-  "3m": -6.9,
+  "3m": -3.0,
   "6m": 39.1,
   "1y": null
  },
  "range": {
   "high_52w": 674.7,
   "low_52w": 316.7,
-  "pct_from_high": -15.4,
-  "pct_above_low": 80.3,
+  "pct_from_high": -13.6,
+  "pct_above_low": 84.0,
   "high_date": "2026-08-04",
   "low_date": "2026-04-06"
  },
  "moving_averages": {
-  "dma20": 557.19,
-  "pct_vs_dma20": 2.5,
-  "dma50": 561.47,
-  "pct_vs_dma50": 1.7,
-  "dma100": 579.76,
-  "pct_vs_dma100": -1.5,
-  "dma200": 489.55,
-  "pct_vs_dma200": 16.6
+  "dma20": 559.18,
+  "pct_vs_dma20": 4.2,
+  "dma50": 561.68,
+  "pct_vs_dma50": 3.8,
+  "dma100": 580.2,
+  "pct_vs_dma100": 0.4,
+  "dma200": 490.65,
+  "pct_vs_dma200": 18.8
  },
  "trend": {
   "above_dma200": true,
@@ -41,26 +41,26 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 55.4,
-  "macd_pct": 0.38,
-  "macd_signal_pct": -0.08,
-  "macd_hist_pct": 0.46,
-  "bollinger_pctb": 0.79,
-  "atr_pct": 3.62
+  "rsi14": 60.2,
+  "macd_pct": 0.62,
+  "macd_signal_pct": 0.06,
+  "macd_hist_pct": 0.56,
+  "bollinger_pctb": 0.96,
+  "atr_pct": 3.51
  },
  "risk": {
-  "volatility_1y_pct": 44.8,
+  "volatility_1y_pct": 44.7,
   "downside_deviation_pct": 26.2,
   "max_drawdown_1y_pct": -24.0,
   "max_drawdown_all_pct": -24.0,
-  "var95_1d_pct": -4.0,
+  "var95_1d_pct": -3.98,
   "cvar95_1d_pct": -5.0,
-  "sharpe_1y": 1.41,
-  "sortino_1y": 2.41
+  "sharpe_1y": 1.46,
+  "sortino_1y": 2.5
  },
  "beta": null,
  "liquidity": {
-  "avg_daily_value_3m_cr": 18.44
+  "avg_daily_value_3m_cr": 18.07
  },
  "flags": [
   "short history: risk and trend figures use fewer than 250 days"

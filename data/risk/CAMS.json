@@ -1,73 +1,73 @@
 {
  "symbol": "CAMS",
- "as_of": "2026-11-25",
- "rows": 1238,
- "price": 717.5,
+ "as_of": "2026-11-26",
+ "rows": 1239,
+ "price": 745.9,
  "returns_pct": {
-  "1m": 10.4,
-  "3m": -4.7,
-  "6m": -5.2,
-  "1y": -9.5,
-  "3y_cagr": 16.9,
-  "ytd": -3.2
+  "1m": 12.8,
+  "3m": -0.8,
+  "6m": -3.1,
+  "1y": -5.5,
+  "3y_cagr": 18.6,
+  "ytd": 0.7
  },
  "relative_strength_pp": {
-  "3m": -6.8,
-  "6m": -11.3,
-  "1y": -10.4
+  "3m": -3.3,
+  "6m": -8.1,
+  "1y": -6.5
  },
  "range": {
   "high_52w": 836.3,
   "low_52w": 622.45,
-  "pct_from_high": -14.2,
-  "pct_above_low": 15.3,
+  "pct_from_high": -10.8,
+  "pct_above_low": 19.8,
   "high_date": "2026-05-08",
   "low_date": "2026-03-23"
  },
  "moving_averages": {
-  "dma20": 707.26,
-  "pct_vs_dma20": 1.4,
-  "dma50": 698.12,
-  "pct_vs_dma50": 2.8,
-  "dma100": 733.88,
-  "pct_vs_dma100": -2.2,
-  "dma200": 733.69,
-  "pct_vs_dma200": -2.2
+  "dma20": 710.69,
+  "pct_vs_dma20": 5.0,
+  "dma50": 698.79,
+  "pct_vs_dma50": 6.7,
+  "dma100": 733.36,
+  "pct_vs_dma100": 1.7,
+  "dma200": 733.95,
+  "pct_vs_dma200": 1.6
  },
  "trend": {
-  "above_dma200": false,
+  "above_dma200": true,
   "above_dma50": true,
   "dma50_above_dma200": false,
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 52.8,
-  "macd_pct": 1.14,
-  "macd_signal_pct": 1.0,
-  "macd_hist_pct": 0.15,
-  "bollinger_pctb": 0.6,
-  "atr_pct": 3.35
+  "rsi14": 60.2,
+  "macd_pct": 1.32,
+  "macd_signal_pct": 1.03,
+  "macd_hist_pct": 0.29,
+  "bollinger_pctb": 0.85,
+  "atr_pct": 3.3
  },
  "risk": {
-  "volatility_1y_pct": 31.0,
+  "volatility_1y_pct": 31.3,
   "downside_deviation_pct": 21.2,
   "max_drawdown_1y_pct": -22.5,
   "max_drawdown_all_pct": -41.0,
   "var95_1d_pct": -2.9,
   "cvar95_1d_pct": -3.92,
-  "sharpe_1y": -0.4,
-  "sortino_1y": -0.58
+  "sharpe_1y": -0.26,
+  "sortino_1y": -0.38
  },
  "beta": {
-  "raw": 1.42,
+  "raw": 1.41,
   "adjusted": 1.28,
   "weeks": 156,
   "correlation": 0.63,
   "r_squared": 0.4,
-  "alpha_pct": 1.8
+  "alpha_pct": 3.0
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 107.8
+  "avg_daily_value_3m_cr": 109.75
  },
  "flags": []
 }

@@ -1,38 +1,38 @@
 {
  "symbol": "BIOCON",
- "as_of": "2026-11-25",
- "rows": 1238,
- "price": 365.35,
+ "as_of": "2026-11-26",
+ "rows": 1239,
+ "price": 365.0,
  "returns_pct": {
-  "1m": 12.9,
-  "3m": -12.1,
+  "1m": 11.0,
+  "3m": -10.8,
   "6m": -15.1,
-  "1y": -13.2,
-  "3y_cagr": 18.5,
-  "ytd": -7.2
+  "1y": -13.4,
+  "3y_cagr": 18.6,
+  "ytd": -7.3
  },
  "relative_strength_pp": {
-  "3m": -14.2,
-  "6m": -21.2,
-  "1y": -14.1
+  "3m": -13.3,
+  "6m": -20.2,
+  "1y": -14.5
  },
  "range": {
   "high_52w": 440.7,
   "low_52w": 323.5,
-  "pct_from_high": -17.1,
-  "pct_above_low": 12.9,
+  "pct_from_high": -17.2,
+  "pct_above_low": 12.8,
   "high_date": "2026-07-16",
   "low_date": "2026-10-23"
  },
  "moving_averages": {
-  "dma20": 358.06,
-  "pct_vs_dma20": 2.0,
-  "dma50": 362.24,
+  "dma20": 359.69,
+  "pct_vs_dma20": 1.5,
+  "dma50": 361.71,
   "pct_vs_dma50": 0.9,
-  "dma100": 390.93,
+  "dma100": 390.39,
   "pct_vs_dma100": -6.5,
-  "dma200": 389.87,
-  "pct_vs_dma200": -6.3
+  "dma200": 389.85,
+  "pct_vs_dma200": -6.4
  },
  "trend": {
   "above_dma200": false,
@@ -41,12 +41,12 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 54.4,
-  "macd_pct": 0.35,
-  "macd_signal_pct": 0.03,
-  "macd_hist_pct": 0.32,
-  "bollinger_pctb": 0.68,
-  "atr_pct": 2.5
+  "rsi14": 54.1,
+  "macd_pct": 0.41,
+  "macd_signal_pct": 0.11,
+  "macd_hist_pct": 0.3,
+  "bollinger_pctb": 0.67,
+  "atr_pct": 2.41
  },
  "risk": {
   "volatility_1y_pct": 25.9,
@@ -55,8 +55,8 @@
   "max_drawdown_all_pct": -51.2,
   "var95_1d_pct": -2.5,
   "cvar95_1d_pct": -3.43,
-  "sharpe_1y": -0.7,
-  "sortino_1y": -0.98
+  "sharpe_1y": -0.71,
+  "sortino_1y": -0.99
  },
  "beta": {
   "raw": 1.07,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.46,
   "r_squared": 0.21,
-  "alpha_pct": 8.8
+  "alpha_pct": 8.7
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 113.09
+  "avg_daily_value_3m_cr": 112.85
  },
  "flags": []
 }

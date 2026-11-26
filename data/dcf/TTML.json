@@ -3,7 +3,7 @@
  "latest_fy": "2026-03-31",
  "status": "not meaningful",
  "reliability": "not meaningful",
- "price": 33.52,
+ "price": 32.21,
  "fair_value": null,
  "fair_low": null,
  "fair_high": null,
@@ -11,7 +11,7 @@
  "flags": [
   "invested capital: not positive, sales-to-capital set to 1.5",
   "growth path: first-year growth below terminal growth (path rises)",
-  "wacc clamped: 8.7% to 9.0%",
+  "wacc clamped: 8.6% to 9.0%",
   "not meaningful: negative equity value"
  ],
  "assumptions": {
@@ -132,7 +132,7 @@
   "minority": 0.0,
   "equity_value": -11269.0,
   "shares_cr": 195.493,
-  "market_cap": 6553.0
+  "market_cap": 6297.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -188,7 +188,7 @@
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 23.0,
+  "implied_first_year_growth_pct": 22.8,
   "implied_ebit_margin_pct": null,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "not meaningful",
@@ -209,8 +209,8 @@
   "cash": 38.53,
   "invest": 0.0,
   "minority": 0.0,
-  "shares_cr": 195.4927779023404,
-  "roll": 1.0922110544781412,
+  "shares_cr": 195.49277790234038,
+  "roll": 1.092185097833848,
   "mid_year": true
  }
 }

@@ -1,36 +1,36 @@
 {
  "symbol": "FRACTAL",
- "as_of": "2026-11-25",
- "rows": 190,
- "price": 792.5,
+ "as_of": "2026-11-26",
+ "rows": 191,
+ "price": 800.6,
  "returns_pct": {
-  "1m": 8.8,
-  "3m": -6.4,
-  "6m": -13.6,
+  "1m": 5.9,
+  "3m": -3.4,
+  "6m": -14.8,
   "1y": null,
   "3y_cagr": null,
   "ytd": null
  },
  "relative_strength_pp": {
-  "3m": -8.5,
-  "6m": -19.7,
+  "3m": -5.8,
+  "6m": -19.8,
   "1y": null
  },
  "range": {
   "high_52w": 1101.55,
   "low_52w": 700.25,
-  "pct_from_high": -28.1,
-  "pct_above_low": 13.2,
+  "pct_from_high": -27.3,
+  "pct_above_low": 14.3,
   "high_date": "2026-05-07",
   "low_date": "2026-10-12"
  },
  "moving_averages": {
-  "dma20": 790.19,
-  "pct_vs_dma20": 0.3,
-  "dma50": 760.49,
-  "pct_vs_dma50": 4.2,
-  "dma100": 795.77,
-  "pct_vs_dma100": -0.4,
+  "dma20": 792.4,
+  "pct_vs_dma20": 1.0,
+  "dma50": 761.17,
+  "pct_vs_dma50": 5.2,
+  "dma100": 794.81,
+  "pct_vs_dma100": 0.7,
   "dma200": null,
   "pct_vs_dma200": null
  },
@@ -41,26 +41,26 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 51.5,
-  "macd_pct": 1.77,
-  "macd_signal_pct": 1.79,
-  "macd_hist_pct": -0.02,
-  "bollinger_pctb": 0.52,
-  "atr_pct": 4.24
+  "rsi14": 53.4,
+  "macd_pct": 1.62,
+  "macd_signal_pct": 1.74,
+  "macd_hist_pct": -0.12,
+  "bollinger_pctb": 0.57,
+  "atr_pct": 4.03
  },
  "risk": {
-  "volatility_1y_pct": 49.0,
-  "downside_deviation_pct": 31.4,
+  "volatility_1y_pct": 48.9,
+  "downside_deviation_pct": 31.3,
   "max_drawdown_1y_pct": -36.4,
   "max_drawdown_all_pct": -36.4,
   "var95_1d_pct": -4.02,
   "cvar95_1d_pct": -5.66,
-  "sharpe_1y": -0.09,
-  "sortino_1y": -0.14
+  "sharpe_1y": -0.06,
+  "sortino_1y": -0.09
  },
  "beta": null,
  "liquidity": {
-  "avg_daily_value_3m_cr": 73.84
+  "avg_daily_value_3m_cr": 73.65
  },
  "flags": [
   "short history: risk and trend figures use fewer than 250 days"

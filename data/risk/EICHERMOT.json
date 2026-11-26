@@ -1,38 +1,38 @@
 {
  "symbol": "EICHERMOT",
- "as_of": "2026-11-25",
- "rows": 1238,
- "price": 8336.0,
+ "as_of": "2026-11-26",
+ "rows": 1239,
+ "price": 8180.0,
  "returns_pct": {
-  "1m": 18.0,
-  "3m": 4.1,
-  "6m": 19.4,
-  "1y": 22.6,
-  "3y_cagr": 36.3,
-  "ytd": 14.0
+  "1m": 15.2,
+  "3m": 1.7,
+  "6m": 10.3,
+  "1y": 20.0,
+  "3y_cagr": 35.6,
+  "ytd": 11.9
  },
  "relative_strength_pp": {
-  "3m": 2.0,
-  "6m": 13.3,
-  "1y": 21.7
+  "3m": -0.8,
+  "6m": 5.3,
+  "1y": 19.0
  },
  "range": {
   "high_52w": 8336.0,
   "low_52w": 6586.0,
-  "pct_from_high": 0.0,
-  "pct_above_low": 26.6,
+  "pct_from_high": -1.9,
+  "pct_above_low": 24.2,
   "high_date": "2026-11-25",
   "low_date": "2026-03-30"
  },
  "moving_averages": {
-  "dma20": 7630.27,
-  "pct_vs_dma20": 9.2,
-  "dma50": 7397.17,
-  "pct_vs_dma50": 12.7,
-  "dma100": 7585.94,
-  "pct_vs_dma100": 9.9,
-  "dma200": 7432.07,
-  "pct_vs_dma200": 12.2
+  "dma20": 7681.02,
+  "pct_vs_dma20": 6.5,
+  "dma50": 7406.83,
+  "pct_vs_dma50": 10.4,
+  "dma100": 7595.24,
+  "pct_vs_dma100": 7.7,
+  "dma200": 7438.05,
+  "pct_vs_dma200": 10.0
  },
  "trend": {
   "above_dma200": true,
@@ -41,33 +41,33 @@
   "cross": "death cross in last 20 days"
  },
  "momentum": {
-  "rsi14": 74.3,
-  "macd_pct": 2.69,
-  "macd_signal_pct": 1.73,
-  "macd_hist_pct": 0.96,
-  "bollinger_pctb": 1.02,
+  "rsi14": 67.0,
+  "macd_pct": 2.83,
+  "macd_signal_pct": 1.98,
+  "macd_hist_pct": 0.86,
+  "bollinger_pctb": 0.87,
   "atr_pct": 2.49
  },
  "risk": {
-  "volatility_1y_pct": 28.0,
-  "downside_deviation_pct": 18.1,
+  "volatility_1y_pct": 28.1,
+  "downside_deviation_pct": 18.2,
   "max_drawdown_1y_pct": -19.6,
   "max_drawdown_all_pct": -25.9,
   "var95_1d_pct": -2.77,
   "cvar95_1d_pct": -3.68,
-  "sharpe_1y": 0.61,
-  "sortino_1y": 0.94
+  "sharpe_1y": 0.53,
+  "sortino_1y": 0.82
  },
  "beta": {
   "raw": 1.04,
   "adjusted": 1.03,
   "weeks": 156,
   "correlation": 0.58,
-  "r_squared": 0.33,
-  "alpha_pct": 18.3
+  "r_squared": 0.34,
+  "alpha_pct": 17.5
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 360.98
+  "avg_daily_value_3m_cr": 363.43
  },
  "flags": []
 }

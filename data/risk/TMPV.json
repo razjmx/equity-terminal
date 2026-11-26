@@ -1,38 +1,38 @@
 {
  "symbol": "TMPV",
- "as_of": "2026-11-25",
- "rows": 1238,
- "price": 262.1,
+ "as_of": "2026-11-26",
+ "rows": 1239,
+ "price": 262.0,
  "returns_pct": {
-  "1m": -0.9,
-  "3m": -17.6,
-  "6m": -27.9,
-  "1y": -29.7,
+  "1m": -0.6,
+  "3m": -16.7,
+  "6m": -29.8,
+  "1y": -29.4,
   "3y_cagr": -25.3,
   "ytd": -28.7
  },
  "relative_strength_pp": {
-  "3m": -19.7,
-  "6m": -33.9,
-  "1y": -30.6
+  "3m": -19.1,
+  "6m": -34.9,
+  "1y": -30.5
  },
  "range": {
   "high_52w": 400.95,
   "low_52w": 252.55,
-  "pct_from_high": -34.6,
-  "pct_above_low": 3.8,
+  "pct_from_high": -34.7,
+  "pct_above_low": 3.7,
   "high_date": "2026-05-27",
   "low_date": "2026-11-18"
  },
  "moving_averages": {
-  "dma20": 273.68,
-  "pct_vs_dma20": -4.2,
-  "dma50": 282.03,
-  "pct_vs_dma50": -7.1,
-  "dma100": 305.83,
-  "pct_vs_dma100": -14.3,
-  "dma200": 331.17,
-  "pct_vs_dma200": -20.9
+  "dma20": 273.72,
+  "pct_vs_dma20": -4.3,
+  "dma50": 281.26,
+  "pct_vs_dma50": -6.8,
+  "dma100": 304.99,
+  "pct_vs_dma100": -14.1,
+  "dma200": 330.66,
+  "pct_vs_dma200": -20.8
  },
  "trend": {
   "above_dma200": false,
@@ -41,12 +41,12 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 41.5,
-  "macd_pct": -2.21,
-  "macd_signal_pct": -1.54,
-  "macd_hist_pct": -0.67,
-  "bollinger_pctb": 0.31,
-  "atr_pct": 3.4
+  "rsi14": 41.4,
+  "macd_pct": -2.25,
+  "macd_signal_pct": -1.68,
+  "macd_hist_pct": -0.57,
+  "bollinger_pctb": 0.3,
+  "atr_pct": 3.24
  },
  "risk": {
   "volatility_1y_pct": 32.7,
@@ -55,8 +55,8 @@
   "max_drawdown_all_pct": -78.3,
   "var95_1d_pct": -3.19,
   "cvar95_1d_pct": -4.71,
-  "sharpe_1y": -1.13,
-  "sortino_1y": -1.52
+  "sharpe_1y": -1.12,
+  "sortino_1y": -1.5
  },
  "beta": {
   "raw": 1.23,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.46,
   "r_squared": 0.21,
-  "alpha_pct": -35.4
+  "alpha_pct": -35.6
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 293.99
+  "avg_daily_value_3m_cr": 292.21
  },
  "flags": [
   "large one-day move (40% on 2025-10-14): check for split, bonus or demerger"

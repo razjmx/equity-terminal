@@ -3,7 +3,7 @@
  "latest_fy": "2026-03-31",
  "status": "not meaningful",
  "reliability": "not meaningful",
- "price": 660.35,
+ "price": 678.3,
  "fair_value": null,
  "fair_low": null,
  "fair_high": null,
@@ -21,7 +21,7 @@
   "beta_used": 1.0,
   "beta_weeks": 59,
   "cost_of_equity_pct": 13.2,
-  "wacc_pct": 10.77,
+  "wacc_pct": 10.81,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
   "forecast_years": 10,
@@ -121,26 +121,26 @@
  ],
  "terminal": {
   "roic_pct": 10.8,
-  "fcff_cr": 390.0,
-  "pv_share_of_ev_pct": 77.0
+  "fcff_cr": 392.0,
+  "pv_share_of_ev_pct": 76.9
  },
  "bridge_cr": {
-  "enterprise_value": 4484.0,
+  "enterprise_value": 4457.0,
   "debt": 5550.0,
   "cash": 320.0,
   "investments": 13.0,
   "minority": 1.0,
-  "equity_value": -735.0,
+  "equity_value": -762.0,
   "shares_cr": 13.899,
-  "market_cap": 9178.0
+  "market_cap": 9428.0
  },
  "sensitivity": {
   "wacc_pct": [
-   8.77,
-   9.77,
-   10.77,
-   11.77,
-   12.77
+   8.81,
+   9.81,
+   10.81,
+   11.81,
+   12.81
   ],
   "terminal_growth_pct": [
    5.5,
@@ -151,45 +151,45 @@
   ],
   "fair_value": [
    [
-    101.9,
-    116.0,
-    135.0,
+    95.3,
+    108.1,
+    125.3,
     null,
     null
    ],
    [
-    -3.3,
-    -1.2,
-    0.9,
-    3.2,
-    5.4
+    -5.8,
+    -3.8,
+    -1.7,
+    0.5,
+    2.7
    ],
    [
-    -59.8,
-    -58.6,
-    -57.4,
-    -56.1,
-    -54.8
+    -61.8,
+    -60.7,
+    -59.5,
+    -58.2,
+    -56.9
    ],
    [
+    -106.9,
+    -106.4,
+    -105.9,
     -105.3,
-    -104.8,
-    -104.2,
-    -103.6,
-    -103.0
+    -104.7
    ],
    [
-    -142.4,
-    -142.4,
-    -142.4,
-    -142.3,
-    -142.2
+    -143.8,
+    -143.8,
+    -143.8,
+    -143.7,
+    -143.6
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 44.1,
+  "implied_ebit_margin_pct": 44.8,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "not meaningful",
   "note": "growth outside -10% to 60%"
@@ -200,7 +200,7 @@
   "tax": 0.25,
   "s2c": 0.5,
   "g1": 0.08,
-  "wacc": 0.1076936393095256,
+  "wacc": 0.1080985068135428,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

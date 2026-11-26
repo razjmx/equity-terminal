@@ -1,13 +1,13 @@
 Stocks analysed: 749 | errors: 1 | benchmark Nifty 500: True
-Flag counts: {'short history': 26, 'large one-day move': 13}
+Flag counts: {'short history': 25, 'large one-day move': 13}
 Beta (adjusted): median 1.13 | above 1.2: 278 | below 0.7: 25 | n = 707
-1Y volatility %: median 37.3 | 25th 30.9 | 75th 44.5
-Above own 200-DMA now: 346 of 735
-Breadth latest: {'pct_above_200dma': 47.07, 'pct_above_50dma': 47.8, 'pct_new_52w_high': 2.72, 'pct_new_52w_low': 2.18, 'stocks': 749.0} | 200-DMA share over the 3-year series: min 12.0, max 94.1
-Nifty 500: {'as_of': '2026-11-25', 'level': 24025.4, 'returns_pct': {'1m': 12.1, '3m': 2.1, '6m': 6.1, '1y': 0.9}, 'volatility_1y_pct': 14.9, 'max_drawdown_1y_pct': -14.8, 'pct_from_52w_high': -0.3}
-Nifty 50: {'as_of': '2026-11-25', 'level': 25819.25, 'returns_pct': {'1m': 14.2, '3m': 6.5, '6m': 8.9, '1y': -0.4}, 'volatility_1y_pct': 14.5, 'max_drawdown_1y_pct': -15.6, 'pct_from_52w_high': -1.9}
+1Y volatility %: median 37.4 | 25th 30.9 | 75th 44.5
+Above own 200-DMA now: 348 of 735
+Breadth latest: {'pct_above_200dma': 47.35, 'pct_above_50dma': 48.2, 'pct_new_52w_high': 2.45, 'pct_new_52w_low': 1.09, 'stocks': 749.0} | 200-DMA share over the 3-year series: min 12.0, max 94.1
+Nifty 500: {'as_of': '2026-11-26', 'level': 24086.5, 'returns_pct': {'1m': 11.5, '3m': 2.4, '6m': 5.0, '1y': 1.0}, 'volatility_1y_pct': 14.9, 'max_drawdown_1y_pct': -14.8, 'pct_from_52w_high': -0.1}
+Nifty 50: {'as_of': '2026-11-26', 'level': 25884.5, 'returns_pct': {'1m': 13.8, '3m': 6.9, '6m': 7.7, '1y': -0.5}, 'volatility_1y_pct': 14.5, 'max_drawdown_1y_pct': -15.6, 'pct_from_52w_high': -1.7}
 Large one-day move flags (13): ['CGCL', 'GPIL', 'HEGAM', 'MOTILALOFS', 'POLICYBZR', 'TMPV', 'VEDL', 'ABFRL', 'INDIAGLYCO', 'JSLL', 'PARAS', 'QUESS', 'STAR']
 Stale (0): []
-Top 10 by 1Y price return [symbol, %]: [('CUPID', 493.7), ('STLTECH', 400.5), ('SIGMAADV', 358.5), ('SANSERA', 206.8), ('ATHERENERG', 188.7), ('SHREEJISPG', 185.7), ('KMEW', 154.1), ('AEROFLEX', 153.8), ('CPPLUS', 150.6), ('LAURUSLABS', 140.7)]
-Bottom 10 by 1Y price return: [('INDIAGLYCO', -75.3), ('OSWALPUMPS', -68.4), ('INOXWIND', -64.2), ('ZAGGLE', -62.9), ('KEC', -62.1), ('LATENTVIEW', -60.2), ('JSLL', -58.3), ('RPOWER', -58.1), ('KPITTECH', -57.6), ('KAYNES', -56.7)]
+Top 10 by 1Y price return [symbol, %]: [('CUPID', 491.6), ('STLTECH', 414.0), ('SIGMAADV', 361.2), ('SANSERA', 202.9), ('SHREEJISPG', 191.2), ('ATHERENERG', 185.1), ('AEROFLEX', 165.4), ('KMEW', 156.0), ('CPPLUS', 152.0), ('SGMART', 150.2)]
+Bottom 10 by 1Y price return: [('INDIAGLYCO', -75.3), ('OSWALPUMPS', -67.8), ('INOXWIND', -62.4), ('KEC', -61.9), ('ZAGGLE', -59.2), ('LATENTVIEW', -58.6), ('RPOWER', -57.3), ('JSLL', -56.8), ('KPITTECH', -56.3), ('VIKRAMSOLR', -54.6)]
 Note: returns are price returns and exclude dividends.

@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "low confidence",
- "price": 5559.7,
- "fair_value": 836.9,
- "fair_low": 650.1,
- "fair_high": 1063.6,
- "upside_pct": -84.9,
+ "price": 5463.8,
+ "fair_value": 838.4,
+ "fair_low": 651.3,
+ "fair_high": 1065.4,
+ "upside_pct": -84.7,
  "flags": [
   "low return: ROIC 10.7% below WACC 12.5%",
   "far from price: model value is 15% of the market price"
@@ -15,7 +15,7 @@
  "assumptions": {
   "rf_pct": 7.2,
   "erp_pct": 6.0,
-  "beta_raw": 1.04,
+  "beta_raw": 1.05,
   "beta_used": 1.03,
   "beta_weeks": 156,
   "cost_of_equity_pct": 13.38,
@@ -120,17 +120,17 @@
  "terminal": {
   "roic_pct": 12.5,
   "fcff_cr": 1472.0,
-  "pv_share_of_ev_pct": 71.0
+  "pv_share_of_ev_pct": 71.1
  },
  "bridge_cr": {
-  "enterprise_value": 11165.0,
+  "enterprise_value": 11176.0,
   "debt": 6183.0,
   "cash": 925.0,
   "investments": 99.0,
   "minority": 53.0,
-  "equity_value": 5952.0,
+  "equity_value": 5963.0,
   "shares_cr": 7.727,
-  "market_cap": 42959.0
+  "market_cap": 42218.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -149,45 +149,45 @@
   ],
   "fair_value": [
    [
-    1334.6,
-    1351.4,
-    1369.7,
-    1390.0,
-    1413.1
+    1337.9,
+    1355.0,
+    1373.7,
+    1394.5,
+    1418.3
    ],
    [
-    1046.9,
-    1055.1,
-    1063.6,
-    1072.4,
-    1081.4
+    1048.7,
+    1056.9,
+    1065.4,
+    1074.2,
+    1083.2
    ],
    [
-    826.8,
-    831.8,
-    836.9,
-    842.3,
-    847.8
+    828.3,
+    833.2,
+    838.4,
+    843.8,
+    849.4
    ],
    [
-    645.0,
-    647.4,
-    650.1,
-    652.8,
-    655.7
+    646.2,
+    648.7,
+    651.3,
+    654.1,
+    657.0
    ],
    [
-    493.0,
-    493.6,
-    494.2,
-    495.0,
-    495.9
+    494.0,
+    494.6,
+    495.3,
+    496.0,
+    496.9
    ]
   ]
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 30.5,
+  "implied_ebit_margin_pct": 30.0,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
@@ -198,7 +198,7 @@
   "tax": 0.25,
   "s2c": 1.09313571829735,
   "g1": 0.09332070583633545,
-  "wacc": 0.1254244569911475,
+  "wacc": 0.12535392845307966,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -208,7 +208,7 @@
   "invest": 98.55,
   "minority": 53.06,
   "shares_cr": 7.726824396498039,
-  "roll": 1.086423732030786,
+  "roll": 1.0864651559761984,
   "mid_year": true
  }
 }

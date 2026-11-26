@@ -1,38 +1,38 @@
 {
  "symbol": "GPIL",
- "as_of": "2026-11-25",
- "rows": 1238,
- "price": 211.42,
+ "as_of": "2026-11-26",
+ "rows": 1239,
+ "price": 211.1,
  "returns_pct": {
-  "1m": 9.9,
-  "3m": -13.7,
-  "6m": -27.4,
-  "1y": -23.4,
-  "3y_cagr": -30.0,
-  "ytd": -20.5
+  "1m": 10.7,
+  "3m": -13.9,
+  "6m": -25.9,
+  "1y": -20.3,
+  "3y_cagr": -29.4,
+  "ytd": -20.7
  },
  "relative_strength_pp": {
-  "3m": -15.8,
-  "6m": -33.5,
-  "1y": -24.3
+  "3m": -16.4,
+  "6m": -31.0,
+  "1y": -21.4
  },
  "range": {
   "high_52w": 305.85,
   "low_52w": 190.74,
-  "pct_from_high": -30.9,
-  "pct_above_low": 10.8,
+  "pct_from_high": -31.0,
+  "pct_above_low": 10.7,
   "high_date": "2026-05-20",
   "low_date": "2026-10-26"
  },
  "moving_averages": {
-  "dma20": 209.99,
-  "pct_vs_dma20": 0.7,
-  "dma50": 215.64,
-  "pct_vs_dma50": -2.0,
-  "dma100": 230.55,
+  "dma20": 210.83,
+  "pct_vs_dma20": 0.1,
+  "dma50": 214.82,
+  "pct_vs_dma50": -1.7,
+  "dma100": 230.09,
   "pct_vs_dma100": -8.3,
-  "dma200": 253.21,
-  "pct_vs_dma200": -16.5
+  "dma200": 253.02,
+  "pct_vs_dma200": -16.6
  },
  "trend": {
   "above_dma200": false,
@@ -41,33 +41,33 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 47.3,
-  "macd_pct": 1.31,
-  "macd_signal_pct": 0.68,
-  "macd_hist_pct": 0.63,
-  "bollinger_pctb": 0.53,
-  "atr_pct": 4.13
+  "rsi14": 47.0,
+  "macd_pct": 1.0,
+  "macd_signal_pct": 0.74,
+  "macd_hist_pct": 0.25,
+  "bollinger_pctb": 0.51,
+  "atr_pct": 3.99
  },
  "risk": {
-  "volatility_1y_pct": 35.5,
-  "downside_deviation_pct": 24.2,
+  "volatility_1y_pct": 35.3,
+  "downside_deviation_pct": 23.9,
   "max_drawdown_1y_pct": -37.6,
   "max_drawdown_all_pct": -82.4,
-  "var95_1d_pct": -3.55,
-  "cvar95_1d_pct": -3.94,
-  "sharpe_1y": -0.78,
-  "sortino_1y": -1.14
+  "var95_1d_pct": -3.53,
+  "cvar95_1d_pct": -3.9,
+  "sharpe_1y": -0.67,
+  "sortino_1y": -0.99
  },
  "beta": {
   "raw": 1.19,
-  "adjusted": 1.13,
+  "adjusted": 1.12,
   "weeks": 156,
   "correlation": 0.29,
   "r_squared": 0.08,
-  "alpha_pct": -16.3
+  "alpha_pct": -16.5
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 30.96
+  "avg_daily_value_3m_cr": 30.65
  },
  "flags": [
   "large one-day move (80% on 2024-01-01): check for split, bonus or demerger"

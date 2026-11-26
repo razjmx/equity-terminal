@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 355.95,
- "fair_value": 127.3,
- "fair_low": 95.0,
- "fair_high": 187.3,
- "upside_pct": -64.2,
+ "price": 355.4,
+ "fair_value": 127.5,
+ "fair_low": 95.1,
+ "fair_high": 187.5,
+ "upside_pct": -64.1,
  "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
@@ -120,14 +120,14 @@
   "pv_share_of_ev_pct": 71.0
  },
  "bridge_cr": {
-  "enterprise_value": 3064.0,
+  "enterprise_value": 3065.0,
   "debt": 1336.0,
   "cash": 52.0,
   "investments": 0.0,
   "minority": 217.0,
-  "equity_value": 1563.0,
+  "equity_value": 1565.0,
   "shares_cr": 13.373,
-  "market_cap": 4760.0
+  "market_cap": 4753.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -146,44 +146,44 @@
   ],
   "fair_value": [
    [
-    247.3,
-    261.7,
-    279.6,
-    302.4,
-    332.9
+    247.5,
+    262.0,
+    279.9,
+    302.8,
+    333.4
    ],
    [
-    174.4,
-    180.4,
-    187.3,
-    195.5,
-    205.4
+    174.6,
+    180.6,
+    187.5,
+    195.7,
+    205.7
    ],
    [
-    123.6,
-    125.4,
-    127.3,
-    129.4,
-    131.6
+    123.7,
+    125.5,
+    127.5,
+    129.5,
+    131.8
    ],
    [
-    92.9,
+    93.0,
     94.0,
-    95.0,
-    96.1,
-    97.2
+    95.1,
+    96.2,
+    97.3
    ],
    [
-    68.8,
+    68.9,
     69.5,
-    70.2,
-    70.9,
-    71.7
+    70.3,
+    71.0,
+    71.8
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 47.0,
+  "implied_first_year_growth_pct": 46.9,
   "implied_ebit_margin_pct": 10.6,
   "implied_discount_rate_pct": 9.7,
   "implied_rate_note": "",
@@ -195,7 +195,7 @@
   "tax": 0.25,
   "s2c": 2.153912243019331,
   "g1": 0.11279199743963275,
-  "wacc": 0.12281338631889797,
+  "wacc": 0.1227847388152486,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -204,8 +204,8 @@
   "cash": 52.14,
   "invest": 0.0,
   "minority": 216.87,
-  "shares_cr": 13.372949221672089,
-  "roll": 1.0893164878733796,
+  "shares_cr": 13.372949221672087,
+  "roll": 1.089308478243006,
   "mid_year": true
  }
 }

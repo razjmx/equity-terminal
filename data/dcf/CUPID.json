@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "low confidence",
- "price": 366.35,
- "fair_value": 19.4,
+ "price": 371.1,
+ "fair_value": 19.5,
  "fair_low": 16.9,
  "fair_high": 22.8,
- "upside_pct": -94.7,
+ "upside_pct": -94.8,
  "flags": [
   "growth clamped: 2-year 44.7% to 30%",
   "growth gap: 2-year growth differs from 3-year CAGR (31.2%) by over 10 points",
@@ -19,8 +19,8 @@
   "beta_raw": 1.22,
   "beta_used": 1.15,
   "beta_weeks": 156,
-  "cost_of_equity_pct": 14.09,
-  "wacc_pct": 14.08,
+  "cost_of_equity_pct": 14.08,
+  "wacc_pct": 14.07,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
   "forecast_years": 10,
@@ -121,25 +121,25 @@
  "terminal": {
   "roic_pct": 20.0,
   "fcff_cr": 387.0,
-  "pv_share_of_ev_pct": 66.1
+  "pv_share_of_ev_pct": 66.2
  },
  "bridge_cr": {
-  "enterprise_value": 2210.0,
+  "enterprise_value": 2212.0,
   "debt": 56.0,
   "cash": 186.0,
   "investments": 58.0,
   "minority": 0.0,
-  "equity_value": 2397.0,
+  "equity_value": 2399.0,
   "shares_cr": 134.466,
-  "market_cap": 49262.0
+  "market_cap": 49900.0
  },
  "sensitivity": {
   "wacc_pct": [
-   12.08,
-   13.08,
-   14.08,
-   15.08,
-   16.08
+   12.07,
+   13.07,
+   14.07,
+   15.07,
+   16.07
   ],
   "terminal_growth_pct": [
    5.5,
@@ -150,7 +150,7 @@
   ],
   "fair_value": [
    [
-    24.9,
+    25.0,
     26.1,
     27.4,
     28.9,
@@ -160,13 +160,13 @@
     21.2,
     22.0,
     22.8,
-    23.7,
+    23.8,
     24.9
    ],
    [
     18.4,
     18.9,
-    19.4,
+    19.5,
     20.1,
     20.8
    ],
@@ -179,7 +179,7 @@
    ],
    [
     14.4,
-    14.6,
+    14.7,
     14.9,
     15.2,
     15.5
@@ -199,7 +199,7 @@
   "tax": 0.25,
   "s2c": 1.330201485732736,
   "g1": 0.3,
-  "wacc": 0.14076904632961673,
+  "wacc": 0.14072464459697742,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -209,7 +209,7 @@
   "invest": 57.635,
   "minority": 0.0,
   "shares_cr": 134.46607398549915,
-  "roll": 1.0909057954749894,
+  "roll": 1.090877052168436,
   "mid_year": true
  }
 }
