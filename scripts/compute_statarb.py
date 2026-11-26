@@ -34,6 +34,7 @@ ZWIN = 60          # days for the rolling mean and sd of the spread
 COST = 0.0010      # per leg per side (10 bps): round trip costs 2 * COST of gross exposure
 MIN_IND = 4
 SEED = 11
+JUMP = 0.20       # a one-day move beyond this may be an unadjusted split, bonus or demerger: such stocks are left out
 KEEP = 60          # pairs written to the page
 
 
@@ -155,7 +156,7 @@ def main():
         print("no index prices")
         sys.exit(1)
     cal = mk.index[-W:]
-    syms, inds, cols = [], [], []
+    syms, inds, cols, jumpers = [], [], [], []
     names = {}
     for row in uni:
         s = row["symbol"]
@@ -166,6 +167,9 @@ def main():
             continue
         c = c.reindex(cal)
         if c.notna().mean() < 0.95:
+            continue
+        if (c.ffill().bfill().pct_change().abs() > JUMP).any():
+            jumpers.append(s)
             continue
         syms.append(s)
         inds.append((row.get("industry") or "Other").strip() or "Other")
@@ -261,7 +265,7 @@ def main():
              f"stocks {len(syms)}, industries {len(groups)}, days {n} (formation {FORM}, hold-out {n - FORM}), pairs tested {tested}",
              f"passed on formation window: {len(sel)} (about {int(expected_false)} would pass by luck alone at 5%)",
              f"hold-out selected: {hold['selected']}", f"hold-out random:   {hold['random']}",
-             f"live pairs passing now: {n_live}, written {len(live)}", f"time {time.time() - t0:.0f}s"]
+             f"live pairs passing now: {n_live}, written {len(live)}", f"left out for a one-day move over {int(JUMP*100)}% (possible split or demerger): {len(jumpers)}", f"time {time.time() - t0:.0f}s"]
     open("data/statarb_log.txt", "w").write("\n".join(lines))
     print("\n".join(lines))
 
