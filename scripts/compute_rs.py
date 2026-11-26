@@ -6,7 +6,8 @@ Per stock and window: v = RS now, p = RS 5 sessions ago, u = crossed above 0 wit
 import csv, json, os, datetime
 import numpy as np
 
-PRICES, BENCH_FILE, OUT = "data/prices", "data/NIFTY500.csv", "data/rs.json"
+PRICES, OUT = "data/prices", "data/rs.json"
+BENCH_FILES = ["data/prices/NIFTY500.csv", "data/NIFTY500.csv"]
 WINDOWS = {"1w": 5, "3m": 63, "6m": 126, "1y": 252}
 LOOK = 5
 
@@ -25,7 +26,11 @@ def load(path):
 
 
 def main():
-    bench = load(BENCH_FILE)
+    bf = next((f for f in BENCH_FILES if os.path.exists(f)), None)
+    if not bf:
+        msg = "Nifty 500 history not found. Looked in: " + ", ".join(BENCH_FILES)
+        open("data/rs_log.txt", "w").write(msg + "\n"); print(msg); raise SystemExit(1)
+    bench = load(bf)
     syms = [r["symbol"] for r in csv.DictReader(open("data/universe.csv", newline="", encoding="utf-8-sig"))]
     ind = {}
     if os.path.exists("data/industry.csv"):
