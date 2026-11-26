@@ -1083,7 +1083,7 @@ async function ofExtra(s,box){
   if(cv){const dp=dl.dp.slice(-250),x=dl.d.slice(-250).map(z=>z.slice(2)),ma=dp.map((_,i)=>{const w=dp.slice(Math.max(0,i-19),i+1).filter(v=>v!=null);return w.length>=10?w.reduce((a,b)=>a+b,0)/w.length:null});
     lineChart(cv,[{name:'Delivery %',x,y:dp,color:'#8b94a3'},{name:'20d',x,y:ma,color:'#0f6b4a'}],{dec:0})}
 }
-const OFP={u:'all',sec:null,tf:'1d',ft:'grp'};
+const OFP={u:'all',sec:null,tf:'1d',ft:'add',bt:'bullish'};
 const RSS={w:'3m',b:'turn',sec:''};
 const RS_W=[['1w','1W'],['3m','3M'],['6m','6M'],['1y','1Y']],RS_TOL={'1w':2,'3m':5,'6m':7,'1y':10};
 const RS_B=[['turn','Turning up','Below 0 but rising and close to 0'],['up','Just crossed above 0','Moved from below to above 0 in the last 5 sessions'],['above','Above 0','Outperforming the Nifty 500'],['fade','Fading','Above 0 but falling and close to 0'],['below','Below 0','Underperforming the Nifty 500']];
@@ -1157,16 +1157,18 @@ async function orderFlowPage(){
      <div class="seg" id="oft" style="margin-bottom:12px">${Object.entries(TFN).map(([k,v])=>`<button data-k="${k}" class="${tf===k?'on':''}">${v[0]}</button>`).join('')}</div>
      ${tf==='1d'?`<p class="mut" style="margin:0 0 12px;font-size:12.5px">Data check against NSE's official end-of-day figures: <span class="pos">✓ ${qv} match</span> · <span class="warnc">~ ${qo} prices match, volume lower</span> · <span class="neg">! ${qw} price differs</span> · ${qp} pending or not checked. Delivery % is NSE's own figure.</p>`:`<p class="mut" style="margin:0 0 12px;font-size:12.5px">Longer views measure the whole window: change is the move over the period, VWAP, delta and value area cover all of it, and the score thresholds are widened. NSE verification applies to a single session, so it is shown on 1D only; Del % here is the average over the window.</p>`}
      <div class="seg" id="ofu" style="margin-bottom:12px">${U.map(([k,l])=>`<button data-k="${k}" class="${OFP.u===k?'on':''}">${l}</button>`).join('')}</div>
-     <div class="ofgrid"><div class="ofl">
+     <div class="ofgrid">
      <div class="card"><h3>Market X-ray <span class="mut" style="font-weight:400;font-size:12px">average ${tf==='1d'?'day':tn[1]} change by NSE group · click a group to filter the lists</span></h3>
       <div class="xray">${secs.map(o=>`<div class="xr${OFP.sec===o.k?' on':''}" data-k="${esc(o.k)}"><span class="xn">${esc(o.k)}</span><span class="xb"><i class="${o.avg>=0?'g':'r'}" style="width:${Math.abs(o.avg)/mx*50}%;${o.avg>=0?'left':'right'}:50%"></i></span><span class="xv ${cls(o.avg)}">${o.avg>=0?'+':''}${T.fmt(o.avg,2)}%</span><span class="xc mut">${o.b}↑ ${o.r}↓</span></div>`).join('')}</div>
       ${OFP.sec?`<p class="mut" style="font-size:12.5px;margin:8px 0 0">Showing ${esc(OFP.sec)} only · <a class="link" href="javascript:void(0)" id="xclr">clear filter</a></p>`:''}</div>
-      <div class="card"><h3>Strongest bullish</h3>${tb(top('bullish'))}</div><div class="card"><h3>Weakest (bearish)</h3>${tb(top('bearish'))}</div>
-     </div><div class="ofr">${fiiCard(FII,set)}</div></div>
+      ${(()=>{const fc=fiiCard(FII,set);return fc.a})()}
+      <div class="card"><div class="seg bttog" style="margin-bottom:10px"><button data-k="bullish" class="${OFP.bt==='bullish'?'on':''}">Strongest bullish</button><button data-k="bearish" class="${OFP.bt==='bearish'?'on':''}">Weakest (bearish)</button></div>${tb(top(OFP.bt))}</div>
+      ${fiiCard(FII,set).b}</div>
      <p class="mut" style="font-size:12px;margin-top:12px">Not exchange order-book data: bias and score are derived from price and volume (price vs VWAP, close position in the day's range, estimated buy/sell delta, day change, price vs point of control and the 5-day trend, scaled by relative volume). ✓ means that stock's day high, low, last price and volume match NSE's official end-of-day file; ~ means prices match but our volume is lower than NSE's; ! means a price differs. R:R is the distance from the nearest order-block zone to the next support or resistance against a stop just beyond the zone. Click a stock for its chart. Educational use only, not investment advice.</p>${btCard(BT)}`;
     document.querySelectorAll('#oft button').forEach(b=>b.onclick=async()=>{OFP.tf=b.dataset.k;OFS.tf=b.dataset.k;OFP.sec=null;if(OFP.tf!=='1d'&&!TFD)TFD=await get('data/orderflow_tf.json','json');draw()});
     document.querySelectorAll('#ofu button').forEach(b=>b.onclick=()=>{OFP.u=b.dataset.k;OFP.sec=null;draw()});
     document.querySelectorAll('.fiitab button').forEach(b=>b.onclick=()=>{OFP.ft=b.dataset.k;draw()});
+    document.querySelectorAll('.bttog button').forEach(b=>b.onclick=()=>{OFP.bt=b.dataset.k;draw()});
     document.querySelectorAll('.xr').forEach(e=>e.onclick=()=>{OFP.sec=OFP.sec===e.dataset.k?null:e.dataset.k;draw()});
     const c=$('#xclr');if(c)c.onclick=()=>{OFP.sec=null;draw()};
   };
@@ -1176,20 +1178,19 @@ async function orderFlowPage(){
 }
 
 function fiiCard(F,set){
-  if(!F)return '';
+  if(!F)return {a:'',b:''};
   const st=F.stocks.filter(x=>!set||set.has(x.s)),g={};
   st.forEach(x=>{const k=x.m||'Other',o=g[k]=g[k]||{k,n:0,cr:0,w:0,dw:0,fw:0,up:0,dn:0};o.n++;if(x.cr!=null){o.cr+=x.cr;o.w+=x.mc;o.dw+=x.d*x.mc;o.fw+=x.fii*x.mc}if(x.d>0.05)o.up++;if(x.d<-0.05)o.dn++});
   const secs=Object.values(g).filter(o=>o.n>=2).sort((a,b)=>b.cr-a.cr);
   const withCr=st.filter(x=>x.cr!=null),adds=[...withCr].sort((a,b)=>b.cr-a.cr).slice(0,10),cuts=[...withCr].sort((a,b)=>a.cr-b.cr).slice(0,10);
   const money=v=>(v>0?'+':v<0?'−':'')+'₹'+T.fmt(Math.abs(v),0);
   const lst=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">FII %</th><th class="num">Δ pp</th><th class="num">Est. ₹ cr</th></tr></thead><tbody>${a.map(x=>`<tr class="row" onclick="location.hash='#/stock/${esc(x.s)}/orderflow'"><td><b>${esc(x.s)}</b></td><td class="num">${T.fmt(x.fii,1)}</td><td class="num ${cls(x.d)}">${x.d>0?'+':''}${T.fmt(x.d,2)}</td><td class="num ${cls(x.cr)}">${money(x.cr)}</td></tr>`).join('')}</tbody></table>`;
-  const tabs=[['grp','By NSE group'],['add','Added most · bullish'],['cut','Cut most · bearish']],ft=OFP.ft||'grp';
-  const grp=`<div class="scroll"><table class="peer"><thead><tr><th>NSE group</th><th class="num">FII holding</th><th class="num">Change (pp)</th><th class="num">Est. value ₹ cr</th><th class="num">Stocks ↑ / ↓</th></tr></thead><tbody>${secs.map(o=>{const d=o.w?o.dw/o.w:null;return `<tr><td>${esc(o.k)}</td><td class="num">${o.w?T.fmt(o.fw/o.w,1)+'%':'–'}</td><td class="num ${cls(d)}">${d==null?'–':(d>0?'+':'')+T.fmt(d,2)}</td><td class="num ${cls(o.cr)}"><b>${money(o.cr)}</b></td><td class="num">${o.up} ↑ ${o.dn} ↓</td></tr>`}).join('')}</tbody></table></div>`;
-  const body=ft==='add'?`<h4 style="margin:0 0 6px">Foreign holding added most</h4>${lst(adds)}`:ft==='cut'?`<h4 style="margin:0 0 6px">Foreign holding cut most</h4>${lst(cuts)}`:grp;
-  return `<div class="card fiic"><h3>FII / FPI holding change <span class="mut" style="font-weight:400;font-size:12px">${esc(F.label)} vs ${esc(F.prev_label)} · ${st.length} stocks · quarterly</span></h3>
-   <div class="seg fiitab" style="margin-bottom:10px;flex-wrap:wrap">${tabs.map(([k,l])=>`<button data-k="${k}" class="${ft===k?'on':''}">${l}</button>`).join('')}</div>
-   ${body}
-   <p class="mut" style="font-size:12px;margin-top:10px"><b>How to read this.</b> Daily FII buying and selling by stock is not published. The only official stock-level view is the quarterly shareholding filing, so this compares the share of each company held by foreign investors in the latest quarter with the one before. The ₹ figure is that change × today's market cap: it is an estimate of value moved, and does not separate buying from price moves, new share issues or changes in other holders' stakes. The latest quarter can lag by up to 3 weeks after quarter end.</p></div>`;
+  const ft=OFP.ft==='cut'?'cut':'add';
+  const grp=`<div class="scroll fscroll"><table class="peer"><thead><tr><th>NSE group</th><th class="num">FII holding</th><th class="num">Change (pp)</th><th class="num">Est. value ₹ cr</th><th class="num">Stocks ↑ / ↓</th></tr></thead><tbody>${secs.map(o=>{const d=o.w?o.dw/o.w:null;return `<tr><td>${esc(o.k)}</td><td class="num">${o.w?T.fmt(o.fw/o.w,1)+'%':'–'}</td><td class="num ${cls(d)}">${d==null?'–':(d>0?'+':'')+T.fmt(d,2)}</td><td class="num ${cls(o.cr)}"><b>${money(o.cr)}</b></td><td class="num">${o.up} ↑ ${o.dn} ↓</td></tr>`}).join('')}</tbody></table></div>`;
+  const note=`<p class="mut" style="font-size:12px;margin:10px 0 0"><b>How to read this.</b> Daily FII buying and selling by stock is not published. The only official stock-level view is the quarterly shareholding filing, so this compares the share of each company held by foreign investors in the latest quarter with the one before. The ₹ figure is that change × today's market cap: it is an estimate of value moved, and does not separate buying from price moves, new share issues or changes in other holders' stakes. The latest quarter can lag by up to 3 weeks after quarter end.</p>`;
+  return {
+    a:`<div class="card fiig"><h3>FII / FPI holding by NSE group <span class="mut" style="font-weight:400;font-size:12px">${esc(F.label)} vs ${esc(F.prev_label)} · ${st.length} stocks · quarterly</span></h3>${grp}</div>`,
+    b:`<div class="card"><h3>FII / FPI holding by stock <span class="mut" style="font-weight:400;font-size:12px">${esc(F.label)} vs ${esc(F.prev_label)}</span></h3><div class="seg fiitab" style="margin-bottom:10px"><button data-k="add" class="${ft==='add'?'on':''}">Added most · bullish</button><button data-k="cut" class="${ft==='cut'?'on':''}">Cut most · bearish</button></div>${lst(ft==='add'?adds:cuts)}${note}</div>`};
 }
 function btCard(B){
   if(!B)return `<div class="card" style="margin-top:14px"><h3>How reliable is the score?</h3><p class="mut">The back-test has not been run yet. Run the <b>Order flow</b> workflow.</p></div>`;
