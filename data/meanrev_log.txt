@@ -1,0 +1,8 @@
+Run (UTC): 2026-11-26 04:38 UTC
+stocks 631, days 500; stocks now below -2.0: 41, above +2.0: 62; index z 1.75
+whole window, buy rule:   {'trades': 3129, 'mean_bps': 157.7, 'win': 59.4, 't': 8.73} | random entries {'trades': 3129, 'mean_bps': 14.4, 'win': 45.3, 't': 0.75} | vs index {'trades': 3129, 'mean_bps': 26.5, 'win': 53.2, 't': 1.63} | gap 143.3 bps (t 5.44)
+whole window, short rule: {'trades': 2767, 'mean_bps': -125.4, 'win': 53.3, 't': -5.44} | random entries {'trades': 2767, 'mean_bps': -236.4, 'win': 44.7, 't': -10.56} | vs index {'trades': 2767, 'mean_bps': -126.2, 'win': 53.1, 't': -5.73} | gap 111.0 bps (t 3.46)
+hold-out chosen (93): {'trades': 111, 'mean_bps': 77.9, 'win': 57.7, 't': 0.92}
+hold-out others (538): {'trades': 653, 'mean_bps': 37.1, 'win': 53.3, 't': 0.95}
+stocks passing the reversion test now: 30 (about 32 by luck)
+time 4s
