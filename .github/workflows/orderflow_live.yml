@@ -3,6 +3,10 @@ on:
   schedule:
     - cron: "*/15 4-10 * * 1-5"   # every 15 minutes; the script itself only works 09:25-15:45 IST
   workflow_dispatch:
+    inputs:
+      top_n:
+        description: "How many most-traded stocks (750 = all)"
+        default: "300"
 
 permissions:
   contents: write
@@ -14,7 +18,7 @@ concurrency:
 jobs:
   of-live:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,6 +31,7 @@ jobs:
         env:
           LIVE_FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
           OUT: /tmp/of_out
+          TOP_N: ${{ github.event.inputs.top_n || '300' }}
         run: python scripts/fetch_orderflow_live.py
       - name: Publish to the of-live branch
         run: |
