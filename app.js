@@ -213,6 +213,31 @@ function scatterChart(cv,pts,opt={}){   // pts: [{x,y,c,r,l}]
   const line=pts.filter(p=>p.line);ctx.strokeStyle=opt.lc||'#2f6fdb';ctx.lineWidth=1.6;ctx.beginPath();line.forEach((p,i)=>i?ctx.lineTo(X(p.x),Y(p.y)):ctx.moveTo(X(p.x),Y(p.y)));ctx.stroke();
   pts.filter(p=>!p.line).forEach(p=>{ctx.fillStyle=p.c||'#0f6b4a';ctx.beginPath();ctx.arc(X(p.x),Y(p.y),p.r||4,0,7);ctx.fill();if(p.l){ctx.fillStyle='#8b94a3';ctx.fillText(p.l,X(p.x)+6,Y(p.y)-5)}});
 }
+// ----- stock page: News tab (Micro = this company, Macro = India and world) -----
+function ago(iso){const t=Date.parse(iso);if(!isFinite(t))return '';const m=Math.max(0,(Date.now()-t)/60000);
+  if(m<60)return Math.max(1,Math.round(m))+' min ago';if(m<1440)return Math.round(m/60)+' h ago';const d=Math.round(m/1440);return d<=1?'yesterday':d+' days ago'}
+function newsList(items){return `<ul class="news">${items.map(x=>`<li><a href="${esc(x.u)}" target="_blank" rel="noopener noreferrer">${esc(x.t)}</a><div class="mut">${esc(x.s||'')}${x.s?' · ':''}${ago(x.d)}</div></li>`).join('')}</ul>`}
+async function newsTab(s,u){
+  const sub=$('#nsub'),box=$('#nbody');if(!sub||!box)return;
+  const L=(s[0]||'_').toUpperCase(),sh=/[A-Z]/.test(L)?L:'_';
+  const [Sd,Md]=await Promise.all([get(`data/news/s_${sh}.json`,'json'),get('data/news/macro.json','json')]);
+  let cur='micro';try{cur=localStorage.getItem('tl_ntab')||'micro'}catch(e){}if(cur!=='micro'&&cur!=='macro')cur='micro';
+  const foot=up=>`<p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News (India edition). Each link opens the publisher's own page. ${up?'Last collected '+esc(up)+' UTC. ':''}This is not investment advice, and a headline can be wrong or out of date.</p>`;
+  const draw=()=>{
+    sub.innerHTML=[['micro','Micro · '+esc(s)],['macro','Macro · India &amp; world']].map(t=>`<button data-k="${t[0]}" class="${t[0]===cur?'on':''}">${t[1]}</button>`).join('');
+    sub.querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=b.dataset.k;try{localStorage.setItem('tl_ntab',cur)}catch(e){}draw()});
+    if(cur==='micro'){
+      const it=(Sd&&Sd.stocks&&Sd.stocks[s])||[];
+      box.innerHTML=`<div class="card"><h3>News on ${esc((u&&u.company)||s)} <span class="tag">${it.length} headlines</span></h3>${it.length?newsList(it):'<p class="mut">'+(Sd?'No recent headlines found for this company.':'News has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.')+'</p>'}${foot(Sd&&Sd.updated)}</div>`;
+    }else{
+      const T0=(Md&&Md.topics)||[];
+      if(!T0.length){box.innerHTML='<div class="card"><p class="mut">Macro news has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.</p></div>';return}
+      box.innerHTML=['India','World'].map(g=>{const ts=T0.filter(t=>t.g===g&&t.items.length);return ts.length?`<h3 style="margin:16px 0 8px">${g==='India'?'India':'World'}</h3><div class="ngrid">${ts.map(t=>`<div class="card"><h3>${esc(t.n)}</h3>${newsList(t.items.slice(0,6))}</div>`).join('')}</div>`:''}).join('')+foot(Md.updated);
+    }
+  };
+  draw();
+}
+
 // ----- stock page: Quant tab -----
 async function quantTabs(s,tech){
   const box=$('#qbody');if(!box)return;
@@ -2175,8 +2200,8 @@ async function stock(s,tab){
   const ini=((words[0]||s)[0]+((words[1]||'')[0]||(words[0]||s)[1]||'')).toUpperCase();
   const stat=(k,val)=>`<div class="stat"><div class="k">${k}</div><div class="sv">${val}</div></div>`;
   const dl='';
-  const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['peers','Peers'],['orderflow','Order Flow'],['quant','Quant']];
-  const tabsH=`<div class="tabs">${TABS.map(t=>`<a href="#/stock/${esc(s)}/${t[0]}" class="${tab===t[0]?'on':''}${LOCKED_TABS.includes(t[0])?' lk':''}">${t[1]}</a>`).join('')}${['Compare','Shareholding','News & Events','Research Notes'].map(x=>`<span title="Coming later">${x}</span>`).join('')}<b class="mini">${esc(s)} <em>₹${T.fmt(price,2)}</em>${chg!=null?` <i class="${cls(chg)}">${chg>=0?'+':''}${T.fmt(chg,2)}%</i>`:''}</b></div>`;
+  const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['peers','Peers'],['orderflow','Order Flow'],['quant','Quant'],['news','News']];
+  const tabsH=`<div class="tabs">${TABS.map(t=>`<a href="#/stock/${esc(s)}/${t[0]}" class="${tab===t[0]?'on':''}${LOCKED_TABS.includes(t[0])?' lk':''}">${t[1]}</a>`).join('')}${['Compare','Shareholding','Research Notes'].map(x=>`<span title="Coming later">${x}</span>`).join('')}<b class="mini">${esc(s)} <em>₹${T.fmt(price,2)}</em>${chg!=null?` <i class="${cls(chg)}">${chg>=0?'+':''}${T.fmt(chg,2)}%</i>`:''}</b></div>`;
   let h=tabsH+`<div class="crumb"><a href="#/market">Research</a> › ${esc(s)}</div>
    <div class="card"><div class="sh"><div class="logo">${esc(ini)}</div>
     <div><h1>${esc(u.company||s)}</h1><div class="sub">${esc(s)}.NSE</div><span class="tag">${esc(u.industry||'')}</span>${V.market_cap_cr!=null?`<span class="tag">${capOf(V.market_cap_cr)}</span>`:''}${u.index==='microcap250'?'<span class="tag" title="In the Nifty Microcap 250, outside the Nifty 500. Data can be thinner and trading less liquid.">Microcap 250</span>':''}${met?`<span class="tag">${esc(met.type)}</span>`:''}</div>
@@ -2218,6 +2243,8 @@ async function stock(s,tab){
     h+='<div id="peerbody"><div class="skel" style="height:320px"></div></div>';
   }else if(tab==='orderflow'){
     h+='<div id="ofbody"><div class="skel" style="height:440px"></div></div>';
+  }else if(tab==='news'){
+    h+='<div class="subtabs" id="nsub"></div><div id="nbody"><div class="skel" style="height:300px"></div></div>';
   }else if(tab==='quant'){
     h+='<div class="subtabs" id="qsub"></div><div id="qbody"><div class="skel" style="height:300px"></div></div>';
   }
@@ -2247,6 +2274,7 @@ async function stock(s,tab){
   if(tab==='peers')peersTab(s);
   if(tab==='orderflow')ofStock(s);
   if(tab==='quant')quantTabs(s,technicals());
+  if(tab==='news')newsTab(s,u);
   if(tab==='valuation')valTabs(s,dcf,fin,rl,price,met,u);
 }
 
