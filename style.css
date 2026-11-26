@@ -576,3 +576,21 @@ html:not([data-tape="1"]) .tape{display:none}
 #acpanel .acsw input:focus-visible+.swi{outline:2px solid var(--brand);outline-offset:2px}
 #acpanel label.acsw{flex-direction:row;justify-content:space-between;align-items:center;gap:12px;margin:0;padding:8px 0;font-size:13.5px;color:var(--t)}
 #acpanel label.acsw input{width:0;height:0}
+
+/* ---- one-row header: logo, thought of the day, menu, search, account ---- */
+.acchip{display:none!important}
+.top{height:auto;min-height:56px;padding:8px 18px;flex-wrap:wrap;gap:10px 14px}
+.top .brand{order:1}.top .quote{order:2;flex:none;text-align:left;display:block;animation:none;position:relative}
+.top .topnav{order:5;flex:1 0 100%;margin:0 auto;max-width:max-content;background:var(--p);box-shadow:var(--sh)}
+.top .searchbox{order:3;margin-left:auto;flex:0 1 240px;width:240px;position:static;transform:none}
+.top #acct{order:4;margin-left:0}
+.top .searchbox #search{height:40px;width:100%;box-sizing:border-box;padding:0 16px;border-radius:999px;background:var(--p);box-shadow:var(--sh);border:1px solid var(--b)}
+.qbtn{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 13px;border-radius:999px;border:1px solid var(--b);background:var(--p);color:var(--t);font:600 13px inherit;font-family:inherit;cursor:pointer;white-space:nowrap}
+.qbtn:hover,.qbtn[aria-expanded="true"]{border-color:var(--brand);color:var(--brand)}
+.qbtn .qi{color:var(--brand);font-size:12px}
+.qpop{z-index:90;background:var(--p);border:1px solid var(--b);border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.18);padding:14px 16px;text-align:left}
+.qpop[hidden]{display:none}
+.qpop p{margin:0 0 8px;font-style:italic;font-size:14px;line-height:1.45;color:var(--t)}
+.qpop b{font-size:12px;color:var(--brand);letter-spacing:.02em}
+@media(min-width:1500px){.top .topnav{order:2;flex:0 1 auto;margin:0 auto}.top .quote{order:2}.top .brand{order:1}.top .searchbox{margin-left:0}.top .quote{margin-left:6px}}
+@media(max-width:860px){.top .brand{order:1}.top #acct{order:2;margin-left:auto}.top .quote{order:3;flex:1 0 100%}.top .searchbox{order:4;flex:1 0 100%;width:100%;margin:0}.top .topnav{order:5;max-width:100%;overflow-x:auto;margin:0;flex:1 0 100%}}
