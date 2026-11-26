@@ -647,3 +647,15 @@ html:not([data-tape="1"]) .tape{display:none}
 @media(max-width:860px){.mk{grid-template-columns:1fr}.mk-tf{order:-1;position:static;flex-direction:row;overflow-x:auto}.mk-side{order:-2}}
 .ixh{grid-template-columns:190px minmax(0,1fr)}
 @media(max-width:700px){.ixh{grid-template-columns:1fr}}
+/* side menus as bordered boxes (Order flow + Market overview) */
+.vseg,.mk-side{background:var(--p);border:1px solid var(--edge);border-radius:12px;padding:8px;box-shadow:var(--sh)}
+.vseg button.on,.mk-side a.on{background:var(--brand2);border:0;border-left:3px solid var(--brand);box-shadow:none}
+.mk-side{padding-top:8px}
+@media(max-width:860px){.vseg,.mk-side{padding:6px}}
+.mk{grid-template-columns:178px minmax(0,1fr) 84px}.mk-side a{white-space:nowrap}
+.ofl3{grid-template-columns:160px minmax(0,1fr) 84px}
+@media(max-width:860px){.mk,.ofl3{grid-template-columns:1fr}}
+.ofl3{grid-template-columns:142px minmax(0,1fr) 78px;gap:16px}
+.ofgrid .card>h3{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline}
+.ofgrid .card>h3 .mut{flex:1 1 auto;min-width:0}
+@media(max-width:860px){.ofl3{grid-template-columns:1fr}}
