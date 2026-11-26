@@ -217,15 +217,15 @@ function scatterChart(cv,pts,opt={}){   // pts: [{x,y,c,r,l}]
 async function quantTabs(s,tech){
   const box=$('#qbody');if(!box)return;
   const [Qd,F,Cal,PCA,IN]=await Promise.all([get(`data/quant/${s}.json`,'json'),get('data/quant/factors.json','json'),get('data/quant/cal.json','json'),get('data/quant/pca.json','json'),get(`data/quant/intraday/${s}.json`,'json')]);
-  const tabs=[['vol','Volatility & VaR'],['trend','Trend'],['fac','Factors'],['pca','Market structure'],['exe','Execution'],['opt','Options (binomial)'],['stat','Price statistics']];
+  const tabs=[['vol','Volatility & VaR'],['trend','Trend'],['fac','Factors'],['pca','Market structure'],['exe','Execution'],['opt','Options (binomial)'],['sim','Simulation'],['stat','Price statistics']];
   let cur='vol';try{cur=localStorage.getItem('tl_qtab')||'vol'}catch(e){}if(!tabs.some(t=>t[0]===cur))cur='vol';
   const sub=$('#qsub');
   const dates=Cal?Cal.d:[];
   const draw=()=>{
     sub.innerHTML=tabs.map(t=>`<button data-k="${t[0]}" class="${t[0]===cur?'on':''}">${t[1]}</button>`).join('');
     sub.querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=b.dataset.k;try{localStorage.setItem('tl_qtab',cur)}catch(e){}draw()});
-    const fns={vol:qVol,trend:qTrend,fac:qFac,pca:qPca,exe:qExe,opt:qOpt,stat:()=>tech||qnone('No risk data for this stock.')};
-    box.innerHTML=(cur==='stat'||Qd||cur==='exe'||cur==='fac'||cur==='opt')?fns[cur]():qnone(NOQ);
+    const fns={vol:qVol,trend:qTrend,fac:qFac,pca:qPca,exe:qExe,opt:qOpt,sim:qSim,stat:()=>tech||qnone('No risk data for this stock.')};
+    box.innerHTML=(cur==='stat'||Qd||cur==='exe'||cur==='fac'||cur==='opt'||cur==='sim')?fns[cur]():qnone(NOQ);
     if(cur==='stat')countUps(box);
     after[cur]&&after[cur]();
   };
@@ -316,6 +316,56 @@ async function quantTabs(s,tech){
         <label>Impact multiplier<input id="acm" type="number" min="0.1" step="0.1" value="1"></label></div>
       <div id="acout"></div></div>`;
   }
+  function qSim(){
+    const S=Qd&&Qd.px,vv=Qd&&Qd.vol&&Qd.vol.now?(Qd.vol.now.garch||Qd.vol.now.ewma||Qd.vol.now.real63):null;
+    if(!S)return qnone('This tool needs the stock price from the Quant models run.');
+    const step=S<50?1:S<200?5:S<1000?10:S<5000?50:100,K0=Math.round(S/step)*step;
+    return `<div class="card"><h3>Price simulation and Monte Carlo pricing <span class="tag">geometric Brownian motion</span></h3>
+     <p class="mut" style="margin:0 0 10px;font-size:13px">Simulates thousands of possible price paths for this stock. Each day the price moves by a drift plus a random shock scaled by volatility (dS = μ S dt + σ S dW). The paths give a range of outcomes, and averaging the option payoff over them gives a Monte Carlo option price to compare with Black-Scholes. This shows what the assumptions imply, not a forecast.</p>
+     <div class="qform"><label>Expected return % a year<input id="smu" type="number" step="0.5" value="12"></label>
+      <label>Volatility % <span class="mut" style="font-size:11px">model forecast</span><input id="svo" type="number" min="1" max="300" step="0.1" value="${vv!=null?T.fmt(vv,1):'30'}"></label>
+      <label>Days ahead (calendar)<input id="sda" type="number" min="1" max="1500" value="90"></label>
+      <label>Paths<select id="spa"><option>1000</option><option selected>5000</option><option>20000</option></select></label>
+      <label>Option type<select id="sty"><option value="call">Call</option><option value="put">Put</option></select></label>
+      <label>Strike ₹<input id="ske" type="number" min="0.01" step="any" value="${K0}"></label>
+      <label>Interest rate %<input id="srr" type="number" min="0" max="30" step="0.05" value="6.5"></label>
+      <label>Dividend yield %<input id="sqq" type="number" min="0" max="20" step="0.1" value="0"></label>
+      <button id="sre" type="button">New random paths</button></div>
+     <div id="sout"></div></div>`;
+  }
+  after.sim=()=>{
+    const S=Qd&&Qd.px;if(!S||!window.SIM||!$('#smu'))return;
+    let seed=1;
+    const g=id=>parseFloat($('#'+id).value),upd=()=>{
+      const out=$('#sout'),mu=(g('smu')||0)/100,vol=(g('svo')||0)/100,days=Math.max(1,g('sda')||90),Ty=days/365,n=parseInt($('#spa').value)||5000,K=g('ske'),r=(g('srr')||0)/100,q=(g('sqq')||0)/100,ty=$('#sty').value;
+      if(!(vol>0)||!(K>0)){out.innerHTML='<p class="mut">Enter a volatility and a strike.</p>';return}
+      const G=SIM.gbm({S,mu,vol,T:Ty,steps:Math.min(90,Math.max(10,Math.round(days/2))),n,seed}),fx=(v,d)=>T.fmt(v,d);
+      const Mb=SIM.mcPrice({S,K,T:Ty,r,q,vol,type:ty,n:200000,seed},[1000,10000,100000,200000]);
+      const bs=window.BT?BT.bs({S,K,T:Ty,r,q,vol,type:ty}):null;
+      const kf=vol>0?(mu-r)/(vol*vol):null;
+      const lab=G.t.map(t=>Math.round(t*365)+'d');
+      const lo=Math.min(...G.terminal),hi=Math.max(...G.terminal),a=G.q[5]*0.9,b=G.q[95]*1.1,bins=40,cnt=new Array(bins).fill(0);
+      G.terminal.forEach(v=>{const i=Math.min(bins-1,Math.max(0,Math.floor((v-a)/(b-a)*bins)));cnt[i]++});
+      const mx=Math.max(...cnt),call=ty==='call';
+      const hist=cnt.map((c,i)=>{const mid=a+(i+.5)*(b-a)/bins,itm=call?mid>K:mid<K;return `<div class="qcol" title="₹${fx(a+i*(b-a)/bins,0)} to ₹${fx(a+(i+1)*(b-a)/bins,0)}: ${fx(c/n*100,1)}%"><i class="${itm?'e':'o'}" style="height:${c/mx*100}%;max-width:none"></i></div>`}).join('');
+      const tile=qtile,row=(c)=>`<td>${fx(c.price,3)} <span class="mut" style="font-size:11px">± ${fx(1.96*c.se,3)}</span></td>`;
+      out.innerHTML=`<h4 style="margin:6px 0 4px">Possible prices over ${days} days <span class="tag">${n.toLocaleString('en-IN')} paths</span></h4>
+       <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">${tile('Median','₹'+fx(G.q[50],1),fx((G.q[50]/S-1)*100,1)+'% from today')}${tile('Middle 90% range','₹'+fx(G.q[5],0)+' to ₹'+fx(G.q[95],0),'5th to 95th percentile')}${tile('Chance of a loss',fx(G.pLoss*100,0)+'%','finish below today')}${tile('Down more than 10%',fx(G.pDown10*100,0)+'%','')}${tile('Up more than 10%',fx(G.pUp10*100,0)+'%','')}</div>
+       <canvas id="sfc" style="height:260px;margin-top:10px"></canvas>${qleg([['Median','#0f6b4a'],['25th / 75th','#2f6fdb'],['5th / 95th','#e08a00'],['A sample path','#8b94a3']])}
+       <p class="mut" style="font-size:12px">The bands widen with the square root of time. Real stocks have jumps and fatter tails than this model, so extreme outcomes are more likely than the 5th and 95th lines suggest, and volatility is not constant.</p>
+       <h4 style="margin:16px 0 4px">Where the paths end <span class="tag">green = option finishes in the money</span></h4><div class="qprof" style="height:110px;gap:1px">${hist}</div>
+       <h4 style="margin:22px 0 4px">Monte Carlo option price <span class="tag">${call?'call':'put'}, strike ₹${fx(K,2)}, risk-neutral</span></h4>
+       <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">${tile('Monte Carlo price','₹'+fx(Mb.price,2),'± ₹'+fx(1.96*Mb.se,2)+' (95%), '+Mb.n.toLocaleString('en-IN')+' paths')}${bs!=null?tile('Black-Scholes','₹'+fx(bs,2),'exact formula'):''}${bs!=null?tile('Difference','₹'+fx(Mb.price-bs,3),Math.abs(Mb.price-bs)<=1.96*Mb.se*1.5?'within the simulation error':'outside the simulation error','' ):''}</div>
+       <table class="stmt" style="margin-top:8px"><tr><th class="l">Paths</th>${Mb.conv.map(c=>`<th>${c.n.toLocaleString('en-IN')}</th>`).join('')}</tr><tr><td class="l">Price ₹ (± 95% error)</td>${Mb.conv.map(row).join('')}</tr></table>
+       <p class="mut" style="font-size:12px;margin-top:8px">Option pricing uses the risk-free rate as the drift, not the expected return above, so the answer does not depend on your view of the stock. The error shrinks with the square root of the number of paths: 100 times more paths gives about 10 times less error. Antithetic pairs (each random draw is also used with its sign flipped) cut the error further. For a plain European option Black-Scholes is exact and faster; Monte Carlo earns its place for payoffs that have no formula.</p>
+       <h4 style="margin:16px 0 4px">How much to hold? <span class="tag">continuous Kelly</span></h4>
+       <p style="margin:0">With the expected return and volatility above, the growth-optimal weight in this stock is <b>(μ − r) ÷ σ² = ${kf==null?'–':fx(kf*100,0)+'% of your capital'}</b>${kf!=null&&kf>1?', above 100%, which would need borrowing':''}${kf!=null&&kf<=0?', so no holding: the expected return does not beat the interest rate':''}. Half of that is the usual practical size. This is very sensitive to the expected return you type in, and small errors in it make the answer swing a lot: treat it as an upper bound, not a target. See Quant Lab → Position sizing for bet-by-bet Kelly.</p>`;
+      const sm=G.bands,x=lab,cv=$('#sfc');
+      if(cv)lineChart(cv,[{name:'5th',x,y:sm.q05,color:'#e08a00'},{name:'25th',x,y:sm.q25,color:'#2f6fdb'},{name:'Median',x,y:sm.q50,color:'#0f6b4a'},{name:'75th',x,y:sm.q75,color:'#2f6fdb'},{name:'95th',x,y:sm.q95,color:'#e08a00'}].concat(G.paths.slice(0,4).map((pp,i)=>({name:'path '+(i+1),x,y:pp,color:'#8b94a3'}))),{dec:0});
+    };
+    ['smu','svo','sda','spa','sty','ske','srr','sqq'].forEach(id=>{const e=$('#'+id);if(e)e.oninput=upd});
+    $('#sre').onclick=()=>{seed++;upd()};upd();
+  };
   function qOpt(){
     const S=Qd&&Qd.px,vv=Qd&&Qd.vol&&Qd.vol.now?(Qd.vol.now.garch||Qd.vol.now.ewma||Qd.vol.now.real63):null;
     if(!S)return qnone('This calculator needs the stock price from the Quant models run.');
@@ -395,18 +445,18 @@ async function quantTabs(s,tech){
   draw();
 }
 // ----- Quant Lab -----
-const QLS={tab:'rank',idx:'all',ind:'',liq:1,dir:'top',bt:'momentum',sp:0,mr:0,mrs:'over',pf:{syms:'',method:'hrp',cap:25,look:252,res:null}};
+const QLS={tab:'rank',idx:'all',ind:'',liq:1,dir:'top',bt:'momentum',sp:0,mr:0,mrs:'over',kp:{p:55,g:100,l:100,n:100},pf:{syms:'',method:'hrp',cap:25,look:252,res:null}};
 async function quantLab(){
   view.innerHTML=`<h2 style="margin:4px 0 2px">Quant Lab</h2><p class="mut" style="margin:0 0 14px">Factor rankings, factor back-tests, statistical risk factors and a portfolio builder, all computed from end-of-day data in this repository.</p><div class="subtabs" id="qlsub"></div><div id="qlbody"><div class="skel" style="height:360px"></div></div>`;
   const [F,PCA,SA,MR]=await Promise.all([get('data/quant/factors.json','json'),get('data/quant/pca.json','json'),get('data/quant/statarb.json','json'),get('data/quant/meanrev.json','json')]);
-  const tabs=[['rank','Factor rankings'],['bt','Factor back-test'],['pca','Market structure'],['mr','Mean reversion'],['pairs','Pairs (stat-arb)'],['port','Portfolio builder']];
+  const tabs=[['rank','Factor rankings'],['bt','Factor back-test'],['pca','Market structure'],['mr','Mean reversion'],['pairs','Pairs (stat-arb)'],['kelly','Position sizing (Kelly)'],['port','Portfolio builder']];
   const nm={};try{(await table('data/universe.csv')).forEach(r=>{nm[r.symbol]=r.company})}catch(e){}
   const draw=()=>{
     $('#qlsub').innerHTML=tabs.map(t=>`<button data-k="${t[0]}" class="${t[0]===QLS.tab?'on':''}">${t[1]}</button>`).join('');
     $('#qlsub').querySelectorAll('button').forEach(b=>b.onclick=()=>{QLS.tab=b.dataset.k;draw()});
     const b=$('#qlbody');
-    if(!F&&QLS.tab!=='port'&&QLS.tab!=='pairs'&&QLS.tab!=='mr'){b.innerHTML=qnone(NOQ);return}
-    ({rank:()=>labRank(b,F,nm,draw),bt:()=>labBt(b,F),pca:()=>labPca(b,PCA,nm),mr:()=>labMr(b,MR,draw),pairs:()=>labPairs(b,SA),port:()=>labPort(b,F,nm,PCA)})[QLS.tab]();
+    if(!F&&QLS.tab!=='port'&&QLS.tab!=='pairs'&&QLS.tab!=='mr'&&QLS.tab!=='kelly'){b.innerHTML=qnone(NOQ);return}
+    ({rank:()=>labRank(b,F,nm,draw),bt:()=>labBt(b,F),pca:()=>labPca(b,PCA,nm),mr:()=>labMr(b,MR,draw),kelly:()=>labKelly(b),pairs:()=>labPairs(b,SA),port:()=>labPort(b,F,nm,PCA)})[QLS.tab]();
   };
   draw();
 }
@@ -442,6 +492,27 @@ function labMr(b,MR,redraw){
     lineChart($('#mrc'),[{name:'z',x,y:zs,color:'#0f6b4a'},{name:'+2',x,y:zs.map(()=>2),color:'#c62828'},{name:'-2',x,y:zs.map(()=>-2),color:'#c62828'}],{dec:1,zero:true})};
   b.querySelectorAll('tr[data-m]').forEach(r=>r.onclick=()=>{QLS.mr=+r.dataset.m;b.querySelectorAll('tr[data-m]').forEach(q=>q.classList.toggle('on',q===r));paint()});
   paint();
+}
+function labKelly(b){
+  const K=QLS.kp,p=Math.min(99.9,Math.max(0.1,+K.p||55))/100,g=Math.max(0.01,(+K.g||100)/100),l=Math.min(100,Math.max(1,+K.l||100))/100,nb=Math.max(10,Math.min(1000,Math.round(+K.n||100)));
+  const R=SIM.kelly(p,g,l),fx=(v,d)=>T.fmt(v,d),pc=v=>fx(v*100,1)+'%';
+  const f0=R.f,sizes=[['Half Kelly',f0/2],['Full Kelly',f0],['Double Kelly',Math.min(f0*2,R.fmax)]];
+  const runs=f0>0?sizes.map(z=>[z[0],z[1],SIM.betRun(p,g,l,z[1],nb,3000,5)]):[];
+  const top=f0>0?Math.min(R.fmax,Math.max(f0*2.6,0.05)):Math.min(R.fmax,0.5),N=40,xs=[],ys=[];
+  for(let i=0;i<=N;i++){const f=top*i/N;xs.push(fx(f*100,0)+'%');const v=R.growth(f);ys.push(isFinite(v)?v*100:null)}
+  b.innerHTML=`<div class="card"><h3>Kelly criterion <span class="tag">how much to stake on a bet with an edge</span></h3>
+   <p class="mut" style="margin:0 0 10px;font-size:13px">If you repeat a bet that wins with probability p and pays a gain g per ₹1 staked (losing a fraction l of the stake otherwise), the Kelly fraction f* = p/l − (1−p)/g maximises the long-run growth of your capital. Betting more than that grows the capital more slowly and shakes it more; betting too much loses money in the long run even with an edge.</p>
+   <div class="qform"><label>Chance of winning %<input id="kp" type="number" min="0.1" max="99.9" step="0.5" value="${K.p}"></label>
+    <label>Gain when you win % of the stake<input id="kg" type="number" min="1" step="5" value="${K.g}"></label>
+    <label>Loss when you lose % of the stake<input id="kl" type="number" min="1" max="100" step="5" value="${K.l}"></label>
+    <label>Number of bets to simulate<input id="kn" type="number" min="10" max="1000" step="10" value="${K.n}"></label></div></div>
+   <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">${qtile('Expected value per ₹1 staked',(R.edge>=0?'+':'')+fx(R.edge,3),R.edge>0?'positive edge':'no edge',R.edge>0?'pos':'neg')}${qtile('Full Kelly stake',f0>0?pc(f0):'0%',f0>0?'of your capital each bet':'do not bet')}${qtile('Half Kelly',f0>0?pc(f0/2):'0%','the usual practical size')}${qtile('Growth at full Kelly',f0>0?fx(R.growth(f0)*100,2)+'% a bet':'–','compounded, per bet')}${qtile('Growth turns negative above',R.breakeven!=null?pc(R.breakeven):f0>0?'never (below 100%)':'–','over-betting point')}</div>
+   ${f0>0?`<div class="card"><h3>Growth against stake size</h3><canvas id="kcv" style="height:250px"></canvas><p class="mut" style="font-size:12px;margin:10px 0 0">Growth rate per bet, in %, for each stake as a share of capital. The peak is the Kelly fraction; the curve is flatter to the left, so staking a bit less than Kelly costs little growth and cuts the risk a lot, while staking more than Kelly is penalised quickly.</p></div>
+   <div class="card"><h3>What ${nb} bets in a row look like <span class="tag">3,000 simulated runs, ₹1 start</span></h3>
+   <table class="stmt"><tr><th class="l">Stake</th><th>Per bet</th><th>Median final</th><th>Bad case (10th pct)</th><th>Good case (90th pct)</th><th>Ends below start</th><th>A 50% drawdown on the way</th></tr>${runs.map(r=>`<tr><td class="l"><b>${r[0]}</b></td><td>${pc(r[1])}</td><td>${fx(r[2].median,2)}×</td><td>${fx(r[2].p10,2)}×</td><td>${fx(r[2].p90,2)}×</td><td>${fx(r[2].pLoss*100,0)}%</td><td>${fx(r[2].pDD50*100,0)}%</td></tr>`).join('')}</table>
+   <p class="mut" style="font-size:12px;margin:10px 0 0">Full Kelly has the best median growth but large swings: it often halves the capital at some point on the way. That is why most people use half or a quarter of it. The probability p and the payoffs are never known exactly, and an overestimated edge makes Kelly overbet, so treat the answer as an upper limit.</p></div>`:`<div class="card"><p style="margin:0"><b>No edge, no bet.</b> With a ${fx(p*100,0)}% chance of winning ${fx(g*100,0)}% against losing ${fx(l*100,0)}%, the expected value is not positive, so the Kelly fraction is zero. Raise the win probability or the payoff to see a stake.</p></div>`}`;
+  const bind=(id,k)=>{const e=$('#'+id);e.onchange=()=>{QLS.kp[k]=parseFloat(e.value);labKelly(b)}};bind('kp','p');bind('kg','g');bind('kl','l');bind('kn','n');
+  const cv=$('#kcv');if(cv)lineChart(cv,[{name:'Growth',x:xs,y:ys.map(v=>v==null?-50:v),color:'#0f6b4a'}],{dec:2,zero:true});
 }
 function labPairs(b,SA){
   if(!SA||!SA.pairs){b.innerHTML=qnone('Pairs data is not available yet. Run the Quant models workflow once.');return}
