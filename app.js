@@ -952,10 +952,14 @@ function aboutPage(){
   view.innerHTML=`<div class="rs" style="max-width:860px;margin:0 auto;text-align:left">
    <h2 style="text-align:left">About &amp; Support</h2>
    <div class="card"><h3>About</h3>
-    <p>Equity Terminal is a research terminal for Indian cash equities: the Nifty 500 and the Nifty Microcap 250 (about 750 stocks). It shows the market at a glance and gives each company a page with financials, valuation models and peer comparison.${c.author?` Built by ${esc(c.author)}.`:''}</p>
+    <p>Equity Terminal is a research terminal for Indian cash equities: the Nifty 500 and the Nifty Microcap 250 (about 750 stocks). It shows the market at a glance, gives each company a page with financials, valuation models and peer comparison, and adds order-flow and quantitative research tools, all calculated from public end-of-day data.${c.author?` Built by ${esc(c.author)}.`:''}</p>
     <ul class="mut" style="margin:6px 0 0 18px;line-height:1.7">
-     <li><b>Market Overview:</b> indices, sector heatmap and top gainers and losers.</li>
-     <li><b>Company Research:</b> overview, financials, valuation (DCF, P/B, multiples, DDM, residual income, asset based and a summary) and peers.</li>
+     <li><b>Market Overview:</b> indices, top gainers and losers, an NSE-style index heatmap (Broad, Sectoral, Thematic and Strategy indices, 1D to 1Y, click an index to see its stocks) and a stocks-by-industry heatmap.</li>
+     <li><b>Company Research:</b> overview, financials, valuation (DCF, P/B, multiples, DDM, residual income, asset based, NAV and a summary) and peers.</li>
+     <li><b>Order Flow:</b> delivery percentage and price-volume pressure for each stock, with a back-test and a check of our data against NSE's daily file.</li>
+     <li><b>Quant Lab:</b> factor rankings and back-tests, market structure (PCA), single-stock mean reversion, pairs (stat-arb), Kelly position sizing and a portfolio builder with a factor risk model.</li>
+     <li><b>On every stock, Quant tab:</b> volatility and VaR (GARCH), trend, factors, execution cost (VWAP / TWAP and impact cost), an option pricer (binomial tree, Black-Scholes) and a simulation tab (price paths and Monte Carlo pricing).</li>
+     <li><b>Screener:</b> filter the stock list. <b>Data health:</b> whether each data file is fresh, whether the automatic updates ran and whether the models pass their own checks. A small <b>i</b> button beside each model explains what it is and how to read it.</li>
     </ul>
     <p class="mut" style="font-size:13px;margin-top:10px">Data is end-of-day and refreshed automatically on weekdays. Prices and statements come from Yahoo Finance; the stock list, index lists and shareholding come from NSE. Size classes use market cap: large cap ₹${T.fmt(CAP_LARGE,0)} crore and above, mid cap ₹${T.fmt(CAP_MID,0)} to ₹${T.fmt(CAP_LARGE,0)} crore, small cap below ₹${T.fmt(CAP_MID,0)} crore.</p></div>
    <div class="card" style="margin-top:14px"><h3>Contact &amp; support</h3>
@@ -969,6 +973,10 @@ function aboutPage(){
     ${faq('A number looks wrong for one stock','Most figures come straight from Yahoo Finance, which can be incomplete or restated for some companies, especially banks, lenders and recently merged companies. Check the company\'s own results and report the symbol so we can look at it.')}
     ${faq('The data looks old','Open the footer at the bottom of any page: it shows when data was last updated. Prices refresh once a day after the market closes. If a page looks stale, hard refresh your browser.')}
     ${faq('Why does a model say "low reliability"?','Every model has limits. A dividend model, for example, undervalues companies that pay out little of their profit, so it is flagged for them. Use the Summary tab to compare all models and untick the ones that do not suit the stock.')}
+    ${faq('Are the prices live?','No. Everything is end-of-day and refreshes after the market closes, so the site is not for intraday trading decisions.')}
+    ${faq('Do the quant models predict prices?','No. They are research tools. Where a method can be tested on data it was not built from (pairs selection and mean reversion, for example), the page shows the result, including when it shows no edge. A model that fits the past can still fail in the future, and back-tests use today\'s index members, which flatters results.')}
+    ${faq('Why do the models sometimes say there is no edge?','That is deliberate. With hundreds of stocks and thousands of pairs, some patterns appear by luck, so the page compares each rule with random choices and with the index before calling anything an edge. A negative or neutral result is useful information.')}
+    ${faq('Do I need to log in?','Not while the site is open for testing. Suggestions are welcome through the contact details above.')}
     ${faq('Can I change the assumptions?','Yes. The default risk-free rate, equity risk premium and terminal growth are at the top of the Valuation tab, and every model has editable boxes for its own inputs. Edits inside a model last until you leave the page.')}
    </div>
    <p class="mut" style="font-size:12px;margin-top:14px">Model values are estimates from public data. This is not investment advice.</p></div>`;
