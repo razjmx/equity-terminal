@@ -1054,14 +1054,19 @@ function attachSuggest(inp){
   const box=document.createElement('div');box.className='sgl';box.hidden=true;wrap.appendChild(box);
   let items=[],cur=-1;
   const go=sym=>{box.hidden=true;inp.value='';inp.blur();location.hash='#/stock/'+sym};
-  const paint=()=>{box.innerHTML=items.map((u,i)=>`<div class="sgi${i===cur?' on':''}" data-s="${esc(u.symbol)}"><b>${esc(u.symbol)}</b><span>${esc(u.company)}</span></div>`).join('');box.hidden=!items.length};
+  const paint=()=>{box.innerHTML=items.map((u,i)=>`<div class="sgi${i===cur?' on':''}" data-s="${esc(u.symbol)}"><b>${esc(u.symbol)}</b><span>${esc(u.company)}</span></div>`).join('');box.hidden=!items.length;place()};
+  const place=()=>{   // on phones the list is pinned to the screen so no card or sticky bar can cover it
+    if(window.innerWidth<=860&&!box.hidden){const r=inp.getBoundingClientRect();box.style.cssText=`position:fixed;left:${Math.max(8,r.left)}px;width:${Math.min(window.innerWidth-16,r.width)}px;right:auto;top:${r.bottom+6}px;z-index:9999;max-height:50vh;overflow-y:auto`}
+    else box.style.cssText=''};
   const find=()=>{const q=inp.value.trim().toUpperCase();if(!q){items=[];cur=-1;paint();return}
     const U=(D.uni||[]);const sc=u=>{const s=u.symbol.toUpperCase(),c=(u.company||'').toUpperCase();return s===q?0:s.startsWith(q)?1:c.startsWith(q)?2:s.includes(q)?3:c.includes(q)?4:9};
     items=U.map(u=>[sc(u),u]).filter(x=>x[0]<9).sort((x,y)=>x[0]-y[0]||x[1].symbol.localeCompare(y[1].symbol)).slice(0,8).map(x=>x[1]);cur=items.length?0:-1;paint()};
   inp.addEventListener('input',find);
   inp.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){cur=Math.min(items.length-1,cur+1);paint();e.preventDefault()}else if(e.key==='ArrowUp'){cur=Math.max(0,cur-1);paint();e.preventDefault()}else if(e.key==='Enter'&&items[cur]){go(items[cur].symbol)}else if(e.key==='Escape'){box.hidden=true}});
-  box.addEventListener('mousedown',e=>{const t=e.target.closest('.sgi');if(t){e.preventDefault();go(t.dataset.s)}});
-  inp.addEventListener('blur',()=>setTimeout(()=>box.hidden=true,120));
+  const pick=e=>{const t=e.target.closest('.sgi');if(t&&!box.hidden){e.preventDefault();go(t.dataset.s)}};
+  box.addEventListener('pointerdown',pick);box.addEventListener('mousedown',pick);box.addEventListener('touchstart',pick,{passive:false});
+  window.addEventListener('resize',place);
+  inp.addEventListener('blur',()=>setTimeout(()=>box.hidden=true,250));
   inp.addEventListener('focus',()=>{if(inp.value)find()});
 }
 
