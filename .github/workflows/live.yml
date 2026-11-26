@@ -1,0 +1,49 @@
+name: Live prices
+on:
+  schedule:
+    - cron: "*/5 3-10 * * 1-5"   # every 5 minutes; the script itself only works 09:10-15:40 IST
+  workflow_dispatch:
+    inputs:
+      probe:
+        description: "Also test the single-stock quote call (1 = yes)"
+        default: "1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: live
+  cancel-in-progress: true
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install growwapi pyotp
+      - name: Fetch prices
+        env:
+          GROWW_TOTP_TOKEN: ${{ secrets.GROWW_TOTP_TOKEN }}
+          GROWW_TOTP_SECRET: ${{ secrets.GROWW_TOTP_SECRET }}
+          PROBE: ${{ github.event.inputs.probe || '0' }}
+          LIVE_FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
+          OUT: /tmp/live_out
+        run: python scripts/fetch_live.py
+      - name: Publish to the live branch
+        run: |
+          [ -f /tmp/live_out/live_log.txt ] || exit 0
+          cp -r /tmp/live_out /tmp/pub
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git checkout --orphan live-tmp
+          git rm -rf . -q
+          cp /tmp/pub/* .
+          git add -A
+          git commit -q -m "live $(date -u +%H:%M)"
+          git push -f origin HEAD:live
