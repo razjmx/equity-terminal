@@ -388,7 +388,7 @@ async function newsTab(s,u){   // company page: this company's headlines only
   const L=(s[0]||'_').toUpperCase(),sh=/[A-Z]/.test(L)?L:'_';
   const Sd=await get(`data/news/s_${sh}.json`,'json');
   const it=(Sd&&Sd.stocks&&Sd.stocks[s])||[];
-  box.innerHTML=`<div class="card"><h3>News on ${esc((u&&u.company)||s)} <span class="tag">${it.length} headlines</span></h3>${it.length?newsList(it):'<p class="mut">'+(Sd?'No recent headlines found for this company.':'News has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.')+'</p>'}<p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News (India edition). Each link opens the publisher's own page. ${Sd&&Sd.updated?'Last collected '+esc(Sd.updated)+' UTC. ':''}This is not investment advice, and a headline can be wrong or out of date.</p></div>`;
+  box.innerHTML=`<div class="card"><h3>News on ${esc((u&&u.company)||s)} <span class="tag">${it.length} headlines</span></h3>${it.length?'<div class="nscroll">'+newsList(it)+'</div>':'<p class="mut">'+(Sd?'No recent headlines found for this company.':'News has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.')+'</p>'}<p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News (India edition). Each link opens the publisher's own page. ${Sd&&Sd.updated?'Last collected '+esc(Sd.updated)+' UTC. ':''}This is not investment advice, and a headline can be wrong or out of date.</p></div>`;
 }
 async function macroNews(){   // Company research page: world news, split into Global and Domestic
   const sub=$('#msub'),box=$('#mbody'),nav=$('#mnav');if(!sub||!box)return;
@@ -404,7 +404,7 @@ async function macroNews(){   // Company research page: world news, split into G
     if(nav){nav.innerHTML=ts.length>1?ts.map(t=>[t.n,t.n]).map(([k,l])=>`<button data-k="${esc(k)}" class="${k===topic?'on':''}">${esc(l)}</button>`).join(''):'';
       nav.querySelectorAll('button').forEach(b=>b.onclick=()=>{topic=b.dataset.k;draw()})}
     const shownT=topic?ts.filter(t=>t.n===topic):ts;
-    box.innerHTML=ts.length?`<div class="ngrid one">${shownT.map(t=>`<div class="card"><h3>${esc(t.n)}</h3>${newsList(t.items.slice(0,12))}</div>`).join('')}</div><p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News. Each link opens the publisher's own page. ${Md&&Md.updated?'Last collected '+esc(Md.updated)+' UTC. ':''}Not investment advice.</p>`:`<div class="card"><p class="mut">${Md?'No headlines in this group yet.':'Macro news has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.'}</p></div>`;
+    box.innerHTML=ts.length?`<div class="ngrid one">${shownT.map(t=>`<div class="card"><h3>${esc(t.n)}</h3><div class="nscroll">${newsList(t.items)}</div></div>`).join('')}</div><p class="mut" style="font-size:12px;margin:14px 0 0">Headlines and links only, collected from Google News. Each link opens the publisher's own page. ${Md&&Md.updated?'Last collected '+esc(Md.updated)+' UTC. ':''}Not investment advice.</p>`:`<div class="card"><p class="mut">${Md?'No headlines in this group yet.':'Macro news has not been collected yet. Run the <b>News</b> workflow once from the Actions tab.'}</p></div>`;
   };
   draw();
 }
@@ -1429,7 +1429,8 @@ function renderMarket(anim){
         specs.push({id:'ix'+i,x:IN.t,layers:[{y:IN.y,type:'area'}],auto:true,dec:ix.real?0:1,intra:true,base:IN.pc,nfix:75});return}
       const a=W(ix.y),l=last(a),f=first(a),ch=l!=null&&f?(l/f-1)*100:null;
       h+=mcard('ix'+i,ix.name,{big:l==null?'–':T.fmt(l,ix.real?0:1),delta:ch==null?'':sgn(ch,MH.range==='1D'?2:1,'%'),dcls:cls(ch)});
-      specs.push({id:'ix'+i,x:X,layers:[{y:a,type:'area'}],auto:true,dec:ix.real?0:1})});h+='</div>'}
+      specs.push({id:'ix'+i,x:X,layers:[{y:a,type:'area'}],auto:true,dec:ix.real?0:1})});h+='</div>';
+    if(MH.range==='1D')h+=`<p class="mut ixnote">${MH.idx&&MH.idx.idx?'Index charts are intraday, session of '+esc(MH.idx.d)+', updated '+esc(MH.idx.gen.slice(11))+' UTC (refreshed about every 15 minutes in market hours).':'1D index charts show the last two closes (the intraday file is not available).'}</p>`}
 
   // top gainers and losers (second)
   {h+=sec('gl','Top gainers and losers','by index and time frame · from daily closes')+'<div id="glbox"></div>'}
@@ -1439,13 +1440,13 @@ function renderMarket(anim){
    h+='<div id="hmwrap"></div>'}
 
   const chips=[['idx','Indices'],['gl','Gainers & losers'],['ind','Heatmap']];
-  const bar=`<div class="mh-bar"><div class="chips">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</div>
-   <div class="seg" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div></div>
-   <div class="mut" style="font-size:12px;margin:-4px 0 6px">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes${MH.range==='1D'?(MH.idx&&MH.idx.idx?' · index charts: intraday, session of '+esc(MH.idx.d)+', updated '+esc(MH.idx.gen.slice(11))+' UTC':' · 1D index charts show the last two closes (intraday file not available)'):''}</div>`;
-  view.innerHTML=bar+'<div id="lvm"></div>'+h;liveMovers();
+  const bar=`<div class="mh-bar"><div class="seg" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div></div>`;
+  view.innerHTML=`<div class="mk"><aside class="mk-side">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</aside><div class="mk-main">${bar}<div id="lvm"></div>${h}<p class="mut mk-foot">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</p></div></div>`;liveMovers();
   // wire
   document.querySelectorAll('#mh-range button').forEach(b=>b.onclick=()=>{MH.range=b.dataset.r;renderMarket(true)});
-  document.querySelectorAll('.mh-bar .chips a').forEach(a=>a.onclick=()=>{const el=document.getElementById(a.dataset.s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})});
+  document.querySelectorAll('.mk-side a').forEach(a=>a.onclick=()=>{const el=document.getElementById(a.dataset.s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})});
+  if(!renderMarket._spy){renderMarket._spy=1;let tk=0;window.addEventListener('scroll',()=>{if(tk)return;tk=setTimeout(()=>{tk=0;const L=[...document.querySelectorAll('.mk-side a')];if(!L.length)return;const off=(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--h2'))||70)+40;let cur=L[0];L.forEach(a=>{const el=document.getElementById(a.dataset.s);if(el&&el.getBoundingClientRect().top<=off)cur=a});L.forEach(a=>a.classList.toggle('on',a===cur))},80)},{passive:true})}
+  {const L=document.querySelector('.mk-side a');if(L)L.classList.add('on')}
   document.querySelectorAll('tr.ind').forEach(tr=>tr.onclick=()=>{FILT.ind=tr.dataset.ind;FILT.q='';FILT.rel='all';location.hash='#/screener'});
   MH.charts=specs;specs.forEach(sp=>{const cv=document.getElementById(sp.id);if(cv)mchart(cv,sp,anim)});
   try{glPanel()}catch(e){}
