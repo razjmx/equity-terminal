@@ -63,7 +63,7 @@ def kind(text):
     if "result" in t: return "Results"
     return None
 
-def nse_feed(log):
+def nse_feed(log, known=()):
     """Corporate actions and board meetings for the next 90 days, one call each (NSE may refuse GitHub's servers)."""
     out = {}
     sess = requests.Session(); sess.headers.update(HDR)
@@ -82,23 +82,31 @@ def nse_feed(log):
             data = r.json(); data = data if isinstance(data, list) else data.get("data", [])
         except Exception as e:
             log.append(f"NSE {name}: failed ({type(e).__name__})"); continue
-        n = 0
+        n = 0; sk = {"no type": 0, "no date": 0, "past": 0, "not in universe": 0}; kinds = {}
+        if data: log.append(f"NSE {name} sample: " + json.dumps(data[0], default=str)[:420])
         for x in data:
             sym = (x.get("symbol") or "").strip().upper()
             if not sym: continue
             if mode == "act":
                 subj = x.get("subject") or x.get("purpose") or ""; k = kind(subj); d = nse_date(x.get("exDate") or x.get("recDate"))
-                if not k or k == "Results" or not d or d < today.isoformat(): continue
+                if k == "Results": continue
+                if not k: sk["no type"] += 1; continue
+                if not d: sk["no date"] += 1; continue
+                if d < today.isoformat(): sk["past"] += 1; continue
                 item = {"t": k, "d": d, "s": re.sub(r"\s+", " ", subj)[:90], "k": "exdate"}
             else:
                 purp = (x.get("bm_purpose") or x.get("purpose") or "") + " " + (x.get("bm_desc") or x.get("description") or "")
                 k = kind(purp); d = nse_date(x.get("bm_date") or x.get("meetingDate") or x.get("date"))
-                if not k or not d or d < today.isoformat(): continue
+                if not k: sk["no type"] += 1; continue
+                if not d: sk["no date"] += 1; continue
+                if d < today.isoformat(): sk["past"] += 1; continue
                 item = {"t": k, "d": d, "s": re.sub(r"\s+", " ", (x.get("bm_desc") or x.get("purpose") or ""))[:90], "k": "board"}
+            if known and sym not in known: sk["not in universe"] += 1; continue
+            kinds[item["t"]] = kinds.get(item["t"], 0) + 1
             lst = out.setdefault(sym, [])
             if not any(y["t"] == item["t"] and y["d"] == item["d"] and y["k"] == item["k"] for y in lst):
                 lst.append(item); n += 1
-        log.append(f"NSE {name}: {len(data)} rows, {n} upcoming items kept")
+        log.append(f"NSE {name}: {len(data)} rows, {n} upcoming items kept {kinds}; skipped {sk}")
     return out
 
 def main():
@@ -112,8 +120,8 @@ def main():
             elif out: stocks[sym] = out
     stamp = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M")
     nlog = []
-    nf = nse_feed(nlog)
     known = {r["symbol"] for r in uni}
+    nf = nse_feed(nlog, known)
     for sym, items in nf.items():
         if sym in known: stocks.setdefault(sym, {})["n"] = sorted(items, key=lambda y: y["d"])
     # a failed run must not wipe a good file
