@@ -1340,8 +1340,8 @@ async function marketLegacy(){
 }
 
 // ---------- market health (home) ----------
-const MH={data:null,range:'1Y',mode:'count',sort:{k:'r1m',d:-1},charts:[]};
-const RANGES={'1M':22,'3M':64,'6M':127,'1Y':253,'5Y':1261,'MAX':1e9};
+const MH={data:null,range:'1D',idx:null,mode:'count',sort:{k:'r1m',d:-1},charts:[]};
+const RANGES={'1D':2,'1M':22,'3M':64,'6M':127,'1Y':253,'5Y':1261,'MAX':1e9};
 const fMon=d=>new Date(d+'T00:00:00').toLocaleDateString('en-GB',{month:'short',year:'2-digit'});
 const fDay=d=>new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
 function mcol(){const c=getComputedStyle(document.documentElement),g=n=>c.getPropertyValue(n).trim();return {g:g('--g')||'#127a45',r:g('--r')||'#c62828',m:g('--m')||'#667085',p:g('--p')||'#fff',t:g('--t')||'#18202b',b:g('--brand')||'#0f6b4a'}}
@@ -1349,6 +1349,7 @@ function mchart(cv,spec,anim){
   const C=mcol(),dpr=window.devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;
   cv.width=w*dpr;cv.height=h*dpr;const ctx=cv.getContext('2d');
   const x=spec.x,n=x.length,L=4,R=10,Tp=10,B=20,lay=spec.layers;if(!n)return;
+  const nn=spec.nfix&&spec.nfix>n?spec.nfix:n,tmL=i=>{const m=555+5*i;return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
   const val=lay.map(l=>l.y.map(v=>v==null?null:(l.neg?-v:v)));
   let cum=null;
   if(spec.stack){let acc=new Array(n).fill(0);cum=val.map(a=>{const lo=acc,hi=acc.map((s,j)=>s+(a[j]||0));acc=hi;return {lo,hi}})}
@@ -1356,15 +1357,16 @@ function mchart(cv,spec,anim){
   const upd=v=>{if(v!=null&&isFinite(v)){lo=Math.min(lo,v);hi=Math.max(hi,v)}};
   if(cum)cum.forEach(c=>{c.hi.forEach(upd);c.lo.forEach(upd)});else val.forEach(a=>a.forEach(upd));
   if(lay.some(l=>l.type==='bars')||spec.zero||spec.stack)upd(0);
+  if(spec.base!=null)upd(spec.base);
   if(!isFinite(lo)){lo=0;hi=1}if(lo===hi){lo-=1;hi+=1}const pad=(hi-lo)*.08;if(!(spec.stack&&lo===0))lo-=pad;hi+=pad;
-  const X=i=>L+(w-L-R)*(n<2?.5:i/(n-1)),Y=v=>Tp+(h-Tp-B)*(1-(v-lo)/(hi-lo));
+  const X=i=>L+(w-L-R)*(nn<2?.5:i/(nn-1)),Y=v=>Tp+(h-Tp-B)*(1-(v-lo)/(hi-lo));
   const first=(a)=>{for(const v of a)if(v!=null)return v;return 0},lastv=a=>{for(let i=a.length-1;i>=0;i--)if(a[i]!=null)return a[i];return 0};
-  const base=spec.zero?0:first(val[0]);
-  const up=lastv(val[0])>=first(val[0]);
+  const base=spec.base!=null?spec.base:(spec.zero?0:first(val[0]));
+  const up=lastv(val[0])>=(spec.base!=null?spec.base:first(val[0]));
   let hov=null;
   function draw(prog,hv){
     ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);ctx.font='11px system-ui,sans-serif';
-    ctx.fillStyle=C.m;[0,.34,.67,1].forEach((f,k)=>{const i=Math.round((n-1)*f),t=fMon(x[i]);const tw=ctx.measureText(t).width;ctx.fillText(t,Math.max(2,Math.min(X(i)-tw/2,w-tw-2)),h-5)});
+    ctx.fillStyle=C.m;[0,.34,.67,1].forEach((f,k)=>{const i=Math.round((nn-1)*f),t=spec.intra?tmL(i):fMon(x[i]);const tw=ctx.measureText(t).width;ctx.fillText(t,Math.max(2,Math.min(X(i)-tw/2,w-tw-2)),h-5)});
     ctx.save();ctx.beginPath();ctx.rect(0,0,L+(w-L)*prog+2,h);ctx.clip();
     if(!spec.stack){ctx.strokeStyle=C.m;ctx.globalAlpha=.5;ctx.setLineDash([3,3]);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(L,Math.round(Y(base))+.5);ctx.lineTo(w-R,Math.round(Y(base))+.5);ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1}
     lay.forEach((l,li)=>{
@@ -1378,14 +1380,14 @@ function mchart(cv,spec,anim){
     if(prog>=1){lay.forEach((l,li)=>{if(l.type==='bars'||spec.stack)return;const a=val[li];let i=n-1;while(i>0&&a[i]==null)i--;if(a[i]==null)return;ctx.beginPath();ctx.arc(X(i),Y(a[i]),3.2,0,7);ctx.fillStyle=l.color||(spec.auto?(up?C.g:C.r):C.b);ctx.fill()})}
     if(hv!=null&&prog>=1){const xx=X(hv);ctx.strokeStyle=C.m;ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(xx,Tp);ctx.lineTo(xx,h-B);ctx.stroke();ctx.setLineDash([]);
       const rows=lay.map((l,li)=>({n:l.name||'',v:l.y[hv],c:l.color||(spec.auto?(up?C.g:C.r):C.b)})).filter(r=>r.v!=null);
-      const f=spec.fmt||(v=>T.fmt(v,spec.dec??0));const lines=[fDay(x[hv])].concat(rows.map(r=>(r.n?r.n+'  ':'')+f(r.v)));
+      const f=spec.fmt||(v=>T.fmt(v,spec.dec??0));const lines=[spec.intra?x[hv]:fDay(x[hv])].concat(rows.map(r=>(r.n?r.n+'  ':'')+f(r.v)));
       ctx.font='12px system-ui,sans-serif';const bw=Math.max(...lines.map(t=>ctx.measureText(t).width))+18,bh=10+lines.length*16;let bx=xx+10;if(bx+bw>w-2)bx=xx-10-bw;bx=Math.max(2,bx);
       ctx.fillStyle=C.p;ctx.strokeStyle='rgba(139,148,163,.5)';ctx.beginPath();ctx.roundRect?ctx.roundRect(bx,Tp,bw,bh,7):ctx.rect(bx,Tp,bw,bh);ctx.fill();ctx.stroke();
       lines.forEach((t,k)=>{ctx.fillStyle=k?(rows[k-1].c):C.t;ctx.font=(k?'12px':'bold 12px')+' system-ui,sans-serif';ctx.fillText(t,bx+9,Tp+15+k*16)})}
   }
   const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(anim&&!reduce){const t0=performance.now();(function st(t){const p=Math.min(1,(t-t0)/600);draw(1-Math.pow(1-p,3),null);if(p<1&&cv.isConnected)requestAnimationFrame(st)})(t0)}else draw(1,null);
-  const at=e=>{const r=cv.getBoundingClientRect(),px=(e.touches?e.touches[0].clientX:e.clientX)-r.left;hov=Math.min(n-1,Math.max(0,Math.round((px-L)/(w-L-R)*(n-1))));draw(1,hov)};
+  const at=e=>{const r=cv.getBoundingClientRect(),px=(e.touches?e.touches[0].clientX:e.clientX)-r.left;hov=Math.min(n-1,Math.max(0,Math.round((px-L)/(w-L-R)*(nn-1))));draw(1,hov)};
   cv.onpointermove=at;cv.onpointerdown=at;cv.onpointerleave=()=>draw(1,null);
 }
 function mcard(id,title,o={}){
@@ -1396,7 +1398,9 @@ async function market(){
   const data=await get('data/market_health.json','json');
   if(!data){const lg=await marketLegacy();view.insertAdjacentHTML('afterbegin','<div class="card"><h3>Market Health</h3><span class="mut">Run the Daily refresh once (it now includes compute_market_health.py) to unlock the grouped market dashboard.</span></div>');return lg}
   try{const ic=await get('data/industry.csv');D.ind={};if(ic)T.parseCSV(ic).forEach(r=>{if(r.symbol)D.ind[r.symbol]=r})}catch(e){D.ind={}}
-  MH.data=data;renderMarket(true);
+  MH.data=data;MH.idx=null;
+  try{if(window.OFLIVE_URL){const r=await fetch(window.OFLIVE_URL+'/idx.json?t='+Math.floor(Date.now()/60000),{cache:'no-store'});if(r.ok){const j=await r.json();if(j&&j.idx&&j.d>=data.last_date)MH.idx=j}}}catch(e){}
+  renderMarket(true);
 }
 function renderMarket(anim){
   const d=MH.data,S=d.series,N=RANGES[MH.range],pm=false,C=mcol();
@@ -1418,8 +1422,13 @@ function renderMarket(anim){
   // 1 indices
   if(d.indices.length){h+=sec('idx','Indices',d.real_indices?'':'built from our own stock universe, not official Nifty indices')+'<div class="mh-grid">';
     const IXO=['Nifty 50','Bank Nifty','Sensex','Nifty Midcap 150','Nifty Smallcap 250','Nifty 500'],ixr=n=>{const k=IXO.findIndex(x=>n.startsWith(x.replace('Nifty ','').replace(' 150','').replace(' 250',''))||n===x);return k<0?99:k};
-    d.indices.slice().sort((a,b)=>{const f=n=>{const i=IXO.indexOf(n);return i<0?(/mid cap/i.test(n)?3:/small cap/i.test(n)?4:99):i};return f(a.name)-f(b.name)}).forEach((ix,i)=>{const a=W(ix.y),l=last(a),f=first(a),ch=l!=null&&f?(l/f-1)*100:null;
-      h+=mcard('ix'+i,ix.name,{big:l==null?'–':T.fmt(l,ix.real?0:1),delta:ch==null?'':sgn(ch,1,'%'),dcls:cls(ch)});
+    d.indices.slice().sort((a,b)=>{const f=n=>{const i=IXO.indexOf(n);return i<0?(/mid cap/i.test(n)?3:/small cap/i.test(n)?4:99):i};return f(a.name)-f(b.name)}).forEach((ix,i)=>{
+      const IN=MH.range==='1D'&&MH.idx&&MH.idx.idx&&MH.idx.idx[ix.name];
+      if(IN&&IN.y&&IN.y.length>2&&IN.pc){const l=IN.y[IN.y.length-1],ch=(l/IN.pc-1)*100;
+        h+=mcard('ix'+i,ix.name,{big:T.fmt(l,ix.real?0:1),delta:sgn(ch,2,'%'),dcls:cls(ch)});
+        specs.push({id:'ix'+i,x:IN.t,layers:[{y:IN.y,type:'area'}],auto:true,dec:ix.real?0:1,intra:true,base:IN.pc,nfix:75});return}
+      const a=W(ix.y),l=last(a),f=first(a),ch=l!=null&&f?(l/f-1)*100:null;
+      h+=mcard('ix'+i,ix.name,{big:l==null?'–':T.fmt(l,ix.real?0:1),delta:ch==null?'':sgn(ch,MH.range==='1D'?2:1,'%'),dcls:cls(ch)});
       specs.push({id:'ix'+i,x:X,layers:[{y:a,type:'area'}],auto:true,dec:ix.real?0:1})});h+='</div>'}
 
   // top gainers and losers (second)
@@ -1432,7 +1441,7 @@ function renderMarket(anim){
   const chips=[['idx','Indices'],['gl','Gainers & losers'],['ind','Heatmap']];
   const bar=`<div class="mh-bar"><div class="chips">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</div>
    <div class="seg" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div></div>
-   <div class="mut" style="font-size:12px;margin:-4px 0 6px">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</div>`;
+   <div class="mut" style="font-size:12px;margin:-4px 0 6px">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes${MH.range==='1D'?(MH.idx&&MH.idx.idx?' · index charts: intraday, session of '+esc(MH.idx.d)+', updated '+esc(MH.idx.gen.slice(11))+' UTC':' · 1D index charts show the last two closes (intraday file not available)'):''}</div>`;
   view.innerHTML=bar+'<div id="lvm"></div>'+h;liveMovers();
   // wire
   document.querySelectorAll('#mh-range button').forEach(b=>b.onclick=()=>{MH.range=b.dataset.r;renderMarket(true)});
