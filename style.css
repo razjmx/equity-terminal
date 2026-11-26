@@ -616,3 +616,13 @@ html:not([data-tape="1"]) .tape{display:none}
 .fiig{contain:size;display:flex;flex-direction:column;overflow:hidden}
 .fiig .fscroll{flex:1;min-height:0;overflow:auto}
 @media(max-width:1000px){.ofgrid{grid-template-columns:1fr}.fiig{contain:none;max-height:520px}}
+.ofl3{display:grid;grid-template-columns:136px minmax(0,1fr) 74px;gap:18px;align-items:start}
+.ofl-m{min-width:0}
+.ofl-l,.ofl-r{position:sticky;top:calc(var(--h2,70px) + 18px)}
+.vseg{display:flex;flex-direction:column;gap:4px;padding:6px}
+.vseg button{width:100%;text-align:left;white-space:nowrap}
+.ofl-r button{text-align:center}
+@media(max-width:860px){.ofl3{grid-template-columns:1fr;gap:8px}.ofl-l,.ofl-r{position:static;flex-direction:row;overflow-x:auto}.ofl-l{order:1}.ofl-r{order:0}.ofl-m{order:2}.vseg button{width:auto;flex:0 0 auto}}
+.vseg{border:1px solid var(--b);border-radius:12px;background:var(--p)}
+.vseg button{border:0;border-radius:8px;padding:8px 12px;background:transparent;color:var(--m);cursor:pointer}
+.vseg button.on{background:var(--brand2);color:var(--brand);font-weight:700}
