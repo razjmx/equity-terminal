@@ -546,7 +546,7 @@ main{margin-left:auto;margin-right:auto}
 .evl li{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.evl .tag{white-space:nowrap}.evl b{font-weight:600}
 
 .rsgrid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:22px;align-items:start}.rsgrid .ngrid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}@media(max-width:900px){.rsgrid{grid-template-columns:1fr;gap:0}}
-@media(min-width:861px) and (max-width:1250px){.navrow{padding-left:64px;justify-content:flex-start}.topnav{max-width:100%;overflow-x:auto}.topnav a{padding:7px 8px;font-size:12.5px}}
+@media(min-width:861px) and (max-width:1250px){.navrow{padding-left:14px;justify-content:flex-start}.topnav{max-width:100%;overflow-x:auto}.topnav a{padding:7px 8px;font-size:12.5px}}
 
 .rsgrid{grid-template-columns:minmax(0,3fr) minmax(0,2fr);grid-template-rows:auto 1fr;column-gap:22px;row-gap:0;align-items:stretch}
 .rsgrid .lh{grid-area:1/1}.rsgrid .rh{grid-area:1/2}.rsgrid .lb{grid-area:2/1}.rsgrid .rb{grid-area:2/2}
@@ -557,7 +557,6 @@ main{margin-left:auto;margin-right:auto}
 .rsgrid .rscell{padding:0}
 .rsgrid .ngrid.one{grid-template-columns:1fr}
 
-.homeb{display:none}
-@media(min-width:861px){.homeb{display:block;position:absolute;left:18px;top:50%;transform:translateY(-50%) scale(.85);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;line-height:0}
-body.scrolled .homeb{opacity:1;pointer-events:auto;transform:translateY(-50%) scale(1)}
-.homeb .blogo{border-radius:9px;box-shadow:var(--sh);border:1px solid var(--b)}}
+
+/* whole top block stays put on desktop: header, ticker, menu */
+@media(min-width:861px){.top{position:sticky;top:0;z-index:60}.tape{position:sticky;top:var(--h1,56px);z-index:55}.navrow{position:sticky;top:var(--h2,90px);z-index:50}}
