@@ -22,8 +22,8 @@ H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
      "Referer": "https://www.nseindia.com/"}
 HOSTS = ("https://nsearchives.nseindia.com/content/indices/", "https://www.niftyindices.com/IndexConstituent/",
          "https://archives.nseindia.com/content/indices/")
-VER = 2                      # bump to retry every index that failed under an older version of the file-name guesses
-NOLIST = r"arbitrage|futures|inverse|leverage|1d rate|sme emerge|dividend points|\btr\b|\bpr\b"
+VER = 3                      # bump to retry every index that failed under an older version of the file-name guesses
+NOLIST = r"reits and invits$|arbitrage|futures|inverse|leverage|1d rate|sme emerge|dividend points|\btr\b|\bpr\b"
 BAD = {}                     # host -> consecutive errors this run (a host that keeps failing is dropped for the run)
 BUDGET = int(os.environ.get("BUDGET", "1200") or 1200)
 OUT = "data/index_constituents.json"
@@ -56,7 +56,26 @@ def candidates(name):
         for pat in (f"ind_Nifty{camel}_list.csv", f"ind_Nifty{camel}list.csv", f"ind_Nifty_{under}_list.csv", f"ind_nifty_{'_'.join(words)}_list.csv"):
             if pat not in out:
                 out.append(pat)
-    return out[:22]
+    # NSE often shortens words in file names (lowvol, eql weight, infra ...) and keeps symbols such as 25_50: try those spellings too
+    SHORT = [("lowvolatility", "lowvol"), ("volatility", "vol"), ("equalweight", "eqlwt"), ("equalweight", "eql"), ("equalweight", "equalwt"),
+             ("dividendopportunities", "dividendopp"), ("dividendopportunities", "divopp"), ("dividendopportunities", "divopps"), ("growthsectors", "growsect"), ("growthsectors", "growth"), ("infrastructure", "infra"),
+             ("servicessector", "service"), ("servicessector", "servicesector"), ("midcapliquid", "midcapliq"), ("liquid", "liq"),
+             ("noncyclicalconsumer", "noncyclicconsumer"), ("smallfinancebanksandmicrofinanceinstitutions", "sfbmfi"),
+             ("smallfinancebanksandmicrofinanceinstitutions", "smallfinancebanks"), ("evandnewageautomotive", "evnewageautomotive"),
+             ("evandnewageautomotive", "ev"), ("enhancedesg", "enhancedesg"), ("momentumquality", "momentumqual"), ("alphaquality", "alphaqual"),
+             ("indiainfrastructureandlogistics", "indiainfralogistics"), ("financialservices", "finservices")]
+    raw = re.sub(r"[^a-z0-9/\-:]", "", name.lower().replace("&", "and"))
+    syms = {re.sub(r"[/\-:]", "_", raw), re.sub(r"[/\-:]", "", raw)}
+    cores = {x[5:] if x.startswith("nifty") else x for x in syms | rests}
+    for core in list(cores):
+        for a, b in SHORT:
+            if a in core:
+                cores.add(core.replace(a, b))
+    for core in sorted(cores, key=len):
+        for pat in (f"ind_nifty{core}list.csv", f"ind_nifty{core}_list.csv"):
+            if pat not in out:
+                out.append(pat)
+    return out[:48]
 
 
 def get_list(fn):
