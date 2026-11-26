@@ -544,3 +544,5 @@ main{margin-left:auto;margin-right:auto}
 .ovh{margin:22px 0 10px}.ovgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}.ovg h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.ovg h3 .link{margin-left:auto;font-size:12.5px}.ovg .grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}@media(max-width:600px){.ovgrid{grid-template-columns:1fr}}
 
 .evl li{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.evl .tag{white-space:nowrap}.evl b{font-weight:600}
+
+.rsgrid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:22px;align-items:start}.rsgrid .ngrid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}@media(max-width:900px){.rsgrid{grid-template-columns:1fr;gap:0}}
