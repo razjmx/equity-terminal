@@ -705,3 +705,14 @@ html:not([data-tape="1"]) .tape{display:none}
 .ofscr{overflow-x:auto;min-width:0}.ofgrid .ofscr table.peer th,.ofgrid .ofscr table.peer td{padding:8px 7px}.ofgrid .ofscr table.peer th:first-child,.ofgrid .ofscr table.peer td:first-child{white-space:normal;min-width:96px;padding-left:4px}.ofgrid .ofscr .scbar{width:44px}
 .tabs{top:calc(var(--h2,57px) - 1px)}
 @media(max-width:860px){.tabs{top:0}}
+.scn .sc{cursor:pointer}.scn .sc.sel{outline:2px solid var(--brand);outline-offset:-2px}
+.smh{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:14px 0 4px}
+table.sm{border-collapse:collapse;font-size:13px;min-width:100%}
+table.sm th,table.sm td{padding:6px 8px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--b)}
+table.sm th small{display:block;font-size:10px;font-weight:400;color:var(--m)}
+table.sm th.hh small{display:none}
+table.sm td.l,table.sm th.l{text-align:left;position:sticky;left:0;background:var(--p);min-width:150px;z-index:1}
+table.sm .hh{color:var(--m);background:var(--bg)}
+table.sm .ro td{font-variant-numeric:tabular-nums}
+table.sm .er input,.smh input{width:62px;padding:4px 6px;text-align:right;border:1px solid var(--b);border-radius:6px;background:var(--p);color:var(--t);font:inherit;font-size:13px}
+table.sm input.ed,.smh input.ed{background:var(--brand2);border-color:var(--brand);font-weight:600}
