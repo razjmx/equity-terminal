@@ -30,20 +30,25 @@
     }
     return g;
   }
-  function value(m, wacc, gT, g1) {
+  function value(m, wacc, gT, g1, path) {
     // m: model block from saved JSON. rates are decimals.
-    const g = growthPath(g1, gT, m.n, m.hold_years);
-    let rev = m.rev, pv = 0, lastNopat = 0;
+    // path (optional): {g:[growth per year], m:[EBIT margin per year]} overrides the default growth fade and flat margin.
+    const g = path && path.g ? path.g : growthPath(g1, gT, m.n, m.hold_years);
+    const mg = t => path && path.m && path.m[t - 1] != null ? path.m[t - 1] : m.margin;
+    let rev = m.rev, pv = 0, lastNopat = 0; const rows = [];
     for (let t = 1; t <= m.n; t++) {
       const prev = rev; rev = prev * (1 + g[t - 1]);
-      const nopat = rev * m.margin * (1 - m.tax);
+      const ebit = rev * mg(t);
+      const nopat = ebit * (1 - m.tax);
       const reinv = (rev - prev) / m.s2c;
       const fcff = nopat - reinv;
-      pv += fcff / Math.pow(1 + wacc, t - (m.mid_year ? 0.5 : 0));
-      lastNopat = nopat;
+      const pvt = fcff / Math.pow(1 + wacc, t - (m.mid_year ? 0.5 : 0));
+      pv += pvt; lastNopat = nopat;
+      rows.push({ rev, ebit, nopat, reinv, fcff, pv: pvt });
     }
+    const mT = mg(m.n);
     const revT = rev * (1 + gT);
-    const nopatT = revT * m.margin * (1 - m.tax);
+    const nopatT = revT * mT * (1 - m.tax);
     let roic = m.roic_cap;
     if (m.roic_now != null) roic = Math.min(m.roic_cap, Math.max(m.roic_now, wacc));
     if (wacc <= gT + 0.001) return null;
@@ -53,7 +58,7 @@
     const pvTv = tv / Math.pow(1 + wacc, m.n - (m.mid_year ? 0.5 : 0) ) ;
     const ev = pv + pvTv;
     const eq = ev - m.debt + m.cash + m.invest - m.minority;
-    return { ev, eq, perShare: eq / m.shares_cr * (m.roll || 1), tvShare: pvTv / ev };
+    return { ev, eq, perShare: eq / m.shares_cr * (m.roll || 1), tvShare: pvTv / ev, rows, pvTv, tv };
   }
   function waccFrom(a, rf, erp, bridge) {
     // a: assumptions block (pct numbers), bridge: bridge_cr
@@ -69,7 +74,7 @@
     const w = inp.waccOverride != null ? { wacc: inp.waccOverride, ke: null } : waccFrom(a, inp.rf, inp.erp, d.bridge_cr);
     m.roic_now = a.roic_now_pct != null ? a.roic_now_pct / 100 : null;
     const g1 = inp.g1 != null ? inp.g1 : m.g1;
-    const r = value(m, w.wacc, inp.gT, g1);
+    const r = value(m, w.wacc, inp.gT, g1, inp.path);
     return r && Object.assign(r, { wacc: w.wacc, ke: w.ke, g1, gT: inp.gT });
   }
   function sensitivity(d, inp) {
@@ -108,6 +113,23 @@
     pv += b * (roe - g) / (ke - g) / Math.pow(1 + ke, n);
     return Math.max(0, pv);
   }
+  // Year-by-year bank model: path {roe:[..n], g:[..n]} (decimals). Book value grows at g, profit = ROE x opening book,
+  // cash to shareholders = profit - growth in book. Terminal P/B = (ROE_n - gT) / (ke - gT) on the closing book.
+  function finPath(f, inp, path) {
+    const m = f.model; if (!m || !m.bvps || m.bvps <= 0) return null;
+    const ke = inp.ke != null ? inp.ke : Math.min(0.20, Math.max(0.09, inp.rf + m.beta * inp.erp)), gT = inp.g, n = path.roe.length;
+    if (ke <= gT + 0.005) return null;
+    let bv = m.bvps, pv = 0; const rows = [];
+    for (let t = 1; t <= n; t++) {
+      const open = bv, eps = open * path.roe[t - 1]; bv = open * (1 + path.g[t - 1]);
+      const fcfe = eps - (bv - open), pvt = fcfe / Math.pow(1 + ke, t);
+      pv += pvt; rows.push({ bv, eps, fcfe, pv: pvt });
+    }
+    const roeT = Math.max(path.roe[n - 1], 0.001);
+    const pbT = Math.max(0, (roeT - gT) / (ke - gT)), tv = pbT * bv, pvTv = tv / Math.pow(1 + ke, n);
+    const fair = pv + pvTv;
+    return { ke, gT, rows, pbT, pvTv, fair: isFinite(fair) && fair > 0 ? fair : null };
+  }
   function finSens(f, inp) {
     const base = finModel(f, inp); if (!base) return null;
     const roes = [-0.04, -0.02, 0, 0.02, 0.04].map(x => base.roe + x);
@@ -115,6 +137,6 @@
     const bv = f.model.bvps;
     return { roes, kes, grid: roes.map(r => kes.map(k => (k > base.g + 0.005 && r > 0) ? pbTwo(r, k, base.g, base.nHi, base.gHi != null ? Math.min(base.gHi, r) : null) * bv : null)) };
   }
-  root.TL = { finModel, finSens, parseCSV, num, fmt, pct, value, recompute, sensitivity, waccFrom, growthPath };
+  root.TL = { finModel, finSens, finPath, parseCSV, num, fmt, pct, value, recompute, sensitivity, waccFrom, growthPath };
   if (typeof module !== 'undefined') module.exports = root.TL;
 })(typeof window !== 'undefined' ? window : globalThis);
