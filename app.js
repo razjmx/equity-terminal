@@ -1084,40 +1084,46 @@ async function ofExtra(s,box){
     lineChart(cv,[{name:'Delivery %',x,y:dp,color:'#8b94a3'},{name:'20d',x,y:ma,color:'#0f6b4a'}],{dec:0})}
 }
 const OFP={u:'all',sec:null,tf:'1d',ft:'add',bt:'bullish'};
-const RSS={w:'3m',b:'turn',sec:''};
+const RSS={w:'3m',b:'turn',sec:'',bm:'NIFTY500'};
 const RS_W=[['1w','1W'],['3m','3M'],['6m','6M'],['1y','1Y']],RS_TOL={'1w':2,'3m':5,'6m':7,'1y':10};
-const RS_B=[['turn','Turning up','Below 0 but rising and close to 0'],['up','Just crossed above 0','Moved from below to above 0 in the last 5 sessions'],['above','Above 0','Outperforming the Nifty 500'],['fade','Fading','Above 0 but falling and close to 0'],['below','Below 0','Underperforming the Nifty 500']];
+const RS_B=[['turn','Turning up','Below 100 but rising and close to 100'],['up','Just crossed above 100','Moved from below to above 100 in the last 5 sessions'],['above','Above 100','Outperforming the benchmark'],['fade','Fading','Above 100 but falling and close to 100'],['below','Below 100','Underperforming the benchmark']];
 async function relStrength(){
   view.innerHTML='<div class="skel" style="height:300px"></div>';
-  const D=await get('data/rs.json','json');
+  let D=await get('data/rs.json','json');
+  const BL=(D&&D.benches&&D.benches.length)?D.benches:[{k:'NIFTY500',n:'Nifty 500'}];
+  if(!BL.some(b=>b.k===RSS.bm))RSS.bm='NIFTY500';
+  if(D&&RSS.bm!=='NIFTY500'){const D2=await get('data/rs_'+RSS.bm+'.json','json').catch(()=>null);if(D2&&D2.stocks)D=D2;else RSS.bm='NIFTY500'}
+  const BN=(BL.find(b=>b.k===RSS.bm)||{n:'Nifty 500'}).n;
   if(!D||!D.stocks||!D.stocks.length){view.innerHTML='<div class="card"><h3>Relative strength</h3><p class="mut">Not built yet. Run the <b>Relative strength</b> workflow in the Actions tab once; after that it updates every weekday evening.</p></div>';return}
   const P=await get('data/peers.json','json');const nm={};if(P&&P.stocks)P.stocks.forEach(x=>nm[x.s]=x.n);
   const draw=()=>{
     const wi=RS_W.findIndex(x=>x[0]===RSS.w),tol=RS_TOL[RSS.w],look=D.look||5;
     const all=D.stocks.filter(x=>x.v[wi]!=null);
     const cls_=x=>{const v=x.v[wi],p=x.p[wi],o={};
-      o.above=v>0;o.below=v<0;o.up=!!x.u[wi];
-      o.turn=v<0&&v>p&&v>-tol;o.fade=v>0&&v<p&&v<tol;return o};
+      o.above=v>100;o.below=v<100;o.up=!!x.u[wi];
+      o.turn=v<100&&v>p&&v>100-tol;o.fade=v>100&&v<p&&v<100+tol;return o};
     const cnt={};RS_B.forEach(b=>cnt[b[0]]=0);all.forEach(x=>{const o=cls_(x);RS_B.forEach(b=>{if(o[b[0]])cnt[b[0]]++})});
     const secs=[...new Set(all.map(x=>x.m).filter(Boolean))].sort();
     let rows=all.filter(x=>cls_(x)[RSS.b]&&(!RSS.sec||x.m===RSS.sec));
     const key=RSS.b;
-    rows.sort((a,b)=>key==='turn'||key==='fade'?Math.abs(a.v[wi])-Math.abs(b.v[wi]):key==='below'?a.v[wi]-b.v[wi]:b.v[wi]-a.v[wi]);
+    rows.sort((a,b)=>key==='turn'||key==='fade'?Math.abs(a.v[wi]-100)-Math.abs(b.v[wi]-100):key==='below'?a.v[wi]-b.v[wi]:b.v[wi]-a.v[wi]);
     const shown=rows.slice(0,draw.all?rows.length:100);
     const pa=Math.round(cnt.above/all.length*100);
-    const f=v=>(v>=0?'+':'')+T.fmt(v,1)+'%';
-    const row=x=>`<tr class="row" onclick="location.hash='#/stock/${esc(x.s)}'"><td><b>${esc(x.s)}</b><div class="mut" style="font-size:11px">${esc((nm[x.s]||'').slice(0,28))}</div></td><td class="num ${cls(x.v[wi])}"><b>${f(x.v[wi])}</b></td><td class="num mut">${f(x.p[wi])}</td><td class="num ${cls(x.v[wi]-x.p[wi])}">${(x.v[wi]-x.p[wi]>=0?'+':'')+T.fmt(x.v[wi]-x.p[wi],1)}</td><td class="mut" style="font-size:12px">${esc(x.m||'')}</td></tr>`;
+    const f=v=>T.fmt(v,1);
+    const row=x=>`<tr class="row" onclick="location.hash='#/stock/${esc(x.s)}'"><td><b>${esc(x.s)}</b><div class="mut" style="font-size:11px">${esc((nm[x.s]||'').slice(0,28))}</div></td><td class="num ${cls(x.v[wi]-100)}"><b>${f(x.v[wi])}</b></td><td class="num mut">${f(x.p[wi])}</td><td class="num ${cls(x.v[wi]-x.p[wi])}">${(x.v[wi]-x.p[wi]>=0?'+':'')+T.fmt(x.v[wi]-x.p[wi],1)}</td><td class="mut" style="font-size:12px">${esc(x.m||'')}</td></tr>`;
     const bd=RS_B.find(b=>b[0]===RSS.b);
     view.innerHTML=`<h1 style="margin:0 0 4px;font-size:24px">Relative strength</h1>
-     <p class="mut" style="margin:0 0 12px">Stock return vs Nifty 500 over the window, as of ${esc(D.asof)} · same formula as the TradingView indicator: (stock ÷ stock N days ago) ÷ (Nifty 500 ÷ Nifty 500 N days ago) − 1 · ${all.length} stocks</p>
+     <p class="mut" style="margin:0 0 12px">Comparative relative strength against ${esc(BN)}, as of ${esc(D.asof)} · <b>(1 + stock return) ÷ (1 + benchmark return) × 100</b> over the window · 100 means moving with the benchmark · ${all.length} stocks</p>
+     <div class="rsbm"><label>Benchmark <select id="rsbm">${BL.map(b=>`<option value="${esc(b.k)}"${RSS.bm===b.k?' selected':''}>${esc(b.n)}</option>`).join('')}</select></label></div>
      <div class="seg" id="rsw" style="margin-bottom:12px">${RS_W.map(([k,l])=>`<button data-k="${k}" class="${RSS.w===k?'on':''}">${l}</button>`).join('')}</div>
-     <div class="card" style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span class="pos"><b>${cnt.above}</b> above 0 (${pa}%)</span><span class="neg"><b>${cnt.below}</b> below 0 (${100-pa}%)</span></div><div class="scbar" style="height:10px;width:100%"><i class="g" style="width:${pa}%;height:100%"></i></div></div>
+     <div class="card" style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span class="pos"><b>${cnt.above}</b> above 100 (${pa}%)</span><span class="neg"><b>${cnt.below}</b> below 100 (${100-pa}%)</span></div><div class="scbar" style="height:10px;width:100%"><i class="g" style="width:${pa}%;height:100%"></i></div></div>
      <div class="seg" id="rsb" style="margin-bottom:8px;flex-wrap:wrap">${RS_B.map(([k,l])=>`<button data-k="${k}" class="${RSS.b===k?'on':''}">${l} · ${cnt[k]}</button>`).join('')}</div>
-     <p class="mut" style="font-size:12.5px;margin:0 0 10px">${bd[2]}. ${key==='turn'||key==='fade'?'Close to 0 means within '+tol+' percentage points. ':''}Rising or falling is measured against ${look} sessions ago.</p>
+     <p class="mut" style="font-size:12.5px;margin:0 0 10px">${bd[2]}. ${key==='turn'||key==='fade'?'Close to 100 means within '+tol+' points. ':''}Rising or falling is measured against ${look} sessions ago.</p>
      <div style="margin-bottom:10px"><select id="rss" class="inp" style="max-width:260px"><option value="">All sectors</option>${secs.map(m=>`<option ${RSS.sec===m?'selected':''}>${esc(m)}</option>`).join('')}</select></div>
-     <div class="card" style="padding:0;overflow:auto"><table class="peer"><thead><tr><th>Stock</th><th class="num">RS now</th><th class="num">${look} days ago</th><th class="num">Change (pts)</th><th>Sector</th></tr></thead><tbody>${shown.length?shown.map(row).join(''):'<tr><td colspan="5" class="mut">No stocks in this group right now</td></tr>'}</tbody></table></div>
+     <div class="card" style="padding:0;overflow:auto"><table class="peer"><thead><tr><th>Stock</th><th class="num">RS now (base 100)</th><th class="num">${look} days ago</th><th class="num">Change (pts)</th><th>Sector</th></tr></thead><tbody>${shown.length?shown.map(row).join(''):'<tr><td colspan="5" class="mut">No stocks in this group right now</td></tr>'}</tbody></table></div>
      ${rows.length>shown.length?`<p style="margin:10px 0"><a class="link" href="javascript:void(0)" id="rsall">Show all ${rows.length}</a></p>`:`<p class="mut" style="margin:10px 0;font-size:12.5px">${rows.length} stocks</p>`}
-     <p class="mut" style="font-size:12px;margin-top:12px">Computed from daily closing prices against the Nifty 500; 1W = 5, 3M = 63, 6M = 126 and 1Y = 252 trading days. A reading above 0 means the stock beat the index over that window. Not investment advice.</p>`;
+     <p class="mut" style="font-size:12px;margin-top:12px">Computed from daily closing prices against ${esc(BN)}: RS = (1 + stock return) ÷ (1 + benchmark return) × 100; 1W = 5, 3M = 63, 6M = 126 and 1Y = 252 trading days. Above 100 means the stock beat the benchmark over that window, below 100 means it lagged. Not investment advice.</p>`;
+    const bsel=$('#rsbm');if(bsel)bsel.onchange=()=>{RSS.bm=bsel.value;draw.all=false;relStrength()};
     document.querySelectorAll('#rsw button').forEach(b=>b.onclick=()=>{RSS.w=b.dataset.k;draw.all=false;draw()});
     document.querySelectorAll('#rsb button').forEach(b=>b.onclick=()=>{RSS.b=b.dataset.k;draw.all=false;draw()});
     const sl=$('#rss');if(sl)sl.onchange=()=>{RSS.sec=sl.value;draw.all=false;draw()};
@@ -1784,8 +1790,8 @@ const SC_LIB=[
   ['Momentum leaders','Up over 1 month and 1 year, above the 200-day average','1 month return > 5 AND\n1 year return > 15 AND\nAbove 200 DMA'],
   ['Oversold stocks','RSI below 30','RSI < 30'],
   ['Strong but not stretched','RSI between 50 and 70, above the 200-day average','RSI > 50 AND\nRSI < 70 AND\nAbove 200 DMA'],
-  ['Beating Nifty 500','Ahead of the index on 3 months, 6 months and 1 year','Relative strength 3M > 0 AND\nRelative strength 6M > 0 AND\nRelative strength 1Y > 0'],
-  ['Weak long-term, turning up','Behind on 3 months but ahead this week','Relative strength 3M < 0 AND\nRelative strength 1W > 2']]],
+  ['Beating Nifty 500','Ahead of the index on 3 months, 6 months and 1 year (base 100)','Relative strength 3M > 100 AND\nRelative strength 6M > 100 AND\nRelative strength 1Y > 100'],
+  ['Weak long-term, turning up','Behind on 3 months but ahead this week','Relative strength 3M < 100 AND\nRelative strength 1W > 102']]],
  ['Order flow','From the end-of-day order flow run',[
   ['Bullish order flow','Bullish bias with a high score','Order flow bias = bullish AND\nOrder flow score > 70'],
   ['High delivery','Delivery above 60%, a sign of conviction buying','Delivery percentage > 60'],
@@ -1878,7 +1884,7 @@ async function screener(){
   const nn=v=>v!=null&&typeof v==='number'&&isFinite(v);
   const BASE=['s','n','cap','mc','px','pe','pb','roe','roce','de','rg','r1m','r1y','up'];
   const LBL={s:'Symbol',n:'Company',cap:'Cap',mc:'Mkt cap ₹cr',px:'Price',pe:'P/E',pb:'P/B',roe:'ROE %',roce:'ROCE %',de:'D/E',rg:'Rev growth %',r1m:'1M %',r1y:'1Y %',up:'Upside %',dp:'Deliv %',score:'OF score',rsi:'RSI',nm:'Net margin %',ng:'Profit growth %',ev:'EV/EBITDA',bias:'OF bias',ind:'Industry',a200:'Above 200 DMA',rs1w:'RS 1W',rs3m:'RS 3M',rs6m:'RS 6M',rs1y:'RS 1Y'};
-  const TXT=new Set(['s','n','cap','bias','ind']),SIGN=new Set(['r1m','r1y','up','rs1w','rs3m','rs6m','rs1y']);
+  const TXT=new Set(['s','n','cap','bias','ind']),SIGN=new Set(['r1m','r1y','up']);
   const dec={mc:0,px:1,pe:1,pb:2,roe:1,roce:1,de:2,rg:1,ng:1,nm:1,ev:1,r1m:1,r1y:1,up:0,dp:0,score:0,rsi:0,rs1w:1,rs3m:1,rs6m:1,rs1y:1};
   const savedHtml=()=>{const a=lsGet('tl_screens');return a.length?`<div class="sqsec"><h3>Your screens</h3><p class="mut">Saved on this device, and with your account when you are signed in</p><div class="sqcards">${a.map((x,i)=>`<div class="sqcard" data-q="${esc(x.q)}"><b>${esc(x.n)}</b><span>${esc(x.q.replace(/\s*\n\s*/g,' ').slice(0,110))}</span><i class="sqdel" data-del="${i}" title="Delete this screen">×</i></div>`).join('')}</div></div>`:''};
   const shell=()=>{
@@ -1891,11 +1897,11 @@ async function screener(){
        <div id="sq-err" class="sqerr"></div></div>
       <div class="sqb"><h4>Custom query example</h4><pre id="sq-exs">${esc(SC_EXAMPLE)}</pre><a href="javascript:void(0)" id="sq-ex" class="link">Use this example</a>
        <p class="mut" style="font-size:12.5px;margin:10px 0 0">Use &gt; &lt; &gt;= &lt;= = !=, join with AND / OR, use brackets, and do sums such as <b>Price to earning / Profit growth &lt; 1</b>. For text use quotes: <b>Industry = "Banks"</b> or <b>Industry contains "auto"</b>. Ctrl+Enter runs the query.</p>
-       <details class="sqall"><summary>Show all ratios</summary>${[...new Set(SCF.map(x=>x[3]))].map(g=>`<div class="sqgrp"><span>${g}</span>${SCF.filter(x=>x[3]===g).map(x=>`<button type="button" class="sqchip" data-ins="${esc(x[1])}">${esc(x[1])}</button>`).join('')}</div>`).join('')}<p class="mut" style="font-size:12px;margin:6px 0 0">Click a ratio to add it to the query. Percent values are plain numbers, so ROE above 15% is <b>Return on equity &gt; 15</b>.</p></details></div></div></div>
+       <details class="sqall"><summary>Show all ratios</summary>${[...new Set(SCF.map(x=>x[3]))].map(g=>`<div class="sqgrp"><span>${g}</span>${SCF.filter(x=>x[3]===g).map(x=>`<button type="button" class="sqchip" data-ins="${esc(x[1])}">${esc(x[1])}</button>`).join('')}</div>`).join('')}<p class="mut" style="font-size:12px;margin:6px 0 0">Click a ratio to add it to the query. Percent values are plain numbers, so ROE above 15% is <b>Return on equity &gt; 15</b>. Relative strength is on a base of 100, so beating the index is <b>Relative strength 3M &gt; 100</b>.</p></details></div></div></div>
      <div id="sq-res"></div>
      <div id="sq-lib">${savedHtml()}${SC_LIB.map(([t,d,a])=>`<div class="sqsec"><h3>${esc(t)}</h3><p class="mut">${esc(d)}</p><div class="sqcards">${a.map(([n,ds,q])=>`<div class="sqcard" data-q="${esc(q)}"><b>${esc(n)}</b><span>${esc(ds)}</span></div>`).join('')}</div></div>`).join('')}
       <div class="sqsec"><h3>Browse industries</h3><p class="mut">Click one to list its stocks</p><div class="sqind">${inds.map(x=>`<button type="button" data-ind="${esc(x)}">${esc(x)}</button>`).join('')}</div></div></div>
-     <p class="mut" style="font-size:12px;margin-top:6px">End-of-day data. Fair value upside uses the saved DCF (non-financials) or the P/B–ROE model (financials) from the nightly run. Delivery % and the order flow score come from the latest order flow run. Relative strength is against the Nifty 500. Ratios are from the latest annual data on Yahoo Finance, so check anything important against the company's filings.</p></div>`;
+     <p class="mut" style="font-size:12px;margin-top:6px">End-of-day data. Fair value upside uses the saved DCF (non-financials) or the P/B–ROE model (financials) from the nightly run. Delivery % and the order flow score come from the latest order flow run. Relative strength is against the Nifty 500, base 100 (above 100 beats the index). Ratios are from the latest annual data on Yahoo Finance, so check anything important against the company's filings.</p></div>`;
     bind();
   };
   const run=(scroll)=>{
