@@ -1493,19 +1493,28 @@ async function glPanel(){
   const P=await get('data/peers.json','json');
   const nm={},px={};if(P&&P.stocks)P.stocks.forEach(x=>{nm[x.s]=x.n;px[x.s]=x.px});
   const by={};(MH.data.stocks||[]).forEach(x=>by[x.s]=x);
+  await liveLoad();
   const draw=()=>{
     const set=new Set(mem[GL.ix]||[]);
-    const rows=[...set].map(s=>by[s]&&by[s].r&&by[s].r[GL.tf]!=null?{s,r:by[s].r[GL.tf],mc:by[s].mc}:null).filter(Boolean).sort((a,b)=>b.r-a.r);
+    // with live prices: today's move on top of the stored return, for stocks whose live 'previous close' matches our last close
+    const lvs=LV&&LV.s?LV.s:null;let nlive=0;
+    const rows=[...set].map(s=>{if(!(by[s]&&by[s].r&&by[s].r[GL.tf]!=null))return null;let r=by[s].r[GL.tf],p=px[s];
+      const l=lvs&&lvs[s];
+      if(l&&l[0]!=null&&l[4]&&p&&Math.abs(l[4]/p-1)<0.004){r=((1+r/100)*(l[0]/l[4])-1)*100;p=l[0];nlive++}
+      return {s,r,mc:by[s].mc,px:p}}).filter(Boolean).sort((a,b)=>b.r-a.r);
+    const liveOn=nlive>=Math.max(10,rows.length*0.5);
+    const lt=liveOn?new Date(LV.t).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Kolkata'}):'';
     const top=rows.slice(0,10),bot=rows.slice(-10).reverse();
-    const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">Price ₹</th><th class="num">Return</th></tr></thead><tbody>${a.map(r=>`<tr class="row" onclick="location.hash='#/stock/${esc(r.s)}'"><td><b>${esc(r.s)}</b><div class="mut" style="font-size:11px">${esc((nm[r.s]||'').slice(0,28))} · ${capOf(r.mc).split(' ')[0]}</div></td><td class="num">${px[r.s]!=null?T.fmt(px[r.s],1):'–'}</td><td class="num ${cls(r.r)}">${r.r>=0?'+':''}${T.fmt(r.r,2)}%</td></tr>`).join('')}</tbody></table>`;
+    const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">Price ₹</th><th class="num">Return</th></tr></thead><tbody>${a.map(r=>`<tr class="row" onclick="location.hash='#/stock/${esc(r.s)}'"><td><b>${esc(r.s)}</b><div class="mut" style="font-size:11px">${esc((nm[r.s]||'').slice(0,28))} · ${capOf(r.mc).split(' ')[0]}</div></td><td class="num">${r.px!=null?T.fmt(r.px,1):'–'}</td><td class="num ${cls(r.r)}">${r.r>=0?'+':''}${T.fmt(r.r,2)}%</td></tr>`).join('')}</tbody></table>`;
     const src=(mem.source||{})[GL.ix]==='NSE'?'official NSE constituent list':'approximated by market-cap rank (NSE list not available)';
     box.innerHTML=`<div class="card"><div class="seg" id="gl-ix" style="margin:0 0 8px">${IXS.map(([k,l])=>`<button data-k="${k}" class="${GL.ix===k?'on':''}">${l}</button>`).join('')}</div>
       <div class="two"><div><h3 style="margin:0 0 6px">Top gainers</h3>${tb(top)}</div><div><h3 style="margin:0 0 6px">Top losers</h3>${tb(bot)}</div></div>
-      <p class="mut" style="font-size:12px;margin:10px 0 0">${rows.length} stocks in ${esc(IXS.find(x=>x[0]===GL.ix)[1])} with data · ${src} · returns are price returns to the last close.</p></div>`;
+      <p class="mut" style="font-size:12px;margin:10px 0 0">${rows.length} stocks in ${esc(IXS.find(x=>x[0]===GL.ix)[1])} with data · ${src} · ${liveOn?'live prices at '+lt+' IST, about 5 to 10 minutes delayed, on top of the last close':'price returns to the last close'}.</p></div>`;
     box.querySelectorAll('#gl-ix button').forEach(b=>b.onclick=()=>{GL.ix=b.dataset.k;draw()});
     box.querySelectorAll('#gl-tf button').forEach(b=>b.onclick=()=>{GL.tf=b.dataset.k;draw()});
   };
   draw();
+  clearInterval(window._glT);window._glT=setInterval(async()=>{if(location.hash!==''&&location.hash!=='#/market'){clearInterval(window._glT);return}if(!$('#glbox'))return;await liveLoad();draw()},300000);
 }
 
 // ---------- treemap heatmap ----------
