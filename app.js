@@ -143,7 +143,7 @@ async function boot(){
     const items2=items+rs.map(r=>{const o=ofm[r.symbol];return `<a class="ti" href="#/stock/${esc(r.symbol)}"><b>${esc(r.symbol)}</b> ${T.fmt(T.num(o.px)??T.num(r.price),1)} <em class="${cls(T.num(o.chg))}">${T.pct(T.num(o.chg),2)}</em></a>`}).join('');
     tp.innerHTML=`<div class="tt"><div class="tr">${items2}${items2}</div></div><span class="tl" title="Change from the previous close to the latest close (end-of-day data)">1D</span>`;document.querySelector('.top').after(tp)}catch(e){}
   window.addEventListener('hashchange',route);route();
-  {const fix=()=>{const t=document.querySelector('.top'),p=document.querySelector('.tape');if(!t)return;const h1=t.offsetHeight,h2=h1+(p?p.offsetHeight:0);document.documentElement.style.setProperty('--h1',h1+'px');document.documentElement.style.setProperty('--h2',h2+'px')};
+  {const fix=()=>{const t=document.querySelector('.top'),p=document.querySelector('.tape');if(!t)return;const h1=window.innerWidth>=861?0:t.offsetHeight,h2=h1+(p?p.offsetHeight:0);document.documentElement.style.setProperty('--h1',h1+'px');document.documentElement.style.setProperty('--h2',h2+'px')};
    fix();window.addEventListener('resize',fix);try{const ro=new ResizeObserver(fix);const t=document.querySelector('.top'),p=document.querySelector('.tape');if(t)ro.observe(t);if(p)ro.observe(p)}catch(e){}setTimeout(fix,600)}
 }
 
@@ -1304,11 +1304,12 @@ function dailyQuote(){
   bt.onclick=e=>{e.stopPropagation();if(!pp.hidden){shut();return}
     pp.hidden=false;bt.setAttribute('aria-expanded','true');
     const r=bt.getBoundingClientRect(),w=Math.min(340,window.innerWidth-24);
-    pp.style.cssText=`position:fixed;width:${w}px;left:${Math.max(12,Math.min(r.left,window.innerWidth-w-12))}px;top:${r.bottom+8}px`};
+    pp.style.cssText=window.innerWidth>=861?`position:fixed;width:${w}px;left:${r.right+18}px;bottom:${Math.max(12,window.innerHeight-r.bottom)}px;top:auto`:`position:fixed;width:${w}px;left:${Math.max(12,Math.min(r.left,window.innerWidth-w-12))}px;top:${r.bottom+8}px`};
   document.addEventListener('pointerdown',e=>{if(!pp.hidden&&!el.contains(e.target))shut()});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')shut()});
 }
 dailyQuote();
+(function(){const b=document.getElementById('sbtog');if(!b)return;let c=false;try{c=localStorage.getItem('tl_sbc')==='1'}catch(e){}document.body.classList.toggle('sbc',c);b.onclick=()=>{c=!document.body.classList.contains('sbc');document.body.classList.toggle('sbc',c);try{localStorage.setItem('tl_sbc',c?'1':'0')}catch(e){}b.title=c?'Expand menu':'Collapse menu';setTimeout(()=>window.dispatchEvent(new Event('resize')),60)}})();
 
 // ---------- search suggestions ----------
 function attachSuggest(inp){
