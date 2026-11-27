@@ -1,15 +1,15 @@
-"""Comparative relative strength, base 100:
+"""Comparative relative strength, base 0:
 
-   RS(N) = (1 + R_stock) / (1 + R_benchmark) x 100        where R = return over the last N daily bars
+   RS(N) = ((1 + R_stock) / (1 + R_benchmark) - 1) x 100        where R = return over the last N daily bars
 
-   100 = moving exactly with the benchmark, above 100 = beating it, below 100 = lagging it.
+   0 = moving exactly with the benchmark, above 0 = beating it, below 0 = lagging it.
    Windows: 1W = 5, 3M = 63, 6M = 126, 1Y = 252 trading days.
 
 Benchmarks (each one is used only if its history file exists in data/prices/ or data/):
    NIFTY500 (default), NIFTY50, NIFTYMID150, NIFTYSML250, BANKNIFTY, SENSEX
 Writes data/rs.json (Nifty 500, the default) and data/rs_<KEY>.json for the others, plus data/rs_log.txt.
-Per stock and window: v = RS now, p = RS 5 sessions ago, u = crossed above 100 within the last 5 sessions,
-d = crossed below 100 within the last 5."""
+Per stock and window: v = RS now, p = RS 5 sessions ago, u = crossed above 0 within the last 5 sessions,
+d = crossed below 0 within the last 5."""
 import csv, json, os, datetime
 import numpy as np
 
@@ -41,10 +41,10 @@ def find(key):
 
 
 def crs(a, b, n):
-    """(1 + R_stock) / (1 + R_bench) x 100 for every bar that has n bars of history."""
+    """((1 + R_stock) / (1 + R_bench) - 1) x 100 for every bar that has n bars of history."""
     ra = a[n:] / a[:-n] - 1
     rb = b[n:] / b[:-n] - 1
-    return (1 + ra) / (1 + rb) * 100
+    return ((1 + ra) / (1 + rb) - 1) * 100
 
 
 def main():
@@ -88,17 +88,17 @@ def main():
                 cur, prev = float(res[-1]), float(res[-1 - LOOK])
                 recent = res[-1 - LOOK:-1]
                 v.append(round(cur, 2)); pv.append(round(prev, 2))
-                up.append(int(cur > 100 and bool((recent <= 100).any())))
-                dn.append(int(cur < 100 and bool((recent >= 100).any())))
+                up.append(int(cur > 0 and bool((recent <= 0).any())))
+                dn.append(int(cur < 0 and bool((recent >= 0).any())))
             rows.append({"s": s, "m": ind.get(s, {}).get("macro", ""), "v": v, "p": pv, "u": up, "d": dn})
         out = "data/rs.json" if key == "NIFTY500" else f"data/rs_{key}.json"
-        json.dump({"asof": asof, "bench": name, "key": key, "base": 100, "windows": WINDOWS, "look": LOOK, "gen": gen,
+        json.dump({"asof": asof, "bench": name, "key": key, "base": 0, "windows": WINDOWS, "look": LOOK, "gen": gen,
                    "benches": benches, "stocks": rows}, open(out, "w"), separators=(",", ":"))
         log.append(f"{name}: last date {asof}; computed {len(rows)} of {len(syms)}; skipped {len(skipped)} {skipped[:10]}")
         for j, k in enumerate(WINDOWS):
             vals = [r["v"][j] for r in rows if r["v"][j] is not None]
             if vals:
-                log.append(f"   {k}: above 100 = {sum(x > 100 for x in vals)}, below 100 = {sum(x < 100 for x in vals)}, "
+                log.append(f"   {k}: above 0 = {sum(x > 0 for x in vals)}, below 0 = {sum(x < 0 for x in vals)}, "
                            f"crossed up (5d) = {sum(r['u'][j] for r in rows)}")
     missing = [n for k, n in BENCHES if k not in [b['k'] for b in benches]]
     if missing:
