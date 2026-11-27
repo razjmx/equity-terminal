@@ -158,7 +158,7 @@ function route(){
   const h=location.hash||'#/market';const p=h.split('/');
   const key=p[1]==='stock'?'research':(p[1]==='sector'?'market':(p[1]||'market'));
   document.querySelectorAll('#topnav a').forEach(a=>a.classList.toggle('on',a.dataset.k===key));
-  try{const on=document.querySelector('#topnav a.on'),pl=document.getElementById('pill');if(on&&pl){pl.style.left=on.offsetLeft+'px';pl.style.width=on.offsetWidth+'px';pl.style.opacity=1}else if(pl)pl.style.opacity=0}catch(e){}
+  try{const on=document.querySelector('#topnav a.on'),pl=document.getElementById('pill');if(on&&pl){pl.style.left=on.offsetLeft+'px';pl.style.width=on.offsetWidth+'px';if(window.matchMedia('(min-width:861px)').matches){pl.style.top=on.offsetTop+'px';pl.style.height=on.offsetHeight+'px'}else{pl.style.top='';pl.style.height=''}pl.style.opacity=1}else if(pl)pl.style.opacity=0}catch(e){}
   if(route.last!==h){window.scrollTo(0,0);route.last=h}
   if(isLocked()){
     if(p[1]==='orderflow')return lockPage('Order Flow');
@@ -1468,7 +1468,7 @@ function renderMarket(anim){
 
   const chips=[['idx','Indices'],['gl','Gainers & losers'],['ind','Heatmap']];
   const bar=`<div class="vseg mk-tf" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div>`;
-  view.innerHTML=`<div class="mk"><aside class="mk-side">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</aside><div class="mk-main">${h}<p class="mut mk-foot">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</p></div>${bar}</div>`;
+  view.innerHTML=`<div class="mk"><div class="mk-main">${h}<p class="mut mk-foot">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</p></div>${bar}</div>`;
   // wire
   alignSides('.mk','.mh-grid');
   document.querySelectorAll('#mh-range button').forEach(b=>b.onclick=()=>{MH.range=b.dataset.r;renderMarket(true)});
@@ -3007,4 +3007,4 @@ function dcfPanel(d,price){
 boot();
 })();
 
-window.addEventListener('resize',()=>{try{const on=document.querySelector('#topnav a.on'),pl=document.getElementById('pill');if(on&&pl){pl.style.left=on.offsetLeft+'px';pl.style.width=on.offsetWidth+'px'}}catch(e){}});
+window.addEventListener('resize',()=>{try{const on=document.querySelector('#topnav a.on'),pl=document.getElementById('pill');if(on&&pl){pl.style.left=on.offsetLeft+'px';pl.style.width=on.offsetWidth+'px';if(window.matchMedia('(min-width:861px)').matches){pl.style.top=on.offsetTop+'px';pl.style.height=on.offsetHeight+'px'}else{pl.style.top='';pl.style.height=''}}}catch(e){}});
