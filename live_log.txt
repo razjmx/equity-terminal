@@ -1,0 +1,6 @@
+Run (UTC): 2026-11-27 14:12
+stocks priced: 750 of 750; failed calls: 0
+OHLC close equals our last end-of-day close for 60 of 60 checked stocks
+detailed quotes: 100 of 100 stocks; failed 0
+quote reply fields: {average_price: NoneType, bid_quantity: NoneType, bid_price: NoneType, day_change: float, day_change_perc: float, upper_circuit_limit: float, lower_circuit_limit: float, ohlc: {open: float, high: float, low: float, close: float}, depth: {buy: list[5], sell: list[5]}, high_trade_range: NoneType, implied_volatility: NoneType, last_trade_quantity: int, last_trade_time: int, low_trade_range: NoneType, last_price: float, market_cap: NoneType, offer_price: NoneType, offer_quantity: NoneType, oi_day_change: float, oi_day_change_percentage: float, open_interest: NoneType, previous_open_interest: NoneType, total_buy_quantity: int, total_sell_quantity: int, volume: int}
+depth level looks like: {price: float, quantity: int, orderCount: int}
