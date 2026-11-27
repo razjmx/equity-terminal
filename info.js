@@ -42,6 +42,12 @@
     [/^Data files/, B('The main data files the pages read, with the date stored inside each file.', 'Age is measured against today. The expected column is how old the file may get before it turns amber.', 'A file with no date inside is shown as such and is not judged.')],
     [/^Model checks/, B('Self-tests the models run on themselves.', 'Each row compares a result with a healthy range. The Barra check is how closely predicted risk matched realised risk. The pairs check is whether picking pairs beat random pairs.', 'A check outside its range means to trust that model less until it is explained.')]
   ];
+  let cur = null;
+  function shut() { if (!cur) return; clearTimeout(cur.t); cur.box.remove(); cur.btn.classList.remove('on'); cur.btn.onmouseenter = cur.btn.onmouseleave = null; cur = null; }
+  document.addEventListener('pointerdown', e => { if (cur && !cur.box.contains(e.target) && !cur.btn.contains(e.target)) shut(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') shut(); });
+  window.addEventListener('hashchange', shut);
+  window.addEventListener('scroll', () => { if (cur) shut(); }, { passive: true });
   const box = new WeakSet();
   function decorate(root) {
     (root || document).querySelectorAll('#view h2, #view h3, #view h4').forEach(h => {
@@ -54,9 +60,22 @@
       b.type = 'button'; b.className = 'ib'; b.textContent = 'i'; b.title = 'What is this and how to read it'; b.setAttribute('aria-label', 'About this model');
       b.onclick = e => {
         e.preventDefault(); e.stopPropagation();
-        let n = h.nextElementSibling;
-        if (n && n.classList.contains('ibox')) { n.remove(); b.classList.remove('on'); return; }
-        n = document.createElement('div'); n.className = 'ibox'; n.innerHTML = r[1]; h.insertAdjacentElement('afterend', n); b.classList.add('on');
+        if (cur && cur.btn === b) { shut(); return; }
+        shut();
+        const n = document.createElement('div'); n.className = 'ipop'; n.innerHTML = r[1]; document.body.appendChild(n);
+        b.classList.add('on');
+        const br = b.getBoundingClientRect(), w = Math.min(380, window.innerWidth - 24);
+        n.style.width = w + 'px';
+        let left = Math.max(12, Math.min(br.left - 12, window.innerWidth - w - 12));
+        n.style.left = left + 'px';
+        const hgt = n.offsetHeight, below = window.innerHeight - br.bottom - 12, above = br.top - 12;
+        if (hgt > below && above > below) { n.style.top = 'auto'; n.style.bottom = (window.innerHeight - br.top + 6) + 'px'; n.style.maxHeight = Math.max(160, above) + 'px'; }
+        else { n.style.top = (br.bottom + 6) + 'px'; n.style.maxHeight = Math.max(160, below) + 'px'; }
+        cur = { btn: b, box: n, t: null };
+        const over = () => { clearTimeout(cur && cur.t); };
+        const out = () => { if (!cur) return; clearTimeout(cur.t); cur.t = setTimeout(shut, 220); };
+        n.onmouseenter = b.onmouseenter = over; n.onmouseleave = b.onmouseleave = out;
+        cur.t = setTimeout(() => { if (cur && cur.box === n && !n.matches(':hover') && !b.matches(':hover')) shut(); }, 1500);
       };
       h.appendChild(b);
     });
