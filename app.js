@@ -1091,9 +1091,12 @@ const RS_B=[['turn','Turning up','Below 100 but rising and close to 100'],['up',
 async function relStrength(){
   view.innerHTML='<div class="skel" style="height:300px"></div>';
   let D=await get('data/rs.json','json');
+  // old-format file (percent around 0): same numbers, shifted to base 100 until the new run replaces it
+  const to100=d=>{if(d&&d.stocks&&d.base!==100){d.stocks.forEach(x=>{x.v=x.v.map(y=>y==null?null:+(y+100).toFixed(2));x.p=x.p.map(y=>y==null?null:+(y+100).toFixed(2))});d.base=100}return d};
+  D=to100(D);
   const BL=(D&&D.benches&&D.benches.length)?D.benches:[{k:'NIFTY500',n:'Nifty 500'}];
   if(!BL.some(b=>b.k===RSS.bm))RSS.bm='NIFTY500';
-  if(D&&RSS.bm!=='NIFTY500'){const D2=await get('data/rs_'+RSS.bm+'.json','json').catch(()=>null);if(D2&&D2.stocks)D=D2;else RSS.bm='NIFTY500'}
+  if(D&&RSS.bm!=='NIFTY500'){const D2=await get('data/rs_'+RSS.bm+'.json','json').catch(()=>null);if(D2&&D2.stocks)D=to100(D2);else RSS.bm='NIFTY500'}
   const BN=(BL.find(b=>b.k===RSS.bm)||{n:'Nifty 500'}).n;
   if(!D||!D.stocks||!D.stocks.length){view.innerHTML='<div class="card"><h3>Relative strength</h3><p class="mut">Not built yet. Run the <b>Relative strength</b> workflow in the Actions tab once; after that it updates every weekday evening.</p></div>';return}
   const P=await get('data/peers.json','json');const nm={};if(P&&P.stocks)P.stocks.forEach(x=>nm[x.s]=x.n);
