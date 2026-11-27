@@ -1464,7 +1464,7 @@ function renderMarket(anim){
 
   const chips=[['idx','Indices'],['gl','Gainers & losers'],['ind','Heatmap']];
   const bar=`<div class="vseg mk-tf" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div>`;
-  view.innerHTML=`<div class="mk"><aside class="mk-side">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</aside><div class="mk-main"><div id="lvm"></div>${h}<p class="mut mk-foot">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</p></div>${bar}</div>`;liveMovers();
+  view.innerHTML=`<div class="mk"><aside class="mk-side">${chips.map(c=>`<a data-s="sec-${c[0]}">${c[1]}</a>`).join('')}</aside><div class="mk-main">${h}<p class="mut mk-foot">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</p></div>${bar}</div>`;
   // wire
   alignSides('.mk','.mh-grid');
   document.querySelectorAll('#mh-range button').forEach(b=>b.onclick=()=>{MH.range=b.dataset.r;renderMarket(true)});
