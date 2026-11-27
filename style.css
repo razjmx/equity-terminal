@@ -702,3 +702,4 @@ html:not([data-tape="1"]) .tape{display:none}
  .top .ql{display:none}.top .qbtn{padding:0 12px}.top .qbtn .qi{font-size:14px}
  .top .searchbox{margin-left:0;flex:0 1 170px;width:170px;min-width:120px}.top .brk{display:none}}
 @media(min-width:1140px) and (max-width:1239px){.top .topnav a{padding:6px 6px;font-size:12px}.top .searchbox{flex-basis:130px;width:130px;min-width:100px}.top .brand{font-size:15px}}
+.ofscr{overflow-x:auto;min-width:0}.ofgrid .ofscr table.peer th,.ofgrid .ofscr table.peer td{padding:8px 7px}.ofgrid .ofscr table.peer th:first-child,.ofgrid .ofscr table.peer td:first-child{white-space:normal;min-width:96px;padding-left:4px}.ofgrid .ofscr .scbar{width:44px}
