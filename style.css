@@ -695,3 +695,9 @@ html:not([data-tape="1"]) .tape{display:none}
 .sqind button:hover{border-color:var(--brand);color:var(--brand)}
 @media(max-width:900px){.sqg{grid-template-columns:1fr}}
 .rsbm{margin:0 0 12px;font-size:13px;color:var(--m)}.rsbm select{margin-left:6px;padding:7px 10px;border:1px solid var(--edge);border-radius:8px;background:var(--p);color:var(--t);font-size:13px}
+/* header stays on one row from 1240px: compact thought button, tighter menu and search */
+@media(min-width:1240px) and (max-width:1519px){
+ .top .topnav{order:2;flex:0 1 auto;margin:0 auto}.top .topnav a{padding:6px 8px;font-size:12.5px}
+ .top .quote{order:2;margin-left:4px}.top .brand{order:1;font-size:16px}
+ .top .ql{display:none}.top .qbtn{padding:0 12px}.top .qbtn .qi{font-size:14px}
+ .top .searchbox{margin-left:0;flex:0 1 170px;width:170px;min-width:120px}.top .brk{display:none}}
