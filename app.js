@@ -2081,6 +2081,100 @@ function scenarioPanel(sel,dcf,fin,price){
   };
   draw();
 }
+
+// ---------- scenario model: Bear / Base / Bull with editable forecast years (shared by DCF and bank models) ----------
+const SCNS={};
+function scnLoad(key){try{const j=JSON.parse(localStorage.getItem('et:scn:'+key)||'null');if(j&&j.ed)return j}catch(e){}return {sel:'Base',ed:{Bear:{},Base:{},Bull:{}},sc:{Bear:{},Base:{},Bull:{}}}}
+function scnSave(key,st){try{localStorage.setItem('et:scn:'+key,JSON.stringify(st))}catch(e){}}
+function yearLabels(last,n){const m=/^(.*?)(\d{4})\s*$/.exec(last||'');return Array.from({length:n},(_,i)=>m?(m[1]+(+m[2]+i+1)):'Y'+(i+1))}
+// spec: {key,title,sub,years[],hist:{labels[],rows:{rowKey:[..]}},rows:[{k,l,unit}],scal:[{k,l,step}],defaults(name)->{vals:{k:[..]},scal:{k:v}},calc(vals,scal)->{fair,out:[{l,v[],d}],extra:[[k,v]]},price,notes}
+function scenarioModel(sel,spec){
+  const body=$(sel);if(!body)return;
+  const st=SCNS[spec.key]||(SCNS[spec.key]=scnLoad(spec.key));
+  const NAMES=['Bear','Base','Bull'];
+  const get=name=>{const df=spec.defaults(name),ed=st.ed[name]||{},se=st.sc[name]||{};
+    const vals={};spec.rows.forEach(r=>{vals[r.k]=df.vals[r.k].map((v,i)=>ed[r.k]&&ed[r.k][i]!=null?ed[r.k][i]:v)});
+    const scal={};spec.scal.forEach(c=>{scal[c.k]=se[c.k]!=null?se[c.k]:df.scal[c.k]});
+    return {vals,scal,df}};
+  const draw=()=>{
+    const sc=body.querySelector('.scroll');const sl=sc?sc.scrollLeft:0;
+    const all=NAMES.map(n=>{const g=get(n);return {n,g,res:spec.calc(g.vals,g.scal)}});
+    const cur=all.find(x=>x.n===st.sel)||all[1],price=spec.price;
+    const pw=VS.pw,tot=pw.reduce((a,b)=>a+(+b||0),0)||1,fv=all.map(x=>x.res&&x.res.fair),ok=fv.every(v=>v!=null);
+    const wv=ok?fv.reduce((a,v,i)=>a+v*(pw[i]||0),0)/tot:null,up=v=>v!=null&&price?(v/price-1)*100:null;
+    const lo=Math.min(...fv.filter(v=>v!=null),price),hi=Math.max(...fv.filter(v=>v!=null),price),pos=v=>hi>lo?((v-lo)/(hi-lo))*100:50;
+    const ed=st.ed[cur.n]||{},se=st.sc[cur.n]||{},nEd=Object.values(ed).reduce((a,o)=>a+Object.keys(o).length,0)+Object.keys(se).length;
+    const H=spec.hist,nh=H?H.labels.length:0,n=spec.years.length;
+    const fmtc=(v,d)=>v==null||!isFinite(v)?'–':T.fmt(v,d);
+    const head=`<tr><th class="l"></th>${H?H.labels.map(l=>`<th class="hh">${esc(l)}</th>`).join(''):''}${spec.years.map(y=>`<th>${esc(y)}<small>editable</small></th>`).join('')}</tr>`;
+    const rowsE=spec.rows.map(r=>`<tr class="er"><td class="l">${r.l}</td>${H?H.labels.map((_,i)=>`<td class="hh">${H.rows[r.k]?fmtc(H.rows[r.k][i],1):'–'}</td>`).join(''):''}${cur.g.vals[r.k].map((v,i)=>{const e=ed[r.k]&&ed[r.k][i]!=null;return `<td><input type="number" step="0.1" class="${e?'ed':''}" data-k="${r.k}" data-i="${i}" value="${T.fmt(v,1).replace(/,/g,'')}"></td>`}).join('')}</tr>`).join('');
+    const rowsO=(cur.res?cur.res.out:[]).map(o=>`<tr class="ro"><td class="l">${o.l}</td>${H?H.labels.map((_,i)=>`<td class="hh">${H.rows[o.hk]?fmtc(H.rows[o.hk][i],o.d):''}</td>`).join(''):''}${o.v.map(v=>`<td>${fmtc(v,o.d)}</td>`).join('')}</tr>`).join('');
+    body.innerHTML=`<div class="card" style="margin-top:14px"><h3>Scenario model: bear / base / bull<span class="mut" style="font-weight:400;font-size:12px">${esc(spec.title)} · fair value per share, ₹</span></h3>
+     <div class="scn">${all.map(x=>`<div class="sc sc-${x.n.toLowerCase()} ${x.n===cur.n?'sel':''}" data-n="${x.n}"><div class="sn">${x.n}</div><div class="sv">${x.res&&x.res.fair!=null?'₹'+T.fmt(x.res.fair,0):'–'}</div><div class="su ${cls(up(x.res&&x.res.fair))}">${x.res&&x.res.fair!=null?T.pct(up(x.res.fair),0)+' vs price':'–'}</div>
+       <table>${spec.scal.map(c=>`<tr><td class="l">${c.l}</td><td>${T.fmt(x.g.scal[c.k],c.d!=null?c.d:1)}%</td></tr>`).join('')}${(x.res&&x.res.extra||[]).map(e=>`<tr><td class="l">${e[0]}</td><td>${e[1]}</td></tr>`).join('')}</table></div>`).join('')}</div>
+     ${ok?`<div class="rng"><div class="rl"></div>${all.map(x=>`<span class="rd rd-${x.n.toLowerCase()}" style="left:${pos(x.res.fair)}%" title="${x.n} ₹${T.fmt(x.res.fair,0)}"></span>`).join('')}<span class="rp" style="left:${pos(price)}%"><b>Price ₹${T.fmt(price,0)}</b></span></div>`:''}
+     <div class="pw"><span class="mut">Probability weights %</span>${NAMES.map((nm,i)=>`<label>${nm} <input type="number" min="0" max="100" step="5" value="${pw[i]}" data-w="${i}"></label>`).join('')}
+      <span class="pwv">Weighted value <b>${wv!=null?'₹'+T.fmt(wv,0):'–'}</b> <span class="${cls(up(wv))}">${wv!=null?T.pct(up(wv),0):''}</span></span></div>
+     <div class="smh"><div class="seg" id="smtabs">${NAMES.map(nm=>`<button data-n="${nm}" class="${nm===cur.n?'on':''}">${nm}</button>`).join('')}</div>
+      <div class="bar" style="margin:0">${spec.scal.map(c=>`<label>${c.l} % <input type="number" step="${c.step||0.25}" class="${se[c.k]!=null?'ed':''}" data-s="${c.k}" value="${T.fmt(cur.g.scal[c.k],c.d!=null?c.d:2).replace(/,/g,'')}" style="width:74px"></label>`).join('')}
+       <button id="smreset"${nEd?'':' disabled'}>Reset ${cur.n.toLowerCase()}${nEd?' ('+nEd+' edited)':''}</button></div></div>
+     <p class="mut" style="font-size:12px;margin:8px 0">${spec.sub} Change any value in the editable boxes of the ${cur.n.toLowerCase()} case and the fair value updates. Edited boxes are shaded and are kept in this browser only.</p>
+     <div class="scroll"><table class="sm">${head}${rowsE}${rowsO}</table></div>
+     ${cur.res&&cur.res.note?`<p class="mut" style="font-size:12px;margin:8px 0 0">${cur.res.note}</p>`:''}
+     <p class="mut" style="font-size:12px;margin:8px 0 0">${spec.notes||''} Mechanical projections to test your own view, not forecasts or a recommendation.</p></div>`;
+    const sc2=body.querySelector('.scroll');if(sc2)sc2.scrollLeft=sl;
+    body.querySelectorAll('.scn .sc').forEach(el=>el.onclick=()=>{st.sel=el.dataset.n;scnSave(spec.key,st);draw()});
+    body.querySelectorAll('#smtabs button').forEach(el=>el.onclick=()=>{st.sel=el.dataset.n;scnSave(spec.key,st);draw()});
+    body.querySelectorAll('.pw input').forEach(i=>i.onchange=e=>{VS.pw[+e.target.dataset.w]=parseFloat(e.target.value)||0;draw()});
+    body.querySelectorAll('input[data-k]').forEach(el=>el.onchange=()=>{const v=parseFloat(el.value),o=(st.ed[cur.n]=st.ed[cur.n]||{})[el.dataset.k]=(st.ed[cur.n][el.dataset.k]||{}),i=+el.dataset.i;
+      if(!isFinite(v)||Math.abs(v-cur.g.df.vals[el.dataset.k][i])<0.05)delete o[i];else o[i]=v;scnSave(spec.key,st);draw()});
+    body.querySelectorAll('input[data-s]').forEach(el=>el.onchange=()=>{const v=parseFloat(el.value),o=(st.sc[cur.n]=st.sc[cur.n]||{});
+      if(!isFinite(v)||Math.abs(v-cur.g.df.scal[el.dataset.s])<0.005)delete o[el.dataset.s];else o[el.dataset.s]=v;scnSave(spec.key,st);draw()});
+    const rs=$('#smreset');if(rs)rs.onclick=()=>{st.ed[cur.n]={};st.sc[cur.n]={};scnSave(spec.key,st);draw()};
+  };
+  draw();
+}
+async function scenarioDCF(sel,s,d,price){
+  const body=$(sel);if(!body||!d||!d.model)return;
+  const m=d.model,n=m.n||10,rf=A.rf/100,erp=A.erp/100,gT0=A.g/100,b0=T.recompute(d,{rf,erp,gT:gT0});if(!b0)return;
+  let H=null;
+  try{const stt=await get(`data/statements/${s}.json`,'json'),inc=stt&&stt.annual_income;
+    if(inc){const rv=inc.rows.find(r=>/^total revenue$/i.test(r[0]))||inc.rows.find(r=>/^(operating revenue|revenue)$/i.test(r[0])),eb=inc.rows.find(r=>/^ebit$/i.test(r[0]))||inc.rows.find(r=>/^operating income$/i.test(r[0]));
+      if(rv){const idx=inc.dates.map((_,i)=>i).filter(i=>rv[1][i]!=null).slice(-3),R=i=>rv[1][i]/1e7,mon=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        H={labels:idx.map(i=>{const dt=new Date(inc.dates[i]);return isNaN(dt)?String(inc.dates[i]).slice(0,7):mon[dt.getUTCMonth()]+' '+dt.getUTCFullYear()}),rows:{g:idx.map(i=>i>0&&rv[1][i-1]?(rv[1][i]/rv[1][i-1]-1)*100:null),m:idx.map(i=>eb&&eb[1][i]!=null?eb[1][i]/rv[1][i]*100:null),rev:idx.map(R),ebit:idx.map(i=>eb&&eb[1][i]!=null?eb[1][i]/1e7:null)}}}}}catch(e){}
+  const P=d.projection_cr||[],years=P.length===n&&P[0].year?P.map(p=>String(p.year)):yearLabels(H?H.labels[H.labels.length-1]:'FY0',n);
+  const SC={Bear:{dm:.9,dg1:-.04,dw:.01,dgT:-.01},Base:{dm:1,dg1:0,dw:0,dgT:0},Bull:{dm:1.1,dg1:.04,dw:-.01,dgT:.005}};
+  const spec={key:s+':dcf',title:'DCF (FCFF, '+n+'-year)',price,years,hist:H,
+    sub:'Base follows the company\'s own growth path from the saved model: first-year growth '+T.fmt(b0.g1*100,1)+'% held for '+m.hold_years+' years, then fading to terminal growth. Bear and bull shift growth by ∓4 points, margin by ∓10% and WACC by ±1 point.',
+    notes:'Reinvestment = revenue added ÷ sales-to-capital ('+T.fmt(m.s2c,2)+'). After the last year the margin and terminal growth continue forever.',
+    rows:[{k:'g',l:'Revenue growth %'},{k:'m',l:'EBIT margin %'}],
+    scal:[{k:'w',l:'WACC',step:.25,d:2},{k:'gt',l:'Terminal growth',step:.1,d:1}],
+    defaults:nm=>{const x=SC[nm];return {vals:{g:T.growthPath(b0.g1+x.dg1,gT0+x.dgT,n,m.hold_years).map(v=>v*100),m:Array(n).fill(m.margin*x.dm*100)},scal:{w:(b0.wacc+x.dw)*100,gt:(gT0+x.dgT)*100}}},
+    calc:(v,c)=>{const r=T.recompute(d,{rf,erp,gT:c.gt/100,waccOverride:c.w/100,path:{g:v.g.map(x=>x/100),m:v.m.map(x=>x/100)}});if(!r)return {fair:null,out:[],extra:[],note:'WACC must be above terminal growth.'};
+      const f=k=>r.rows.map(x=>x[k]);
+      return {fair:r.perShare,extra:[['Terminal value share',T.fmt(r.tvShare*100,0)+'%']],out:[{l:'Revenue ₹cr',hk:'rev',v:f('rev'),d:0},{l:'EBIT ₹cr',hk:'ebit',v:f('ebit'),d:0},{l:'NOPAT ₹cr',v:f('nopat'),d:0},{l:'Reinvestment ₹cr',v:f('reinv'),d:0},{l:'Free cash flow ₹cr',v:f('fcff'),d:0},{l:'Present value ₹cr',v:f('pv'),d:0}]}}};
+  scenarioModel(sel,spec);
+}
+function scenarioFin(sel,f,price){
+  const body=$(sel);if(!body||!f||!f.model)return;
+  const m=f.model,rf=A.rf/100,erp=A.erp/100,gT0=A.g/100,n=10,roe0=m.roe_pct/100;
+  const cagr=f.bv_cagr_pct!=null?f.bv_cagr_pct/100:0.12,g1=Math.min(0.18,Math.max(gT0,cagr));
+  const base=T.finModel(f,{rf,erp,g:gT0});if(!base)return;
+  const fy=f.fy||[],H=fy.length?{labels:fy.slice(-3).map(x=>String(x.year)),rows:{roe:fy.slice(-3).map(x=>x.roe)}}:null;
+  const years=yearLabels(H?H.labels[H.labels.length-1]:'FY0',n);
+  const SC={Bear:{dr:-.02,dg:-.02,dgT:-.01,dke:.01},Base:{dr:0,dg:0,dgT:0,dke:0},Bull:{dr:.02,dg:.02,dgT:.005,dke:-.005}};
+  const spec={key:f.symbol+':fin',title:'Justified P/B, year by year',price,years,hist:H,
+    sub:'Base keeps the latest ROE ('+T.fmt(roe0*100,1)+'%) and grows book value at its past rate ('+T.fmt(g1*100,1)+'%) for 5 years, then fades to terminal growth. This differs from the headline model above, which assumes terminal growth from year 1. Bear and bull move ROE and growth by ∓2 points.',
+    notes:'Profit = ROE × opening book value; cash to shareholders = profit − growth in book value. After the last year, terminal P/B = (ROE − g) ÷ (Ke − g).',
+    rows:[{k:'roe',l:'ROE %'},{k:'g',l:'Book value growth %'}],
+    scal:[{k:'ke',l:'Cost of equity',step:.25,d:2},{k:'gt',l:'Terminal growth',step:.1,d:1}],
+    defaults:nm=>{const x=SC[nm],gt=gT0+x.dgT,hi=Math.min(Math.max(gt,g1+x.dg),Math.max(roe0+x.dr,gt));
+      return {vals:{roe:Array(n).fill((roe0+x.dr)*100),g:Array.from({length:n},(_,i)=>(i<5?hi:hi+(gt-hi)*(i-4)/(n-5))*100)},scal:{ke:(base.ke+x.dke)*100,gt:gt*100}}},
+    calc:(v,c)=>{const r=T.finPath(f,{rf,erp,g:c.gt/100,ke:c.ke/100},{roe:v.roe.map(x=>x/100),g:v.g.map(x=>x/100)});if(!r)return {fair:null,out:[],extra:[],note:'Cost of equity must be above terminal growth.'};
+      const k=x=>r.rows.map(y=>y[x]);
+      return {fair:r.fair,extra:[['Fair P/B (year 10)',T.fmt(r.pbT,2)+'x']],out:[{l:'Book value / share ₹',v:k('bv'),d:0},{l:'EPS ₹',v:k('eps'),d:1},{l:'Cash to shareholders ₹',v:k('fcfe'),d:1},{l:'Present value ₹',v:k('pv'),d:1}]}}};
+  scenarioModel(sel,spec);
+}
 const VAL_MODELS={
  mult:{label:'Price multiples',what:'Values the stock by applying a fair multiple to earnings, book value or sales, using the stock\'s own history and its peers.',best:'Almost every listed company; the quickest cross-check.',inputs:['P/E, P/B, P/S and EV/EBITDA now vs own 5-year range','Peer median multiples (same industry)','Target multiple x forward EPS / BVPS / sales per share','Implied price range: low, median, high']},
  ev:{label:'EV multiples',what:'Applies an enterprise-value multiple (EV/EBITDA, EV/Sales, EV/FCF), then bridges to equity by subtracting net debt.',best:'Non-financial companies with different debt levels, or where earnings are volatile.',inputs:['EV/EBITDA, EV/Sales and EV/FCF vs history and peers','Net debt, minority interest and investments bridge','Implied equity value per share']},
@@ -2110,8 +2204,8 @@ async function valTabs(s,dcf,fin,rl,price,met,u){
     const t=$('#vsub'),b=$('#vbody');if(!t||!b)return;
     t.innerHTML=subs.map(x=>`<button data-s="${x[0]}" class="${VS.sub===x[0]?'on':''}${x[2]?' soon':''}">${x[1]}${x[0]==='ddm'&&payer===false?' <small>n/a</small>':''}</button>`).join('');
     t.querySelectorAll('button').forEach(x=>x.onclick=()=>{VS.sub=x.dataset.s;draw()});
-    if(VS.sub==='dcf'){b.innerHTML='<div id="dcfbox"></div><div id="scbox"></div>';dcfPanel(dcf,price);scenarioPanel('#scbox',dcf,null,price)}
-    else if(VS.sub==='fin'){b.innerHTML='<div id="finbox"></div><div id="scbox"></div>';finPanel(fin);scenarioPanel('#scbox',null,fin,price)}
+    if(VS.sub==='dcf'){b.innerHTML='<div id="dcfbox"></div><div id="scbox"></div>';dcfPanel(dcf,price);scenarioDCF('#scbox',s,dcf,price)}
+    else if(VS.sub==='fin'){b.innerHTML='<div id="finbox"></div><div id="scbox"></div>';finPanel(fin);scenarioFin('#scbox',fin,price)}
     else if(VS.sub==='rl'){b.innerHTML='<div id="rlbox"></div>';realtyPanel(rl)}
     else if(VS.sub==='ddm'){b.innerHTML='<div id="multbox"><div class="skel" style="height:260px"></div></div>';ddmPanel(s,price,dcf,fin)}
     else if(VS.sub==='ff'){b.innerHTML='<div id="ffbox"><div class="skel" style="height:300px"></div></div>';ffPanel(s,price,dcf,fin,rl,fnc,payer)}
