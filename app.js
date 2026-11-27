@@ -1740,98 +1740,212 @@ async function sectorPage(lv,name){
 
 // ---------- screener ----------
 let FILT={q:'',rel:'all',ind:'all'};
-const SCM=[ // key, label, unit/decimals, group
- ['mc','Market cap ₹ cr',0,'Size'],['px','Price ₹',1,'Size'],
- ['pe','P/E',1,'Valuation'],['pb','P/B',2,'Valuation'],['ev','EV/EBITDA',1,'Valuation'],['up','Fair value upside %',0,'Valuation'],
- ['roe','ROE %',1,'Quality'],['roce','ROCE %',1,'Quality'],['nm','Net margin %',1,'Quality'],['de','Debt / equity',2,'Quality'],
- ['rg','Revenue CAGR %',1,'Growth'],['ng','Net income CAGR %',1,'Growth'],
- ['r1m','1-month return %',1,'Momentum'],['r1y','1-year return %',1,'Momentum'],['rsi','RSI (14)',0,'Momentum'],
- ['dp','Delivery % (last day)',0,'Order flow'],['score','Order flow score',0,'Order flow']];
-const SC_PRESETS=[
- ['Quality compounders',{roe:[15,null],roce:[15,null],de:[null,0.6],rg:[10,null]}],
- ['Value',{pe:[null,18],pb:[null,2.5],roe:[12,null]}],
- ['Undervalued vs fair value',{up:[20,null]}],
- ['Momentum',{r1m:[5,null],r1y:[15,null],_a200:1}],
- ['Debt-free profitable',{de:[null,0.1],roe:[12,null],nm:[8,null]}],
- ['High delivery',{dp:[60,null]}],
- ['Bullish order flow',{_bias:'bullish'}]];
-let SC=null;
+// key, label, decimals, group, accepted names (longest names are matched first), 's' = text field
+const SCF=[
+ ['mc','Market capitalization',0,'Size',['market capitalization','market cap','mcap']],
+ ['px','Price',1,'Size',['current price','price','cmp']],
+ ['pe','Price to earning',1,'Valuation',['price to earnings','price to earning','p/e','pe']],
+ ['pb','Price to book value',2,'Valuation',['price to book value','price to book','p/b','pb']],
+ ['ev','EV/EBITDA',1,'Valuation',['ev/ebitda','ev to ebitda']],
+ ['up','Fair value upside',0,'Valuation',['fair value upside','upside']],
+ ['roe','Return on equity',1,'Quality',['return on equity','roe']],
+ ['roce','Return on capital employed',1,'Quality',['return on capital employed','roce']],
+ ['nm','Net margin',1,'Quality',['net profit margin','net margin','npm']],
+ ['de','Debt to equity',2,'Quality',['debt to equity','debt / equity','de']],
+ ['rg','Revenue growth',1,'Growth',['revenue growth','sales growth','revenue cagr']],
+ ['ng','Profit growth',1,'Growth',['profit growth','net income growth','net income cagr']],
+ ['r1m','1 month return',1,'Momentum',['1 month return','return over 1 month','return 1 month']],
+ ['r1y','1 year return',1,'Momentum',['1 year return','return over 1 year','return 1 year']],
+ ['rsi','RSI',0,'Momentum',['rsi']],
+ ['a200','Above 200 DMA',0,'Momentum',['price above 200 dma','above 200 dma']],
+ ['dp','Delivery percentage',0,'Order flow',['delivery percentage','delivery']],
+ ['score','Order flow score',0,'Order flow',['order flow score']],
+ ['bias','Order flow bias',0,'Order flow',['order flow bias'],'s'],
+ ['rs1w','Relative strength 1W',1,'Relative strength',['relative strength 1w','rs 1w']],
+ ['rs3m','Relative strength 3M',1,'Relative strength',['relative strength 3m','rs 3m']],
+ ['rs6m','Relative strength 6M',1,'Relative strength',['relative strength 6m','rs 6m']],
+ ['rs1y','Relative strength 1Y',1,'Relative strength',['relative strength 1y','rs 1y']],
+ ['ind','Industry',0,'Text',['industry','sector'],'s'],
+ ['cap','Cap class',0,'Text',['market cap class','cap class','cap size'],'s']];
+const SCK={};SCF.forEach(f=>SCK[f[0]]=f);
+const SC_AL=[];SCF.forEach(f=>f[4].forEach(a=>SC_AL.push([a,f[0]])));
+SC_AL.sort((a,b)=>b[0].length-a[0].length);
+const SC_RE=SC_AL.map(([a,k])=>[new RegExp('(?<![\\w@])'+a.replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&').replace(/\s+/g,'\\s+')+'(?![\\w])','gi'),k]);
+const SC_EXAMPLE='Market capitalization > 500 AND\nPrice to earning < 15 AND\nReturn on capital employed > 22%';
+const SC_LIB=[
+ ['Popular themes','Ready-made ideas to start from',[
+  ['Quality compounders','High returns, low debt, growing sales','Return on equity > 15 AND\nReturn on capital employed > 15 AND\nDebt to equity < 0.6 AND\nRevenue growth > 10'],
+  ['Value picks','Cheap on earnings and book value, with decent returns','Price to earning < 18 AND\nPrice to book value < 2.5 AND\nReturn on equity > 12'],
+  ['Growth at a fair price','PEG below 1 with real profit growth','Price to earning / Profit growth < 1 AND\nProfit growth > 10 AND\nPrice to earning > 0'],
+  ['Debt-free and profitable','Almost no debt, healthy margins','Debt to equity < 0.1 AND\nReturn on equity > 12 AND\nNet margin > 8'],
+  ['Undervalued vs fair value','Saved fair value well above the price','Fair value upside > 20 AND\nReturn on equity > 10'],
+  ['Small cap gems','Small caps with strong returns and low debt','Cap class = "Small cap" AND\nReturn on equity > 15 AND\nDebt to equity < 0.5']]],
+ ['Price and momentum','Trend and strength screens',[
+  ['Momentum leaders','Up over 1 month and 1 year, above the 200-day average','1 month return > 5 AND\n1 year return > 15 AND\nAbove 200 DMA'],
+  ['Oversold stocks','RSI below 30','RSI < 30'],
+  ['Strong but not stretched','RSI between 50 and 70, above the 200-day average','RSI > 50 AND\nRSI < 70 AND\nAbove 200 DMA'],
+  ['Beating Nifty 500','Ahead of the index on 3 months, 6 months and 1 year','Relative strength 3M > 0 AND\nRelative strength 6M > 0 AND\nRelative strength 1Y > 0'],
+  ['Weak long-term, turning up','Behind on 3 months but ahead this week','Relative strength 3M < 0 AND\nRelative strength 1W > 2']]],
+ ['Order flow','From the end-of-day order flow run',[
+  ['Bullish order flow','Bullish bias with a high score','Order flow bias = bullish AND\nOrder flow score > 70'],
+  ['High delivery','Delivery above 60%, a sign of conviction buying','Delivery percentage > 60'],
+  ['Bearish order flow','Bearish bias with a high score','Order flow bias = bearish AND\nOrder flow score > 70']]],
+ ['Valuation','Cheap on different measures',[
+  ['High ROE, low P/B','Quality that the market is not paying up for','Price to book value < 1.5 AND\nReturn on equity > 15'],
+  ['Low EV/EBITDA','Cheap enterprise value with good returns','EV/EBITDA < 8 AND\nReturn on capital employed > 12'],
+  ['Banks at a discount','Banks with solid ROE and low P/B','Industry contains "bank" AND\nReturn on equity > 12 AND\nPrice to book value < 2']]]];
+function scLev(a,b){const m=a.length,n=b.length,d=[];for(let i=0;i<=m;i++){d[i]=[i];}for(let j=1;j<=n;j++)d[0][j]=j;
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n]}
+function scGuess(w){w=w.toLowerCase();let best=null,bd=99;SC_AL.forEach(([a,k])=>{const d=scLev(w,a);if(d<bd){bd=d;best=k}});return w.length>=5&&bd<=Math.floor(w.length/4)?SCK[best][1]:null}
+// turns the typed query into a function that says whether a stock passes; also lists the ratios used
+function scParse(q){
+  const strs=[];let s=String(q||'');
+  s=s.replace(/"([^"]*)"|'([^']*)'/g,(m,a,b)=>{strs.push(a!=null?a:b);return ' \u0001'+(strs.length-1)+'\u0001 '});
+  SC_RE.forEach(([re,k])=>{s=s.replace(re,' @'+k+' ')});
+  const tk=[],rx=/\s*(?:(\d+\.?\d*|\.\d+)\s*%?|@([a-z0-9]+)|\u0001(\d+)\u0001|(>=|<=|!=|==|=|>|<|\+|-|\*|\/|\(|\))|([A-Za-z_][A-Za-z_0-9]*)|(,))/y;
+  let pos=0;const used=new Set();
+  while(pos<s.length){
+    if(/^\s*$/.test(s.slice(pos)))break;
+    rx.lastIndex=pos;const m=rx.exec(s);
+    if(!m||m.index!==pos){const bad=s.slice(pos).trim()[0];throw new Error("I did not understand \""+bad+"\" in the query.")}
+    pos=rx.lastIndex;
+    if(m[1]!=null)tk.push({t:'n',v:parseFloat(m[1])});
+    else if(m[2]!=null)tk.push({t:'f',k:m[2]});
+    else if(m[3]!=null)tk.push({t:'s',v:strs[+m[3]]});
+    else if(m[4]!=null)tk.push({t:'o',v:m[4]});
+    else if(m[5]!=null)tk.push({t:'w',v:m[5]});
+  }
+  if(!tk.length)throw new Error('Type a query first, for example: '+SC_EXAMPLE.replace(/\n/g,' '));
+  let i=0;const peek=()=>tk[i],kw=(t,w)=>t&&t.t==='w'&&t.v.toUpperCase()===w;
+  const truthy=v=>v!=null&&v!==false&&v!==0&&v!==''&&!(typeof v==='number'&&isNaN(v));
+  const num=v=>typeof v==='number'&&isFinite(v);
+  function orE(){let l=andE();while(kw(peek(),'OR')){i++;const a=l,b=andE();l=r=>truthy(a(r))||truthy(b(r))}return l}
+  function andE(){let l=cmp();while(kw(peek(),'AND')){i++;const a=l,b=cmp();l=r=>truthy(a(r))&&truthy(b(r))}return l}
+  function cmp(){const L=sum(false);const t=peek();
+    let op=null;if(t&&t.t==='o'&&['>','<','>=','<=','=','==','!='].includes(t.v))op=t.v;else if(kw(t,'CONTAINS'))op='contains';
+    if(!op)return L;i++;const R=sum(true);
+    return r=>{const x=L(r),y=R(r);if(x==null||y==null)return false;
+      if(typeof x==='string'||typeof y==='string'){const a=String(x).toLowerCase(),b=String(y).toLowerCase();
+        if(op==='='||op==='==')return a===b;if(op==='!=')return a!==b;if(op==='contains')return a.includes(b);
+        throw new Error("You can only use = , != or contains with text such as industry or order flow bias.")}
+      if(!num(x)||!num(y))return false;
+      return op==='>'?x>y:op==='<'?x<y:op==='>='?x>=y:op==='<='?x<=y:op==='!='?x!==y:x===y}}
+  function sum(af){let l=term(af);while(peek()&&peek().t==='o'&&(peek().v==='+'||peek().v==='-')){const o=tk[i++].v,a=l,b=term(false);l=r=>{const x=a(r),y=b(r);return num(x)&&num(y)?(o==='+'?x+y:x-y):null}}return l}
+  function term(af){let l=fac(af);while(peek()&&peek().t==='o'&&(peek().v==='*'||peek().v==='/')){const o=tk[i++].v,a=l,b=fac(false);l=r=>{const x=a(r),y=b(r);if(!num(x)||!num(y))return null;if(o==='/'&&y===0)return null;return o==='*'?x*y:x/y}}return l}
+  function fac(af){const t=tk[i];if(!t)throw new Error('The query ends too early. Something is missing after the last symbol.');
+    if(t.t==='n'){i++;return()=>t.v}
+    if(t.t==='s'){i++;return()=>t.v}
+    if(t.t==='f'){i++;used.add(t.k);const k=t.k;return r=>r[k]}
+    if(t.t==='o'&&t.v==='-'){i++;const a=fac(false);return r=>{const x=a(r);return num(x)?-x:null}}
+    if(t.t==='o'&&t.v==='('){i++;const e=orE();if(!tk[i]||tk[i].v!==')')throw new Error('A bracket is not closed.');i++;return e}
+    if(t.t==='w'&&!kw(t,'AND')&&!kw(t,'OR')&&!kw(t,'CONTAINS')){
+      const ws=[];while(tk[i]&&tk[i].t==='w'&&!kw(tk[i],'AND')&&!kw(tk[i],'OR')&&!kw(tk[i],'CONTAINS'))ws.push(tk[i++].v);
+      const txt=ws.join(' ');
+      if(af)return()=>txt;
+      const g=scGuess(txt);throw new Error("I do not know the ratio \""+txt+"\"."+(g?' Did you mean "'+g+'"?':' Open "Show all ratios" to see the names you can use.'))}
+    throw new Error('Unexpected "'+(t.v!=null?t.v:t.k)+'" in the query.')}
+  const root=orE();
+  if(i<tk.length){const t=tk[i];throw new Error(t.t==='w'?'Unexpected "'+t.v+'". Put AND or OR between conditions, and check the spelling of ratio names (see "Show all ratios").':'Unexpected "'+(t.v!=null?t.v:t.k)+'". Put AND or OR between conditions.')}
+  return {fn:r=>truthy(root(r)),used:[...used]};
+}
+let SCQ=null;
 async function screener(){
-  view.innerHTML='<div class="skel" style="height:120px"></div><div class="skel" style="height:360px;margin-top:14px"></div>';
-  if(!SC){SC={f:{},cap:[],type:'all',ind:'all',q:'',a200:0,bias:'all',sort:{k:'mc',d:-1},n:50,idx:'all'};
-    try{const s=JSON.parse(localStorage.getItem('tl_screener')||'null');if(s&&s.f)Object.assign(SC,s,{n:50})}catch(e){}}
-  if(FILT.ind&&FILT.ind!=='all'){SC.ind=FILT.ind;FILT.ind='all';SC.q=''}
-  const [P,OF,FS_]=await Promise.all([get('data/peers.json','json'),get('data/orderflow.json','json'),table('data/financials_summary.csv')]);
+  view.innerHTML='<div class="skel" style="height:160px"></div><div class="skel" style="height:300px;margin-top:14px"></div>';
+  if(!SCQ){SCQ={q:'',u:'all',sort:{k:'mc',d:-1},n:50,ran:false};
+    try{const s=JSON.parse(localStorage.getItem('tl_scq')||'null');if(s&&typeof s.q==='string'){SCQ.q=s.q;SCQ.u=s.u||'all'}}catch(e){}}
+  let runNow=false;
+  if(FILT.ind&&FILT.ind!=='all'){SCQ.q='Industry = "'+FILT.ind.replace(/"/g,'')+'"';SCQ.u='all';FILT.ind='all';runNow=true}
+  const [P,OF,FS_,RSD,mem]=await Promise.all([get('data/peers.json','json'),get('data/orderflow.json','json'),table('data/financials_summary.csv'),get('data/rs.json','json').catch(()=>null),get('data/index_members.json','json').catch(()=>null)]);
   const ps={};((P&&P.stocks)||[]).forEach(x=>ps[x.s]=x);
   const ofm={};((OF&&OF.stocks)||[]).forEach(x=>ofm[x.s]=x);
+  const rsm={};((RSD&&RSD.stocks)||[]).forEach(x=>rsm[x.s]=x.v||[]);
   const fup={};FS_.forEach(r=>{const u=T.num(r.upside_pct);if(u!=null)fup[r.symbol]=u});
   const rows=D.syms.map(s=>{
-    const x=ps[s]||{},m=D.met[s]||{},d=D.dcf[s]||{},r=D.rsk[s]||{},o=ofm[s]||{};
+    const x=ps[s]||{},m=D.met[s]||{},d=D.dcf[s]||{},r=D.rsk[s]||{},o=ofm[s]||{},rv=rsm[s]||[];
     const price=T.num(r.price)??T.num(d.price)??x.px??null;
     const dcfUp=T.num(d.fair_value)!=null&&price?(T.num(d.fair_value)/price-1)*100:null;
     const mc=x.mc!=null?x.mc:null;
     return {s,n:x.n||((D.uni.find(u=>u.symbol===s)||{}).company)||s,ind:m.industry||x.ind||'',type:x.type||m.type||'',
       mc,px:price,pe:x.pe,pb:x.pb,ev:x.ev,roe:x.roe,roce:x.roce,nm:x.nm,de:x.de,rg:x.rg,ng:x.ng,r1m:x.r1m,r1y:x.r1y,
-      rsi:T.num(r.rsi14),a200:x.a200,idx:x.idx||((D.uni.find(u=>u.symbol===s)||{}).index)||'nifty500',up:fup[s]!=null?fup[s]:dcfUp,dp:o.dp!=null?o.dp:null,score:o.score!=null?o.score:null,bias:o.bias||'',cap:capOf(mc)}});
+      rsi:T.num(r.rsi14),a200:x.a200,idx:x.idx||((D.uni.find(u=>u.symbol===s)||{}).index)||'nifty500',up:fup[s]!=null?fup[s]:dcfUp,
+      dp:o.dp!=null?o.dp:null,score:o.score!=null?o.score:null,bias:o.bias||'',cap:capOf(mc),
+      rs1w:rv[0]!=null?rv[0]:null,rs3m:rv[1]!=null?rv[1]:null,rs6m:rv[2]!=null?rv[2]:null,rs1y:rv[3]!=null?rv[3]:null}});
+  const UNI=[['all','All stocks'],['nifty50','Nifty 50'],['midcap150','Midcap 150'],['smallcap250','Smallcap 250'],['microcap250','Microcap 250']].filter(x=>x[0]==='all'||(mem&&mem[x[0]]&&mem[x[0]].length));
+  const memSet={};UNI.forEach(([k])=>{if(k!=='all')memSet[k]=new Set(mem[k])});
   const inds=[...new Set(rows.map(r=>r.ind).filter(Boolean))].sort();
-  const save=()=>{try{localStorage.setItem('tl_screener',JSON.stringify(SC))}catch(e){}};
-  const nn=v=>v!=null&&isFinite(v);
-  const pass=r=>{
-    for(const [k,[lo,hi]] of Object.entries(SC.f)){const v=r[k];if(lo==null&&hi==null)continue;if(!nn(v))return false;if(lo!=null&&v<lo)return false;if(hi!=null&&v>hi)return false}
-    if(SC.cap.length&&!SC.cap.includes(r.cap))return false;
-    if(SC.type==='fin'&&r.type!=='financial')return false;if(SC.type==='nonfin'&&r.type==='financial')return false;
-    if(SC.ind!=='all'&&r.ind!==SC.ind)return false;
-    if(SC.a200&&r.a200!==1)return false;
-    if(SC.idx&&SC.idx!=='all'&&r.idx!==SC.idx)return false;
-    if(SC.bias!=='all'&&r.bias!==SC.bias)return false;
-    if(SC.q&&!(r.s+' '+r.n+' '+r.ind).toUpperCase().includes(SC.q.toUpperCase()))return false;
-    return true};
-  const groups=[...new Set(SCM.map(x=>x[3]))];
-  const fv=(k,i)=>{const a=SC.f[k];return a&&a[i]!=null?a[i]:''};
+  const lsGet=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')||[]}catch(e){return[]}};
+  const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+  const nn=v=>v!=null&&typeof v==='number'&&isFinite(v);
+  const BASE=['s','n','cap','mc','px','pe','pb','roe','roce','de','rg','r1m','r1y','up'];
+  const LBL={s:'Symbol',n:'Company',cap:'Cap',mc:'Mkt cap ₹cr',px:'Price',pe:'P/E',pb:'P/B',roe:'ROE %',roce:'ROCE %',de:'D/E',rg:'Rev growth %',r1m:'1M %',r1y:'1Y %',up:'Upside %',dp:'Deliv %',score:'OF score',rsi:'RSI',nm:'Net margin %',ng:'Profit growth %',ev:'EV/EBITDA',bias:'OF bias',ind:'Industry',a200:'Above 200 DMA',rs1w:'RS 1W',rs3m:'RS 3M',rs6m:'RS 6M',rs1y:'RS 1Y'};
+  const TXT=new Set(['s','n','cap','bias','ind']),SIGN=new Set(['r1m','r1y','up','rs1w','rs3m','rs6m','rs1y']);
+  const dec={mc:0,px:1,pe:1,pb:2,roe:1,roce:1,de:2,rg:1,ng:1,nm:1,ev:1,r1m:1,r1y:1,up:0,dp:0,score:0,rsi:0,rs1w:1,rs3m:1,rs6m:1,rs1y:1};
+  const savedHtml=()=>{const a=lsGet('tl_screens');return a.length?`<div class="sqsec"><h3>Your screens</h3><p class="mut">Saved on this device, and with your account when you are signed in</p><div class="sqcards">${a.map((x,i)=>`<div class="sqcard" data-q="${esc(x.q)}"><b>${esc(x.n)}</b><span>${esc(x.q.replace(/\s*\n\s*/g,' ').slice(0,110))}</span><i class="sqdel" data-del="${i}" title="Delete this screen">×</i></div>`).join('')}</div></div>`:''};
   const shell=()=>{
-    view.innerHTML=`<div class="scr"><h2 style="margin:0 0 4px">Stock screener</h2>
-     <p class="mut" style="margin:0 0 12px">Filter all tracked stocks (Nifty 500 and Microcap 250) on valuation, quality, growth, momentum and order flow. Leave a box empty to ignore it. Stocks with no data for a filtered metric are left out. End-of-day data.</p>
-     <div class="card"><div class="scpre"><span class="mut">Presets</span>${SC_PRESETS.map((p,i)=>`<button data-p="${i}">${esc(p[0])}</button>`).join('')}<button id="sc-clear" class="ed-reset">Clear all</button></div>
-      <div class="scgrid">${groups.map(g=>`<div class="scg"><div class="k">${g}</div>${SCM.filter(x=>x[3]===g).map(([k,l])=>`<div class="scf"><span>${l}</span><input type="number" step="any" data-k="${k}" data-i="0" placeholder="min" value="${fv(k,0)}"><input type="number" step="any" data-k="${k}" data-i="1" placeholder="max" value="${fv(k,1)}"></div>`).join('')}</div>`).join('')}
-       <div class="scg"><div class="k">Filters</div>
-        <div class="scf"><span>Market cap class</span><span class="sccaps">${['Large cap','Mid cap','Small cap'].map(c=>`<label><input type="checkbox" data-cap="${c}" ${SC.cap.includes(c)?'checked':''}>${c.split(' ')[0]}</label>`).join('')}</span></div>
-        <div class="scf"><span>Index group</span><select id="sc-idx"><option value="all">All</option><option value="nifty500"${SC.idx==='nifty500'?' selected':''}>Nifty 500</option><option value="microcap250"${SC.idx==='microcap250'?' selected':''}>Microcap 250</option></select></div>
-        <div class="scf"><span>Type</span><select id="sc-type"><option value="all">All</option><option value="nonfin"${SC.type==='nonfin'?' selected':''}>Non-financial</option><option value="fin"${SC.type==='fin'?' selected':''}>Banks &amp; financials</option></select></div>
-        <div class="scf"><span>Industry</span><select id="sc-ind"><option value="all">All industries</option>${inds.map(x=>`<option${SC.ind===x?' selected':''}>${esc(x)}</option>`).join('')}</select></div>
-        <div class="scf"><span>Order flow bias</span><select id="sc-bias"><option value="all">Any</option>${['bullish','bearish','neutral'].map(x=>`<option value="${x}"${SC.bias===x?' selected':''}>${x[0].toUpperCase()+x.slice(1)}</option>`).join('')}</select></div>
-        <div class="scf"><span>Above 200-day average</span><input type="checkbox" id="sc-a200" ${SC.a200?'checked':''}></div>
-        <div class="scf"><span>Search</span><input id="sc-q" placeholder="symbol, name, industry" value="${esc(SC.q)}"></div></div></div></div>
-     <div class="card" style="margin-top:14px"><div class="schd"><b id="sc-cnt"></b><span class="mut" style="flex:1;font-size:13px"> · click a column to sort · click a row to open</span></div><div class="scroll"><table id="sc-tb" class="sctb"></table></div><p style="text-align:center;margin:10px 0 0"><button id="sc-more" class="ed-reset" style="display:none">Show 50 more</button></p>
-     <p class="mut" style="font-size:12px;margin-top:10px">Fair value upside uses the saved DCF (non-financials) or the P/B–ROE model (financials) from the nightly run, so open the stock to test it with your own assumptions. Delivery % and the order flow score come from the latest order-flow run. Returns are price returns. Ratios are from the latest annual data on Yahoo Finance, so check anything important against the company's filings.</p></div></div>`;
-    bind()};
-  const COLS=[['s','Symbol','l'],['n','Company','l'],['cap','Cap','l'],['mc','Mkt cap ₹cr'],['px','Price'],['pe','P/E'],['pb','P/B'],['roe','ROE %'],['roce','ROCE %'],['de','D/E'],['rg','Rev CAGR %'],['r1m','1M %'],['r1y','1Y %'],['up','Upside %'],['dp','Deliv %'],['score','OF score']];
-  const dec={mc:0,px:1,pe:1,pb:2,roe:1,roce:1,de:2,rg:1,r1m:1,r1y:1,up:0,dp:0,score:0};
-  const pct=new Set(['r1m','r1y','up']);
-  const draw=()=>{
-    const all=rows.filter(pass);
-    const {k,d}=SC.sort;
-    all.sort((a,b)=>{const x=a[k],y=b[k];if(!nn(x)&&!nn(y)&&typeof x!=='string'&&typeof y!=='string')return 0;if(x==null||x==='')return 1;if(y==null||y==='')return -1;return (x>y?1:x<y?-1:0)*d});
-    $('#sc-cnt').textContent=all.length+' of '+rows.length+' stocks';
-    const shown=all.slice(0,SC.n);
-    $('#sc-tb').innerHTML='<tr>'+COLS.map(c=>`<th class="${c[2]||''}" data-k="${c[0]}">${c[1]}${k===c[0]?(d>0?' ▲':' ▼'):''}</th>`).join('')+'</tr>'+
-     shown.map(r=>`<tr class="row" onclick="location.hash='#/stock/${encodeURIComponent(r.s)}'">${COLS.map(c=>{const v=r[c[0]];if(c[2]==='l')return `<td class="l${c[0]==='n'?' mut':''}">${esc(String(v==null?'':v))}</td>`;return `<td class="num ${pct.has(c[0])?cls(v):''}">${nn(v)?(pct.has(c[0])&&v>0?'+':'')+T.fmt(v,dec[c[0]]):'–'}</td>`}).join('')}</tr>`).join('')||'<tr><td colspan="16" class="mut" style="padding:20px">No stock matches all the filters. Loosen one of them.</td></tr>';
-    document.querySelectorAll('#sc-tb th').forEach(th=>th.onclick=()=>{const kk=th.dataset.k;SC.sort=SC.sort.k===kk?{k:kk,d:-SC.sort.d}:{k:kk,d:['s','n','cap'].includes(kk)?1:-1};save();draw()});
-    const mo=$('#sc-more');mo.style.display=all.length>SC.n?'':'none';mo.onclick=()=>{SC.n+=50;draw()};
+    view.innerHTML=`<div class="scr"><h2 style="margin:0 0 12px">Stock screener</h2>
+     <div class="card sq"><div class="sqg"><div class="sqa"><h3 style="margin:0 0 4px">Create a search query</h3>
+       <label class="sql" for="sq-q">Query</label>
+       <textarea id="sq-q" rows="6" spellcheck="false" placeholder="Write conditions joined by AND / OR, for example:&#10;Price to earning < 15 AND&#10;Return on equity > 18">${esc(SCQ.q)}</textarea>
+       <div class="sqrow"><label>Universe <select id="sq-u">${UNI.map(([k,l])=>`<option value="${k}"${SCQ.u===k?' selected':''}>${l}</option>`).join('')}</select></label></div>
+       <div class="sqbtn"><button id="sq-run" class="sqprim">▶ Run this query</button><input id="sq-name" placeholder="Name, to save this screen"><button id="sq-save" class="sqsec2">Save screen</button><button id="sq-clr" class="sqsec2">Clear</button></div>
+       <div id="sq-err" class="sqerr"></div></div>
+      <div class="sqb"><h4>Custom query example</h4><pre id="sq-exs">${esc(SC_EXAMPLE)}</pre><a href="javascript:void(0)" id="sq-ex" class="link">Use this example</a>
+       <p class="mut" style="font-size:12.5px;margin:10px 0 0">Use &gt; &lt; &gt;= &lt;= = !=, join with AND / OR, use brackets, and do sums such as <b>Price to earning / Profit growth &lt; 1</b>. For text use quotes: <b>Industry = "Banks"</b> or <b>Industry contains "auto"</b>. Ctrl+Enter runs the query.</p>
+       <details class="sqall"><summary>Show all ratios</summary>${[...new Set(SCF.map(x=>x[3]))].map(g=>`<div class="sqgrp"><span>${g}</span>${SCF.filter(x=>x[3]===g).map(x=>`<button type="button" class="sqchip" data-ins="${esc(x[1])}">${esc(x[1])}</button>`).join('')}</div>`).join('')}<p class="mut" style="font-size:12px;margin:6px 0 0">Click a ratio to add it to the query. Percent values are plain numbers, so ROE above 15% is <b>Return on equity &gt; 15</b>.</p></details></div></div></div>
+     <div id="sq-res"></div>
+     <div id="sq-lib">${savedHtml()}${SC_LIB.map(([t,d,a])=>`<div class="sqsec"><h3>${esc(t)}</h3><p class="mut">${esc(d)}</p><div class="sqcards">${a.map(([n,ds,q])=>`<div class="sqcard" data-q="${esc(q)}"><b>${esc(n)}</b><span>${esc(ds)}</span></div>`).join('')}</div></div>`).join('')}
+      <div class="sqsec"><h3>Browse industries</h3><p class="mut">Click one to list its stocks</p><div class="sqind">${inds.map(x=>`<button type="button" data-ind="${esc(x)}">${esc(x)}</button>`).join('')}</div></div></div>
+     <p class="mut" style="font-size:12px;margin-top:6px">End-of-day data. Fair value upside uses the saved DCF (non-financials) or the P/B–ROE model (financials) from the nightly run. Delivery % and the order flow score come from the latest order flow run. Relative strength is against the Nifty 500. Ratios are from the latest annual data on Yahoo Finance, so check anything important against the company's filings.</p></div>`;
+    bind();
   };
+  const run=(scroll)=>{
+    const qv=$('#sq-q').value;SCQ.q=qv;SCQ.u=$('#sq-u').value;SCQ.n=50;lsSet('tl_scq',{q:SCQ.q,u:SCQ.u});
+    const err=$('#sq-err'),res=$('#sq-res');err.textContent='';
+    let pr;try{pr=scParse(qv)}catch(e){err.textContent=e.message;res.innerHTML='';return}
+    const pool=SCQ.u==='all'?rows:rows.filter(r=>memSet[SCQ.u]&&memSet[SCQ.u].has(r.s));
+    let hit;try{hit=pool.filter(pr.fn)}catch(e){err.textContent=e.message;res.innerHTML='';return}
+    SCQ.ran=true;SCQ.hit=hit;SCQ.used=pr.used;SCQ.pool=pool.length;
+    drawRes();if(scroll){const el=$('#sq-res');if(el)window.scrollTo({top:Math.max(0,el.getBoundingClientRect().top+window.scrollY-120),behavior:'smooth'})}
+  };
+  const cols=()=>{const extra=SCQ.used.filter(k=>!BASE.includes(k));return [...BASE,...extra]};
+  const drawRes=()=>{
+    const res=$('#sq-res');if(!res||!SCQ.ran)return;
+    const cs=cols();let {k,d}=SCQ.sort;if(!cs.includes(k)){k='mc';d=-1}
+    const all=SCQ.hit.slice().sort((a,b)=>{const x=a[k],y=b[k];if((x==null||x==='')&&(y==null||y===''))return 0;if(x==null||x==='')return 1;if(y==null||y==='')return -1;return (x>y?1:x<y?-1:0)*d});
+    const shown=all.slice(0,SCQ.n);
+    const cell=(r,c)=>{const v=r[c];if(c==='a200')return `<td class="num">${v==null?'–':v?'Yes':'No'}</td>`;
+      if(TXT.has(c))return `<td class="l${c==='n'?' mut':''}">${esc(String(v==null?'':v))}</td>`;
+      return `<td class="num ${SIGN.has(c)?cls(v):''}">${nn(v)?(SIGN.has(c)&&v>0?'+':'')+T.fmt(v,dec[c]??1):'–'}</td>`};
+    res.innerHTML=`<div class="card sqr"><div class="schd"><b>${all.length} result${all.length===1?'':'s'} found</b><span class="mut" style="flex:1;font-size:13px"> · out of ${SCQ.pool} stocks · click a column to sort · click a row to open</span><button id="sq-csv" class="sqsec2">Export CSV</button></div>
+     <div class="scroll"><table id="sc-tb" class="sctb"><tr>${cs.map(c=>`<th class="${TXT.has(c)?'l':''}" data-k="${c}">${LBL[c]||c}${k===c?(d>0?' ▲':' ▼'):''}</th>`).join('')}</tr>
+     ${shown.map(r=>`<tr class="row" data-s="${esc(r.s)}">${cs.map(c=>cell(r,c)).join('')}</tr>`).join('')||`<tr><td colspan="${cs.length}" class="mut" style="padding:20px;text-align:center">No stock matches this query. Try loosening one of the conditions.</td></tr>`}</table></div>
+     ${all.length>SCQ.n?'<p style="text-align:center;margin:10px 0 0"><button id="sc-more" class="sqsec2">Show 50 more</button></p>':''}</div>`;
+    res.querySelectorAll('tr.row').forEach(tr=>tr.onclick=()=>{location.hash='#/stock/'+encodeURIComponent(tr.dataset.s)});
+    res.querySelectorAll('th').forEach(th=>th.onclick=()=>{const kk=th.dataset.k;SCQ.sort=SCQ.sort.k===kk?{k:kk,d:-SCQ.sort.d}:{k:kk,d:TXT.has(kk)?1:-1};drawRes()});
+    const mo=$('#sc-more');if(mo)mo.onclick=()=>{SCQ.n+=50;drawRes()};
+    $('#sq-csv').onclick=()=>{const q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
+      const csv=[cs.map(c=>q(LBL[c]||c)).join(',')].concat(all.map(r=>cs.map(c=>q(r[c])).join(','))).join('\n');
+      const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='screen_results.csv';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)};
+  };
+  const load=q=>{$('#sq-q').value=q;run(true)};
   const bind=()=>{
-    view.querySelectorAll('input[data-k]').forEach(i=>i.onchange=()=>{const k=i.dataset.k,j=+i.dataset.i,v=parseFloat(i.value);const a=SC.f[k]||[null,null];a[j]=isFinite(v)?v:null;if(a[0]==null&&a[1]==null)delete SC.f[k];else SC.f[k]=a;SC.n=50;save();draw()});
-    view.querySelectorAll('input[data-cap]').forEach(i=>i.onchange=()=>{SC.cap=[...view.querySelectorAll('input[data-cap]:checked')].map(x=>x.dataset.cap);SC.n=50;save();draw()});
-    $('#sc-idx').onchange=e=>{SC.idx=e.target.value;SC.n=50;save();draw()};
-    $('#sc-type').onchange=e=>{SC.type=e.target.value;SC.n=50;save();draw()};
-    $('#sc-ind').onchange=e=>{SC.ind=e.target.value;SC.n=50;save();draw()};
-    $('#sc-bias').onchange=e=>{SC.bias=e.target.value;SC.n=50;save();draw()};
-    $('#sc-a200').onchange=e=>{SC.a200=e.target.checked?1:0;SC.n=50;save();draw()};
-    $('#sc-q').oninput=e=>{SC.q=e.target.value;SC.n=50;save();draw()};
-    $('#sc-clear').onclick=()=>{SC.f={};SC.cap=[];SC.type='all';SC.ind='all';SC.q='';SC.a200=0;SC.bias='all';SC.idx='all';SC.n=50;save();shell();draw()};
-    view.querySelectorAll('.scpre button[data-p]').forEach(b=>b.onclick=()=>{const p=SC_PRESETS[+b.dataset.p][1];SC.f={};SC.cap=[];SC.type='all';SC.ind='all';SC.q='';SC.a200=0;SC.bias='all';SC.idx='all';SC.n=50;
-      for(const [k,v] of Object.entries(p)){if(k==='_a200')SC.a200=v;else if(k==='_bias')SC.bias=v;else SC.f[k]=v.slice()}save();shell();draw()});
+    $('#sq-run').onclick=()=>run(false);
+    $('#sq-q').onkeydown=e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();run(false)}};
+    $('#sq-u').onchange=()=>{if(SCQ.ran)run(false)};
+    $('#sq-ex').onclick=()=>{$('#sq-q').value=SC_EXAMPLE;run(false)};
+    $('#sq-clr').onclick=()=>{$('#sq-q').value='';SCQ.q='';SCQ.ran=false;lsSet('tl_scq',{q:'',u:SCQ.u});$('#sq-res').innerHTML='';$('#sq-err').textContent=''};
+    $('#sq-save').onclick=()=>{const q=$('#sq-q').value.trim(),err=$('#sq-err');if(!q){err.textContent='Write a query first, then save it.';return}
+      try{scParse(q)}catch(e){err.textContent=e.message;return}
+      const nm=($('#sq-name').value.trim()||q.replace(/\s+/g,' ').slice(0,30)),a=lsGet('tl_screens');a.unshift({n:nm,q});lsSet('tl_screens',a.slice(0,40));err.textContent='';
+      const keep=$('#sq-q').value;shell();$('#sq-q').value=keep;if(SCQ.ran)run(false)};
+    view.querySelectorAll('.sqchip').forEach(b=>b.onclick=()=>{const t=$('#sq-q'),s=t.selectionStart??t.value.length,e=t.selectionEnd??s,ins=b.dataset.ins+' ';t.value=t.value.slice(0,s)+ins+t.value.slice(e);t.focus();t.selectionStart=t.selectionEnd=s+ins.length});
+    view.querySelectorAll('#sq-lib .sqcard').forEach(c=>c.onclick=e=>{if(e.target.closest('.sqdel'))return;load(c.dataset.q)});
+    view.querySelectorAll('.sqdel').forEach(x=>x.onclick=e=>{e.stopPropagation();const a=lsGet('tl_screens');a.splice(+x.dataset.del,1);lsSet('tl_screens',a);const keep=$('#sq-q').value;shell();$('#sq-q').value=keep;if(SCQ.ran)run(false)});
+    view.querySelectorAll('.sqind button').forEach(b=>b.onclick=()=>load('Industry = "'+b.dataset.ind.replace(/"/g,'')+'"'));
   };
-  shell();draw();
+  shell();
+  if(runNow||(SCQ.q.trim()&&SCQ.ran===false&&false))run(false);
+  else if(SCQ.ran)run(false);
 }
 
 // ---------- statements: P&L, balance sheet, cash flow, shareholding ----------
