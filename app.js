@@ -2175,6 +2175,66 @@ function scenarioFin(sel,f,price){
       return {fair:r.fair,extra:[['Fair P/B (year 10)',T.fmt(r.pbT,2)+'x']],out:[{l:'Book value / share ₹',v:k('bv'),d:0},{l:'EPS ₹',v:k('eps'),d:1},{l:'Cash to shareholders ₹',v:k('fcfe'),d:1},{l:'Present value ₹',v:k('pv'),d:1}]}}};
   scenarioModel(sel,spec);
 }
+
+// ---------- Shareholding tab ----------
+async function shareholdingTab(s){
+  const box=$('#shbody');if(!box)return;
+  let st=null,sh=null;try{st=await get(`data/statements/${s}.json`,'json')}catch(e){}
+  try{sh=await get(`data/shareholding/${s}.json`,'json')}catch(e){}
+  let tiles='';
+  if(sh&&sh.quarters&&sh.quarters.length){
+    const q=sh.quarters,L=q[q.length-1],P1=q.length>1?q[q.length-2]:null,P4=q.length>4?q[q.length-5]:null;
+    const G=[['promoter','Promoters'],['fii','FII / FPI'],['dii','DII'],['public','Public']].filter(([k])=>L[k]!=null);
+    const dl=(v,p)=>v!=null&&p!=null?v-p:null,fd=d=>d==null?'–':`<span class="${d>0.004?'pos':d<-0.004?'neg':''}">${d>0?'+':''}${T.fmt(d,2)} pp</span>`;
+    tiles=`<div class="card"><h3>Latest holding<span class="mut" style="font-weight:400;font-size:12px">${esc(L.label||L.date)} · change against the previous quarter and a year earlier</span></h3>
+     <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">${G.map(([k,n])=>`<div class="tile"><div class="k">${n}</div><div class="tv">${T.fmt(L[k],2)}%</div><div class="mut" style="font-size:12px;margin-top:4px">Quarter ${fd(dl(L[k],P1&&P1[k]))}<br>Year ${fd(dl(L[k],P4&&P4[k]))}</div></div>`).join('')}</div></div>`;
+  }
+  box.innerHTML=tiles+shareholdingHtml(st,sh);
+}
+// ---------- Compare tab ----------
+const CMP={};
+const CMP_ROWS=[['Price ₹','px',v=>T.fmt(v,1),null],['Market cap ₹cr','mc',v=>T.fmt(v,0),null],['P/E','pe',v=>T.fmt(v,1)+'x','lo'],['P/B','pb',v=>T.fmt(v,2)+'x','lo'],['EV/EBITDA','ev',v=>T.fmt(v,1)+'x','lo'],['ROE %','roe',v=>T.fmt(v,1),'hi'],['ROCE %','roce',v=>T.fmt(v,1),'hi'],['Net margin %','nm',v=>T.fmt(v,1),'hi'],['Debt / equity','de',v=>T.fmt(v,2),'lo'],['Revenue growth %','rg',v=>T.fmt(v,1),'hi'],['Profit growth %','ng',v=>T.fmt(v,1),'hi'],['1M return %','r1m',v=>T.fmt(v,1),'hi'],['1Y return %','r1y',v=>T.fmt(v,1),'hi'],['Relative strength 3M (vs Nifty 500)','rs3',v=>(v>0?'+':'')+T.fmt(v,1),'hi'],['Relative strength 1Y','rs1',v=>(v>0?'+':'')+T.fmt(v,1),'hi'],['Above 200-DMA','a200',v=>v?'Yes':'No',null]];
+async function compareTab(s){
+  const box=$('#cmpbody');if(!box)return;
+  const [P,RS]=await Promise.all([get('data/peers.json','json'),get('data/rs.json','json').catch(()=>null)]);
+  if(!P||!P.stocks){box.innerHTML='<div class="card"><p class="mut">Peer data is not available yet.</p></div>';return}
+  const by={};P.stocks.forEach(x=>by[x.s]=Object.assign({},x));
+  if(RS&&RS.stocks){const b0=RS.base===100?100:0,wi=(RS.windows?Object.keys(RS.windows):['1w','3m','6m','1y']).map(k=>k.toLowerCase());const i3=Math.max(0,wi.indexOf('3m')),i1=Math.max(0,wi.indexOf('1y'));
+    RS.stocks.forEach(r=>{if(by[r.s]){by[r.s].rs3=r.v[i3]!=null?r.v[i3]-b0:null;by[r.s].rs1=r.v[i1]!=null?r.v[i1]-b0:null}})}
+  const me=by[s];if(!me){box.innerHTML='<div class="card"><p class="mut">This stock is not in the comparison data.</p></div>';return}
+  const st=CMP[s]||(CMP[s]={o:P.stocks.filter(x=>x.ind===me.ind&&x.s!==s).sort((a,b)=>(b.mc||0)-(a.mc||0)).slice(0,3).map(x=>x.s),tf:252});
+  const COL=['#0f6b4a','#2f6fdb','#e9a23b','#c2410c','#7c3aed'];
+  const px={};
+  const load=async syms=>{await Promise.all(syms.filter(x=>!px[x]).map(async x=>{try{const t=await get(`data/prices/${x}.csv`);px[x]=t?T.parseCSV(t).map(r=>[r.Date,+r.Close]).filter(r=>isFinite(r[1])):[]}catch(e){px[x]=[]}}))};
+  const draw=async()=>{
+    const syms=[s].concat(st.o);await load(syms);
+    const opts=P.stocks.filter(x=>!syms.includes(x.s)).map(x=>`<option value="${esc(x.s)}">${esc(x.n||'')}</option>`).join('');
+    // chart: rebase to 100 at the first date every stock has
+    const cs=syms.filter(x=>(px[x]||[]).length>20),ser=cs.map(x=>px[x]);let chart='';
+    if(cs.length>1&&cs.includes(s)){
+      const n=Math.min(st.tf,Math.min(...ser.map(a=>a.length))),cut=ser.map(a=>a.slice(a.length-n));
+      const lines=cut.map(a=>a.map(r=>r[1]/a[0][1]*100)),all=[].concat(...lines),lo=Math.min(...all),hi=Math.max(...all),W=900,H=280,pl=44,pr=10,pt=10,pb=22;
+      const X=i=>pl+(W-pl-pr)*i/(n-1),Y=v=>pt+(H-pt-pb)*(1-(v-lo)/((hi-lo)||1));
+      const ticks=[lo,(lo+hi)/2,hi].map(v=>`<line x1="${pl}" x2="${W-pr}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--b)"/><text x="${pl-6}" y="${Y(v)+4}" text-anchor="end" font-size="11" fill="var(--m)">${T.fmt(v,0)}</text>`).join('');
+      const base=`<line x1="${pl}" x2="${W-pr}" y1="${Y(100)}" y2="${Y(100)}" stroke="var(--m)" stroke-dasharray="3 3" opacity=".6"/>`;
+      chart=`<div class="card"><h3>Price, rebased to 100<span class="mut" style="font-weight:400;font-size:12px">same starting date for all · ${cut[0][0][0]} to ${cut[0][n-1][0]}</span><span class="seg" id="cmptf" style="margin-left:auto">${[['6M',126],['1Y',252],['3Y',756],['5Y',1260]].map(([l,v])=>`<button data-v="${v}" class="${st.tf===v?'on':''}">${l}</button>`).join('')}</span></h3>
+       <div class="shleg">${cs.map((x,i)=>`<span><b style="background:${COL[syms.indexOf(x)]}"></b>${esc(x)} <span class="${cls(lines[i][n-1]-100)}">${(lines[i][n-1]-100>=0?'+':'')+T.fmt(lines[i][n-1]-100,1)}%</span></span>`).join('')}</div>
+       <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block">${ticks}${base}${lines.map((l,i)=>`<polyline fill="none" stroke="${COL[syms.indexOf(cs[i])]}" stroke-width="${cs[i]===s?2.4:1.6}" points="${l.map((v,j)=>X(j).toFixed(1)+','+Y(v).toFixed(1)).join(' ')}"/>`).join('')}</svg></div>`;
+    }
+    const best=r=>{if(!r[3])return null;const v=syms.map(x=>by[x]&&by[x][r[1]]).map((x,i)=>x==null||!isFinite(x)||(r[3]==='lo'&&x<=0)?null:x);const ok=v.filter(x=>x!=null);if(ok.length<2)return null;const t=r[3]==='hi'?Math.max(...ok):Math.min(...ok);return v.indexOf(t)};
+    const tbl=`<div class="card"><h3>Side by side<span class="mut" style="font-weight:400;font-size:12px">best value in each row is shaded · for P/E, P/B, EV/EBITDA and debt, lower counts as better, but compare like with like</span></h3><div class="scroll"><table class="peer cmpt"><thead><tr><th></th>${syms.map((x,i)=>`<th class="num"><span class="cd" style="background:${COL[i]}"></span><a href="#/stock/${esc(x)}">${esc(x)}</a>${i?` <button class="cx" data-x="${esc(x)}" title="Remove">×</button>`:''}<div class="mut" style="font-weight:400;font-size:11px">${esc((by[x]&&by[x].n||'').slice(0,22))}</div></th>`).join('')}</tr></thead><tbody>
+      <tr><td class="l mut">Industry</td>${syms.map(x=>`<td class="num mut" style="font-size:12px">${esc(by[x]&&by[x].ind||'–')}</td>`).join('')}</tr>
+      ${CMP_ROWS.map(r=>{const b=best(r);return `<tr><td class="l">${r[0]}</td>${syms.map((x,i)=>{const v=by[x]&&by[x][r[1]];return `<td class="num ${b===i?'cbest':''}">${v==null||(typeof v==='number'&&!isFinite(v))?'–':r[2](v)}</td>`}).join('')}</tr>`}).join('')}</tbody></table></div></div>`;
+    box.innerHTML=`<div class="card"><h3>Compare with<span class="mut" style="font-weight:400;font-size:12px">up to 4 other stocks · ${esc(me.ind||'')} peers are pre-selected</span></h3>
+      <div class="bar" style="margin:0"><input id="cmpadd" list="cmpl" placeholder="Type a symbol, e.g. TCS" style="width:200px"><datalist id="cmpl">${opts}</datalist><button id="cmpgo"${st.o.length>=4?' disabled':''}>Add</button><button id="cmpreset">Reset to peers</button></div></div>${chart}${tbl}`;
+    const add=()=>{const v=($('#cmpadd').value||'').trim().toUpperCase();if(by[v]&&!syms.includes(v)&&st.o.length<4){st.o.push(v);draw()}};
+    $('#cmpgo').onclick=add;$('#cmpadd').onkeydown=e=>{if(e.key==='Enter')add()};
+    $('#cmpreset').onclick=()=>{st.o=P.stocks.filter(x=>x.ind===me.ind&&x.s!==s).sort((a,b)=>(b.mc||0)-(a.mc||0)).slice(0,3).map(x=>x.s);draw()};
+    box.querySelectorAll('.cx').forEach(b=>b.onclick=()=>{st.o=st.o.filter(x=>x!==b.dataset.x);draw()});
+    box.querySelectorAll('#cmptf button').forEach(b=>b.onclick=()=>{st.tf=+b.dataset.v;draw()});
+  };
+  draw();
+}
 const VAL_MODELS={
  mult:{label:'Price multiples',what:'Values the stock by applying a fair multiple to earnings, book value or sales, using the stock\'s own history and its peers.',best:'Almost every listed company; the quickest cross-check.',inputs:['P/E, P/B, P/S and EV/EBITDA now vs own 5-year range','Peer median multiples (same industry)','Target multiple x forward EPS / BVPS / sales per share','Implied price range: low, median, high']},
  ev:{label:'EV multiples',what:'Applies an enterprise-value multiple (EV/EBITDA, EV/Sales, EV/FCF), then bridges to equity by subtracting net debt.',best:'Non-financial companies with different debt levels, or where earnings are volatile.',inputs:['EV/EBITDA, EV/Sales and EV/FCF vs history and peers','Net debt, minority interest and investments bridge','Implied equity value per share']},
@@ -2699,8 +2759,8 @@ async function stock(s,tab){
   const ini=((words[0]||s)[0]+((words[1]||'')[0]||(words[0]||s)[1]||'')).toUpperCase();
   const stat=(k,val)=>`<div class="stat"><div class="k">${k}</div><div class="sv">${val}</div></div>`;
   const dl='';
-  const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['peers','Peers'],['orderflow','Order Flow'],['quant','Quant'],['news','News']];
-  const tabsH=`<div class="tabs">${TABS.map(t=>`<a href="#/stock/${esc(s)}/${t[0]}" class="${tab===t[0]?'on':''}${LOCKED_TABS.includes(t[0])?' lk':''}">${t[1]}</a>`).join('')}${['Compare','Shareholding','Research Notes'].map(x=>`<span title="Coming later">${x}</span>`).join('')}<b class="mini">${esc(s)} <em>₹${T.fmt(price,2)}</em>${chg!=null?` <i class="${cls(chg)}">${chg>=0?'+':''}${T.fmt(chg,2)}%</i>`:''}</b></div>`;
+  const TABS=[['overview','Overview'],['financials','Financials'],['valuation','Valuation'],['peers','Peers'],['orderflow','Order Flow'],['quant','Quant'],['news','News'],['compare','Compare'],['shareholding','Shareholding']];
+  const tabsH=`<div class="tabs">${TABS.map(t=>`<a href="#/stock/${esc(s)}/${t[0]}" class="${tab===t[0]?'on':''}${LOCKED_TABS.includes(t[0])?' lk':''}">${t[1]}</a>`).join('')}${['Research Notes'].map(x=>`<span title="Coming later">${x}</span>`).join('')}<b class="mini">${esc(s)} <em>₹${T.fmt(price,2)}</em>${chg!=null?` <i class="${cls(chg)}">${chg>=0?'+':''}${T.fmt(chg,2)}%</i>`:''}</b></div>`;
   let h=tabsH+`<div class="crumb"><a href="#/market">Research</a> › ${esc(s)}</div>
    <div class="card"><div class="sh"><div class="logo">${esc(ini)}</div>
     <div><h1>${esc(u.company||s)}</h1><div class="sub">${esc(s)}.NSE</div><span class="tag">${esc(u.industry||'')}</span>${V.market_cap_cr!=null?`<span class="tag">${capOf(V.market_cap_cr)}</span>`:''}${u.index==='microcap250'?'<span class="tag" title="In the Nifty Microcap 250, outside the Nifty 500. Data can be thinner and trading less liquid.">Microcap 250</span>':''}${met?`<span class="tag">${esc(met.type)}</span>`:''}</div>
@@ -2743,6 +2803,10 @@ async function stock(s,tab){
     h+='<div id="peerbody"><div class="skel" style="height:320px"></div></div>';
   }else if(tab==='orderflow'){
     h+='<div id="ofbody"><div class="skel" style="height:440px"></div></div>';
+  }else if(tab==='compare'){
+    h+='<div id="cmpbody"><div class="skel" style="height:320px"></div></div>';
+  }else if(tab==='shareholding'){
+    h+='<div id="shbody"><div class="skel" style="height:320px"></div></div>';
   }else if(tab==='news'){
     h+='<div id="nbody"><div class="skel" style="height:300px"></div></div>';
   }else if(tab==='quant'){
@@ -2776,6 +2840,8 @@ async function stock(s,tab){
   if(tab==='orderflow')ofStock(s);
   if(tab==='quant')quantTabs(s,technicals());
   if(tab==='news')newsTab(s,u);
+  if(tab==='compare')compareTab(s);
+  if(tab==='shareholding')shareholdingTab(s);
   if(tab==='overview')ovSummary(s,{met,rsk,dcf,fin,rl,price,u,prices});
   if(tab==='valuation')valTabs(s,dcf,fin,rl,price,met,u);
 }
