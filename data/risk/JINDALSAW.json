@@ -1,20 +1,20 @@
 {
  "symbol": "JINDALSAW",
- "as_of": "2026-11-26",
- "rows": 1239,
- "price": 239.15,
+ "as_of": "2026-11-27",
+ "rows": 1240,
+ "price": 239.0,
  "returns_pct": {
-  "1m": 3.2,
-  "3m": -16.7,
-  "6m": 5.8,
-  "1y": 44.6,
-  "3y_cagr": 3.2,
-  "ytd": 42.4
+  "1m": -2.4,
+  "3m": -15.2,
+  "6m": 4.4,
+  "1y": 43.2,
+  "3y_cagr": 2.7,
+  "ytd": 42.3
  },
  "relative_strength_pp": {
-  "3m": -19.2,
-  "6m": 0.8,
-  "1y": 43.5
+  "3m": -16.6,
+  "6m": -0.2,
+  "1y": 43.2
  },
  "range": {
   "high_52w": 317.5,
@@ -25,14 +25,14 @@
   "low_date": "2026-01-16"
  },
  "moving_averages": {
-  "dma20": 248.27,
+  "dma20": 248.17,
   "pct_vs_dma20": -3.7,
-  "dma50": 266.73,
-  "pct_vs_dma50": -10.3,
-  "dma100": 271.64,
-  "pct_vs_dma100": -12.0,
-  "dma200": 243.9,
-  "pct_vs_dma200": -1.9
+  "dma50": 265.27,
+  "pct_vs_dma50": -9.9,
+  "dma100": 271.42,
+  "pct_vs_dma100": -11.9,
+  "dma200": 244.16,
+  "pct_vs_dma200": -2.1
  },
  "trend": {
   "above_dma200": false,
@@ -41,22 +41,22 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 39.5,
-  "macd_pct": -2.44,
-  "macd_signal_pct": -2.37,
-  "macd_hist_pct": -0.06,
-  "bollinger_pctb": 0.23,
-  "atr_pct": 4.23
+  "rsi14": 39.4,
+  "macd_pct": -2.56,
+  "macd_signal_pct": -2.41,
+  "macd_hist_pct": -0.15,
+  "bollinger_pctb": 0.24,
+  "atr_pct": 4.16
  },
  "risk": {
-  "volatility_1y_pct": 50.3,
+  "volatility_1y_pct": 50.2,
   "downside_deviation_pct": 30.1,
   "max_drawdown_1y_pct": -28.2,
   "max_drawdown_all_pct": -58.6,
   "var95_1d_pct": -4.09,
   "cvar95_1d_pct": -6.06,
-  "sharpe_1y": 0.83,
-  "sortino_1y": 1.39
+  "sharpe_1y": 0.82,
+  "sortino_1y": 1.36
  },
  "beta": {
   "raw": 1.39,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.45,
   "r_squared": 0.2,
-  "alpha_pct": -1.1
+  "alpha_pct": -0.9
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 54.69
+  "avg_daily_value_3m_cr": 54.49
  },
  "flags": []
 }

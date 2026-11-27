@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 2190.0,
- "fair_value": 784.2,
+ "price": 2187.1,
+ "fair_value": 784.3,
  "fair_low": 692.4,
- "fair_high": 924.5,
- "upside_pct": -64.2,
+ "fair_high": 924.7,
+ "upside_pct": -64.1,
  "flags": [
   "growth path: first-year growth below terminal growth (path rises)"
  ],
@@ -122,14 +122,14 @@
   "pv_share_of_ev_pct": 59.0
  },
  "bridge_cr": {
-  "enterprise_value": 6144.0,
+  "enterprise_value": 6145.0,
   "debt": 55.0,
   "cash": 2230.0,
   "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 8319.0,
+  "equity_value": 8320.0,
   "shares_cr": 11.381,
-  "market_cap": 24923.0
+  "market_cap": 24890.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -148,45 +148,45 @@
   ],
   "fair_value": [
    [
-    991.5,
-    1065.8,
-    1166.8,
-    1312.4,
+    991.7,
+    1066.0,
+    1167.1,
+    1312.8,
     null
    ],
    [
-    834.8,
-    874.6,
-    924.5,
-    989.5,
-    1077.6
+    834.9,
+    874.7,
+    924.7,
+    989.7,
+    1077.9
    ],
    [
-    732.5,
-    756.0,
-    784.2,
-    818.7,
-    862.0
+    732.6,
+    756.1,
+    784.3,
+    818.8,
+    862.1
    ],
    [
-    660.3,
+    660.4,
     675.2,
     692.4,
-    712.6,
-    736.8
+    712.7,
+    736.9
    ],
    [
     606.6,
     616.4,
     627.5,
-    640.1,
+    640.2,
     654.8
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 34.6,
-  "implied_ebit_margin_pct": 42.4,
+  "implied_first_year_growth_pct": 34.5,
+  "implied_ebit_margin_pct": 42.3,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "below 8.6%",
   "note": ""
@@ -197,7 +197,7 @@
   "tax": 0.25,
   "s2c": 2.699155858122936,
   "g1": 0.039703090845723654,
-  "wacc": 0.11221442178388798,
+  "wacc": 0.11220513671276665,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -206,8 +206,8 @@
   "cash": 2229.7815,
   "invest": 0.0,
   "minority": 0.0,
-  "shares_cr": 11.380550348005693,
-  "roll": 1.072809069465332,
+  "shares_cr": 11.380550348005695,
+  "roll": 1.0728032265260325,
   "mid_year": true
  }
 }

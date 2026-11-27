@@ -1,38 +1,38 @@
 {
  "symbol": "EQUITASBNK",
- "as_of": "2026-11-26",
- "rows": 1239,
- "price": 54.63,
+ "as_of": "2026-11-27",
+ "rows": 1240,
+ "price": 54.01,
  "returns_pct": {
-  "1m": -15.0,
-  "3m": -27.2,
-  "6m": -19.9,
-  "1y": -15.4,
-  "3y_cagr": -16.7,
-  "ytd": -13.3
+  "1m": -16.4,
+  "3m": -28.0,
+  "6m": -23.0,
+  "1y": -15.6,
+  "3y_cagr": -18.0,
+  "ytd": -14.3
  },
  "relative_strength_pp": {
-  "3m": -29.6,
-  "6m": -24.9,
-  "1y": -16.5
+  "3m": -29.5,
+  "6m": -27.6,
+  "1y": -15.6
  },
  "range": {
   "high_52w": 83.07,
   "low_52w": 51.73,
-  "pct_from_high": -34.2,
-  "pct_above_low": 5.6,
+  "pct_from_high": -35.0,
+  "pct_above_low": 4.4,
   "high_date": "2026-07-13",
   "low_date": "2026-03-30"
  },
  "moving_averages": {
-  "dma20": 56.46,
-  "pct_vs_dma20": -3.2,
-  "dma50": 63.96,
-  "pct_vs_dma50": -14.6,
-  "dma100": 70.03,
-  "pct_vs_dma100": -22.0,
-  "dma200": 68.3,
-  "pct_vs_dma200": -20.0
+  "dma20": 55.9,
+  "pct_vs_dma20": -3.4,
+  "dma50": 63.58,
+  "pct_vs_dma50": -15.0,
+  "dma100": 69.81,
+  "pct_vs_dma100": -22.6,
+  "dma200": 68.24,
+  "pct_vs_dma200": -20.9
  },
  "trend": {
   "above_dma200": false,
@@ -41,12 +41,12 @@
   "cross": "death cross in last 20 days"
  },
  "momentum": {
-  "rsi14": 35.7,
-  "macd_pct": -3.95,
-  "macd_signal_pct": -4.72,
-  "macd_hist_pct": 0.77,
-  "bollinger_pctb": 0.32,
-  "atr_pct": 4.99
+  "rsi14": 34.3,
+  "macd_pct": -4.12,
+  "macd_signal_pct": -4.65,
+  "macd_hist_pct": 0.52,
+  "bollinger_pctb": 0.21,
+  "atr_pct": 4.88
  },
  "risk": {
   "volatility_1y_pct": 36.9,
@@ -55,19 +55,19 @@
   "max_drawdown_all_pct": -56.1,
   "var95_1d_pct": -3.6,
   "cvar95_1d_pct": -5.19,
-  "sharpe_1y": -0.46,
-  "sortino_1y": -0.64
+  "sharpe_1y": -0.47,
+  "sortino_1y": -0.65
  },
  "beta": {
-  "raw": 0.9,
-  "adjusted": 0.93,
+  "raw": 0.91,
+  "adjusted": 0.94,
   "weeks": 156,
   "correlation": 0.38,
   "r_squared": 0.14,
-  "alpha_pct": -22.6
+  "alpha_pct": -22.8
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 51.01
+  "avg_daily_value_3m_cr": 51.28
  },
  "flags": []
 }

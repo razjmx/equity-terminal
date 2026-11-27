@@ -1,38 +1,38 @@
 {
  "symbol": "VTL",
- "as_of": "2026-11-26",
- "rows": 1239,
- "price": 513.55,
+ "as_of": "2026-11-27",
+ "rows": 1240,
+ "price": 526.9,
  "returns_pct": {
-  "1m": 3.7,
-  "3m": -14.3,
-  "6m": -14.6,
-  "1y": 12.7,
-  "3y_cagr": 13.1,
-  "ytd": 17.4
+  "1m": 5.9,
+  "3m": -12.4,
+  "6m": -12.0,
+  "1y": 14.4,
+  "3y_cagr": 13.9,
+  "ytd": 20.4
  },
  "relative_strength_pp": {
-  "3m": -16.8,
-  "6m": -19.7,
-  "1y": 11.7
+  "3m": -13.8,
+  "6m": -16.6,
+  "1y": 14.4
  },
  "range": {
   "high_52w": 666.25,
   "low_52w": 402.85,
-  "pct_from_high": -22.9,
-  "pct_above_low": 27.5,
+  "pct_from_high": -20.9,
+  "pct_above_low": 30.8,
   "high_date": "2026-07-03",
   "low_date": "2026-01-20"
  },
  "moving_averages": {
-  "dma20": 517.95,
-  "pct_vs_dma20": -0.9,
-  "dma50": 529.3,
-  "pct_vs_dma50": -3.0,
-  "dma100": 569.48,
-  "pct_vs_dma100": -9.8,
-  "dma200": 571.28,
-  "pct_vs_dma200": -10.1
+  "dma20": 519.01,
+  "pct_vs_dma20": 1.5,
+  "dma50": 528.52,
+  "pct_vs_dma50": -0.3,
+  "dma100": 568.08,
+  "pct_vs_dma100": -7.2,
+  "dma200": 571.36,
+  "pct_vs_dma200": -7.8
  },
  "trend": {
   "above_dma200": false,
@@ -41,22 +41,22 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 44.9,
-  "macd_pct": -0.33,
-  "macd_signal_pct": -0.45,
-  "macd_hist_pct": 0.12,
-  "bollinger_pctb": 0.42,
-  "atr_pct": 3.22
+  "rsi14": 51.7,
+  "macd_pct": -0.21,
+  "macd_signal_pct": -0.39,
+  "macd_hist_pct": 0.18,
+  "bollinger_pctb": 0.65,
+  "atr_pct": 3.14
  },
  "risk": {
-  "volatility_1y_pct": 32.8,
+  "volatility_1y_pct": 32.9,
   "downside_deviation_pct": 20.7,
   "max_drawdown_1y_pct": -27.0,
   "max_drawdown_all_pct": -55.4,
   "var95_1d_pct": -3.02,
   "cvar95_1d_pct": -3.74,
-  "sharpe_1y": 0.31,
-  "sortino_1y": 0.49
+  "sharpe_1y": 0.35,
+  "sortino_1y": 0.56
  },
  "beta": {
   "raw": 0.9,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.38,
   "r_squared": 0.15,
-  "alpha_pct": 2.7
+  "alpha_pct": 3.7
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 41.33
+  "avg_daily_value_3m_cr": 41.29
  },
  "flags": []
 }

@@ -1,38 +1,38 @@
 {
  "symbol": "NORTHARC",
- "as_of": "2026-11-26",
- "rows": 538,
- "price": 270.0,
+ "as_of": "2026-11-27",
+ "rows": 539,
+ "price": 274.6,
  "returns_pct": {
-  "1m": 10.5,
-  "3m": -5.0,
-  "6m": -5.8,
-  "1y": 3.3,
+  "1m": 11.2,
+  "3m": -5.8,
+  "6m": -2.6,
+  "1y": 7.1,
   "3y_cagr": null,
-  "ytd": 8.3
+  "ytd": 10.1
  },
  "relative_strength_pp": {
-  "3m": -7.5,
-  "6m": -10.8,
-  "1y": 2.2
+  "3m": -7.3,
+  "6m": -7.2,
+  "1y": 7.1
  },
  "range": {
   "high_52w": 325.3,
   "low_52w": 206.85,
-  "pct_from_high": -17.0,
-  "pct_above_low": 30.5,
+  "pct_from_high": -15.6,
+  "pct_above_low": 32.8,
   "high_date": "2026-07-10",
   "low_date": "2026-03-30"
  },
  "moving_averages": {
-  "dma20": 273.8,
-  "pct_vs_dma20": -1.4,
-  "dma50": 282.3,
-  "pct_vs_dma50": -4.4,
-  "dma100": 289.55,
-  "pct_vs_dma100": -6.8,
-  "dma200": 275.53,
-  "pct_vs_dma200": -2.0
+  "dma20": 274.78,
+  "pct_vs_dma20": -0.1,
+  "dma50": 281.69,
+  "pct_vs_dma50": -2.5,
+  "dma100": 289.22,
+  "pct_vs_dma100": -5.1,
+  "dma200": 275.63,
+  "pct_vs_dma200": -0.4
  },
  "trend": {
   "above_dma200": false,
@@ -41,33 +41,33 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 45.1,
-  "macd_pct": -0.3,
-  "macd_signal_pct": -0.3,
-  "macd_hist_pct": -0.0,
-  "bollinger_pctb": 0.41,
-  "atr_pct": 3.91
+  "rsi14": 48.9,
+  "macd_pct": -0.29,
+  "macd_signal_pct": -0.29,
+  "macd_hist_pct": 0.0,
+  "bollinger_pctb": 0.5,
+  "atr_pct": 3.87
  },
  "risk": {
   "volatility_1y_pct": 39.9,
-  "downside_deviation_pct": 27.2,
+  "downside_deviation_pct": 27.1,
   "max_drawdown_1y_pct": -25.3,
   "max_drawdown_all_pct": -48.6,
   "var95_1d_pct": -3.99,
   "cvar95_1d_pct": -5.13,
-  "sharpe_1y": 0.1,
-  "sortino_1y": 0.14
+  "sharpe_1y": 0.19,
+  "sortino_1y": 0.28
  },
  "beta": {
   "raw": 1.37,
-  "adjusted": 1.24,
+  "adjusted": 1.25,
   "weeks": 113,
   "correlation": 0.56,
   "r_squared": 0.31,
-  "alpha_pct": 3.0
+  "alpha_pct": 4.1
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 41.99
+  "avg_daily_value_3m_cr": 41.78
  },
  "flags": []
 }

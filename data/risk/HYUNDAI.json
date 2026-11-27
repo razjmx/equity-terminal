@@ -1,73 +1,73 @@
 {
  "symbol": "HYUNDAI",
- "as_of": "2026-11-26",
- "rows": 519,
- "price": 2104.2,
+ "as_of": "2026-11-27",
+ "rows": 520,
+ "price": 2006.0,
  "returns_pct": {
-  "1m": 12.6,
-  "3m": -4.7,
-  "6m": 11.9,
-  "1y": -12.0,
+  "1m": 7.8,
+  "3m": -10.1,
+  "6m": 6.5,
+  "1y": -17.1,
   "3y_cagr": null,
-  "ytd": -8.4
+  "ytd": -12.7
  },
  "relative_strength_pp": {
-  "3m": -7.1,
-  "6m": 6.8,
-  "1y": -13.0
+  "3m": -11.6,
+  "6m": 1.9,
+  "1y": -17.1
  },
  "range": {
-  "high_52w": 2421.1,
+  "high_52w": 2395.7,
   "low_52w": 1691.4,
-  "pct_from_high": -13.1,
-  "pct_above_low": 24.4,
-  "high_date": "2025-11-19",
+  "pct_from_high": -16.3,
+  "pct_above_low": 18.6,
+  "high_date": "2025-12-01",
   "low_date": "2026-04-06"
  },
  "moving_averages": {
-  "dma20": 2079.14,
-  "pct_vs_dma20": 1.2,
-  "dma50": 2042.96,
-  "pct_vs_dma50": 3.0,
-  "dma100": 2079.68,
-  "pct_vs_dma100": 1.2,
-  "dma200": 2015.46,
-  "pct_vs_dma200": 4.4
+  "dma20": 2086.09,
+  "pct_vs_dma20": -3.8,
+  "dma50": 2039.6,
+  "pct_vs_dma50": -1.6,
+  "dma100": 2079.81,
+  "pct_vs_dma100": -3.5,
+  "dma200": 2014.44,
+  "pct_vs_dma200": -0.4
  },
  "trend": {
-  "above_dma200": true,
-  "above_dma50": true,
+  "above_dma200": false,
+  "above_dma50": false,
   "dma50_above_dma200": true,
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 52.8,
-  "macd_pct": 1.77,
+  "rsi14": 43.4,
+  "macd_pct": 1.28,
   "macd_signal_pct": 1.58,
-  "macd_hist_pct": 0.2,
-  "bollinger_pctb": 0.57,
-  "atr_pct": 3.04
+  "macd_hist_pct": -0.3,
+  "bollinger_pctb": 0.26,
+  "atr_pct": 3.32
  },
  "risk": {
-  "volatility_1y_pct": 28.6,
-  "downside_deviation_pct": 20.0,
-  "max_drawdown_1y_pct": -30.1,
+  "volatility_1y_pct": 28.9,
+  "downside_deviation_pct": 20.6,
+  "max_drawdown_1y_pct": -29.4,
   "max_drawdown_all_pct": -39.8,
-  "var95_1d_pct": -3.12,
-  "cvar95_1d_pct": -3.75,
-  "sharpe_1y": -0.55,
-  "sortino_1y": -0.79
+  "var95_1d_pct": -3.22,
+  "cvar95_1d_pct": -3.86,
+  "sharpe_1y": -0.75,
+  "sortino_1y": -1.06
  },
  "beta": {
-  "raw": 1.03,
-  "adjusted": 1.02,
+  "raw": 1.04,
+  "adjusted": 1.03,
   "weeks": 109,
   "correlation": 0.53,
-  "r_squared": 0.29,
-  "alpha_pct": 6.2
+  "r_squared": 0.28,
+  "alpha_pct": 4.4
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 156.28
+  "avg_daily_value_3m_cr": 160.52
  },
  "flags": []
 }

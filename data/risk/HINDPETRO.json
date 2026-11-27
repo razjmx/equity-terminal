@@ -1,38 +1,38 @@
 {
  "symbol": "HINDPETRO",
- "as_of": "2026-11-26",
- "rows": 1239,
- "price": 385.65,
+ "as_of": "2026-11-27",
+ "rows": 1240,
+ "price": 386.0,
  "returns_pct": {
-  "1m": 12.3,
-  "3m": 3.7,
-  "6m": -4.4,
-  "1y": -20.2,
-  "3y_cagr": 31.9,
+  "1m": 9.0,
+  "3m": 3.4,
+  "6m": -3.0,
+  "1y": -19.1,
+  "3y_cagr": 31.4,
   "ytd": -22.7
  },
  "relative_strength_pp": {
-  "3m": 1.2,
-  "6m": -9.4,
-  "1y": -21.3
+  "3m": 2.0,
+  "6m": -7.6,
+  "1y": -19.1
  },
  "range": {
   "high_52w": 499.05,
   "low_52w": 319.15,
   "pct_from_high": -22.7,
-  "pct_above_low": 20.8,
+  "pct_above_low": 20.9,
   "high_date": "2025-12-31",
   "low_date": "2026-03-23"
  },
  "moving_averages": {
-  "dma20": 376.65,
-  "pct_vs_dma20": 2.4,
-  "dma50": 358.1,
-  "pct_vs_dma50": 7.7,
-  "dma100": 370.02,
-  "pct_vs_dma100": 4.2,
-  "dma200": 380.38,
-  "pct_vs_dma200": 1.4
+  "dma20": 378.59,
+  "pct_vs_dma20": 2.0,
+  "dma50": 358.78,
+  "pct_vs_dma50": 7.6,
+  "dma100": 369.89,
+  "pct_vs_dma100": 4.4,
+  "dma200": 380.06,
+  "pct_vs_dma200": 1.6
  },
  "trend": {
   "above_dma200": true,
@@ -41,12 +41,12 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 56.9,
-  "macd_pct": 2.63,
-  "macd_signal_pct": 2.64,
-  "macd_hist_pct": -0.01,
-  "bollinger_pctb": 0.62,
-  "atr_pct": 2.79
+  "rsi14": 57.1,
+  "macd_pct": 2.46,
+  "macd_signal_pct": 2.6,
+  "macd_hist_pct": -0.15,
+  "bollinger_pctb": 0.6,
+  "atr_pct": 2.72
  },
  "risk": {
   "volatility_1y_pct": 36.3,
@@ -55,19 +55,19 @@
   "max_drawdown_all_pct": -38.4,
   "var95_1d_pct": -3.23,
   "cvar95_1d_pct": -4.87,
-  "sharpe_1y": -0.64,
-  "sortino_1y": -0.93
+  "sharpe_1y": -0.6,
+  "sortino_1y": -0.88
  },
  "beta": {
   "raw": 1.62,
   "adjusted": 1.41,
   "weeks": 156,
-  "correlation": 0.64,
+  "correlation": 0.65,
   "r_squared": 0.42,
-  "alpha_pct": 11.2
+  "alpha_pct": 11.5
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 171.36
+  "avg_daily_value_3m_cr": 171.5
  },
  "flags": []
 }

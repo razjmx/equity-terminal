@@ -1,20 +1,20 @@
 {
  "symbol": "GALLANTT",
- "as_of": "2026-11-26",
- "rows": 1238,
- "price": 539.25,
+ "as_of": "2026-11-27",
+ "rows": 1239,
+ "price": 539.6,
  "returns_pct": {
-  "1m": 0.2,
-  "3m": -7.1,
-  "6m": -22.9,
-  "1y": -11.0,
-  "3y_cagr": 85.4,
-  "ytd": 0.2
+  "1m": -0.4,
+  "3m": -7.2,
+  "6m": -21.8,
+  "1y": -11.2,
+  "3y_cagr": 85.5,
+  "ytd": 0.3
  },
  "relative_strength_pp": {
-  "3m": -9.5,
-  "6m": -28.0,
-  "1y": -12.0
+  "3m": -8.6,
+  "6m": -26.4,
+  "1y": -11.2
  },
  "range": {
   "high_52w": 927.1,
@@ -25,14 +25,14 @@
   "low_date": "2026-10-08"
  },
  "moving_averages": {
-  "dma20": 537.19,
+  "dma20": 537.31,
   "pct_vs_dma20": 0.4,
-  "dma50": 545.25,
-  "pct_vs_dma50": -1.1,
-  "dma100": 573.38,
-  "pct_vs_dma100": -6.0,
-  "dma200": 619.51,
-  "pct_vs_dma200": -13.0
+  "dma50": 545.12,
+  "pct_vs_dma50": -1.0,
+  "dma100": 571.89,
+  "pct_vs_dma100": -5.6,
+  "dma200": 619.41,
+  "pct_vs_dma200": -12.9
  },
  "trend": {
   "above_dma200": false,
@@ -41,12 +41,12 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 48.9,
-  "macd_pct": -0.52,
-  "macd_signal_pct": -0.88,
-  "macd_hist_pct": 0.36,
+  "rsi14": 49.0,
+  "macd_pct": -0.48,
+  "macd_signal_pct": -0.8,
+  "macd_hist_pct": 0.32,
   "bollinger_pctb": 0.54,
-  "atr_pct": 4.47
+  "atr_pct": 4.36
  },
  "risk": {
   "volatility_1y_pct": 54.1,
@@ -56,7 +56,7 @@
   "var95_1d_pct": -4.52,
   "cvar95_1d_pct": -6.59,
   "sharpe_1y": -0.09,
-  "sortino_1y": -0.14
+  "sortino_1y": -0.15
  },
  "beta": {
   "raw": 1.76,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.42,
   "r_squared": 0.18,
-  "alpha_pct": 61.5
+  "alpha_pct": 61.9
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 98.91
+  "avg_daily_value_3m_cr": 98.98
  },
  "flags": []
 }

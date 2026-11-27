@@ -1,20 +1,20 @@
 {
  "symbol": "CONCOR",
- "as_of": "2026-11-26",
- "rows": 1239,
- "price": 421.0,
+ "as_of": "2026-11-27",
+ "rows": 1240,
+ "price": 420.7,
  "returns_pct": {
-  "1m": 2.3,
+  "1m": -1.0,
   "3m": -18.5,
-  "6m": -17.8,
-  "1y": -19.4,
-  "3y_cagr": -14.6,
-  "ytd": -19.8
+  "6m": -11.6,
+  "1y": -18.7,
+  "3y_cagr": -14.9,
+  "ytd": -19.9
  },
  "relative_strength_pp": {
-  "3m": -20.9,
-  "6m": -22.8,
-  "1y": -20.5
+  "3m": -19.9,
+  "6m": -16.2,
+  "1y": -18.7
  },
  "range": {
   "high_52w": 534.75,
@@ -25,13 +25,13 @@
   "low_date": "2026-10-23"
  },
  "moving_averages": {
-  "dma20": 432.94,
-  "pct_vs_dma20": -2.8,
-  "dma50": 444.59,
-  "pct_vs_dma50": -5.3,
-  "dma100": 473.93,
-  "pct_vs_dma100": -11.2,
-  "dma200": 479.09,
+  "dma20": 433.07,
+  "pct_vs_dma20": -2.9,
+  "dma50": 443.02,
+  "pct_vs_dma50": -5.0,
+  "dma100": 473.26,
+  "pct_vs_dma100": -11.1,
+  "dma200": 478.55,
   "pct_vs_dma200": -12.1
  },
  "trend": {
@@ -41,22 +41,22 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 38.2,
-  "macd_pct": -0.82,
-  "macd_signal_pct": -0.69,
-  "macd_hist_pct": -0.13,
-  "bollinger_pctb": 0.25,
-  "atr_pct": 2.74
+  "rsi14": 38.0,
+  "macd_pct": -1.0,
+  "macd_signal_pct": -0.75,
+  "macd_hist_pct": -0.25,
+  "bollinger_pctb": 0.23,
+  "atr_pct": 2.67
  },
  "risk": {
   "volatility_1y_pct": 28.2,
-  "downside_deviation_pct": 20.4,
+  "downside_deviation_pct": 20.3,
   "max_drawdown_1y_pct": -23.3,
   "max_drawdown_all_pct": -65.1,
   "var95_1d_pct": -3.17,
   "cvar95_1d_pct": -4.09,
-  "sharpe_1y": -0.88,
-  "sortino_1y": -1.22
+  "sharpe_1y": -0.85,
+  "sortino_1y": -1.18
  },
  "beta": {
   "raw": 1.54,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.67,
   "r_squared": 0.45,
-  "alpha_pct": -27.5
+  "alpha_pct": -27.3
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 54.07
+  "avg_daily_value_3m_cr": 54.75
  },
  "flags": []
 }

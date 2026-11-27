@@ -1,38 +1,38 @@
 {
  "symbol": "SHILCTECH",
- "as_of": "2026-11-26",
- "rows": 249,
- "price": 3060.5,
+ "as_of": "2026-11-27",
+ "rows": 250,
+ "price": 3126.4,
  "returns_pct": {
-  "1m": -17.0,
-  "3m": -21.9,
-  "6m": -25.0,
+  "1m": -20.3,
+  "3m": -20.2,
+  "6m": -21.8,
   "1y": null,
   "3y_cagr": null,
-  "ytd": -20.0
+  "ytd": -18.3
  },
  "relative_strength_pp": {
-  "3m": -24.4,
-  "6m": -30.1,
+  "3m": -21.7,
+  "6m": -26.3,
   "1y": null
  },
  "range": {
   "high_52w": 5311.6,
   "low_52w": 2923.4,
-  "pct_from_high": -42.4,
-  "pct_above_low": 4.7,
+  "pct_from_high": -41.1,
+  "pct_above_low": 6.9,
   "high_date": "2026-04-27",
   "low_date": "2026-01-27"
  },
  "moving_averages": {
-  "dma20": 3455.78,
-  "pct_vs_dma20": -11.4,
-  "dma50": 3753.75,
-  "pct_vs_dma50": -18.5,
-  "dma100": 4002.58,
-  "pct_vs_dma100": -23.5,
-  "dma200": 4098.92,
-  "pct_vs_dma200": -25.3
+  "dma20": 3422.22,
+  "pct_vs_dma20": -8.6,
+  "dma50": 3732.79,
+  "pct_vs_dma50": -16.2,
+  "dma100": 3989.95,
+  "pct_vs_dma100": -21.6,
+  "dma200": 4094.66,
+  "pct_vs_dma200": -23.6
  },
  "trend": {
   "above_dma200": false,
@@ -41,28 +41,26 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 26.3,
-  "macd_pct": -6.03,
-  "macd_signal_pct": -4.82,
-  "macd_hist_pct": -1.21,
-  "bollinger_pctb": 0.04,
-  "atr_pct": 4.51
+  "rsi14": 31.3,
+  "macd_pct": -5.9,
+  "macd_signal_pct": -4.95,
+  "macd_hist_pct": -0.95,
+  "bollinger_pctb": 0.15,
+  "atr_pct": 4.34
  },
  "risk": {
   "volatility_1y_pct": 52.3,
   "downside_deviation_pct": 36.3,
   "max_drawdown_1y_pct": -42.4,
   "max_drawdown_all_pct": -42.4,
-  "var95_1d_pct": -4.58,
+  "var95_1d_pct": -4.56,
   "cvar95_1d_pct": -7.21,
-  "sharpe_1y": -0.48,
-  "sortino_1y": -0.7
+  "sharpe_1y": -0.44,
+  "sortino_1y": -0.64
  },
  "beta": null,
  "liquidity": {
-  "avg_daily_value_3m_cr": 6.87
+  "avg_daily_value_3m_cr": 6.81
  },
- "flags": [
-  "short history: risk and trend figures use fewer than 250 days"
- ]
+ "flags": []
 }

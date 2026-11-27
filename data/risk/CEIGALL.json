@@ -1,38 +1,38 @@
 {
  "symbol": "CEIGALL",
- "as_of": "2026-11-26",
- "rows": 569,
- "price": 381.5,
+ "as_of": "2026-11-27",
+ "rows": 570,
+ "price": 377.95,
  "returns_pct": {
-  "1m": 1.4,
-  "3m": 18.4,
-  "6m": 11.6,
-  "1y": 54.5,
+  "1m": -0.2,
+  "3m": 16.5,
+  "6m": 7.1,
+  "1y": 52.6,
   "3y_cagr": null,
-  "ytd": 41.9
+  "ytd": 40.6
  },
  "relative_strength_pp": {
-  "3m": 16.0,
-  "6m": 6.6,
-  "1y": 53.4
+  "3m": 15.1,
+  "6m": 2.5,
+  "1y": 52.6
  },
  "range": {
   "high_52w": 399.45,
   "low_52w": 226.39,
-  "pct_from_high": -4.5,
-  "pct_above_low": 68.5,
+  "pct_from_high": -5.4,
+  "pct_above_low": 66.9,
   "high_date": "2026-11-04",
   "low_date": "2025-12-09"
  },
  "moving_averages": {
-  "dma20": 387.37,
-  "pct_vs_dma20": -1.5,
-  "dma50": 383.33,
-  "pct_vs_dma50": -0.5,
-  "dma100": 362.68,
-  "pct_vs_dma100": 5.2,
-  "dma200": 341.02,
-  "pct_vs_dma200": 11.9
+  "dma20": 387.14,
+  "pct_vs_dma20": -2.4,
+  "dma50": 383.28,
+  "pct_vs_dma50": -1.4,
+  "dma100": 362.82,
+  "pct_vs_dma100": 4.2,
+  "dma200": 341.54,
+  "pct_vs_dma200": 10.7
  },
  "trend": {
   "above_dma200": true,
@@ -41,12 +41,12 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 48.3,
-  "macd_pct": -0.13,
-  "macd_signal_pct": 0.39,
-  "macd_hist_pct": -0.52,
-  "bollinger_pctb": 0.28,
-  "atr_pct": 3.21
+  "rsi14": 45.5,
+  "macd_pct": -0.23,
+  "macd_signal_pct": 0.27,
+  "macd_hist_pct": -0.5,
+  "bollinger_pctb": 0.17,
+  "atr_pct": 3.19
  },
  "risk": {
   "volatility_1y_pct": 30.7,
@@ -55,8 +55,8 @@
   "max_drawdown_all_pct": -44.0,
   "var95_1d_pct": -2.92,
   "cvar95_1d_pct": -3.68,
-  "sharpe_1y": 1.33,
-  "sortino_1y": 2.11
+  "sharpe_1y": 1.29,
+  "sortino_1y": 2.05
  },
  "beta": {
   "raw": 0.97,
@@ -64,10 +64,10 @@
   "weeks": 120,
   "correlation": 0.47,
   "r_squared": 0.22,
-  "alpha_pct": -0.2
+  "alpha_pct": -0.4
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 15.15
+  "avg_daily_value_3m_cr": 14.62
  },
  "flags": []
 }

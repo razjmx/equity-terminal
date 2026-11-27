@@ -1,62 +1,62 @@
 {
  "symbol": "NAVA",
- "as_of": "2026-11-26",
- "rows": 1239,
- "price": 544.25,
+ "as_of": "2026-11-27",
+ "rows": 1240,
+ "price": 538.6,
  "returns_pct": {
-  "1m": 14.7,
-  "3m": -4.0,
-  "6m": -11.3,
-  "1y": -0.5,
-  "3y_cagr": 38.7,
-  "ytd": -4.1
+  "1m": 9.9,
+  "3m": -5.0,
+  "6m": -11.7,
+  "1y": 0.5,
+  "3y_cagr": 38.6,
+  "ytd": -5.1
  },
  "relative_strength_pp": {
-  "3m": -6.5,
-  "6m": -16.4,
-  "1y": -1.5
+  "3m": -6.4,
+  "6m": -16.3,
+  "1y": 0.5
  },
  "range": {
   "high_52w": 730.4,
   "low_52w": 474.6,
-  "pct_from_high": -25.5,
-  "pct_above_low": 14.7,
+  "pct_from_high": -26.3,
+  "pct_above_low": 13.5,
   "high_date": "2026-05-11",
   "low_date": "2026-10-26"
  },
  "moving_averages": {
-  "dma20": 537.88,
-  "pct_vs_dma20": 1.2,
-  "dma50": 539.74,
-  "pct_vs_dma50": 0.8,
-  "dma100": 556.63,
-  "pct_vs_dma100": -2.2,
-  "dma200": 580.29,
-  "pct_vs_dma200": -6.2
+  "dma20": 539.73,
+  "pct_vs_dma20": -0.2,
+  "dma50": 539.48,
+  "pct_vs_dma50": -0.2,
+  "dma100": 555.79,
+  "pct_vs_dma100": -3.1,
+  "dma200": 580.13,
+  "pct_vs_dma200": -7.2
  },
  "trend": {
   "above_dma200": false,
-  "above_dma50": true,
+  "above_dma50": false,
   "dma50_above_dma200": false,
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 51.2,
-  "macd_pct": 0.87,
-  "macd_signal_pct": 0.62,
-  "macd_hist_pct": 0.25,
-  "bollinger_pctb": 0.58,
-  "atr_pct": 3.84
+  "rsi14": 49.3,
+  "macd_pct": 0.71,
+  "macd_signal_pct": 0.64,
+  "macd_hist_pct": 0.07,
+  "bollinger_pctb": 0.48,
+  "atr_pct": 3.78
  },
  "risk": {
   "volatility_1y_pct": 37.3,
-  "downside_deviation_pct": 25.4,
+  "downside_deviation_pct": 25.3,
   "max_drawdown_1y_pct": -35.0,
   "max_drawdown_all_pct": -44.7,
   "var95_1d_pct": -3.69,
   "cvar95_1d_pct": -4.77,
-  "sharpe_1y": -0.02,
-  "sortino_1y": -0.03
+  "sharpe_1y": 0.01,
+  "sortino_1y": 0.01
  },
  "beta": {
   "raw": 1.72,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.58,
   "r_squared": 0.34,
-  "alpha_pct": 30.9
+  "alpha_pct": 30.8
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 18.9
+  "avg_daily_value_3m_cr": 18.81
  },
  "flags": []
 }

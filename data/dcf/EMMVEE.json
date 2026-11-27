@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "indicative",
- "price": 268.2,
+ "price": 268.5,
  "fair_value": 517.0,
  "fair_low": 433.6,
  "fair_high": 631.5,
- "upside_pct": 92.8,
+ "upside_pct": 92.5,
  "flags": [
   "margin swing: latest core EBIT margin 29.2% vs 3-year average 22.1% (possible peak or trough)",
   "growth clamped: 2-year 131.2% to 30%",
@@ -125,14 +125,14 @@
   "pv_share_of_ev_pct": 72.0
  },
  "bridge_cr": {
-  "enterprise_value": 33069.0,
+  "enterprise_value": 33068.0,
   "debt": 360.0,
   "cash": 273.0,
   "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 32981.0,
+  "equity_value": 32980.0,
   "shares_cr": 69.234,
-  "market_cap": 18569.0
+  "market_cap": 18589.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -153,26 +153,26 @@
    [
     699.1,
     743.7,
-    797.5,
+    797.4,
     863.7,
-    947.6
+    947.5
    ],
    [
-    571.1,
+    571.0,
     599.0,
     631.5,
     669.8,
     716.0
    ],
    [
-    477.9,
+    477.8,
     496.2,
     517.0,
     540.8,
-    568.5
+    568.4
    ],
    [
-    407.3,
+    407.2,
     419.7,
     433.6,
     449.1,
@@ -200,7 +200,7 @@
   "tax": 0.25,
   "s2c": 1.330901178122109,
   "g1": 0.3,
-  "wacc": 0.13077309065796183,
+  "wacc": 0.13077443545889686,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,

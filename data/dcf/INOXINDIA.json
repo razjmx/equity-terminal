@@ -2,19 +2,17 @@
  "symbol": "INOXINDIA",
  "latest_fy": "2026-03-31",
  "status": "ok",
- "reliability": "low confidence",
- "price": 2162.8,
- "fair_value": 539.5,
- "fair_low": 464.7,
- "fair_high": 641.4,
- "upside_pct": -75.1,
- "flags": [
-  "far from price: model value is 25% of the market price"
- ],
+ "reliability": "indicative",
+ "price": 2139.3,
+ "fair_value": 539.8,
+ "fair_low": 464.9,
+ "fair_high": 641.8,
+ "upside_pct": -74.8,
+ "flags": [],
  "assumptions": {
   "rf_pct": 7.2,
   "erp_pct": 6.0,
-  "beta_raw": 1.0,
+  "beta_raw": 0.99,
   "beta_used": 1.0,
   "beta_weeks": 153,
   "cost_of_equity_pct": 13.18,
@@ -122,14 +120,14 @@
   "pv_share_of_ev_pct": 64.5
  },
  "bridge_cr": {
-  "enterprise_value": 4290.0,
+  "enterprise_value": 4292.0,
   "debt": 81.0,
   "cash": 314.0,
   "investments": 0.0,
   "minority": 0.0,
-  "equity_value": 4522.0,
+  "equity_value": 4525.0,
   "shares_cr": 9.097,
-  "market_cap": 19674.0
+  "market_cap": 19460.0
  },
  "sensitivity": {
   "wacc_pct": [
@@ -148,44 +146,44 @@
   ],
   "fair_value": [
    [
-    702.8,
-    741.4,
-    787.8,
-    844.8,
-    916.6
+    703.2,
+    741.9,
+    788.3,
+    845.4,
+    917.4
    ],
    [
-    589.0,
-    613.3,
-    641.4,
-    674.6,
-    714.4
+    589.3,
+    613.6,
+    641.8,
+    675.0,
+    714.8
    ],
    [
-    505.6,
-    521.5,
-    539.5,
-    560.1,
-    584.0
+    505.8,
+    521.7,
+    539.8,
+    560.4,
+    584.4
    ],
    [
-    441.9,
-    452.7,
-    464.7,
-    478.1,
-    493.2
+    442.0,
+    452.9,
+    464.9,
+    478.3,
+    493.5
    ],
    [
-    391.8,
-    399.3,
-    407.5,
-    416.5,
-    426.4
+    391.9,
+    399.4,
+    407.6,
+    416.6,
+    426.6
    ]
   ]
  },
  "reverse_dcf": {
-  "implied_first_year_growth_pct": 56.7,
+  "implied_first_year_growth_pct": 56.4,
   "implied_ebit_margin_pct": null,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "below 8.6%",
@@ -197,7 +195,7 @@
   "tax": 0.25,
   "s2c": 1.7536631081853504,
   "g1": 0.18450782149110845,
-  "wacc": 0.1315496543460967,
+  "wacc": 0.1315181644101017,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -206,8 +204,8 @@
   "cash": 313.7583,
   "invest": 0.0,
   "minority": 0.0,
-  "shares_cr": 9.096631194239079,
-  "roll": 1.0851908980918739,
+  "shares_cr": 9.096631194239077,
+  "roll": 1.08517271422369,
   "mid_year": true
  }
 }

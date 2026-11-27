@@ -1,38 +1,38 @@
 {
  "symbol": "AEQUS",
- "as_of": "2026-11-26",
- "rows": 237,
- "price": 221.54,
+ "as_of": "2026-11-27",
+ "rows": 238,
+ "price": 222.65,
  "returns_pct": {
-  "1m": -8.6,
-  "3m": -13.5,
-  "6m": 2.7,
+  "1m": 1.6,
+  "3m": -12.8,
+  "6m": 5.2,
   "1y": null,
   "3y_cagr": null,
-  "ytd": 61.1
+  "ytd": 61.9
  },
  "relative_strength_pp": {
-  "3m": -15.9,
-  "6m": -2.3,
+  "3m": -14.2,
+  "6m": 0.6,
   "1y": null
  },
  "range": {
   "high_52w": 288.15,
   "low_52w": 115.11,
-  "pct_from_high": -23.1,
-  "pct_above_low": 92.5,
+  "pct_from_high": -22.7,
+  "pct_above_low": 93.4,
   "high_date": "2026-10-07",
   "low_date": "2026-03-16"
  },
  "moving_averages": {
-  "dma20": 225.33,
-  "pct_vs_dma20": -1.7,
-  "dma50": 241.84,
-  "pct_vs_dma50": -8.4,
-  "dma100": 241.8,
-  "pct_vs_dma100": -8.4,
-  "dma200": 205.11,
-  "pct_vs_dma200": 8.0
+  "dma20": 225.87,
+  "pct_vs_dma20": -1.4,
+  "dma50": 241.78,
+  "pct_vs_dma50": -7.9,
+  "dma100": 241.66,
+  "pct_vs_dma100": -7.9,
+  "dma200": 205.54,
+  "pct_vs_dma200": 8.3
  },
  "trend": {
   "above_dma200": true,
@@ -41,26 +41,26 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 42.5,
+  "rsi14": 43.4,
   "macd_pct": -2.14,
-  "macd_signal_pct": -1.97,
-  "macd_hist_pct": -0.16,
-  "bollinger_pctb": 0.42,
-  "atr_pct": 5.05
+  "macd_signal_pct": -2.0,
+  "macd_hist_pct": -0.14,
+  "bollinger_pctb": 0.43,
+  "atr_pct": 4.91
  },
  "risk": {
-  "volatility_1y_pct": 55.8,
-  "downside_deviation_pct": 32.4,
+  "volatility_1y_pct": 55.7,
+  "downside_deviation_pct": 32.3,
   "max_drawdown_1y_pct": -28.3,
   "max_drawdown_all_pct": -28.3,
-  "var95_1d_pct": -4.2,
+  "var95_1d_pct": -4.19,
   "cvar95_1d_pct": -6.34,
-  "sharpe_1y": 0.87,
-  "sortino_1y": 1.5
+  "sharpe_1y": 0.88,
+  "sortino_1y": 1.52
  },
  "beta": null,
  "liquidity": {
-  "avg_daily_value_3m_cr": 105.0
+  "avg_daily_value_3m_cr": 105.73
  },
  "flags": [
   "short history: risk and trend figures use fewer than 250 days"

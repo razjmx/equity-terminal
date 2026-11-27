@@ -1,38 +1,38 @@
 {
  "symbol": "JPPOWER",
- "as_of": "2026-11-26",
- "rows": 1239,
- "price": 13.06,
+ "as_of": "2026-11-27",
+ "rows": 1240,
+ "price": 13.14,
  "returns_pct": {
-  "1m": 0.3,
-  "3m": -23.6,
-  "6m": -30.8,
-  "1y": -26.0,
-  "3y_cagr": 10.4,
-  "ytd": -24.0
+  "1m": -0.4,
+  "3m": -22.6,
+  "6m": -31.3,
+  "1y": -35.2,
+  "3y_cagr": 8.1,
+  "ytd": -23.5
  },
  "relative_strength_pp": {
-  "3m": -26.1,
+  "3m": -24.0,
   "6m": -35.9,
-  "1y": -27.0
+  "1y": -35.2
  },
  "range": {
   "high_52w": 22.87,
   "low_52w": 12.67,
-  "pct_from_high": -42.9,
-  "pct_above_low": 3.1,
+  "pct_from_high": -42.5,
+  "pct_above_low": 3.7,
   "high_date": "2026-05-27",
   "low_date": "2026-10-23"
  },
  "moving_averages": {
-  "dma20": 13.54,
-  "pct_vs_dma20": -3.5,
-  "dma50": 14.39,
-  "pct_vs_dma50": -9.3,
-  "dma100": 15.79,
-  "pct_vs_dma100": -17.3,
-  "dma200": 16.42,
-  "pct_vs_dma200": -20.5
+  "dma20": 13.55,
+  "pct_vs_dma20": -3.0,
+  "dma50": 14.33,
+  "pct_vs_dma50": -8.3,
+  "dma100": 15.74,
+  "pct_vs_dma100": -16.5,
+  "dma200": 16.41,
+  "pct_vs_dma200": -19.9
  },
  "trend": {
   "above_dma200": false,
@@ -41,22 +41,22 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 36.8,
-  "macd_pct": -2.44,
-  "macd_signal_pct": -2.34,
-  "macd_hist_pct": -0.1,
-  "bollinger_pctb": 0.22,
-  "atr_pct": 3.35
+  "rsi14": 38.6,
+  "macd_pct": -2.43,
+  "macd_signal_pct": -2.35,
+  "macd_hist_pct": -0.09,
+  "bollinger_pctb": 0.26,
+  "atr_pct": 3.21
  },
  "risk": {
-  "volatility_1y_pct": 51.7,
+  "volatility_1y_pct": 49.5,
   "downside_deviation_pct": 32.5,
   "max_drawdown_1y_pct": -44.6,
   "max_drawdown_all_pct": -53.5,
   "var95_1d_pct": -3.68,
   "cvar95_1d_pct": -6.53,
-  "sharpe_1y": -0.47,
-  "sortino_1y": -0.75
+  "sharpe_1y": -0.78,
+  "sortino_1y": -1.19
  },
  "beta": {
   "raw": 1.61,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.45,
   "r_squared": 0.2,
-  "alpha_pct": 1.0
+  "alpha_pct": 1.5
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 76.45
+  "avg_daily_value_3m_cr": 76.17
  },
  "flags": []
 }

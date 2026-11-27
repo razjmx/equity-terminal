@@ -1,20 +1,20 @@
 {
  "symbol": "NATCOPHARM",
- "as_of": "2026-11-26",
- "rows": 1239,
- "price": 799.35,
+ "as_of": "2026-11-27",
+ "rows": 1240,
+ "price": 799.75,
  "returns_pct": {
-  "1m": 1.2,
-  "3m": -9.6,
-  "6m": -31.9,
-  "1y": -1.9,
-  "3y_cagr": 2.5,
-  "ytd": -11.5
+  "1m": 0.7,
+  "3m": -7.7,
+  "6m": -32.6,
+  "1y": -3.7,
+  "3y_cagr": 2.9,
+  "ytd": -11.4
  },
  "relative_strength_pp": {
-  "3m": -12.0,
-  "6m": -36.9,
-  "1y": -2.9
+  "3m": -9.1,
+  "6m": -37.2,
+  "1y": -3.6
  },
  "range": {
   "high_52w": 1206.0,
@@ -25,13 +25,13 @@
   "low_date": "2026-11-03"
  },
  "moving_averages": {
-  "dma20": 803.52,
+  "dma20": 803.86,
   "pct_vs_dma20": -0.5,
-  "dma50": 805.92,
-  "pct_vs_dma50": -0.8,
-  "dma100": 856.61,
-  "pct_vs_dma100": -6.7,
-  "dma200": 925.63,
+  "dma50": 805.6,
+  "pct_vs_dma50": -0.7,
+  "dma100": 855.29,
+  "pct_vs_dma100": -6.5,
+  "dma200": 925.36,
   "pct_vs_dma200": -13.6
  },
  "trend": {
@@ -41,12 +41,12 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 44.9,
-  "macd_pct": 0.16,
-  "macd_signal_pct": 0.15,
-  "macd_hist_pct": 0.0,
+  "rsi14": 45.2,
+  "macd_pct": 0.06,
+  "macd_signal_pct": 0.14,
+  "macd_hist_pct": -0.07,
   "bollinger_pctb": 0.43,
-  "atr_pct": 2.71
+  "atr_pct": 2.59
  },
  "risk": {
   "volatility_1y_pct": 35.7,
@@ -55,8 +55,8 @@
   "max_drawdown_all_pct": -53.1,
   "var95_1d_pct": -2.92,
   "cvar95_1d_pct": -5.09,
-  "sharpe_1y": -0.07,
-  "sortino_1y": -0.11
+  "sharpe_1y": -0.13,
+  "sortino_1y": -0.18
  },
  "beta": {
   "raw": 1.12,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.41,
   "r_squared": 0.17,
-  "alpha_pct": -2.1
+  "alpha_pct": -1.8
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 47.27
+  "avg_daily_value_3m_cr": 46.99
  },
  "flags": []
 }

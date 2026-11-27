@@ -1,36 +1,36 @@
 {
  "symbol": "CMPDI",
- "as_of": "2026-11-26",
- "rows": 163,
- "price": 184.24,
+ "as_of": "2026-11-27",
+ "rows": 164,
+ "price": 183.84,
  "returns_pct": {
-  "1m": 0.3,
-  "3m": -22.5,
-  "6m": -24.7,
+  "1m": -0.3,
+  "3m": -21.2,
+  "6m": -25.1,
   "1y": null,
   "3y_cagr": null,
   "ytd": null
  },
  "relative_strength_pp": {
-  "3m": -25.0,
+  "3m": -22.6,
   "6m": -29.7,
   "1y": null
  },
  "range": {
   "high_52w": 277.5,
   "low_52w": 151.47,
-  "pct_from_high": -33.6,
-  "pct_above_low": 21.6,
+  "pct_from_high": -33.8,
+  "pct_above_low": 21.4,
   "high_date": "2026-07-03",
   "low_date": "2026-04-07"
  },
  "moving_averages": {
-  "dma20": 184.04,
-  "pct_vs_dma20": 0.1,
-  "dma50": 195.93,
-  "pct_vs_dma50": -6.0,
-  "dma100": 220.94,
-  "pct_vs_dma100": -16.6,
+  "dma20": 183.95,
+  "pct_vs_dma20": -0.1,
+  "dma50": 195.3,
+  "pct_vs_dma50": -5.9,
+  "dma100": 220.0,
+  "pct_vs_dma100": -16.4,
   "dma200": null,
   "pct_vs_dma200": null
  },
@@ -41,26 +41,26 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 45.7,
-  "macd_pct": -2.18,
-  "macd_signal_pct": -2.62,
-  "macd_hist_pct": 0.44,
-  "bollinger_pctb": 0.51,
-  "atr_pct": 3.9
+  "rsi14": 45.3,
+  "macd_pct": -2.02,
+  "macd_signal_pct": -2.5,
+  "macd_hist_pct": 0.48,
+  "bollinger_pctb": 0.49,
+  "atr_pct": 3.76
  },
  "risk": {
-  "volatility_1y_pct": 46.4,
-  "downside_deviation_pct": 28.8,
+  "volatility_1y_pct": 46.2,
+  "downside_deviation_pct": 28.7,
   "max_drawdown_1y_pct": -36.1,
   "max_drawdown_all_pct": -36.1,
   "var95_1d_pct": -3.82,
   "cvar95_1d_pct": -4.75,
-  "sharpe_1y": 0.67,
-  "sortino_1y": 1.09
+  "sharpe_1y": 0.66,
+  "sortino_1y": 1.07
  },
  "beta": null,
  "liquidity": {
-  "avg_daily_value_3m_cr": 26.81
+  "avg_daily_value_3m_cr": 26.59
  },
  "flags": [
   "short history: risk and trend figures use fewer than 250 days"

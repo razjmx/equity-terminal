@@ -1,38 +1,38 @@
 {
  "symbol": "CSBBANK",
- "as_of": "2026-11-26",
- "rows": 1239,
- "price": 297.9,
+ "as_of": "2026-11-27",
+ "rows": 1240,
+ "price": 296.7,
  "returns_pct": {
-  "1m": -3.2,
-  "3m": -10.2,
+  "1m": -4.8,
+  "3m": -12.6,
   "6m": -18.5,
-  "1y": -29.5,
-  "3y_cagr": -2.1,
-  "ytd": -35.1
+  "1y": -29.6,
+  "3y_cagr": -2.9,
+  "ytd": -35.4
  },
  "relative_strength_pp": {
-  "3m": -12.7,
-  "6m": -23.5,
-  "1y": -30.5
+  "3m": -14.0,
+  "6m": -23.1,
+  "1y": -29.6
  },
  "range": {
   "high_52w": 557.45,
   "low_52w": 295.25,
-  "pct_from_high": -46.6,
-  "pct_above_low": 0.9,
+  "pct_from_high": -46.8,
+  "pct_above_low": 0.5,
   "high_date": "2026-01-05",
   "low_date": "2026-11-03"
  },
  "moving_averages": {
-  "dma20": 308.33,
-  "pct_vs_dma20": -3.4,
-  "dma50": 312.51,
-  "pct_vs_dma50": -4.7,
-  "dma100": 324.47,
-  "pct_vs_dma100": -8.2,
-  "dma200": 349.1,
-  "pct_vs_dma200": -14.7
+  "dma20": 307.7,
+  "pct_vs_dma20": -3.6,
+  "dma50": 312.33,
+  "pct_vs_dma50": -5.0,
+  "dma100": 323.92,
+  "pct_vs_dma100": -8.4,
+  "dma200": 348.47,
+  "pct_vs_dma200": -14.9
  },
  "trend": {
   "above_dma200": false,
@@ -41,12 +41,12 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 41.5,
-  "macd_pct": -0.04,
-  "macd_signal_pct": 0.18,
-  "macd_hist_pct": -0.21,
-  "bollinger_pctb": 0.27,
-  "atr_pct": 3.64
+  "rsi14": 40.9,
+  "macd_pct": -0.41,
+  "macd_signal_pct": 0.06,
+  "macd_hist_pct": -0.47,
+  "bollinger_pctb": 0.26,
+  "atr_pct": 3.52
  },
  "risk": {
   "volatility_1y_pct": 46.5,
@@ -55,11 +55,11 @@
   "max_drawdown_all_pct": -47.0,
   "var95_1d_pct": -3.82,
   "cvar95_1d_pct": -5.64,
-  "sharpe_1y": -0.67,
+  "sharpe_1y": -0.68,
   "sortino_1y": -0.99
  },
  "beta": {
-  "raw": 0.64,
+  "raw": 0.65,
   "adjusted": 0.76,
   "weeks": 156,
   "correlation": 0.29,
@@ -67,7 +67,7 @@
   "alpha_pct": -12.6
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 19.83
+  "avg_daily_value_3m_cr": 19.62
  },
  "flags": []
 }

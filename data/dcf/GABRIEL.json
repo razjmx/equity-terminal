@@ -3,11 +3,11 @@
  "latest_fy": "2026-03-31",
  "status": "ok",
  "reliability": "low confidence",
- "price": 1537.3,
- "fair_value": 190.5,
+ "price": 1546.8,
+ "fair_value": 190.4,
  "fair_low": 168.2,
- "fair_high": 218.9,
- "upside_pct": -87.6,
+ "fair_high": 218.8,
+ "upside_pct": -87.7,
  "flags": [
   "far from price: model value is 12% of the market price"
  ],
@@ -18,7 +18,7 @@
   "beta_used": 1.33,
   "beta_weeks": 156,
   "cost_of_equity_pct": 15.16,
-  "wacc_pct": 15.11,
+  "wacc_pct": 15.12,
   "terminal_growth_pct": 6.5,
   "tax_pct": 25.0,
   "forecast_years": 10,
@@ -129,15 +129,15 @@
   "minority": 23.0,
   "equity_value": 3325.0,
   "shares_cr": 19.163,
-  "market_cap": 29460.0
+  "market_cap": 29642.0
  },
  "sensitivity": {
   "wacc_pct": [
-   13.11,
-   14.11,
-   15.11,
-   16.11,
-   17.11
+   13.12,
+   14.12,
+   15.12,
+   16.12,
+   17.12
   ],
   "terminal_growth_pct": [
    5.5,
@@ -152,33 +152,33 @@
     247.3,
     256.2,
     266.4,
-    278.3
+    278.2
    ],
    [
     207.8,
-    213.1,
-    218.9,
+    213.0,
+    218.8,
     225.4,
     232.8
    ],
    [
     183.0,
-    186.6,
-    190.5,
-    194.8,
-    199.6
+    186.5,
+    190.4,
+    194.7,
+    199.5
    ],
    [
-    163.1,
+    163.0,
     165.5,
     168.2,
-    171.1,
+    171.0,
     174.2
    ],
    [
     146.7,
     148.4,
-    150.3,
+    150.2,
     152.2,
     154.3
    ]
@@ -186,7 +186,7 @@
  },
  "reverse_dcf": {
   "implied_first_year_growth_pct": null,
-  "implied_ebit_margin_pct": 45.1,
+  "implied_ebit_margin_pct": 45.4,
   "implied_discount_rate_pct": null,
   "implied_rate_note": "below 8.6%",
   "note": "growth outside -10% to 60%"
@@ -197,7 +197,7 @@
   "tax": 0.25,
   "s2c": 3.8784422304389783,
   "g1": 0.1716635452360833,
-  "wacc": 0.15114990309549245,
+  "wacc": 0.15115876479644783,
   "terminal_g": 0.065,
   "n": 10,
   "hold_years": 3,
@@ -206,8 +206,8 @@
   "cash": 330.171,
   "invest": 14.651,
   "minority": 23.078,
-  "shares_cr": 19.16342378466816,
-  "roll": 1.0976617645061422,
+  "shares_cr": 19.163423784668158,
+  "roll": 1.0976657439377129,
   "mid_year": true
  }
 }

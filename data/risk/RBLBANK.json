@@ -1,38 +1,38 @@
 {
  "symbol": "RBLBANK",
- "as_of": "2026-11-26",
- "rows": 1239,
- "price": 389.25,
+ "as_of": "2026-11-27",
+ "rows": 1240,
+ "price": 390.0,
  "returns_pct": {
-  "1m": 11.7,
-  "3m": 0.3,
-  "6m": 13.4,
-  "1y": 23.9,
-  "3y_cagr": 21.3,
-  "ytd": 23.3
+  "1m": 11.9,
+  "3m": 1.6,
+  "6m": 13.3,
+  "1y": 26.0,
+  "3y_cagr": 20.7,
+  "ytd": 23.5
  },
  "relative_strength_pp": {
-  "3m": -2.1,
-  "6m": 8.3,
-  "1y": 22.9
+  "3m": 0.1,
+  "6m": 8.7,
+  "1y": 26.0
  },
  "range": {
   "high_52w": 428.0,
   "low_52w": 288.6,
-  "pct_from_high": -9.1,
-  "pct_above_low": 34.9,
+  "pct_from_high": -8.9,
+  "pct_above_low": 35.1,
   "high_date": "2026-09-23",
   "low_date": "2026-01-23"
  },
  "moving_averages": {
-  "dma20": 377.09,
-  "pct_vs_dma20": 3.2,
-  "dma50": 388.63,
-  "pct_vs_dma50": 0.2,
-  "dma100": 385.13,
-  "pct_vs_dma100": 1.1,
-  "dma200": 356.46,
-  "pct_vs_dma200": 9.2
+  "dma20": 379.1,
+  "pct_vs_dma20": 2.9,
+  "dma50": 388.18,
+  "pct_vs_dma50": 0.5,
+  "dma100": 385.42,
+  "pct_vs_dma100": 1.2,
+  "dma200": 356.89,
+  "pct_vs_dma200": 9.3
  },
  "trend": {
   "above_dma200": true,
@@ -41,22 +41,22 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 54.6,
+  "rsi14": 55.1,
   "macd_pct": 0.91,
-  "macd_signal_pct": 0.26,
-  "macd_hist_pct": 0.65,
-  "bollinger_pctb": 0.69,
-  "atr_pct": 2.98
+  "macd_signal_pct": 0.39,
+  "macd_hist_pct": 0.52,
+  "bollinger_pctb": 0.68,
+  "atr_pct": 3.03
  },
  "risk": {
   "volatility_1y_pct": 31.8,
-  "downside_deviation_pct": 21.6,
+  "downside_deviation_pct": 21.5,
   "max_drawdown_1y_pct": -19.2,
   "max_drawdown_all_pct": -61.5,
   "var95_1d_pct": -3.04,
   "cvar95_1d_pct": -4.12,
-  "sharpe_1y": 0.61,
-  "sortino_1y": 0.89
+  "sharpe_1y": 0.66,
+  "sortino_1y": 0.97
  },
  "beta": {
   "raw": 1.49,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.62,
   "r_squared": 0.39,
-  "alpha_pct": 11.1
+  "alpha_pct": 11.5
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 175.85
+  "avg_daily_value_3m_cr": 177.64
  },
  "flags": []
 }

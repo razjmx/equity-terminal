@@ -1,38 +1,38 @@
 {
  "symbol": "TDPOWERSYS",
- "as_of": "2026-11-26",
- "rows": 1239,
- "price": 616.8,
+ "as_of": "2026-11-27",
+ "rows": 1240,
+ "price": 617.65,
  "returns_pct": {
-  "1m": -10.4,
-  "3m": -20.9,
-  "6m": -5.2,
-  "1y": 61.0,
-  "3y_cagr": 71.9,
-  "ytd": 75.7
+  "1m": -10.1,
+  "3m": -15.3,
+  "6m": -9.6,
+  "1y": 62.1,
+  "3y_cagr": 72.1,
+  "ytd": 76.0
  },
  "relative_strength_pp": {
-  "3m": -23.4,
-  "6m": -10.3,
-  "1y": 60.0
+  "3m": -16.8,
+  "6m": -14.2,
+  "1y": 62.1
  },
  "range": {
   "high_52w": 825.65,
   "low_52w": 312.15,
-  "pct_from_high": -25.3,
-  "pct_above_low": 97.6,
+  "pct_from_high": -25.2,
+  "pct_above_low": 97.9,
   "high_date": "2026-10-12",
   "low_date": "2026-01-23"
  },
  "moving_averages": {
-  "dma20": 647.73,
-  "pct_vs_dma20": -4.8,
-  "dma50": 710.73,
-  "pct_vs_dma50": -13.2,
-  "dma100": 681.15,
+  "dma20": 642.68,
+  "pct_vs_dma20": -3.9,
+  "dma50": 706.98,
+  "pct_vs_dma50": -12.6,
+  "dma100": 681.87,
   "pct_vs_dma100": -9.4,
-  "dma200": 601.35,
-  "pct_vs_dma200": 2.6
+  "dma200": 602.39,
+  "pct_vs_dma200": 2.5
  },
  "trend": {
   "above_dma200": true,
@@ -41,22 +41,22 @@
   "cross": "none"
  },
  "momentum": {
-  "rsi14": 42.3,
-  "macd_pct": -4.85,
-  "macd_signal_pct": -4.83,
-  "macd_hist_pct": -0.02,
-  "bollinger_pctb": 0.35,
-  "atr_pct": 6.22
+  "rsi14": 42.5,
+  "macd_pct": -4.58,
+  "macd_signal_pct": -4.77,
+  "macd_hist_pct": 0.19,
+  "bollinger_pctb": 0.37,
+  "atr_pct": 5.95
  },
  "risk": {
   "volatility_1y_pct": 57.0,
-  "downside_deviation_pct": 37.6,
+  "downside_deviation_pct": 37.5,
   "max_drawdown_1y_pct": -30.8,
   "max_drawdown_all_pct": -35.6,
   "var95_1d_pct": -5.23,
   "cvar95_1d_pct": -7.55,
-  "sharpe_1y": 0.99,
-  "sortino_1y": 1.51
+  "sharpe_1y": 1.0,
+  "sortino_1y": 1.52
  },
  "beta": {
   "raw": 1.43,
@@ -64,10 +64,10 @@
   "weeks": 156,
   "correlation": 0.4,
   "r_squared": 0.16,
-  "alpha_pct": 51.3
+  "alpha_pct": 51.6
  },
  "liquidity": {
-  "avg_daily_value_3m_cr": 320.66
+  "avg_daily_value_3m_cr": 320.7
  },
  "flags": []
 }
