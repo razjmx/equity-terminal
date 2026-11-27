@@ -721,25 +721,44 @@ table.cmpt .cd{display:inline-block;width:9px;height:9px;border-radius:50%;margi
 table.cmpt td.cbest{background:var(--brand2);font-weight:700}
 table.cmpt .cx{border:0;background:transparent;color:var(--m);cursor:pointer;font-size:15px;padding:0 2px}
 #shbody .shcard{max-width:none;margin-left:0;margin-right:0}
-/* main menu as a vertical bar on the left (desktop); the top bar keeps brand, quote, search and account */
+/* ---- left sidebar from top to bottom (desktop) ---- */
 @media(min-width:861px){
- .top .topnav{position:fixed;left:14px;top:calc(var(--h2,57px) + 14px);z-index:40;width:172px;flex:none;order:0;flex-direction:column;gap:2px;margin:0;max-width:none;overflow:visible;padding:8px;border-radius:12px;background:var(--p);box-shadow:var(--sh);border:1px solid var(--edge)!important}
- .top .topnav a{display:block;padding:10px 12px;border-radius:9px;font-size:13.5px;transform:none}
+ .top{position:fixed;left:0;top:0;bottom:0;width:224px;height:100vh;box-sizing:border-box;flex-direction:column;align-items:stretch;flex-wrap:nowrap;gap:8px;padding:14px 12px;border-right:1px solid var(--edge);border-bottom:0;z-index:70;overflow:visible}
+ .top::after{display:none}
+ .top .brand{order:1;padding:2px 4px 6px;font-size:16px}
+ .top .sbtog{order:1;position:absolute;top:14px;right:12px;width:32px;height:32px;padding:0;display:flex;align-items:center;justify-content:center;border:0;background:transparent;color:var(--m);border-radius:8px;cursor:pointer}
+ .top .sbtog:hover{background:var(--bg);color:var(--t)}
+ .top .searchbox{order:2;flex:none;width:auto;margin:6px 0 4px;max-width:none;position:relative;transform:none}
+ .top .searchbox #search{width:100%;height:38px;border-radius:10px;padding:0 12px;box-shadow:none}
+ .top .sgl{min-width:280px;z-index:90}
+ .top .topnav{position:relative;order:3;left:auto;top:auto;z-index:auto;width:auto;flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;flex-direction:column;gap:2px;margin:0;max-width:none;padding:0;background:transparent;box-shadow:none;border:0!important;border-radius:0}
+ .top .topnav a{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;font-size:14px;transform:none;white-space:nowrap}
  .top .topnav a:hover{transform:none;background:var(--bg)}
  .top .topnav a.on:hover{background:transparent}
- .topnav .pill{left:8px!important;width:auto!important;right:8px;border-radius:9px;top:8px;height:0;transition:top .3s cubic-bezier(.4,.8,.2,1),height .3s}
+ .top .topnav .ni{flex:none}
+ .top .topnav .nl{font-size:11.5px;font-weight:600;color:var(--m);letter-spacing:.04em;margin:12px 0 4px 12px;text-transform:uppercase}
+ .topnav .pill{left:0!important;right:0;width:auto!important;border-radius:10px;top:0;height:0;box-shadow:none;transition:top .3s cubic-bezier(.4,.8,.2,1),height .3s}
  .top .brk{display:none}
+ .top .quote{order:4;flex:none;margin:0;text-align:left;display:block;animation:none}
+ .top .qbtn{width:100%;height:auto;padding:10px 12px;border:0;border-radius:10px;background:transparent;justify-content:flex-start;font-size:14px;font-weight:500;color:var(--m);gap:11px}
+ .top .qbtn:hover{background:var(--bg);color:var(--t)}
  .top .ql{display:inline}
- .top .quote{order:2;flex:0 0 auto;margin-left:6px}
- .top .searchbox{order:3;margin-left:auto}
- .layout{padding-left:200px}
-}
-.mk{grid-template-columns:minmax(0,1fr) 84px}
-@media(max-width:860px){.mk{grid-template-columns:1fr}}
-@media(min-width:861px){
- .top .topnav{width:152px;left:12px}.top .topnav a{padding:9px 10px;font-size:13px}
- .layout{padding-left:176px}
+ .top #acct{order:5;width:100%;height:auto;margin:0;padding:10px 12px;border:0!important;border-top:1px solid var(--edge)!important;border-radius:0 0 10px 10px;background:transparent;display:flex;align-items:center;gap:11px;justify-content:flex-start;font-size:14px;color:var(--t)}
+ .top #acct:hover{background:var(--bg)}
+ #acpanel{left:236px;right:auto;top:auto;bottom:14px}
+ .layout{padding-left:224px}
+ .tape{margin-left:224px;top:0}
+ body.sbc .top{width:64px;padding:14px 8px}
+ body.sbc .layout{padding-left:64px}body.sbc .tape{margin-left:64px}
+ body.sbc .top .brand span,body.sbc .top .searchbox,body.sbc .top .topnav .t,body.sbc .top .topnav .nl,body.sbc .top .ql,body.sbc .top #acct .t{display:none}
+ body.sbc .top .sbtog{position:static;order:1;align-self:center}
+ body.sbc .top .brand{justify-content:center;padding:2px 0}
+ body.sbc .top .topnav a,body.sbc .top .qbtn,body.sbc .top #acct{justify-content:center;padding:10px 0}
+ body.sbc .top .topnav .nl{display:none}
  .ofl3{grid-template-columns:118px minmax(0,1fr) 62px;gap:12px}
  .mk{gap:14px}
 }
+@media(max-width:860px){.top .sbtog{display:none}.top .nl{display:none}.top .topnav .ni{display:none}.top #acct .t{display:none}}
+.mk{grid-template-columns:minmax(0,1fr) 84px}
+@media(max-width:860px){.mk{grid-template-columns:1fr}}
 .fiig{overflow-x:auto}
