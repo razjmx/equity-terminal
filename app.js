@@ -221,10 +221,11 @@ function scatterChart(cv,pts,opt={}){   // pts: [{x,y,c,r,l}]
 }
 // ----- near-live prices (Groww, via the Live prices workflow; delayed by 5 to 10 minutes) -----
 let LV=null;
+let LVLAST=null;
 async function liveLoad(){
   const u=window.LIVE_URL||'';if(!u)return null;
   try{const r=await fetch(u+'?t='+Math.floor(Date.now()/60000),{cache:'no-store'});if(!r.ok){LV=null;return null}
-    const j=await r.json(),age=(Date.now()-Date.parse(j.t))/60000;LV=isFinite(age)&&age<=25?j:null}catch(e){LV=null}
+    const j=await r.json(),age=(Date.now()-Date.parse(j.t))/60000;LV=isFinite(age)&&age<=25?j:null;LVLAST=j&&j.s&&isFinite(age)?{j,age}:null}catch(e){LV=null;LVLAST=null}
   return LV;
 }
 function liveApply(s,eod){
@@ -1497,19 +1498,20 @@ async function glPanel(){
   const draw=()=>{
     const set=new Set(mem[GL.ix]||[]);
     // with live prices: today's move on top of the stored return, for stocks whose live 'previous close' matches our last close
-    const lvs=LV&&LV.s?LV.s:null;let nlive=0;
+    // fresh file (25 min) = live; an older file from today is still used, but labelled with its age
+    const old=!LV&&LVLAST&&LVLAST.age<=180&&new Date(LVLAST.j.t).toDateString()===new Date().toDateString()?LVLAST:null,LX=LV||(old&&old.j),lvs=LX&&LX.s?LX.s:null;let nlive=0;
     const rows=[...set].map(s=>{if(!(by[s]&&by[s].r&&by[s].r[GL.tf]!=null))return null;let r=by[s].r[GL.tf],p=px[s];
       const l=lvs&&lvs[s];
       if(l&&l[0]!=null&&l[4]&&p&&Math.abs(l[4]/p-1)<0.004){r=GL.tf==='r1d'?(l[0]/l[4]-1)*100:((1+r/100)*(l[0]/l[4])-1)*100;p=l[0];nlive++}
       return {s,r,mc:by[s].mc,px:p}}).filter(Boolean).sort((a,b)=>b.r-a.r);
     const liveOn=nlive>=Math.max(10,rows.length*0.5);
-    const lt=liveOn?new Date(LV.t).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Kolkata'}):'';
+    const lt=liveOn?new Date(LX.t).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Kolkata'}):'';
     const top=rows.slice(0,10),bot=rows.slice(-10).reverse();
     const tb=a=>`<table class="peer"><thead><tr><th>Stock</th><th class="num">Price ₹</th><th class="num">Return</th></tr></thead><tbody>${a.map(r=>`<tr class="row" onclick="location.hash='#/stock/${esc(r.s)}'"><td><b>${esc(r.s)}</b><div class="mut" style="font-size:11px">${esc((nm[r.s]||'').slice(0,28))} · ${capOf(r.mc).split(' ')[0]}</div></td><td class="num">${r.px!=null?T.fmt(r.px,1):'–'}</td><td class="num ${cls(r.r)}">${r.r>=0?'+':''}${T.fmt(r.r,2)}%</td></tr>`).join('')}</tbody></table>`;
     const src=(mem.source||{})[GL.ix]==='NSE'?'official NSE constituent list':'approximated by market-cap rank (NSE list not available)';
     box.innerHTML=`<div class="card"><div class="seg" id="gl-ix" style="margin:0 0 8px">${IXS.map(([k,l])=>`<button data-k="${k}" class="${GL.ix===k?'on':''}">${l}</button>`).join('')}</div>
       <div class="two"><div><h3 style="margin:0 0 6px">Top gainers</h3>${tb(top)}</div><div><h3 style="margin:0 0 6px">Top losers</h3>${tb(bot)}</div></div>
-      <p class="mut" style="font-size:12px;margin:10px 0 0">${rows.length} stocks in ${esc(IXS.find(x=>x[0]===GL.ix)[1])} with data · ${src} · ${liveOn?'live prices at '+lt+' IST, about 5 to 10 minutes delayed, '+(GL.tf==='r1d'?'change from the previous close':'on top of the last close')+'':'price returns to the last close'}.</p></div>`;
+      <p class="mut" style="font-size:12px;margin:10px 0 0">${rows.length} stocks in ${esc(IXS.find(x=>x[0]===GL.ix)[1])} with data · ${src} · ${liveOn?(old?'<b class="neg">prices from '+lt+' IST, '+Math.round(old.age)+' minutes old</b> (the Live prices workflow has not run since) · ':'<b class="pos">● Live</b> prices at '+lt+' IST, about 5 to 10 minutes delayed · ')+(GL.tf==='r1d'?'change from the previous close':'on top of the last close'):'price returns to the last close (no live prices file from today)'}.</p></div>`;
     box.querySelectorAll('#gl-ix button').forEach(b=>b.onclick=()=>{GL.ix=b.dataset.k;draw()});
     box.querySelectorAll('#gl-tf button').forEach(b=>b.onclick=()=>{GL.tf=b.dataset.k;draw()});
   };
