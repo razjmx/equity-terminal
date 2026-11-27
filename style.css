@@ -762,3 +762,5 @@ table.cmpt .cx{border:0;background:transparent;color:var(--m);cursor:pointer;fon
 .mk{grid-template-columns:minmax(0,1fr) 84px}
 @media(max-width:860px){.mk{grid-template-columns:1fr}}
 .fiig{overflow-x:auto}
+.ipop{position:fixed;z-index:200;overflow-y:auto;background:var(--p);border:1px solid var(--edge);border-left:3px solid var(--brand);border-radius:12px;padding:12px 15px;font-size:13px;font-weight:400;line-height:1.6;color:var(--t);text-transform:none;letter-spacing:0;box-shadow:0 14px 36px rgba(0,0,0,.2)}
+.ipop b{font-weight:700}
