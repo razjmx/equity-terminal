@@ -780,16 +780,11 @@ table.cmpt .cx{border:0;background:transparent;color:var(--m);cursor:pointer;fon
 .mk-tf button{width:auto;min-width:40px;padding:7px 11px;text-align:center}
 @media(max-width:860px){.mk>.mk-tf{align-self:stretch;overflow-x:auto}.mk-tf .vl{display:none}}
 .mk>.mk-main{width:100%;min-width:0}
-/* Market time frame: 3x2 box fixed to the top-right corner of the window */
+/* Market time frame: one horizontal row fixed to the top-left corner of the content area */
 @media(min-width:861px){
-.mk>.mk-tf{position:fixed;top:0;right:0;left:auto;margin:0;order:0;align-self:auto;display:grid;grid-template-columns:repeat(3,auto);grid-template-rows:auto auto auto;gap:2px;padding:0 6px 6px;width:auto;z-index:60;border-top:0;border-right:0;border-radius:0 0 0 12px}
-.mk-tf .vl{grid-column:1/-1;grid-row:1;display:block;text-align:center;padding:8px 6px 4px}
-.mk-tf button{min-width:46px;padding:6px 10px}
-.mk-tf button:nth-of-type(1){grid-column:1;grid-row:2}
-.mk-tf button:nth-of-type(2){grid-column:1;grid-row:3}
-.mk-tf button:nth-of-type(3){grid-column:2;grid-row:2}
-.mk-tf button:nth-of-type(4){grid-column:2;grid-row:3}
-.mk-tf button:nth-of-type(5){grid-column:3;grid-row:2}
-.mk-tf button:nth-of-type(6){grid-column:3;grid-row:3}
-.mk{padding-top:96px}
+.mk>.mk-tf{position:fixed;top:0;left:224px;right:auto;margin:0;order:0;align-self:auto;display:flex;flex-direction:row;align-items:center;gap:2px;padding:4px 8px;width:auto;z-index:60;border-top:0;border-left:0;border-radius:0 0 12px 0}
+body.sbc .mk>.mk-tf{left:64px}
+.mk-tf .vl{display:inline-block;grid-column:auto;padding:0 10px 0 6px;text-align:left;white-space:nowrap}
+.mk-tf button{grid-column:auto!important;grid-row:auto!important;min-width:40px;padding:6px 11px}
+.mk{padding-top:44px}
 }
