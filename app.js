@@ -1474,10 +1474,10 @@ function renderMarket(anim){
     if(MH.range==='1D')h+=`<p class="mut ixnote">${MH.idx&&MH.idx.idx?'Index charts are intraday, session of '+esc(MH.idx.d)+', updated '+esc(MH.idx.gen.slice(11))+' UTC (refreshed about every 15 minutes in market hours).':'1D index charts show the last two closes (the intraday file is not available).'}</p>`}
 
   // top gainers and losers (second)
-  {h+=sec('gl','Top gainers and losers','by index · uses the time frame at the top right')+'<div id="glbox"></div>'}
+  {h+=sec('gl','Top gainers and losers','by index · uses the time frame at the top left')+'<div id="glbox"></div>'}
 
   // sector heatmap (third)
-  {h+=sec('ind','Index heatmap','NSE index closing levels · uses the time frame at the top right');
+  {h+=sec('ind','Index heatmap','NSE index closing levels · uses the time frame at the top left');
    h+='<div id="hmwrap"></div>'}
 
   const chips=[['idx','Indices'],['gl','Gainers & losers'],['ind','Heatmap']];
