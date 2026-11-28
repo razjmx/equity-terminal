@@ -1940,7 +1940,7 @@ async function screener(){
   const shell=()=>{
     const f=SCQ.mode==='f';
     view.innerHTML=`<div class="sx"><div class="sxhd"><div><h2>Stock Screener</h2><p class="mut">Filter the Indian equity market by quality, growth, value or your own formula.</p></div>
-      <div class="sxact"><button id="sx-exp" class="sxb">&#8681; Export CSV</button><button id="sx-reset" class="sxb">&#8635; Reset</button></div></div>
+      <div class="sxact"><button id="sx-reset" class="sxb">&#8635; Reset</button></div></div>
      <div class="sxpre">${SX_PRE.map(p=>`<button class="sxpc${SCQ.preset===p[0]&&f?' on':''}" data-p="${esc(p[0])}"><b>${esc(p[0])}</b><span>${esc(p[1])}</span></button>`).join('')}</div>
      <div class="sxmain"><div class="sxl">
        <div class="card sxbuild"><div class="sxbh"><h3>Build Your Screen</h3><div class="sxtabs"><button data-m="f" class="${f?'on':''}">Filters</button><button data-m="q" class="${f?'':'on'}">Formula</button></div>
@@ -2029,7 +2029,7 @@ async function screener(){
   const redrawRows=()=>{$('#sx-rows').innerHTML=SCQ.f.map(rowHtml).join('');refreshCnt()};
   const bind=()=>{
     const root=view.querySelector('.sx');
-    $('#sx-run').onclick=run;$('#sx-exp').onclick=exportCsv;
+    $('#sx-run').onclick=run;
     root.onkeydown=e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();run()}else if(e.key==='Enter'&&e.target.matches('.sxv input')){e.preventDefault();run()}};
     $('#sx-u').onchange=()=>{if(SCQ.ran)run()};
     $('#sx-reset').onclick=()=>{SCQ.f=[];SCQ.q='';SCQ.preset='';SCQ.logic='AND';SCQ.mode='f';SCQ.u='all';persist();shell();run()};
