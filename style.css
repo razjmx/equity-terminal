@@ -766,3 +766,5 @@ table.cmpt .cx{border:0;background:transparent;color:var(--m);cursor:pointer;fon
 .ipop b{font-weight:700}
 .abg{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px;align-items:start}
 @media(max-width:900px){.abg{grid-template-columns:1fr}.abr .card:first-child{margin-top:14px!important}}
+.abg{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.abl,.abr{display:contents}.ab1{order:1}.ab2{order:2}.ab3{order:3}.ab4{order:4}
+@media(max-width:900px){.abg{grid-template-columns:1fr}.abg .card{margin-top:0}}
