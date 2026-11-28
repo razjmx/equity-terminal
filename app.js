@@ -1885,12 +1885,17 @@ function scParse(q){
   return {fn:r=>truthy(root(r)),used:[...used]};
 }
 let SCQ=null;
+const SX_PRE=[
+ ['Quality Compounders','High ROE, ROCE, low debt',[['roe','>','15'],['roce','>','15'],['de','<','0.6'],['rg','>','10']]],
+ ['Value Picks','Undervalued, good fundamentals',[['pe','<','18'],['pb','<','2.5'],['roe','>','12']]],
+ ['Growth at Fair Price','Growth + reasonable valuation',[['ng','>','15'],['rg','>','10'],['pe','>','0'],['pe','<','30']]],
+ ['Momentum Leaders','Rising and above 200 DMA',[['r1m','>','5'],['r1y','>','15'],['a200','=','1']]]];
 async function screener(){
-  view.innerHTML='<div class="skel" style="height:160px"></div><div class="skel" style="height:300px;margin-top:14px"></div>';
-  if(!SCQ){SCQ={q:'',u:'all',sort:{k:'mc',d:-1},n:50,ran:false};
-    try{const s=JSON.parse(localStorage.getItem('tl_scq')||'null');if(s&&typeof s.q==='string'){SCQ.q=s.q;SCQ.u=s.u||'all'}}catch(e){}}
-  let runNow=false;
-  if(FILT.ind&&FILT.ind!=='all'){SCQ.q='Industry = "'+FILT.ind.replace(/"/g,'')+'"';SCQ.u='all';FILT.ind='all';runNow=true}
+  view.innerHTML='<div class="skel" style="height:120px"></div><div class="skel" style="height:420px;margin-top:14px"></div>';
+  if(!SCQ){SCQ={mode:'f',logic:'AND',f:SX_PRE[0][2].map(x=>({k:x[0],op:x[1],v:x[2]})),preset:SX_PRE[0][0],q:'',u:'all',sort:{k:'roe',d:-1},page:1,ran:false,dist:'roe'};
+    try{const s=JSON.parse(localStorage.getItem('tl_scq')||'null');if(s&&typeof s==='object'){if(typeof s.q==='string')SCQ.q=s.q;SCQ.u=s.u||'all';if(Array.isArray(s.f)&&s.f.length){SCQ.f=s.f;SCQ.preset=s.preset||''}if(s.logic)SCQ.logic=s.logic;if(s.mode)SCQ.mode=s.mode}}catch(e){}}
+  let runNow=true;
+  if(FILT.ind&&FILT.ind!=='all'){SCQ.f=[{k:'ind',op:'=',v:FILT.ind}];SCQ.logic='AND';SCQ.mode='f';SCQ.u='all';SCQ.preset='';FILT.ind='all'}
   const [P,OF,FS_,RSD,mem]=await Promise.all([get('data/peers.json','json'),get('data/orderflow.json','json'),table('data/financials_summary.csv'),get('data/rs.json','json').catch(()=>null),get('data/index_members.json','json').catch(()=>null)]);
   const ps={};((P&&P.stocks)||[]).forEach(x=>ps[x.s]=x);
   const ofm={};((OF&&OF.stocks)||[]).forEach(x=>ofm[x.s]=x);
@@ -1912,76 +1917,144 @@ async function screener(){
   const lsGet=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')||[]}catch(e){return[]}};
   const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
   const nn=v=>v!=null&&typeof v==='number'&&isFinite(v);
-  const BASE=['s','n','cap','mc','px','pe','pb','roe','roce','de','rg','r1m','r1y','up'];
-  const LBL={s:'Symbol',n:'Company',cap:'Cap',mc:'Mkt cap ₹cr',px:'Price',pe:'P/E',pb:'P/B',roe:'ROE %',roce:'ROCE %',de:'D/E',rg:'Rev growth %',r1m:'1M %',r1y:'1Y %',up:'Upside %',dp:'Deliv %',score:'OF score',rsi:'RSI',nm:'Net margin %',ng:'Profit growth %',ev:'EV/EBITDA',bias:'OF bias',ind:'Industry',a200:'Above 200 DMA',rs1w:'RS 1W',rs3m:'RS 3M',rs6m:'RS 6M',rs1y:'RS 1Y'};
-  const TXT=new Set(['s','n','cap','bias','ind']),SIGN=new Set(['r1m','r1y','up']);
+  const TXT=new Set(['ind','cap','bias']);
+  const LBL={s:'Symbol',n:'Company',cap:'Cap',mc:'Mkt cap ₹cr',px:'Price ₹',pe:'P/E',pb:'P/B',ev:'EV/EBITDA',roe:'ROE %',roce:'ROCE %',de:'D/E',rg:'Rev growth %',ng:'Profit growth %',nm:'Net margin %',r1m:'1M %',r1y:'1Y %',up:'Upside %',dp:'Deliv %',score:'OF score',rsi:'RSI',bias:'OF bias',ind:'Industry',a200:'>200 DMA',rs1w:'RS 1W',rs3m:'RS 3M',rs6m:'RS 6M',rs1y:'RS 1Y'};
   const dec={mc:0,px:1,pe:1,pb:2,roe:1,roce:1,de:2,rg:1,ng:1,nm:1,ev:1,r1m:1,r1y:1,up:0,dp:0,score:0,rsi:0,rs1w:1,rs3m:1,rs6m:1,rs1y:1};
-  const savedHtml=()=>{const a=lsGet('tl_screens');return a.length?`<div class="sqsec"><h3>Your screens</h3><p class="mut">Saved on this device, and with your account when you are signed in</p><div class="sqcards">${a.map((x,i)=>`<div class="sqcard" data-q="${esc(x.q)}"><b>${esc(x.n)}</b><span>${esc(x.q.replace(/\s*\n\s*/g,' ').slice(0,110))}</span><i class="sqdel" data-del="${i}" title="Delete this screen">×</i></div>`).join('')}</div></div>`:''};
+  const SIGN=new Set(['r1m','r1y','up','rs1w','rs3m','rs6m','rs1y','rg','ng']);
+  const UNIT={mc:'₹ cr',roe:'%',roce:'%',nm:'%',rg:'%',ng:'%',r1m:'%',r1y:'%',up:'%',dp:'%',rs1w:'%',rs3m:'%',rs6m:'%',rs1y:'%'};
+  const OPS=['>','<','>=','<=','=','!='],TOPS=[['=','is'],['!=','is not'],['contains','contains']];
+  const PERPAGE=10;
+  const fmtCr=v=>v>=1e5?'₹'+T.fmt(v/1e5,1)+'L Cr':'₹'+T.fmt(v,0)+' Cr';
+  const qFromF=()=>SCQ.f.map(r=>{const f=SCK[r.k];if(!f)return null;
+    if(r.k==='a200')return f[1];
+    if(TXT.has(r.k)){const v=String(r.v||'').trim().replace(/"/g,'');return v?`${f[1]} ${r.op==='contains'?'contains':r.op} "${v}"`:null}
+    const v=String(r.v).trim();if(v===''||isNaN(+v))return null;return `${f[1]} ${r.op} ${v}`}).filter(Boolean).join(' '+SCQ.logic+'\n');
+  const optsF=sel=>[...new Set(SCF.map(x=>x[3]))].map(g=>`<optgroup label="${g}">${SCF.filter(x=>x[3]===g).map(x=>`<option value="${x[0]}"${x[0]===sel?' selected':''}>${esc(x[1])}</option>`).join('')}</optgroup>`).join('');
+  const rowHtml=(r,i)=>{const t=TXT.has(r.k),a=r.k==='a200';
+    const lst=r.k==='ind'?inds:r.k==='cap'?['Large cap','Mid cap','Small cap','Micro cap']:r.k==='bias'?['bullish','bearish','neutral']:[];
+    return `<div class="sxfr" data-i="${i}"><select class="sxf" data-a="k">${optsF(r.k)}</select>
+      ${a?'<span class="sxfix">is above</span>':`<select class="sxo" data-a="op">${(t?TOPS:OPS.map(o=>[o,o])).map(([o,l])=>`<option value="${o}"${r.op===o?' selected':''}>${l}</option>`).join('')}</select>`}
+      ${a?'<span class="sxfix mut">the 200-day average</span>':`<span class="sxv"><input data-a="v" value="${esc(String(r.v??''))}" ${t?`list="sxl${i}" placeholder="value"`:'inputmode="decimal" placeholder="0"'}>${UNIT[r.k]?`<em>${UNIT[r.k]}</em>`:''}${lst.length?`<datalist id="sxl${i}">${lst.map(x=>`<option value="${esc(x)}">`).join('')}</datalist>`:''}</span>`}
+      <button class="sxdel" data-a="del" title="Remove filter" aria-label="Remove filter">&#128465;</button></div>`};
+  const savedHtml=()=>{const a=lsGet('tl_screens');return a.length?`<div class="sxsv"><h4>Your screens</h4><div class="sqcards">${a.map((x,i)=>`<div class="sqcard" data-q="${esc(x.q)}"><button class="sqdel" data-del="${i}" title="Delete" aria-label="Delete">×</button><b>${esc(x.n)}</b><span>${esc(x.q.replace(/\s+/g,' ').slice(0,60))}</span></div>`).join('')}</div></div>`:''};
   const shell=()=>{
-    view.innerHTML=`<div class="scr"><h2 style="margin:0 0 12px">Stock screener</h2>
-     <div class="card sq"><div class="sqg"><div class="sqa"><h3 style="margin:0 0 4px">Create a search query</h3>
-       <label class="sql" for="sq-q">Query</label>
-       <textarea id="sq-q" rows="6" spellcheck="false" placeholder="Write conditions joined by AND / OR, for example:&#10;Price to earning < 15 AND&#10;Return on equity > 18">${esc(SCQ.q)}</textarea>
-       <div class="sqrow"><label>Universe <select id="sq-u">${UNI.map(([k,l])=>`<option value="${k}"${SCQ.u===k?' selected':''}>${l}</option>`).join('')}</select></label></div>
-       <div class="sqbtn"><button id="sq-run" class="sqprim">▶ Run this query</button><input id="sq-name" placeholder="Name, to save this screen"><button id="sq-save" class="sqsec2">Save screen</button><button id="sq-clr" class="sqsec2">Clear</button></div>
-       <div id="sq-err" class="sqerr"></div></div>
-      <div class="sqb"><h4>Custom query example</h4><pre id="sq-exs">${esc(SC_EXAMPLE)}</pre><a href="javascript:void(0)" id="sq-ex" class="link">Use this example</a>
-       <p class="mut" style="font-size:12.5px;margin:10px 0 0">Use &gt; &lt; &gt;= &lt;= = !=, join with AND / OR, use brackets, and do sums such as <b>Price to earning / Profit growth &lt; 1</b>. For text use quotes: <b>Industry = "Banks"</b> or <b>Industry contains "auto"</b>. Ctrl+Enter runs the query.</p>
-       <details class="sqall"><summary>Show all ratios</summary>${[...new Set(SCF.map(x=>x[3]))].map(g=>`<div class="sqgrp"><span>${g}</span>${SCF.filter(x=>x[3]===g).map(x=>`<button type="button" class="sqchip" data-ins="${esc(x[1])}">${esc(x[1])}</button>`).join('')}</div>`).join('')}<p class="mut" style="font-size:12px;margin:6px 0 0">Click a ratio to add it to the query. Percent values are plain numbers, so ROE above 15% is <b>Return on equity &gt; 15</b>. Relative strength is on a base of 0, so beating the index is <b>Relative strength 3M &gt; 0</b>.</p></details></div></div></div>
-     <div id="sq-res"></div>
-     <div id="sq-lib">${savedHtml()}${SC_LIB.map(([t,d,a])=>`<div class="sqsec"><h3>${esc(t)}</h3><p class="mut">${esc(d)}</p><div class="sqcards">${a.map(([n,ds,q])=>`<div class="sqcard" data-q="${esc(q)}"><b>${esc(n)}</b><span>${esc(ds)}</span></div>`).join('')}</div></div>`).join('')}
-      <div class="sqsec"><h3>Browse industries</h3><p class="mut">Click one to list its stocks</p><div class="sqind">${inds.map(x=>`<button type="button" data-ind="${esc(x)}">${esc(x)}</button>`).join('')}</div></div></div>
-     <p class="mut" style="font-size:12px;margin-top:6px">End-of-day data. Fair value upside uses the saved DCF (non-financials) or the P/B–ROE model (financials) from the nightly run. Delivery % and the order flow score come from the latest order flow run. Relative strength is against the Nifty 500, base 0 (above 0 beats the index). Ratios are from the latest annual data on Yahoo Finance, so check anything important against the company's filings.</p></div>`;
-    bind();
+    const f=SCQ.mode==='f';
+    view.innerHTML=`<div class="sx"><div class="sxhd"><div><h2>Stock Screener</h2><p class="mut">Filter the Indian equity market by quality, growth, value or your own formula.</p></div>
+      <div class="sxact"><button id="sx-exp" class="sxb">&#8681; Export CSV</button><button id="sx-reset" class="sxb">&#8635; Reset</button></div></div>
+     <div class="sxpre">${SX_PRE.map(p=>`<button class="sxpc${SCQ.preset===p[0]&&f?' on':''}" data-p="${esc(p[0])}"><b>${esc(p[0])}</b><span>${esc(p[1])}</span></button>`).join('')}</div>
+     <div class="sxmain"><div class="sxl">
+       <div class="card sxbuild"><div class="sxbh"><h3>Build Your Screen</h3><div class="sxtabs"><button data-m="f" class="${f?'on':''}">Filters</button><button data-m="q" class="${f?'':'on'}">Formula</button></div>
+        <label class="sxuni">Universe <select id="sx-u">${UNI.map(([k,l])=>`<option value="${k}"${SCQ.u===k?' selected':''}>${l}</option>`).join('')}</select></label></div>
+        <div id="sx-fp" ${f?'':'hidden'}>
+         <div class="sxmatch"><span>Match</span><button data-lg="AND" class="${SCQ.logic==='AND'?'on':''}">All Conditions (AND)</button><button data-lg="OR" class="${SCQ.logic==='OR'?'on':''}">Any Condition (OR)</button></div>
+         <div id="sx-rows">${SCQ.f.map(rowHtml).join('')}</div>
+         <div class="sxadd"><button id="sx-add" class="sxb">+ Add Filter</button><span class="mut" id="sx-cnt"></span></div></div>
+        <div id="sx-qp" ${f?'hidden':''}>
+         <textarea id="sx-q" rows="6" spellcheck="false" placeholder="Price to earning < 15 AND&#10;Return on equity > 18">${esc(SCQ.q)}</textarea>
+         <p class="mut" style="font-size:12.5px;margin:6px 0">Use &gt; &lt; &gt;= &lt;= = !=, join with AND / OR, brackets, and sums such as <b>Price to earning / Profit growth &lt; 1</b>. Text needs quotes: <b>Industry = "Banks"</b>.</p>
+         <details class="sqall"><summary>Show all ratios</summary>${[...new Set(SCF.map(x=>x[3]))].map(g=>`<div class="sqgrp"><span>${g}</span>${SCF.filter(x=>x[3]===g).map(x=>`<button type="button" class="sqchip" data-ins="${esc(x[1])}">${esc(x[1])}</button>`).join('')}</div>`).join('')}</details></div>
+        <div id="sx-err" class="sqerr"></div>
+        <div class="sxrun"><input id="sx-name" placeholder="Name, to save this screen"><button id="sx-save" class="sxb">Save</button><button id="sx-run" class="sxgo">&#9654; Run Screen <span id="sx-rn"></span><kbd>Ctrl + Enter</kbd></button></div></div>
+       <div class="card sxsum" id="sx-sum"></div>
+       <div class="sxtwo"><div class="card" id="sx-sec"></div><div class="card" id="sx-dist"></div></div>
+       <div class="card sxlib"><h4>More ideas</h4>${savedHtml()}${SC_LIB.map(([t,d,a])=>`<div class="sxsv"><h4>${esc(t)}</h4><div class="sqcards">${a.map(([n,ds,q])=>`<div class="sqcard" data-q="${esc(q)}"><b>${esc(n)}</b><span>${esc(ds)}</span></div>`).join('')}</div></div>`).join('')}
+        <div class="sxsv"><h4>Browse industries</h4><div class="sqind">${inds.map(x=>`<button type="button" data-ind="${esc(x)}">${esc(x)}</button>`).join('')}</div></div></div>
+     </div>
+     <div class="sxr"><div class="card sxres" id="sx-res"></div></div></div>
+     <p class="mut" style="font-size:12px;margin-top:10px">End-of-day data. Fair value upside uses the saved DCF (non-financials) or the P/B–ROE model (financials). Delivery % and order flow score come from the latest order flow run.</p></div>`;
+    bind();refreshCnt();
   };
-  const run=(scroll)=>{
-    const qv=$('#sq-q').value;SCQ.q=qv;SCQ.u=$('#sq-u').value;SCQ.n=50;lsSet('tl_scq',{q:SCQ.q,u:SCQ.u});
-    const err=$('#sq-err'),res=$('#sq-res');err.textContent='';
-    let pr;try{pr=scParse(qv)}catch(e){err.textContent=e.message;res.innerHTML='';return}
+  const refreshCnt=()=>{const c=$('#sx-cnt');if(c){const n=SCQ.f.filter(r=>r.k==='a200'||String(r.v??'').trim()!=='').length;c.textContent=n+' condition'+(n===1?'':'s')}};
+  const curQuery=()=>SCQ.mode==='f'?qFromF():($('#sx-q')?$('#sx-q').value:SCQ.q);
+  const persist=()=>lsSet('tl_scq',{q:SCQ.q,u:SCQ.u,f:SCQ.f,logic:SCQ.logic,mode:SCQ.mode,preset:SCQ.preset});
+  const run=()=>{
+    const err=$('#sx-err');err.textContent='';
+    if(SCQ.mode==='q')SCQ.q=$('#sx-q').value;
+    const qv=curQuery();SCQ.u=$('#sx-u').value;SCQ.page=1;persist();
+    let pr;
+    if(SCQ.mode==='f'&&!qv.trim()){pr={fn:()=>true,used:[]}}
+    else{try{pr=scParse(qv)}catch(e){err.textContent=e.message;return}}
     const pool=SCQ.u==='all'?rows:rows.filter(r=>memSet[SCQ.u]&&memSet[SCQ.u].has(r.s));
-    let hit;try{hit=pool.filter(pr.fn)}catch(e){err.textContent=e.message;res.innerHTML='';return}
-    SCQ.ran=true;SCQ.hit=hit;SCQ.used=pr.used;SCQ.pool=pool.length;
-    drawRes();if(scroll){const el=$('#sq-res');if(el)window.scrollTo({top:Math.max(0,el.getBoundingClientRect().top+window.scrollY-120),behavior:'smooth'})}
+    let hit;try{hit=pool.filter(pr.fn)}catch(e){err.textContent=e.message;return}
+    SCQ.ran=true;SCQ.hit=hit;SCQ.used=pr.used;SCQ.pool=pool.length;SCQ.at=new Date();
+    draw();
   };
-  const cols=()=>{const extra=SCQ.used.filter(k=>!BASE.includes(k));return [...BASE,...extra]};
-  const drawRes=()=>{
-    const res=$('#sq-res');if(!res||!SCQ.ran)return;
-    const cs=cols();let {k,d}=SCQ.sort;if(!cs.includes(k)){k='mc';d=-1}
-    const all=SCQ.hit.slice().sort((a,b)=>{const x=a[k],y=b[k];if((x==null||x==='')&&(y==null||y===''))return 0;if(x==null||x==='')return 1;if(y==null||y==='')return -1;return (x>y?1:x<y?-1:0)*d});
-    const shown=all.slice(0,SCQ.n);
+  const avg=(a,k,pos)=>{const v=a.map(r=>r[k]).filter(x=>nn(x)&&(!pos||x>0));return v.length?v.reduce((p,c)=>p+c,0)/v.length:null};
+  const draw=()=>{
+    if(!SCQ.ran)return;const hit=SCQ.hit,rn=$('#sx-rn');if(rn)rn.textContent='('+hit.length+')';
+    // summary
+    const tmc=hit.reduce((p,r)=>p+(nn(r.mc)?r.mc:0),0),fm=(v,d)=>v==null?'–':T.fmt(v,d);
+    $('#sx-sum').innerHTML=`<h3>Screen Summary</h3><div class="sxst"><div><b class="g">${hit.length}</b><span>Matching Stocks</span></div><div><b>${tmc?fmtCr(tmc):'–'}</b><span>Total Market Cap</span></div><div><b>${fm(avg(hit,'pe',true),1)}</b><span>Avg. P/E</span></div><div><b>${nn(avg(hit,'roe'))?T.fmt(avg(hit,'roe'),1)+'%':'–'}</b><span>Avg. ROE</span></div><div><b>${fm(avg(hit,'de'),2)}</b><span>Avg. D/E</span></div></div>`;
+    // sector donut
+    const cnt={};hit.forEach(r=>{const k=r.ind||'Other';cnt[k]=(cnt[k]||0)+1});
+    let ent=Object.entries(cnt).sort((a,b)=>b[1]-a[1]);const top=ent.slice(0,5),rest=ent.slice(5).reduce((p,c)=>p+c[1],0);if(rest)top.push(['Others',rest]);
+    const COL=['#0f6b45','#6fd3a6','#f0c75e','#4c6ef5','#9b6bdf','#c3c9d4'],N=hit.length||1;
+    let a0=-Math.PI/2,arcs='';const R=62,r0=40;
+    top.forEach(([k,v],i)=>{const a1=a0+v/N*Math.PI*2-(top.length>1?0.02:0),big=a1-a0>Math.PI?1:0,p=(a,r)=>[(80+r*Math.cos(a)).toFixed(1),(80+r*Math.sin(a)).toFixed(1)];
+      if(top.length===1){arcs+=`<circle cx="80" cy="80" r="${(R+r0)/2}" fill="none" stroke="${COL[0]}" stroke-width="${R-r0}"/>`}
+      else arcs+=`<path d="M${p(a0,R)} A${R},${R} 0 ${big} 1 ${p(a1,R)} L${p(a1,r0)} A${r0},${r0} 0 ${big} 0 ${p(a0,r0)}Z" fill="${COL[i]}"/>`;a0+=v/N*Math.PI*2});
+    $('#sx-sec').innerHTML=`<h3>Sector Exposure</h3>${hit.length?`<div class="sxdn"><svg viewBox="0 0 160 160" width="150" height="150">${arcs}<text x="80" y="78" text-anchor="middle" class="sxbig">${hit.length}</text><text x="80" y="96" text-anchor="middle" class="sxsm">Stocks</text></svg><ul>${top.map(([k,v],i)=>`<li><i style="background:${COL[i]}"></i><span>${esc(k)}</span><b>${T.fmt(v/N*100,1)}%</b></li>`).join('')}</ul></div>`:'<p class="mut">No stocks to show.</p>'}`;
+    // distribution
+    const B={roe:['ROE',[-1e9,10,15,20,25,1e9],['<10%','10-15%','15-20%','20-25%','>25%']],pe:['P/E',[0,10,20,30,50,1e9],['<10','10-20','20-30','30-50','>50']],de:['D/E',[-1e9,0.1,0.3,0.6,1,1e9],['<0.1','0.1-0.3','0.3-0.6','0.6-1','>1']]};
+    const dk=B[SCQ.dist]?SCQ.dist:'roe',[dn,ed,dl]=B[dk],bins=dl.map(()=>0);
+    hit.forEach(r=>{const v=r[dk];if(!nn(v))return;if(dk==='pe'&&v<=0)return;for(let i=0;i<dl.length;i++)if(v>=ed[i]&&v<ed[i+1]){bins[i]++;break}});
+    const mx=Math.max(1,...bins);
+    $('#sx-dist').innerHTML=`<div class="sxdh"><h3>Key Metrics Distribution</h3><div class="sxtabs sm">${Object.keys(B).map(k=>`<button data-d="${k}" class="${k===dk?'on':''}">${B[k][0]}</button>`).join('')}</div></div><div class="sxbars">${bins.map((v,i)=>`<div class="sxbar"><em>${v}</em><i style="height:${Math.round(v/mx*100)}%"></i><span>${dl[i]}</span></div>`).join('')}</div>`;
+    $('#sx-dist').querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{SCQ.dist=b.dataset.d;draw()});
+    // results
+    const SORTS=['roe','roce','pe','pb','ev','de','mc','px','rg','ng','nm','r1m','r1y','up','rsi','dp','score','rs1w','rs3m','rs6m','rs1y'];
+    let {k,d}=SCQ.sort;
+    const all=hit.slice().sort((a,b)=>{const x=a[k],y=b[k];if((x==null||x==='')&&(y==null||y===''))return 0;if(x==null||x==='')return 1;if(y==null||y==='')return -1;return (x>y?1:x<y?-1:0)*d});
+    const pages=Math.max(1,Math.ceil(all.length/PERPAGE));if(SCQ.page>pages)SCQ.page=pages;
+    const sh=all.slice((SCQ.page-1)*PERPAGE,SCQ.page*PERPAGE);
+    const BASEC=['px','roe','pe','rg','r1y'],extra=SCQ.used.filter(c=>!BASEC.includes(c)&&c!=='ind'&&c!=='cap'&&c!=='bias').slice(0,2),cs=BASEC.concat(extra);
     const cell=(r,c)=>{const v=r[c];if(c==='a200')return `<td class="num">${v==null?'–':v?'Yes':'No'}</td>`;
-      if(TXT.has(c))return `<td class="l${c==='n'?' mut':''}">${esc(String(v==null?'':v))}</td>`;
       return `<td class="num ${SIGN.has(c)?cls(v):''}">${nn(v)?(SIGN.has(c)&&v>0?'+':'')+T.fmt(v,dec[c]??1):'–'}</td>`};
-    res.innerHTML=`<div class="card sqr"><div class="schd"><b>${all.length} result${all.length===1?'':'s'} found</b><span class="mut" style="flex:1;font-size:13px"> · out of ${SCQ.pool} stocks · click a column to sort · click a row to open</span><button id="sq-csv" class="sqsec2">Export CSV</button></div>
-     <div class="scroll"><table id="sc-tb" class="sctb"><tr>${cs.map(c=>`<th class="${TXT.has(c)?'l':''}" data-k="${c}">${LBL[c]||c}${k===c?(d>0?' ▲':' ▼'):''}</th>`).join('')}</tr>
-     ${shown.map(r=>`<tr class="row" data-s="${esc(r.s)}">${cs.map(c=>cell(r,c)).join('')}</tr>`).join('')||`<tr><td colspan="${cs.length}" class="mut" style="padding:20px;text-align:center">No stock matches this query. Try loosening one of the conditions.</td></tr>`}</table></div>
-     ${all.length>SCQ.n?'<p style="text-align:center;margin:10px 0 0"><button id="sc-more" class="sqsec2">Show 50 more</button></p>':''}</div>`;
+    const pg=[];for(let i=1;i<=pages;i++){if(i===1||i===pages||Math.abs(i-SCQ.page)<=1)pg.push(i);else if(pg[pg.length-1]!=='…')pg.push('…')}
+    $('#sx-res').innerHTML=`<div class="sxrh"><h3>Results <span>(${all.length})</span></h3><span class="mut sxat">Last run: ${SCQ.at.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}, ${SCQ.at.toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit'})}</span></div>
+     <div class="sxsort"><label>Sort by <select id="sx-sort">${SORTS.map(c=>`<option value="${c}"${c===k?' selected':''}>${esc(LBL[c])}</option>`).join('')}</select></label><button id="sx-dir" class="sxb" title="Reverse order">${d>0?'Low → High':'High → Low'}</button></div>
+     <div class="scroll"><table class="sxtb"><tr><th class="l">Stock</th>${cs.map(c=>`<th>${esc(LBL[c])}</th>`).join('')}</tr>
+     ${sh.map(r=>`<tr class="row" data-s="${esc(r.s)}"><td class="l"><b>${esc(r.n)}</b><small>${esc(r.s)}${r.cap?' · '+esc(r.cap):''}</small></td>${cs.map(c=>cell(r,c)).join('')}</tr>`).join('')||`<tr><td colspan="${cs.length+1}" class="mut" style="padding:22px;text-align:center">No stock matches. Try loosening a condition.</td></tr>`}</table></div>
+     <div class="sxpg"><span class="mut">${all.length?((SCQ.page-1)*PERPAGE+1)+' – '+Math.min(all.length,SCQ.page*PERPAGE)+' of '+all.length:'0 of 0'}</span><div><button data-pg="${SCQ.page-1}" ${SCQ.page<=1?'disabled':''}>&lsaquo;</button>${pg.map(p=>p==='…'?'<i>…</i>':`<button data-pg="${p}" class="${p===SCQ.page?'on':''}">${p}</button>`).join('')}<button data-pg="${SCQ.page+1}" ${SCQ.page>=pages?'disabled':''}>&rsaquo;</button></div></div>`;
+    const res=$('#sx-res');
     res.querySelectorAll('tr.row').forEach(tr=>tr.onclick=()=>{location.hash='#/stock/'+encodeURIComponent(tr.dataset.s)});
-    res.querySelectorAll('th').forEach(th=>th.onclick=()=>{const kk=th.dataset.k;SCQ.sort=SCQ.sort.k===kk?{k:kk,d:-SCQ.sort.d}:{k:kk,d:TXT.has(kk)?1:-1};drawRes()});
-    const mo=$('#sc-more');if(mo)mo.onclick=()=>{SCQ.n+=50;drawRes()};
-    $('#sq-csv').onclick=()=>{const q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
-      const csv=[cs.map(c=>q(LBL[c]||c)).join(',')].concat(all.map(r=>cs.map(c=>q(r[c])).join(','))).join('\n');
-      const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='screen_results.csv';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)};
+    res.querySelectorAll('[data-pg]').forEach(b=>b.onclick=()=>{SCQ.page=+b.dataset.pg;draw()});
+    $('#sx-sort').onchange=e=>{SCQ.sort={k:e.target.value,d:TXT.has(e.target.value)?1:-1};SCQ.page=1;draw()};
+    $('#sx-dir').onclick=()=>{SCQ.sort={k:SCQ.sort.k,d:-SCQ.sort.d};SCQ.page=1;draw()};
   };
-  const load=q=>{$('#sq-q').value=q;run(true)};
+  const exportCsv=()=>{if(!SCQ.ran)return;const cs=['s','n','ind','cap','mc','px','pe','pb','ev','roe','roce','de','rg','ng','nm','r1m','r1y','up','rsi','dp','score','bias','rs1w','rs3m','rs6m','rs1y'];
+    const q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
+    const csv=[cs.map(c=>q(LBL[c]||c)).join(',')].concat(SCQ.hit.map(r=>cs.map(c=>q(r[c])).join(','))).join('\n');
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='screen_results.csv';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)};
+  const redrawRows=()=>{$('#sx-rows').innerHTML=SCQ.f.map(rowHtml).join('');refreshCnt()};
   const bind=()=>{
-    $('#sq-run').onclick=()=>run(false);
-    $('#sq-q').onkeydown=e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();run(false)}};
-    $('#sq-u').onchange=()=>{if(SCQ.ran)run(false)};
-    $('#sq-ex').onclick=()=>{$('#sq-q').value=SC_EXAMPLE;run(false)};
-    $('#sq-clr').onclick=()=>{$('#sq-q').value='';SCQ.q='';SCQ.ran=false;lsSet('tl_scq',{q:'',u:SCQ.u});$('#sq-res').innerHTML='';$('#sq-err').textContent=''};
-    $('#sq-save').onclick=()=>{const q=$('#sq-q').value.trim(),err=$('#sq-err');if(!q){err.textContent='Write a query first, then save it.';return}
+    const root=view.querySelector('.sx');
+    $('#sx-run').onclick=run;$('#sx-exp').onclick=exportCsv;
+    root.onkeydown=e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();run()}else if(e.key==='Enter'&&e.target.matches('.sxv input')){e.preventDefault();run()}};
+    $('#sx-u').onchange=()=>{if(SCQ.ran)run()};
+    $('#sx-reset').onclick=()=>{SCQ.f=[];SCQ.q='';SCQ.preset='';SCQ.logic='AND';SCQ.mode='f';SCQ.u='all';persist();shell();run()};
+    root.querySelectorAll('.sxpc').forEach(b=>b.onclick=()=>{const p=SX_PRE.find(x=>x[0]===b.dataset.p);SCQ.mode='f';SCQ.logic='AND';SCQ.f=p[2].map(x=>({k:x[0],op:x[1],v:x[2]}));SCQ.preset=p[0];shell();run()});
+    root.querySelectorAll('.sxtabs:not(.sm) [data-m]').forEach(b=>b.onclick=()=>{const m=b.dataset.m;if(m===SCQ.mode)return;
+      if(m==='q'){SCQ.q=qFromF()||SCQ.q}SCQ.mode=m;shell()});
+    root.querySelectorAll('[data-lg]').forEach(b=>b.onclick=()=>{SCQ.logic=b.dataset.lg;SCQ.preset='';shell()});
+    $('#sx-add').onclick=()=>{SCQ.f.push({k:'roe',op:'>',v:''});SCQ.preset='';redrawRows();const l=$('#sx-rows .sxfr:last-child .sxv input');if(l)l.focus()};
+    const rowsEl=$('#sx-rows');
+    rowsEl.onchange=e=>{const row=e.target.closest('.sxfr');if(!row)return;const i=+row.dataset.i,a=e.target.dataset.a,r=SCQ.f[i];
+      if(a==='k'){const wasT=TXT.has(r.k);r.k=e.target.value;r.op=TXT.has(r.k)?'=':'>';if(wasT||TXT.has(r.k))r.v='';SCQ.preset='';redrawRows()}
+      else if(a==='op'){r.op=e.target.value;SCQ.preset=''}};
+    rowsEl.oninput=e=>{if(e.target.dataset.a==='v'){const r=SCQ.f[+e.target.closest('.sxfr').dataset.i];r.v=e.target.value;SCQ.preset='';refreshCnt()}};
+    rowsEl.onclick=e=>{const b=e.target.closest('[data-a="del"]');if(!b)return;SCQ.f.splice(+b.closest('.sxfr').dataset.i,1);SCQ.preset='';redrawRows()};
+    $('#sx-save').onclick=()=>{const q=curQuery().trim(),err=$('#sx-err');if(!q){err.textContent='Add at least one condition first, then save.';return}
       try{scParse(q)}catch(e){err.textContent=e.message;return}
-      const nm=($('#sq-name').value.trim()||q.replace(/\s+/g,' ').slice(0,30)),a=lsGet('tl_screens');a.unshift({n:nm,q});lsSet('tl_screens',a.slice(0,40));err.textContent='';
-      const keep=$('#sq-q').value;shell();$('#sq-q').value=keep;if(SCQ.ran)run(false)};
-    view.querySelectorAll('.sqchip').forEach(b=>b.onclick=()=>{const t=$('#sq-q'),s=t.selectionStart??t.value.length,e=t.selectionEnd??s,ins=b.dataset.ins+' ';t.value=t.value.slice(0,s)+ins+t.value.slice(e);t.focus();t.selectionStart=t.selectionEnd=s+ins.length});
-    view.querySelectorAll('#sq-lib .sqcard').forEach(c=>c.onclick=e=>{if(e.target.closest('.sqdel'))return;load(c.dataset.q)});
-    view.querySelectorAll('.sqdel').forEach(x=>x.onclick=e=>{e.stopPropagation();const a=lsGet('tl_screens');a.splice(+x.dataset.del,1);lsSet('tl_screens',a);const keep=$('#sq-q').value;shell();$('#sq-q').value=keep;if(SCQ.ran)run(false)});
-    view.querySelectorAll('.sqind button').forEach(b=>b.onclick=()=>load('Industry = "'+b.dataset.ind.replace(/"/g,'')+'"'));
+      const nm=($('#sx-name').value.trim()||q.replace(/\s+/g,' ').slice(0,30)),a=lsGet('tl_screens');a.unshift({n:nm,q});lsSet('tl_screens',a.slice(0,40));err.textContent='';
+      const keep=SCQ.mode==='q'?$('#sx-q').value:null;if(keep!=null)SCQ.q=keep;shell();if(SCQ.ran)run()};
+    root.querySelectorAll('.sqchip').forEach(b=>b.onclick=()=>{const t=$('#sx-q'),s=t.selectionStart??t.value.length,e=t.selectionEnd??s,ins=b.dataset.ins+' ';t.value=t.value.slice(0,s)+ins+t.value.slice(e);t.focus();t.selectionStart=t.selectionEnd=s+ins.length});
+    root.querySelectorAll('.sxlib .sqcard').forEach(c=>c.onclick=e=>{if(e.target.closest('.sqdel'))return;SCQ.mode='q';SCQ.q=c.dataset.q;SCQ.preset='';shell();run();window.scrollTo({top:0,behavior:'smooth'})});
+    root.querySelectorAll('.sqdel').forEach(x=>x.onclick=e=>{e.stopPropagation();const a=lsGet('tl_screens');a.splice(+x.dataset.del,1);lsSet('tl_screens',a);const keep=SCQ.mode==='q'?$('#sx-q').value:null;if(keep!=null)SCQ.q=keep;shell();if(SCQ.ran)run()});
+    root.querySelectorAll('.sqind button').forEach(b=>b.onclick=()=>{SCQ.mode='f';SCQ.logic='AND';SCQ.f=[{k:'ind',op:'=',v:b.dataset.ind}];SCQ.preset='';shell();run();window.scrollTo({top:0,behavior:'smooth'})});
   };
   shell();
-  if(runNow||(SCQ.q.trim()&&SCQ.ran===false&&false))run(false);
-  else if(SCQ.ran)run(false);
+  run();
 }
 
 // ---------- statements: P&L, balance sheet, cash flow, shareholding ----------
