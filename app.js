@@ -1245,6 +1245,16 @@ function aboutPage(){
      <li><b>Screener:</b> filter the stock list. <b>Data health:</b> whether each data file is fresh, whether the automatic updates ran and whether the models pass their own checks. A small <b>i</b> button beside each model explains what it is and how to read it.</li>
     </ul>
     <p class="mut" style="font-size:13px;margin-top:10px">Data is end-of-day and refreshed automatically on weekdays. Prices and statements come from Yahoo Finance; the stock list, index lists and shareholding come from NSE. Size classes use market cap: large cap ₹${T.fmt(CAP_LARGE,0)} crore and above, mid cap ₹${T.fmt(CAP_MID,0)} to ₹${T.fmt(CAP_LARGE,0)} crore, small cap below ₹${T.fmt(CAP_MID,0)} crore.</p></div>
+   <div class="card" id="disclaimer" style="margin-top:14px"><h3>Disclaimer</h3>
+    <p class="mut" style="font-size:13px;line-height:1.65;margin:0 0 8px"><b>For information and education only.</b> Equity Terminal is a research and learning tool. Nothing on this site is investment advice, a recommendation, a solicitation or an offer to buy or sell any security, and nothing here is a research report or personalised advice under SEBI regulations.</p>
+    <ul class="mut" style="font-size:13px;line-height:1.65;margin:0 0 0 18px">
+     <li><b>Estimates, not forecasts.</b> Fair values, scenario cases, scores and labels such as bullish or bearish come from mechanical models that rest on assumptions. They are not predictions and can be wrong. Past performance and back-tested results do not guarantee future results.</li>
+     <li><b>Data may be wrong or late.</b> Figures come from public sources such as Yahoo Finance and NSE and are processed automatically. They can be delayed, incomplete, restated or inaccurate, and are provided as they are, without any warranty.</li>
+     <li><b>Your assumptions matter.</b> Where you edit inputs, the outputs reflect your own assumptions and not any view of this site.</li>
+     <li><b>Risk.</b> Investing in equities involves risk, including the loss of your capital. Do your own research and consult a qualified, registered adviser before you act.</li>
+     <li><b>No liability.</b> To the fullest extent permitted by law, the author accepts no responsibility for any loss arising from the use of this site or reliance on it.</li>
+     <li><b>Personal project.</b> This is an independent project. Views and models here are the author's own and do not represent any employer or other organisation.</li>
+    </ul></div>
    </div><div class="abr">
    <div class="card" style="margin-top:0"><h3>Contact &amp; support</h3>
     <p>Found a wrong number, a bug, or have an idea? Write to us:</p>
@@ -1265,6 +1275,7 @@ function aboutPage(){
    </div>
    </div></div>
    <p class="mut" style="font-size:12px;margin-top:14px">Model values are estimates from public data. This is not investment advice.</p></div>`;
+  if(/disclaimer/i.test(location.hash))setTimeout(()=>{const d=document.getElementById('disclaimer');if(d)d.scrollIntoView({behavior:'smooth',block:'start'})},60);
 }
 
 // ---------- daily quote ----------
