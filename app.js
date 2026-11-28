@@ -1234,7 +1234,7 @@ function aboutPage(){
   view.innerHTML=`<div class="rs" style="max-width:1240px;margin:0 auto;text-align:left">
    <h2 style="text-align:left">About &amp; Support</h2>
    <div class="abg"><div class="abl">
-   <div class="card" style="margin-top:0"><h3>About</h3>
+   <div class="card ab1" style="margin-top:0"><h3>About</h3>
     <p>Equity Terminal is a research terminal for Indian cash equities: the Nifty 500 and the Nifty Microcap 250 (about 750 stocks). It shows the market at a glance, gives each company a page with financials, valuation models and peer comparison, and adds order-flow and quantitative research tools, all calculated from public end-of-day data.${c.author?` Built by ${esc(c.author)}.`:''}</p>
     <ul class="mut" style="margin:6px 0 0 18px;line-height:1.7">
      <li><b>Market Overview:</b> indices, top gainers and losers, an NSE-style index heatmap (Broad, Sectoral, Thematic and Strategy indices, 1D to 1Y, click an index to see its stocks) and a stocks-by-industry heatmap.</li>
@@ -1245,7 +1245,7 @@ function aboutPage(){
      <li><b>Screener:</b> filter the stock list. <b>Data health:</b> whether each data file is fresh, whether the automatic updates ran and whether the models pass their own checks. A small <b>i</b> button beside each model explains what it is and how to read it.</li>
     </ul>
     <p class="mut" style="font-size:13px;margin-top:10px">Data is end-of-day and refreshed automatically on weekdays. Prices and statements come from Yahoo Finance; the stock list, index lists and shareholding come from NSE. Size classes use market cap: large cap ₹${T.fmt(CAP_LARGE,0)} crore and above, mid cap ₹${T.fmt(CAP_MID,0)} to ₹${T.fmt(CAP_LARGE,0)} crore, small cap below ₹${T.fmt(CAP_MID,0)} crore.</p></div>
-   <div class="card" id="disclaimer" style="margin-top:14px"><h3>Disclaimer</h3>
+   <div class="card ab2" id="disclaimer" style="margin-top:0"><h3>Disclaimer</h3>
     <p class="mut" style="font-size:13px;line-height:1.65;margin:0 0 8px"><b>For information and education only.</b> Equity Terminal is a research and learning tool. Nothing on this site is investment advice, a recommendation, a solicitation or an offer to buy or sell any security, and nothing here is a research report or personalised advice under SEBI regulations.</p>
     <ul class="mut" style="font-size:13px;line-height:1.65;margin:0 0 0 18px">
      <li><b>Estimates, not forecasts.</b> Fair values, scenario cases, scores and labels such as bullish or bearish come from mechanical models that rest on assumptions. They are not predictions and can be wrong. Past performance and back-tested results do not guarantee future results.</li>
@@ -1256,14 +1256,14 @@ function aboutPage(){
      <li><b>Personal project.</b> This is an independent project. Views and models here are the author's own and do not represent any employer or other organisation.</li>
     </ul></div>
    </div><div class="abr">
-   <div class="card" style="margin-top:0"><h3>Contact &amp; support</h3>
+   <div class="card ab4" style="margin-top:0"><h3>Contact &amp; support</h3>
     <p>Found a wrong number, a bug, or have an idea? Write to us:</p>
     <ul style="margin:6px 0 0 18px;line-height:1.8">
      ${c.email?`<li>Email: ${lk('mailto:'+c.email+'?subject='+encodeURIComponent('Equity Terminal feedback'),c.email)}</li>`:''}
      ${c.linkedin?`<li>${lk(c.linkedin,'LinkedIn')}</li>`:''}
     </ul>
     <p class="mut" style="font-size:12.5px;margin-top:10px">When reporting a problem, please include the stock symbol, the tab you were on and a screenshot.</p></div>
-   <div class="card" style="margin-top:14px"><h3>Common questions</h3>
+   <div class="card ab3" style="margin-top:0"><h3>Common questions</h3>
     ${faq('A number looks wrong for one stock','Most figures come straight from Yahoo Finance, which can be incomplete or restated for some companies, especially banks, lenders and recently merged companies. Check the company\'s own results and report the symbol so we can look at it.')}
     ${faq('The data looks old','Open the footer at the bottom of any page: it shows when data was last updated. Prices refresh once a day after the market closes. If a page looks stale, hard refresh your browser.')}
     ${faq('Why does a model say "low reliability"?','Every model has limits. A dividend model, for example, undervalues companies that pay out little of their profit, so it is flagged for them. Use the Summary tab to compare all models and untick the ones that do not suit the stock.')}
