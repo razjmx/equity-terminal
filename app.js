@@ -1481,7 +1481,7 @@ function renderMarket(anim){
    h+='<div id="hmwrap"></div>'}
 
   const chips=[['idx','Indices'],['gl','Gainers & losers'],['ind','Heatmap']];
-  const bar=`<div class="vseg mk-tf" id="mh-range">${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div>`;
+  const bar=`<div class="vseg mk-tf" id="mh-range"><span class="vl">Time frame</span>${Object.keys(RANGES).map(k=>`<button data-r="${k}" class="${MH.range===k?'on':''}">${k}</button>`).join('')}</div>`;
   view.innerHTML=`<div class="mk"><div class="mk-main">${h}<p class="mut mk-foot">${d.n_stocks} stocks · data to ${esc(d.last_date)} · from daily closes</p></div>${bar}</div>`;
   // wire
   alignSides('.mk','.mh-grid');
@@ -1588,6 +1588,8 @@ async function idxHeatPanel(){
   w.querySelectorAll('.ixb button').forEach(b=>b.onclick=()=>{IXH.tf=b.dataset.t;HM.tf=b.dataset.t;idxHeatPanel()});
   HM.tf=IXH.tf;
   const box=$('#ixc');
+  {const ixa=w.querySelector('.ixa');const al=()=>{if(!ixa||!box.isConnected)return;const hd=box.querySelector('.ixhead');ixa.style.marginTop=hd&&window.innerWidth>820?(hd.offsetHeight+(parseFloat(getComputedStyle(hd).marginBottom)||0))+'px':'0'};
+   try{new MutationObserver(al).observe(box,{childList:true,subtree:true});if(window._ixR)window.removeEventListener('resize',window._ixR);window._ixR=al;window.addEventListener('resize',al)}catch(e){}}
   if(stocks){stocksHeat(box);return}
   if(!D0||!D0.groups){box.innerHTML='<div class="card"><p class="mut">The index data is not built yet. In the Actions tab, run <b>NSE index levels</b> once; it then updates on weekdays after the close.</p></div>';return}
   const L=D0.groups[IXH.g]||[],gname=IXH_G.find(x=>x[0]===IXH.g)[1];
